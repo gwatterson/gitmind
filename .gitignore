@@ -1,0 +1,45 @@
+# ============================================================
+# GitMind — Root .gitignore
+# ============================================================
+
+# --- Environment & Secrets ---
+.env
+.env.local
+*.pem
+secrets/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+dist/
+build/
+venv/
+.venv/
+.pytest_cache/
+*.db
+
+# --- Node.js ---
+node_modules/
+.next/
+.vercel/
+.pnp.js
+.yarn/install-state.gz
+
+# --- Logs ---
+*.log
+error.log
+
+# --- IDE ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+
+# --- CI/CD (optional local exclusion) ---
+.github/

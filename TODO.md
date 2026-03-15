@@ -1,0 +1,2 @@
+1. If vulnerability is found, the app should not be able to be approved. Think about a solution to reject the PR
+2. My tests showed that the app is not able to find all the vulnerabilities in the test files. Security vulnerability in test/vulnerable_app.py is not detected. Furthemore, all the vulnerabilities are labelled as 'quality' even if they are security or performance issues. 
