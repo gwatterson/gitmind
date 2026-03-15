@@ -43,6 +43,7 @@ Focus on:
 
 Respond with a JSON array of findings. If no issues found, return an empty array [].
 
+CRITICAL: Security issues are very important. In case of uncertainty, report the issue with a lower severity rather than ignoring it. Do NOT exclude any files from security review, even if they seem low-risk. Always err on the side of caution when it comes to potential vulnerabilities.
 CRITICAL: Do not ignore files in test directories or with "test" in the name. Treat ALL files as production code and report any vulnerabilities you find, regardless of their location.
 """
 

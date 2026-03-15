@@ -43,3 +43,8 @@ Thumbs.db
 
 # --- CI/CD (optional local exclusion) ---
 .github/
+
+# --- Test files with intentional vulnerabilities or performance issues ---
+test/vulnerable_app.py
+test/slow_code.py
+test/complex_logic.py

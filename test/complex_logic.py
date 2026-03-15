@@ -1,16 +1,4 @@
-"""
-Test file with intentional QUALITY issues.
-Used for testing GitMind's quality analysis agent.
-
-Issues:
-  - Deeply nested conditionals (cyclomatic complexity > 15)
-  - Long function with too many parameters
-  - Poor naming conventions
-"""
-
-
 def process_data(data, flag1, flag2, flag3, mode, extra):
-    """Process data with extremely high cyclomatic complexity."""
     if flag1:
         if data:
             if flag2:
@@ -43,7 +31,6 @@ def process_data(data, flag1, flag2, flag3, mode, extra):
 
 
 def x(a, b, c, d, e, f, g, h, i, j):
-    """Terrible function name, too many parameters, no documentation."""
     t = 0
     for q in range(a):
         for w in range(b):
