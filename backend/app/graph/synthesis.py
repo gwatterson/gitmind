@@ -23,12 +23,13 @@ Given a list of findings from security, quality, and performance analyses,
 write a concise, professional PR review summary (max 300 words).
 
 Structure your summary:
-1. **Overall Assessment**: One sentence verdict
-2. **Critical Issues** (if any): Must be addressed before merge
-3. **Key Findings**: Top 3-5 most important issues by category
-4. **Recommendations**: Brief actionable next steps
+1. Overall Assessment: One sentence verdict
+2. Critical Issues (if any): Must be addressed before merge
+3. Key Findings: Top 3-5 most important issues by category
+4. Recommendations: Brief actionable next steps
 
 Be direct, professional, and constructive. Avoid unnecessary filler.
+Answer in plain text, not markdown.
 """
 
 

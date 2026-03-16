@@ -116,16 +116,7 @@ GitMind/
 
 ---
 
-## 🧪 Testing
 
-```bash
-cd backend
-python -m venv venv && venv\Scripts\activate
-pip install -e ".[dev]"
-pytest tests/ -v
-```
-
----
 
 ## 📄 License
 
