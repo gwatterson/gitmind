@@ -5,6 +5,7 @@ Quality Agent — analyzes code quality: complexity, naming, structure, maintain
 import json
 import structlog
 from typing import Dict, List, Any
+from pydantic import BaseModel, Field
 
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import SystemMessage, HumanMessage
@@ -15,6 +16,18 @@ from app.graph.state import PRState, Finding
 from app.db import crud
 
 log = structlog.get_logger()
+
+class FindingModel(BaseModel):
+    file: str = Field(description="the filename")
+    line: int = Field(default=0, description="the approximate line number in the patch")
+    severity: str = Field(description='"critical", "high", "medium", "low", or "info"')
+    category: str = Field(description='always "quality"')
+    rule_id: str = Field(description='a short identifier (e.g., "high-complexity", "missing-error-handling", "naming-convention")')
+    message: str = Field(description='clear description of the issue')
+    suggestion: str = Field(default="", description='how to improve with a code example if possible')
+
+class QualityReview(BaseModel):
+    findings: List[FindingModel] = Field(default_factory=list, description="List of quality findings")
 
 QUALITY_SYSTEM_PROMPT = """You are a senior software engineer specializing in code quality review.
 Your task is to analyze code patches from a Pull Request and identify quality issues.
@@ -40,9 +53,9 @@ Focus on:
 - Missing docstrings on public APIs
 - Code that violates SOLID principles
 
-Respond with a JSON array of findings. If no issues found, return an empty array [].
+Analyze the code and extract the findings using the provided structured output format.
 
-CRITICAL: Do not ignore files in test directories or with "test" in the name. Treat ALL files as production code and report any structural or quality issues you find.
+CRITICAL: Do not ignore files in test directories or with "test" in the name. Treat ALL files as production code and report any structural or quality issues you find, regardless of their location.
 """
 
 
@@ -91,12 +104,26 @@ async def quality_agent_node(state: PRState) -> Dict[str, Any]:
             max_output_tokens=4096,
         )
 
-        response = await llm.ainvoke([
+        structured_llm = llm.with_structured_output(QualityReview)
+
+        response = await structured_llm.ainvoke([
             SystemMessage(content=QUALITY_SYSTEM_PROMPT),
             HumanMessage(content=f"Analyze these code patches for quality issues:\n\n{patches_text}"),
         ])
 
-        findings = _parse_findings(response.content, "quality")
+        findings = []
+        if response and response.findings:
+            for f in response.findings:
+                findings.append(Finding(
+                    file=f.file,
+                    line=f.line,
+                    severity=f.severity,
+                    category="quality",
+                    rule_id=f.rule_id,
+                    message=f.message,
+                    suggestion=f.suggestion,
+                    agent="quality",
+                ))
 
         log.info("quality_agent_done", review_id=review_id, findings_count=len(findings))
 
@@ -117,34 +144,3 @@ async def quality_agent_node(state: PRState) -> Dict[str, Any]:
             message=f"Quality agent error: {str(e)}",
         )
         return {"quality_findings": [], "error": str(e)}
-
-
-def _parse_findings(response_text: str, agent: str) -> List[Finding]:
-    """Parse LLM response into Finding objects."""
-    try:
-        text = response_text.strip()
-        if "```json" in text:
-            text = text.split("```json")[1].split("```")[0].strip()
-        elif "```" in text:
-            text = text.split("```")[1].split("```")[0].strip()
-
-        raw_findings = json.loads(text)
-        if not isinstance(raw_findings, list):
-            raw_findings = [raw_findings]
-
-        findings = []
-        for f in raw_findings:
-            findings.append(Finding(
-                file=f.get("file", "unknown"),
-                line=int(f.get("line", 0)),
-                severity=f.get("severity", "info"),
-                category=f.get("category", "quality"),
-                rule_id=f.get("rule_id", ""),
-                message=f.get("message", ""),
-                suggestion=f.get("suggestion", ""),
-                agent=agent,
-            ))
-        return findings
-    except (json.JSONDecodeError, KeyError, TypeError) as e:
-        log.warning("findings_parse_error", agent=agent, error=str(e))
-        return []

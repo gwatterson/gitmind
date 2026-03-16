@@ -5,6 +5,7 @@ Performance Agent — detects performance anti-patterns: N+1 queries, loop I/O, 
 import json
 import structlog
 from typing import Dict, List, Any
+from pydantic import BaseModel, Field
 
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import SystemMessage, HumanMessage
@@ -15,6 +16,18 @@ from app.graph.state import PRState, Finding
 from app.db import crud
 
 log = structlog.get_logger()
+
+class FindingModel(BaseModel):
+    file: str = Field(description="the filename")
+    line: int = Field(default=0, description="the approximate line number in the patch")
+    severity: str = Field(description='"critical", "high", "medium", "low", or "info"')
+    category: str = Field(description='always "performance"')
+    rule_id: str = Field(description='a short identifier (e.g., "n-plus-1", "loop-io", "string-concat-loop")')
+    message: str = Field(description='clear description of the performance issue')
+    suggestion: str = Field(default="", description='how to optimize with a code example if possible')
+
+class PerformanceReview(BaseModel):
+    findings: List[FindingModel] = Field(default_factory=list, description="List of performance findings")
 
 PERFORMANCE_SYSTEM_PROMPT = """You are a performance engineering expert specializing in code review.
 Your task is to analyze code patches from a Pull Request and identify performance issues.
@@ -40,7 +53,7 @@ Focus on:
 - Memory leaks (unclosed resources, accumulating data structures)
 - Redundant computations that could be cached/memoized
 
-Respond with a JSON array of findings. If no issues found, return an empty array [].
+Analyze the code and extract the findings using the provided structured output format.
 
 CRITICAL: Do not ignore files in test directories or with "test" in the name. Treat ALL files as production code and report any performance issues you find.
 """
@@ -91,12 +104,26 @@ async def performance_agent_node(state: PRState) -> Dict[str, Any]:
             max_output_tokens=4096,
         )
 
-        response = await llm.ainvoke([
+        structured_llm = llm.with_structured_output(PerformanceReview)
+
+        response = await structured_llm.ainvoke([
             SystemMessage(content=PERFORMANCE_SYSTEM_PROMPT),
             HumanMessage(content=f"Analyze these code patches for performance issues:\n\n{patches_text}"),
         ])
 
-        findings = _parse_findings(response.content, "performance")
+        findings = []
+        if response and response.findings:
+            for f in response.findings:
+                findings.append(Finding(
+                    file=f.file,
+                    line=f.line,
+                    severity=f.severity,
+                    category="performance",
+                    rule_id=f.rule_id,
+                    message=f.message,
+                    suggestion=f.suggestion,
+                    agent="performance",
+                ))
 
         log.info("performance_agent_done", review_id=review_id, findings_count=len(findings))
 
@@ -117,34 +144,3 @@ async def performance_agent_node(state: PRState) -> Dict[str, Any]:
             message=f"Performance agent error: {str(e)}",
         )
         return {"performance_findings": [], "error": str(e)}
-
-
-def _parse_findings(response_text: str, agent: str) -> List[Finding]:
-    """Parse LLM response into Finding objects."""
-    try:
-        text = response_text.strip()
-        if "```json" in text:
-            text = text.split("```json")[1].split("```")[0].strip()
-        elif "```" in text:
-            text = text.split("```")[1].split("```")[0].strip()
-
-        raw_findings = json.loads(text)
-        if not isinstance(raw_findings, list):
-            raw_findings = [raw_findings]
-
-        findings = []
-        for f in raw_findings:
-            findings.append(Finding(
-                file=f.get("file", "unknown"),
-                line=int(f.get("line", 0)),
-                severity=f.get("severity", "info"),
-                category=f.get("category", "performance"),
-                rule_id=f.get("rule_id", ""),
-                message=f.get("message", ""),
-                suggestion=f.get("suggestion", ""),
-                agent=agent,
-            ))
-        return findings
-    except (json.JSONDecodeError, KeyError, TypeError) as e:
-        log.warning("findings_parse_error", agent=agent, error=str(e))
-        return []

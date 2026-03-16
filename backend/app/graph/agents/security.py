@@ -5,6 +5,7 @@ Security Agent — analyzes files for security vulnerabilities using LLM + semgr
 import json
 import structlog
 from typing import Dict, List, Any
+from pydantic import BaseModel, Field
 
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import SystemMessage, HumanMessage
@@ -15,6 +16,18 @@ from app.graph.state import PRState, Finding
 from app.db import crud
 
 log = structlog.get_logger()
+
+class FindingModel(BaseModel):
+    file: str = Field(description="the filename")
+    line: int = Field(default=0, description="the approximate line number in the patch")
+    severity: str = Field(description='"critical", "high", "medium", "low", or "info"')
+    category: str = Field(description='always "security"')
+    rule_id: str = Field(description='a short identifier (e.g., "sql-injection", "xss")')
+    message: str = Field(description='clear description of the vulnerability')
+    suggestion: str = Field(default="", description='how to fix it with a code example if possible')
+
+class SecurityReview(BaseModel):
+    findings: List[FindingModel] = Field(default_factory=list, description="List of security findings")
 
 SECURITY_SYSTEM_PROMPT = """You are an application security expert specializing in code review.
 You follow the OWASP Top 10 guidelines. Your task is to analyze code patches from a Pull Request
@@ -27,7 +40,7 @@ For each finding, provide:
 - category: always "security"
 - rule_id: a short identifier (e.g., "sql-injection", "xss", "auth-bypass")
 - message: clear description of the vulnerability
-- suggestion: how to fix it with a code example if possible
+- suggestion: how to fix it with a code example if possible (IMPORTANT: carefully escape all double quotes (\") inside code examples)
 
 Focus on:
 - SQL injection / NoSQL injection
@@ -41,7 +54,7 @@ Focus on:
 - Missing input validation
 - Insecure file operations
 
-Respond with a JSON array of findings. If no issues found, return an empty array [].
+Analyze the code and extract the findings using the provided structured output format.
 
 CRITICAL: Security issues are very important. In case of uncertainty, report the issue with a lower severity rather than ignoring it. Do NOT exclude any files from security review, even if they seem low-risk. Always err on the side of caution when it comes to potential vulnerabilities.
 CRITICAL: Do not ignore files in test directories or with "test" in the name. Treat ALL files as production code and report any vulnerabilities you find, regardless of their location.
@@ -93,12 +106,26 @@ async def security_agent_node(state: PRState) -> Dict[str, Any]:
             max_output_tokens=4096,
         )
 
-        response = await llm.ainvoke([
+        structured_llm = llm.with_structured_output(SecurityReview)
+
+        response = await structured_llm.ainvoke([
             SystemMessage(content=SECURITY_SYSTEM_PROMPT),
             HumanMessage(content=f"Analyze these code patches for security vulnerabilities:\n\n{patches_text}"),
         ])
 
-        findings = _parse_findings(response.content, "security")
+        findings = []
+        if response and response.findings:
+            for f in response.findings:
+                findings.append(Finding(
+                    file=f.file,
+                    line=f.line,
+                    severity=f.severity,
+                    category="security",
+                    rule_id=f.rule_id,
+                    message=f.message,
+                    suggestion=f.suggestion,
+                    agent="security",
+                ))
 
         log.info("security_agent_done", review_id=review_id, findings_count=len(findings))
 
@@ -119,35 +146,3 @@ async def security_agent_node(state: PRState) -> Dict[str, Any]:
             message=f"Security agent error: {str(e)}",
         )
         return {"security_findings": [], "error": str(e)}
-
-
-def _parse_findings(response_text: str, agent: str) -> List[Finding]:
-    """Parse LLM response into Finding objects."""
-    try:
-        # Handle markdown code blocks
-        text = response_text.strip()
-        if "```json" in text:
-            text = text.split("```json")[1].split("```")[0].strip()
-        elif "```" in text:
-            text = text.split("```")[1].split("```")[0].strip()
-
-        raw_findings = json.loads(text)
-        if not isinstance(raw_findings, list):
-            raw_findings = [raw_findings]
-
-        findings = []
-        for f in raw_findings:
-            findings.append(Finding(
-                file=f.get("file", "unknown"),
-                line=int(f.get("line", 0)),
-                severity=f.get("severity", "info"),
-                category=f.get("category", "security"),
-                rule_id=f.get("rule_id", ""),
-                message=f.get("message", ""),
-                suggestion=f.get("suggestion", ""),
-                agent=agent,
-            ))
-        return findings
-    except (json.JSONDecodeError, KeyError, TypeError) as e:
-        log.warning("findings_parse_error", agent=agent, error=str(e))
-        return []
