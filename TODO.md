@@ -1,6 +1,6 @@
 Priority:
 1. If vulnerability is found, the UI should show a button to reject the PR. At the moment, only 'Approve and post' button is showed. Think about a solution.
-2. Check "Review summary" issue. Markdown format is not rendered.
+2. Check "Review summary" issue. Markdown format is not rendered and response is cut
 3. Check vulnerabilities in the code of the app itself
 
 Low priority:

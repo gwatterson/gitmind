@@ -15,7 +15,14 @@ if not exist venv (
 
 echo       Activating venv and installing dependencies...
 call venv\Scripts\activate.bat
-pip install -e ".[dev]" --quiet 2>nul
+echo       Installing dependencies (this may take a moment)...
+pip install -e ".[dev]"
+if %errorlevel% neq 0 (
+    echo       [ERROR] Failed to install dependencies. Check the error above.
+    echo       You may need to run: pip install -e ".[dev]" manually
+    pause
+    exit /b 1
+)
 
 REM Copy .env if it doesn't exist
 if not exist .env (
@@ -55,13 +62,9 @@ timeout /t 5 /nobreak >nul
 start http://localhost:3000
 
 echo.
-echo  ╔═══════════════════════════════════════╗
-echo  ║  All services started!                ║
-echo  ║                                       ║
-echo  ║  Backend:   http://localhost:8000      ║
-echo  ║  Frontend:  http://localhost:3000      ║
-echo  ║  API Docs:  http://localhost:8000/docs ║
-echo  ║                                       ║
-echo  ║  Close the terminal windows to stop.  ║
-echo  ╚═══════════════════════════════════════╝
+echo  All services started!
+echo  Backend:   http://localhost:8000      
+echo  Frontend:  http://localhost:3000      
+echo  API Docs:  http://localhost:8000/docs                                        
+echo  Close the terminal windows to stop.
 echo.

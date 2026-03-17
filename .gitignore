@@ -52,3 +52,6 @@ test/complex_logic.py
 # --- Markdown Files ---
 TODO.md
 REQUIREMENTS.md
+
+# Secrets
+backend/secrets/
