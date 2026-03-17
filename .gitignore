@@ -7,6 +7,7 @@
 .env.local
 *.pem
 secrets/
+backend/secrets/
 
 # --- Python ---
 __pycache__/
@@ -45,13 +46,8 @@ Thumbs.db
 .github/
 
 # --- Test files with intentional vulnerabilities or performance issues ---
-test/vulnerable_app.py
-test/slow_code.py
-test/complex_logic.py
+test/
 
 # --- Markdown Files ---
-TODO.md
-REQUIREMENTS.md
-
-# Secrets
-backend/secrets/
+/TODO.md
+/REQUIREMENTS.md

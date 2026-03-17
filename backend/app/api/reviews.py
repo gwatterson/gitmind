@@ -64,6 +64,31 @@ async def get_review(review_id: str):
     }
 
 
+@router.get("/api/reviews/{review_id}/diff")
+async def get_review_diff(review_id: str):
+    """Fetch the PR diff dynamically from GitHub for the frontend viewer."""
+    review = await crud.get_review(review_id)
+    if not review:
+        raise HTTPException(status_code=404, detail="Review not found")
+
+    from app.mcp_server.server import handle_get_pr_diff
+    try:
+        diff_result = await handle_get_pr_diff({"repo": review["repo"], "pr_number": review["pr_number"]})
+        
+        files = []
+        for f in diff_result.get("files", []):
+            files.append({
+                "filename": f.get("filename"),
+                "patch": f.get("patch", "")
+            })
+            
+        return {"files": files}
+        
+    except Exception as e:
+        log.error("failed_to_fetch_diff", error=str(e))
+        raise HTTPException(status_code=500, detail=f"Failed to fetch diff: {str(e)}")
+
+
 @router.get("/api/stats")
 async def get_stats():
     """Get aggregate metrics for the dashboard."""

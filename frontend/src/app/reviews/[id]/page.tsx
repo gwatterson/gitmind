@@ -30,6 +30,8 @@ export default function ReviewDetailPage() {
     const [activeTab, setActiveTab] = useState<"findings" | "diff">("findings");
     const [filterCategory, setFilterCategory] = useState("all");
     const [filterSeverity, setFilterSeverity] = useState("all");
+    const [diffFiles, setDiffFiles] = useState<any[] | null>(null);
+    const [loadingDiff, setLoadingDiff] = useState(false);
 
     useEffect(() => {
         const fetchDetail = async () => {
@@ -53,6 +55,28 @@ export default function ReviewDetailPage() {
         const interval = setInterval(fetchDetail, 5000);
         return () => clearInterval(interval);
     }, [reviewId]);
+
+    // Fetch diff on-demand when user switches to "diff" tab
+    useEffect(() => {
+        if (activeTab === "diff" && !diffFiles && review && review.status !== "running") {
+            const fetchDiff = async () => {
+                setLoadingDiff(true);
+                try {
+                    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+                    const res = await fetch(`${apiUrl}/api/reviews/${reviewId}/diff`);
+                    if (res.ok) {
+                        const data = await res.json();
+                        setDiffFiles(data.files || []);
+                    }
+                } catch (e) {
+                    console.error("Failed to fetch diff", e);
+                } finally {
+                    setLoadingDiff(false);
+                }
+            };
+            fetchDiff();
+        }
+    }, [activeTab, diffFiles, review, reviewId]);
 
     const [approveStatus, setApproveStatus] = useState<string | null>(null);
 
@@ -244,10 +268,29 @@ export default function ReviewDetailPage() {
                     )}
 
                     {activeTab === "diff" && (
-                        <div className="glass-card p-6 text-center">
-                            <p className="text-slate-500 text-sm">
-                                Diff viewer will display annotated code once the review completes.
-                            </p>
+                        <div className="space-y-4">
+                            {review.status === "running" ? (
+                                <div className="glass-card p-6 text-center animate-pulse">
+                                    <p className="text-slate-500 text-sm">Diff viewer will display annotated code once the review completes.</p>
+                                </div>
+                            ) : loadingDiff ? (
+                                <div className="glass-card p-6 text-center animate-pulse">
+                                    <p className="text-slate-500 text-sm">Loading diff data...</p>
+                                </div>
+                            ) : diffFiles && diffFiles.length > 0 ? (
+                                diffFiles.map((file: any, idx: number) => (
+                                    <DiffViewer
+                                        key={idx}
+                                        filename={file.filename}
+                                        patch={file.patch}
+                                        findings={findings}
+                                    />
+                                ))
+                            ) : (
+                                <div className="glass-card p-6 text-center">
+                                    <p className="text-slate-500 text-sm">No diff data available for this review.</p>
+                                </div>
+                            )}
                         </div>
                     )}
 

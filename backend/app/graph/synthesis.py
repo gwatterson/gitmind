@@ -116,7 +116,7 @@ async def synthesis_node(state: PRState) -> Dict[str, Any]:
                 model=settings.GEMINI_MODEL,
                 google_api_key=settings.GEMINI_API_KEY,
                 temperature=0.2,
-                max_output_tokens=1024,
+                max_output_tokens=3072,
             )
 
             findings_text = json.dumps(all_findings, indent=2, default=str)
@@ -152,6 +152,7 @@ async def synthesis_node(state: PRState) -> Dict[str, Any]:
         data={
             "verdict": verdict,
             "total_findings": len(all_findings),
+            "summary": review_summary,
             "summary_preview": review_summary[:200],
         },
     )
