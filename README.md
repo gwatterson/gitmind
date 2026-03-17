@@ -45,7 +45,7 @@ GitHub PR → Webhook → FastAPI → LangGraph Pipeline → Gemini 2.5 Flash �
 
 ```bash
 # Clone and run
-git clone <repo-url>
+git clone https://github.com/gwatterson/gitmind
 cd GitMind
 
 # One-command start (Windows)

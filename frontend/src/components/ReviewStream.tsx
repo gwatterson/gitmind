@@ -103,11 +103,6 @@ export function ReviewStream({ reviewId }: { reviewId: string }) {
                                 {event.message}
                             </p>
                         </div>
-                        <span className="text-[10px] text-slate-600 mono flex-shrink-0 mt-0.5">
-                            {event.timestamp
-                                ? new Date(event.timestamp).toLocaleTimeString()
-                                : ""}
-                        </span>
                     </div>
                 ))}
             </div>

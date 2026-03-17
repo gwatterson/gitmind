@@ -78,10 +78,10 @@ export default function ReviewDetailPage() {
         }
     }, [activeTab, diffFiles, review, reviewId]);
 
-    const [approveStatus, setApproveStatus] = useState<string | null>(null);
+    const [actionStatus, setActionStatus] = useState<string | null>(null);
 
     const handleApprove = async () => {
-        setApproveStatus("approving...");
+        setActionStatus("approving...");
         try {
             const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
             const res = await fetch(`${apiUrl}/api/reviews/${reviewId}/approve`, {
@@ -91,15 +91,65 @@ export default function ReviewDetailPage() {
             if (res.ok) {
                 setReview((prev) => (prev ? { ...prev, status: "completed" } : null));
                 if (data.warning) {
-                    setApproveStatus(`⚠️ ${data.warning}`);
+                    setActionStatus(`⚠️ ${data.warning}`);
                 } else {
-                    setApproveStatus("✅ Review approved and posted to GitHub.");
+                    setActionStatus("✅ Review approved and posted to GitHub.");
                 }
             } else {
-                setApproveStatus(`❌ ${data.detail || "Failed to approve"}`);
+                setActionStatus(`❌ ${data.detail || "Failed to approve"}`);
             }
         } catch (e) {
-            setApproveStatus(`❌ ${e instanceof Error ? e.message : "Network error"}`);
+            setActionStatus(`❌ ${e instanceof Error ? e.message : "Network error"}`);
+        }
+    };
+
+    const handleReject = async () => {
+        setActionStatus("rejecting...");
+        try {
+            const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+            const res = await fetch(`${apiUrl}/api/reviews/${reviewId}/reject`, {
+                method: "POST",
+            });
+            const data = await res.json();
+            if (res.ok) {
+                setReview((prev) => (prev ? { ...prev, status: "completed", verdict: "request_changes" } : null));
+                if (data.warning) {
+                    setActionStatus(`⚠️ ${data.warning}`);
+                } else {
+                    setActionStatus("🚫 PR Rejected and changes requested on GitHub.");
+                }
+            } else {
+                setActionStatus(`❌ ${data.detail || "Failed to reject"}`);
+            }
+        } catch (e) {
+            setActionStatus(`❌ ${e instanceof Error ? e.message : "Network error"}`);
+        }
+    };
+
+    // Editing states
+    const [editingFindingId, setEditingFindingId] = useState<string | null>(null);
+    const [editForm, setEditForm] = useState({ message: "", suggestion: "" });
+
+    const startEditing = (f: any) => {
+        setEditingFindingId(f.id);
+        setEditForm({ message: f.message, suggestion: f.suggestion || "" });
+    };
+
+    const saveFinding = async (id: string) => {
+        try {
+            const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+            const res = await fetch(`${apiUrl}/api/reviews/${reviewId}/findings/${id}`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(editForm),
+            });
+            if (res.ok) {
+                const data = await res.json();
+                setFindings((prev) => prev.map((f: any) => (f.id === id ? { ...f, ...data.finding } : f)));
+                setEditingFindingId(null);
+            }
+        } catch (e) {
+            console.error("Failed to update finding", e);
         }
     };
 
@@ -168,19 +218,28 @@ export default function ReviewDetailPage() {
                             </span>
                         )}
                         {review.status === "hitl_pending" && (
-                            <button
-                                onClick={handleApprove}
-                                disabled={approveStatus === "approving..."}
-                                className="btn-primary text-sm disabled:opacity-40 disabled:cursor-not-allowed"
-                            >
-                                {approveStatus === "approving..." ? "⏳ Approving..." : "✅ Approve & Post"}
-                            </button>
+                            <>
+                                <button
+                                    onClick={handleReject}
+                                    disabled={actionStatus === "approving..." || actionStatus === "rejecting..."}
+                                    className="btn-primary bg-red-600 hover:bg-red-500 border border-red-500/50 text-sm disabled:opacity-40 disabled:cursor-not-allowed"
+                                >
+                                    {actionStatus === "rejecting..." ? "⏳ Rejecting..." : "🚫 Reject PR"}
+                                </button>
+                                <button
+                                    onClick={handleApprove}
+                                    disabled={actionStatus === "approving..." || actionStatus === "rejecting..."}
+                                    className="btn-primary text-sm disabled:opacity-40 disabled:cursor-not-allowed"
+                                >
+                                    {actionStatus === "approving..." ? "⏳ Approving..." : "✅ Approve & Post"}
+                                </button>
+                            </>
                         )}
                     </div>
                 </div>
-                {approveStatus && approveStatus !== "approving..." && (
-                    <div className={`mt-3 p-3 rounded-md border text-sm ${approveStatus.startsWith("❌") ? "bg-red-500/10 border-red-500/20 text-red-400" : approveStatus.startsWith("⚠️") ? "bg-amber-500/10 border-amber-500/20 text-amber-400" : "bg-emerald-500/10 border-emerald-500/20 text-emerald-400"}`}>
-                        <p>{approveStatus}</p>
+                {actionStatus && actionStatus !== "approving..." && actionStatus !== "rejecting..." && (
+                    <div className={`mt-3 p-3 rounded-md border text-sm ${actionStatus.startsWith("❌") ? "bg-red-500/10 border-red-500/20 text-red-400" : actionStatus.startsWith("⚠️") ? "bg-amber-500/10 border-amber-500/20 text-amber-400" : actionStatus.startsWith("🚫") ? "bg-rose-500/10 border-rose-500/20 text-rose-400" : "bg-emerald-500/10 border-emerald-500/20 text-emerald-400"}`}>
+                        <p>{actionStatus}</p>
                     </div>
                 )}
             </div>
@@ -252,8 +311,43 @@ export default function ReviewDetailPage() {
                             </div>
 
                             {/* Finding cards */}
-                            {filteredFindings.map((finding) => (
-                                <FindingCard key={finding.id} finding={finding} />
+                            {filteredFindings.map((finding: any) => (
+                                <div key={finding.id} className="relative group">
+                                    {editingFindingId === finding.id ? (
+                                        <div className="glass-card p-4 space-y-3 border-indigo-500/50 border">
+                                            <div className="text-sm font-semibold text-slate-200">Edit Finding</div>
+                                            <textarea
+                                                className="w-full bg-slate-900/50 border border-white/10 rounded p-2 text-sm text-slate-300 focus:outline-none focus:border-indigo-500"
+                                                rows={3}
+                                                value={editForm.message}
+                                                onChange={(e) => setEditForm({ ...editForm, message: e.target.value })}
+                                            />
+                                            <textarea
+                                                className="w-full bg-slate-900/50 border border-white/10 rounded p-2 text-sm text-slate-300 font-mono focus:outline-none focus:border-indigo-500"
+                                                rows={3}
+                                                placeholder="Suggestion (optional)"
+                                                value={editForm.suggestion}
+                                                onChange={(e) => setEditForm({ ...editForm, suggestion: e.target.value })}
+                                            />
+                                            <div className="flex justify-end gap-2 mt-2">
+                                                <button className="text-xs px-3 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors border border-white/5" onClick={() => setEditingFindingId(null)}>Cancel</button>
+                                                <button className="text-xs px-3 py-1.5 rounded-md bg-indigo-600 hover:bg-indigo-500 text-white transition-colors" onClick={() => saveFinding(finding.id)}>Save Changes</button>
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <>
+                                            <FindingCard finding={finding} />
+                                            {review.status === "hitl_pending" && finding.id && (
+                                                <button
+                                                    onClick={() => startEditing(finding)}
+                                                    className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-800 hover:bg-slate-700 text-xs px-2.5 py-1 rounded-md text-slate-300 border border-white/10 shadow-lg"
+                                                >
+                                                    ✏️ Edit
+                                                </button>
+                                            )}
+                                        </>
+                                    )}
+                                </div>
                             ))}
                             {filteredFindings.length === 0 && (
                                 <div className="glass-card p-6 text-center">
