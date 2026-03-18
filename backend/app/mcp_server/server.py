@@ -303,6 +303,7 @@ async def handle_get_pr_metadata(args: dict) -> dict:
         "author": pr.user.login,
         "base_branch": pr.base.ref,
         "head_branch": pr.head.ref,
+        "head_sha": pr.head.sha,
         "created_at": str(pr.created_at),
         "labels": [l.name for l in pr.labels],
     }

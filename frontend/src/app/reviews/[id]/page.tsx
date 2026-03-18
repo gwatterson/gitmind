@@ -103,29 +103,6 @@ export default function ReviewDetailPage() {
         }
     };
 
-    const handleReject = async () => {
-        setActionStatus("rejecting...");
-        try {
-            const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-            const res = await fetch(`${apiUrl}/api/reviews/${reviewId}/reject`, {
-                method: "POST",
-            });
-            const data = await res.json();
-            if (res.ok) {
-                setReview((prev) => (prev ? { ...prev, status: "completed", verdict: "request_changes" } : null));
-                if (data.warning) {
-                    setActionStatus(`⚠️ ${data.warning}`);
-                } else {
-                    setActionStatus("🚫 PR Rejected and changes requested on GitHub.");
-                }
-            } else {
-                setActionStatus(`❌ ${data.detail || "Failed to reject"}`);
-            }
-        } catch (e) {
-            setActionStatus(`❌ ${e instanceof Error ? e.message : "Network error"}`);
-        }
-    };
-
     // Editing states
     const [editingFindingId, setEditingFindingId] = useState<string | null>(null);
     const [editForm, setEditForm] = useState({ message: "", suggestion: "" });
@@ -219,13 +196,6 @@ export default function ReviewDetailPage() {
                         )}
                         {review.status === "hitl_pending" && (
                             <>
-                                <button
-                                    onClick={handleReject}
-                                    disabled={actionStatus === "approving..." || actionStatus === "rejecting..."}
-                                    className="btn-primary bg-red-600 hover:bg-red-500 border border-red-500/50 text-sm disabled:opacity-40 disabled:cursor-not-allowed"
-                                >
-                                    {actionStatus === "rejecting..." ? "⏳ Rejecting..." : "🚫 Reject PR"}
-                                </button>
                                 <button
                                     onClick={handleApprove}
                                     disabled={actionStatus === "approving..." || actionStatus === "rejecting..."}
