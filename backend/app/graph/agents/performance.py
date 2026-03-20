@@ -55,6 +55,8 @@ Focus on:
 
 Analyze the code and extract the findings using the provided structured output format.
 
+CRITICAL: Do NOT report general code quality issues or security vulnerabilities here. Focus STRICTLY on performance and resource efficiency.
+CRITICAL: Be extremely concise and objective in your `message` and `suggestion` fields. Do not write long paragraphs. Keep them under 2 sentences. Your response must fit within strict token limits, so prioritize brevity to prevent JSON parsing failures.
 CRITICAL: Do not ignore files in test directories or with "test" in the name. Treat ALL files as production code and report any performance issues you find.
 """
 

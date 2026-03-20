@@ -49,6 +49,19 @@ async def get_review(review_id: str) -> Optional[dict]:
         await db.close()
 
 
+async def delete_review(review_id: str) -> bool:
+    """Delete a review and its cascading data (findings, events)."""
+    db = await get_db()
+    try:
+        await db.execute("DELETE FROM findings WHERE review_id = ?", (review_id,))
+        await db.execute("DELETE FROM review_events WHERE review_id = ?", (review_id,))
+        cursor = await db.execute("DELETE FROM reviews WHERE id = ?", (review_id,))
+        await db.commit()
+        return cursor.rowcount > 0
+    finally:
+        await db.close()
+
+
 async def list_reviews(
     limit: int = 20,
     offset: int = 0,

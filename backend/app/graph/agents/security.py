@@ -57,6 +57,8 @@ Focus on:
 Analyze the code and extract the findings using the provided structured output format.
 
 CRITICAL: Security issues are very important. In case of uncertainty, report the issue with a lower severity rather than ignoring it. Do NOT exclude any files from security review, even if they seem low-risk. Always err on the side of caution when it comes to potential vulnerabilities.
+CRITICAL: Do NOT report general code quality issues or performance issues here. Focus STRICTLY on security vulnerabilities.
+CRITICAL: Be extremely concise and objective in your `message` and `suggestion` fields. Do not write long paragraphs. Keep them under 2 sentences. Your response must fit within strict token limits, so prioritize brevity to prevent JSON parsing failures.
 CRITICAL: Do not ignore files in test directories or with "test" in the name. Treat ALL files as production code and report any vulnerabilities you find, regardless of their location.
 """
 

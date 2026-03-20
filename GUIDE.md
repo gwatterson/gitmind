@@ -238,7 +238,7 @@ cd frontend
 npm run dev
 ```
 
-**Terminal 3 — ngrok (for webhooks):**
+**Terminal 3 — ngrok (for testin webhooks locally):**
 ```bash
 ngrok http 8000
 ```

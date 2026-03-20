@@ -34,7 +34,7 @@ GitHub PR → Webhook → FastAPI → LangGraph Pipeline → Gemini 2.5 Flash �
 ### Key Technical Highlights
 
 1. **LangGraph multi-agent pipeline** — Supervisor dispatches to 3 parallel specialist agents with fan-out/fan-in topology
-2. **Custom MCP server** — Written from scratch (not a library wrapper) with 8 tools for GitHub and static analysis
+2. **Custom Tools & MCP Foundation** — 8 custom tools for GitHub and static analysis written from scratch, architected to be easily converted into a full Model Context Protocol (MCP) server
 3. **Proactive rate limiter** — Blocks calls *before* hitting Google limits using sliding windows across 3 independent dimensions (RPM/RPD/TPM)
 4. **Real-time SSE streaming** — Watch the agent "think" with live reasoning trace in the dashboard
 5. **Human-in-the-Loop** — Optional approval step before posting findings to GitHub
@@ -92,7 +92,7 @@ GitMind/
 |---|---|
 | **Backend** | Python 3.11+, FastAPI, LangGraph, LangChain |
 | **LLM** | Gemini 2.5 Flash via langchain-google-genai |
-| **MCP Server** | Python MCP SDK (custom, stdio transport) |
+| **Tooling Foundation** | Custom tool suite (prepared for MCP SDK integration) |
 | **Database** | SQLite via aiosqlite |
 | **Frontend** | Next.js 14, TypeScript, Tailwind CSS |
 | **Streaming** | Server-Sent Events (SSE) |

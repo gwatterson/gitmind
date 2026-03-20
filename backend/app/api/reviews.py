@@ -64,6 +64,20 @@ async def get_review(review_id: str):
     }
 
 
+@router.delete("/api/reviews/{review_id}")
+async def delete_review_endpoint(review_id: str):
+    """Delete a review and all its associated findings/events."""
+    review = await crud.get_review(review_id)
+    if not review:
+        raise HTTPException(status_code=404, detail="Review not found")
+    
+    success = await crud.delete_review(review_id)
+    if not success:
+        raise HTTPException(status_code=500, detail="Failed to delete review")
+        
+    return {"status": "ok", "message": "Review deleted"}
+
+
 @router.get("/api/reviews/{review_id}/diff")
 async def get_review_diff(review_id: str):
     """Fetch the PR diff dynamically from GitHub for the frontend viewer."""
@@ -229,15 +243,6 @@ async def clear_archive():
 # ──────────────────────────────────────────────
 # Manual Trigger (for testing without webhooks)
 # ──────────────────────────────────────────────
-
-@router.get("/api/debug-env")
-async def debug_env():
-    return {
-        "APP_ID": repr(settings.GITHUB_APP_ID),
-        "PRIV_KEY": repr(settings.GITHUB_PRIVATE_KEY_PATH),
-        "TOKEN": repr(settings.GITHUB_TOKEN),
-        "TOKEN_LEN": len(settings.GITHUB_TOKEN)
-    }
 
 @router.post("/api/reviews/trigger")
 async def trigger_manual_review(body: ManualReviewRequest):

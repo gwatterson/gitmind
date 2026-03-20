@@ -103,6 +103,26 @@ export default function ReviewDetailPage() {
         }
     };
 
+    const handleRejectAndDelete = async () => {
+        if (!confirm("Are you sure you want to delete this review? This action cannot be undone and has no effect on GitHub.")) return;
+        
+        setActionStatus("rejecting...");
+        try {
+            const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+            const res = await fetch(`${apiUrl}/api/reviews/${reviewId}`, {
+                method: "DELETE",
+            });
+            if (res.ok) {
+                window.location.href = "/";
+            } else {
+                const data = await res.json();
+                setActionStatus(`❌ ${data.detail || "Failed to delete"}`);
+            }
+        } catch (e) {
+            setActionStatus(`❌ ${e instanceof Error ? e.message : "Network error"}`);
+        }
+    };
+
     // Editing states
     const [editingFindingId, setEditingFindingId] = useState<string | null>(null);
     const [editForm, setEditForm] = useState({ message: "", suggestion: "" });
@@ -195,15 +215,22 @@ export default function ReviewDetailPage() {
                             </span>
                         )}
                         {review.status === "hitl_pending" && (
-                            <>
-                                <button
-                                    onClick={handleApprove}
-                                    disabled={actionStatus === "approving..." || actionStatus === "rejecting..."}
-                                    className="btn-primary text-sm disabled:opacity-40 disabled:cursor-not-allowed"
-                                >
-                                    {actionStatus === "approving..." ? "⏳ Approving..." : "✅ Approve & Post"}
-                                </button>
-                            </>
+                            <button
+                                onClick={handleApprove}
+                                disabled={actionStatus === "approving..." || actionStatus === "rejecting..."}
+                                className="btn-primary text-sm disabled:opacity-40 disabled:cursor-not-allowed"
+                            >
+                                {actionStatus === "approving..." ? "⏳ Approving..." : "✅ Approve & Post"}
+                            </button>
+                        )}
+                        {(review.status === "hitl_pending" || review.status === "completed" || review.status === "failed") && (
+                            <button
+                                onClick={handleRejectAndDelete}
+                                disabled={actionStatus === "approving..." || actionStatus === "rejecting..."}
+                                className="bg-rose-600 hover:bg-rose-500 text-white text-sm px-4 py-1.5 rounded-md font-medium transition-colors disabled:opacity-40 disabled:cursor-not-allowed shadow-lg"
+                            >
+                                {actionStatus === "rejecting..." ? "⏳ Deleting..." : "🗑️ Reject & Delete"}
+                            </button>
                         )}
                     </div>
                 </div>
