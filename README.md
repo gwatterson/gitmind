@@ -47,12 +47,9 @@ GitHub PR → Webhook → FastAPI → LangGraph Pipeline → Gemini 2.5 Flash �
 # Clone and run
 git clone https://github.com/gwatterson/gitmind
 cd GitMind
-
-# One-command start (Windows)
-start.bat
 ```
 
-See [GUIDE.md](GUIDE.md) for detailed setup instructions including API keys and test repository creation.
+See [GUIDE.md](GUIDE.md) for detailed setup instructions including API keys and testing.
 
 ---
 
@@ -115,8 +112,6 @@ GitMind/
 | `GET` | `/api/health` | Health check |
 
 ---
-
-
 
 ## 📄 License
 

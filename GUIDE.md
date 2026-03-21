@@ -1,4 +1,4 @@
-# GUIDE.md — GitMind Testing Guide
+# GitMind Testing Guide
 
 Complete step-by-step guide to set up, configure, and test the GitMind Autonomous Code Review Agent.
 
@@ -72,96 +72,7 @@ If you don't want to create a full GitHub App:
 
 ---
 
-## 3. Create a Test Repository on GitHub
-
-Create a public repo called `test-vulnerable-app` with intentionally problematic code for testing:
-
-### 3.1 Create the repo
-
-1. Go to [github.com/new](https://github.com/new)
-2. Name: `test-vulnerable-app`
-3. Set to **Public**
-4. Initialize with a README
-5. Click **Create repository**
-
-### 3.2 Add test files on `main` branch
-
-Create these files with intentional issues:
-
-**`vulnerable_app.py`** — Security issues:
-```python
-import sqlite3
-
-def login(username, password):
-    conn = sqlite3.connect("users.db")
-    # SQL INJECTION: user input directly in query
-    query = f"SELECT * FROM users WHERE username='{username}' AND password='{password}'"
-    result = conn.execute(query)
-    return result.fetchone()
-
-API_KEY = "sk-1234567890abcdef"  # HARDCODED SECRET
-
-def render_page(user_input):
-    # XSS: user input directly in HTML
-    return f"<html><body>Welcome {user_input}</body></html>"
-```
-
-**`complex_logic.py`** — Quality issues:
-```python
-def process_data(data, flag1, flag2, flag3, mode, extra):
-    if flag1:
-        if data:
-            if flag2:
-                if mode == "a":
-                    if flag3:
-                        if extra:
-                            for item in data:
-                                if item > 0:
-                                    if item < 100:
-                                        result = item * 2
-                                    else:
-                                        result = item
-                                else:
-                                    result = 0
-                        else:
-                            result = -1
-                    else:
-                        result = -2
-                elif mode == "b":
-                    result = sum(data)
-                else:
-                    result = 0
-            else:
-                result = len(data)
-        else:
-            result = None
-    else:
-        result = False
-    return result
-```
-
-**`slow_code.py`** — Performance issues:
-```python
-import time
-
-def get_user_orders(db, user_ids):
-    # N+1 QUERY: querying inside a loop
-    orders = []
-    for uid in user_ids:
-        user = db.query(f"SELECT * FROM users WHERE id = {uid}")
-        user_orders = db.query(f"SELECT * FROM orders WHERE user_id = {uid}")
-        orders.append({"user": user, "orders": user_orders})
-    return orders
-
-def build_report(items):
-    # STRING CONCATENATION IN LOOP
-    report = ""
-    for item in items:
-        report += f"Item: {item['name']}, Price: {item['price']}\n"
-    return report
-```
-
-### 3.3 Create a Pull Request for testing
+## 3. Create a Pull Request for testing
 
 1. Create a new branch: `feature/add-payment`
 2. Add/modify some files on that branch
@@ -180,14 +91,20 @@ cd backend
 # Create virtual environment
 python -m venv venv
 
-# Activate it (Windows)
+# Activate it
+# On Windows:
 venv\Scripts\activate
+# On Mac/Linux:
+source venv/bin/activate
 
 # Install dependencies
 pip install -e ".[dev]"
 
 # Copy and fill in environment variables
+# On Windows:
 copy .env.example .env
+# On Mac/Linux:
+cp .env.example .env
 # Edit .env with your actual values (see Section 2)
 ```
 
@@ -200,7 +117,10 @@ cd frontend
 npm install
 
 # Copy env file
+# On Windows:
 copy .env.local.example .env.local
+# On Mac/Linux:
+cp .env.local.example .env.local
 # The default value (http://localhost:8000) should work for local dev
 ```
 
@@ -212,8 +132,15 @@ copy .env.local.example .env.local
 
 Simply run the start script from the project root:
 
+**On Windows:**
 ```bash
 start.bat
+```
+
+**On Mac/Linux:**
+```bash
+chmod +x start.sh
+./start.sh
 ```
 
 This will:
@@ -228,7 +155,11 @@ This will:
 **Terminal 1 — Backend:**
 ```bash
 cd backend
+# On Windows:
 venv\Scripts\activate
+# On Mac/Linux:
+source venv/bin/activate
+
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
@@ -291,7 +222,11 @@ You should see the GitMind dashboard with metrics and the manual review trigger 
 
 ```bash
 cd backend
+# On Windows:
 venv\Scripts\activate
+# On Mac/Linux:
+source venv/bin/activate
+
 pytest tests/ -v
 ```
 
