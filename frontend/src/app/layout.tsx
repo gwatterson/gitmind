@@ -18,11 +18,11 @@ export default function RootLayout({
         <nav className="sticky top-0 z-50 border-b border-white/5 backdrop-blur-xl bg-[#0a0a0f]/80">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-14">
-              <a href="/" className="flex items-center gap-2.5 group">
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-gradient-to-br from-indigo-500 to-violet-600 shadow-lg shadow-indigo-500/20 group-hover:shadow-indigo-500/40 transition-shadow">
-                  <span className="text-white text-sm font-bold">G</span>
+              <a href="/" className="flex items-center gap-3 group">
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br from-indigo-500/20 to-violet-600/20 border border-white/10 shadow-lg shadow-indigo-500/10 group-hover:shadow-indigo-500/20 transition-all duration-300">
+                  <img src="/logo.svg" alt="GitMind Logo" className="w-7 h-7" />
                 </div>
-                <span className="text-base font-semibold text-slate-100 tracking-tight">
+                <span className="text-lg font-bold text-slate-100 tracking-tight">
                   Git<span className="text-indigo-400">Mind</span>
                 </span>
               </a>
