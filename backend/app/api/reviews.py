@@ -4,7 +4,7 @@ import os
 import structlog
 from typing import Optional
 from fastapi import APIRouter, HTTPException, Query
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from app.config import settings
 from app.db import crud
@@ -21,14 +21,14 @@ log = structlog.get_logger()
 
 class ManualReviewRequest(BaseModel):
     """Request body for manually triggering a review."""
-    repo: str
-    pr_number: int
+    repo: str = Field(..., max_length=200, pattern=r'^[a-zA-Z0-9._-]+/[a-zA-Z0-9._-]+$')
+    pr_number: int = Field(..., gt=0)
 
 class FindingUpdate(BaseModel):
     """Request body for editing a finding (HITL)."""
-    message: Optional[str] = None
-    suggestion: Optional[str] = None
-    severity: Optional[str] = None
+    message: Optional[str] = Field(None, max_length=10000)
+    suggestion: Optional[str] = Field(None, max_length=10000)
+    severity: Optional[str] = Field(None, pattern=r'^(critical|high|medium|low|info)$')
 
 
 # ──────────────────────────────────────────────
@@ -223,9 +223,7 @@ async def health_check():
     """Health check endpoint."""
     return {
         "status": "ok",
-        "llm_model": settings.GEMINI_MODEL,
         "rate_limiter": await rate_limiter.get_status(),
-        "hitl_enabled": settings.HITL_ENABLED,
     }
 
 
@@ -252,10 +250,7 @@ async def trigger_manual_review(body: ManualReviewRequest):
     """
     from app.mcp_server.server import handle_get_pr_diff, handle_get_pr_metadata
 
-    log.info("DEBUG_GITHUB_AUTH",
-             app_id=repr(settings.GITHUB_APP_ID),
-             priv_key_path=repr(settings.GITHUB_PRIVATE_KEY_PATH),
-             token_length=len(settings.GITHUB_TOKEN))
+
 
     log.info("manual_review_triggered", repo=body.repo, pr_number=body.pr_number)
 

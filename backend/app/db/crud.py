@@ -10,6 +10,11 @@ import aiosqlite
 from app.db.models import get_db
 
 
+# Whitelists of columns that can be updated via **kwargs
+_ALLOWED_REVIEW_COLUMNS = {"status", "summary", "verdict", "error", "completed_at"}
+_ALLOWED_FINDING_COLUMNS = {"message", "suggestion", "severity", "posted_to_github", "github_comment_id"}
+
+
 # ──────────────────────────────────────────────
 # Reviews
 # ──────────────────────────────────────────────
@@ -102,6 +107,8 @@ async def update_review(review_id: str, **kwargs) -> Optional[dict]:
         fields = []
         values = []
         for key, value in kwargs.items():
+            if key not in _ALLOWED_REVIEW_COLUMNS:
+                raise ValueError(f"Invalid review column: {key}")
             fields.append(f"{key} = ?")
             values.append(value)
         values.append(review_id)
@@ -206,6 +213,8 @@ async def update_finding(finding_id: str, **kwargs) -> Optional[dict]:
         fields = []
         values = []
         for key, value in kwargs.items():
+            if key not in _ALLOWED_FINDING_COLUMNS:
+                raise ValueError(f"Invalid finding column: {key}")
             fields.append(f"{key} = ?")
             values.append(value)
         values.append(finding_id)
