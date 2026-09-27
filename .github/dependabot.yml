@@ -1,22 +1,50 @@
 version: 2
+
+# Weekly, grouped version updates: one pull request per ecosystem.
+# Major versions usually need code changes (framework migrations), so they are
+# not proposed automatically: they are planned and done by hand (see PLAN.md).
 updates:
   - package-ecosystem: uv
     directory: /backend
     schedule:
       interval: weekly
+      day: monday
+    open-pull-requests-limit: 3
     groups:
-      python-minor:
+      python-dependencies:
+        patterns: ["*"]
         update-types: [minor, patch]
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    commit-message:
+      prefix: "build(deps)"
 
   - package-ecosystem: npm
     directory: /frontend
     schedule:
       interval: weekly
+      day: monday
+    open-pull-requests-limit: 3
     groups:
-      npm-minor:
+      npm-dependencies:
+        patterns: ["*"]
         update-types: [minor, patch]
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    commit-message:
+      prefix: "build(deps)"
 
+  # Action majors rarely break workflows: keep them, but in a single pull request
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: weekly
+      day: monday
+    open-pull-requests-limit: 2
+    groups:
+      github-actions:
+        patterns: ["*"]
+    commit-message:
+      prefix: "ci(deps)"
