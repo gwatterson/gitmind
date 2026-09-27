@@ -1,6 +1,6 @@
 #!/bin/bash
 # ============================================================
-# GitMind — Start Script for Mac/Linux
+# GitMind: Start Script for Mac/Linux
 # Launches backend (FastAPI), frontend (Next.js), and browser
 # ============================================================
 
@@ -11,19 +11,16 @@ trap "kill 0" EXIT
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 # ── 1. Backend Setup ──
-echo "[1/4] Setting up backend virtual environment..."
+echo "[1/4] Setting up backend environment..."
 cd "$DIR/backend"
 
-if [ ! -d "venv" ]; then
-    echo "      Creating virtual environment..."
-    python3 -m venv venv || python -m venv venv
+if ! command -v uv > /dev/null; then
+    echo "      [ERROR] uv is not installed. Install it with: pip install uv"
+    exit 1
 fi
 
-echo "      Activating venv and installing dependencies..."
-source venv/bin/activate
-
-echo "      Installing dependencies (this may take a moment)..."
-pip install -e ".[dev]"
+echo "      Installing locked dependencies (this may take a moment)..."
+uv sync || { echo "      [ERROR] uv sync failed. Check the error above."; exit 1; }
 
 # Copy .env if it doesn't exist
 if [ ! -f ".env" ]; then
@@ -34,7 +31,7 @@ fi
 
 # ── 2. Start Backend ──
 echo "[2/4] Starting FastAPI backend on port 8000 in background..."
-uvicorn app.main:app --reload --host 0.0.0.0 --port 8000 &
+uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000 &
 
 # Wait a moment for backend to initialize
 sleep 3

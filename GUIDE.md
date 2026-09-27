@@ -9,6 +9,7 @@ Complete step-by-step guide to set up, configure, and test the GitMind Autonomou
 Before starting, ensure you have installed:
 
 - **Python 3.11+** → [python.org/downloads](https://www.python.org/downloads/)
+- **uv** (Python package manager) → `pip install uv` or see [docs.astral.sh/uv](https://docs.astral.sh/uv/)
 - **Node.js 20+** → [nodejs.org](https://nodejs.org/)
 - **Git** → [git-scm.com](https://git-scm.com/)
 - **ngrok** (optional, for webhook testing) → [ngrok.com](https://ngrok.com/)
@@ -58,7 +59,7 @@ If you don't want to create a full GitHub App:
 4. Add `GITHUB_TOKEN=ghp_your_token_here` to your `backend/.env` file
 5. The app will use this token as a fallback when GitHub App credentials are not configured
 
-### 2.4 LangSmith (optional — for tracing)
+### 2.4 LangSmith (optional, for tracing)
 
 1. Go to [smith.langchain.com](https://smith.langchain.com/)
 2. Sign up (free tier: 5,000 traces/month)
@@ -88,17 +89,9 @@ If you don't want to create a full GitHub App:
 ```bash
 cd backend
 
-# Create virtual environment
-python -m venv venv
-
-# Activate it
-# On Windows:
-venv\Scripts\activate
-# On Mac/Linux:
-source venv/bin/activate
-
-# Install dependencies
-pip install -e ".[dev]"
+# Create the virtual environment (.venv) and install the locked dependencies,
+# including the dev tools (pytest, ruff, mypy, pre-commit)
+uv sync
 
 # Copy and fill in environment variables
 # On Windows:
@@ -144,32 +137,27 @@ chmod +x start.sh
 ```
 
 This will:
-1. Create and activate the Python virtual environment
-2. Install backend dependencies
+1. Create the Python virtual environment and install the locked backend dependencies (`uv sync`)
+2. Create `backend/.env` and `frontend/.env.local` from the templates if missing
 3. Start the FastAPI backend on port 8000
 4. Start the Next.js frontend on port 3000
 5. Open the dashboard in your browser
 
 ### 5.2 Manual start
 
-**Terminal 1 — Backend:**
+**Terminal 1 (backend):**
 ```bash
 cd backend
-# On Windows:
-venv\Scripts\activate
-# On Mac/Linux:
-source venv/bin/activate
-
-uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-**Terminal 2 — Frontend:**
+**Terminal 2 (frontend):**
 ```bash
 cd frontend
 npm run dev
 ```
 
-**Terminal 3 — ngrok (for testin webhooks locally):**
+**Terminal 3 (ngrok, for testing webhooks locally):**
 ```bash
 ngrok http 8000
 ```
@@ -187,9 +175,12 @@ Expected response:
 ```json
 {
   "status": "ok",
-  "llm_model": "gemini-2.5-flash",
-  "rate_limiter": { "rpm_used": 0, "rpm_max": 120 },
-  "hitl_enabled": false
+  "rate_limiter": {
+    "rpm_used": 0, "rpm_max": 5,
+    "rpd_used": 0, "rpd_max": 20,
+    "tpm_used": 0, "tpm_max": 250000,
+    "rpd_resets_at": 1790582400.0
+  }
 }
 ```
 
@@ -205,10 +196,10 @@ You should see the GitMind dashboard with metrics and the manual review trigger 
 2. In the **"Manual Review"** panel on the right, enter:
    - **Repo**: `your-username/test-vulnerable-app`
    - **PR number**: The PR number you created (e.g., `1`)
-3. Click **"🚀 Trigger Review"**
+3. Click **"Trigger Review"**
 4. Watch the review appear in the PR list
 5. Click on it to see the **reasoning trace streaming** in real-time
-6. Wait for the review to complete — you should see security, quality, and performance findings
+6. Wait for the review to complete: you should see security, quality, and performance findings
 
 ### 6.4 Trigger via webhook (full integration)
 
@@ -216,19 +207,34 @@ You should see the GitMind dashboard with metrics and the manual review trigger 
 2. Update your GitHub App's webhook URL to the ngrok URL (e.g., `https://abc123.ngrok.io/webhook/github`)
 3. Open a new PR or push to an existing PR in your test repo
 4. The webhook will fire automatically and trigger a review
-5. Check the dashboard — a new review should appear
+5. Check the dashboard: a new review should appear
 
-### 6.5 Run backend tests
+### 6.5 Run tests and quality checks
+
+Tests run against a temporary database and never call external services.
 
 ```bash
 cd backend
-# On Windows:
-venv\Scripts\activate
-# On Mac/Linux:
-source venv/bin/activate
-
-pytest tests/ -v
+uv run pytest --cov          # tests with coverage report
+uv run ruff check .          # lint
+uv run ruff format --check . # formatting
+uv run mypy                  # type checking
 ```
+
+```bash
+cd frontend
+npm run lint
+npx tsc --noEmit
+```
+
+To run all checks automatically before every commit, install the git hooks once
+(from the repository root):
+
+```bash
+uv run --project backend pre-commit install
+```
+
+The same checks run in GitHub Actions on every push and pull request (see `.github/workflows/`).
 
 ### 6.6 API Explorer
 
@@ -251,4 +257,4 @@ FastAPI auto-generates interactive API docs:
 
 ---
 
-*End of testing guide — GUIDE.md v1.0*
+*End of testing guide (GUIDE.md v1.0)*
