@@ -232,3 +232,17 @@ def test_sort_findings():
     sorted_f = sort_findings(findings)
     severities = [f["severity"] for f in sorted_f]
     assert severities == ["critical", "high", "medium", "low"]
+
+
+async def test_supervisor_always_sends_every_file_to_security(fake_supervisor_llm):
+    """Security coverage does not depend on the model, and invented paths are dropped."""
+    fake_supervisor_llm.reply = (
+        '{"security_files": ["a.py"], "quality_files": ["b.py", "ghost.py"], '
+        '"performance_files": []}'
+    )
+
+    result = await supervisor.supervisor_node(_supervisor_state(["a.py", "b.py"]))
+
+    assert result["security_files"] == ["a.py", "b.py"]
+    assert result["quality_files"] == ["b.py"]
+    assert result["performance_files"] == []

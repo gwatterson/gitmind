@@ -4,21 +4,27 @@ import asyncio
 import json
 
 import structlog
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import StreamingResponse
 
+from app.core.ratelimit import limiter
+from app.core.security import Principal, require_read
 from app.db import crud
 
-router = APIRouter()
+router = APIRouter(tags=["stream"])
 log = structlog.get_logger()
 
 
 @router.get("/api/stream/{review_id}")
-async def stream_review(review_id: str):
+@limiter.exempt  # long-lived connection, already authenticated
+async def stream_review(review_id: str, _: Principal = Depends(require_read)) -> StreamingResponse:
     """
     Server-Sent Events stream of the review reasoning trace.
     The frontend connects to this endpoint and receives events in real-time.
     """
+
+    if await crud.get_review(review_id) is None:
+        raise HTTPException(status_code=404, detail="Review not found")
 
     async def event_generator():
         last_event_id = 0
@@ -60,6 +66,5 @@ async def stream_review(review_id: str):
             "Cache-Control": "no-cache",
             "Connection": "keep-alive",
             "X-Accel-Buffering": "no",
-            "Access-Control-Allow-Origin": "*",
         },
     )

@@ -1,8 +1,7 @@
 """LangGraph shared state definitions for PR review pipeline."""
 
+import operator
 from typing import Annotated, TypedDict
-
-from langgraph.graph.message import add_messages
 
 
 class PRFile(TypedDict):
@@ -26,6 +25,13 @@ class Finding(TypedDict):
     message: str
     suggestion: str
     agent: str
+
+
+class AgentError(TypedDict):
+    """A failure of one node of the pipeline. The review can still complete."""
+
+    agent: str
+    message: str
 
 
 class PRState(TypedDict):
@@ -55,9 +61,6 @@ class PRState(TypedDict):
     review_summary: str
     verdict: str  # "approve" | "comment" | "request_changes"
 
-    # Streaming events (for SSE)
-    events: Annotated[list[str], add_messages]
-
     # Human-in-the-loop
     hitl_approved: bool | None
     hitl_modified_findings: list[Finding] | None
@@ -65,4 +68,6 @@ class PRState(TypedDict):
     # Tracking
     review_id: str
     status: str
-    error: str | None
+    # Parallel agents can fail in the same step: the reducer concatenates their
+    # errors instead of raising InvalidUpdateError on concurrent writes.
+    errors: Annotated[list[AgentError], operator.add]

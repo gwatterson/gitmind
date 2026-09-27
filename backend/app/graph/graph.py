@@ -16,6 +16,8 @@ from app.graph.agents.security import security_agent_node
 from app.graph.state import PRState
 from app.graph.supervisor import supervisor_node
 from app.graph.synthesis import synthesis_node
+from app.rate_limiter import DailyQuotaExhaustedError
+from app.services import publisher
 
 log = structlog.get_logger()
 
@@ -32,34 +34,60 @@ async def hitl_node(state: PRState) -> dict[str, Any]:
 
     await crud.update_review(review_id, status="hitl_pending")
 
-    # In a real implementation, this would pause the graph using LangGraph's
-    # interrupt_before mechanism. For now, we mark it and the API will resume.
+    # The graph ends here; POST /api/reviews/{id}/approve publishes the review.
+    # Native LangGraph interrupt() with a checkpointer: PLAN.md F8.7.
     return {
         "status": "hitl_pending",
         "hitl_approved": None,
     }
 
 
-def should_go_to_hitl(state: PRState) -> str:
-    """Conditional edge: route to HITL or END based on config."""
-    if settings.HITL_ENABLED and not state.get("hitl_approved"):
+async def publish_node(state: PRState) -> dict[str, Any]:
+    """Post the review to GitHub automatically (used when HITL is disabled)."""
+    review_id = state.get("review_id", "")
+    result = await publisher.publish_review(review_id, human_approved=False)
+
+    if result.posted:
+        message = f"Review posted to GitHub ({result.comments_posted} inline comment(s))."
+    else:
+        message = result.warning or "Review not posted to GitHub."
+    if result.posted and result.warning:
+        message += " " + result.warning
+
+    await crud.create_event(
+        review_id=review_id,
+        event_type="publish_done" if result.posted else "publish_skipped",
+        message=message,
+        data={
+            "posted": result.posted,
+            "comments_posted": result.comments_posted,
+            "comments_failed": result.comments_failed,
+        },
+    )
+    return {}
+
+
+def route_after_synthesis(state: PRState) -> str:
+    """Stop failed reviews, wait for a human when HITL is on, otherwise publish."""
+    if state.get("status") == "failed":
+        return END
+    if settings.HITL_ENABLED:
         return "hitl"
-    return END
+    return "publish"
 
 
 def build_graph() -> CompiledStateGraph:
     """Build and compile the review LangGraph pipeline."""
     graph = StateGraph(PRState)
 
-    # Add nodes
     graph.add_node("supervisor", supervisor_node)
     graph.add_node("security", security_agent_node)
     graph.add_node("quality", quality_agent_node)
     graph.add_node("performance", performance_agent_node)
     graph.add_node("synthesis", synthesis_node)
     graph.add_node("hitl", hitl_node)
+    graph.add_node("publish", publish_node)
 
-    # Set entry point
     graph.set_entry_point("supervisor")
 
     # Supervisor → 3 agents in parallel (fan-out)
@@ -72,14 +100,13 @@ def build_graph() -> CompiledStateGraph:
     graph.add_edge("quality", "synthesis")
     graph.add_edge("performance", "synthesis")
 
-    # Conditional: HITL enabled or go to END
     graph.add_conditional_edges(
         "synthesis",
-        should_go_to_hitl,
-        {"hitl": "hitl", END: END},
+        route_after_synthesis,
+        {"hitl": "hitl", "publish": "publish", END: END},
     )
-
     graph.add_edge("hitl", END)
+    graph.add_edge("publish", END)
 
     return graph.compile()
 
@@ -122,36 +149,59 @@ async def run_review(
         all_findings=[],
         review_summary="",
         verdict="",
-        events=[],
         hitl_approved=None,
         hitl_modified_findings=None,
         review_id=review_id,
         status="running",
-        error=None,
+        errors=[],
     )
 
     try:
         result = await review_graph.ainvoke(initial_state)
-
-        await crud.create_event(
-            review_id=review_id,
-            event_type="review_complete",
-            message=f"Review complete. Verdict: {result.get('verdict', 'unknown')}",
-            data={
-                "verdict": result.get("verdict", ""),
-                "findings_count": len(result.get("all_findings", [])),
-            },
+    except DailyQuotaExhaustedError as e:
+        log.warning("review_quota_exhausted", review_id=review_id)
+        await crud.update_review(
+            review_id, status="quota_exhausted", error=str(e), completed_at=crud.utc_now()
         )
-
-        log.info("review_graph_completed", review_id=review_id, verdict=result.get("verdict"))
-        return result
-
-    except Exception as e:
-        log.error("review_graph_failed", review_id=review_id, error=str(e))
-        await crud.update_review(review_id, status="failed", error=str(e))
         await crud.create_event(
             review_id=review_id,
             event_type="review_error",
-            message=f"Review failed: {e!s}",
+            message=f"LLM daily quota exhausted: trigger the review again later. {e}",
         )
-        return {"error": str(e), "status": "failed"}
+        return {"status": "quota_exhausted"}
+    except Exception as e:
+        log.error(
+            "review_graph_failed", review_id=review_id, error_type=type(e).__name__, error=str(e)
+        )
+        await crud.update_review(
+            review_id,
+            status="failed",
+            error=f"Unexpected error ({type(e).__name__}). See the server logs.",
+            completed_at=crud.utc_now(),
+        )
+        await crud.create_event(
+            review_id=review_id,
+            event_type="review_error",
+            message=f"Review failed with an unexpected error ({type(e).__name__}).",
+        )
+        return {"status": "failed"}
+
+    if result.get("status") == "failed":
+        await crud.create_event(
+            review_id=review_id,
+            event_type="review_error",
+            message="Review failed: every agent reported an error.",
+        )
+        return result
+
+    await crud.create_event(
+        review_id=review_id,
+        event_type="review_complete",
+        message=f"Review complete. Verdict: {result.get('verdict', 'unknown')}",
+        data={
+            "verdict": result.get("verdict", ""),
+            "findings_count": len(result.get("all_findings", [])),
+        },
+    )
+    log.info("review_graph_completed", review_id=review_id, verdict=result.get("verdict"))
+    return result

@@ -11,8 +11,8 @@ from pydantic import BaseModel, Field
 
 from app.config import settings
 from app.db import crud
-from app.graph.state import Finding, PRState
-from app.rate_limiter import rate_limiter
+from app.graph.state import AgentError, Finding, PRState
+from app.rate_limiter import DailyQuotaExhaustedError, rate_limiter
 
 log = structlog.get_logger()
 
@@ -150,11 +150,17 @@ async def security_agent_node(state: PRState) -> dict[str, Any]:
 
         return {"security_findings": findings}
 
+    except DailyQuotaExhaustedError:
+        # Not an agent failure: the whole review must stop and be retried later
+        raise
     except Exception as e:
         log.error("security_agent_error", review_id=review_id, error=str(e))
         await crud.create_event(
             review_id=review_id,
             event_type="security_error",
-            message=f"Security agent error: {e!s}",
+            message=f"Security agent failed ({type(e).__name__}).",
         )
-        return {"security_findings": [], "error": str(e)}
+        return {
+            "security_findings": [],
+            "errors": [AgentError(agent="security", message=f"{type(e).__name__}: {e!s}"[:500])],
+        }

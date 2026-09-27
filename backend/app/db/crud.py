@@ -3,9 +3,25 @@
 import json
 import uuid
 from collections.abc import Mapping, Sequence
+from datetime import UTC, datetime
 from typing import Any
 
 from app.db.models import get_db
+
+# Review statuses in which a review is still in flight
+ACTIVE_STATUSES = ("pending", "running")
+
+# SQL expression ordering severities from most to least severe
+_SEVERITY_RANK_SQL = (
+    "CASE severity WHEN 'critical' THEN 0 WHEN 'high' THEN 1 WHEN 'medium' THEN 2 "
+    "WHEN 'low' THEN 3 WHEN 'info' THEN 4 ELSE 5 END"
+)
+
+
+def utc_now() -> str:
+    """Current UTC time in the same format as SQLite CURRENT_TIMESTAMP."""
+    return datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%S")
+
 
 # Whitelists of columns that can be updated via **kwargs
 _ALLOWED_REVIEW_COLUMNS = {"status", "summary", "verdict", "error", "completed_at"}
@@ -132,15 +148,38 @@ async def update_review(review_id: str, **kwargs) -> dict | None:
 
 
 async def check_duplicate_review(repo: str, commit_id: str) -> bool:
-    """Check if a review already exists for this commit (dedup)."""
+    """Check if a review is already in flight for this commit (dedup)."""
     db = await get_db()
     try:
         cursor = await db.execute(
-            "SELECT id FROM reviews WHERE repo = ? AND commit_id = ? AND status IN ('pending', 'running')",
-            (repo, commit_id),
+            "SELECT id FROM reviews WHERE repo = ? AND commit_id = ? AND status IN (?, ?)",
+            (repo, commit_id, *ACTIVE_STATUSES),
         )
         row = await cursor.fetchone()
         return row is not None
+    finally:
+        await db.close()
+
+
+async def supersede_active_reviews(repo: str, pr_number: int, keep_review_id: str) -> list[str]:
+    """Mark in-flight reviews of the same PR as superseded by a newer one.
+
+    Returns the ids of the reviews that were superseded.
+    """
+    db = await get_db()
+    try:
+        cursor = await db.execute(
+            "SELECT id FROM reviews WHERE repo = ? AND pr_number = ? AND id != ? AND status IN (?, ?)",
+            (repo, pr_number, keep_review_id, *ACTIVE_STATUSES),
+        )
+        ids = [row["id"] for row in await cursor.fetchall()]
+        for review_id in ids:
+            await db.execute(
+                "UPDATE reviews SET status = 'superseded', completed_at = ? WHERE id = ?",
+                (utc_now(), review_id),
+            )
+        await db.commit()
+        return ids
     finally:
         await db.close()
 
@@ -235,11 +274,22 @@ async def get_findings(review_id: str) -> list[dict]:
     db = await get_db()
     try:
         cursor = await db.execute(
-            "SELECT * FROM findings WHERE review_id = ? ORDER BY severity, file, line",
+            f"SELECT * FROM findings WHERE review_id = ? ORDER BY {_SEVERITY_RANK_SQL}, file, line",  # noqa: S608 (constant expression)
             (review_id,),
         )
         rows = await cursor.fetchall()
         return [dict(row) for row in rows]
+    finally:
+        await db.close()
+
+
+async def get_finding(finding_id: str) -> dict | None:
+    """Get a single finding by ID."""
+    db = await get_db()
+    try:
+        cursor = await db.execute("SELECT * FROM findings WHERE id = ?", (finding_id,))
+        row = await cursor.fetchone()
+        return dict(row) if row else None
     finally:
         await db.close()
 
@@ -419,5 +469,115 @@ async def clear_all_reviews() -> None:
         await db.execute("DELETE FROM review_events")
         await db.execute("DELETE FROM reviews")
         await db.commit()
+    finally:
+        await db.close()
+
+
+# ──────────────────────────────────────────────
+# Webhook deliveries (idempotency)
+# ──────────────────────────────────────────────
+
+
+async def record_webhook_delivery(delivery_id: str, event: str) -> bool:
+    """Store a webhook delivery id. Returns False if it was already processed."""
+    db = await get_db()
+    try:
+        cursor = await db.execute(
+            "INSERT OR IGNORE INTO webhook_deliveries (delivery_id, event) VALUES (?, ?)",
+            (delivery_id, event),
+        )
+        await db.commit()
+        return cursor.rowcount == 1
+    finally:
+        await db.close()
+
+
+# ──────────────────────────────────────────────
+# API keys
+# ──────────────────────────────────────────────
+
+
+async def create_api_key(
+    name: str,
+    prefix: str,
+    key_hash: str,
+    scopes: Sequence[str],
+    created_by: str,
+    expires_at: str | None = None,
+) -> dict:
+    """Store a new API key (hash only) and return its public metadata."""
+    key_id = str(uuid.uuid4())
+    db = await get_db()
+    try:
+        await db.execute(
+            """INSERT INTO api_keys (id, name, prefix, key_hash, scopes, created_by, expires_at)
+               VALUES (?, ?, ?, ?, ?, ?, ?)""",
+            (key_id, name, prefix, key_hash, ",".join(scopes), created_by, expires_at),
+        )
+        await db.commit()
+    finally:
+        await db.close()
+    key = await get_api_key(key_id)
+    if key is None:
+        raise RuntimeError(f"API key {key_id} not found right after insert")
+    return key
+
+
+def _api_key_row(row: Any) -> dict:
+    key = dict(row)
+    key.pop("key_hash", None)
+    key["scopes"] = [scope for scope in key["scopes"].split(",") if scope]
+    return key
+
+
+async def get_api_key(key_id: str) -> dict | None:
+    db = await get_db()
+    try:
+        cursor = await db.execute("SELECT * FROM api_keys WHERE id = ?", (key_id,))
+        row = await cursor.fetchone()
+        return _api_key_row(row) if row else None
+    finally:
+        await db.close()
+
+
+async def find_active_api_key(key_hash: str) -> dict | None:
+    """Return a non-revoked, non-expired key matching the hash, and record its use."""
+    now = utc_now()
+    db = await get_db()
+    try:
+        cursor = await db.execute(
+            """SELECT * FROM api_keys
+               WHERE key_hash = ? AND revoked_at IS NULL
+                 AND (expires_at IS NULL OR expires_at > ?)""",
+            (key_hash, now),
+        )
+        row = await cursor.fetchone()
+        if row is None:
+            return None
+        await db.execute("UPDATE api_keys SET last_used_at = ? WHERE id = ?", (now, row["id"]))
+        await db.commit()
+        return _api_key_row(row)
+    finally:
+        await db.close()
+
+
+async def list_api_keys() -> list[dict]:
+    db = await get_db()
+    try:
+        cursor = await db.execute("SELECT * FROM api_keys ORDER BY created_at DESC")
+        return [_api_key_row(row) for row in await cursor.fetchall()]
+    finally:
+        await db.close()
+
+
+async def revoke_api_key(key_id: str) -> bool:
+    db = await get_db()
+    try:
+        cursor = await db.execute(
+            "UPDATE api_keys SET revoked_at = ? WHERE id = ? AND revoked_at IS NULL",
+            (utc_now(), key_id),
+        )
+        await db.commit()
+        return cursor.rowcount == 1
     finally:
         await db.close()

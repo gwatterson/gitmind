@@ -11,8 +11,8 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 
 from app.config import settings
 from app.db import crud
-from app.graph.state import PRState
-from app.rate_limiter import rate_limiter
+from app.graph.state import AgentError, PRState
+from app.rate_limiter import DailyQuotaExhaustedError, rate_limiter
 
 log = structlog.get_logger()
 
@@ -122,9 +122,17 @@ async def supervisor_node(state: PRState) -> dict[str, Any]:
                 "performance_files": all_filenames,
             }
 
-        security_files = assignments.get("security_files", [])
-        quality_files = assignments.get("quality_files", [])
-        performance_files = assignments.get("performance_files", [])
+        # Keep only real file names: the model may invent or mangle paths
+        known = [f["filename"] for f in files]
+
+        def _valid(key: str) -> list[str]:
+            chosen = set(assignments.get(key) or [])
+            return [name for name in known if name in chosen]
+
+        # Security review is not left to the model's judgment: every file gets it
+        security_files = known
+        quality_files = _valid("quality_files")
+        performance_files = _valid("performance_files")
 
         log.info(
             "supervisor_assignments",
@@ -154,12 +162,14 @@ async def supervisor_node(state: PRState) -> dict[str, Any]:
             "status": "running",
         }
 
+    except DailyQuotaExhaustedError:
+        raise
     except Exception as e:
         log.error("supervisor_error", review_id=review_id, error=str(e))
         await crud.create_event(
             review_id=review_id,
             event_type="supervisor_error",
-            message=f"Supervisor error: {e!s}",
+            message=f"Supervisor failed ({type(e).__name__}): every file goes to every agent.",
         )
         # Fallback: assign all files to all agents
         all_filenames = [f["filename"] for f in files]
@@ -168,5 +178,5 @@ async def supervisor_node(state: PRState) -> dict[str, Any]:
             "quality_files": all_filenames,
             "performance_files": all_filenames,
             "status": "running",
-            "error": str(e),
+            "errors": [AgentError(agent="supervisor", message=f"{type(e).__name__}: {e!s}"[:500])],
         }

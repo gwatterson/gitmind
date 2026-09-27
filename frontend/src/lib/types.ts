@@ -9,7 +9,14 @@ export interface Review {
   pr_title: string;
   pr_author: string;
   commit_id: string;
-  status: "pending" | "running" | "completed" | "failed" | "hitl_pending";
+  status:
+    | "pending"
+    | "running"
+    | "completed"
+    | "failed"
+    | "hitl_pending"
+    | "superseded"
+    | "quota_exhausted";
   verdict: "approve" | "comment" | "request_changes" | null;
   summary: string | null;
   created_at: string;
@@ -72,4 +79,18 @@ export interface DiffFile {
 export interface ReviewsResponse {
   reviews: Review[];
   count: number;
+}
+
+export interface User {
+  kind: "user" | "api_key" | "dev";
+  login: string;
+  name: string | null;
+  avatar_url: string | null;
+  is_admin: boolean;
+  scopes: string[];
+}
+
+export interface AuthMe {
+  user: User;
+  auth_disabled: boolean;
 }

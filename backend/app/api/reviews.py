@@ -1,26 +1,27 @@
 """Review API endpoints: CRUD, HITL actions, stats, and manual trigger."""
 
 import asyncio
-import os
+from typing import Any
 
 import structlog
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from pydantic import BaseModel, Field
 
+from app.config import settings
+from app.core.errors import github_error, internal_error
+from app.core.ratelimit import limiter
+from app.core.security import Principal, require_admin, require_read, require_write
 from app.db import crud
-from app.graph.graph import run_review
+from app.mcp_server.server import handle_get_pr_diff, handle_get_pr_metadata
 from app.rate_limiter import rate_limiter
+from app.services import publisher, review_runner
 
-router = APIRouter()
+router = APIRouter(tags=["reviews"])
 log = structlog.get_logger()
-
-# Strong references to fire-and-forget review tasks, so they are not garbage collected
-# before completion. Replaced by a durable job queue in a later phase.
-_background_tasks: set[asyncio.Task] = set()
 
 
 # ──────────────────────────────────────────────
-# Request/Response Models
+# Request models
 # ──────────────────────────────────────────────
 
 
@@ -39,8 +40,15 @@ class FindingUpdate(BaseModel):
     severity: str | None = Field(None, pattern=r"^(critical|high|medium|low|info)$")
 
 
+async def _get_review_or_404(review_id: str) -> dict[str, Any]:
+    review = await crud.get_review(review_id)
+    if not review:
+        raise HTTPException(status_code=404, detail="Review not found")
+    return review
+
+
 # ──────────────────────────────────────────────
-# Review Endpoints
+# Review endpoints
 # ──────────────────────────────────────────────
 
 
@@ -48,271 +56,180 @@ class FindingUpdate(BaseModel):
 async def list_reviews(
     limit: int = Query(20, ge=1, le=100),
     offset: int = Query(0, ge=0),
-    status: str | None = Query(None),
-    repo: str | None = Query(None),
-):
+    status: str | None = Query(None, max_length=32),
+    repo: str | None = Query(None, max_length=200),
+    _: Principal = Depends(require_read),
+) -> dict[str, Any]:
     """List reviews with pagination and optional filters."""
     reviews = await crud.list_reviews(limit=limit, offset=offset, status=status, repo=repo)
     return {"reviews": reviews, "count": len(reviews)}
 
 
 @router.get("/api/reviews/{review_id}")
-async def get_review(review_id: str):
-    """Get review detail with findings."""
-    review = await crud.get_review(review_id)
-    if not review:
-        raise HTTPException(status_code=404, detail="Review not found")
-
-    findings = await crud.get_findings(review_id)
-    events = await crud.get_events(review_id)
-
+async def get_review(review_id: str, _: Principal = Depends(require_read)) -> dict[str, Any]:
+    """Get review detail with findings and events."""
+    review = await _get_review_or_404(review_id)
     return {
         "review": review,
-        "findings": findings,
-        "events": events,
+        "findings": await crud.get_findings(review_id),
+        "events": await crud.get_events(review_id),
     }
 
 
 @router.delete("/api/reviews/{review_id}")
-async def delete_review_endpoint(review_id: str):
+async def delete_review(review_id: str, _: Principal = Depends(require_write)) -> dict[str, str]:
     """Delete a review and all its associated findings/events."""
-    review = await crud.get_review(review_id)
-    if not review:
+    await _get_review_or_404(review_id)
+    review_runner.cancel(review_id)
+    if not await crud.delete_review(review_id):
         raise HTTPException(status_code=404, detail="Review not found")
-
-    success = await crud.delete_review(review_id)
-    if not success:
-        raise HTTPException(status_code=500, detail="Failed to delete review")
-
     return {"status": "ok", "message": "Review deleted"}
 
 
 @router.get("/api/reviews/{review_id}/diff")
-async def get_review_diff(review_id: str):
-    """Fetch the PR diff dynamically from GitHub for the frontend viewer."""
-    review = await crud.get_review(review_id)
-    if not review:
-        raise HTTPException(status_code=404, detail="Review not found")
-
-    from app.mcp_server.server import handle_get_pr_diff
-
+async def get_review_diff(review_id: str, _: Principal = Depends(require_read)) -> dict[str, Any]:
+    """Fetch the PR diff from GitHub for the frontend viewer."""
+    review = await _get_review_or_404(review_id)
     try:
         diff_result = await handle_get_pr_diff(
             {"repo": review["repo"], "pr_number": review["pr_number"]}
         )
-
-        files = []
-        for f in diff_result.get("files", []):
-            files.append({"filename": f.get("filename"), "patch": f.get("patch", "")})
-
-        return {"files": files}
-
     except Exception as e:
-        log.error("failed_to_fetch_diff", error=str(e))
-        raise HTTPException(status_code=500, detail=f"Failed to fetch diff: {e!s}") from e
+        raise github_error("failed_to_fetch_diff", e) from e
+    if "error" in diff_result:
+        raise HTTPException(status_code=503, detail="GitHub client not configured")
+
+    files = [
+        {"filename": f.get("filename"), "patch": f.get("patch", "")}
+        for f in diff_result.get("files", [])
+    ]
+    return {"files": files}
 
 
 @router.get("/api/stats")
-async def get_stats():
+async def get_stats(_: Principal = Depends(require_read)) -> dict[str, Any]:
     """Get aggregate metrics for the dashboard."""
-    stats = await crud.get_review_stats()
-    return stats
+    return await crud.get_review_stats()
 
 
 # ──────────────────────────────────────────────
-# HITL Endpoints
+# HITL endpoints
 # ──────────────────────────────────────────────
 
 
 @router.post("/api/reviews/{review_id}/approve")
-async def approve_review(review_id: str):
-    """Approve findings and trigger posting to GitHub (HITL)."""
-    review = await crud.get_review(review_id)
-    if not review:
-        raise HTTPException(status_code=404, detail="Review not found")
+async def approve_review(
+    review_id: str, principal: Principal = Depends(require_write)
+) -> dict[str, Any]:
+    """Approve the findings and post the review to GitHub (HITL)."""
+    review = await _get_review_or_404(review_id)
     if review["status"] != "hitl_pending":
-        raise HTTPException(status_code=400, detail="Review is not pending HITL approval")
+        raise HTTPException(status_code=409, detail="Review is not pending HITL approval")
 
-    github_posted = False
-    github_warning = None
+    result = await publisher.publish_review(review_id, human_approved=True)
+    if result.retryable:
+        # Keep the review pending so the user can retry once GitHub is reachable
+        raise HTTPException(status_code=502, detail=result.warning)
 
-    from app.mcp_server.server import _get_github_client
-
-    gh = _get_github_client()
-    if not gh:
-        github_warning = (
-            "GitHub client not configured: review approved locally but not posted to GitHub."
-        )
-        log.warning("approve_without_github", review_id=review_id)
-    else:
-        try:
-            repo = gh.get_repo(review["repo"])
-            pr = repo.get_pull(review["pr_number"])
-            commit = (
-                repo.get_commit(review["commit_id"])
-                if review.get("commit_id")
-                else pr.get_commits().reversed[0]
-            )
-
-            findings = await crud.get_findings(review_id)
-
-            # Post inline comments
-            for f in findings:
-                if f.get("posted_to_github"):
-                    continue
-
-                body = f"**[{f['category'].upper()} - {f['severity'].upper()}]**\n{f['message']}"
-                if f.get("suggestion"):
-                    body += f"\n\n**Suggestion:**\n```\n{f['suggestion']}\n```"
-
-                try:
-                    if f.get("line"):
-                        comment = pr.create_review_comment(
-                            body=body,
-                            commit=commit,
-                            path=f["file"],
-                            line=int(f["line"]),
-                            side="RIGHT",
-                        )
-                        await crud.update_finding(
-                            f["id"], posted_to_github=True, github_comment_id=str(comment.id)
-                        )
-                except Exception as e:
-                    log.warning("failed_to_post_inline_comment", finding_id=f["id"], error=str(e))
-
-            # Post summary review
-            event_map = {
-                "request_changes": "REQUEST_CHANGES",
-                "approve": "APPROVE",
-                "comment": "COMMENT",
-            }
-            event = event_map.get(review.get("verdict", "comment").lower(), "COMMENT")
-
-            pr.create_review(
-                body=review.get("summary", "Review completed by GitMind."), event=event
-            )
-            github_posted = True
-        except Exception as e:
-            log.error("github_post_error", review_id=review_id, error=str(e))
-            github_warning = f"Review approved locally but GitHub posting failed: {e!s}"
-
-    await crud.update_review(review_id, status="completed", completed_at="datetime('now')")
+    await crud.update_review(review_id, status="completed", completed_at=crud.utc_now())
     await crud.create_event(
         review_id=review_id,
         event_type="hitl_approved",
-        message="Review approved by user"
-        + (" and posted to GitHub." if github_posted else " (local only)."),
+        message=f"Review approved by {principal.login}"
+        + (" and posted to GitHub." if result.posted else " (not posted to GitHub)."),
     )
 
-    result = {"status": "approved", "review_id": review_id, "github_posted": github_posted}
-    if github_warning:
-        result["warning"] = github_warning
-    return result
+    response: dict[str, Any] = {
+        "status": "approved",
+        "review_id": review_id,
+        "github_posted": result.posted,
+    }
+    if result.warning:
+        response["warning"] = result.warning
+    return response
 
 
 @router.patch("/api/reviews/{review_id}/findings/{finding_id}")
-async def update_finding(review_id: str, finding_id: str, body: FindingUpdate):
+async def update_finding(
+    review_id: str,
+    finding_id: str,
+    body: FindingUpdate,
+    _: Principal = Depends(require_write),
+) -> dict[str, Any]:
     """Edit a finding before posting (HITL)."""
-    review = await crud.get_review(review_id)
-    if not review:
-        raise HTTPException(status_code=404, detail="Review not found")
+    await _get_review_or_404(review_id)
+    existing = await crud.get_finding(finding_id)
+    # The finding must belong to the review in the URL
+    if not existing or existing["review_id"] != review_id:
+        raise HTTPException(status_code=404, detail="Finding not found")
 
     update_data = {k: v for k, v in body.model_dump().items() if v is not None}
     if not update_data:
         raise HTTPException(status_code=400, detail="No fields to update")
 
-    finding = await crud.update_finding(finding_id, **update_data)
-    if not finding:
-        raise HTTPException(status_code=404, detail="Finding not found")
-
-    return {"finding": finding}
+    return {"finding": await crud.update_finding(finding_id, **update_data)}
 
 
 # ──────────────────────────────────────────────
-# Rate Limiter
+# Monitoring
 # ──────────────────────────────────────────────
 
 
 @router.get("/api/rate-limit/status")
-async def rate_limit_status():
-    """Returns the current rate limiter state for the frontend."""
+async def rate_limit_status(_: Principal = Depends(require_read)) -> dict[str, Any]:
+    """Return the current LLM rate limiter state for the dashboard."""
     return await rate_limiter.get_status()
 
 
-# ──────────────────────────────────────────────
-# Health Check
-# ──────────────────────────────────────────────
-
-
 @router.get("/api/health")
-async def health_check():
-    """Health check endpoint."""
-    return {
-        "status": "ok",
-        "rate_limiter": await rate_limiter.get_status(),
-    }
+@limiter.exempt
+async def health_check() -> dict[str, str]:
+    """Public liveness probe. Exposes no internal state."""
+    return {"status": "ok"}
 
 
 # ──────────────────────────────────────────────
-# Archive Management
+# Archive management
 # ──────────────────────────────────────────────
 
 
 @router.delete("/api/reviews")
-async def clear_archive():
-    """Clear all stored reviews and findings without resetting rate limits."""
+async def clear_archive(principal: Principal = Depends(require_admin)) -> dict[str, str]:
+    """Delete all stored reviews and findings (administrators only)."""
     await crud.clear_all_reviews()
+    log.warning("archive_cleared", by=principal.login)
     return {"status": "ok", "message": "Archive cleared successfully."}
 
 
 # ──────────────────────────────────────────────
-# Manual Trigger (for testing without webhooks)
+# Manual trigger (for testing without webhooks)
 # ──────────────────────────────────────────────
 
 
-@router.post("/api/reviews/trigger")
-async def trigger_manual_review(body: ManualReviewRequest):
-    """
-    Manually trigger a review of a PR (for testing without GitHub webhooks).
-    Requires GITHUB_TOKEN env var or GitHub App credentials.
-    """
-    from app.mcp_server.server import handle_get_pr_diff, handle_get_pr_metadata
-
+@router.post("/api/reviews/trigger", status_code=202)
+@limiter.limit(settings.HTTP_RATE_LIMIT_TRIGGER)
+async def trigger_manual_review(
+    request: Request,
+    body: ManualReviewRequest,
+    _: Principal = Depends(require_write),
+) -> dict[str, Any]:
+    """Manually trigger a review of a PR. Requires GitHub credentials on the server."""
     log.info("manual_review_triggered", repo=body.repo, pr_number=body.pr_number)
 
     try:
-        # Fetch PR metadata
         metadata = await handle_get_pr_metadata({"repo": body.repo, "pr_number": body.pr_number})
-        if "error" in metadata:
-            raise HTTPException(status_code=400, detail=f"GitHub error: {metadata['error']}")
+    except Exception as e:
+        raise github_error("manual_review_metadata_failed", e) from e
+    if "error" in metadata:
+        raise HTTPException(status_code=503, detail="GitHub client not configured")
 
-        # Fetch PR diff
-        diff_result = await handle_get_pr_diff({"repo": body.repo, "pr_number": body.pr_number})
-        if "error" in diff_result:
-            raise HTTPException(status_code=400, detail=f"GitHub error: {diff_result['error']}")
+    commit_id = metadata.get("head_sha", "")
+    if commit_id and await crud.check_duplicate_review(body.repo, commit_id):
+        raise HTTPException(
+            status_code=409, detail="A review of this commit is already in progress"
+        )
 
-        commit_id = ""  # Will be fetched from the PR
-        files = []
-        for f in diff_result.get("files", []):
-            ext = os.path.splitext(f.get("filename", ""))[1].lower()
-            lang_map = {
-                ".py": "python",
-                ".js": "javascript",
-                ".ts": "typescript",
-                ".jsx": "javascript",
-                ".tsx": "typescript",
-            }
-            files.append(
-                {
-                    "filename": f["filename"],
-                    "language": lang_map.get(ext, "unknown"),
-                    "patch": f.get("patch", ""),
-                    "additions": f.get("additions", 0),
-                    "deletions": f.get("deletions", 0),
-                }
-            )
-
-        # Create review
+    try:
         review = await crud.create_review(
             repo=body.repo,
             pr_number=body.pr_number,
@@ -320,30 +237,14 @@ async def trigger_manual_review(body: ManualReviewRequest):
             pr_author=metadata.get("author", ""),
             commit_id=commit_id,
         )
-
-        # Run review (async task in background)
-        task = asyncio.create_task(
-            run_review(
-                review_id=review["id"],
-                repo=body.repo,
-                pr_number=body.pr_number,
-                commit_id=commit_id,
-                files=files,
-                pr_metadata=metadata,
-            )
-        )
-        _background_tasks.add(task)
-        task.add_done_callback(_background_tasks.discard)
-
-        return {"review_id": review["id"], "status": "queued", "files_count": len(files)}
-
-    except HTTPException:
-        raise
+        await review_runner.supersede_previous(body.repo, body.pr_number, review["id"])
     except Exception as e:
-        log.error("manual_review_error", error=str(e))
-        error_msg = str(e)
-        if "404" in error_msg and "Not Found" in error_msg:
-            error_msg = "Repository or PR not found (or no access with current token)."
-        elif "401" in error_msg or "Bad credentials" in error_msg:
-            error_msg = "GitHub authentication failed. Check your token/app configuration."
-        raise HTTPException(status_code=500, detail=error_msg) from e
+        raise internal_error("manual_review_create_failed", e) from e
+
+    review_runner.start(
+        review["id"],
+        review_runner.fetch_and_run(review["id"], body.repo, body.pr_number, commit_id, metadata),
+    )
+    # Yield once so the background task starts before the response is sent
+    await asyncio.sleep(0)
+    return {"review_id": review["id"], "status": "queued"}

@@ -1,80 +1,170 @@
 /**
  * API client for the GitMind backend.
+ *
+ * Every request sends the session cookie and the CSRF header required by the
+ * backend for state-changing calls. A 401 response broadcasts an event so the
+ * UI can switch to the sign-in screen.
  */
 
-import type { ReviewsResponse, ReviewDetail, RateLimitStatus, ReviewStats } from "./types";
+import type {
+  AuthMe,
+  DiffFile,
+  Finding,
+  RateLimitStatus,
+  ReviewDetail,
+  ReviewStats,
+  ReviewsResponse,
+} from "./types";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+export const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
-async function fetchJSON<T>(path: string, options?: RequestInit): Promise<T> {
-  const res = await fetch(`${API_URL}${path}`, {
-    headers: { "Content-Type": "application/json" },
-    ...options,
-  });
-  if (!res.ok) {
-    const error = await res.text();
-    throw new Error(`API error ${res.status}: ${error}`);
+export const UNAUTHORIZED_EVENT = "gitmind:unauthorized";
+
+export class ApiError extends Error {
+  constructor(
+    public readonly status: number,
+    public readonly detail: string,
+  ) {
+    super(detail);
+    this.name = "ApiError";
   }
-  return res.json();
+}
+
+async function request<T>(
+  path: string,
+  options: { method?: string; body?: unknown } = {},
+): Promise<T> {
+  const res = await fetch(`${API_URL}${path}`, {
+    method: options.method ?? "GET",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Requested-With": "gitmind",
+    },
+    body: options.body === undefined ? undefined : JSON.stringify(options.body),
+  });
+
+  if (res.status === 401 && typeof window !== "undefined") {
+    window.dispatchEvent(new Event(UNAUTHORIZED_EVENT));
+  }
+  if (!res.ok) {
+    let detail = res.statusText;
+    try {
+      const data = await res.json();
+      if (typeof data?.detail === "string") detail = data.detail;
+    } catch {
+      // Non-JSON error body: keep the status text
+    }
+    throw new ApiError(res.status, detail);
+  }
+  if (res.status === 204) return undefined as T;
+  return res.json() as Promise<T>;
+}
+
+/** Human-readable message for any error thrown by this client. */
+export function errorMessage(error: unknown): string {
+  if (error instanceof ApiError) return error.detail;
+  if (error instanceof Error) return error.message;
+  return "Network error";
+}
+
+// ── Auth ──
+
+export function getAuthStatus(): Promise<{ oauth_configured: boolean; auth_disabled: boolean }> {
+  return request("/auth/status");
+}
+
+export function getMe(): Promise<AuthMe> {
+  return request("/auth/me");
+}
+
+export function logout(): Promise<void> {
+  return request("/auth/logout", { method: "POST" });
+}
+
+export function loginUrl(next: string = "/"): string {
+  return `${API_URL}/auth/login?next=${encodeURIComponent(next)}`;
 }
 
 // ── Reviews ──
 
-export async function getReviews(params?: {
-  limit?: number;
-  offset?: number;
-  status?: string;
-}): Promise<ReviewsResponse> {
+export function getReviews(
+  params: { limit?: number; offset?: number; status?: string } = {},
+): Promise<ReviewsResponse> {
   const query = new URLSearchParams();
-  if (params?.limit) query.set("limit", String(params.limit));
-  if (params?.offset) query.set("offset", String(params.offset));
-  if (params?.status) query.set("status", params.status);
+  if (params.limit) query.set("limit", String(params.limit));
+  if (params.offset) query.set("offset", String(params.offset));
+  if (params.status) query.set("status", params.status);
   const qs = query.toString();
-  return fetchJSON(`/api/reviews${qs ? `?${qs}` : ""}`);
+  return request(`/api/reviews${qs ? `?${qs}` : ""}`);
 }
 
-export async function getReviewDetail(id: string): Promise<ReviewDetail> {
-  return fetchJSON(`/api/reviews/${id}`);
+export function getReviewDetail(id: string): Promise<ReviewDetail> {
+  return request(`/api/reviews/${encodeURIComponent(id)}`);
 }
 
-export async function triggerManualReview(repo: string, pr_number: number) {
-  return fetchJSON("/api/reviews/trigger", {
-    method: "POST",
-    body: JSON.stringify({ repo, pr_number }),
-  });
+export function getReviewDiff(id: string): Promise<{ files: DiffFile[] }> {
+  return request(`/api/reviews/${encodeURIComponent(id)}/diff`);
 }
 
-export async function approveReview(id: string) {
-  return fetchJSON(`/api/reviews/${id}/approve`, { method: "POST" });
+export function triggerManualReview(
+  repo: string,
+  prNumber: number,
+): Promise<{ review_id: string; status: string }> {
+  return request("/api/reviews/trigger", { method: "POST", body: { repo, pr_number: prNumber } });
 }
 
-export async function updateFinding(
+export function approveReview(id: string): Promise<{ github_posted: boolean; warning?: string }> {
+  return request(`/api/reviews/${encodeURIComponent(id)}/approve`, { method: "POST" });
+}
+
+export function deleteReview(id: string): Promise<void> {
+  return request(`/api/reviews/${encodeURIComponent(id)}`, { method: "DELETE" });
+}
+
+export function clearArchive(): Promise<void> {
+  return request("/api/reviews", { method: "DELETE" });
+}
+
+export function updateFinding(
   reviewId: string,
   findingId: string,
   data: { message?: string; suggestion?: string; severity?: string },
-) {
-  return fetchJSON(`/api/reviews/${reviewId}/findings/${findingId}`, {
-    method: "PATCH",
-    body: JSON.stringify(data),
-  });
+): Promise<{ finding: Finding }> {
+  return request(
+    `/api/reviews/${encodeURIComponent(reviewId)}/findings/${encodeURIComponent(findingId)}`,
+    {
+      method: "PATCH",
+      body: data,
+    },
+  );
 }
 
 // ── Stats & Monitoring ──
 
-export async function getStats(): Promise<ReviewStats> {
-  return fetchJSON("/api/stats");
+export function getStats(): Promise<ReviewStats> {
+  return request("/api/stats");
 }
 
-export async function getRateLimitStatus(): Promise<RateLimitStatus> {
-  return fetchJSON("/api/rate-limit/status");
-}
-
-export async function getHealth() {
-  return fetchJSON("/api/health");
+export function getRateLimitStatus(): Promise<RateLimitStatus> {
+  return request("/api/rate-limit/status");
 }
 
 // ── SSE Stream ──
 
 export function createReviewStream(reviewId: string): EventSource {
-  return new EventSource(`${API_URL}/api/stream/${reviewId}`);
+  return new EventSource(`${API_URL}/api/stream/${encodeURIComponent(reviewId)}`, {
+    withCredentials: true,
+  });
+}
+
+// ── Dates ──
+
+/**
+ * Parse a backend timestamp. The API returns UTC times as "YYYY-MM-DD HH:MM:SS"
+ * without a zone, which browsers would otherwise read as local time.
+ */
+export function parseServerDate(value: string): Date {
+  const hasZone = /[zZ]|[+-]\d{2}:?\d{2}$/.test(value);
+  return new Date(hasZone ? value : `${value.replace(" ", "T")}Z`);
 }

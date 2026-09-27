@@ -5,10 +5,18 @@ import { useParams } from "next/navigation";
 import { ReviewStream } from "@/components/ReviewStream";
 import { FindingCard } from "@/components/FindingCard";
 import { DiffViewer } from "@/components/DiffViewer";
+import {
+  approveReview,
+  deleteReview,
+  errorMessage,
+  getReviewDetail,
+  getReviewDiff,
+  updateFinding,
+} from "@/lib/api";
 import type { Review, Finding, DiffFile } from "@/lib/types";
 
 const VERDICT_CONFIG: Record<string, { label: string; class: string; icon: string }> = {
-  approve: { label: "Approved", class: "badge-completed", icon: "✅" },
+  approve: { label: "Looks Good", class: "badge-completed", icon: "✅" },
   comment: { label: "Comment", class: "badge-info", icon: "💬" },
   request_changes: { label: "Changes Requested", class: "badge-critical", icon: "🔴" },
 };
@@ -36,15 +44,11 @@ export default function ReviewDetailPage() {
   useEffect(() => {
     const fetchDetail = async () => {
       try {
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-        const res = await fetch(`${apiUrl}/api/reviews/${reviewId}`);
-        if (res.ok) {
-          const data = await res.json();
-          setReview(data.review);
-          setFindings(data.findings || []);
-        }
+        const data = await getReviewDetail(reviewId);
+        setReview(data.review);
+        setFindings(data.findings || []);
       } catch {
-        // silent
+        // Unauthorized or not found: the page shows its own empty state
       } finally {
         setLoading(false);
       }
@@ -62,14 +66,10 @@ export default function ReviewDetailPage() {
       const fetchDiff = async () => {
         setLoadingDiff(true);
         try {
-          const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-          const res = await fetch(`${apiUrl}/api/reviews/${reviewId}/diff`);
-          if (res.ok) {
-            const data = await res.json();
-            setDiffFiles(data.files || []);
-          }
-        } catch (e) {
-          console.error("Failed to fetch diff", e);
+          const data = await getReviewDiff(reviewId);
+          setDiffFiles(data.files || []);
+        } catch (error) {
+          console.error("Failed to fetch diff", error);
         } finally {
           setLoadingDiff(false);
         }
@@ -83,23 +83,15 @@ export default function ReviewDetailPage() {
   const handleApprove = async () => {
     setActionStatus("approving...");
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-      const res = await fetch(`${apiUrl}/api/reviews/${reviewId}/approve`, {
-        method: "POST",
-      });
-      const data = await res.json();
-      if (res.ok) {
-        setReview((prev) => (prev ? { ...prev, status: "completed" } : null));
-        if (data.warning) {
-          setActionStatus(`⚠️ ${data.warning}`);
-        } else {
-          setActionStatus("✅ Review approved and posted to GitHub.");
-        }
+      const data = await approveReview(reviewId);
+      setReview((prev) => (prev ? { ...prev, status: "completed" } : null));
+      if (data.warning) {
+        setActionStatus(`⚠️ ${data.warning}`);
       } else {
-        setActionStatus(`❌ ${data.detail || "Failed to approve"}`);
+        setActionStatus("✅ Review approved and posted to GitHub.");
       }
-    } catch (e) {
-      setActionStatus(`❌ ${e instanceof Error ? e.message : "Network error"}`);
+    } catch (error) {
+      setActionStatus(`❌ ${errorMessage(error)}`);
     }
   };
 
@@ -113,18 +105,10 @@ export default function ReviewDetailPage() {
 
     setActionStatus("rejecting...");
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-      const res = await fetch(`${apiUrl}/api/reviews/${reviewId}`, {
-        method: "DELETE",
-      });
-      if (res.ok) {
-        window.location.href = "/";
-      } else {
-        const data = await res.json();
-        setActionStatus(`❌ ${data.detail || "Failed to delete"}`);
-      }
-    } catch (e) {
-      setActionStatus(`❌ ${e instanceof Error ? e.message : "Network error"}`);
+      await deleteReview(reviewId);
+      window.location.href = "/";
+    } catch (error) {
+      setActionStatus(`❌ ${errorMessage(error)}`);
     }
   };
 
@@ -139,19 +123,11 @@ export default function ReviewDetailPage() {
 
   const saveFinding = async (id: string) => {
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-      const res = await fetch(`${apiUrl}/api/reviews/${reviewId}/findings/${id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(editForm),
-      });
-      if (res.ok) {
-        const data = await res.json();
-        setFindings((prev) => prev.map((f) => (f.id === id ? { ...f, ...data.finding } : f)));
-        setEditingFindingId(null);
-      }
-    } catch (e) {
-      console.error("Failed to update finding", e);
+      const data = await updateFinding(reviewId, id, editForm);
+      setFindings((prev) => prev.map((f) => (f.id === id ? { ...f, ...data.finding } : f)));
+      setEditingFindingId(null);
+    } catch (error) {
+      setActionStatus(`❌ Could not save the finding: ${errorMessage(error)}`);
     }
   };
 
@@ -228,9 +204,7 @@ export default function ReviewDetailPage() {
                 {actionStatus === "approving..." ? "⏳ Approving..." : "✅ Approve & Post"}
               </button>
             )}
-            {(review.status === "hitl_pending" ||
-              review.status === "completed" ||
-              review.status === "failed") && (
+            {review.status !== "pending" && review.status !== "running" && (
               <button
                 onClick={handleRejectAndDelete}
                 disabled={actionStatus === "approving..." || actionStatus === "rejecting..."}

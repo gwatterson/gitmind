@@ -10,6 +10,29 @@ trap "kill 0" EXIT
 # Get the absolute path to the directory where this script is located
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
+# ── 0. Check ports ──
+# Fail early instead of letting Next.js move to another port: the browser,
+# CORS_ORIGINS and the OAuth callback all expect 3000 and 8000.
+port_in_use() {
+    if command -v lsof > /dev/null; then
+        lsof -iTCP:"$1" -sTCP:LISTEN -t > /dev/null 2>&1
+    else
+        (echo > "/dev/tcp/127.0.0.1/$1") > /dev/null 2>&1
+    fi
+}
+
+echo "[0/4] Checking that ports 8000 and 3000 are free..."
+for port in 8000 3000; do
+    if port_in_use "$port"; then
+        echo "      [ERROR] Port $port is already in use, probably by a previous GitMind run."
+        if command -v lsof > /dev/null; then
+            lsof -iTCP:"$port" -sTCP:LISTEN -P -n | sed 's/^/              /'
+        fi
+        echo "      Stop that process (kill <pid>) and run this script again."
+        exit 1
+    fi
+done
+
 # ── 1. Backend Setup ──
 echo "[1/4] Setting up backend environment..."
 cd "$DIR/backend"
@@ -52,7 +75,8 @@ if [ ! -f ".env.local" ]; then
 fi
 
 echo "[3/4] Starting Next.js frontend on port 3000 in background..."
-npm run dev &
+# An explicit port makes Next.js fail instead of silently switching to 3001
+npm run dev -- --port 3000 &
 
 # ── 4. Open Browser ──
 echo "[4/4] Opening dashboard in browser..."

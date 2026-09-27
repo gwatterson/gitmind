@@ -11,8 +11,8 @@ from pydantic import BaseModel, Field
 
 from app.config import settings
 from app.db import crud
-from app.graph.state import Finding, PRState
-from app.rate_limiter import rate_limiter
+from app.graph.state import AgentError, Finding, PRState
+from app.rate_limiter import DailyQuotaExhaustedError, rate_limiter
 
 log = structlog.get_logger()
 
@@ -152,11 +152,17 @@ async def performance_agent_node(state: PRState) -> dict[str, Any]:
 
         return {"performance_findings": findings}
 
+    except DailyQuotaExhaustedError:
+        # Not an agent failure: the whole review must stop and be retried later
+        raise
     except Exception as e:
         log.error("performance_agent_error", review_id=review_id, error=str(e))
         await crud.create_event(
             review_id=review_id,
             event_type="performance_error",
-            message=f"Performance agent error: {e!s}",
+            message=f"Performance agent failed ({type(e).__name__}).",
         )
-        return {"performance_findings": [], "error": str(e)}
+        return {
+            "performance_findings": [],
+            "errors": [AgentError(agent="performance", message=f"{type(e).__name__}: {e!s}"[:500])],
+        }

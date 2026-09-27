@@ -57,11 +57,33 @@ CREATE TABLE IF NOT EXISTS rate_limit_state (
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Processed GitHub webhook deliveries (idempotency on X-GitHub-Delivery)
+CREATE TABLE IF NOT EXISTS webhook_deliveries (
+    delivery_id TEXT PRIMARY KEY,
+    event TEXT NOT NULL,
+    received_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- API keys for machine-to-machine access (only the SHA-256 hash is stored)
+CREATE TABLE IF NOT EXISTS api_keys (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    prefix TEXT NOT NULL,
+    key_hash TEXT NOT NULL UNIQUE,
+    scopes TEXT NOT NULL,
+    created_by TEXT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    expires_at DATETIME,
+    last_used_at DATETIME,
+    revoked_at DATETIME
+);
+
 -- Index for faster lookups
 CREATE INDEX IF NOT EXISTS idx_findings_review_id ON findings(review_id);
 CREATE INDEX IF NOT EXISTS idx_review_events_review_id ON review_events(review_id);
 CREATE INDEX IF NOT EXISTS idx_reviews_status ON reviews(status);
 CREATE INDEX IF NOT EXISTS idx_reviews_repo ON reviews(repo);
+CREATE INDEX IF NOT EXISTS idx_reviews_repo_pr ON reviews(repo, pr_number);
 """
 
 
@@ -74,11 +96,20 @@ async def get_db() -> aiosqlite.Connection:
     return db
 
 
+# Idempotent data fixes applied at startup (a real migration tool arrives with PLAN.md F4.2)
+DATA_MIGRATIONS = [
+    # completed_at used to be stored as the literal text "datetime('now')"
+    "UPDATE reviews SET completed_at = NULL WHERE completed_at LIKE 'datetime(%'",
+]
+
+
 async def init_db() -> None:
-    """Initialize the database schema."""
+    """Initialize the database schema and apply pending data fixes."""
     db = await get_db()
     try:
         await db.executescript(SCHEMA_SQL)
+        for statement in DATA_MIGRATIONS:
+            await db.execute(statement)
         await db.commit()
     finally:
         await db.close()
