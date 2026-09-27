@@ -253,11 +253,12 @@ chmod +x start.sh
 ```
 
 This will:
-1. Create the Python virtual environment and install the locked backend dependencies (`uv sync`)
-2. Create `backend/.env` and `frontend/.env.local` from the templates if missing
-3. Start the FastAPI backend on port 8000
-4. Start the Next.js frontend on port 3000
-5. Open the dashboard in your browser
+1. Check that ports 8000 and 3000 are free, and stop with the PID of the process using them otherwise
+2. Create the Python virtual environment and install the locked backend dependencies (`uv sync`)
+3. Create `backend/.env` and `frontend/.env.local` from the templates if missing
+4. Start the FastAPI backend on port 8000
+5. Start the Next.js frontend on port 3000
+6. Open the dashboard in your browser
 
 ### 5.2 Manual start
 
@@ -361,6 +362,8 @@ FastAPI auto-generates interactive API docs:
 
 | Problem | Solution |
 |---|---|
+| `start.bat` / `start.sh` stops with "Port 8000/3000 is already in use" | A previous run is still active: close the old "GitMind Backend" and "GitMind Frontend" windows, or stop the reported PID (`taskkill /PID <pid> /T /F` on Windows, `kill <pid>` on macOS/Linux) |
+| Dashboard stuck on loading, browser console shows CORS errors or `OPTIONS` requests rejected with 400 | The frontend is running on a port that is not in `CORS_ORIGINS` (for example 3001): stop it and restart on port 3000 |
 | `GEMINI_API_KEY` error | Verify your key at [aistudio.google.com](https://aistudio.google.com/apikey) |
 | Sign-in page says GitHub sign-in is not configured | Create the OAuth App (section 2.4), or set `AUTH_DISABLED=true` for local development |
 | "Your GitHub account is not on the list of allowed users" | Add your login to `AUTH_ALLOWED_USERS` (or your organization to `AUTH_ALLOWED_ORGS`) and restart the backend. For organizations, check that the OAuth App is approved by the organization |
