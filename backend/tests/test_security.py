@@ -202,3 +202,24 @@ async def test_non_admin_cannot_manage_api_keys(user_client):
 async def test_invalid_scope_is_rejected(admin_client):
     response = await admin_client.post("/api/keys", json={"name": "x", "scopes": ["admin:all"]})
     assert response.status_code == 422
+
+
+async def test_api_key_without_expiry(admin_client):
+    created = await admin_client.post(
+        "/api/keys", json={"name": "forever", "scopes": ["reviews:read"], "expires_in_days": None}
+    )
+    assert created.status_code == 201
+    assert created.json()["api_key"]["expires_at"] is None
+
+
+async def test_admin_must_also_be_allowlisted(client, monkeypatch):
+    client.cookies.set(SESSION_COOKIE, session_token("root"))
+    monkeypatch.setattr(settings, "AUTH_ALLOWED_USERS", "alice")
+    response = await client.get("/api/reviews")
+    assert response.status_code == 401
+
+
+async def test_api_keys_are_ignored_when_auth_is_disabled(client, monkeypatch):
+    monkeypatch.setattr(settings, "AUTH_DISABLED", True)
+    me = await client.get("/auth/me", headers={"Authorization": "Bearer gm_not-a-real-key"})
+    assert me.json()["user"]["login"] == "local-dev"
