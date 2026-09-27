@@ -106,7 +106,4 @@ jobs:
 
       - name: npm dependency audit
         working-directory: frontend
-        # Known critical advisories in Next.js 14 are fixed only in Next 16:
-        # non-blocking until the upgrade planned in PLAN.md F5.12.
-        continue-on-error: true
         run: npm audit --omit=dev --audit-level=high
