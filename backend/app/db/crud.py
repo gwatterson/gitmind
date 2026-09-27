@@ -2,22 +2,26 @@
 
 import json
 import uuid
-from datetime import datetime
-from typing import Optional, List, Dict, Any
-
-import aiosqlite
+from collections.abc import Mapping, Sequence
+from typing import Any
 
 from app.db.models import get_db
 
-
 # Whitelists of columns that can be updated via **kwargs
 _ALLOWED_REVIEW_COLUMNS = {"status", "summary", "verdict", "error", "completed_at"}
-_ALLOWED_FINDING_COLUMNS = {"message", "suggestion", "severity", "posted_to_github", "github_comment_id"}
+_ALLOWED_FINDING_COLUMNS = {
+    "message",
+    "suggestion",
+    "severity",
+    "posted_to_github",
+    "github_comment_id",
+}
 
 
 # ──────────────────────────────────────────────
 # Reviews
 # ──────────────────────────────────────────────
+
 
 async def create_review(
     repo: str,
@@ -36,12 +40,15 @@ async def create_review(
             (review_id, repo, pr_number, pr_title, pr_author, commit_id),
         )
         await db.commit()
-        return await get_review(review_id)
+        review = await get_review(review_id)
+        if review is None:
+            raise RuntimeError(f"Review {review_id} not found right after insert")
+        return review
     finally:
         await db.close()
 
 
-async def get_review(review_id: str) -> Optional[dict]:
+async def get_review(review_id: str) -> dict | None:
     """Get a review by ID."""
     db = await get_db()
     try:
@@ -70,9 +77,9 @@ async def delete_review(review_id: str) -> bool:
 async def list_reviews(
     limit: int = 20,
     offset: int = 0,
-    status: Optional[str] = None,
-    repo: Optional[str] = None,
-) -> List[dict]:
+    status: str | None = None,
+    repo: str | None = None,
+) -> list[dict]:
     """List reviews with optional filters and pagination."""
     db = await get_db()
     try:
@@ -100,7 +107,7 @@ async def list_reviews(
         await db.close()
 
 
-async def update_review(review_id: str, **kwargs) -> Optional[dict]:
+async def update_review(review_id: str, **kwargs) -> dict | None:
     """Update review fields."""
     db = await get_db()
     try:
@@ -115,7 +122,7 @@ async def update_review(review_id: str, **kwargs) -> Optional[dict]:
 
         if fields:
             await db.execute(
-                f"UPDATE reviews SET {', '.join(fields)} WHERE id = ?",
+                f"UPDATE reviews SET {', '.join(fields)} WHERE id = ?",  # noqa: S608 (columns are whitelisted)
                 values,
             )
             await db.commit()
@@ -142,6 +149,7 @@ async def check_duplicate_review(repo: str, commit_id: str) -> bool:
 # Findings
 # ──────────────────────────────────────────────
 
+
 async def create_finding(
     review_id: str,
     file: str,
@@ -160,19 +168,39 @@ async def create_finding(
         await db.execute(
             """INSERT INTO findings (id, review_id, file, line, severity, category, rule_id, message, suggestion, agent)
                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
-            (finding_id, review_id, file, line, severity, category, rule_id, message, suggestion, agent),
+            (
+                finding_id,
+                review_id,
+                file,
+                line,
+                severity,
+                category,
+                rule_id,
+                message,
+                suggestion,
+                agent,
+            ),
         )
         await db.commit()
         return {
-            "id": finding_id, "review_id": review_id, "file": file, "line": line,
-            "severity": severity, "category": category, "rule_id": rule_id,
-            "message": message, "suggestion": suggestion, "agent": agent,
+            "id": finding_id,
+            "review_id": review_id,
+            "file": file,
+            "line": line,
+            "severity": severity,
+            "category": category,
+            "rule_id": rule_id,
+            "message": message,
+            "suggestion": suggestion,
+            "agent": agent,
         }
     finally:
         await db.close()
 
 
-async def create_findings_batch(review_id: str, findings: List[dict]) -> List[dict]:
+async def create_findings_batch(
+    review_id: str, findings: Sequence[Mapping[str, Any]]
+) -> list[dict]:
     """Create multiple findings in a single transaction."""
     db = await get_db()
     results = []
@@ -182,8 +210,18 @@ async def create_findings_batch(review_id: str, findings: List[dict]) -> List[di
             await db.execute(
                 """INSERT INTO findings (id, review_id, file, line, severity, category, rule_id, message, suggestion, agent)
                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
-                (finding_id, review_id, f["file"], f.get("line", 0), f["severity"],
-                 f["category"], f.get("rule_id", ""), f["message"], f.get("suggestion", ""), f["agent"]),
+                (
+                    finding_id,
+                    review_id,
+                    f["file"],
+                    f.get("line", 0),
+                    f["severity"],
+                    f["category"],
+                    f.get("rule_id", ""),
+                    f["message"],
+                    f.get("suggestion", ""),
+                    f["agent"],
+                ),
             )
             results.append({**f, "id": finding_id, "review_id": review_id})
         await db.commit()
@@ -192,7 +230,7 @@ async def create_findings_batch(review_id: str, findings: List[dict]) -> List[di
         await db.close()
 
 
-async def get_findings(review_id: str) -> List[dict]:
+async def get_findings(review_id: str) -> list[dict]:
     """Get all findings for a review."""
     db = await get_db()
     try:
@@ -206,7 +244,7 @@ async def get_findings(review_id: str) -> List[dict]:
         await db.close()
 
 
-async def update_finding(finding_id: str, **kwargs) -> Optional[dict]:
+async def update_finding(finding_id: str, **kwargs) -> dict | None:
     """Update a finding's fields."""
     db = await get_db()
     try:
@@ -221,7 +259,7 @@ async def update_finding(finding_id: str, **kwargs) -> Optional[dict]:
 
         if fields:
             await db.execute(
-                f"UPDATE findings SET {', '.join(fields)} WHERE id = ?",
+                f"UPDATE findings SET {', '.join(fields)} WHERE id = ?",  # noqa: S608 (columns are whitelisted)
                 values,
             )
             await db.commit()
@@ -237,11 +275,12 @@ async def update_finding(finding_id: str, **kwargs) -> Optional[dict]:
 # Review Events (SSE persistence)
 # ──────────────────────────────────────────────
 
+
 async def create_event(
     review_id: str,
     event_type: str,
     message: str,
-    data: Optional[dict] = None,
+    data: dict | None = None,
 ) -> dict:
     """Create an SSE event record."""
     db = await get_db()
@@ -264,7 +303,7 @@ async def create_event(
         await db.close()
 
 
-async def get_events(review_id: str, after_id: int = 0) -> List[dict]:
+async def get_events(review_id: str, after_id: int = 0) -> list[dict]:
     """Get events for a review, optionally after a specific event ID."""
     db = await get_db()
     try:
@@ -293,14 +332,13 @@ async def get_events(review_id: str, after_id: int = 0) -> List[dict]:
 # Metrics / Stats
 # ──────────────────────────────────────────────
 
+
 async def get_review_stats() -> dict:
     """Get aggregate metrics for the dashboard."""
     db = await get_db()
     try:
         # Total reviews by status
-        cursor = await db.execute(
-            "SELECT status, COUNT(*) as count FROM reviews GROUP BY status"
-        )
+        cursor = await db.execute("SELECT status, COUNT(*) as count FROM reviews GROUP BY status")
         status_rows = await cursor.fetchall()
         status_counts = {row["status"]: row["count"] for row in status_rows}
 
@@ -320,10 +358,12 @@ async def get_review_stats() -> dict:
 
         # Total counts
         cursor = await db.execute("SELECT COUNT(*) as total FROM reviews")
-        total_reviews = (await cursor.fetchone())["total"]
+        row = await cursor.fetchone()
+        total_reviews = row["total"] if row else 0
 
         cursor = await db.execute("SELECT COUNT(*) as total FROM findings")
-        total_findings = (await cursor.fetchone())["total"]
+        row = await cursor.fetchone()
+        total_findings = row["total"] if row else 0
 
         return {
             "total_reviews": total_reviews,
@@ -335,11 +375,13 @@ async def get_review_stats() -> dict:
     finally:
         await db.close()
 
+
 # ──────────────────────────────────────────────
 # Rate Limiter State
 # ──────────────────────────────────────────────
 
-async def get_rate_limit_state(key: str) -> Optional[str]:
+
+async def get_rate_limit_state(key: str) -> str | None:
     """Get persisted rate limiter state by key."""
     db = await get_db()
     try:
@@ -349,6 +391,7 @@ async def get_rate_limit_state(key: str) -> Optional[str]:
     finally:
         await db.close()
 
+
 async def set_rate_limit_state(key: str, value: str) -> None:
     """Set persisted rate limiter state."""
     db = await get_db()
@@ -356,15 +399,17 @@ async def set_rate_limit_state(key: str, value: str) -> None:
         await db.execute(
             """INSERT INTO rate_limit_state (key, value) VALUES (?, ?)
                ON CONFLICT(key) DO UPDATE SET value = excluded.value, updated_at = CURRENT_TIMESTAMP""",
-            (key, value)
+            (key, value),
         )
         await db.commit()
     finally:
         await db.close()
 
+
 # ──────────────────────────────────────────────
 # Archive
 # ──────────────────────────────────────────────
+
 
 async def clear_all_reviews() -> None:
     """Clear all review data from the database."""

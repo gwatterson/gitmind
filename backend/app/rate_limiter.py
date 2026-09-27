@@ -9,14 +9,18 @@ import time
 import zoneinfo
 from collections import deque
 from dataclasses import dataclass, field
-from typing import Optional
+
+import structlog
 
 from app.config import settings
 from app.db import crud
 
+log = structlog.get_logger()
+
 
 class DailyQuotaExhaustedError(Exception):
     """Raised when the daily RPD quota is exhausted."""
+
     pass
 
 
@@ -50,18 +54,19 @@ class RateLimiter:
         """Lazy load persisted RPD state from DB on first use."""
         if self._initialized:
             return
-        
+
         try:
             rpd_count_str = await crud.get_rate_limit_state("rpd_count")
             rpd_reset_at_str = await crud.get_rate_limit_state("rpd_reset_at")
-            
+
             if rpd_count_str is not None:
                 self._state.rpd_count = int(rpd_count_str)
             if rpd_reset_at_str is not None:
                 self._state.rpd_reset_at = float(rpd_reset_at_str)
-        except Exception:
-            pass  # Fallback to in-memory defaults if DB fails during boot
-            
+        except Exception as e:
+            # Fall back to in-memory defaults if the DB is unavailable during boot
+            log.warning("rate_limiter_state_load_failed", error=str(e))
+
         self._initialized = True
 
     async def _save_rpd_to_db(self) -> None:
@@ -69,8 +74,8 @@ class RateLimiter:
         try:
             await crud.set_rate_limit_state("rpd_count", str(self._state.rpd_count))
             await crud.set_rate_limit_state("rpd_reset_at", str(self._state.rpd_reset_at))
-        except Exception:
-            pass
+        except Exception as e:
+            log.warning("rate_limiter_state_save_failed", error=str(e))
 
     async def acquire(self, estimated_tokens: int = 500) -> None:
         """
@@ -82,17 +87,17 @@ class RateLimiter:
             now = time.time()
             self._refresh_windows(now)
 
-            # Check RPD (daily limit — cannot recover by waiting)
+            # Check RPD (daily limit, cannot recover by waiting)
             if self._state.rpd_count >= settings.RATE_LIMIT_RPD_MAX:
                 reset_in = self._state.rpd_reset_at - now
                 raise DailyQuotaExhaustedError(
                     f"Daily quota exhausted. Resets in {reset_in / 3600:.1f} hours."
                 )
 
-            # Check RPM — wait if necessary
+            # Check RPM, wait if necessary
             await self._wait_for_rpm_capacity(now)
 
-            # Check TPM — wait if necessary
+            # Check TPM, wait if necessary
             now = time.time()
             self._refresh_windows(now)
             await self._wait_for_tpm_capacity(now, estimated_tokens)
@@ -102,13 +107,12 @@ class RateLimiter:
             self._state.rpm_window.append(now)
             self._state.tpm_window.append((now, estimated_tokens))
             self._state.rpd_count += 1
-            
+
             # Save RPD update to DB
             await self._save_rpd_to_db()
 
     async def record_actual_tokens(self, actual_tokens: int, estimated_tokens: int = 500) -> None:
         """Update the TPM window with actual token usage after an API call."""
-        now = time.time()
         # Adjust the last entry if it exists
         if self._state.tpm_window:
             ts, _ = self._state.tpm_window[-1]
@@ -126,7 +130,7 @@ class RateLimiter:
         if now >= self._state.rpd_reset_at:
             self._state.rpd_count = 0
             self._state.rpd_reset_at = self._next_midnight_pacific()
-            # If we are in an async context, we could save here, but we'll 
+            # If we are in an async context, we could save here, but we'll
             # let acquire() or the next operation trigger the save.
 
     async def _wait_for_rpm_capacity(self, now: float) -> None:
@@ -172,6 +176,7 @@ class RateLimiter:
     @staticmethod
     def _next_midnight_pacific() -> float:
         """Returns the Unix timestamp of the next Pacific midnight (UTC-8)."""
+        tz: datetime.tzinfo
         try:
             tz = zoneinfo.ZoneInfo("America/Los_Angeles")
         except Exception:

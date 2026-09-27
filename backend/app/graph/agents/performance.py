@@ -1,33 +1,41 @@
 """
-Performance Agent — detects performance anti-patterns: N+1 queries, loop I/O, allocations.
+Performance Agent: detects performance anti-patterns: N+1 queries, loop I/O, allocations.
 """
 
-import json
+from typing import Any
+
 import structlog
-from typing import Dict, List, Any
+from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_google_genai import ChatGoogleGenerativeAI
 from pydantic import BaseModel, Field
 
-from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_core.messages import SystemMessage, HumanMessage
-
 from app.config import settings
-from app.rate_limiter import rate_limiter
-from app.graph.state import PRState, Finding
 from app.db import crud
+from app.graph.state import Finding, PRState
+from app.rate_limiter import rate_limiter
 
 log = structlog.get_logger()
+
 
 class FindingModel(BaseModel):
     file: str = Field(description="the filename")
     line: int = Field(default=0, description="the approximate line number in the patch")
     severity: str = Field(description='"critical", "high", "medium", "low", or "info"')
     category: str = Field(description='always "performance"')
-    rule_id: str = Field(description='a short identifier (e.g., "n-plus-1", "loop-io", "string-concat-loop")')
-    message: str = Field(description='clear description of the performance issue')
-    suggestion: str = Field(default="", description='how to optimize with a code example if possible')
+    rule_id: str = Field(
+        description='a short identifier (e.g., "n-plus-1", "loop-io", "string-concat-loop")'
+    )
+    message: str = Field(description="clear description of the performance issue")
+    suggestion: str = Field(
+        default="", description="how to optimize with a code example if possible"
+    )
+
 
 class PerformanceReview(BaseModel):
-    findings: List[FindingModel] = Field(default_factory=list, description="List of performance findings")
+    findings: list[FindingModel] = Field(
+        default_factory=list, description="List of performance findings"
+    )
+
 
 PERFORMANCE_SYSTEM_PROMPT = """You are a performance engineering expert specializing in code review.
 Your task is to analyze code patches from a Pull Request and identify performance issues.
@@ -61,7 +69,7 @@ CRITICAL: Do not ignore files in test directories or with "test" in the name. Tr
 """
 
 
-async def performance_agent_node(state: PRState) -> Dict[str, Any]:
+async def performance_agent_node(state: PRState) -> dict[str, Any]:
     """Performance agent: analyzes assigned files for performance anti-patterns."""
     review_id = state.get("review_id", "")
     performance_files = state.get("performance_files", [])
@@ -108,24 +116,30 @@ async def performance_agent_node(state: PRState) -> Dict[str, Any]:
 
         structured_llm = llm.with_structured_output(PerformanceReview)
 
-        response = await structured_llm.ainvoke([
-            SystemMessage(content=PERFORMANCE_SYSTEM_PROMPT),
-            HumanMessage(content=f"Analyze these code patches for performance issues:\n\n{patches_text}"),
-        ])
+        response = await structured_llm.ainvoke(
+            [
+                SystemMessage(content=PERFORMANCE_SYSTEM_PROMPT),
+                HumanMessage(
+                    content=f"Analyze these code patches for performance issues:\n\n{patches_text}"
+                ),
+            ]
+        )
 
         findings = []
-        if response and response.findings:
-            for f in response.findings:
-                findings.append(Finding(
-                    file=f.file,
-                    line=f.line,
-                    severity=f.severity,
-                    category="performance",
-                    rule_id=f.rule_id,
-                    message=f.message,
-                    suggestion=f.suggestion,
-                    agent="performance",
-                ))
+        if isinstance(response, PerformanceReview):
+            for item in response.findings:
+                findings.append(
+                    Finding(
+                        file=item.file,
+                        line=item.line,
+                        severity=item.severity,
+                        category="performance",
+                        rule_id=item.rule_id,
+                        message=item.message,
+                        suggestion=item.suggestion,
+                        agent="performance",
+                    )
+                )
 
         log.info("performance_agent_done", review_id=review_id, findings_count=len(findings))
 
@@ -143,6 +157,6 @@ async def performance_agent_node(state: PRState) -> Dict[str, Any]:
         await crud.create_event(
             review_id=review_id,
             event_type="performance_error",
-            message=f"Performance agent error: {str(e)}",
+            message=f"Performance agent error: {e!s}",
         )
         return {"performance_findings": [], "error": str(e)}

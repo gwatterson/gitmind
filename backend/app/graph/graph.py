@@ -1,28 +1,26 @@
 """
-LangGraph graph construction — builds the review pipeline with parallel fan-out/fan-in.
+LangGraph graph construction: builds the review pipeline with parallel fan-out/fan-in.
 """
 
-import asyncio
-import json
-import uuid
-import structlog
-from typing import Dict, Any
+from typing import Any
 
-from langgraph.graph import StateGraph, END
+import structlog
+from langgraph.graph import END, StateGraph
+from langgraph.graph.state import CompiledStateGraph
 
 from app.config import settings
+from app.db import crud
+from app.graph.agents.performance import performance_agent_node
+from app.graph.agents.quality import quality_agent_node
+from app.graph.agents.security import security_agent_node
 from app.graph.state import PRState
 from app.graph.supervisor import supervisor_node
-from app.graph.agents.security import security_agent_node
-from app.graph.agents.quality import quality_agent_node
-from app.graph.agents.performance import performance_agent_node
 from app.graph.synthesis import synthesis_node
-from app.db import crud
 
 log = structlog.get_logger()
 
 
-async def hitl_node(state: PRState) -> Dict[str, Any]:
+async def hitl_node(state: PRState) -> dict[str, Any]:
     """Human-in-the-loop breakpoint. Waits for user approval via API."""
     review_id = state.get("review_id", "")
 
@@ -49,7 +47,7 @@ def should_go_to_hitl(state: PRState) -> str:
     return END
 
 
-def build_graph() -> StateGraph:
+def build_graph() -> CompiledStateGraph:
     """Build and compile the review LangGraph pipeline."""
     graph = StateGraph(PRState)
 
@@ -90,7 +88,14 @@ def build_graph() -> StateGraph:
 review_graph = build_graph()
 
 
-async def run_review(review_id: str, repo: str, pr_number: int, commit_id: str, files: list, pr_metadata: dict = None) -> dict:
+async def run_review(
+    review_id: str,
+    repo: str,
+    pr_number: int,
+    commit_id: str,
+    files: list,
+    pr_metadata: dict | None = None,
+) -> dict:
     """Run the review graph for a PR."""
     log.info("review_graph_started", review_id=review_id, repo=repo, pr_number=pr_number)
 
@@ -132,7 +137,10 @@ async def run_review(review_id: str, repo: str, pr_number: int, commit_id: str, 
             review_id=review_id,
             event_type="review_complete",
             message=f"Review complete. Verdict: {result.get('verdict', 'unknown')}",
-            data={"verdict": result.get("verdict", ""), "findings_count": len(result.get("all_findings", []))},
+            data={
+                "verdict": result.get("verdict", ""),
+                "findings_count": len(result.get("all_findings", [])),
+            },
         )
 
         log.info("review_graph_completed", review_id=review_id, verdict=result.get("verdict"))
@@ -144,6 +152,6 @@ async def run_review(review_id: str, repo: str, pr_number: int, commit_id: str, 
         await crud.create_event(
             review_id=review_id,
             event_type="review_error",
-            message=f"Review failed: {str(e)}",
+            message=f"Review failed: {e!s}",
         )
         return {"error": str(e), "status": "failed"}

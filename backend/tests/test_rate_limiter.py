@@ -1,10 +1,12 @@
-"""Tests for the rate limiter — RPM, RPD, TPM blocking and concurrent access."""
+"""Tests for the rate limiter: RPM, RPD, TPM blocking and concurrent access."""
 
 import asyncio
 import time
+from unittest.mock import patch
+
 import pytest
-from unittest.mock import patch, MagicMock
-from app.rate_limiter import RateLimiter, DailyQuotaExhaustedError
+
+from app.rate_limiter import DailyQuotaExhaustedError, RateLimiter
 
 
 @pytest.fixture
@@ -27,13 +29,12 @@ async def test_rpm_blocking(limiter):
         await limiter.acquire(estimated_tokens=100)
 
     # The next request should block (or take longer than 0.5s)
-    start = time.time()
     # We'll use a short timeout to not actually wait 60s
     try:
         await asyncio.wait_for(limiter.acquire(estimated_tokens=100), timeout=0.5)
-        # If we get here, the limiter didn't block — which is wrong
+        # If we get here, the limiter didn't block, which is wrong
         blocked = False
-    except asyncio.TimeoutError:
+    except TimeoutError:
         blocked = True
 
     assert blocked, "Rate limiter should block when RPM limit is reached"
@@ -52,7 +53,9 @@ async def test_rpm_release(limiter):
     await limiter.acquire(estimated_tokens=100)
     elapsed = time.time() - start
 
-    assert elapsed < 1.0, f"Should have acquired immediately after window expiry, took {elapsed:.2f}s"
+    assert elapsed < 1.0, (
+        f"Should have acquired immediately after window expiry, took {elapsed:.2f}s"
+    )
 
 
 @pytest.mark.asyncio
@@ -72,11 +75,10 @@ async def test_tpm_blocking(limiter):
     limiter._state.tpm_window.append((time.time(), 4900))
 
     # The next request with 200 tokens should be blocked (4900 + 200 > 5000)
-    start = time.time()
     try:
         await asyncio.wait_for(limiter.acquire(estimated_tokens=200), timeout=0.5)
         blocked = False
-    except asyncio.TimeoutError:
+    except TimeoutError:
         blocked = True
 
     assert blocked, "Rate limiter should block when TPM limit is exceeded"
@@ -84,33 +86,42 @@ async def test_tpm_blocking(limiter):
 
 @pytest.mark.asyncio
 async def test_concurrent_requests(limiter):
-    """20 parallel coroutines — none should exceed limits."""
-    results = []
-    errors = []
+    """20 parallel requests: only RPM_MAX (5) may pass inside the same minute."""
+    results: list[int] = []
 
-    async def make_request(idx):
-        try:
-            await asyncio.wait_for(limiter.acquire(estimated_tokens=100), timeout=30)
-            results.append(idx)
-        except DailyQuotaExhaustedError:
-            errors.append(("rpd", idx))
-        except asyncio.TimeoutError:
-            errors.append(("timeout", idx))
+    async def make_request(idx: int) -> None:
+        await limiter.acquire(estimated_tokens=100)
+        results.append(idx)
 
-    # Launch 20 concurrent requests — only 5 RPM should go through immediately
-    # and 10 RPD total
-    tasks = [make_request(i) for i in range(20)]
-    await asyncio.wait(tasks, timeout=5)
+    tasks = [asyncio.create_task(make_request(i)) for i in range(20)]
+    _, pending = await asyncio.wait(tasks, timeout=1)
 
-    # At most RPD_MAX (10) should succeed
-    assert len(results) <= 10, f"Expected at most 10 successes, got {len(results)}"
+    # The remaining requests are waiting for the RPM window to free up
+    for task in pending:
+        task.cancel()
+    await asyncio.gather(*pending, return_exceptions=True)
+
+    assert len(results) == 5, f"Expected exactly 5 successes, got {len(results)}"
+    assert limiter._state.rpd_count == 5
+
+
+@pytest.mark.asyncio
+async def test_rpd_persisted_across_instances(limiter):
+    """The daily counter survives a restart (new instance reads it from the DB)."""
+    await limiter.acquire(estimated_tokens=100)
+    await limiter.acquire(estimated_tokens=100)
+
+    restarted = RateLimiter()
+    await restarted._init_from_db()
+
+    assert restarted._state.rpd_count == 2
 
 
 @pytest.mark.asyncio
 async def test_get_status(limiter):
     """Verify status returns correct structure."""
     await limiter.acquire(estimated_tokens=500)
-    status = limiter.get_status()
+    status = await limiter.get_status()
 
     assert "rpm_used" in status
     assert "rpm_max" in status

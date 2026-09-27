@@ -1,18 +1,18 @@
 """
-Supervisor node — reads PR diff, analyzes files, assigns them to specialist agents.
+Supervisor node: reads PR diff, analyzes files, assigns them to specialist agents.
 """
 
 import json
-import structlog
-from typing import Dict, List, Any
+from typing import Any
 
+import structlog
+from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_core.messages import SystemMessage, HumanMessage
 
 from app.config import settings
-from app.rate_limiter import rate_limiter
-from app.graph.state import PRState, PRFile
 from app.db import crud
+from app.graph.state import PRState
+from app.rate_limiter import rate_limiter
 
 log = structlog.get_logger()
 
@@ -39,7 +39,7 @@ Respond with a JSON object:
 """
 
 
-async def supervisor_node(state: PRState) -> Dict[str, Any]:
+async def supervisor_node(state: PRState) -> dict[str, Any]:
     """
     Supervisor node: reads PR files and assigns them to agents.
     """
@@ -95,13 +95,15 @@ async def supervisor_node(state: PRState) -> Dict[str, Any]:
             max_output_tokens=2048,
         )
 
-        response = await llm.ainvoke([
-            SystemMessage(content=SUPERVISOR_SYSTEM_PROMPT),
-            HumanMessage(content=f"Here are the modified files in this PR:\n\n{files_text}"),
-        ])
+        response = await llm.ainvoke(
+            [
+                SystemMessage(content=SUPERVISOR_SYSTEM_PROMPT),
+                HumanMessage(content=f"Here are the modified files in this PR:\n\n{files_text}"),
+            ]
+        )
 
         # Parse the JSON response
-        response_text = response.content
+        response_text = str(response.text)
         # Try to extract JSON from the response
         try:
             # Handle markdown code blocks
@@ -157,7 +159,7 @@ async def supervisor_node(state: PRState) -> Dict[str, Any]:
         await crud.create_event(
             review_id=review_id,
             event_type="supervisor_error",
-            message=f"Supervisor error: {str(e)}",
+            message=f"Supervisor error: {e!s}",
         )
         # Fallback: assign all files to all agents
         all_filenames = [f["filename"] for f in files]

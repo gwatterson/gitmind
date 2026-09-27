@@ -1,7 +1,6 @@
 """Application settings via pydantic-settings. All values from environment variables."""
 
 from pydantic_settings import BaseSettings
-from typing import List
 
 
 class Settings(BaseSettings):
@@ -10,9 +9,9 @@ class Settings(BaseSettings):
     GEMINI_MODEL: str = "gemini-2.5-flash"
 
     # Rate limiter (Tier 1 with 20% safety margin)
-    RATE_LIMIT_RPM_MAX: int = 120       # 80% of 150 RPM
-    RATE_LIMIT_RPD_MAX: int = 1200      # 80% of 1500 RPD
-    RATE_LIMIT_TPM_MAX: int = 800_000   # 80% of 1M TPM
+    RATE_LIMIT_RPM_MAX: int = 120  # 80% of 150 RPM
+    RATE_LIMIT_RPD_MAX: int = 1200  # 80% of 1500 RPD
+    RATE_LIMIT_TPM_MAX: int = 800_000  # 80% of 1M TPM
 
     # GitHub App
     GITHUB_APP_ID: str = ""
@@ -35,14 +34,10 @@ class Settings(BaseSettings):
     LOG_LEVEL: str = "INFO"
 
     @property
-    def cors_origins_list(self) -> List[str]:
+    def cors_origins_list(self) -> list[str]:
         return [origin.strip() for origin in self.CORS_ORIGINS.split(",")]
 
-    model_config = {
-        "env_file": ".env", 
-        "env_file_encoding": "utf-8",
-        "extra": "ignore"
-    }
+    model_config = {"env_file": ".env", "env_file_encoding": "utf-8", "extra": "ignore"}
 
 
 settings = Settings()

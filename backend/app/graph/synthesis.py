@@ -1,18 +1,18 @@
 """
-Synthesis node — aggregates findings from all agents, deduplicates, determines verdict.
+Synthesis node: aggregates findings from all agents, deduplicates, determines verdict.
 """
 
 import json
-import structlog
-from typing import Dict, List, Any
+from typing import Any
 
+import structlog
+from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_core.messages import SystemMessage, HumanMessage
 
 from app.config import settings
-from app.rate_limiter import rate_limiter
-from app.graph.state import PRState, Finding
 from app.db import crud
+from app.graph.state import Finding, PRState
+from app.rate_limiter import rate_limiter
 
 log = structlog.get_logger()
 
@@ -33,7 +33,7 @@ Answer in plain text, not markdown.
 """
 
 
-def deduplicate_findings(findings: List[Finding]) -> List[Finding]:
+def deduplicate_findings(findings: list[Finding]) -> list[Finding]:
     """Remove duplicate findings (same file + line + rule_id)."""
     seen = set()
     unique = []
@@ -45,12 +45,12 @@ def deduplicate_findings(findings: List[Finding]) -> List[Finding]:
     return unique
 
 
-def sort_findings(findings: List[Finding]) -> List[Finding]:
+def sort_findings(findings: list[Finding]) -> list[Finding]:
     """Sort findings by severity (critical first)."""
     return sorted(findings, key=lambda f: SEVERITY_ORDER.get(f.get("severity", "info"), 99))
 
 
-def determine_verdict(findings: List[Finding]) -> str:
+def determine_verdict(findings: list[Finding]) -> str:
     """Determine review verdict based on findings severity."""
     severities = {f.get("severity", "info") for f in findings}
 
@@ -64,7 +64,7 @@ def determine_verdict(findings: List[Finding]) -> str:
         return "approve"
 
 
-async def synthesis_node(state: PRState) -> Dict[str, Any]:
+async def synthesis_node(state: PRState) -> dict[str, Any]:
     """
     Synthesis node: aggregates, deduplicates, sorts findings and generates summary.
     """
@@ -121,15 +121,17 @@ async def synthesis_node(state: PRState) -> Dict[str, Any]:
 
             findings_text = json.dumps(all_findings, indent=2, default=str)
 
-            response = await llm.ainvoke([
-                SystemMessage(content=SYNTHESIS_SYSTEM_PROMPT),
-                HumanMessage(
-                    content=f"PR: {state.get('repo', '')} #{state.get('pr_number', '')}\n"
-                    f"Verdict: {verdict}\n\n"
-                    f"Findings ({len(all_findings)} total):\n{findings_text}"
-                ),
-            ])
-            review_summary = response.content
+            response = await llm.ainvoke(
+                [
+                    SystemMessage(content=SYNTHESIS_SYSTEM_PROMPT),
+                    HumanMessage(
+                        content=f"PR: {state.get('repo', '')} #{state.get('pr_number', '')}\n"
+                        f"Verdict: {verdict}\n\n"
+                        f"Findings ({len(all_findings)} total):\n{findings_text}"
+                    ),
+                ]
+            )
+            review_summary = str(response.text)
         except Exception as e:
             log.error("synthesis_summary_error", error=str(e))
             review_summary = _generate_fallback_summary(all_findings, verdict)
@@ -165,9 +167,9 @@ async def synthesis_node(state: PRState) -> Dict[str, Any]:
     }
 
 
-def _generate_fallback_summary(findings: List[Finding], verdict: str) -> str:
+def _generate_fallback_summary(findings: list[Finding], verdict: str) -> str:
     """Generate a simple summary without calling the LLM."""
-    severity_counts = {}
+    severity_counts: dict[str, int] = {}
     for f in findings:
         sev = f.get("severity", "info")
         severity_counts[sev] = severity_counts.get(sev, 0) + 1

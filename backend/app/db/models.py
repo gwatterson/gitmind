@@ -1,7 +1,6 @@
 """SQLite database models and initialization using aiosqlite."""
 
 import aiosqlite
-import os
 
 from app.config import settings
 

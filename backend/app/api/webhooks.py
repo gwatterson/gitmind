@@ -2,8 +2,9 @@
 
 import hashlib
 import hmac
+
 import structlog
-from fastapi import APIRouter, Request, HTTPException, BackgroundTasks
+from fastapi import APIRouter, BackgroundTasks, HTTPException, Request
 
 from app.config import settings
 from app.db import crud
@@ -17,9 +18,7 @@ def verify_signature(payload: bytes, signature: str, secret: str) -> bool:
     """Validate GitHub webhook HMAC-SHA256 signature (timing-safe)."""
     if not signature or not secret:
         return False
-    expected = "sha256=" + hmac.new(
-        secret.encode(), payload, hashlib.sha256
-    ).hexdigest()
+    expected = "sha256=" + hmac.new(secret.encode(), payload, hashlib.sha256).hexdigest()
     return hmac.compare_digest(expected, signature)
 
 
@@ -33,21 +32,30 @@ async def _run_review_from_webhook(review_id: str, payload: dict):
 
         # Fetch PR files via GitHub API
         from app.mcp_server.server import handle_get_pr_diff
+
         diff_result = await handle_get_pr_diff({"repo": repo_name, "pr_number": pr_number})
 
         files = []
         for f in diff_result.get("files", []):
             import os
+
             ext = os.path.splitext(f.get("filename", ""))[1].lower()
-            lang_map = {".py": "python", ".js": "javascript", ".ts": "typescript",
-                        ".jsx": "javascript", ".tsx": "typescript"}
-            files.append({
-                "filename": f["filename"],
-                "language": lang_map.get(ext, "unknown"),
-                "patch": f.get("patch", ""),
-                "additions": f.get("additions", 0),
-                "deletions": f.get("deletions", 0),
-            })
+            lang_map = {
+                ".py": "python",
+                ".js": "javascript",
+                ".ts": "typescript",
+                ".jsx": "javascript",
+                ".tsx": "typescript",
+            }
+            files.append(
+                {
+                    "filename": f["filename"],
+                    "language": lang_map.get(ext, "unknown"),
+                    "patch": f.get("patch", ""),
+                    "additions": f.get("additions", 0),
+                    "deletions": f.get("deletions", 0),
+                }
+            )
 
         pr_metadata = {
             "title": pr.get("title", ""),

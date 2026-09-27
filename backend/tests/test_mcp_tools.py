@@ -1,7 +1,7 @@
-"""Tests for MCP tools — verify output structure and behavior."""
+"""Tests for MCP tools: verify output structure and behavior."""
 
 import pytest
-from unittest.mock import patch, MagicMock
+
 from app.mcp_server.server import (
     handle_calculate_complexity,
     handle_parse_ast,
@@ -12,7 +12,7 @@ from app.mcp_server.server import (
 @pytest.mark.asyncio
 async def test_calculate_complexity_python():
     """Verify complexity calculation for Python code."""
-    code = '''
+    code = """
 def simple_function(x):
     return x + 1
 
@@ -32,7 +32,7 @@ def complex_function(x, y, z):
             if i % 2 == 0:
                 z += i
         return z
-'''
+"""
     result = await handle_calculate_complexity({"code": code, "language": "python"})
 
     assert "cyclomatic_complexity" in result
@@ -91,7 +91,7 @@ async def test_semgrep_scan_graceful_degradation():
 @pytest.mark.asyncio
 async def test_calculate_complexity_javascript():
     """Verify regex-based complexity for JavaScript."""
-    code = '''
+    code = """
 function processData(items) {
     if (items.length === 0) return;
     for (let i = 0; i < items.length; i++) {
@@ -102,7 +102,7 @@ function processData(items) {
         }
     }
 }
-'''
+"""
     result = await handle_calculate_complexity({"code": code, "language": "javascript"})
 
     assert "cyclomatic_complexity" in result
@@ -112,12 +112,12 @@ function processData(items) {
 @pytest.mark.asyncio
 async def test_parse_ast_javascript():
     """Verify regex-based parsing for JavaScript."""
-    code = '''
+    code = """
 import { useState } from 'react';
 class MyComponent {}
 function handleClick() {}
 const processData = () => {};
-'''
+"""
     result = await handle_parse_ast({"code": code, "language": "javascript"})
 
     assert "classes" in result
