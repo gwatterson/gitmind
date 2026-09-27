@@ -1,5 +1,5 @@
 # ============================================================
-# GitMind — Root .gitignore
+# GitMind: root .gitignore
 # ============================================================
 
 # --- Environment & Secrets ---
@@ -19,6 +19,11 @@ build/
 venv/
 .venv/
 .pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+coverage.xml
+htmlcov/
 *.db
 
 # --- Node.js ---
@@ -42,12 +47,10 @@ error.log
 .DS_Store
 Thumbs.db
 
-# --- CI/CD (optional local exclusion) ---
-.github/
-
-# --- Test files with intentional vulnerabilities or performance issues ---
-test/
+# --- Local sample files with intentional vulnerabilities ---
+/samples/vulnerable/
 
 # --- Markdown Files ---
 /TODO.md
 /REQUIREMENTS.md
+/PLAN.md
