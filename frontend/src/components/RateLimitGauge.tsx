@@ -77,7 +77,7 @@ export function RateLimitGauge() {
   return (
     <div className="glass-card p-4">
       <div className="mb-3 flex items-center justify-between">
-        <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-200">
+        <h3 className="text-sm font-semibold tracking-wider text-slate-200 uppercase">
           Rate Limits
         </h3>
         <span className={`badge ${error ? "badge-failed" : "badge-completed"}`}>

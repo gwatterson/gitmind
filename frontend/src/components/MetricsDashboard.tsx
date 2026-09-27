@@ -30,9 +30,9 @@ function StatCard({
   gradient: string;
 }) {
   return (
-    <div className="glass-card animate-fade-in flex items-center gap-3 p-4">
+    <div className="animate-fade-in flex items-center gap-3 glass-card p-4">
       <div
-        className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg text-lg"
+        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-lg"
         style={{ background: gradient }}
       >
         {icon}
@@ -76,7 +76,7 @@ function MiniBar({
               className="h-2 w-2 rounded-full"
               style={{ background: colors[key] || "#64748b" }}
             />
-            <span className="text-[10px] capitalize text-slate-500">
+            <span className="text-[10px] text-slate-500 capitalize">
               {key}: {count}
             </span>
           </div>
@@ -106,7 +106,7 @@ export function MetricsDashboard({ refreshKey = 0 }: { refreshKey?: number }) {
     return (
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         {[0, 1, 2, 3].map((i) => (
-          <div key={i} className="glass-card h-20 animate-pulse p-4" />
+          <div key={i} className="h-20 animate-pulse glass-card p-4" />
         ))}
       </div>
     );
@@ -145,13 +145,13 @@ export function MetricsDashboard({ refreshKey = 0 }: { refreshKey?: number }) {
       {/* Distribution bars */}
       <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
         <div className="glass-card p-4">
-          <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-400">
+          <h4 className="mb-3 text-xs font-semibold tracking-wider text-slate-400 uppercase">
             Findings by Category
           </h4>
           <MiniBar items={stats.findings_by_category || {}} colors={CATEGORY_COLORS} />
         </div>
         <div className="glass-card p-4">
-          <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-400">
+          <h4 className="mb-3 text-xs font-semibold tracking-wider text-slate-400 uppercase">
             Findings by Severity
           </h4>
           <MiniBar items={stats.findings_by_severity || {}} colors={SEVERITY_COLORS} />

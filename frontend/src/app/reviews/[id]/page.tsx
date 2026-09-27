@@ -136,10 +136,10 @@ export default function ReviewDetailPage() {
   if (loading) {
     return (
       <div className="animate-pulse space-y-4">
-        <div className="glass-card h-20" />
+        <div className="h-20 glass-card" />
         <div className="grid grid-cols-2 gap-4">
-          <div className="glass-card h-60" />
-          <div className="glass-card h-60" />
+          <div className="h-60 glass-card" />
+          <div className="h-60 glass-card" />
         </div>
       </div>
     );
@@ -300,16 +300,16 @@ export default function ReviewDetailPage() {
               {filteredFindings.map((finding) => (
                 <div key={finding.id} className="group relative">
                   {editingFindingId === finding.id ? (
-                    <div className="glass-card space-y-3 border border-indigo-500/50 p-4">
+                    <div className="space-y-3 glass-card border border-indigo-500/50 p-4">
                       <div className="text-sm font-semibold text-slate-200">Edit Finding</div>
                       <textarea
-                        className="w-full rounded border border-white/10 bg-slate-900/50 p-2 text-sm text-slate-300 focus:border-indigo-500 focus:outline-none"
+                        className="w-full rounded-sm border border-white/10 bg-slate-900/50 p-2 text-sm text-slate-300 focus:border-indigo-500 focus:outline-hidden"
                         rows={3}
                         value={editForm.message}
                         onChange={(e) => setEditForm({ ...editForm, message: e.target.value })}
                       />
                       <textarea
-                        className="w-full rounded border border-white/10 bg-slate-900/50 p-2 font-mono text-sm text-slate-300 focus:border-indigo-500 focus:outline-none"
+                        className="w-full rounded-sm border border-white/10 bg-slate-900/50 p-2 font-mono text-sm text-slate-300 focus:border-indigo-500 focus:outline-hidden"
                         rows={3}
                         placeholder="Suggestion (optional)"
                         value={editForm.suggestion}
@@ -336,7 +336,7 @@ export default function ReviewDetailPage() {
                       {review.status === "hitl_pending" && finding.id && (
                         <button
                           onClick={() => startEditing(finding)}
-                          className="absolute right-3 top-3 rounded-md border border-white/10 bg-slate-800 px-2.5 py-1 text-xs text-slate-300 opacity-0 shadow-lg transition-opacity hover:bg-slate-700 group-hover:opacity-100"
+                          className="absolute top-3 right-3 rounded-md border border-white/10 bg-slate-800 px-2.5 py-1 text-xs text-slate-300 opacity-0 shadow-lg transition-opacity group-hover:opacity-100 hover:bg-slate-700"
                         >
                           ✏️ Edit
                         </button>
@@ -360,13 +360,13 @@ export default function ReviewDetailPage() {
           {activeTab === "diff" && (
             <div className="space-y-4">
               {review.status === "running" ? (
-                <div className="glass-card animate-pulse p-6 text-center">
+                <div className="animate-pulse glass-card p-6 text-center">
                   <p className="text-sm text-slate-500">
                     Diff viewer will display annotated code once the review completes.
                   </p>
                 </div>
               ) : loadingDiff ? (
-                <div className="glass-card animate-pulse p-6 text-center">
+                <div className="animate-pulse glass-card p-6 text-center">
                   <p className="text-sm text-slate-500">Loading diff data...</p>
                 </div>
               ) : diffFiles && diffFiles.length > 0 ? (
@@ -389,10 +389,10 @@ export default function ReviewDetailPage() {
           {/* Summary */}
           {review.summary && (
             <div className="glass-card p-4">
-              <h3 className="mb-2 text-sm font-semibold uppercase tracking-wider text-slate-200">
+              <h3 className="mb-2 text-sm font-semibold tracking-wider text-slate-200 uppercase">
                 Review Summary
               </h3>
-              <div className="whitespace-pre-wrap text-sm leading-relaxed text-slate-300">
+              <div className="text-sm leading-relaxed whitespace-pre-wrap text-slate-300">
                 {review.summary}
               </div>
             </div>

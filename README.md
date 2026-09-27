@@ -124,7 +124,7 @@ A new commit on the same pull request supersedes the review still in progress, a
 | GitHub | PyGithub, GitHub App or personal access token, HMAC-verified webhooks |
 | Static analysis tools | radon, Python AST, semgrep (optional) via an MCP server |
 | Storage | SQLite (aiosqlite) |
-| Frontend | Next.js 16, React 19, TypeScript, Tailwind CSS |
+| Frontend | Next.js 16, React 19, TypeScript, Tailwind CSS 4 |
 | Tooling | uv, Ruff, mypy, pytest, respx, ESLint, Prettier, pre-commit, GitHub Actions, Dependabot |
 
 ---

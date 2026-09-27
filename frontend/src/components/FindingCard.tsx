@@ -27,11 +27,11 @@ export function FindingCard({
   const catIcon = CATEGORY_ICONS[finding.category] || "📋";
 
   return (
-    <div className="glass-card animate-slide-up p-4 transition-all duration-200">
+    <div className="animate-slide-up glass-card p-4 transition-all duration-200">
       <div className="flex items-start gap-3">
         {/* Severity indicator */}
         <div
-          className="w-1 flex-shrink-0 self-stretch rounded-full"
+          className="w-1 shrink-0 self-stretch rounded-full"
           style={{
             background: `var(--${finding.severity})`,
           }}
@@ -50,7 +50,7 @@ export function FindingCard({
               {catIcon} {finding.category}
             </span>
             {finding.rule_id && (
-              <span className="mono rounded bg-slate-800/50 px-1.5 py-0.5 text-[10px] text-slate-600">
+              <span className="rounded-sm bg-slate-800/50 px-1.5 py-0.5 mono text-[10px] text-slate-600">
                 {finding.rule_id}
               </span>
             )}
@@ -67,7 +67,7 @@ export function FindingCard({
                 d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
               />
             </svg>
-            <span className="mono truncate">{finding.file}</span>
+            <span className="truncate mono">{finding.file}</span>
             {finding.line > 0 && <span className="mono text-slate-600">:L{finding.line}</span>}
           </div>
 
@@ -78,7 +78,7 @@ export function FindingCard({
           {finding.suggestion && (
             <div className="mt-2 rounded-lg border border-indigo-500/10 bg-indigo-500/5 p-3">
               <p className="mb-1 text-xs font-medium text-indigo-400">💡 Suggestion</p>
-              <p className="mono whitespace-pre-wrap text-xs leading-relaxed text-slate-400">
+              <p className="mono text-xs leading-relaxed whitespace-pre-wrap text-slate-400">
                 {finding.suggestion}
               </p>
             </div>
@@ -86,7 +86,7 @@ export function FindingCard({
 
           {/* Edit button for HITL */}
           {onEdit && (
-            <button onClick={() => onEdit(finding)} className="btn-secondary mt-3 text-xs">
+            <button onClick={() => onEdit(finding)} className="mt-3 btn-secondary text-xs">
               ✏️ Edit
             </button>
           )}

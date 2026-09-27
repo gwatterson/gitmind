@@ -83,7 +83,7 @@ export default function DashboardPage() {
         {/* PR List (2/3 width) */}
         <div className="space-y-4 lg:col-span-2">
           <div className="flex items-center justify-between">
-            <h2 className="text-sm font-semibold uppercase tracking-wider text-slate-200">
+            <h2 className="text-sm font-semibold tracking-wider text-slate-200 uppercase">
               Recent Reviews
             </h2>
             <div className="flex gap-2">
@@ -104,7 +104,7 @@ export default function DashboardPage() {
           {loading ? (
             <div className="space-y-2">
               {[0, 1, 2].map((i) => (
-                <div key={i} className="glass-card h-16 animate-pulse p-4" />
+                <div key={i} className="h-16 animate-pulse glass-card p-4" />
               ))}
             </div>
           ) : (
@@ -118,7 +118,7 @@ export default function DashboardPage() {
 
           {/* Manual trigger */}
           <div className="glass-card p-4">
-            <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-slate-200">
+            <h3 className="mb-3 text-sm font-semibold tracking-wider text-slate-200 uppercase">
               Manual Review
             </h3>
             <div className="space-y-2">
@@ -128,7 +128,7 @@ export default function DashboardPage() {
                 aria-label="Repository (owner/repo)"
                 value={triggerRepo}
                 onChange={(e) => setTriggerRepo(e.target.value)}
-                className="mono w-full rounded-lg border border-white/5 bg-slate-800/50 px-3 py-2 text-sm text-slate-200 transition-colors placeholder:text-slate-600 focus:border-indigo-500/50 focus:outline-none"
+                className="w-full rounded-lg border border-white/5 bg-slate-800/50 px-3 py-2 mono text-sm text-slate-200 transition-colors placeholder:text-slate-600 focus:border-indigo-500/50 focus:outline-hidden"
               />
               <input
                 type="number"
@@ -136,12 +136,12 @@ export default function DashboardPage() {
                 aria-label="Pull request number"
                 value={triggerPR}
                 onChange={(e) => setTriggerPR(e.target.value)}
-                className="mono w-full rounded-lg border border-white/5 bg-slate-800/50 px-3 py-2 text-sm text-slate-200 transition-colors placeholder:text-slate-600 focus:border-indigo-500/50 focus:outline-none"
+                className="w-full rounded-lg border border-white/5 bg-slate-800/50 px-3 py-2 mono text-sm text-slate-200 transition-colors placeholder:text-slate-600 focus:border-indigo-500/50 focus:outline-hidden"
               />
               <button
                 onClick={handleTrigger}
                 disabled={!triggerRepo || !triggerPR || trigger.kind === "pending"}
-                className="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-40"
+                className="w-full btn-primary disabled:cursor-not-allowed disabled:opacity-40"
               >
                 {trigger.kind === "pending" ? "Triggering..." : "Trigger Review"}
               </button>

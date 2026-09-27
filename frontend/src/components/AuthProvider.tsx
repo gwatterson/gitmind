@@ -82,7 +82,7 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
   }, [signedInOnLoginPage, router]);
 
   if (state.status === "loading" || signedInOnLoginPage) {
-    return <div className="glass-card h-40 animate-pulse" />;
+    return <div className="h-40 animate-pulse glass-card" />;
   }
   if (state.status === "signed-out") {
     return <LoginScreen backendDown={state.backendDown} onRetry={reload} />;

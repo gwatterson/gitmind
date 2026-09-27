@@ -52,7 +52,7 @@ export function PRList({ reviews }: { reviews: Review[] }) {
         return (
           <Link key={review.id} href={`/reviews/${review.id}`} className="block">
             <div
-              className="glass-card animate-slide-up cursor-pointer p-4 transition-all duration-200"
+              className="animate-slide-up cursor-pointer glass-card p-4 transition-all duration-200"
               style={{ animationDelay: `${i * 50}ms` }}
             >
               <div className="flex items-start justify-between gap-4">
@@ -74,7 +74,7 @@ export function PRList({ reviews }: { reviews: Review[] }) {
                   </div>
                 </div>
                 <svg
-                  className="mt-1 h-4 w-4 flex-shrink-0 text-slate-600"
+                  className="mt-1 h-4 w-4 shrink-0 text-slate-600"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"

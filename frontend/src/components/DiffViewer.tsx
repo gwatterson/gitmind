@@ -85,7 +85,7 @@ export function DiffViewer({
   }
 
   return (
-    <div className="glass-card overflow-hidden">
+    <div className="overflow-hidden glass-card">
       {/* File header */}
       <div className="flex items-center gap-2 border-b border-white/5 px-4 py-2.5">
         <svg
@@ -101,23 +101,23 @@ export function DiffViewer({
             d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
           />
         </svg>
-        <span className="mono truncate text-sm text-slate-300">{filename}</span>
+        <span className="truncate mono text-sm text-slate-300">{filename}</span>
         {findings.length > 0 && (
-          <span className="badge badge-high ml-auto">
+          <span className="ml-auto badge badge-high">
             {findings.length} finding{findings.length !== 1 ? "s" : ""}
           </span>
         )}
       </div>
 
       {/* Diff lines */}
-      <div className="mono overflow-x-auto text-[13px] leading-5">
+      <div className="overflow-x-auto mono text-[13px] leading-5">
         {lines.map((line, idx) => (
           <div key={idx}>
-            <div className={`flex hover:bg-white/[0.02] ${LINE_COLORS[line.type]}`}>
-              <span className="w-12 flex-shrink-0 select-none border-r border-white/5 px-2 text-right text-slate-700">
+            <div className={`flex hover:bg-white/2 ${LINE_COLORS[line.type]}`}>
+              <span className="w-12 shrink-0 border-r border-white/5 px-2 text-right text-slate-700 select-none">
                 {line.lineNum || ""}
               </span>
-              <span className="w-5 flex-shrink-0 select-none text-center text-slate-600">
+              <span className="w-5 shrink-0 text-center text-slate-600 select-none">
                 {line.type === "add"
                   ? "+"
                   : line.type === "del"
@@ -126,10 +126,10 @@ export function DiffViewer({
                       ? "@@"
                       : ""}
               </span>
-              <span className="flex-1 overflow-hidden whitespace-pre px-2">{line.content}</span>
+              <span className="flex-1 overflow-hidden px-2 whitespace-pre">{line.content}</span>
               {/* Finding indicator dot */}
               {line.lineNum && findingsByLine.has(line.lineNum) && (
-                <span className="flex flex-shrink-0 items-center gap-1 px-2">
+                <span className="flex shrink-0 items-center gap-1 px-2">
                   {findingsByLine.get(line.lineNum)!.map((f, fi) => (
                     <span
                       key={fi}
@@ -157,7 +157,7 @@ export function DiffViewer({
                     <span className="font-medium text-amber-300/80">{f.agent}:</span>{" "}
                     <span className="text-slate-400">{f.message}</span>
                     {f.suggestion && (
-                      <p className="ml-3.5 mt-0.5 text-slate-600">💡 {f.suggestion}</p>
+                      <p className="mt-0.5 ml-3.5 text-slate-600">💡 {f.suggestion}</p>
                     )}
                   </div>
                 </div>
