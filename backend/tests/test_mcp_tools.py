@@ -124,3 +124,39 @@ const processData = () => {};
     assert "functions" in result
     assert "imports" in result
     assert len(result["classes"]) >= 1
+
+
+async def test_complexity_rank_is_the_radon_grade():
+    """rank is the A-F complexity grade, not the block type letter."""
+    code = "def f(x):\n    return x\n"
+    result = await handle_calculate_complexity({"code": code, "language": "python"})
+    assert result["functions"][0]["rank"] == "A"
+
+
+async def test_mcp_server_registers_all_tools_with_schemas():
+    from app.mcp_server.server import server
+
+    tools = {tool.name: tool for tool in await server.list_tools()}
+
+    assert set(tools) == {
+        "get_pr_diff",
+        "list_pr_files",
+        "post_review_comment",
+        "post_review_summary",
+        "get_pr_metadata",
+        "semgrep_scan",
+        "calculate_complexity",
+        "parse_ast",
+    }
+    schema = tools["post_review_summary"].input_schema
+    assert set(schema["required"]) == {"repo", "pr_number", "body"}
+    assert schema["properties"]["event"]["enum"] == ["COMMENT", "APPROVE", "REQUEST_CHANGES"]
+
+
+async def test_mcp_tool_call_returns_structured_content():
+    from app.mcp_server.server import server
+
+    result = await server.call_tool("parse_ast", {"code": "class A:\n    pass\n"})
+
+    assert not result.is_error
+    assert result.structured_content["classes"][0]["name"] == "A"

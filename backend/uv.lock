@@ -714,7 +714,7 @@ requires-dist = [
     { name = "langchain-core", specifier = ">=1.0,<2" },
     { name = "langchain-google-genai", specifier = ">=4.0,<5" },
     { name = "langgraph", specifier = ">=1.0,<2" },
-    { name = "mcp", specifier = ">=1.20,<3" },
+    { name = "mcp", specifier = ">=2.2,<3" },
     { name = "pydantic", specifier = ">=2.7,<3" },
     { name = "pydantic-settings", specifier = ">=2.4,<3" },
     { name = "pygithub", specifier = ">=2.4,<3" },
