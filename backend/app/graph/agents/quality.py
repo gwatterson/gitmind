@@ -11,8 +11,8 @@ from pydantic import BaseModel, Field
 
 from app.config import settings
 from app.db import crud
-from app.graph.state import Finding, PRState
-from app.rate_limiter import rate_limiter
+from app.graph.state import AgentError, Finding, PRState
+from app.rate_limiter import DailyQuotaExhaustedError, rate_limiter
 
 log = structlog.get_logger()
 
@@ -152,11 +152,17 @@ async def quality_agent_node(state: PRState) -> dict[str, Any]:
 
         return {"quality_findings": findings}
 
+    except DailyQuotaExhaustedError:
+        # Not an agent failure: the whole review must stop and be retried later
+        raise
     except Exception as e:
         log.error("quality_agent_error", review_id=review_id, error=str(e))
         await crud.create_event(
             review_id=review_id,
             event_type="quality_error",
-            message=f"Quality agent error: {e!s}",
+            message=f"Quality agent failed ({type(e).__name__}).",
         )
-        return {"quality_findings": [], "error": str(e)}
+        return {
+            "quality_findings": [],
+            "errors": [AgentError(agent="quality", message=f"{type(e).__name__}: {e!s}"[:500])],
+        }

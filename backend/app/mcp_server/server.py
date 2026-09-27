@@ -14,51 +14,10 @@ from mcp.server import Server
 from mcp.server.stdio import stdio_server
 from mcp.types import TextContent, Tool
 
+from app.github.client import get_github_client
+
 # Initialize MCP server
 server = Server("gitmind-mcp")
-
-
-def _get_github_client():
-    """Get authenticated GitHub client."""
-    import logging
-
-    from github import Github, GithubIntegration
-
-    from app.config import settings
-
-    log = logging.getLogger(__name__)
-    app_id = settings.GITHUB_APP_ID
-    private_key_path = settings.GITHUB_PRIVATE_KEY_PATH
-
-    log.info(f"CLIENT_INIT app_id={app_id!r} priv_key={private_key_path!r}")
-
-    if not app_id or not private_key_path:
-        # Fallback to token-based auth for development
-        token = settings.GITHUB_TOKEN
-        log.info(f"CLIENT_INIT using token fallback, token len: {len(token)}")
-        if token:
-            log.info("CLIENT_INIT returning Github(token)")
-            return Github(token)
-        log.info("CLIENT_INIT token was empty, returning None")
-        return None
-
-    try:
-        with open(private_key_path) as f:
-            private_key = f.read()
-        integration = GithubIntegration(int(app_id), private_key)
-        # For simplicity, get the first installation
-        installations = integration.get_installations()
-        if installations:
-            install_id = installations[0].id
-            access_token = integration.get_access_token(install_id).token
-            log.info("CLIENT_INIT returning Github App")
-            return Github(access_token)
-    except Exception as e:
-        log.info(f"CLIENT_INIT exception in GithubIntegration: {e}")
-        pass
-
-    log.info("CLIENT_INIT returning None at end")
-    return None
 
 
 # ──────────────────────────────────────────────
@@ -208,7 +167,7 @@ async def call_tool(name: str, arguments: dict) -> list[TextContent]:
 
 async def handle_get_pr_diff(args: dict) -> dict:
     """Fetch PR diff with per-file metadata."""
-    gh = _get_github_client()
+    gh = get_github_client()
     if not gh:
         return {"error": "GitHub client not configured"}
 
@@ -232,7 +191,7 @@ async def handle_get_pr_diff(args: dict) -> dict:
 
 async def handle_list_pr_files(args: dict) -> dict:
     """List modified files with metadata."""
-    gh = _get_github_client()
+    gh = get_github_client()
     if not gh:
         return {"error": "GitHub client not configured"}
 
@@ -267,7 +226,7 @@ async def handle_list_pr_files(args: dict) -> dict:
 
 async def handle_post_review_comment(args: dict) -> dict:
     """Post an inline comment on a specific line."""
-    gh = _get_github_client()
+    gh = get_github_client()
     if not gh:
         return {"error": "GitHub client not configured"}
 
@@ -287,7 +246,7 @@ async def handle_post_review_comment(args: dict) -> dict:
 
 async def handle_post_review_summary(args: dict) -> dict:
     """Post overall review with verdict."""
-    gh = _get_github_client()
+    gh = get_github_client()
     if not gh:
         return {"error": "GitHub client not configured"}
 
@@ -304,7 +263,7 @@ async def handle_post_review_summary(args: dict) -> dict:
 
 async def handle_get_pr_metadata(args: dict) -> dict:
     """Fetch PR metadata."""
-    gh = _get_github_client()
+    gh = get_github_client()
     if not gh:
         return {"error": "GitHub client not configured"}
 
@@ -452,7 +411,7 @@ async def handle_parse_ast(args: dict) -> dict:
             classes = []
             functions = []
             imports = []
-            issues = []
+            issues: list[dict] = []
 
             for node in ast.walk(tree):
                 if isinstance(node, ast.ClassDef):

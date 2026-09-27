@@ -16,6 +16,8 @@ from app.rate_limiter import rate_limiter
 
 log = structlog.get_logger()
 
+REVIEW_AGENTS = ("security", "quality", "performance")
+
 SEVERITY_ORDER = {"critical": 0, "high": 1, "medium": 2, "low": 3, "info": 4}
 
 SYNTHESIS_SYSTEM_PROMPT = """You are a senior engineering lead summarizing a code review.
@@ -78,6 +80,21 @@ async def synthesis_node(state: PRState) -> dict[str, Any]:
         message="Aggregating findings from all agents...",
     )
 
+    # Agents that were given files but failed: their silence is not a clean result
+    failed_agents = sorted(
+        {error["agent"] for error in state.get("errors", []) if error["agent"] in REVIEW_AGENTS}
+    )
+    agents_that_ran = {agent for agent in REVIEW_AGENTS if state.get(f"{agent}_files")}
+
+    if agents_that_ran and agents_that_ran.issubset(failed_agents):
+        message = "All review agents failed: " + ", ".join(failed_agents) + "."
+        log.error("synthesis_all_agents_failed", review_id=review_id, agents=failed_agents)
+        await crud.update_review(
+            review_id, status="failed", error=message, completed_at=crud.utc_now()
+        )
+        await crud.create_event(review_id=review_id, event_type="synthesis_failed", message=message)
+        return {"all_findings": [], "review_summary": "", "verdict": "", "status": "failed"}
+
     # Collect findings from all agents
     security_findings = state.get("security_findings", [])
     quality_findings = state.get("quality_findings", [])
@@ -89,8 +106,10 @@ async def synthesis_node(state: PRState) -> dict[str, Any]:
     all_findings = deduplicate_findings(all_findings)
     all_findings = sort_findings(all_findings)
 
-    # Determine verdict
+    # Determine verdict. A partial review can never approve the PR.
     verdict = determine_verdict(all_findings)
+    if failed_agents and verdict == "approve":
+        verdict = "comment"
 
     # Store findings in DB
     if all_findings:
@@ -103,6 +122,7 @@ async def synthesis_node(state: PRState) -> dict[str, Any]:
         security=len(security_findings),
         quality=len(quality_findings),
         performance=len(performance_findings),
+        failed_agents=failed_agents,
         verdict=verdict,
     )
 
@@ -133,18 +153,30 @@ async def synthesis_node(state: PRState) -> dict[str, Any]:
             )
             review_summary = str(response.text)
         except Exception as e:
+            # Quota exhaustion included: the findings are already stored, so the
+            # review completes with a deterministic summary instead of failing.
             log.error("synthesis_summary_error", error=str(e))
             review_summary = _generate_fallback_summary(all_findings, verdict)
+    elif failed_agents:
+        review_summary = "No issues were found by the agents that completed."
     else:
-        review_summary = "✅ **No issues found.** This PR looks clean. Approved!"
+        review_summary = "No issues found. This PR looks clean."
 
-    # Update review in DB
+    if failed_agents:
+        review_summary += (
+            "\n\nNote: this review is incomplete because the following agents failed: "
+            + ", ".join(failed_agents)
+            + "."
+        )
+
+    status = "hitl_pending" if settings.HITL_ENABLED else "completed"
     await crud.update_review(
         review_id,
-        status="hitl_pending" if settings.HITL_ENABLED else "completed",
+        status=status,
         verdict=verdict,
         summary=review_summary,
-        completed_at=None if settings.HITL_ENABLED else "datetime('now')",
+        error=("Agents failed: " + ", ".join(failed_agents)) if failed_agents else None,
+        completed_at=None if settings.HITL_ENABLED else crud.utc_now(),
     )
 
     await crud.create_event(
@@ -154,6 +186,7 @@ async def synthesis_node(state: PRState) -> dict[str, Any]:
         data={
             "verdict": verdict,
             "total_findings": len(all_findings),
+            "failed_agents": failed_agents,
             "summary": review_summary,
             "summary_preview": review_summary[:200],
         },
@@ -163,7 +196,7 @@ async def synthesis_node(state: PRState) -> dict[str, Any]:
         "all_findings": all_findings,
         "review_summary": review_summary,
         "verdict": verdict,
-        "status": "hitl_pending" if settings.HITL_ENABLED else "completed",
+        "status": status,
     }
 
 
