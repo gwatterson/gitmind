@@ -1,15 +1,16 @@
-"""FastAPI application entrypoint — CORS, routers, startup/shutdown events."""
+"""FastAPI application entrypoint: CORS, routers, startup/shutdown events."""
+
+from contextlib import asynccontextmanager
 
 import structlog
-from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.config import settings
-from app.db.models import init_db
-from app.api.webhooks import router as webhooks_router
 from app.api.reviews import router as reviews_router
 from app.api.stream import router as stream_router
+from app.api.webhooks import router as webhooks_router
+from app.config import settings
+from app.db.models import init_db
 
 # Configure structured logging
 structlog.configure(
@@ -35,7 +36,7 @@ log = structlog.get_logger()
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Application lifespan — init DB on startup."""
+    """Application lifespan: init DB on startup."""
     log.info("app_starting", model=settings.GEMINI_MODEL)
     await init_db()
     log.info("database_initialized")
@@ -44,7 +45,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="GitMind — Autonomous Code Review Agent",
+    title="GitMind: Autonomous Code Review Agent",
     description="AI agent that analyzes GitHub Pull Requests for security, quality, and performance issues.",
     version="1.0.0",
     lifespan=lifespan,
@@ -67,7 +68,7 @@ app.include_router(stream_router)
 
 @app.get("/")
 async def root():
-    """Root endpoint — basic info."""
+    """Root endpoint: basic info."""
     return {
         "name": "GitMind",
         "description": "Autonomous Code Review Agent",

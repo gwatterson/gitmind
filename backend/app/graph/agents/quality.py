@@ -1,33 +1,41 @@
 """
-Quality Agent — analyzes code quality: complexity, naming, structure, maintainability.
+Quality Agent: analyzes code quality: complexity, naming, structure, maintainability.
 """
 
-import json
+from typing import Any
+
 import structlog
-from typing import Dict, List, Any
+from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_google_genai import ChatGoogleGenerativeAI
 from pydantic import BaseModel, Field
 
-from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_core.messages import SystemMessage, HumanMessage
-
 from app.config import settings
-from app.rate_limiter import rate_limiter
-from app.graph.state import PRState, Finding
 from app.db import crud
+from app.graph.state import Finding, PRState
+from app.rate_limiter import rate_limiter
 
 log = structlog.get_logger()
+
 
 class FindingModel(BaseModel):
     file: str = Field(description="the filename")
     line: int = Field(default=0, description="the approximate line number in the patch")
     severity: str = Field(description='"critical", "high", "medium", "low", or "info"')
     category: str = Field(description='always "quality"')
-    rule_id: str = Field(description='a short identifier (e.g., "high-complexity", "missing-error-handling", "naming-convention")')
-    message: str = Field(description='clear description of the issue')
-    suggestion: str = Field(default="", description='how to improve with a code example if possible')
+    rule_id: str = Field(
+        description='a short identifier (e.g., "high-complexity", "missing-error-handling", "naming-convention")'
+    )
+    message: str = Field(description="clear description of the issue")
+    suggestion: str = Field(
+        default="", description="how to improve with a code example if possible"
+    )
+
 
 class QualityReview(BaseModel):
-    findings: List[FindingModel] = Field(default_factory=list, description="List of quality findings")
+    findings: list[FindingModel] = Field(
+        default_factory=list, description="List of quality findings"
+    )
+
 
 QUALITY_SYSTEM_PROMPT = """You are a senior software engineer specializing in code quality review.
 Your task is to analyze code patches from a Pull Request and identify quality issues.
@@ -61,7 +69,7 @@ CRITICAL: Do not ignore files in test directories or with "test" in the name. Tr
 """
 
 
-async def quality_agent_node(state: PRState) -> Dict[str, Any]:
+async def quality_agent_node(state: PRState) -> dict[str, Any]:
     """Quality agent: analyzes assigned files for code quality issues."""
     review_id = state.get("review_id", "")
     quality_files = state.get("quality_files", [])
@@ -108,24 +116,30 @@ async def quality_agent_node(state: PRState) -> Dict[str, Any]:
 
         structured_llm = llm.with_structured_output(QualityReview)
 
-        response = await structured_llm.ainvoke([
-            SystemMessage(content=QUALITY_SYSTEM_PROMPT),
-            HumanMessage(content=f"Analyze these code patches for quality issues:\n\n{patches_text}"),
-        ])
+        response = await structured_llm.ainvoke(
+            [
+                SystemMessage(content=QUALITY_SYSTEM_PROMPT),
+                HumanMessage(
+                    content=f"Analyze these code patches for quality issues:\n\n{patches_text}"
+                ),
+            ]
+        )
 
         findings = []
-        if response and response.findings:
-            for f in response.findings:
-                findings.append(Finding(
-                    file=f.file,
-                    line=f.line,
-                    severity=f.severity,
-                    category="quality",
-                    rule_id=f.rule_id,
-                    message=f.message,
-                    suggestion=f.suggestion,
-                    agent="quality",
-                ))
+        if isinstance(response, QualityReview):
+            for item in response.findings:
+                findings.append(
+                    Finding(
+                        file=item.file,
+                        line=item.line,
+                        severity=item.severity,
+                        category="quality",
+                        rule_id=item.rule_id,
+                        message=item.message,
+                        suggestion=item.suggestion,
+                        agent="quality",
+                    )
+                )
 
         log.info("quality_agent_done", review_id=review_id, findings_count=len(findings))
 
@@ -143,6 +157,6 @@ async def quality_agent_node(state: PRState) -> Dict[str, Any]:
         await crud.create_event(
             review_id=review_id,
             event_type="quality_error",
-            message=f"Quality agent error: {str(e)}",
+            message=f"Quality agent error: {e!s}",
         )
         return {"quality_findings": [], "error": str(e)}

@@ -1,21 +1,21 @@
 """
-Security Agent — analyzes files for security vulnerabilities using LLM + semgrep patterns.
+Security Agent: analyzes files for security vulnerabilities using LLM + semgrep patterns.
 """
 
-import json
+from typing import Any
+
 import structlog
-from typing import Dict, List, Any
+from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_google_genai import ChatGoogleGenerativeAI
 from pydantic import BaseModel, Field
 
-from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_core.messages import SystemMessage, HumanMessage
-
 from app.config import settings
-from app.rate_limiter import rate_limiter
-from app.graph.state import PRState, Finding
 from app.db import crud
+from app.graph.state import Finding, PRState
+from app.rate_limiter import rate_limiter
 
 log = structlog.get_logger()
+
 
 class FindingModel(BaseModel):
     file: str = Field(description="the filename")
@@ -23,11 +23,15 @@ class FindingModel(BaseModel):
     severity: str = Field(description='"critical", "high", "medium", "low", or "info"')
     category: str = Field(description='always "security"')
     rule_id: str = Field(description='a short identifier (e.g., "sql-injection", "xss")')
-    message: str = Field(description='clear description of the vulnerability')
-    suggestion: str = Field(default="", description='how to fix it with a code example if possible')
+    message: str = Field(description="clear description of the vulnerability")
+    suggestion: str = Field(default="", description="how to fix it with a code example if possible")
+
 
 class SecurityReview(BaseModel):
-    findings: List[FindingModel] = Field(default_factory=list, description="List of security findings")
+    findings: list[FindingModel] = Field(
+        default_factory=list, description="List of security findings"
+    )
+
 
 SECURITY_SYSTEM_PROMPT = """You are an application security expert specializing in code review.
 You follow the OWASP Top 10 guidelines. Your task is to analyze code patches from a Pull Request
@@ -63,7 +67,7 @@ CRITICAL: Do not ignore files in test directories or with "test" in the name. Tr
 """
 
 
-async def security_agent_node(state: PRState) -> Dict[str, Any]:
+async def security_agent_node(state: PRState) -> dict[str, Any]:
     """Security agent: analyzes assigned files for security vulnerabilities."""
     review_id = state.get("review_id", "")
     security_files = state.get("security_files", [])
@@ -110,24 +114,30 @@ async def security_agent_node(state: PRState) -> Dict[str, Any]:
 
         structured_llm = llm.with_structured_output(SecurityReview)
 
-        response = await structured_llm.ainvoke([
-            SystemMessage(content=SECURITY_SYSTEM_PROMPT),
-            HumanMessage(content=f"Analyze these code patches for security vulnerabilities:\n\n{patches_text}"),
-        ])
+        response = await structured_llm.ainvoke(
+            [
+                SystemMessage(content=SECURITY_SYSTEM_PROMPT),
+                HumanMessage(
+                    content=f"Analyze these code patches for security vulnerabilities:\n\n{patches_text}"
+                ),
+            ]
+        )
 
         findings = []
-        if response and response.findings:
-            for f in response.findings:
-                findings.append(Finding(
-                    file=f.file,
-                    line=f.line,
-                    severity=f.severity,
-                    category="security",
-                    rule_id=f.rule_id,
-                    message=f.message,
-                    suggestion=f.suggestion,
-                    agent="security",
-                ))
+        if isinstance(response, SecurityReview):
+            for item in response.findings:
+                findings.append(
+                    Finding(
+                        file=item.file,
+                        line=item.line,
+                        severity=item.severity,
+                        category="security",
+                        rule_id=item.rule_id,
+                        message=item.message,
+                        suggestion=item.suggestion,
+                        agent="security",
+                    )
+                )
 
         log.info("security_agent_done", review_id=review_id, findings_count=len(findings))
 
@@ -145,6 +155,6 @@ async def security_agent_node(state: PRState) -> Dict[str, Any]:
         await crud.create_event(
             review_id=review_id,
             event_type="security_error",
-            message=f"Security agent error: {str(e)}",
+            message=f"Security agent error: {e!s}",
         )
         return {"security_findings": [], "error": str(e)}

@@ -2,6 +2,7 @@
 
 import asyncio
 import json
+
 import structlog
 from fastapi import APIRouter
 from fastapi.responses import StreamingResponse
@@ -18,6 +19,7 @@ async def stream_review(review_id: str):
     Server-Sent Events stream of the review reasoning trace.
     The frontend connects to this endpoint and receives events in real-time.
     """
+
     async def event_generator():
         last_event_id = 0
         max_idle = 300  # 5 minutes timeout

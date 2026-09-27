@@ -16,8 +16,7 @@ export default function DashboardPage() {
 
   const fetchReviews = async () => {
     try {
-      const apiUrl =
-        process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
       const res = await fetch(`${apiUrl}/api/reviews?limit=20`);
       if (res.ok) {
         const data = await res.json();
@@ -40,8 +39,7 @@ export default function DashboardPage() {
     if (!triggerRepo || !triggerPR) return;
     setTriggerStatus("triggering...");
     try {
-      const apiUrl =
-        process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
       const res = await fetch(`${apiUrl}/api/reviews/trigger`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -63,7 +61,8 @@ export default function DashboardPage() {
   };
 
   const handleClearArchive = async () => {
-    if (!window.confirm("Are you sure you want to delete all reviews? This cannot be undone.")) return;
+    if (!window.confirm("Are you sure you want to delete all reviews? This cannot be undone."))
+      return;
     try {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
       const res = await fetch(`${apiUrl}/api/reviews`, { method: "DELETE" });
@@ -73,18 +72,18 @@ export default function DashboardPage() {
       } else {
         alert("Failed to clear archive");
       }
-    } catch (e) {
+    } catch {
       alert("Error clearing archive");
     }
   };
 
   return (
-    <div className="space-y-6 animate-fade-in">
+    <div className="animate-fade-in space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold text-slate-100 mb-1">Dashboard</h1>
+        <h1 className="mb-1 text-2xl font-bold text-slate-100">Dashboard</h1>
         <p className="text-sm text-slate-500">
-          Autonomous code review agent — real-time PR analysis
+          Autonomous code review agent for real-time PR analysis
         </p>
       </div>
 
@@ -92,24 +91,21 @@ export default function DashboardPage() {
       <MetricsDashboard refreshKey={statsVersion} />
 
       {/* Main grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         {/* PR List (2/3 width) */}
-        <div className="lg:col-span-2 space-y-4">
+        <div className="space-y-4 lg:col-span-2">
           <div className="flex items-center justify-between">
-            <h2 className="text-sm font-semibold text-slate-200 uppercase tracking-wider">
+            <h2 className="text-sm font-semibold uppercase tracking-wider text-slate-200">
               Recent Reviews
             </h2>
             <div className="flex gap-2">
               <button
                 onClick={handleClearArchive}
-                className="btn-secondary text-xs border-red-500/30 text-red-400 hover:bg-red-500/10 hover:border-red-500/50"
+                className="btn-secondary border-red-500/30 text-xs text-red-400 hover:border-red-500/50 hover:bg-red-500/10"
               >
                 🗑️ Clear Archive
               </button>
-              <button
-                onClick={fetchReviews}
-                className="btn-secondary text-xs"
-              >
+              <button onClick={fetchReviews} className="btn-secondary text-xs">
                 ↻ Refresh
               </button>
             </div>
@@ -118,7 +114,7 @@ export default function DashboardPage() {
           {loading ? (
             <div className="space-y-2">
               {[0, 1, 2].map((i) => (
-                <div key={i} className="glass-card p-4 animate-pulse h-16" />
+                <div key={i} className="glass-card h-16 animate-pulse p-4" />
               ))}
             </div>
           ) : (
@@ -132,7 +128,7 @@ export default function DashboardPage() {
 
           {/* Manual trigger */}
           <div className="glass-card p-4">
-            <h3 className="text-sm font-semibold text-slate-200 uppercase tracking-wider mb-3">
+            <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-slate-200">
               Manual Review
             </h3>
             <div className="space-y-2">
@@ -141,24 +137,26 @@ export default function DashboardPage() {
                 placeholder="owner/repo"
                 value={triggerRepo}
                 onChange={(e) => setTriggerRepo(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-slate-800/50 border border-white/5 text-sm text-slate-200 placeholder:text-slate-600 focus:outline-none focus:border-indigo-500/50 transition-colors mono"
+                className="mono w-full rounded-lg border border-white/5 bg-slate-800/50 px-3 py-2 text-sm text-slate-200 transition-colors placeholder:text-slate-600 focus:border-indigo-500/50 focus:outline-none"
               />
               <input
                 type="number"
                 placeholder="PR number"
                 value={triggerPR}
                 onChange={(e) => setTriggerPR(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-slate-800/50 border border-white/5 text-sm text-slate-200 placeholder:text-slate-600 focus:outline-none focus:border-indigo-500/50 transition-colors mono"
+                className="mono w-full rounded-lg border border-white/5 bg-slate-800/50 px-3 py-2 text-sm text-slate-200 transition-colors placeholder:text-slate-600 focus:border-indigo-500/50 focus:outline-none"
               />
               <button
                 onClick={handleTrigger}
                 disabled={!triggerRepo || !triggerPR || triggerStatus === "triggering..."}
-                className="btn-primary w-full disabled:opacity-40 disabled:cursor-not-allowed"
+                className="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-40"
               >
                 🚀 {triggerStatus === "triggering..." ? "Triggering..." : "Trigger Review"}
               </button>
               {triggerStatus && triggerStatus !== "triggering..." && (
-                <div className={`p-3 rounded-md border text-sm flex items-start gap-2 ${triggerStatus.startsWith("❌") ? "bg-red-500/10 border-red-500/20 text-red-400" : "bg-emerald-500/10 border-emerald-500/20 text-emerald-400"}`}>
+                <div
+                  className={`flex items-start gap-2 rounded-md border p-3 text-sm ${triggerStatus.startsWith("❌") ? "border-red-500/20 bg-red-500/10 text-red-400" : "border-emerald-500/20 bg-emerald-500/10 text-emerald-400"}`}
+                >
                   <p>{triggerStatus}</p>
                 </div>
               )}
