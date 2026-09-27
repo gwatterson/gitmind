@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import Link from "next/link";
+import { useParams, useRouter } from "next/navigation";
 import { ReviewStream } from "@/components/ReviewStream";
 import { FindingCard } from "@/components/FindingCard";
 import { DiffViewer } from "@/components/DiffViewer";
@@ -31,6 +32,7 @@ const CATEGORY_ICONS: Record<string, string> = {
 export default function ReviewDetailPage() {
   const params = useParams();
   const reviewId = params.id as string;
+  const router = useRouter();
 
   const [review, setReview] = useState<Review | null>(null);
   const [findings, setFindings] = useState<Finding[]>([]);
@@ -106,7 +108,7 @@ export default function ReviewDetailPage() {
     setActionStatus("rejecting...");
     try {
       await deleteReview(reviewId);
-      window.location.href = "/";
+      router.push("/");
     } catch (error) {
       setActionStatus(`❌ ${errorMessage(error)}`);
     }
@@ -172,12 +174,12 @@ export default function ReviewDetailPage() {
     <div className="animate-fade-in space-y-6">
       {/* Back + Header */}
       <div>
-        <a
+        <Link
           href="/"
           className="mb-2 inline-block text-xs text-slate-500 transition-colors hover:text-slate-300"
         >
           ← Back to Dashboard
-        </a>
+        </Link>
         <div className="flex items-start justify-between gap-4">
           <div>
             <h1 className="mb-1 text-xl font-bold text-slate-100">

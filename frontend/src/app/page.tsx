@@ -23,16 +23,17 @@ export default function DashboardPage() {
   const [trigger, setTrigger] = useState<TriggerState>({ kind: "idle" });
   const [statsVersion, setStatsVersion] = useState(0);
 
-  const fetchReviews = useCallback(async () => {
-    try {
-      const data = await getReviews({ limit: 20 });
-      setReviews(data.reviews || []);
-    } catch {
-      // Unauthorized or backend unreachable: handled by the AuthGate
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+  // State is only updated in promise callbacks, never synchronously inside the effect
+  const fetchReviews = useCallback(
+    () =>
+      getReviews({ limit: 20 })
+        .then((data) => setReviews(data.reviews || []))
+        .catch(() => {
+          // Unauthorized or backend unreachable: handled by the AuthGate
+        })
+        .finally(() => setLoading(false)),
+    [],
+  );
 
   useEffect(() => {
     fetchReviews();

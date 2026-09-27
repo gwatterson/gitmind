@@ -35,14 +35,15 @@ export function useAuth(): AuthContextValue {
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [state, setState] = useState<AuthState>({ status: "loading" });
 
-  const reload = useCallback(async () => {
-    try {
-      const me = await getMe();
-      setState({ status: "signed-in", user: me.user, authDisabled: me.auth_disabled });
-    } catch (error) {
-      setState({ status: "signed-out", backendDown: !(error instanceof ApiError) });
-    }
-  }, []);
+  // State is only updated in promise callbacks, never synchronously inside the effect
+  const reload = useCallback(
+    () =>
+      getMe().then(
+        (me) => setState({ status: "signed-in", user: me.user, authDisabled: me.auth_disabled }),
+        (error) => setState({ status: "signed-out", backendDown: !(error instanceof ApiError) }),
+      ),
+    [],
+  );
 
   useEffect(() => {
     reload();
