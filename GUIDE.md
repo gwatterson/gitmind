@@ -35,7 +35,7 @@ Before starting, ensure you have installed:
    - **Name**: `GitMind-YourName` (must be unique)
    - **Homepage URL**: `http://localhost:3000`
    - **Webhook URL**: `http://localhost:8000/webhook/github` (update with ngrok URL later)
-   - **Webhook Secret**: Generate a random string (e.g., use `python -c "import secrets; print(secrets.token_hex(32))"`)
+   - **Webhook Secret**: Generate a random string (e.g., use `python -c "import secrets; print(secrets.token_hex(32))"`) and put the same value in `GITHUB_WEBHOOK_SECRET` in `backend/.env`. It is mandatory: deliveries without a valid signature are always rejected.
    - **Permissions**:
      - Repository: **Pull Requests** → Read & Write
      - Repository: **Contents** → Read
@@ -59,7 +59,41 @@ If you don't want to create a full GitHub App:
 4. Add `GITHUB_TOKEN=ghp_your_token_here` to your `backend/.env` file
 5. The app will use this token as a fallback when GitHub App credentials are not configured
 
-### 2.4 LangSmith (optional, for tracing)
+### 2.4 GitHub OAuth App (required for dashboard sign-in)
+
+The dashboard and the API are protected: users sign in with GitHub and only the
+accounts or organizations you allow can access them.
+
+1. Go to [GitHub Developer Settings → OAuth Apps](https://github.com/settings/developers) and click **"New OAuth App"**
+2. Fill in:
+   - **Homepage URL**: `http://localhost:3000`
+   - **Authorization callback URL**: `http://localhost:8000/auth/callback`
+3. Click **"Register application"**, then **"Generate a new client secret"**
+4. Set in `backend/.env`:
+   ```
+   GITHUB_OAUTH_CLIENT_ID=your_client_id
+   GITHUB_OAUTH_CLIENT_SECRET=your_client_secret
+   AUTH_ALLOWED_USERS=your-github-login
+   AUTH_ADMIN_USERS=your-github-login
+   SESSION_SECRET=<python -c "import secrets; print(secrets.token_urlsafe(48))">
+   ```
+
+For quick local experiments you can skip this step with `AUTH_DISABLED=true`: every
+request is then treated as an administrator, and the dashboard shows an
+"Auth disabled" badge. The backend refuses this setting when `ENVIRONMENT=production`.
+
+**API keys** for scripts and CI can be created by an administrator:
+
+```bash
+curl -X POST http://localhost:8000/api/keys \
+  -H "Content-Type: application/json" -H "X-Requested-With: gitmind" \
+  --cookie "gitmind_session=<your session cookie>" \
+  -d '{"name": "ci", "scopes": ["reviews:read", "reviews:write"], "expires_in_days": 90}'
+```
+
+The key is shown only once; send it as `Authorization: Bearer gm_...`.
+
+### 2.5 LangSmith (optional, for tracing)
 
 1. Go to [smith.langchain.com](https://smith.langchain.com/)
 2. Sign up (free tier: 5,000 traces/month)
@@ -171,18 +205,12 @@ Then update your GitHub App's webhook URL with the ngrok URL.
 
 Open: [http://localhost:8000/api/health](http://localhost:8000/api/health)
 
-Expected response:
+Expected response (the health check is public and intentionally exposes no internal state):
 ```json
-{
-  "status": "ok",
-  "rate_limiter": {
-    "rpm_used": 0, "rpm_max": 5,
-    "rpd_used": 0, "rpd_max": 20,
-    "tpm_used": 0, "tpm_max": 250000,
-    "rpd_resets_at": 1790582400.0
-  }
-}
+{ "status": "ok" }
 ```
+
+Every other `/api/*` endpoint requires authentication and returns `401` without a session.
 
 ### 6.2 Verify frontend is running
 
@@ -249,6 +277,11 @@ FastAPI auto-generates interactive API docs:
 | Problem | Solution |
 |---|---|
 | `GEMINI_API_KEY` error | Verify your key at [aistudio.google.com](https://aistudio.google.com/apikey) |
+| Sign-in page says GitHub sign-in is not configured | Create the OAuth App (section 2.4), or set `AUTH_DISABLED=true` for local development |
+| "Your GitHub account is not on the list of allowed users" | Add your login to `AUTH_ALLOWED_USERS` (or your organization to `AUTH_ALLOWED_ORGS`) |
+| Webhook deliveries fail with 401 | `GITHUB_WEBHOOK_SECRET` must be set and identical to the secret configured on GitHub |
+| Backend refuses to start with "Insecure production configuration" | With `ENVIRONMENT=production` all security settings are mandatory: the error lists the missing ones |
+| Review status "Quota Exhausted" | The daily LLM quota is used up: trigger the review again after the reset |
 | `GitHub client not configured` | Set either `GITHUB_TOKEN` or GitHub App credentials in `.env` |
 | Frontend can't reach backend | Check `NEXT_PUBLIC_API_URL` in `frontend/.env.local` |
 | Rate limiter blocking too early | Adjust `RATE_LIMIT_*` values in `.env` to match your tier |
