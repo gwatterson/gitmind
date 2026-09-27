@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { parseServerDate } from "@/lib/api";
 import type { Review } from "@/lib/types";
 
 const STATUS_CONFIG: Record<string, { label: string; class: string; icon: string }> = {
@@ -9,17 +10,19 @@ const STATUS_CONFIG: Record<string, { label: string; class: string; icon: string
   completed: { label: "Completed", class: "badge-completed", icon: "✅" },
   failed: { label: "Failed", class: "badge-failed", icon: "❌" },
   hitl_pending: { label: "Awaiting Review", class: "badge-pending", icon: "✋" },
+  superseded: { label: "Superseded", class: "badge-info", icon: "⤼" },
+  quota_exhausted: { label: "Quota Exhausted", class: "badge-failed", icon: "⏸" },
 };
 
 const VERDICT_CONFIG: Record<string, { label: string; class: string }> = {
-  approve: { label: "Approved", class: "badge-completed" },
+  approve: { label: "Looks Good", class: "badge-completed" },
   comment: { label: "Comment", class: "badge-info" },
   request_changes: { label: "Changes Requested", class: "badge-critical" },
 };
 
 function timeAgo(dateStr: string): string {
   const now = Date.now();
-  const d = new Date(dateStr).getTime();
+  const d = parseServerDate(dateStr).getTime();
   const diff = Math.floor((now - d) / 1000);
   if (diff < 60) return `${diff}s ago`;
   if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;

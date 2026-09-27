@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { getRateLimitStatus } from "@/lib/api";
 import type { RateLimitStatus } from "@/lib/types";
 
 function GaugeBar({
@@ -61,12 +62,8 @@ export function RateLimitGauge() {
   useEffect(() => {
     const fetchStatus = async () => {
       try {
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-        const res = await fetch(`${apiUrl}/api/rate-limit/status`);
-        if (res.ok) {
-          setStatus(await res.json());
-          setError(false);
-        }
+        setStatus(await getRateLimitStatus());
+        setError(false);
       } catch {
         setError(true);
       }

@@ -1,62 +1,54 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { PRList } from "@/components/PRList";
+import { useCallback, useEffect, useState } from "react";
+import { useAuth } from "@/components/AuthProvider";
 import { MetricsDashboard } from "@/components/MetricsDashboard";
+import { PRList } from "@/components/PRList";
 import { RateLimitGauge } from "@/components/RateLimitGauge";
+import { clearArchive, errorMessage, getReviews, triggerManualReview } from "@/lib/api";
 import type { Review } from "@/lib/types";
 
+type TriggerState =
+  | { kind: "idle" }
+  | { kind: "pending" }
+  | { kind: "ok"; text: string }
+  | { kind: "error"; text: string };
+
 export default function DashboardPage() {
+  const { user } = useAuth();
   const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(true);
   const [triggerRepo, setTriggerRepo] = useState("");
   const [triggerPR, setTriggerPR] = useState("");
-  const [triggerStatus, setTriggerStatus] = useState<string | null>(null);
+  const [trigger, setTrigger] = useState<TriggerState>({ kind: "idle" });
   const [statsVersion, setStatsVersion] = useState(0);
 
-  const fetchReviews = async () => {
+  const fetchReviews = useCallback(async () => {
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-      const res = await fetch(`${apiUrl}/api/reviews?limit=20`);
-      if (res.ok) {
-        const data = await res.json();
-        setReviews(data.reviews || []);
-      }
+      const data = await getReviews({ limit: 20 });
+      setReviews(data.reviews || []);
     } catch {
-      // Backend might not be running
+      // Unauthorized or backend unreachable: handled by the AuthGate
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchReviews();
     const interval = setInterval(fetchReviews, 10000);
     return () => clearInterval(interval);
-  }, []);
+  }, [fetchReviews]);
 
   const handleTrigger = async () => {
     if (!triggerRepo || !triggerPR) return;
-    setTriggerStatus("triggering...");
+    setTrigger({ kind: "pending" });
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-      const res = await fetch(`${apiUrl}/api/reviews/trigger`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          repo: triggerRepo,
-          pr_number: parseInt(triggerPR),
-        }),
-      });
-      const data = await res.json();
-      if (res.ok) {
-        setTriggerStatus(`✅ Review queued: ${data.review_id?.slice(0, 8)}...`);
-        setTimeout(fetchReviews, 2000);
-      } else {
-        setTriggerStatus(`❌ Error: ${data.detail || "Unknown error"}`);
-      }
-    } catch (e: unknown) {
-      setTriggerStatus(`❌ ${e instanceof Error ? e.message : "Network error"}`);
+      const data = await triggerManualReview(triggerRepo.trim(), parseInt(triggerPR, 10));
+      setTrigger({ kind: "ok", text: `Review queued: ${data.review_id.slice(0, 8)}` });
+      setTimeout(fetchReviews, 2000);
+    } catch (error) {
+      setTrigger({ kind: "error", text: errorMessage(error) });
     }
   };
 
@@ -64,16 +56,11 @@ export default function DashboardPage() {
     if (!window.confirm("Are you sure you want to delete all reviews? This cannot be undone."))
       return;
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-      const res = await fetch(`${apiUrl}/api/reviews`, { method: "DELETE" });
-      if (res.ok) {
-        setReviews([]);
-        setStatsVersion((v) => v + 1);
-      } else {
-        alert("Failed to clear archive");
-      }
-    } catch {
-      alert("Error clearing archive");
+      await clearArchive();
+      setReviews([]);
+      setStatsVersion((v) => v + 1);
+    } catch (error) {
+      alert(`Failed to clear archive: ${errorMessage(error)}`);
     }
   };
 
@@ -99,12 +86,14 @@ export default function DashboardPage() {
               Recent Reviews
             </h2>
             <div className="flex gap-2">
-              <button
-                onClick={handleClearArchive}
-                className="btn-secondary border-red-500/30 text-xs text-red-400 hover:border-red-500/50 hover:bg-red-500/10"
-              >
-                🗑️ Clear Archive
-              </button>
+              {user?.is_admin ? (
+                <button
+                  onClick={handleClearArchive}
+                  className="btn-secondary border-red-500/30 text-xs text-red-400 hover:border-red-500/50 hover:bg-red-500/10"
+                >
+                  Clear Archive
+                </button>
+              ) : null}
               <button onClick={fetchReviews} className="btn-secondary text-xs">
                 ↻ Refresh
               </button>
@@ -135,6 +124,7 @@ export default function DashboardPage() {
               <input
                 type="text"
                 placeholder="owner/repo"
+                aria-label="Repository (owner/repo)"
                 value={triggerRepo}
                 onChange={(e) => setTriggerRepo(e.target.value)}
                 className="mono w-full rounded-lg border border-white/5 bg-slate-800/50 px-3 py-2 text-sm text-slate-200 transition-colors placeholder:text-slate-600 focus:border-indigo-500/50 focus:outline-none"
@@ -142,24 +132,25 @@ export default function DashboardPage() {
               <input
                 type="number"
                 placeholder="PR number"
+                aria-label="Pull request number"
                 value={triggerPR}
                 onChange={(e) => setTriggerPR(e.target.value)}
                 className="mono w-full rounded-lg border border-white/5 bg-slate-800/50 px-3 py-2 text-sm text-slate-200 transition-colors placeholder:text-slate-600 focus:border-indigo-500/50 focus:outline-none"
               />
               <button
                 onClick={handleTrigger}
-                disabled={!triggerRepo || !triggerPR || triggerStatus === "triggering..."}
+                disabled={!triggerRepo || !triggerPR || trigger.kind === "pending"}
                 className="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-40"
               >
-                🚀 {triggerStatus === "triggering..." ? "Triggering..." : "Trigger Review"}
+                {trigger.kind === "pending" ? "Triggering..." : "Trigger Review"}
               </button>
-              {triggerStatus && triggerStatus !== "triggering..." && (
+              {trigger.kind === "ok" || trigger.kind === "error" ? (
                 <div
-                  className={`flex items-start gap-2 rounded-md border p-3 text-sm ${triggerStatus.startsWith("❌") ? "border-red-500/20 bg-red-500/10 text-red-400" : "border-emerald-500/20 bg-emerald-500/10 text-emerald-400"}`}
+                  className={`flex items-start gap-2 rounded-md border p-3 text-sm ${trigger.kind === "error" ? "border-red-500/20 bg-red-500/10 text-red-400" : "border-emerald-500/20 bg-emerald-500/10 text-emerald-400"}`}
                 >
-                  <p>{triggerStatus}</p>
+                  <p>{trigger.text}</p>
                 </div>
-              )}
+              ) : null}
             </div>
           </div>
         </div>

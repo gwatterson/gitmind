@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createReviewStream } from "@/lib/api";
 import type { StreamEvent } from "@/lib/types";
 
 const EVENT_ICONS: Record<string, string> = {
@@ -35,8 +36,7 @@ export function ReviewStream({ reviewId }: { reviewId: string }) {
   const [connected, setConnected] = useState(false);
 
   useEffect(() => {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-    const sse = new EventSource(`${apiUrl}/api/stream/${reviewId}`);
+    const sse = createReviewStream(reviewId);
 
     sse.onopen = () => setConnected(true);
 

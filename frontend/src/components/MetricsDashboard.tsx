@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { getStats } from "@/lib/api";
 import type { ReviewStats } from "@/lib/types";
 
 const CATEGORY_COLORS: Record<string, string> = {
@@ -91,9 +92,7 @@ export function MetricsDashboard({ refreshKey = 0 }: { refreshKey?: number }) {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-        const res = await fetch(`${apiUrl}/api/stats`);
-        if (res.ok) setStats(await res.json());
+        setStats(await getStats());
       } catch {
         // silent
       }
