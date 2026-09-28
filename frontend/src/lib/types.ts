@@ -24,6 +24,7 @@ export interface Review {
   error: string | null;
   llm_provider: string | null;
   llm_model: string | null;
+  prompt_versions: string | null;
 }
 
 export interface Finding {

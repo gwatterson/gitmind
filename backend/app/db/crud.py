@@ -32,6 +32,7 @@ _ALLOWED_REVIEW_COLUMNS = {
     "completed_at",
     "llm_provider",
     "llm_model",
+    "prompt_versions",
 }
 _ALLOWED_FINDING_COLUMNS = {
     "message",

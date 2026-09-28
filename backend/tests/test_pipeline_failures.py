@@ -9,6 +9,7 @@ from app.config import settings
 from app.db import crud
 from app.graph import synthesis
 from app.graph.agents import base
+from app.graph.prompts import prompt_versions
 from app.graph.schemas import AgentReview, ReviewFinding
 from app.rate_limiter import DailyQuotaExhaustedError
 from app.services import publisher
@@ -75,6 +76,7 @@ async def test_clean_review_is_published_as_a_comment(pipeline):
     assert stored["verdict"] == "approve"
     assert stored["llm_provider"] == "gemini"
     assert stored["llm_model"] == settings.GEMINI_MODEL
+    assert stored["prompt_versions"] == prompt_versions()
     publish.assert_awaited_once_with(stored["id"], human_approved=False)
 
 

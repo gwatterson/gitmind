@@ -111,6 +111,7 @@ ADDED_COLUMNS = [
     ("findings", "evidence", "TEXT"),
     ("reviews", "llm_provider", "TEXT"),
     ("reviews", "llm_model", "TEXT"),
+    ("reviews", "prompt_versions", "TEXT"),
 ]
 
 # Idempotent data fixes applied at startup

@@ -89,6 +89,9 @@ class Settings(BaseSettings):
     # Findings below this confidence cannot block a PR on their own
     VERDICT_MIN_CONFIDENCE: float = 0.6
 
+    # Directory of the prompt files; empty means the versioned prompts in app/graph/prompts
+    PROMPTS_DIR: str = ""
+
     # App
     CORS_ORIGINS: str = "http://localhost:3000"
     LOG_LEVEL: str = "INFO"

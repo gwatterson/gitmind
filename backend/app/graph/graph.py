@@ -13,9 +13,10 @@ from app.db import crud
 from app.graph.agents.performance import performance_agent_node
 from app.graph.agents.quality import quality_agent_node
 from app.graph.agents.security import security_agent_node
+from app.graph.prompts import prompt_versions
 from app.graph.state import PRState
 from app.graph.supervisor import supervisor_node
-from app.graph.synthesis import synthesis_node
+from app.graph.synthesis import findings_only_synthesis_node, synthesis_node
 from app.llm import factory
 from app.rate_limiter import DailyQuotaExhaustedError
 from app.services import publisher
@@ -77,17 +78,19 @@ def route_after_synthesis(state: PRState) -> str:
     return "publish"
 
 
-def build_graph() -> CompiledStateGraph:
-    """Build and compile the review LangGraph pipeline."""
+def build_graph(*, deliver: bool = True) -> CompiledStateGraph:
+    """Build and compile the review LangGraph pipeline.
+
+    With deliver=False the graph stops after synthesis, without the summary LLM call,
+    human approval or publishing: this is the graph measured by the evaluation.
+    """
     graph = StateGraph(PRState)
 
     graph.add_node("supervisor", supervisor_node)
     graph.add_node("security", security_agent_node)
     graph.add_node("quality", quality_agent_node)
     graph.add_node("performance", performance_agent_node)
-    graph.add_node("synthesis", synthesis_node)
-    graph.add_node("hitl", hitl_node)
-    graph.add_node("publish", publish_node)
+    graph.add_node("synthesis", synthesis_node if deliver else findings_only_synthesis_node)
 
     graph.set_entry_point("supervisor")
 
@@ -101,6 +104,12 @@ def build_graph() -> CompiledStateGraph:
     graph.add_edge("quality", "synthesis")
     graph.add_edge("performance", "synthesis")
 
+    if not deliver:
+        graph.add_edge("synthesis", END)
+        return graph.compile()
+
+    graph.add_node("hitl", hitl_node)
+    graph.add_node("publish", publish_node)
     graph.add_conditional_edges(
         "synthesis",
         route_after_synthesis,
@@ -116,32 +125,17 @@ def build_graph() -> CompiledStateGraph:
 review_graph = build_graph()
 
 
-async def run_review(
+def initial_state(
+    *,
     review_id: str,
     repo: str,
     pr_number: int,
     commit_id: str,
     files: list,
     pr_metadata: dict | None = None,
-) -> dict:
-    """Run the review graph for a PR."""
-    log.info("review_graph_started", review_id=review_id, repo=repo, pr_number=pr_number)
-
-    await crud.update_review(
-        review_id,
-        status="running",
-        llm_provider=factory.provider_name(),
-        llm_model=factory.model_name(),
-    )
-    await crud.create_event(
-        review_id=review_id,
-        event_type="review_start",
-        message=f"Starting review of PR #{pr_number} in {repo} "
-        f"with {factory.model_name()} ({factory.provider_name()})",
-        data={"repo": repo, "pr_number": pr_number, "llm_model": factory.model_name()},
-    )
-
-    initial_state = PRState(
+) -> PRState:
+    """The state a review starts from: the pull request files and empty results."""
+    return PRState(
         repo=repo,
         pr_number=pr_number,
         commit_id=commit_id,
@@ -163,8 +157,44 @@ async def run_review(
         errors=[],
     )
 
+
+async def run_review(
+    review_id: str,
+    repo: str,
+    pr_number: int,
+    commit_id: str,
+    files: list,
+    pr_metadata: dict | None = None,
+) -> dict:
+    """Run the review graph for a PR."""
+    log.info("review_graph_started", review_id=review_id, repo=repo, pr_number=pr_number)
+
+    await crud.update_review(
+        review_id,
+        status="running",
+        llm_provider=factory.provider_name(),
+        llm_model=factory.model_name(),
+        prompt_versions=prompt_versions(),
+    )
+    await crud.create_event(
+        review_id=review_id,
+        event_type="review_start",
+        message=f"Starting review of PR #{pr_number} in {repo} "
+        f"with {factory.model_name()} ({factory.provider_name()})",
+        data={"repo": repo, "pr_number": pr_number, "llm_model": factory.model_name()},
+    )
+
+    state = initial_state(
+        review_id=review_id,
+        repo=repo,
+        pr_number=pr_number,
+        commit_id=commit_id,
+        files=files,
+        pr_metadata=pr_metadata,
+    )
+
     try:
-        result = await review_graph.ainvoke(initial_state)
+        result = await review_graph.ainvoke(state)
     except DailyQuotaExhaustedError as e:
         log.warning("review_quota_exhausted", review_id=review_id)
         await crud.update_review(
