@@ -90,6 +90,7 @@ class DiskCache(BaseCache):
         self.directory = directory
         self.mode = mode
         self._started: dict[str, float] = {}
+        self._looked_up: set[str] = set()
         self.used_keys: set[str] = set()
 
     # LangChain calls the async methods from async code; the sync ones are not used
@@ -120,7 +121,12 @@ class DiskCache(BaseCache):
         key = self.key(prompt, llm_string)
         stats = _current.get()
         path = self._path(key)
-        if self.mode in ("use", "replay") and path.is_file():
+        # The pipeline repeats a call only to retry an invalid answer: in "use" mode the
+        # retry goes to the model and its answer replaces the recorded one. Replay mode
+        # serves the recorded answer every time, reproducing the original outcome.
+        retry = key in self._looked_up and self.mode == "use"
+        self._looked_up.add(key)
+        if self.mode in ("use", "replay") and path.is_file() and not retry:
             entry = json.loads(path.read_text(encoding="utf-8"))
             generations: list[Generation] = [
                 ChatGeneration(message=message) for message in messages_from_dict(entry["messages"])

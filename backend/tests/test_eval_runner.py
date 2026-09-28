@@ -25,6 +25,7 @@ class ScriptedChatModel(BaseChatModel):
     """Answers like a well-behaved model: one SQL injection finding for the security agent."""
 
     calls: int = 0
+    invalid_answers: int = 0  # the first N security answers are truncated JSON
 
     @property
     def _llm_type(self) -> str:
@@ -49,8 +50,12 @@ class ScriptedChatModel(BaseChatModel):
                     "cwe": "CWE-89",
                 }
             )
+        content = json.dumps({"findings": findings})
+        if findings and self.invalid_answers > 0:
+            self.invalid_answers -= 1
+            content = content[:40]
         message = AIMessage(
-            content=json.dumps({"findings": findings}),
+            content=content,
             usage_metadata={"input_tokens": 100, "output_tokens": 20, "total_tokens": 120},
         )
         return ChatResult(generations=[ChatGeneration(message=message)])
@@ -60,11 +65,14 @@ class ScriptedChatModel(BaseChatModel):
     ) -> Runnable:
         def parse(result: dict[str, Any]) -> dict[str, Any]:
             raw = result["raw"]
-            return {
-                "raw": raw,
-                "parsed": schema.model_validate_json(raw.content),
-                "parsing_error": None,
-            }
+            try:
+                return {
+                    "raw": raw,
+                    "parsed": schema.model_validate_json(raw.content),
+                    "parsing_error": None,
+                }
+            except ValueError as error:
+                return {"raw": raw, "parsed": None, "parsing_error": error}
 
         return RunnableParallel(raw=self) | RunnableLambda(parse)
 
@@ -117,6 +125,19 @@ async def test_run_records_answers_then_replays_them(eval_env, case, tmp_path):
     assert replayed["stats"]["cached_calls"] == 3 and replayed["stats"]["live_calls"] == 0
     assert replayed["findings"] == result["findings"]
     assert second["metrics"]["all"]["latency"]["live_cases"] == 0
+
+
+async def test_retry_after_an_invalid_answer_calls_the_model_again(eval_env, case):
+    eval_env.invalid_answers = 1
+    first = await run_evaluation(config("use"), [case], progress=lambda _: None)
+    stats = first["cases"][0]["stats"]
+    assert (stats["live_calls"], stats["cached_calls"]) == (4, 0)  # the retry was live
+    assert first["metrics"]["all"]["overall"]["f1"] == 1.0
+
+    replayed = await run_evaluation(config("replay"), [case], progress=lambda _: None)
+    stats = replayed["cases"][0]["stats"]
+    assert (stats["live_calls"], stats["cached_calls"]) == (0, 3)  # the valid answer was kept
+    assert replayed["cases"][0]["findings"] == first["cases"][0]["findings"]
 
 
 async def test_replay_fails_when_an_answer_was_never_recorded(eval_env, case):
