@@ -40,12 +40,32 @@ def github_review_event(verdict: str | None, human_approved: bool) -> str:
     return _VERDICT_TO_EVENT.get(verdict, "COMMENT")
 
 
+def _finding_header(finding: dict[str, Any]) -> str:
+    parts = [f"{finding['category'].upper()} - {finding['severity'].upper()}"]
+    if finding.get("cwe"):
+        parts.append(str(finding["cwe"]))
+    if finding.get("confidence") is not None:
+        parts.append(f"confidence {float(finding['confidence']):.0%}")
+    return "**[" + " | ".join(parts) + "]**"
+
+
 def format_finding_comment(finding: dict[str, Any]) -> str:
-    body = (
-        f"**[{finding['category'].upper()} - {finding['severity'].upper()}]**\n{finding['message']}"
-    )
+    body = f"{_finding_header(finding)}\n{finding['message']}"
     if finding.get("suggestion"):
         body += f"\n\n**Suggestion:**\n```\n{finding['suggestion']}\n```"
+    return body
+
+
+def format_review_body(summary: str | None, unplaced: list[dict[str, Any]]) -> str:
+    """Summary review body, plus the findings that could not be placed on a diff line."""
+    body = summary or "Review completed by GitMind."
+    if unplaced:
+        items = "\n".join(
+            f"- `{f['file']}`{':' + str(f['line']) if f.get('line') else ''} "
+            f"{_finding_header(f)} {f['message']}"
+            for f in unplaced
+        )
+        body += f"\n\n### Findings outside the changed lines\n{items}"
     return body
 
 
@@ -69,8 +89,13 @@ def _post_to_github(
     )
 
     result = PublishResult(posted=False)
+    unplaced: list[dict[str, Any]] = []
     for finding in findings:
-        if finding.get("posted_to_github") or not finding.get("line"):
+        if finding.get("posted_to_github"):
+            continue
+        if not finding.get("line"):
+            # Not on a line of the diff: reported in the summary instead
+            unplaced.append(finding)
             continue
         try:
             comment = pr.create_review_comment(
@@ -83,13 +108,13 @@ def _post_to_github(
             result.comment_ids[finding["id"]] = str(comment.id)
             result.comments_posted += 1
         except Exception as e:
-            # Typically a line outside the diff (line mapping: PLAN.md F3.2)
             result.comments_failed += 1
+            unplaced.append(finding)
             log.warning(
                 "inline_comment_failed", finding_id=finding["id"], error_type=type(e).__name__
             )
 
-    pr.create_review(body=review.get("summary") or "Review completed by GitMind.", event=event)
+    pr.create_review(body=format_review_body(review.get("summary"), unplaced), event=event)
     result.posted = True
     return result
 
@@ -122,8 +147,8 @@ async def publish_review(review_id: str, *, human_approved: bool) -> PublishResu
 
     if result.posted and result.comments_failed:
         result.warning = (
-            f"{result.comments_failed} inline comment(s) could not be placed on the diff; "
-            "they are still listed in the dashboard."
+            f"{result.comments_failed} inline comment(s) were rejected by GitHub; "
+            "they are listed in the review summary instead."
         )
     log.info(
         "review_published",

@@ -1,7 +1,7 @@
 """LangGraph shared state definitions for PR review pipeline."""
 
 import operator
-from typing import Annotated, TypedDict
+from typing import Annotated, NotRequired, TypedDict
 
 
 class PRFile(TypedDict):
@@ -25,6 +25,16 @@ class Finding(TypedDict):
     message: str
     suggestion: str
     agent: str
+    confidence: NotRequired[float]  # 0-1, as estimated by the agent
+    cwe: NotRequired[str | None]
+    evidence: NotRequired[str]  # code fragment quoted from the diff
+
+
+class SkippedFile(TypedDict):
+    """A changed file left out of the review, with the reason shown in the summary."""
+
+    filename: str
+    reason: str
 
 
 class AgentError(TypedDict):
@@ -45,6 +55,9 @@ class PRState(TypedDict):
     # Extracted data
     files: list[PRFile]
     pr_metadata: dict
+
+    # Files left out of the review (generated, binary, over the size limits)
+    skipped_files: NotRequired[list[SkippedFile]]
 
     # Agent assignment (decided by the Supervisor)
     security_files: list[str]

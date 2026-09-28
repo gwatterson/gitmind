@@ -16,6 +16,7 @@ from app.graph.agents.security import security_agent_node
 from app.graph.state import PRState
 from app.graph.supervisor import supervisor_node
 from app.graph.synthesis import synthesis_node
+from app.llm import factory
 from app.rate_limiter import DailyQuotaExhaustedError
 from app.services import publisher
 
@@ -126,12 +127,18 @@ async def run_review(
     """Run the review graph for a PR."""
     log.info("review_graph_started", review_id=review_id, repo=repo, pr_number=pr_number)
 
-    await crud.update_review(review_id, status="running")
+    await crud.update_review(
+        review_id,
+        status="running",
+        llm_provider=factory.provider_name(),
+        llm_model=factory.model_name(),
+    )
     await crud.create_event(
         review_id=review_id,
         event_type="review_start",
-        message=f"Starting review of PR #{pr_number} in {repo}",
-        data={"repo": repo, "pr_number": pr_number},
+        message=f"Starting review of PR #{pr_number} in {repo} "
+        f"with {factory.model_name()} ({factory.provider_name()})",
+        data={"repo": repo, "pr_number": pr_number, "llm_model": factory.model_name()},
     )
 
     initial_state = PRState(

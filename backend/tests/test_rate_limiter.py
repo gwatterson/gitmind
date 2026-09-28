@@ -6,7 +6,7 @@ from unittest.mock import patch
 
 import pytest
 
-from app.rate_limiter import DailyQuotaExhaustedError, RateLimiter
+from app.rate_limiter import DailyQuotaExhaustedError, RateLimiter, Reservation
 
 
 @pytest.fixture
@@ -72,7 +72,7 @@ async def test_rpd_exhaustion(limiter):
 async def test_tpm_blocking(limiter):
     """Verify blocking when token budget is exceeded."""
     # Add a large token entry
-    limiter._state.tpm_window.append((time.time(), 4900))
+    limiter._state.tpm_window.append(Reservation(time.time(), 4900))
 
     # The next request with 200 tokens should be blocked (4900 + 200 > 5000)
     try:
@@ -132,3 +132,33 @@ async def test_get_status(limiter):
     assert status["rpm_used"] == 1
     assert status["rpd_used"] == 1
     assert status["tpm_used"] == 500
+
+
+@pytest.mark.asyncio
+async def test_waiting_caller_does_not_hold_the_lock(limiter):
+    """A request waiting for RPM capacity must not block status reads or other work."""
+    for _ in range(5):
+        await limiter.acquire(estimated_tokens=100)
+
+    waiting = asyncio.create_task(limiter.acquire(estimated_tokens=100))
+    await asyncio.sleep(0.2)
+
+    # The lock is free while the task sleeps
+    status = await asyncio.wait_for(limiter.get_status(), timeout=0.5)
+    assert status["rpm_used"] == 5
+    assert not waiting.done()
+    waiting.cancel()
+    await asyncio.gather(waiting, return_exceptions=True)
+
+
+@pytest.mark.asyncio
+async def test_actual_tokens_update_the_right_reservation(limiter):
+    first = await limiter.acquire(estimated_tokens=1000)
+    second = await limiter.acquire(estimated_tokens=1000)
+
+    await limiter.record_actual_tokens(first, 250)
+
+    assert first.tokens == 250
+    assert second.tokens == 1000
+    status = await limiter.get_status()
+    assert status["tpm_used"] == 1250

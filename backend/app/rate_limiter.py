@@ -1,6 +1,11 @@
 """
-Token bucket rate limiter across three independent dimensions (RPM, RPD, TPM).
-Thread-safe via asyncio.Lock. RPD counter persisted in SQLite to survive restarts.
+Proactive LLM rate limiter across three independent dimensions: requests per
+minute (RPM), requests per day (RPD) and tokens per minute (TPM).
+
+Each call reserves capacity before it is made. The lock is held only while the
+windows are checked and updated, never while waiting, so concurrent callers do
+not serialize behind one sleeping request. The RPD counter is persisted in the
+database to survive restarts.
 """
 
 import asyncio
@@ -17,48 +22,51 @@ from app.db import crud
 
 log = structlog.get_logger()
 
+WINDOW_SECONDS = 60.0
+_SAFETY_MARGIN = 0.1  # seconds added to computed waits
+
 
 class DailyQuotaExhaustedError(Exception):
     """Raised when the daily RPD quota is exhausted."""
 
-    pass
+
+@dataclass
+class Reservation:
+    """Capacity reserved for one LLM call. `tokens` is corrected after the call."""
+
+    timestamp: float
+    tokens: int
 
 
 @dataclass
 class RateLimiterState:
-    # RPM: sliding window over the last 60 seconds
-    rpm_window: deque = field(default_factory=deque)
+    # RPM: timestamps of the calls in the last 60 seconds
+    rpm_window: deque[float] = field(default_factory=deque)
 
     # RPD: daily counter + reset timestamp
     rpd_count: int = 0
     rpd_reset_at: float = 0.0
 
-    # TPM: sliding window of (timestamp, token_count) over the last 60 seconds
-    tpm_window: deque = field(default_factory=deque)
+    # TPM: reservations of the last 60 seconds
+    tpm_window: deque[Reservation] = field(default_factory=deque)
 
 
 class RateLimiter:
-    """
-    Proactive rate limiter that blocks BEFORE hitting Google API limits.
-    Three independent dimensions: RPM, RPD, TPM.
-    """
+    """Blocks BEFORE provider limits are hit instead of reacting to 429 errors."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._state = RateLimiterState()
         self._lock = asyncio.Lock()
         self._initialized = False
-        # Initialize RPD reset time
         self._state.rpd_reset_at = self._next_midnight_pacific()
 
     async def _init_from_db(self) -> None:
         """Lazy load persisted RPD state from DB on first use."""
         if self._initialized:
             return
-
         try:
             rpd_count_str = await crud.get_rate_limit_state("rpd_count")
             rpd_reset_at_str = await crud.get_rate_limit_state("rpd_reset_at")
-
             if rpd_count_str is not None:
                 self._state.rpd_count = int(rpd_count_str)
             if rpd_reset_at_str is not None:
@@ -66,97 +74,82 @@ class RateLimiter:
         except Exception as e:
             # Fall back to in-memory defaults if the DB is unavailable during boot
             log.warning("rate_limiter_state_load_failed", error=str(e))
-
         self._initialized = True
 
     async def _save_rpd_to_db(self) -> None:
-        """Persist RPD state to DB."""
         try:
             await crud.set_rate_limit_state("rpd_count", str(self._state.rpd_count))
             await crud.set_rate_limit_state("rpd_reset_at", str(self._state.rpd_reset_at))
         except Exception as e:
             log.warning("rate_limiter_state_save_failed", error=str(e))
 
-    async def acquire(self, estimated_tokens: int = 500) -> None:
+    async def acquire(self, estimated_tokens: int = 500) -> Reservation:
+        """Wait until a call fits within every limit, then reserve it.
+
+        Raises DailyQuotaExhaustedError when the daily quota is used up, since
+        waiting a few seconds cannot fix that.
         """
-        Blocks until it is safe to make an API call.
-        Raises DailyQuotaExhaustedError if daily RPD quota is exhausted.
-        """
+        while True:
+            async with self._lock:
+                await self._init_from_db()
+                now = time.time()
+                self._refresh_windows(now)
+
+                if self._state.rpd_count >= settings.RATE_LIMIT_RPD_MAX:
+                    reset_in = self._state.rpd_reset_at - now
+                    raise DailyQuotaExhaustedError(
+                        f"Daily quota exhausted. Resets in {reset_in / 3600:.1f} hours."
+                    )
+
+                wait = self._required_wait(now, estimated_tokens)
+                if wait <= 0:
+                    reservation = Reservation(timestamp=now, tokens=estimated_tokens)
+                    self._state.rpm_window.append(now)
+                    self._state.tpm_window.append(reservation)
+                    self._state.rpd_count += 1
+                    await self._save_rpd_to_db()
+                    return reservation
+            # Sleep without holding the lock
+            await asyncio.sleep(wait)
+
+    async def record_actual_tokens(self, reservation: Reservation, actual_tokens: int) -> None:
+        """Replace the estimate of a reservation with the tokens actually used."""
         async with self._lock:
-            await self._init_from_db()
-            now = time.time()
-            self._refresh_windows(now)
+            reservation.tokens = max(actual_tokens, 0)
 
-            # Check RPD (daily limit, cannot recover by waiting)
-            if self._state.rpd_count >= settings.RATE_LIMIT_RPD_MAX:
-                reset_in = self._state.rpd_reset_at - now
-                raise DailyQuotaExhaustedError(
-                    f"Daily quota exhausted. Resets in {reset_in / 3600:.1f} hours."
-                )
+    def _required_wait(self, now: float, tokens: int) -> float:
+        """Seconds until a call of `tokens` fits in both per-minute windows (0 if now)."""
+        waits = [0.0]
 
-            # Check RPM, wait if necessary
-            await self._wait_for_rpm_capacity(now)
+        if len(self._state.rpm_window) >= settings.RATE_LIMIT_RPM_MAX:
+            waits.append(self._state.rpm_window[0] + WINDOW_SECONDS - now + _SAFETY_MARGIN)
 
-            # Check TPM, wait if necessary
-            now = time.time()
-            self._refresh_windows(now)
-            await self._wait_for_tpm_capacity(now, estimated_tokens)
+        used = sum(r.tokens for r in self._state.tpm_window)
+        excess = used + tokens - settings.RATE_LIMIT_TPM_MAX
+        if excess > 0 and self._state.tpm_window:
+            # Wait until enough of the oldest reservations leave the window.
+            # A single call larger than the whole budget only waits for an empty window.
+            freed = 0
+            for reservation in self._state.tpm_window:
+                freed += reservation.tokens
+                if freed >= excess:
+                    break
+            waits.append(reservation.timestamp + WINDOW_SECONDS - now + _SAFETY_MARGIN)
 
-            # Record the request
-            now = time.time()
-            self._state.rpm_window.append(now)
-            self._state.tpm_window.append((now, estimated_tokens))
-            self._state.rpd_count += 1
-
-            # Save RPD update to DB
-            await self._save_rpd_to_db()
-
-    async def record_actual_tokens(self, actual_tokens: int, estimated_tokens: int = 500) -> None:
-        """Update the TPM window with actual token usage after an API call."""
-        # Adjust the last entry if it exists
-        if self._state.tpm_window:
-            ts, _ = self._state.tpm_window[-1]
-            self._state.tpm_window[-1] = (ts, actual_tokens)
+        return max(waits)
 
     def _refresh_windows(self, now: float) -> None:
-        """Remove entries older than 60 seconds from the sliding windows."""
-        cutoff = now - 60
+        """Drop entries older than the window and reset the daily counter at midnight."""
+        cutoff = now - WINDOW_SECONDS
         while self._state.rpm_window and self._state.rpm_window[0] < cutoff:
             self._state.rpm_window.popleft()
-        while self._state.tpm_window and self._state.tpm_window[0][0] < cutoff:
+        while self._state.tpm_window and self._state.tpm_window[0].timestamp < cutoff:
             self._state.tpm_window.popleft()
 
-        # Reset RPD at Pacific midnight
+        # Reset RPD at Pacific midnight (Gemini quotas reset then)
         if now >= self._state.rpd_reset_at:
             self._state.rpd_count = 0
             self._state.rpd_reset_at = self._next_midnight_pacific()
-            # If we are in an async context, we could save here, but we'll
-            # let acquire() or the next operation trigger the save.
-
-    async def _wait_for_rpm_capacity(self, now: float) -> None:
-        """Wait until RPM has capacity."""
-        while len(self._state.rpm_window) >= settings.RATE_LIMIT_RPM_MAX:
-            oldest = self._state.rpm_window[0]
-            wait = (oldest + 60) - now + 0.1  # 100ms buffer
-            if wait > 0:
-                await asyncio.sleep(wait)
-            now = time.time()
-            self._refresh_windows(now)
-
-    async def _wait_for_tpm_capacity(self, now: float, tokens: int) -> None:
-        """Wait until TPM has capacity for the estimated tokens."""
-        current_tpm = sum(t for _, t in self._state.tpm_window)
-        while current_tpm + tokens > settings.RATE_LIMIT_TPM_MAX:
-            if self._state.tpm_window:
-                oldest_ts = self._state.tpm_window[0][0]
-                wait = (oldest_ts + 60) - now + 0.1
-                if wait > 0:
-                    await asyncio.sleep(wait)
-            else:
-                break
-            now = time.time()
-            self._refresh_windows(now)
-            current_tpm = sum(t for _, t in self._state.tpm_window)
 
     async def get_status(self) -> dict:
         """Returns the current rate limiter state for the frontend."""
@@ -168,7 +161,7 @@ class RateLimiter:
             "rpm_max": settings.RATE_LIMIT_RPM_MAX,
             "rpd_used": self._state.rpd_count,
             "rpd_max": settings.RATE_LIMIT_RPD_MAX,
-            "tpm_used": sum(t for _, t in self._state.tpm_window),
+            "tpm_used": sum(r.tokens for r in self._state.tpm_window),
             "tpm_max": settings.RATE_LIMIT_TPM_MAX,
             "rpd_resets_at": self._state.rpd_reset_at,
         }

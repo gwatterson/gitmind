@@ -24,7 +24,15 @@ def utc_now() -> str:
 
 
 # Whitelists of columns that can be updated via **kwargs
-_ALLOWED_REVIEW_COLUMNS = {"status", "summary", "verdict", "error", "completed_at"}
+_ALLOWED_REVIEW_COLUMNS = {
+    "status",
+    "summary",
+    "verdict",
+    "error",
+    "completed_at",
+    "llm_provider",
+    "llm_model",
+}
 _ALLOWED_FINDING_COLUMNS = {
     "message",
     "suggestion",
@@ -247,8 +255,9 @@ async def create_findings_batch(
         for f in findings:
             finding_id = str(uuid.uuid4())
             await db.execute(
-                """INSERT INTO findings (id, review_id, file, line, severity, category, rule_id, message, suggestion, agent)
-                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                """INSERT INTO findings (id, review_id, file, line, severity, category, rule_id,
+                                         message, suggestion, agent, confidence, cwe, evidence)
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
                 (
                     finding_id,
                     review_id,
@@ -260,6 +269,9 @@ async def create_findings_batch(
                     f["message"],
                     f.get("suggestion", ""),
                     f["agent"],
+                    f.get("confidence"),
+                    f.get("cwe"),
+                    f.get("evidence", ""),
                 ),
             )
             results.append({**f, "id": finding_id, "review_id": review_id})
@@ -579,5 +591,33 @@ async def revoke_api_key(key_id: str) -> bool:
         )
         await db.commit()
         return cursor.rowcount == 1
+    finally:
+        await db.close()
+
+
+# ──────────────────────────────────────────────
+# Runtime settings
+# ──────────────────────────────────────────────
+
+
+async def get_app_setting(key: str) -> str | None:
+    db = await get_db()
+    try:
+        cursor = await db.execute("SELECT value FROM app_settings WHERE key = ?", (key,))
+        row = await cursor.fetchone()
+        return row["value"] if row else None
+    finally:
+        await db.close()
+
+
+async def set_app_setting(key: str, value: str) -> None:
+    db = await get_db()
+    try:
+        await db.execute(
+            """INSERT INTO app_settings (key, value) VALUES (?, ?)
+               ON CONFLICT(key) DO UPDATE SET value = excluded.value, updated_at = CURRENT_TIMESTAMP""",
+            (key, value),
+        )
+        await db.commit()
     finally:
         await db.close()

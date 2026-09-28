@@ -31,6 +31,9 @@ os.environ.update(
         "LANGSMITH_TRACING": "false",
         "HITL_ENABLED": "false",
         "ALLOW_BOT_APPROVE": "false",
+        "LLM_PROVIDER": "gemini",
+        "LLM_RETRY_WAIT_SECONDS": "0",
+        "OLLAMA_BASE_URL": "http://ollama.test:11434",
     }
 )
 
@@ -41,6 +44,7 @@ from app.core.ratelimit import limiter  # noqa: E402
 from app.core.security import CSRF_HEADER, CSRF_HEADER_VALUE, SESSION_COOKIE  # noqa: E402
 from app.core.security import create_session_token as _create_session_token  # noqa: E402
 from app.db import models  # noqa: E402
+from app.llm import factory  # noqa: E402
 
 
 @pytest.fixture(autouse=True)
@@ -55,6 +59,12 @@ async def isolated_db(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Path:
 @pytest.fixture(autouse=True)
 def reset_http_rate_limits() -> None:
     limiter.reset()
+
+
+@pytest.fixture(autouse=True)
+def reset_llm_provider() -> None:
+    """Every test starts with the provider from the environment."""
+    factory.reset_runtime_provider()
 
 
 def session_token(login: str = "alice", orgs: list[str] | None = None) -> str:

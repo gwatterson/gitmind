@@ -1,97 +1,59 @@
-"""End-to-end graph runs with fake LLMs: partial failures, quota exhaustion, publishing."""
+"""End-to-end graph runs with fake LLM calls: findings, partial failures, quota, publishing."""
 
-import json
 from unittest.mock import AsyncMock
 
 import pytest
-from langchain_core.messages import AIMessage
 
 import app.graph.graph as graph_module
 from app.config import settings
 from app.db import crud
-from app.graph import supervisor, synthesis
-from app.graph.agents import performance, quality, security
-from app.rate_limiter import DailyQuotaExhaustedError, rate_limiter
+from app.graph import synthesis
+from app.graph.agents import base
+from app.graph.schemas import AgentReview, ReviewFinding
+from app.rate_limiter import DailyQuotaExhaustedError
 from app.services import publisher
 from app.services.publisher import PublishResult
 
+PATCH = "@@ -1,3 +1,4 @@\n import os\n+query = 'SELECT * FROM t WHERE id=' + uid\n cursor.execute(query)\n x = 1"
 FILES = [
-    {"filename": "app.py", "language": "python", "patch": "+x = 1", "additions": 1, "deletions": 0}
+    {"filename": "app.py", "language": "python", "patch": PATCH, "additions": 1, "deletions": 0}
 ]
-AGENT_MODULES = {"security": security, "quality": quality, "performance": performance}
 
 
-class _TextLLM:
-    """Fake chat model returning a fixed text reply."""
-
-    def __init__(self, reply: str):
-        self.reply = reply
-
-    async def ainvoke(self, messages):
-        return AIMessage(content=self.reply)
-
-
-class _StructuredLLM:
-    """Fake chat model for agents: returns a parsed review or raises."""
-
-    def __init__(self, result=None, error: Exception | None = None):
-        self.result = result
-        self.error = error
-
-    def with_structured_output(self, schema):
-        return self
-
-    async def ainvoke(self, messages):
-        if self.error:
-            raise self.error
-        return self.result
-
-
-def _factory(instance):
-    return lambda **kwargs: instance
+def _finding(agent: str, **overrides) -> ReviewFinding:
+    data = {
+        "file": "app.py",
+        "line": 2,
+        "severity": "low",
+        "rule_id": f"{agent}-rule",
+        "message": f"{agent} issue",
+        "confidence": 0.9,
+    }
+    data.update(overrides)
+    return ReviewFinding(**data)
 
 
 @pytest.fixture
 def pipeline(monkeypatch):
-    """Wire fake LLMs into every node; tests choose how each agent behaves."""
-    monkeypatch.setattr(rate_limiter, "acquire", AsyncMock())
-    assignments = {f"{name}_files": ["app.py"] for name in AGENT_MODULES}
+    """Route LLM calls by purpose; each test decides how every agent behaves."""
+    behaviors: dict[str, object] = {}
+
+    async def fake_structured(messages, schema, **kwargs):
+        agent = kwargs["purpose"].removesuffix("_agent")
+        behavior = behaviors.get(agent, [])
+        if isinstance(behavior, BaseException):
+            raise behavior
+        return AgentReview(findings=behavior)
+
+    monkeypatch.setattr(base, "invoke_structured", fake_structured)
     monkeypatch.setattr(
-        supervisor, "ChatGoogleGenerativeAI", _factory(_TextLLM(json.dumps(assignments)))
+        synthesis, "invoke_text", AsyncMock(return_value="### Overall assessment\nOK")
     )
-    monkeypatch.setattr(synthesis, "ChatGoogleGenerativeAI", _factory(_TextLLM("Summary.")))
     publish = AsyncMock(return_value=PublishResult(posted=True, comments_posted=1))
     monkeypatch.setattr(publisher, "publish_review", publish)
 
     def configure(**agents):
-        for name, module in AGENT_MODULES.items():
-            behavior = agents.get(name, "empty")
-            review_cls = {
-                "security": security.SecurityReview,
-                "quality": quality.QualityReview,
-                "performance": performance.PerformanceReview,
-            }[name]
-            if isinstance(behavior, Exception):
-                llm = _StructuredLLM(error=behavior)
-            elif behavior == "finding":
-                finding_cls = module.FindingModel
-                llm = _StructuredLLM(
-                    review_cls(
-                        findings=[
-                            finding_cls(
-                                file="app.py",
-                                line=1,
-                                severity="low",
-                                category=name,
-                                rule_id=f"{name}-rule",
-                                message="Minor issue",
-                            )
-                        ]
-                    )
-                )
-            else:
-                llm = _StructuredLLM(review_cls(findings=[]))
-            monkeypatch.setattr(module, "ChatGoogleGenerativeAI", _factory(llm))
+        behaviors.update(agents)
         return publish
 
     return configure
@@ -111,17 +73,42 @@ async def test_clean_review_is_published_as_a_comment(pipeline):
 
     assert stored["status"] == "completed"
     assert stored["verdict"] == "approve"
+    assert stored["llm_provider"] == "gemini"
+    assert stored["llm_model"] == settings.GEMINI_MODEL
     publish.assert_awaited_once_with(stored["id"], human_approved=False)
+
+
+async def test_findings_are_validated_and_stored_with_their_metadata(pipeline):
+    pipeline(
+        security=[
+            _finding("security", severity="high", cwe="89", line=2, evidence="query = ..."),
+            _finding("security", file="ghost.py"),  # file not in the PR: dropped
+            _finding("security", line=5, rule_id="near", message="close to the diff"),
+        ]
+    )
+    _, stored = await _run()
+
+    findings = {f["rule_id"]: f for f in await crud.get_findings(stored["id"])}
+    assert set(findings) == {"security-rule", "near"}
+    assert findings["security-rule"]["cwe"] == "CWE-89"
+    assert findings["security-rule"]["confidence"] == 0.9
+    assert findings["security-rule"]["line"] == 2
+    assert findings["near"]["line"] == 4  # moved to the nearest line of the diff
+    assert stored["verdict"] == "request_changes"
 
 
 async def test_two_agents_failing_in_parallel_do_not_crash_the_graph(pipeline):
     # Regression: concurrent writes to the same state key raised InvalidUpdateError
-    pipeline(security=RuntimeError("boom"), quality=RuntimeError("boom"), performance="finding")
+    pipeline(
+        security=RuntimeError("boom"),
+        quality=RuntimeError("boom"),
+        performance=[_finding("performance")],
+    )
     result, stored = await _run()
 
     assert stored["status"] == "completed"
     assert {e["agent"] for e in result["errors"]} == {"security", "quality"}
-    assert "security" in stored["summary"] and "incomplete" in stored["summary"]
+    assert "Incomplete review" in stored["summary"]
 
 
 async def test_partial_review_never_approves(pipeline):
@@ -155,8 +142,17 @@ async def test_quota_exhaustion_stops_the_review(pipeline):
 
 async def test_hitl_waits_for_a_human_instead_of_publishing(pipeline, monkeypatch):
     monkeypatch.setattr(settings, "HITL_ENABLED", True)
-    publish = pipeline(performance="finding")
+    publish = pipeline(performance=[_finding("performance")])
     _, stored = await _run()
 
     assert stored["status"] == "hitl_pending"
     publish.assert_not_awaited()
+
+
+async def test_summary_falls_back_when_the_summary_call_fails(pipeline, monkeypatch):
+    pipeline(quality=[_finding("quality", severity="medium")])
+    monkeypatch.setattr(synthesis, "invoke_text", AsyncMock(side_effect=RuntimeError("down")))
+    _, stored = await _run()
+
+    assert stored["status"] == "completed"
+    assert stored["summary"].startswith("### Overall assessment")
