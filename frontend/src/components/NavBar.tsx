@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { API_URL } from "@/lib/api";
 import { useAuth } from "./AuthProvider";
+import { QuotaButton } from "./QuotaButton";
 
 function UserMenu() {
   const { user, authDisabled, logout } = useAuth();
@@ -76,6 +77,7 @@ export function NavBar() {
             >
               API Docs ↗
             </a>
+            <QuotaButton />
             <UserMenu />
           </div>
         </div>

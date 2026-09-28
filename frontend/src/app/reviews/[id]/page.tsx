@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { ReviewStream } from "@/components/ReviewStream";
 import { FindingCard } from "@/components/FindingCard";
+import { Markdown } from "@/components/Markdown";
 import { DiffViewer } from "@/components/DiffViewer";
 import {
   approveReview,
@@ -189,6 +190,12 @@ export default function ReviewDetailPage() {
               <span className="mono">{review.repo}</span>
               <span>#{review.pr_number}</span>
               {review.pr_author && <span>by {review.pr_author}</span>}
+              {review.llm_model ? (
+                <span className="rounded-sm bg-slate-800/50 px-1.5 py-0.5 mono text-[10px] text-slate-400">
+                  {review.llm_model}
+                  {review.llm_provider ? ` (${review.llm_provider})` : ""}
+                </span>
+              ) : null}
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -392,9 +399,7 @@ export default function ReviewDetailPage() {
               <h3 className="mb-2 text-sm font-semibold tracking-wider text-slate-200 uppercase">
                 Review Summary
               </h3>
-              <div className="text-sm leading-relaxed whitespace-pre-wrap text-slate-300">
-                {review.summary}
-              </div>
+              <Markdown>{review.summary}</Markdown>
             </div>
           )}
         </div>

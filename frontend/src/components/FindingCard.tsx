@@ -16,15 +16,20 @@ const CATEGORY_ICONS: Record<string, string> = {
   performance: "⚡",
 };
 
-export function FindingCard({
-  finding,
-  onEdit,
-}: {
-  finding: Finding;
-  onEdit?: (finding: Finding) => void;
-}) {
+function confidenceLabel(confidence: number): { text: string; className: string } {
+  const pct = Math.round(confidence * 100);
+  if (confidence >= 0.8) return { text: `${pct}% confidence`, className: "text-emerald-400/80" };
+  if (confidence >= 0.5) return { text: `${pct}% confidence`, className: "text-slate-400" };
+  return { text: `${pct}% confidence`, className: "text-amber-400/80" };
+}
+
+export function FindingCard({ finding }: { finding: Finding }) {
   const severity = SEVERITY_CONFIG[finding.severity] || SEVERITY_CONFIG.info;
   const catIcon = CATEGORY_ICONS[finding.category] || "📋";
+  const confidence =
+    finding.confidence !== null && finding.confidence !== undefined
+      ? confidenceLabel(finding.confidence)
+      : null;
 
   return (
     <div className="animate-slide-up glass-card p-4 transition-all duration-200">
@@ -32,9 +37,7 @@ export function FindingCard({
         {/* Severity indicator */}
         <div
           className="w-1 shrink-0 self-stretch rounded-full"
-          style={{
-            background: `var(--${finding.severity})`,
-          }}
+          style={{ background: `var(--${finding.severity})` }}
         />
 
         <div className="min-w-0 flex-1">
@@ -49,12 +52,29 @@ export function FindingCard({
             >
               {catIcon} {finding.category}
             </span>
-            {finding.rule_id && (
-              <span className="rounded-sm bg-slate-800/50 px-1.5 py-0.5 mono text-[10px] text-slate-600">
+            {finding.cwe ? (
+              <a
+                href={`https://cwe.mitre.org/data/definitions/${finding.cwe.replace("CWE-", "")}.html`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-sm bg-red-500/10 px-1.5 py-0.5 mono text-[10px] text-red-300 hover:underline"
+              >
+                {finding.cwe}
+              </a>
+            ) : null}
+            {finding.rule_id ? (
+              <span className="rounded-sm bg-slate-800/50 px-1.5 py-0.5 mono text-[10px] text-slate-500">
                 {finding.rule_id}
               </span>
-            )}
-            <span className="ml-auto text-xs text-slate-600">by {finding.agent} agent</span>
+            ) : null}
+            <span className="ml-auto flex items-center gap-3 text-xs">
+              {confidence ? <span className={confidence.className}>{confidence.text}</span> : null}
+              <span className="text-slate-600">
+                {finding.agent === finding.category
+                  ? `by ${finding.agent} agent`
+                  : `found by ${finding.agent} agent`}
+              </span>
+            </span>
           </div>
 
           {/* File location */}
@@ -68,97 +88,34 @@ export function FindingCard({
               />
             </svg>
             <span className="truncate mono">{finding.file}</span>
-            {finding.line > 0 && <span className="mono text-slate-600">:L{finding.line}</span>}
+            {finding.line > 0 ? (
+              <span className="mono text-slate-600">:L{finding.line}</span>
+            ) : (
+              <span className="text-slate-600">(not on a changed line)</span>
+            )}
           </div>
 
           {/* Message */}
           <p className="mb-2 text-sm leading-relaxed text-slate-300">{finding.message}</p>
 
+          {/* Quoted code */}
+          {finding.evidence ? (
+            <pre className="mb-2 overflow-x-auto rounded-md border border-white/5 bg-black/30 px-3 py-2 mono text-[11px] leading-relaxed text-slate-400">
+              {finding.evidence}
+            </pre>
+          ) : null}
+
           {/* Suggestion */}
-          {finding.suggestion && (
+          {finding.suggestion ? (
             <div className="mt-2 rounded-lg border border-indigo-500/10 bg-indigo-500/5 p-3">
               <p className="mb-1 text-xs font-medium text-indigo-400">💡 Suggestion</p>
               <p className="mono text-xs leading-relaxed whitespace-pre-wrap text-slate-400">
                 {finding.suggestion}
               </p>
             </div>
-          )}
-
-          {/* Edit button for HITL */}
-          {onEdit && (
-            <button onClick={() => onEdit(finding)} className="mt-3 btn-secondary text-xs">
-              ✏️ Edit
-            </button>
-          )}
+          ) : null}
         </div>
       </div>
     </div>
   );
 }
-
-export function FindingsList({
-  findings,
-  onEdit,
-}: {
-  findings: Finding[];
-  onEdit?: (finding: Finding) => void;
-}) {
-  const [filterCategory, setFilterCategory] = useState<string>("all");
-  const [filterSeverity, setFilterSeverity] = useState<string>("all");
-
-  const filtered = findings.filter((f) => {
-    if (filterCategory !== "all" && f.category !== filterCategory) return false;
-    if (filterSeverity !== "all" && f.severity !== filterSeverity) return false;
-    return true;
-  });
-
-  return (
-    <div>
-      {/* Filters */}
-      <div className="mb-4 flex flex-wrap items-center gap-2">
-        <span className="text-xs font-medium text-slate-500">Filter:</span>
-        {["all", "security", "quality", "performance"].map((cat) => (
-          <button
-            key={cat}
-            onClick={() => setFilterCategory(cat)}
-            className={`badge cursor-pointer transition-all ${
-              filterCategory === cat
-                ? "border border-indigo-500/30 bg-indigo-500/20 text-indigo-400"
-                : "border border-transparent bg-slate-800/50 text-slate-500"
-            }`}
-          >
-            {cat === "all" ? "All" : `${CATEGORY_ICONS[cat] || ""} ${cat}`}
-          </button>
-        ))}
-        <span className="text-slate-700">|</span>
-        {["all", "critical", "high", "medium", "low", "info"].map((sev) => (
-          <button
-            key={sev}
-            onClick={() => setFilterSeverity(sev)}
-            className={`badge cursor-pointer transition-all ${
-              filterSeverity === sev
-                ? "border border-indigo-500/30 bg-indigo-500/20 text-indigo-400"
-                : "border border-transparent bg-slate-800/50 text-slate-500"
-            }`}
-          >
-            {sev === "all" ? "All" : `${(SEVERITY_CONFIG[sev] || {}).icon || ""} ${sev}`}
-          </button>
-        ))}
-      </div>
-
-      {/* Results */}
-      <div className="space-y-2">
-        {filtered.map((finding) => (
-          <FindingCard key={finding.id} finding={finding} onEdit={onEdit} />
-        ))}
-        {filtered.length === 0 && (
-          <p className="py-4 text-center text-sm text-slate-500">
-            No findings match the selected filters.
-          </p>
-        )}
-      </div>
-    </div>
-  );
-}
-
-import { useState } from "react";

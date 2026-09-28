@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AuthGate, AuthProvider } from "@/components/AuthProvider";
+import { LlmSettingsProvider } from "@/components/LlmSettingsProvider";
 import { NavBar } from "@/components/NavBar";
 import "./globals.css";
 
@@ -14,10 +15,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className="dark">
       <body className="min-h-screen">
         <AuthProvider>
-          <NavBar />
-          <main className="relative z-10 mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-            <AuthGate>{children}</AuthGate>
-          </main>
+          <LlmSettingsProvider>
+            <NavBar />
+            <main className="relative z-10 mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+              <AuthGate>{children}</AuthGate>
+            </main>
+          </LlmSettingsProvider>
         </AuthProvider>
       </body>
     </html>

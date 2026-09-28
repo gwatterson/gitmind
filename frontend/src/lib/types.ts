@@ -22,6 +22,8 @@ export interface Review {
   created_at: string;
   completed_at: string | null;
   error: string | null;
+  llm_provider: string | null;
+  llm_model: string | null;
 }
 
 export interface Finding {
@@ -35,6 +37,9 @@ export interface Finding {
   message: string;
   suggestion: string;
   agent: string;
+  confidence: number | null;
+  cwe: string | null;
+  evidence: string | null;
   posted_to_github: boolean;
   github_comment_id: string | null;
   created_at: string;
@@ -93,4 +98,19 @@ export interface User {
 export interface AuthMe {
   user: User;
   auth_disabled: boolean;
+}
+
+export interface LlmProviderOption {
+  id: "gemini" | "ollama";
+  label: string;
+  model: string;
+  available: boolean;
+  reason: string | null;
+}
+
+export interface LlmSettings {
+  provider: "gemini" | "ollama";
+  model: string;
+  rate_limited: boolean;
+  providers: LlmProviderOption[];
 }
