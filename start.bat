@@ -47,9 +47,13 @@ REM ── 3. Frontend Setup & Start ──
 echo [3/4] Starting Next.js frontend on port 3000...
 cd /d "%~dp0frontend"
 
-if not exist node_modules (
-    echo       Installing frontend dependencies...
-    call npm install --silent
+REM Always sync: fast when up to date, and keeps node_modules in line with
+REM package-lock.json after switching branches or pulling upgrades
+echo       Syncing frontend dependencies...
+call npm install --no-audit --no-fund --silent
+if %errorlevel% neq 0 (
+    echo       [ERROR] npm install failed. Check the error above.
+    goto :fail
 )
 
 REM Copy .env.local if it doesn't exist

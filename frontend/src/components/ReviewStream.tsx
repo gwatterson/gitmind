@@ -68,7 +68,7 @@ export function ReviewStream({ reviewId }: { reviewId: string }) {
   return (
     <div className="glass-card p-4">
       <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-200">
+        <h3 className="text-sm font-semibold tracking-wider text-slate-200 uppercase">
           Reasoning Trace
         </h3>
         <span className={`badge ${connected ? "badge-running" : "badge-completed"}`}>
@@ -83,11 +83,11 @@ export function ReviewStream({ reviewId }: { reviewId: string }) {
 
       <div className="max-h-[500px] space-y-1 overflow-y-auto pr-2">
         {events.length === 0 && (
-          <p className="text-sm italic text-slate-500">Waiting for events…</p>
+          <p className="text-sm text-slate-500 italic">Waiting for events…</p>
         )}
         {events.map((event, i) => (
           <div key={i} className="animate-slide-up flex items-start gap-3 py-1.5">
-            <span className="mt-0.5 flex-shrink-0 text-base">{EVENT_ICONS[event.type] || "•"}</span>
+            <span className="mt-0.5 shrink-0 text-base">{EVENT_ICONS[event.type] || "•"}</span>
             <div className="min-w-0 flex-1">
               <p className={`mono text-sm leading-relaxed ${getEventColor(event.type)}`}>
                 {event.message}

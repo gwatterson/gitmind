@@ -1,6 +1,8 @@
 """
-MCP Server: custom Model Context Protocol server exposing GitHub and analysis tools.
-Runs as a separate process using stdio transport.
+MCP server exposing GitHub and static analysis tools (Model Context Protocol, SDK v2).
+
+Run it as a separate process over stdio: python -m app.mcp_server.server
+The handle_* functions are also imported directly by the review pipeline.
 """
 
 import asyncio
@@ -9,155 +11,91 @@ import os
 import shutil
 import subprocess
 import tempfile
+from typing import Any, Literal
 
-from mcp.server import Server
-from mcp.server.stdio import stdio_server
-from mcp.types import TextContent, Tool
+from mcp.server.mcpserver import MCPServer
 
 from app.github.client import get_github_client
 
-# Initialize MCP server
-server = Server("gitmind-mcp")
+server = MCPServer(
+    "gitmind-mcp",
+    instructions="GitHub pull request and static analysis tools used by the GitMind code reviewer.",
+)
 
 
 # ──────────────────────────────────────────────
-# Tool Definitions
+# Tool definitions (input schemas are generated from the type hints)
 # ──────────────────────────────────────────────
 
 
-@server.list_tools()
-async def list_tools() -> list[Tool]:
-    return [
-        Tool(
-            name="get_pr_diff",
-            description="Fetches the full PR diff with per-file metadata.",
-            inputSchema={
-                "type": "object",
-                "properties": {
-                    "repo": {"type": "string", "description": "Repository in owner/name format"},
-                    "pr_number": {"type": "integer", "description": "Pull request number"},
-                },
-                "required": ["repo", "pr_number"],
-            },
-        ),
-        Tool(
-            name="list_pr_files",
-            description="Lists modified files with metadata.",
-            inputSchema={
-                "type": "object",
-                "properties": {
-                    "repo": {"type": "string"},
-                    "pr_number": {"type": "integer"},
-                },
-                "required": ["repo", "pr_number"],
-            },
-        ),
-        Tool(
-            name="post_review_comment",
-            description="Posts an inline comment on a specific diff line.",
-            inputSchema={
-                "type": "object",
-                "properties": {
-                    "repo": {"type": "string"},
-                    "pr_number": {"type": "integer"},
-                    "body": {"type": "string"},
-                    "commit_id": {"type": "string"},
-                    "path": {"type": "string"},
-                    "line": {"type": "integer"},
-                    "side": {"type": "string", "enum": ["LEFT", "RIGHT"]},
-                },
-                "required": ["repo", "pr_number", "body", "commit_id", "path", "line"],
-            },
-        ),
-        Tool(
-            name="post_review_summary",
-            description="Posts the overall review with a verdict.",
-            inputSchema={
-                "type": "object",
-                "properties": {
-                    "repo": {"type": "string"},
-                    "pr_number": {"type": "integer"},
-                    "body": {"type": "string"},
-                    "event": {"type": "string", "enum": ["COMMENT", "APPROVE", "REQUEST_CHANGES"]},
-                },
-                "required": ["repo", "pr_number", "body", "event"],
-            },
-        ),
-        Tool(
-            name="get_pr_metadata",
-            description="Fetches PR metadata (title, author, branches, labels).",
-            inputSchema={
-                "type": "object",
-                "properties": {
-                    "repo": {"type": "string"},
-                    "pr_number": {"type": "integer"},
-                },
-                "required": ["repo", "pr_number"],
-            },
-        ),
-        Tool(
-            name="semgrep_scan",
-            description="Runs semgrep static analysis on a code snippet.",
-            inputSchema={
-                "type": "object",
-                "properties": {
-                    "code": {"type": "string"},
-                    "language": {"type": "string"},
-                    "ruleset": {"type": "string", "enum": ["auto", "security", "owasp"]},
-                },
-                "required": ["code", "language"],
-            },
-        ),
-        Tool(
-            name="calculate_complexity",
-            description="Calculates cyclomatic and cognitive complexity metrics.",
-            inputSchema={
-                "type": "object",
-                "properties": {
-                    "code": {"type": "string"},
-                    "language": {"type": "string"},
-                },
-                "required": ["code", "language"],
-            },
-        ),
-        Tool(
-            name="parse_ast",
-            description="Parses code into an AST for structural analysis.",
-            inputSchema={
-                "type": "object",
-                "properties": {
-                    "code": {"type": "string"},
-                    "language": {"type": "string"},
-                },
-                "required": ["code", "language"],
-            },
-        ),
-    ]
+@server.tool(description="Fetches the full PR diff with per-file metadata.")
+async def get_pr_diff(repo: str, pr_number: int) -> dict[str, Any]:
+    """repo is in owner/name format."""
+    return await handle_get_pr_diff({"repo": repo, "pr_number": pr_number})
 
 
-@server.call_tool()
-async def call_tool(name: str, arguments: dict) -> list[TextContent]:
-    """Route tool calls to implementation functions."""
-    handlers = {
-        "get_pr_diff": handle_get_pr_diff,
-        "list_pr_files": handle_list_pr_files,
-        "post_review_comment": handle_post_review_comment,
-        "post_review_summary": handle_post_review_summary,
-        "get_pr_metadata": handle_get_pr_metadata,
-        "semgrep_scan": handle_semgrep_scan,
-        "calculate_complexity": handle_calculate_complexity,
-        "parse_ast": handle_parse_ast,
-    }
+@server.tool(description="Lists modified files with metadata.")
+async def list_pr_files(repo: str, pr_number: int) -> dict[str, Any]:
+    return await handle_list_pr_files({"repo": repo, "pr_number": pr_number})
 
-    handler = handlers.get(name)
-    if not handler:
-        return [TextContent(type="text", text=json.dumps({"error": f"Unknown tool: {name}"}))]
 
-    try:
-        result = await handler(arguments)
-        return [TextContent(type="text", text=json.dumps(result, default=str))]
-    except Exception as e:
-        return [TextContent(type="text", text=json.dumps({"error": str(e)}))]
+@server.tool(description="Posts an inline comment on a specific diff line.")
+async def post_review_comment(
+    repo: str,
+    pr_number: int,
+    body: str,
+    commit_id: str,
+    path: str,
+    line: int,
+    side: Literal["LEFT", "RIGHT"] = "RIGHT",
+) -> dict[str, Any]:
+    return await handle_post_review_comment(
+        {
+            "repo": repo,
+            "pr_number": pr_number,
+            "body": body,
+            "commit_id": commit_id,
+            "path": path,
+            "line": line,
+            "side": side,
+        }
+    )
+
+
+@server.tool(description="Posts the overall review with a verdict.")
+async def post_review_summary(
+    repo: str,
+    pr_number: int,
+    body: str,
+    event: Literal["COMMENT", "APPROVE", "REQUEST_CHANGES"] = "COMMENT",
+) -> dict[str, Any]:
+    return await handle_post_review_summary(
+        {"repo": repo, "pr_number": pr_number, "body": body, "event": event}
+    )
+
+
+@server.tool(description="Fetches PR metadata (title, author, branches, labels).")
+async def get_pr_metadata(repo: str, pr_number: int) -> dict[str, Any]:
+    return await handle_get_pr_metadata({"repo": repo, "pr_number": pr_number})
+
+
+@server.tool(description="Runs semgrep static analysis on a code snippet.")
+async def semgrep_scan(
+    code: str,
+    language: str = "python",
+    ruleset: Literal["auto", "security", "owasp"] = "auto",
+) -> dict[str, Any]:
+    return await handle_semgrep_scan({"code": code, "language": language, "ruleset": ruleset})
+
+
+@server.tool(description="Calculates cyclomatic and cognitive complexity metrics.")
+async def calculate_complexity(code: str, language: str = "python") -> dict[str, Any]:
+    return await handle_calculate_complexity({"code": code, "language": language})
+
+
+@server.tool(description="Parses code into an AST for structural analysis.")
+async def parse_ast(code: str, language: str = "python") -> dict[str, Any]:
+    return await handle_parse_ast({"code": code, "language": language})
 
 
 # ──────────────────────────────────────────────
@@ -348,7 +286,7 @@ async def handle_calculate_complexity(args: dict) -> dict:
 
     if language == "python":
         try:
-            from radon.complexity import cc_visit
+            from radon.complexity import cc_rank, cc_visit
             from radon.metrics import mi_visit
 
             blocks = cc_visit(code)
@@ -359,7 +297,7 @@ async def handle_calculate_complexity(args: dict) -> dict:
                         "name": block.name,
                         "complexity": block.complexity,
                         "line": block.lineno,
-                        "rank": block.letter,
+                        "rank": cc_rank(block.complexity),
                     }
                 )
 
@@ -475,15 +413,13 @@ async def handle_parse_ast(args: dict) -> dict:
 # ──────────────────────────────────────────────
 
 
-async def main():
-    """Run the MCP server via stdio."""
+def main() -> None:
+    """Run the MCP server over stdio: python -m app.mcp_server.server"""
     from dotenv import load_dotenv
 
     load_dotenv()
-
-    async with stdio_server() as (read_stream, write_stream):
-        await server.run(read_stream, write_stream, server.create_initialization_options())
+    server.run(transport="stdio")
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()

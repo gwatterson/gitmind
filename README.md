@@ -15,7 +15,7 @@ back to GitHub, optionally after a human has checked it in a real-time dashboard
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)](https://python.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-009688?logo=fastapi)](https://fastapi.tiangolo.com)
 [![LangGraph](https://img.shields.io/badge/LangGraph-1.x-1C3C3C)](https://langchain-ai.github.io/langgraph/)
-[![Next.js 14](https://img.shields.io/badge/Next.js-14-000000?logo=nextdotjs)](https://nextjs.org)
+[![Next.js 16](https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs)](https://nextjs.org)
 [![Gemini](https://img.shields.io/badge/Gemini_2.5_Flash-4285F4?logo=google)](https://ai.google.dev)
 
 </div>
@@ -81,7 +81,7 @@ A new commit on the same pull request supersedes the review still in progress, a
 - Standalone MCP server (stdio) exposing 8 tools: PR diff, file list, metadata, inline comment, summary review, semgrep scan, cyclomatic complexity (radon) and AST parsing
 
 ### Dashboard
-- Next.js 14 dashboard with review list, aggregate metrics, findings by category and severity, and a live rate-limit gauge
+- Next.js 16 dashboard with review list, aggregate metrics, findings by category and severity, and a live rate-limit gauge
 - Review detail page with the streamed reasoning trace, severity and category filters, and a diff viewer that annotates the changed lines
 - Human-in-the-loop actions: edit a finding, approve and post, reject and delete
 - GitHub sign-in with user menu; administrator-only actions are hidden from other users
@@ -124,7 +124,7 @@ A new commit on the same pull request supersedes the review still in progress, a
 | GitHub | PyGithub, GitHub App or personal access token, HMAC-verified webhooks |
 | Static analysis tools | radon, Python AST, semgrep (optional) via an MCP server |
 | Storage | SQLite (aiosqlite) |
-| Frontend | Next.js 14, React 18, TypeScript, Tailwind CSS |
+| Frontend | Next.js 16, React 19, TypeScript, Tailwind CSS 4 |
 | Tooling | uv, Ruff, mypy, pytest, respx, ESLint, Prettier, pre-commit, GitHub Actions, Dependabot |
 
 ---

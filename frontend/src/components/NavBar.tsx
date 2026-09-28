@@ -48,7 +48,7 @@ export function NavBar() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-14 items-center justify-between">
           <Link href="/" className="group flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-gradient-to-br from-indigo-500/20 to-violet-600/20 shadow-lg shadow-indigo-500/10 transition-all duration-300 group-hover:shadow-indigo-500/20">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-linear-to-br from-indigo-500/20 to-violet-600/20 shadow-lg shadow-indigo-500/10 transition-all duration-300 group-hover:shadow-indigo-500/20">
               <Image
                 src="/logo.svg"
                 alt="GitMind Logo"

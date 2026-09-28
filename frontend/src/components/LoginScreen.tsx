@@ -27,7 +27,7 @@ function LoginContent({ backendDown, onRetry }: { backendDown: boolean; onRetry:
 
   return (
     <div className="mx-auto mt-16 max-w-md">
-      <div className="glass-card space-y-5 p-8 text-center">
+      <div className="space-y-5 glass-card p-8 text-center">
         <div>
           <h1 className="mb-1 text-xl font-bold text-slate-100">Sign in to GitMind</h1>
           <p className="text-sm text-slate-500">
@@ -55,11 +55,11 @@ function LoginContent({ backendDown, onRetry }: { backendDown: boolean; onRetry:
         ) : null}
 
         {backendDown ? (
-          <button onClick={onRetry} className="btn-secondary w-full">
+          <button onClick={onRetry} className="w-full btn-secondary">
             Retry
           </button>
         ) : oauthConfigured ? (
-          <a href={loginUrl(next)} className="btn-primary block w-full">
+          <a href={loginUrl(next)} className="block w-full btn-primary">
             Sign in with GitHub
           </a>
         ) : null}
