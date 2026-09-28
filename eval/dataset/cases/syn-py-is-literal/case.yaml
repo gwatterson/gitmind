@@ -1,0 +1,13 @@
+id: syn-py-is-literal
+split: test
+source: synthetic
+language: python
+title: Restrict bulk delete to administrators
+description: 'Identity comparison with a string literal instead of equality: the check is unreliable.'
+expected_findings:
+- file: app/admin/bulk.py
+  anchor: 'if user.role is "admin":'
+  category: quality
+  severity_min: medium
+  description: '''is'' used to compare strings'
+must_not_flag: []

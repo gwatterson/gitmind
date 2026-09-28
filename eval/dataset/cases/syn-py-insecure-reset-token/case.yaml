@@ -1,0 +1,17 @@
+id: syn-py-insecure-reset-token
+split: dev
+source: synthetic
+language: python
+title: Password reset tokens
+description: Reset tokens are generated with the random module, which is predictable.
+smoke: true
+expected_findings:
+- file: app/services/password_reset.py
+  anchor: token = "".join(random.choice(
+  category: security
+  cwe:
+  - CWE-330
+  - CWE-338
+  severity_min: medium
+  description: Security token generated with a non-cryptographic PRNG
+must_not_flag: []

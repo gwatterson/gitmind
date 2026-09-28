@@ -1,0 +1,21 @@
+id: syn-py-sqli-search
+split: dev
+source: synthetic
+language: python
+title: Add user search to the repository
+description: Search builds the SQL query with an f-string from the search term (SQL injection). The new
+  count query is parameterized and safe.
+smoke: true
+expected_findings:
+- file: app/repositories/users.py
+  anchor: query = f"SELECT id, email, name FROM users WHERE name LIKE
+  span: 1
+  category: security
+  cwe:
+  - CWE-89
+  severity_min: high
+  description: User-controlled search term interpolated into the SQL query
+must_not_flag:
+- file: app/repositories/users.py
+  anchor: SELECT COUNT(*) FROM users WHERE active = ?
+  reason: parameterized query with a constant

@@ -1,0 +1,13 @@
+id: syn-ts-pagination-off-by-one
+split: dev
+source: synthetic
+language: typescript
+title: Page count for the admin tables
+description: 'Math.floor drops the last partial page: 45 items with 20 per page gives 2 pages.'
+expected_findings:
+- file: src/admin/paging.ts
+  anchor: const totalPages = Math.floor(totalItems / pageSize);
+  category: quality
+  severity_min: medium
+  description: 'Off-by-one: the last partial page is lost'
+must_not_flag: []

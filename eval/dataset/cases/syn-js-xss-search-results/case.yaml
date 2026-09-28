@@ -1,0 +1,20 @@
+id: syn-js-xss-search-results
+split: dev
+source: synthetic
+language: javascript
+title: Show a message when the search has no results
+description: The search query from the URL is written into innerHTML (DOM XSS). The result titles are
+  set with textContent and are safe.
+smoke: true
+expected_findings:
+- file: public/js/search.js
+  anchor: resultsEl.innerHTML = `<p class="empty">No results for
+  category: security
+  cwe:
+  - CWE-79
+  severity_min: medium
+  description: URL parameter written into innerHTML
+must_not_flag:
+- file: public/js/search.js
+  anchor: item.textContent = result.title;
+  reason: textContent does not parse HTML

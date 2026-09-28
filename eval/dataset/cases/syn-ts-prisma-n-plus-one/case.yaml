@@ -1,0 +1,14 @@
+id: syn-ts-prisma-n-plus-one
+split: dev
+source: synthetic
+language: typescript
+title: Include author names in the posts feed
+description: One query per post to load its author, inside the loop (N+1).
+smoke: true
+expected_findings:
+- file: src/feed/posts.ts
+  anchor: 'const author = await prisma.user.findUnique({ where: { id: post.authorId } });'
+  category: performance
+  severity_min: medium
+  description: A query per post inside the loop (N+1)
+must_not_flag: []

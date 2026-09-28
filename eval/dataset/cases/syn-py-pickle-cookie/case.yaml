@@ -1,0 +1,16 @@
+id: syn-py-pickle-cookie
+split: test
+source: synthetic
+language: python
+title: Remember dashboard preferences in a cookie
+description: Preferences are deserialized with pickle from a cookie controlled by the client (remote code
+  execution).
+expected_findings:
+- file: app/routes/dashboard.py
+  anchor: return pickle.loads(base64.b64decode(raw))
+  category: security
+  cwe:
+  - CWE-502
+  severity_min: high
+  description: pickle.loads on a client-controlled cookie
+must_not_flag: []

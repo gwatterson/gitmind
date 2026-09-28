@@ -1,0 +1,15 @@
+id: syn-py-swallowed-exception
+split: dev
+source: synthetic
+language: python
+title: Retry failed refunds
+description: Every exception of the payment call is swallowed and the refund is reported as done.
+smoke: true
+expected_findings:
+- file: app/payments/refunds.py
+  anchor: 'except Exception:'
+  span: 1
+  category: quality
+  severity_min: medium
+  description: Exception swallowed and success returned anyway
+must_not_flag: []

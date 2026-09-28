@@ -1,0 +1,13 @@
+id: syn-py-quadratic-dedup
+split: dev
+source: synthetic
+language: python
+title: Deduplicate contacts before the newsletter send
+description: 'Membership test on a growing list inside the loop: quadratic on large contact lists.'
+expected_findings:
+- file: app/newsletter/recipients.py
+  anchor: 'if email in seen_emails:'
+  category: performance
+  severity_min: low
+  description: 'Linear search in a list inside a loop: use a set'
+must_not_flag: []

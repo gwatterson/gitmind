@@ -1,0 +1,19 @@
+id: syn-py-cmdi-thumbnail
+split: test
+source: synthetic
+language: python
+title: Generate thumbnails for uploaded images
+description: The thumbnail command is built as a shell string from the uploaded file name (OS command
+  injection). The identify call uses an argument list and is safe.
+expected_findings:
+- file: app/services/thumbnails.py
+  anchor: subprocess.run(f"convert {source}
+  category: security
+  cwe:
+  - CWE-78
+  severity_min: high
+  description: Shell command built from the uploaded file name
+must_not_flag:
+- file: app/services/thumbnails.py
+  anchor: '["identify", "-format", "%wx%h", str(path)]'
+  reason: argument list without a shell

@@ -1,0 +1,13 @@
+id: syn-ts-empty-catch
+split: test
+source: synthetic
+language: typescript
+title: Fetch notifications for the header badge
+description: Every error is swallowed by an empty catch and turned into an empty list.
+expected_findings:
+- file: src/notifications/client.ts
+  anchor: '} catch (e) {}'
+  category: quality
+  severity_min: low
+  description: Errors swallowed by an empty catch
+must_not_flag: []

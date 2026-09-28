@@ -1,0 +1,13 @@
+id: syn-py-mutable-default
+split: test
+source: synthetic
+language: python
+title: Helper to tag articles
+description: 'Mutable default argument: the same list is shared across calls.'
+expected_findings:
+- file: app/content/tags.py
+  anchor: 'def add_tags(new_tags: list[str], existing: list[str] = []) -> list[str]:'
+  category: quality
+  severity_min: medium
+  description: Mutable default argument shared between calls
+must_not_flag: []

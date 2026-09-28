@@ -1,0 +1,20 @@
+id: syn-py-path-traversal-download
+split: dev
+source: synthetic
+language: python
+title: Allow downloading any archived report
+description: The new route joins the user-supplied path to the reports directory and sends the file (path
+  traversal with ../). The existing route uses send_from_directory.
+smoke: true
+expected_findings:
+- file: app/routes/reports.py
+  anchor: path = os.path.join(REPORTS_DIR, "archive", name)
+  span: 3
+  category: security
+  cwe:
+  - CWE-22
+  - CWE-23
+  - CWE-73
+  severity_min: high
+  description: User-controlled path joined to the reports directory and served
+must_not_flag: []

@@ -1,0 +1,15 @@
+id: syn-py-n-plus-one-orders
+split: dev
+source: synthetic
+language: python
+title: Show customer names in the recent orders report
+description: One query per order to load its customer (N+1 queries) instead of a join or selectinload.
+smoke: true
+expected_findings:
+- file: app/reports/orders.py
+  anchor: customer = session.scalars(
+  span: 2
+  category: performance
+  severity_min: medium
+  description: A query per order inside the loop (N+1)
+must_not_flag: []

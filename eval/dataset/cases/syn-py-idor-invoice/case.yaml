@@ -1,0 +1,21 @@
+id: syn-py-idor-invoice
+split: test
+source: synthetic
+language: python
+title: Endpoint to fetch a single invoice
+description: The new endpoint loads the invoice by id without checking that it belongs to the current
+  user (insecure direct object reference).
+expected_findings:
+- file: app/api/invoices.py
+  anchor: invoice = session.get(Invoice, invoice_id)
+  span: 3
+  category: security
+  cwe:
+  - CWE-639
+  - CWE-862
+  - CWE-285
+  - CWE-284
+  - CWE-863
+  severity_min: high
+  description: Invoice returned without an ownership check
+must_not_flag: []

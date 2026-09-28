@@ -1,0 +1,12 @@
+id: oss-httpx-3690
+split: dev
+source: oss
+language: python
+title: Add `.wait_ready` to parser for clean server disconnects
+description: Merged pull request reviewed by the maintainers.
+origin:
+  repo: encode/httpx
+  url: https://github.com/encode/httpx/pull/3690
+  license: BSD-3-Clause
+  commit: 350221558d4f079fc4ab3673d81a4bc730fbb9c3
+must_not_flag: []

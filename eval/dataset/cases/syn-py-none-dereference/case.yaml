@@ -1,0 +1,13 @@
+id: syn-py-none-dereference
+split: dev
+source: synthetic
+language: python
+title: Login with email and password
+description: The user lookup can return None, which is dereferenced without a check.
+expected_findings:
+- file: app/auth/login.py
+  anchor: 'if bcrypt.checkpw(password.encode(), user.password_hash):'
+  category: quality
+  severity_min: medium
+  description: Possible None dereference when the email is unknown
+must_not_flag: []

@@ -1,0 +1,13 @@
+id: oss-hono-5376
+split: dev
+source: oss
+language: typescript
+title: 'fix(accepts): match media types and language tags case-insensitively'
+description: Merged pull request reviewed by the maintainers.
+smoke: true
+origin:
+  repo: honojs/hono
+  url: https://github.com/honojs/hono/pull/5376
+  license: MIT
+  commit: 79e50aa8a38bbe27f7617cf59c9aebbf57864d9a
+must_not_flag: []

@@ -1,0 +1,15 @@
+id: syn-ts-ssrf-link-preview
+split: dev
+source: synthetic
+language: typescript
+title: Link previews in chat messages
+description: The server fetches any URL sent by the client to build a preview (SSRF).
+expected_findings:
+- file: src/routes/preview.ts
+  anchor: 'const response = await fetch(url, { redirect: "follow" });'
+  category: security
+  cwe:
+  - CWE-918
+  severity_min: medium
+  description: Server-side fetch of a user-supplied URL
+must_not_flag: []

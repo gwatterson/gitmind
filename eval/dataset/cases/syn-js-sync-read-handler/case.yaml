@@ -1,0 +1,13 @@
+id: syn-js-sync-read-handler
+split: test
+source: synthetic
+language: javascript
+title: Render the invoice email template
+description: The template is read synchronously from disk on every request, blocking the event loop.
+expected_findings:
+- file: src/routes/invoices.js
+  anchor: const template = fs.readFileSync(TEMPLATE, "utf8");
+  category: performance
+  severity_min: low
+  description: Synchronous file read on every request
+must_not_flag: []

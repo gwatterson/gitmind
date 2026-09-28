@@ -1,0 +1,12 @@
+id: oss-ky-854
+split: dev
+source: oss
+language: typescript
+title: Make `json()` throw on empty responses
+description: Merged pull request reviewed by the maintainers.
+origin:
+  repo: sindresorhus/ky
+  url: https://github.com/sindresorhus/ky/pull/854
+  license: MIT
+  commit: 1af0fabd89a6b308a21c600087a6c782b99fc81e
+must_not_flag: []

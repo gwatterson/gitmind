@@ -1,0 +1,12 @@
+id: oss-httpx-3670
+split: test
+source: oss
+language: python
+title: Update FileStream API
+description: Merged pull request reviewed by the maintainers.
+origin:
+  repo: encode/httpx
+  url: https://github.com/encode/httpx/pull/3670
+  license: BSD-3-Clause
+  commit: 6ee7a36f3462107f618712c6ba198662b3b2c168
+must_not_flag: []

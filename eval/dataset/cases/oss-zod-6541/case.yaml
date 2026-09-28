@@ -1,0 +1,12 @@
+id: oss-zod-6541
+split: test
+source: oss
+language: typescript
+title: Rename the JSON Schema `process` helper so bundler polyfills cannot collide
+description: Merged pull request reviewed by the maintainers.
+origin:
+  repo: colinhacks/zod
+  url: https://github.com/colinhacks/zod/pull/6541
+  license: MIT
+  commit: a906e585c1439fc88aa386b737ca90d163732582
+must_not_flag: []

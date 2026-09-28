@@ -1,0 +1,12 @@
+id: oss-click-3818
+split: test
+source: oss
+language: python
+title: Fix race condition on `KeyboardInterrupt` in `Command.main()`
+description: Merged pull request reviewed by the maintainers.
+origin:
+  repo: pallets/click
+  url: https://github.com/pallets/click/pull/3818
+  license: BSD-3-Clause
+  commit: fc518e41218b447e875fe27244ae692c269bcb77
+must_not_flag: []

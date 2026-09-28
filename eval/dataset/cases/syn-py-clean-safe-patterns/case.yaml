@@ -1,0 +1,23 @@
+id: syn-py-clean-safe-patterns
+split: dev
+source: synthetic
+language: python
+title: Order export job
+description: 'Clean change with patterns that resemble vulnerabilities: parameterized SQL, subprocess
+  with an argument list, safe_load, secrets for tokens, a validated path.'
+smoke: true
+expected_findings: []
+must_not_flag:
+- file: app/jobs/export_orders.py
+  anchor: '"SELECT id, total, created_at FROM orders WHERE customer_id = ?'
+  reason: parameterized query
+- file: app/jobs/export_orders.py
+  anchor: subprocess.run(["gzip", "--force", str(target)], check=True)
+  reason: argument list, no shell
+- file: app/jobs/export_orders.py
+  anchor: return yaml.safe_load(f) or {}
+  reason: safe loader
+- file: app/jobs/export_orders.py
+  anchor: target = (EXPORT_DIR / name).resolve()
+  span: 2
+  reason: path is validated on the next lines

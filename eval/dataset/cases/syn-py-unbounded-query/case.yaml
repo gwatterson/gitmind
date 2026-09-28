@@ -1,0 +1,14 @@
+id: syn-py-unbounded-query
+split: test
+source: synthetic
+language: python
+title: Paginate the events API
+description: Every event is loaded from the database and the page is sliced in Python.
+expected_findings:
+- file: app/api/events.py
+  anchor: events = session.query(Event).order_by(Event.created_at.desc()).all()
+  span: 2
+  category: performance
+  severity_min: medium
+  description: Whole table loaded to serve one page
+must_not_flag: []

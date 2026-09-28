@@ -1,0 +1,9 @@
+id: syn-py-clean-auth-helpers
+split: test
+source: synthetic
+language: python
+title: Session helpers for the admin area
+description: 'Clean change: constant-time comparison, bcrypt hashing, secure cookie flags and an explicit
+  ownership check.'
+expected_findings: []
+must_not_flag: []

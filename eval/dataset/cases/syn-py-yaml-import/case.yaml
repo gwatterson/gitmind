@@ -1,0 +1,21 @@
+id: syn-py-yaml-import
+split: dev
+source: synthetic
+language: python
+title: Import project settings from a YAML file
+description: Uploaded YAML is parsed with the full yaml.Loader, which can instantiate arbitrary Python
+  objects. The defaults file is read with safe_load.
+smoke: true
+expected_findings:
+- file: app/services/project_import.py
+  anchor: settings.update(yaml.load(uploaded, Loader=yaml.Loader))
+  category: security
+  cwe:
+  - CWE-502
+  - CWE-20
+  severity_min: high
+  description: Unsafe YAML loader on user-uploaded content
+must_not_flag:
+- file: app/services/project_import.py
+  anchor: return yaml.safe_load(f)
+  reason: safe loader on a bundled file

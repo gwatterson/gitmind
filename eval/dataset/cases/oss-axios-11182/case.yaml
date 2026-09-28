@@ -1,0 +1,12 @@
+id: oss-axios-11182
+split: dev
+source: oss
+language: javascript
+title: 'fix(http): normalize the configured proxy protocol'
+description: Merged pull request reviewed by the maintainers.
+origin:
+  repo: axios/axios
+  url: https://github.com/axios/axios/pull/11182
+  license: MIT
+  commit: 4a88f1396a1cadc122de3b9180025c36d76f76ad
+must_not_flag: []

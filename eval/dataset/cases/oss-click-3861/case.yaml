@@ -1,0 +1,12 @@
+id: oss-click-3861
+split: test
+source: oss
+language: python
+title: Move common `help` argument from `Option` and `Argument` to `Parameter`
+description: Merged pull request reviewed by the maintainers.
+origin:
+  repo: pallets/click
+  url: https://github.com/pallets/click/pull/3861
+  license: BSD-3-Clause
+  commit: 405a5481e4dbd5022799993d787bd8446137d9a3
+must_not_flag: []

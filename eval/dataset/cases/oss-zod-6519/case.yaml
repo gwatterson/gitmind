@@ -1,0 +1,12 @@
+id: oss-zod-6519
+split: dev
+source: oss
+language: typescript
+title: 'perf(v4): build the safeParse error on first read'
+description: Merged pull request reviewed by the maintainers.
+origin:
+  repo: colinhacks/zod
+  url: https://github.com/colinhacks/zod/pull/6519
+  license: MIT
+  commit: 1e4436805eca7c2fee4bedc5ccd0fbe74936c09c
+must_not_flag: []

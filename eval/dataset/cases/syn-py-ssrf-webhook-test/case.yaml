@@ -1,0 +1,16 @@
+id: syn-py-ssrf-webhook-test
+split: test
+source: synthetic
+language: python
+title: Add a button to test webhook endpoints
+description: 'The endpoint fetches any URL chosen by the user from the server (SSRF: internal services
+  and cloud metadata are reachable).'
+expected_findings:
+- file: app/api/webhooks.py
+  anchor: response = await client.post(body.url
+  category: security
+  cwe:
+  - CWE-918
+  severity_min: medium
+  description: Server-side request to a URL chosen by the user
+must_not_flag: []

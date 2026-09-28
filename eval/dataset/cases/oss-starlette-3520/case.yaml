@@ -1,0 +1,12 @@
+id: oss-starlette-3520
+split: dev
+source: oss
+language: python
+title: Add provider parameters to OpenTelemetryMiddleware
+description: Merged pull request reviewed by the maintainers.
+origin:
+  repo: encode/starlette
+  url: https://github.com/Kludex/starlette/pull/3520
+  license: BSD-3-Clause
+  commit: ed992fdcead99aa9271d1597d285d0dc4bf936b3
+must_not_flag: []

@@ -1,0 +1,14 @@
+id: syn-ts-missing-await
+split: test
+source: synthetic
+language: typescript
+title: Save the audit trail when an order is cancelled
+description: 'The audit write is not awaited: failures are lost and the response is sent before the write
+  completes.'
+expected_findings:
+- file: src/orders/cancel.ts
+  anchor: 'writeAudit({ action: "order.cancel", orderId, userId });'
+  category: quality
+  severity_min: low
+  description: Promise not awaited (floating promise)
+must_not_flag: []
