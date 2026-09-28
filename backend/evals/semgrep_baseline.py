@@ -144,8 +144,8 @@ def run_semgrep(
 
     created = datetime.now(UTC)
     meta = {
-        "id": f"{created:%Y%m%d-%H%M%S}-semgrep",
-        "label": "semgrep",
+        "id": f"{created:%Y%m%d-%H%M%S}-semgrep-{split}",
+        "label": f"semgrep-{split}",
         "created_at": created.isoformat(timespec="seconds"),
         "pipeline": "semgrep",
         "provider": "semgrep",
