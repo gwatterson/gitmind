@@ -1,0 +1,9 @@
+# Default gitleaks rules, plus an allowlist for the evaluation data: the dataset
+# contains deliberately vulnerable code with fake credentials (hardcoded secret
+# cases), and the recorded model answers and results quote it.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Evaluation dataset, recorded LLM answers and results"
+paths = ['''^eval/(dataset|cache|results)/''']
