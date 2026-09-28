@@ -68,8 +68,13 @@ async def test_publish_posts_inline_comments_and_summary(monkeypatch):
     result = await publisher.publish_review(review["id"], human_approved=False)
 
     assert result.posted is True
-    assert result.comments_posted == 1  # the finding without a line is skipped
-    pr.create_review.assert_called_once_with(body="All good", event="COMMENT")
+    assert result.comments_posted == 1
+    # The finding without a diff line is listed in the summary review instead
+    body = pr.create_review.call_args.kwargs["body"]
+    assert body.startswith("All good")
+    assert "### Findings outside the changed lines" in body
+    assert "`b.py`" in body and "no line" in body
+    assert pr.create_review.call_args.kwargs["event"] == "COMMENT"
     findings = await crud.get_findings(review["id"])
     posted = [f for f in findings if f["posted_to_github"]]
     assert len(posted) == 1 and posted[0]["github_comment_id"] == "99"
@@ -85,7 +90,7 @@ async def test_failed_inline_comment_is_reported_not_fatal(monkeypatch):
 
     assert result.posted is True
     assert result.comments_failed == 1
-    assert result.warning and "could not be placed" in result.warning
+    assert result.warning and "rejected by GitHub" in result.warning
 
 
 async def test_missing_github_client_is_a_warning(monkeypatch):
@@ -120,3 +125,18 @@ async def test_superseded_review_is_not_published(monkeypatch):
 
     assert result.posted is False
     pr.create_review.assert_not_called()
+
+
+def test_comment_shows_cwe_and_confidence():
+    body = publisher.format_finding_comment(
+        {
+            "category": "security",
+            "severity": "high",
+            "cwe": "CWE-89",
+            "confidence": 0.85,
+            "message": "SQL injection",
+            "suggestion": "Use parameters",
+        }
+    )
+    assert body.startswith("**[SECURITY - HIGH | CWE-89 | confidence 85%]**")
+    assert "Use parameters" in body

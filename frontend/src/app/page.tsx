@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useAuth } from "@/components/AuthProvider";
 import { MetricsDashboard } from "@/components/MetricsDashboard";
 import { PRList } from "@/components/PRList";
-import { RateLimitGauge } from "@/components/RateLimitGauge";
+import { ModelSelector } from "@/components/ModelSelector";
 import { clearArchive, errorMessage, getReviews, triggerManualReview } from "@/lib/api";
 import type { Review } from "@/lib/types";
 
@@ -114,7 +114,7 @@ export default function DashboardPage() {
 
         {/* Sidebar (1/3 width) */}
         <div className="space-y-4">
-          <RateLimitGauge />
+          <ModelSelector />
 
           {/* Manual trigger */}
           <div className="glass-card p-4">

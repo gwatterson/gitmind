@@ -67,9 +67,10 @@ export function DiffViewer({
   findings: Finding[];
 }) {
   const lines = parsePatch(patch);
+  const fileFindings = findings.filter((f) => f.file === filename);
   const findingsByLine = new Map<number, Finding[]>();
-  for (const f of findings) {
-    if (f.file === filename && f.line > 0) {
+  for (const f of fileFindings) {
+    if (f.line > 0) {
       const existing = findingsByLine.get(f.line) || [];
       existing.push(f);
       findingsByLine.set(f.line, existing);
@@ -102,9 +103,9 @@ export function DiffViewer({
           />
         </svg>
         <span className="truncate mono text-sm text-slate-300">{filename}</span>
-        {findings.length > 0 && (
+        {fileFindings.length > 0 && (
           <span className="ml-auto badge badge-high">
-            {findings.length} finding{findings.length !== 1 ? "s" : ""}
+            {fileFindings.length} finding{fileFindings.length !== 1 ? "s" : ""}
           </span>
         )}
       </div>

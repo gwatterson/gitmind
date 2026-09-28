@@ -249,3 +249,17 @@ async def test_unhandled_errors_return_an_opaque_reference(monkeypatch):
     assert response.status_code == 500
     assert "db secret" not in response.text
     assert "Reference id" in response.json()["detail"]
+
+
+@pytest.mark.parametrize("method", ["GET", "POST", "PUT", "PATCH", "DELETE"])
+async def test_cors_preflight_allows_the_methods_used_by_the_dashboard(client, method):
+    response = await client.options(
+        "/api/llm",
+        headers={
+            "Origin": "http://localhost:3000",
+            "Access-Control-Request-Method": method,
+            "Access-Control-Request-Headers": "content-type,x-requested-with",
+        },
+    )
+    assert response.status_code == 200
+    assert method in response.headers["access-control-allow-methods"]

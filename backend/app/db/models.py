@@ -78,6 +78,13 @@ CREATE TABLE IF NOT EXISTS api_keys (
     revoked_at DATETIME
 );
 
+-- Runtime settings changed from the dashboard (e.g. the LLM provider)
+CREATE TABLE IF NOT EXISTS app_settings (
+    key TEXT PRIMARY KEY,
+    value TEXT NOT NULL,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Index for faster lookups
 CREATE INDEX IF NOT EXISTS idx_findings_review_id ON findings(review_id);
 CREATE INDEX IF NOT EXISTS idx_review_events_review_id ON review_events(review_id);
@@ -96,18 +103,37 @@ async def get_db() -> aiosqlite.Connection:
     return db
 
 
-# Idempotent data fixes applied at startup (a real migration tool arrives with PLAN.md F4.2)
+# Columns added after the first release: (table, column, SQL type).
+# Applied with ALTER TABLE when missing (a real migration tool arrives with PLAN.md F4.2).
+ADDED_COLUMNS = [
+    ("findings", "confidence", "REAL"),
+    ("findings", "cwe", "TEXT"),
+    ("findings", "evidence", "TEXT"),
+    ("reviews", "llm_provider", "TEXT"),
+    ("reviews", "llm_model", "TEXT"),
+]
+
+# Idempotent data fixes applied at startup
 DATA_MIGRATIONS = [
     # completed_at used to be stored as the literal text "datetime('now')"
     "UPDATE reviews SET completed_at = NULL WHERE completed_at LIKE 'datetime(%'",
 ]
 
 
+async def _add_missing_columns(db: aiosqlite.Connection) -> None:
+    for table, column, sql_type in ADDED_COLUMNS:
+        cursor = await db.execute(f"PRAGMA table_info({table})")
+        existing = {row["name"] for row in await cursor.fetchall()}
+        if column not in existing:
+            await db.execute(f"ALTER TABLE {table} ADD COLUMN {column} {sql_type}")
+
+
 async def init_db() -> None:
-    """Initialize the database schema and apply pending data fixes."""
+    """Initialize the database schema and apply pending migrations."""
     db = await get_db()
     try:
         await db.executescript(SCHEMA_SQL)
+        await _add_missing_columns(db)
         for statement in DATA_MIGRATIONS:
             await db.execute(statement)
         await db.commit()

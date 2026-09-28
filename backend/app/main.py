@@ -12,6 +12,7 @@ from slowapi.middleware import SlowAPIMiddleware
 
 from app.api.api_keys import router as api_keys_router
 from app.api.auth import router as auth_router
+from app.api.llm import router as llm_router
 from app.api.reviews import router as reviews_router
 from app.api.stream import router as stream_router
 from app.api.webhooks import router as webhooks_router
@@ -21,6 +22,7 @@ from app.core.logging import configure_logging
 from app.core.ratelimit import limiter
 from app.core.security import CSRF_HEADER
 from app.db.models import init_db
+from app.llm import factory
 
 configure_logging(settings.LOG_LEVEL, json_logs=settings.is_production)
 log = structlog.get_logger()
@@ -39,13 +41,17 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     log.info(
         "app_starting",
         environment=settings.ENVIRONMENT,
-        model=settings.GEMINI_MODEL,
         auth_disabled=settings.AUTH_DISABLED,
     )
     if settings.AUTH_DISABLED:
         log.warning("auth_disabled", message="Every request is treated as an administrator")
     await init_db()
-    log.info("database_initialized")
+    await factory.load_runtime_provider()
+    log.info(
+        "database_initialized",
+        llm_provider=factory.provider_name(),
+        llm_model=factory.model_name(),
+    )
     yield
     log.info("app_shutting_down")
 
@@ -86,12 +92,13 @@ def create_app() -> FastAPI:
         CORSMiddleware,
         allow_origins=settings.cors_origins_list,
         allow_credentials=True,
-        allow_methods=["GET", "POST", "PATCH", "DELETE"],
+        allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE"],
         allow_headers=["Content-Type", "Authorization", CSRF_HEADER],
     )
 
     app.include_router(auth_router)
     app.include_router(api_keys_router)
+    app.include_router(llm_router)
     app.include_router(webhooks_router)
     app.include_router(reviews_router)
     app.include_router(stream_router)

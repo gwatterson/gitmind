@@ -1,78 +1,28 @@
-"""Tests for the LangGraph review pipeline."""
+"""Synthesis: deduplication, ordering, verdict and scope notes."""
 
-from unittest.mock import AsyncMock
-
-import pytest
-from langchain_core.messages import AIMessage
-
-from app.graph import supervisor
 from app.graph.state import Finding
-from app.graph.synthesis import deduplicate_findings, determine_verdict, sort_findings
-
-# ──────────────────────────────────────────────
-# Synthesis / Verdict Tests
-# ──────────────────────────────────────────────
-
-
-class _FakeLLM:
-    """Stands in for ChatGoogleGenerativeAI and returns a canned reply."""
-
-    reply = ""
-
-    def __init__(self, **kwargs):
-        pass
-
-    async def ainvoke(self, messages):
-        return AIMessage(content=self.reply)
+from app.graph.synthesis import (
+    deduplicate_findings,
+    determine_verdict,
+    fallback_summary,
+    scope_notes,
+    sort_findings,
+)
 
 
-def _supervisor_state(filenames):
-    files = [
-        {"filename": name, "language": "python", "patch": "+x = 1", "additions": 1, "deletions": 0}
-        for name in filenames
-    ]
-    return {"review_id": "r1", "repo": "o/r", "pr_number": 1, "files": files}
-
-
-@pytest.fixture
-def fake_supervisor_llm(monkeypatch):
-    monkeypatch.setattr(supervisor, "ChatGoogleGenerativeAI", _FakeLLM)
-    monkeypatch.setattr(supervisor.rate_limiter, "acquire", AsyncMock())
-    monkeypatch.setattr(supervisor.crud, "create_event", AsyncMock())
-    return _FakeLLM
-
-
-async def test_supervisor_parses_json_code_block(fake_supervisor_llm):
-    """The supervisor extracts assignments from a fenced JSON reply."""
-    fake_supervisor_llm.reply = (
-        "Here is the plan:\n```json\n"
-        '{"security_files": ["a.py", "b.py"], "quality_files": ["a.py"], '
-        '"performance_files": ["b.py"], "reasoning": "ok"}\n```'
-    )
-
-    result = await supervisor.supervisor_node(_supervisor_state(["a.py", "b.py"]))
-
-    assert result["security_files"] == ["a.py", "b.py"]
-    assert result["quality_files"] == ["a.py"]
-    assert result["performance_files"] == ["b.py"]
-
-
-async def test_supervisor_falls_back_to_all_agents_on_invalid_json(fake_supervisor_llm):
-    """An unparsable reply sends every file to every agent."""
-    fake_supervisor_llm.reply = "I cannot answer in JSON, sorry."
-
-    result = await supervisor.supervisor_node(_supervisor_state(["a.py", "b.py"]))
-
-    for key in ("security_files", "quality_files", "performance_files"):
-        assert result[key] == ["a.py", "b.py"]
-
-
-async def test_supervisor_with_no_files_skips_llm(fake_supervisor_llm):
-    """A PR without files completes without calling the LLM."""
-    result = await supervisor.supervisor_node(_supervisor_state([]))
-
-    assert result["security_files"] == []
-    supervisor.rate_limiter.acquire.assert_not_called()
+def _finding(**overrides) -> Finding:
+    base = {
+        "file": "app.py",
+        "line": 10,
+        "severity": "medium",
+        "category": "quality",
+        "rule_id": "rule",
+        "message": "Something is wrong",
+        "suggestion": "",
+        "agent": "quality",
+    }
+    base.update(overrides)
+    return Finding(**base)  # type: ignore[typeddict-item]
 
 
 def test_synthesis_deduplication():
@@ -234,15 +184,70 @@ def test_sort_findings():
     assert severities == ["critical", "high", "medium", "low"]
 
 
-async def test_supervisor_always_sends_every_file_to_security(fake_supervisor_llm):
-    """Security coverage does not depend on the model, and invented paths are dropped."""
-    fake_supervisor_llm.reply = (
-        '{"security_files": ["a.py"], "quality_files": ["b.py", "ghost.py"], '
-        '"performance_files": []}'
+def test_findings_on_nearby_lines_with_similar_messages_are_merged():
+    findings = [
+        _finding(
+            line=10,
+            severity="medium",
+            rule_id="sql-string",
+            category="security",
+            message="User input is concatenated into the SQL query",
+        ),
+        _finding(
+            line=11,
+            severity="high",
+            rule_id="sql-injection",
+            category="security",
+            message="User input concatenated into SQL query allows injection",
+        ),
+    ]
+    deduped = deduplicate_findings(findings)
+    assert len(deduped) == 1
+    assert deduped[0]["severity"] == "high"  # the most severe one is kept
+
+
+def test_different_problems_close_together_are_kept():
+    findings = [
+        _finding(line=10, rule_id="n-plus-1", message="Query inside a loop"),
+        _finding(line=11, rule_id="bare-except", message="Exception swallowed silently"),
+    ]
+    assert len(deduplicate_findings(findings)) == 2
+
+
+def test_same_rule_far_apart_is_kept():
+    findings = [_finding(line=10), _finding(line=40)]
+    assert len(deduplicate_findings(findings)) == 2
+
+
+def test_unsure_high_finding_does_not_block_the_pr():
+    unsure = [_finding(severity="high", confidence=0.3)]
+    sure = [_finding(severity="high", confidence=0.9)]
+    assert determine_verdict(unsure, min_confidence=0.6) == "comment"
+    assert determine_verdict(sure, min_confidence=0.6) == "request_changes"
+
+
+def test_findings_without_confidence_are_treated_as_certain():
+    assert (
+        determine_verdict([_finding(severity="critical")], min_confidence=0.6) == "request_changes"
     )
 
-    result = await supervisor.supervisor_node(_supervisor_state(["a.py", "b.py"]))
 
-    assert result["security_files"] == ["a.py", "b.py"]
-    assert result["quality_files"] == ["b.py"]
-    assert result["performance_files"] == []
+def test_scope_notes_list_skipped_files_and_failed_agents():
+    state = {"skipped_files": [{"filename": "package-lock.json", "reason": "excluded"}]}
+    notes = scope_notes(state, ["performance"])  # type: ignore[arg-type]
+    assert "Incomplete review" in notes and "performance" in notes
+    assert "`package-lock.json`: excluded" in notes
+
+
+def test_scope_notes_empty_when_everything_was_reviewed():
+    assert scope_notes({}, []) == ""  # type: ignore[arg-type]
+
+
+def test_fallback_summary_is_markdown_without_the_llm():
+    summary = fallback_summary(
+        [_finding(severity="high", line=3, message="Bad thing"), _finding(severity="low")],
+        "request_changes",
+    )
+    assert summary.startswith("### Overall assessment")
+    assert "`app.py:3` Bad thing" in summary
+    assert "- High: 1" in summary and "- Low: 1" in summary

@@ -21,6 +21,19 @@ class Settings(BaseSettings):
     GEMINI_API_KEY: SecretStr = SecretStr("")
     GEMINI_MODEL: str = "gemini-2.5-flash"
 
+    # LLM provider: "gemini" (Google API) or "ollama" (local model, no quota)
+    LLM_PROVIDER: Literal["gemini", "ollama"] = "gemini"
+    OLLAMA_BASE_URL: str = "http://localhost:11434"
+    OLLAMA_MODEL: str = "qwen2.5-coder:7b"
+    OLLAMA_NUM_CTX: int = 16384  # context window requested from Ollama (its default is small)
+
+    # LLM calls
+    LLM_TIMEOUT_SECONDS: float = 180.0
+    LLM_MAX_ATTEMPTS: int = 3  # transient errors and invalid structured output are retried
+    LLM_RETRY_WAIT_SECONDS: float = 2.0  # base of the exponential backoff
+    LLM_MAX_CONCURRENCY: int = 3  # parallel LLM calls per agent
+    LLM_INPUT_TOKEN_BUDGET: int = 24_000  # max estimated tokens of diff per agent call
+
     # LLM rate limiter (Tier 1 with 20% safety margin)
     RATE_LIMIT_RPM_MAX: int = 120  # 80% of 150 RPM
     RATE_LIMIT_RPD_MAX: int = 1200  # 80% of 1500 RPD
@@ -68,6 +81,14 @@ class Settings(BaseSettings):
     # comments unless this is enabled AND a human approved the review (HITL).
     ALLOW_BOT_APPROVE: bool = False
 
+    # Review scope: bigger pull requests are reviewed partially, and the summary says so
+    MAX_REVIEW_FILES: int = 100
+    MAX_REVIEW_PATCH_CHARS: int = 400_000
+    REVIEW_EXCLUDE_PATTERNS: str = ""  # extra comma-separated globs, e.g. "docs/*,*.md"
+
+    # Findings below this confidence cannot block a PR on their own
+    VERDICT_MIN_CONFIDENCE: float = 0.6
+
     # App
     CORS_ORIGINS: str = "http://localhost:3000"
     LOG_LEVEL: str = "INFO"
@@ -77,6 +98,10 @@ class Settings(BaseSettings):
     @property
     def is_production(self) -> bool:
         return self.ENVIRONMENT == "production"
+
+    @property
+    def review_exclude_patterns(self) -> list[str]:
+        return _split_csv(self.REVIEW_EXCLUDE_PATTERNS)
 
     @property
     def cors_origins_list(self) -> list[str]:

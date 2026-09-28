@@ -10,6 +10,7 @@ import type {
   AuthMe,
   DiffFile,
   Finding,
+  LlmSettings,
   RateLimitStatus,
   ReviewDetail,
   ReviewStats,
@@ -138,6 +139,16 @@ export function updateFinding(
       body: data,
     },
   );
+}
+
+// ── LLM provider ──
+
+export function getLlmSettings(): Promise<LlmSettings> {
+  return request("/api/llm");
+}
+
+export function setLlmProvider(provider: LlmSettings["provider"]): Promise<LlmSettings> {
+  return request("/api/llm", { method: "PUT", body: { provider } });
 }
 
 // ── Stats & Monitoring ──

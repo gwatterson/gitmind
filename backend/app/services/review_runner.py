@@ -4,26 +4,19 @@ Runs live in this process only; a durable job queue replaces this in PLAN.md F4.
 """
 
 import asyncio
-import os
 from collections.abc import Coroutine
 from typing import Any
 
 import structlog
 
 from app.db import crud
+from app.diff.files import detect_language
 from app.graph.graph import run_review
 from app.graph.state import PRFile
 from app.mcp_server.server import handle_get_pr_diff
 
 log = structlog.get_logger()
 
-_LANGUAGES = {
-    ".py": "python",
-    ".js": "javascript",
-    ".jsx": "javascript",
-    ".ts": "typescript",
-    ".tsx": "typescript",
-}
 
 # review_id -> running task. Also keeps strong references so tasks are not
 # garbage collected before they finish.
@@ -34,11 +27,10 @@ def build_pr_files(diff_files: list[dict[str, Any]]) -> list[PRFile]:
     """Convert GitHub diff entries into the pipeline's file format."""
     files: list[PRFile] = []
     for f in diff_files:
-        ext = os.path.splitext(f.get("filename", ""))[1].lower()
         files.append(
             PRFile(
                 filename=f["filename"],
-                language=_LANGUAGES.get(ext, "unknown"),
+                language=detect_language(f["filename"]),
                 patch=f.get("patch", ""),
                 additions=f.get("additions", 0),
                 deletions=f.get("deletions", 0),

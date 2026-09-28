@@ -12,13 +12,14 @@ Before starting, ensure you have installed:
 - **uv** (Python package manager) → `pip install uv` or see [docs.astral.sh/uv](https://docs.astral.sh/uv/)
 - **Node.js 20+** → [nodejs.org](https://nodejs.org/)
 - **Git** → [git-scm.com](https://git-scm.com/)
+- **Ollama** (optional, to run a local model without API quota) → [ollama.com](https://ollama.com/)
 - **ngrok** (optional, for webhook testing) → [ngrok.com](https://ngrok.com/)
 
 ---
 
 ## 2. API Keys & Free Subscriptions
 
-### 2.1 Google Gemini API Key (required)
+### 2.1 Google Gemini API Key (optional with Ollama)
 
 1. Go to [Google AI Studio](https://aistudio.google.com/apikey)
 2. Sign in with your Google account
@@ -27,7 +28,31 @@ Before starting, ensure you have installed:
 5. **Free tier** gives you ~20 requests/day and 250k tokens/minute
 6. If `gemini-2.5-flash` is not available, use `gemini-2.0-flash` or whichever model is available. Update `GEMINI_MODEL` in your `.env` accordingly.
 
-### 2.2 GitHub App (required for webhook integration)
+### 2.2 Local model with Ollama (optional, no quota)
+
+GitMind can review pull requests with a model running on your own machine. Reviews
+are slower than with the Gemini API, but free and not limited by a daily quota,
+which makes Ollama the best choice while experimenting.
+
+1. Install Ollama from [ollama.com](https://ollama.com/) and make sure it is running
+   (`ollama list` should answer).
+2. Download the default model (about 5 GB):
+   ```bash
+   ollama pull qwen2.5-coder:7b
+   ```
+3. Choose the provider, in one of two ways:
+   - from the dashboard: the **Model** panel lists both providers and shows whether each
+     one is available (an administrator can switch; the choice is saved and applies to
+     reviews started afterwards);
+   - or in `backend/.env` with `LLM_PROVIDER=ollama` (the default used until someone
+     switches from the dashboard).
+
+Useful settings: `OLLAMA_MODEL` to use another model, `OLLAMA_NUM_CTX` for the context
+window (large diffs are split so that every call fits in it), `LLM_MAX_CONCURRENCY=1` on
+machines with little memory. The Gemini quota limiter is not used with Ollama, so the
+quota icon disappears from the navigation bar.
+
+### 2.3 GitHub App (required for webhook integration)
 
 1. Go to [GitHub Developer Settings](https://github.com/settings/apps)
 2. Click **"New GitHub App"**
@@ -48,7 +73,7 @@ Before starting, ensure you have installed:
 9. **Install the App** on your test repository:
    - Go to your GitHub App page → "Install App" → Select your test repo
 
-### 2.3 Alternative: GitHub Personal Access Token (simpler, for testing only)
+### 2.4 Alternative: GitHub Personal Access Token (simpler, for testing only)
 
 If you don't want to create a full GitHub App:
 1. Go to [GitHub Tokens](https://github.com/settings/tokens?type=beta)
@@ -59,7 +84,7 @@ If you don't want to create a full GitHub App:
 4. Add `GITHUB_TOKEN=ghp_your_token_here` to your `backend/.env` file
 5. The app will use this token as a fallback when GitHub App credentials are not configured
 
-### 2.4 Dashboard authentication
+### 2.5 Dashboard authentication
 
 The dashboard and every `/api/*` endpoint (except `/api/health`) require authentication.
 There are two ways to run GitMind:
@@ -175,7 +200,7 @@ With `ENVIRONMENT=production` the backend refuses to start unless all of these a
   `<PUBLIC_API_URL>/auth/callback`.
 - The interactive API docs (`/docs`, `/redoc`) are disabled.
 
-### 2.5 LangSmith (optional, for tracing)
+### 2.6 LangSmith (optional, for tracing)
 
 1. Go to [smith.langchain.com](https://smith.langchain.com/)
 2. Sign up (free tier: 5,000 traces/month)
@@ -301,7 +326,7 @@ Open: [http://localhost:3000](http://localhost:3000)
 
 With `AUTH_DISABLED=true` you see the dashboard directly, with metrics and the manual review
 trigger form. With GitHub sign-in enabled you first see the **"Sign in to GitMind"** screen
-(see section 2.4). If that screen says that GitHub sign-in is not configured, the OAuth
+(see section 2.5). If that screen says that GitHub sign-in is not configured, the OAuth
 settings are missing from `backend/.env`.
 
 ### 6.3 Trigger a manual review (no webhook needed)
@@ -310,6 +335,7 @@ settings are missing from `backend/.env`.
 2. In the **"Manual Review"** panel on the right, enter:
    - **Repo**: `your-username/test-vulnerable-app`
    - **PR number**: The PR number you created (e.g., `1`)
+   - The model used is the one selected in the **Model** panel
 3. Click **"Trigger Review"**
 4. Watch the review appear in the PR list
 5. Click on it to see the **reasoning trace streaming** in real-time
@@ -364,8 +390,11 @@ FastAPI auto-generates interactive API docs:
 |---|---|
 | `start.bat` / `start.sh` stops with "Port 8000/3000 is already in use" | A previous run is still active: close the old "GitMind Backend" and "GitMind Frontend" windows, or stop the reported PID (`taskkill /PID <pid> /T /F` on Windows, `kill <pid>` on macOS/Linux) |
 | Dashboard stuck on loading, browser console shows CORS errors or `OPTIONS` requests rejected with 400 | The frontend is running on a port that is not in `CORS_ORIGINS` (for example 3001): stop it and restart on port 3000 |
+| Model panel says "Ollama is not running" | Start Ollama (open the app or run `ollama serve`) and check `OLLAMA_BASE_URL` |
+| Model panel says the model is not downloaded | Run `ollama pull qwen2.5-coder:7b` (or the model set in `OLLAMA_MODEL`) |
+| Reviews with Ollama take several minutes | Expected on CPU: the three agents run on your machine. Use a smaller model, lower `LLM_MAX_CONCURRENCY`, or switch to Gemini |
 | `GEMINI_API_KEY` error | Verify your key at [aistudio.google.com](https://aistudio.google.com/apikey) |
-| Sign-in page says GitHub sign-in is not configured | Create the OAuth App (section 2.4), or set `AUTH_DISABLED=true` for local development |
+| Sign-in page says GitHub sign-in is not configured | Create the OAuth App (section 2.5), or set `AUTH_DISABLED=true` for local development |
 | "Your GitHub account is not on the list of allowed users" | Add your login to `AUTH_ALLOWED_USERS` (or your organization to `AUTH_ALLOWED_ORGS`) and restart the backend. For organizations, check that the OAuth App is approved by the organization |
 | Sign-in succeeds but the dashboard keeps showing the sign-in screen | The session cookie is not sent: use `localhost` (not `127.0.0.1`) for both the dashboard and `NEXT_PUBLIC_API_URL`, and check that `CORS_ORIGINS` contains the dashboard URL |
 | You must sign in again after every backend restart | Set a fixed `SESSION_SECRET` in `backend/.env` |
