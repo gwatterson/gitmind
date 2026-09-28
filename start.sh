@@ -63,10 +63,10 @@ sleep 3
 echo "[3/4] Setting up Next.js frontend..."
 cd "$DIR/frontend"
 
-if [ ! -d "node_modules" ]; then
-    echo "      Installing frontend dependencies..."
-    npm install --silent
-fi
+# Always sync: fast when up to date, and keeps node_modules in line with
+# package-lock.json after switching branches or pulling upgrades
+echo "      Syncing frontend dependencies..."
+npm install --no-audit --no-fund --silent || { echo "      [ERROR] npm install failed. Check the error above."; exit 1; }
 
 # Copy .env.local if it doesn't exist
 if [ ! -f ".env.local" ]; then
