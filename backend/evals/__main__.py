@@ -26,8 +26,12 @@ def _save(document: dict[str, Any], out_dir: Path, compare: dict[str, Any] | Non
 
     out_dir.mkdir(parents=True, exist_ok=True)
     path = out_dir / f"{document['run']['id']}.json"
-    path.write_text(json.dumps(document, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
-    path.with_suffix(".md").write_text(render_report(document, compare) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(document, indent=1, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n"
+    )
+    path.with_suffix(".md").write_text(
+        render_report(document, compare) + "\n", encoding="utf-8", newline="\n"
+    )
     return path
 
 
@@ -176,7 +180,7 @@ def cmd_sources(args: argparse.Namespace) -> None:
             )
         lines.append("")
     path = EVAL_DIR / "dataset" / "SOURCES.md"
-    path.write_text("\n".join(lines), encoding="utf-8")
+    path.write_text("\n".join(lines), encoding="utf-8", newline="\n")
     print(f"Written {path}")
 
 
@@ -228,7 +232,7 @@ def cmd_baseline(args: argparse.Namespace) -> None:
             "clean_flagged_rate": metrics["clean_flagged_rate"],
         },
     }
-    BASELINE_PATH.write_text(json.dumps(baseline, indent=2) + "\n", encoding="utf-8")
+    BASELINE_PATH.write_text(json.dumps(baseline, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(f"Baseline written to {BASELINE_PATH}")
 
 

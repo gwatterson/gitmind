@@ -1,0 +1,58 @@
+name: Evaluation
+
+# Regression gate for changes that can affect review quality: the smoke subset of
+# the evaluation is replayed from the recorded model answers in eval/cache.
+# A changed prompt misses the cache and fails the job until the new answers are
+# recorded locally (uv run python -m evals run --smoke) and committed.
+on:
+  pull_request:
+    paths:
+      - "backend/app/graph/**"
+      - "backend/app/llm/**"
+      - "backend/app/diff/**"
+      - "backend/evals/**"
+      - "eval/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: eval-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    name: Smoke evaluation (regression gate)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+          cache-dependency-glob: backend/uv.lock
+
+      - name: Install dependencies
+        run: uv sync --frozen
+
+      - name: Validate the dataset
+        run: uv run python -m evals check
+
+      - name: Replay the smoke subset
+        id: replay
+        continue-on-error: true
+        run: uv run python -m evals run --smoke --cache replay --label smoke-ci --out "$RUNNER_TEMP/eval"
+
+      - name: Regression gate
+        run: uv run python -m evals gate "$RUNNER_TEMP"/eval/*-smoke-ci.json
+
+      - name: Upload the report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: eval-smoke
+          path: ${{ runner.temp }}/eval
