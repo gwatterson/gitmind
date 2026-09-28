@@ -8,7 +8,8 @@
 
 GitMind reads every pull request, sends it to three specialist LLM agents working in parallel
 (security, code quality, performance), merges their findings into a single review and posts it
-back to GitHub, optionally after a human has checked it in a real-time dashboard.
+back to GitHub, optionally after a human has checked it in a real-time dashboard. It runs on the
+Gemini API or entirely on your machine with a local model served by Ollama.
 
 [![CI](https://github.com/gwatterson/gitmind/actions/workflows/ci.yml/badge.svg)](https://github.com/gwatterson/gitmind/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -17,6 +18,7 @@ back to GitHub, optionally after a human has checked it in a real-time dashboard
 [![LangGraph](https://img.shields.io/badge/LangGraph-1.x-1C3C3C)](https://langchain-ai.github.io/langgraph/)
 [![Next.js 16](https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs)](https://nextjs.org)
 [![Gemini](https://img.shields.io/badge/Gemini_2.5_Flash-4285F4?logo=google)](https://ai.google.dev)
+[![Ollama](https://img.shields.io/badge/Ollama-local_models-000000?logo=ollama)](https://ollama.com)
 
 </div>
 
@@ -25,12 +27,41 @@ back to GitHub, optionally after a human has checked it in a real-time dashboard
 ## Highlights
 
 - **Multi-agent pipeline on LangGraph.** A supervisor triages the changed files and fans them out to three specialist agents that run in parallel; a synthesis node deduplicates, ranks and summarizes their findings.
-- **Structured, validated LLM output.** Every agent answers through a Pydantic schema, so findings arrive as typed objects instead of free text to be parsed.
+- **Structured, validated LLM output.** Every agent answers through a Pydantic schema: findings arrive as typed objects with severity, confidence, CWE and the exact code they refer to, and findings on files outside the pull request are discarded.
+- **Comments on the right line.** Diffs are shown to the model with real line numbers, and every finding is anchored on the code it quotes, so inline comments land where the problem is even when the model miscounts.
+- **Gemini or a local model.** Switch between the Gemini API and a local model served by Ollama from the dashboard; the quota limiter only applies when the API is in use.
 - **Built to fail gracefully.** If one agent crashes the review still completes, clearly marked as incomplete; if all of them fail, or the daily LLM quota runs out, the review stops with an explicit status instead of a misleading "all clear".
 - **Human in the loop.** Findings can wait in the dashboard, where a reviewer edits them and approves before anything is posted to GitHub.
 - **Safe by default.** The bot never approves a pull request on its own, webhooks are verified and idempotent, and the dashboard is protected by GitHub sign-in with an allowlist.
 - **Live reasoning trace.** The dashboard streams each step of the pipeline over Server-Sent Events while the agents work.
-- **Proactive rate limiting.** LLM calls are throttled before hitting provider limits, across requests per minute, requests per day and tokens per minute.
+- **Proactive rate limiting.** Gemini calls are throttled before hitting provider limits, across requests per minute, requests per day and tokens per minute, using the real token usage of every call.
+
+---
+
+## See it in action
+
+<p align="center">
+  <img src="docs/screenshots/dashboard.png" alt="Dashboard with review list, metrics and model selection" width="100%" />
+</p>
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/screenshots/review.png" alt="Review detail with the live reasoning trace and findings" /></td>
+    <td width="50%"><img src="docs/screenshots/diff.png" alt="Diff viewer with findings on the changed lines" /></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>Live reasoning trace and findings with severity, confidence and quoted code</sub></td>
+    <td align="center"><sub>Findings annotated on the changed lines of the diff</sub></td>
+  </tr>
+</table>
+
+<p align="center">
+  <img src="docs/screenshots/summary.png" alt="Review summary written by the synthesis node" width="80%" />
+  <br />
+  <sub>Summary written by the synthesis node, with the verdict computed in code</sub>
+</p>
+
+<sub>Screenshots of a real review of a sample pull request, generated locally with <code>qwen2.5-coder:7b</code> through Ollama.</sub>
 
 ---
 
@@ -54,9 +85,9 @@ flowchart LR
 ```
 
 1. **Trigger.** A `pull_request` webhook (opened, synchronize, reopened, ready for review) or a manual request from the dashboard creates a review for the PR head commit.
-2. **Triage.** The supervisor reads the diff and decides which files each agent should inspect. Every file always goes through the security agent.
-3. **Parallel analysis.** The three agents run concurrently on Gemini 2.5 Flash and return typed findings with file, line, severity, rule id, explanation and suggested fix.
-4. **Synthesis.** Findings are deduplicated and sorted by severity. The verdict (`request_changes`, `comment` or `approve`) is computed deterministically from the severities, never chosen by the model, and an LLM writes the human-readable summary.
+2. **Scope and triage.** Lockfiles, generated, vendored and binary files are left out, and very large pull requests are cut at a configurable size. Every remaining file goes to the security agent; for larger pull requests the supervisor decides which files also need quality and performance review.
+3. **Parallel analysis.** The three agents run concurrently on the selected model (Gemini 2.5 Flash, or a local model through Ollama). Each one sees the diff with real line numbers, split into batches that fit the model's context, and returns typed findings with file, line, severity, confidence, rule id, quoted code and suggested fix.
+4. **Synthesis.** Findings are anchored on the code they quote, merged across agents and sorted by severity. The verdict (`request_changes`, `comment` or `approve`) is computed deterministically from severity and confidence, never chosen by the model, and an LLM writes the markdown summary.
 5. **Approval and publishing.** With human-in-the-loop enabled the review waits in the dashboard; otherwise it is posted right away as inline comments plus a summary review.
 
 A new commit on the same pull request supersedes the review still in progress, and the outdated review is never published.
@@ -69,8 +100,19 @@ A new commit on the same pull request supersedes the review still in progress, a
 - Supervisor, three specialist agents and a synthesis node, orchestrated as a LangGraph state graph with parallel fan-out and fan-in
 - Agent errors collected through a LangGraph state reducer, so concurrent failures never crash the graph
 - A review with a failed agent can never end with an `approve` verdict, and its summary names the agents that failed
+- Diffs rendered with new-file line numbers; each finding is placed on the line containing the code it quotes, then on the nearest changed line, and otherwise listed in the review summary
+- Findings validated against the pull request: unknown files dropped, severities normalized, confidence and CWE kept
+- A small concept taxonomy (SQL injection, XSS, secrets, N+1, complexity...) merges the same problem reported by several agents and files it under the right category, keeping track of the agent that found it
+- Scope control: generated and binary files skipped, size limits per review, skipped files listed in the summary
+- Large diffs split by hunks into batches within the token budget of one call, reviewed concurrently
+- LLM calls with timeouts and retries on transient errors and on invalid structured output
+- Pull request content passed to the model as delimited, untrusted data
 - Deterministic fallback summary when the summary LLM call fails
-- Proactive rate limiter on three dimensions (RPM, RPD, TPM); the daily counter is persisted and survives restarts
+
+### LLM providers
+- Gemini 2.5 Flash through the Google API, or any Ollama model on your machine (default `qwen2.5-coder:7b`)
+- Provider switchable from the dashboard by an administrator, persisted across restarts; each review records the provider and model it used
+- Proactive rate limiter for Gemini on three dimensions (RPM, RPD, TPM): it reserves capacity before each call, corrects it with the real token usage, and never blocks other callers while waiting; the daily counter survives restarts
 
 ### GitHub integration
 - Webhook receiver with HMAC-SHA256 signature verification that fails closed when no secret is configured
@@ -81,8 +123,10 @@ A new commit on the same pull request supersedes the review still in progress, a
 - Standalone MCP server (stdio) exposing 8 tools: PR diff, file list, metadata, inline comment, summary review, semgrep scan, cyclomatic complexity (radon) and AST parsing
 
 ### Dashboard
-- Next.js 16 dashboard with review list, aggregate metrics, findings by category and severity, and a live rate-limit gauge
-- Review detail page with the streamed reasoning trace, severity and category filters, and a diff viewer that annotates the changed lines
+- Next.js 16 dashboard with review list, aggregate metrics, findings by category and severity, and a model panel to choose the provider
+- Quota indicator in the navigation bar, shown only when the Gemini API is in use
+- Review detail page with the streamed reasoning trace, the model used, severity and category filters, and a diff viewer that annotates the changed lines
+- Finding cards with confidence, CWE (linked to MITRE), the quoted code and the suggested fix; summary rendered as markdown
 - Human-in-the-loop actions: edit a finding, approve and post, reject and delete
 - GitHub sign-in with user menu; administrator-only actions are hidden from other users
 
@@ -110,6 +154,9 @@ A new commit on the same pull request supersedes the review still in progress, a
 | Partial results are labeled, total failures are errors | An empty list of findings must mean "nothing found", not "the agents crashed" |
 | Webhooks fail closed and are idempotent | GitHub retries deliveries and anyone can reach a public endpoint: without a valid signature nothing runs, and each delivery runs once |
 | Rate limiting before the call, not after the 429 | Free and entry tiers have tight quotas; waiting proactively is cheaper than retrying rejected calls |
+| Anchor findings on the quoted code, not on the reported line | In a test run with a 7B local model, several reported line numbers pointed at docstrings or blank lines, while the quoted code was right: after anchoring, every finding landed on the code it describes |
+| A small explicit taxonomy to merge duplicates | Deterministic, explainable and free: the same SQL injection reported by three agents under three names becomes one finding, without an extra LLM call |
+| Local models as a first-class option | Development and experiments without API quota or cost, through the same pipeline and the same schemas |
 
 ---
 
@@ -118,20 +165,20 @@ A new commit on the same pull request supersedes the review still in progress, a
 | Layer | Technology |
 |---|---|
 | Agents and orchestration | LangGraph, LangChain Core, Pydantic structured output |
-| LLM | Gemini 2.5 Flash (`langchain-google-genai`) |
-| Backend | Python 3.11, FastAPI, SSE, structlog, slowapi |
+| LLM | Gemini 2.5 Flash (`langchain-google-genai`) or local models through Ollama (`langchain-ollama`) |
+| Backend | Python 3.11, FastAPI, SSE, structlog, slowapi, tenacity |
 | Auth | GitHub OAuth, JWT session cookies, hashed API keys |
 | GitHub | PyGithub, GitHub App or personal access token, HMAC-verified webhooks |
 | Static analysis tools | radon, Python AST, semgrep (optional) via an MCP server |
 | Storage | SQLite (aiosqlite) |
-| Frontend | Next.js 16, React 19, TypeScript, Tailwind CSS 4 |
+| Frontend | Next.js 16, React 19, TypeScript, Tailwind CSS 4, react-markdown |
 | Tooling | uv, Ruff, mypy, pytest, respx, ESLint, Prettier, pre-commit, GitHub Actions, Dependabot |
 
 ---
 
 ## Quick start
 
-Requirements: Python 3.11+, [uv](https://docs.astral.sh/uv/), Node.js 20+, a [Gemini API key](https://aistudio.google.com/apikey).
+Requirements: Python 3.11+, [uv](https://docs.astral.sh/uv/), Node.js 20+, and either a [Gemini API key](https://aistudio.google.com/apikey) or [Ollama](https://ollama.com) with `ollama pull qwen2.5-coder:7b`.
 
 ```bash
 git clone https://github.com/gwatterson/gitmind
@@ -146,7 +193,7 @@ from the templates, and starts the backend on port 8000 and the dashboard on por
 Then edit `backend/.env`. The minimum for a local run:
 
 ```bash
-GEMINI_API_KEY=...          # LLM
+GEMINI_API_KEY=...          # Gemini API (or LLM_PROVIDER=ollama for a local model)
 GITHUB_TOKEN=...            # read PRs and post reviews (or configure a GitHub App)
 AUTH_DISABLED=true          # local only: skip GitHub sign-in
 ```
@@ -162,8 +209,13 @@ All settings come from environment variables (`backend/.env`, see [`.env.example
 | Variable | Purpose |
 |---|---|
 | `ENVIRONMENT` | `development` or `production`; production enforces a secure configuration |
-| `GEMINI_API_KEY`, `GEMINI_MODEL` | LLM credentials and model |
-| `RATE_LIMIT_RPM_MAX`, `RATE_LIMIT_RPD_MAX`, `RATE_LIMIT_TPM_MAX` | LLM quota limits |
+| `LLM_PROVIDER` | `gemini` or `ollama` (the dashboard choice, if any, takes precedence) |
+| `GEMINI_API_KEY`, `GEMINI_MODEL` | Gemini credentials and model |
+| `OLLAMA_BASE_URL`, `OLLAMA_MODEL`, `OLLAMA_NUM_CTX` | Local model served by Ollama |
+| `RATE_LIMIT_RPM_MAX`, `RATE_LIMIT_RPD_MAX`, `RATE_LIMIT_TPM_MAX` | Gemini quota limits |
+| `LLM_INPUT_TOKEN_BUDGET`, `LLM_MAX_CONCURRENCY`, `LLM_MAX_ATTEMPTS` | Batch size, parallel calls and retries |
+| `MAX_REVIEW_FILES`, `MAX_REVIEW_PATCH_CHARS`, `REVIEW_EXCLUDE_PATTERNS` | Review scope |
+| `VERDICT_MIN_CONFIDENCE` | Confidence needed for a critical or high finding to block a PR |
 | `GITHUB_APP_ID`, `GITHUB_PRIVATE_KEY_PATH` or `GITHUB_TOKEN` | GitHub access |
 | `GITHUB_WEBHOOK_SECRET` | Webhook signature secret (required for webhooks) |
 | `GITHUB_OAUTH_CLIENT_ID`, `GITHUB_OAUTH_CLIENT_SECRET` | Dashboard sign-in |
@@ -196,6 +248,8 @@ Interactive documentation is served at `/docs` in development.
 | `DELETE` | `/api/reviews/{id}` | `reviews:write` | Delete a review |
 | `DELETE` | `/api/reviews` | Administrator | Clear the archive |
 | `GET`, `POST`, `DELETE` | `/api/keys` | Administrator | Manage API keys |
+| `GET` | `/api/llm` | `reviews:read` | Active LLM provider and availability of each option |
+| `PUT` | `/api/llm` | Administrator | Switch provider for new reviews |
 | `GET` | `/api/stats`, `/api/rate-limit/status` | `reviews:read` | Dashboard metrics |
 | `GET` | `/api/health` | Public | Liveness probe |
 
@@ -211,7 +265,7 @@ uv run pytest --cov   # no network access, temporary database
 uv run ruff check . && uv run mypy
 ```
 
-- The test suite covers authentication and OAuth (with GitHub mocked), webhook signature and idempotency, the full LangGraph pipeline with fake LLMs (including parallel agent failures and quota exhaustion), GitHub publishing, the rate limiter and log masking.
+- The test suite covers authentication and OAuth (with GitHub mocked), webhook signature and idempotency, diff parsing and line anchoring, chunking of large diffs, LLM retries and token accounting, the full LangGraph pipeline with fake LLMs (including parallel agent failures and quota exhaustion), duplicate merging, provider switching, GitHub publishing, the rate limiter and log masking.
 - CI runs lint, formatting, type checking and tests with an 80% coverage gate on the backend, lint, type checking and a production build on the frontend, plus secret scanning and dependency audits.
 - pre-commit hooks run the same checks locally; Dependabot keeps dependencies up to date.
 
@@ -230,9 +284,13 @@ gitmind/
 │   │   ├── core/                # Security, errors, logging, HTTP rate limits
 │   │   ├── services/            # Review runner, GitHub publisher
 │   │   ├── github/              # Authenticated GitHub client
+│   │   ├── diff/                # Patch parsing, line numbering, file filters
+│   │   ├── llm/                 # Provider factory and resilient LLM calls
 │   │   ├── graph/               # LangGraph pipeline
-│   │   │   ├── supervisor.py    # File triage
-│   │   │   ├── agents/          # Security, quality, performance agents
+│   │   │   ├── supervisor.py    # Review scope and file triage
+│   │   │   ├── agents/          # Shared agent machinery + security, quality, performance
+│   │   │   ├── schemas.py       # Structured output schemas
+│   │   │   ├── taxonomy.py      # Known problem concepts for merging duplicates
 │   │   │   ├── synthesis.py     # Aggregation, verdict, summary
 │   │   │   └── graph.py         # Graph construction and review runs
 │   │   ├── db/                  # SQLite schema and queries
@@ -245,6 +303,7 @@ gitmind/
 │       ├── app/                 # Pages: dashboard, review detail, sign-in
 │       ├── components/          # Auth, stream, diff viewer, metrics, findings
 │       └── lib/                 # Typed API client
+├── docs/screenshots/            # Images used in this README
 ├── .github/                     # CI and Dependabot
 ├── GUIDE.md                     # Setup and testing guide
 └── start.sh / start.bat         # One-command local start
