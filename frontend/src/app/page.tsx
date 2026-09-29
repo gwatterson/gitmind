@@ -1,10 +1,11 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { RefreshCw, Trash2 } from "lucide-react";
 import { useAuth } from "@/components/AuthProvider";
 import { MetricsDashboard } from "@/components/MetricsDashboard";
-import { PRList } from "@/components/PRList";
 import { ModelSelector } from "@/components/ModelSelector";
+import { PRList } from "@/components/PRList";
 import { clearArchive, errorMessage, getReviews, triggerManualReview } from "@/lib/api";
 import type { Review } from "@/lib/types";
 
@@ -14,13 +15,73 @@ type TriggerState =
   | { kind: "ok"; text: string }
   | { kind: "error"; text: string };
 
+function ManualReview({ onQueued }: { onQueued: () => void }) {
+  const [repo, setRepo] = useState("");
+  const [pr, setPr] = useState("");
+  const [state, setState] = useState<TriggerState>({ kind: "idle" });
+
+  const submit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!repo || !pr) return;
+    setState({ kind: "pending" });
+    try {
+      const data = await triggerManualReview(repo.trim(), parseInt(pr, 10));
+      setState({ kind: "ok", text: `Review ${data.review_id.slice(0, 8)} queued.` });
+      setTimeout(onQueued, 1500);
+    } catch (error) {
+      setState({ kind: "error", text: errorMessage(error) });
+    }
+  };
+
+  return (
+    <form onSubmit={submit} className="panel p-4">
+      <h2 className="text-sm font-medium text-fg">Review a pull request</h2>
+      <p className="mt-1 text-xs text-fg-subtle">Runs the full pipeline on demand.</p>
+      <div className="mt-4 space-y-2">
+        <label className="block">
+          <span className="sr-only">Repository</span>
+          <input
+            className="field mono"
+            placeholder="owner/repository"
+            value={repo}
+            onChange={(e) => setRepo(e.target.value)}
+          />
+        </label>
+        <label className="block">
+          <span className="sr-only">Pull request number</span>
+          <input
+            className="field mono"
+            type="number"
+            min={1}
+            placeholder="Pull request number"
+            value={pr}
+            onChange={(e) => setPr(e.target.value)}
+          />
+        </label>
+        <button
+          type="submit"
+          disabled={!repo || !pr || state.kind === "pending"}
+          className="btn-primary w-full"
+        >
+          {state.kind === "pending" ? "Starting..." : "Start review"}
+        </button>
+      </div>
+      {state.kind === "ok" || state.kind === "error" ? (
+        <p
+          role="status"
+          className={`mt-3 text-xs ${state.kind === "error" ? "text-danger" : "text-success"}`}
+        >
+          {state.text}
+        </p>
+      ) : null}
+    </form>
+  );
+}
+
 export default function DashboardPage() {
   const { user } = useAuth();
   const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(true);
-  const [triggerRepo, setTriggerRepo] = useState("");
-  const [triggerPR, setTriggerPR] = useState("");
-  const [trigger, setTrigger] = useState<TriggerState>({ kind: "idle" });
   const [statsVersion, setStatsVersion] = useState(0);
 
   // State is only updated in promise callbacks, never synchronously inside the effect
@@ -41,120 +102,56 @@ export default function DashboardPage() {
     return () => clearInterval(interval);
   }, [fetchReviews]);
 
-  const handleTrigger = async () => {
-    if (!triggerRepo || !triggerPR) return;
-    setTrigger({ kind: "pending" });
-    try {
-      const data = await triggerManualReview(triggerRepo.trim(), parseInt(triggerPR, 10));
-      setTrigger({ kind: "ok", text: `Review queued: ${data.review_id.slice(0, 8)}` });
-      setTimeout(fetchReviews, 2000);
-    } catch (error) {
-      setTrigger({ kind: "error", text: errorMessage(error) });
-    }
-  };
-
   const handleClearArchive = async () => {
-    if (!window.confirm("Are you sure you want to delete all reviews? This cannot be undone."))
+    if (!window.confirm("Delete every review? This cannot be undone and has no effect on GitHub."))
       return;
     try {
       await clearArchive();
       setReviews([]);
       setStatsVersion((v) => v + 1);
     } catch (error) {
-      alert(`Failed to clear archive: ${errorMessage(error)}`);
+      window.alert(`Could not clear the reviews: ${errorMessage(error)}`);
     }
   };
 
   return (
-    <div className="animate-fade-in space-y-6">
-      {/* Header */}
-      <div>
-        <h1 className="mb-1 text-2xl font-bold text-slate-100">Dashboard</h1>
-        <p className="text-sm text-slate-500">
-          Autonomous code review agent for real-time PR analysis
-        </p>
+    <div className="animate-fade-in space-y-8">
+      <div className="flex items-end justify-between gap-4">
+        <div>
+          <h1 className="text-xl font-semibold tracking-tight text-fg">Reviews</h1>
+          <p className="mt-1 text-sm text-fg-subtle">
+            Pull requests reviewed by the security, quality and performance agents.
+          </p>
+        </div>
+        <button onClick={fetchReviews} className="btn-secondary" aria-label="Refresh">
+          <RefreshCw className="h-4 w-4" aria-hidden />
+          <span className="hidden sm:inline">Refresh</span>
+        </button>
       </div>
 
-      {/* Metrics */}
       <MetricsDashboard refreshKey={statsVersion} />
 
-      {/* Main grid */}
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        {/* PR List (2/3 width) */}
-        <div className="space-y-4 lg:col-span-2">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm font-semibold tracking-wider text-slate-200 uppercase">
-              Recent Reviews
-            </h2>
-            <div className="flex gap-2">
-              {user?.is_admin ? (
-                <button
-                  onClick={handleClearArchive}
-                  className="btn-secondary border-red-500/30 text-xs text-red-400 hover:border-red-500/50 hover:bg-red-500/10"
-                >
-                  Clear Archive
-                </button>
-              ) : null}
-              <button onClick={fetchReviews} className="btn-secondary text-xs">
-                ↻ Refresh
-              </button>
-            </div>
-          </div>
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_300px]">
+        <section aria-labelledby="recent" className="min-w-0 space-y-3">
+          <h2 id="recent" className="section-title">
+            Recent
+          </h2>
+          {loading ? <div className="h-48 animate-pulse panel" /> : <PRList reviews={reviews} />}
+        </section>
 
-          {loading ? (
-            <div className="space-y-2">
-              {[0, 1, 2].map((i) => (
-                <div key={i} className="h-16 animate-pulse glass-card p-4" />
-              ))}
-            </div>
-          ) : (
-            <PRList reviews={reviews} />
-          )}
-        </div>
-
-        {/* Sidebar (1/3 width) */}
-        <div className="space-y-4">
+        <aside className="space-y-4">
+          <ManualReview onQueued={fetchReviews} />
           <ModelSelector />
-
-          {/* Manual trigger */}
-          <div className="glass-card p-4">
-            <h3 className="mb-3 text-sm font-semibold tracking-wider text-slate-200 uppercase">
-              Manual Review
-            </h3>
-            <div className="space-y-2">
-              <input
-                type="text"
-                placeholder="owner/repo"
-                aria-label="Repository (owner/repo)"
-                value={triggerRepo}
-                onChange={(e) => setTriggerRepo(e.target.value)}
-                className="w-full rounded-lg border border-white/5 bg-slate-800/50 px-3 py-2 mono text-sm text-slate-200 transition-colors placeholder:text-slate-600 focus:border-indigo-500/50 focus:outline-hidden"
-              />
-              <input
-                type="number"
-                placeholder="PR number"
-                aria-label="Pull request number"
-                value={triggerPR}
-                onChange={(e) => setTriggerPR(e.target.value)}
-                className="w-full rounded-lg border border-white/5 bg-slate-800/50 px-3 py-2 mono text-sm text-slate-200 transition-colors placeholder:text-slate-600 focus:border-indigo-500/50 focus:outline-hidden"
-              />
-              <button
-                onClick={handleTrigger}
-                disabled={!triggerRepo || !triggerPR || trigger.kind === "pending"}
-                className="w-full btn-primary disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                {trigger.kind === "pending" ? "Triggering..." : "Trigger Review"}
-              </button>
-              {trigger.kind === "ok" || trigger.kind === "error" ? (
-                <div
-                  className={`flex items-start gap-2 rounded-md border p-3 text-sm ${trigger.kind === "error" ? "border-red-500/20 bg-red-500/10 text-red-400" : "border-emerald-500/20 bg-emerald-500/10 text-emerald-400"}`}
-                >
-                  <p>{trigger.text}</p>
-                </div>
-              ) : null}
-            </div>
-          </div>
-        </div>
+          {user?.is_admin ? (
+            <button
+              onClick={handleClearArchive}
+              className="inline-flex w-full items-center justify-center gap-1.5 py-1 text-xs text-fg-subtle transition-colors hover:text-danger"
+            >
+              <Trash2 className="h-4 w-4" aria-hidden />
+              Delete all reviews
+            </button>
+          ) : null}
+        </aside>
       </div>
     </div>
   );

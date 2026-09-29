@@ -24,8 +24,8 @@ function GaugeBar({
   return (
     <div className="mb-3 last:mb-0">
       <div className="mb-1 flex items-center justify-between">
-        <span className="text-xs font-medium text-slate-400">{label}</span>
-        <span className="mono text-xs text-slate-500">
+        <span className="text-xs font-medium text-fg-muted">{label}</span>
+        <span className="mono text-xs text-fg-subtle">
           {used.toLocaleString()} / {max.toLocaleString()} {unit}
         </span>
       </div>
@@ -45,7 +45,7 @@ function GaugeBar({
       <div className="mt-0.5 flex justify-end">
         <span
           className={`mono text-[10px] ${
-            isDanger ? "text-red-400" : isWarning ? "text-amber-400" : "text-slate-600"
+            isDanger ? "text-danger" : isWarning ? "text-warning" : "text-fg-subtle"
           }`}
         >
           {pct.toFixed(1)}%
@@ -75,12 +75,10 @@ export function RateLimitGauge() {
   }, []);
 
   return (
-    <div className="glass-card p-4">
+    <div className="panel p-4">
       <div className="mb-3 flex items-center justify-between">
-        <h3 className="text-sm font-semibold tracking-wider text-slate-200 uppercase">
-          Rate Limits
-        </h3>
-        <span className={`badge ${error ? "badge-failed" : "badge-completed"}`}>
+        <h3 className="text-sm font-semibold tracking-wider text-fg uppercase">Rate Limits</h3>
+        <span className={`pill ${error ? "tone-critical" : "tone-low"}`}>
           <span
             className={`h-1.5 w-1.5 rounded-full ${
               error ? "bg-red-400" : "animate-pulse-glow bg-emerald-400"
@@ -116,7 +114,7 @@ export function RateLimitGauge() {
         </>
       ) : (
         <div className="py-4 text-center">
-          <p className="text-xs text-slate-500">{error ? "Backend not reachable" : "Loading..."}</p>
+          <p className="text-xs text-fg-subtle">{error ? "Backend not reachable" : "Loading..."}</p>
         </div>
       )}
     </div>

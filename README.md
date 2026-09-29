@@ -42,25 +42,19 @@ Gemini API or entirely on your machine with a local model served by Ollama.
 ## See it in action
 
 <p align="center">
-  <img src="docs/screenshots/dashboard.png" alt="Dashboard with review list, metrics and model selection" width="100%" />
+  <img src="docs/screenshots/dashboard.png" alt="Reviews dashboard with metrics, the review list and model selection" width="100%" />
 </p>
 
 <table>
   <tr>
-    <td width="50%"><img src="docs/screenshots/review.png" alt="Review detail with the live reasoning trace and findings" /></td>
-    <td width="50%"><img src="docs/screenshots/diff.png" alt="Diff viewer with findings on the changed lines" /></td>
+    <td width="50%"><img src="docs/screenshots/review.png" alt="Review page with the verdict, findings and the pipeline timeline" /></td>
+    <td width="50%"><img src="docs/screenshots/summary.png" alt="Review summary written by the synthesis node" /></td>
   </tr>
   <tr>
-    <td align="center"><sub>Live reasoning trace and findings with severity, confidence and quoted code</sub></td>
-    <td align="center"><sub>Findings annotated on the changed lines of the diff</sub></td>
+    <td align="center"><sub>Verdict first, then findings with severity, location and suggested fix, and the pipeline as it runs</sub></td>
+    <td align="center"><sub>Summary written by the synthesis node; the verdict itself is computed in code</sub></td>
   </tr>
 </table>
-
-<p align="center">
-  <img src="docs/screenshots/summary.png" alt="Review summary written by the synthesis node" width="80%" />
-  <br />
-  <sub>Summary written by the synthesis node, with the verdict computed in code</sub>
-</p>
 
 <sub>Screenshots of a real review of a sample pull request, generated locally with <code>qwen2.5-coder:7b</code> through Ollama.</sub>
 

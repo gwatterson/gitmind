@@ -38,7 +38,7 @@ export function QuotaButton() {
         aria-expanded={open}
         aria-label="API quota"
         title="Gemini API quota"
-        className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/5 text-slate-400 transition-colors hover:border-white/15 hover:text-slate-200"
+        className="flex h-8 w-8 items-center justify-center rounded-lg border border-line text-fg-muted transition-colors hover:border-line-strong hover:text-fg"
       >
         <svg
           className="h-4 w-4"
@@ -56,7 +56,7 @@ export function QuotaButton() {
         </svg>
       </button>
       {open ? (
-        <div className="absolute right-0 z-50 mt-2 w-80 rounded-xl bg-[#111118] shadow-2xl">
+        <div className="absolute right-0 z-50 mt-2 w-80 rounded-lg border border-line bg-surface shadow-2xl">
           <RateLimitGauge />
         </div>
       ) : null}

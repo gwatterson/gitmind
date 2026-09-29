@@ -1,30 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import { ChevronRight, GitPullRequest } from "lucide-react";
 import { parseServerDate } from "@/lib/api";
 import type { Review } from "@/lib/types";
-
-const STATUS_CONFIG: Record<string, { label: string; class: string; icon: string }> = {
-  pending: { label: "Pending", class: "badge-pending", icon: "⏳" },
-  running: { label: "Running", class: "badge-running", icon: "⚙️" },
-  completed: { label: "Completed", class: "badge-completed", icon: "✅" },
-  failed: { label: "Failed", class: "badge-failed", icon: "❌" },
-  hitl_pending: { label: "Awaiting Review", class: "badge-pending", icon: "✋" },
-  superseded: { label: "Superseded", class: "badge-info", icon: "⤼" },
-  quota_exhausted: { label: "Quota Exhausted", class: "badge-failed", icon: "⏸" },
-};
-
-const VERDICT_CONFIG: Record<string, { label: string; class: string }> = {
-  approve: { label: "Looks Good", class: "badge-completed" },
-  comment: { label: "Comment", class: "badge-info" },
-  request_changes: { label: "Changes Requested", class: "badge-critical" },
-};
+import { EmptyState, StatusLabel, VerdictPill } from "./ui";
 
 function timeAgo(dateStr: string): string {
-  const now = Date.now();
-  const d = parseServerDate(dateStr).getTime();
-  const diff = Math.floor((now - d) / 1000);
-  if (diff < 60) return `${diff}s ago`;
+  const diff = Math.floor((Date.now() - parseServerDate(dateStr).getTime()) / 1000);
+  if (diff < 60) return "just now";
   if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
   if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
   return `${Math.floor(diff / 86400)}d ago`;
@@ -33,64 +17,47 @@ function timeAgo(dateStr: string): string {
 export function PRList({ reviews }: { reviews: Review[] }) {
   if (!reviews || reviews.length === 0) {
     return (
-      <div className="glass-card p-8 text-center">
-        <p className="mb-2 text-xl">📭</p>
-        <p className="text-sm text-slate-400">No reviews yet</p>
-        <p className="mt-1 text-xs text-slate-600">
-          Trigger a review via webhook or the manual endpoint
-        </p>
-      </div>
+      <EmptyState
+        icon={GitPullRequest}
+        title="No reviews yet"
+        hint="Reviews start when a pull request is opened on an installed repository, or from the form on this page."
+      />
     );
   }
 
   return (
-    <div className="space-y-2">
-      {reviews.map((review, i) => {
-        const status = STATUS_CONFIG[review.status] || STATUS_CONFIG.pending;
-        const verdict = review.verdict ? VERDICT_CONFIG[review.verdict] : null;
-
-        return (
-          <Link key={review.id} href={`/reviews/${review.id}`} className="block">
-            <div
-              className="animate-slide-up cursor-pointer glass-card p-4 transition-all duration-200"
-              style={{ animationDelay: `${i * 50}ms` }}
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div className="min-w-0 flex-1">
-                  <div className="mb-1 flex items-center gap-2">
-                    <h3 className="truncate text-sm font-semibold text-slate-100">
-                      {review.pr_title || `PR #${review.pr_number}`}
-                    </h3>
-                    <span className={`badge ${status.class}`}>
-                      {status.icon} {status.label}
-                    </span>
-                    {verdict && <span className={`badge ${verdict.class}`}>{verdict.label}</span>}
-                  </div>
-                  <div className="flex items-center gap-3 text-xs text-slate-500">
-                    <span className="mono">{review.repo}</span>
-                    <span>#{review.pr_number}</span>
-                    {review.pr_author && <span>by {review.pr_author}</span>}
-                    <span>{timeAgo(review.created_at)}</span>
-                  </div>
-                </div>
-                <svg
-                  className="mt-1 h-4 w-4 shrink-0 text-slate-600"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </div>
+    <ul className="divide-y divide-line overflow-hidden panel">
+      {reviews.map((review) => (
+        <li key={review.id}>
+          <Link
+            href={`/reviews/${review.id}`}
+            className="group flex items-center gap-4 px-4 py-3 transition-colors hover:bg-surface-2"
+          >
+            <div className="min-w-0 flex-1">
+              <p className="truncate text-sm font-medium text-fg">
+                {review.pr_title || `Pull request #${review.pr_number}`}
+              </p>
+              <p className="mt-0.5 flex items-center gap-2 text-xs text-fg-subtle">
+                <span className="truncate mono">
+                  {review.repo}#{review.pr_number}
+                </span>
+                {review.pr_author ? <span>· {review.pr_author}</span> : null}
+                <span>· {timeAgo(review.created_at)}</span>
+              </p>
             </div>
+            <div className="hidden w-32 shrink-0 sm:block">
+              <StatusLabel status={review.status} />
+            </div>
+            <div className="w-28 shrink-0 text-right">
+              {review.verdict ? <VerdictPill verdict={review.verdict} /> : null}
+            </div>
+            <ChevronRight
+              className="h-4 w-4 shrink-0 text-fg-subtle transition-colors group-hover:text-fg"
+              aria-hidden
+            />
           </Link>
-        );
-      })}
-    </div>
+        </li>
+      ))}
+    </ul>
   );
 }

@@ -3,85 +3,64 @@
 import { useEffect, useState } from "react";
 import { getStats } from "@/lib/api";
 import type { ReviewStats } from "@/lib/types";
+import { SEVERITIES } from "./ui";
 
-const CATEGORY_COLORS: Record<string, string> = {
-  security: "#ef4444",
-  quality: "#3b82f6",
-  performance: "#eab308",
+const SEVERITY_COLOR: Record<string, string> = {
+  critical: "var(--color-critical)",
+  high: "var(--color-high)",
+  medium: "var(--color-medium)",
+  low: "var(--color-low)",
+  info: "var(--color-info)",
 };
 
-const SEVERITY_COLORS: Record<string, string> = {
-  critical: "#ef4444",
-  high: "#f97316",
-  medium: "#eab308",
-  low: "#22c55e",
-  info: "#3b82f6",
-};
-
-function StatCard({
-  label,
-  value,
-  icon,
-  gradient,
-}: {
-  label: string;
-  value: number | string;
-  icon: string;
-  gradient: string;
-}) {
+function Stat({ label, value, emphasis }: { label: string; value: number; emphasis?: boolean }) {
   return (
-    <div className="animate-fade-in flex items-center gap-3 glass-card p-4">
-      <div
-        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-lg"
-        style={{ background: gradient }}
+    <div className="px-5 py-4">
+      <p className="text-xs text-fg-subtle">{label}</p>
+      <p
+        className={`mt-1 text-2xl font-semibold tabular ${emphasis && value > 0 ? "text-warning" : "text-fg"}`}
       >
-        {icon}
-      </div>
-      <div>
-        <p className="text-2xl font-bold text-slate-100">{value}</p>
-        <p className="text-xs text-slate-500">{label}</p>
-      </div>
+        {value}
+      </p>
     </div>
   );
 }
 
-function MiniBar({
-  items,
-  colors,
-}: {
-  items: Record<string, number>;
-  colors: Record<string, string>;
-}) {
-  const total = Object.values(items).reduce((a, b) => a + b, 0);
-  if (total === 0) return <p className="text-xs text-slate-600">No data</p>;
-
+function SeverityBreakdown({ counts }: { counts: Record<string, number> }) {
+  const total = SEVERITIES.reduce((sum, s) => sum + (counts[s] ?? 0), 0);
   return (
-    <div>
-      <div className="mb-2 flex h-2 overflow-hidden rounded-full bg-slate-800">
-        {Object.entries(items).map(([key, count]) => (
-          <div
-            key={key}
-            className="h-full transition-all duration-500"
-            style={{
-              width: `${(count / total) * 100}%`,
-              background: colors[key] || "#64748b",
-            }}
-          />
-        ))}
-      </div>
-      <div className="flex flex-wrap gap-x-3 gap-y-1">
-        {Object.entries(items).map(([key, count]) => (
-          <div key={key} className="flex items-center gap-1">
-            <span
-              className="h-2 w-2 rounded-full"
-              style={{ background: colors[key] || "#64748b" }}
-            />
-            <span className="text-[10px] text-slate-500 capitalize">
-              {key}: {count}
-            </span>
+    <div className="px-5 py-4">
+      <p className="text-xs text-fg-subtle">Findings by severity</p>
+      {total === 0 ? (
+        <p className="mt-3 text-sm text-fg-subtle">None yet</p>
+      ) : (
+        <>
+          <div className="mt-3 flex h-1.5 overflow-hidden rounded-full bg-surface-3">
+            {SEVERITIES.map((s) =>
+              counts[s] ? (
+                <div
+                  key={s}
+                  style={{ width: `${(counts[s] / total) * 100}%`, background: SEVERITY_COLOR[s] }}
+                />
+              ) : null,
+            )}
           </div>
-        ))}
-      </div>
+          <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1">
+            {SEVERITIES.map((s) =>
+              counts[s] ? (
+                <span key={s} className="inline-flex items-center gap-1 text-xs text-fg-muted">
+                  <span
+                    className="h-1.5 w-1.5 rounded-full"
+                    style={{ background: SEVERITY_COLOR[s] }}
+                  />
+                  <span className="capitalize">{s}</span>
+                  <span className="text-fg-subtle tabular">{counts[s]}</span>
+                </span>
+              ) : null,
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 }
@@ -90,72 +69,30 @@ export function MetricsDashboard({ refreshKey = 0 }: { refreshKey?: number }) {
   const [stats, setStats] = useState<ReviewStats | null>(null);
 
   useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        setStats(await getStats());
-      } catch {
-        // silent
-      }
-    };
+    const fetchStats = () =>
+      getStats()
+        .then(setStats)
+        .catch(() => {
+          // Unauthorized or backend unreachable: handled by the AuthGate
+        });
     fetchStats();
     const interval = setInterval(fetchStats, 15000);
     return () => clearInterval(interval);
   }, [refreshKey]);
 
   if (!stats) {
-    return (
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-        {[0, 1, 2, 3].map((i) => (
-          <div key={i} className="h-20 animate-pulse glass-card p-4" />
-        ))}
-      </div>
-    );
+    return <div className="h-[86px] animate-pulse panel" />;
   }
 
+  const byStatus = stats.reviews_by_status ?? {};
   return (
-    <div className="space-y-4">
-      {/* Stat cards */}
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-        <StatCard
-          label="Total Reviews"
-          value={stats.total_reviews}
-          icon="📊"
-          gradient="linear-gradient(135deg, rgba(99,102,241,0.2), rgba(139,92,246,0.2))"
-        />
-        <StatCard
-          label="Total Findings"
-          value={stats.total_findings}
-          icon="🔍"
-          gradient="linear-gradient(135deg, rgba(236,72,153,0.2), rgba(239,68,68,0.2))"
-        />
-        <StatCard
-          label="Completed"
-          value={stats.reviews_by_status?.completed || 0}
-          icon="✅"
-          gradient="linear-gradient(135deg, rgba(34,197,94,0.2), rgba(16,185,129,0.2))"
-        />
-        <StatCard
-          label="Failed"
-          value={stats.reviews_by_status?.failed || 0}
-          icon="❌"
-          gradient="linear-gradient(135deg, rgba(239,68,68,0.2), rgba(220,38,38,0.2))"
-        />
-      </div>
-
-      {/* Distribution bars */}
-      <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-        <div className="glass-card p-4">
-          <h4 className="mb-3 text-xs font-semibold tracking-wider text-slate-400 uppercase">
-            Findings by Category
-          </h4>
-          <MiniBar items={stats.findings_by_category || {}} colors={CATEGORY_COLORS} />
-        </div>
-        <div className="glass-card p-4">
-          <h4 className="mb-3 text-xs font-semibold tracking-wider text-slate-400 uppercase">
-            Findings by Severity
-          </h4>
-          <MiniBar items={stats.findings_by_severity || {}} colors={SEVERITY_COLORS} />
-        </div>
+    <div className="grid grid-cols-2 divide-line panel md:grid-cols-5 md:divide-x">
+      <Stat label="Reviews" value={stats.total_reviews} />
+      <Stat label="Needs approval" value={byStatus.hitl_pending ?? 0} emphasis />
+      <Stat label="Failed" value={byStatus.failed ?? 0} />
+      <Stat label="Published findings" value={stats.total_findings} />
+      <div className="col-span-2 border-t border-line md:col-span-1 md:border-t-0">
+        <SeverityBreakdown counts={stats.findings_by_severity ?? {}} />
       </div>
     </div>
   );

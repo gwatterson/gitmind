@@ -27,39 +27,39 @@ function LoginContent({ backendDown, onRetry }: { backendDown: boolean; onRetry:
 
   return (
     <div className="mx-auto mt-16 max-w-md">
-      <div className="space-y-5 glass-card p-8 text-center">
+      <div className="space-y-5 panel p-8 text-center">
         <div>
-          <h1 className="mb-1 text-xl font-bold text-slate-100">Sign in to GitMind</h1>
-          <p className="text-sm text-slate-500">
+          <h1 className="mb-1 text-xl font-semibold text-fg">Sign in to GitMind</h1>
+          <p className="text-sm text-fg-subtle">
             Access is limited to the GitHub accounts and organizations configured by the
             administrator.
           </p>
         </div>
 
         {backendDown ? (
-          <div className="rounded-md border border-amber-500/20 bg-amber-500/10 p-3 text-sm text-amber-400">
+          <div className="rounded-md border border-warning/20 bg-warning/10 p-3 text-sm text-warning">
             The backend is not reachable. Check that it is running, then retry.
           </div>
         ) : null}
         {!backendDown && !oauthConfigured ? (
-          <div className="rounded-md border border-amber-500/20 bg-amber-500/10 p-3 text-left text-sm text-amber-400">
+          <div className="rounded-md border border-warning/20 bg-warning/10 p-3 text-left text-sm text-warning">
             GitHub sign-in is not configured on the server. Set GITHUB_OAUTH_CLIENT_ID and
             GITHUB_OAUTH_CLIENT_SECRET in backend/.env (see GUIDE.md), or set AUTH_DISABLED=true for
             local development only.
           </div>
         ) : null}
         {error && ERROR_MESSAGES[error] ? (
-          <div className="rounded-md border border-red-500/20 bg-red-500/10 p-3 text-sm text-red-400">
+          <div className="rounded-md border border-danger/20 bg-danger/10 p-3 text-sm text-danger">
             {ERROR_MESSAGES[error]}
           </div>
         ) : null}
 
         {backendDown ? (
-          <button onClick={onRetry} className="w-full btn-secondary">
+          <button onClick={onRetry} className="btn-secondary w-full">
             Retry
           </button>
         ) : oauthConfigured ? (
-          <a href={loginUrl(next)} className="block w-full btn-primary">
+          <a href={loginUrl(next)} className="btn-primary block w-full">
             Sign in with GitHub
           </a>
         ) : null}
