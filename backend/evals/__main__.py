@@ -30,7 +30,7 @@ def _save(document: dict[str, Any], out_dir: Path, compare: dict[str, Any] | Non
         json.dumps(document, indent=1, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n"
     )
     path.with_suffix(".md").write_text(
-        render_report(document, compare) + "\n", encoding="utf-8", newline="\n"
+        render_report(document, compare).rstrip() + "\n", encoding="utf-8", newline="\n"
     )
     return path
 
@@ -110,10 +110,19 @@ def cmd_semgrep(args: argparse.Namespace) -> None:
 
 
 def cmd_report(args: argparse.Namespace) -> None:
+    from app.graph.synthesis import determine_verdict
     from evals.runner import build_document
 
     document = _load(args.results)
-    # Recompute the metrics: the matching rules may have changed since the run
+    # Recompute verdicts and metrics: the verdict and matching rules may have changed since
+    # the run, and they only depend on the recorded findings
+    for result in document["cases"]:
+        if result["status"] != "ok":
+            continue
+        verdict = determine_verdict(result["findings"])
+        if result.get("agent_errors") and verdict == "approve":
+            verdict = "comment"  # a partial review never approves, as in synthesis
+        result["verdict"] = verdict
     document = build_document(document["run"], document["cases"])
     compare = _load(args.compare) if args.compare else None
     path = _save(document, Path(args.results).parent, compare)

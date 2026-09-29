@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:35:14+00:00",
+ "elapsed_seconds": 24.375,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/session.js\",\n      \"line\": 7,\n      \"severity\": \"low\",\n      \"rule_id\": \"shadowed-variable\",\n      \"message\": \"The variable `next` shadows the built-in JavaScript function `next()`. This can lead to unexpected behavior.\",\n      \"confidence\": 0.9\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:35:14.1420303Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 24097048200,
+     "load_duration": 108633600,
+     "prompt_eval_count": 732,
+     "prompt_eval_duration": 1636963900,
+     "eval_count": 85,
+     "eval_duration": 7293959600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb03-cc36-70b2-aa18-4b4329de63cf-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 732,
+     "output_tokens": 85,
+     "total_tokens": 817
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:51:18+00:00",
+ "elapsed_seconds": 47.828,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/reports/orders.py\",\n            \"line\": 15,\n            \"severity\": \"info\",\n            \"rule_id\": \"CWE-862\",\n            \"message\": \"The code does not handle the case where no customer is found for an order.\",\n            \"confidence\": 0.9\n        },\n        {\n            \"file\": \"app/reports/orders.py\",\n            \"line\": 15,\n            \"severity\": \"info\",\n            \"rule_id\": \"CWE-782\",\n            \"message\": \"The code does not validate the input for `order.customer_id` before querying the database.\",\n            \"confidence\": 0.9\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:51:18.2663528Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 47568561800,
+     "load_duration": 118422800,
+     "prompt_eval_count": 970,
+     "prompt_eval_duration": 1768995200,
+     "eval_count": 163,
+     "eval_duration": 14535368300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb12-2698-7931-b11d-f46ae4d7a6c5-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 970,
+     "output_tokens": 163,
+     "total_tokens": 1133
+    }
+   }
+  }
+ ]
+}

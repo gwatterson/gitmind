@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:16:28+00:00",
+ "elapsed_seconds": 39.391,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/click/core.py\",\n      \"line\": 3419,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-78\",\n      \"message\": \"The code uses string formatting to include user input in the help message, which could be used for OS command injection if the input is not properly sanitized.\",\n      \"confidence\": 0.6,\n      \"suggestion\": \"Sanitize any user input before including it in the help message.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:16:28.9334106Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 39147311900,
+     "load_duration": 91484500,
+     "prompt_eval_count": 1616,
+     "prompt_eval_duration": 5370152300,
+     "eval_count": 120,
+     "eval_duration": 11624862700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eaf2-6624-7540-a1a8-6c64d4f3b3cf-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1616,
+     "output_tokens": 120,
+     "total_tokens": 1736
+    }
+   }
+  }
+ ]
+}

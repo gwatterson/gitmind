@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:17:03+00:00",
+ "elapsed_seconds": 74.234,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"src/click/core.py\",\n            \"line\": 3419,\n            \"severity\": \"high\",\n            \"rule_id\": \"E0203\",\n            \"message\": \"The `get_help_record` method returns the result of `self.get_help_spec(ctx)`, which is a string, but it should return a tuple.\",\n            \"confidence\": 1.0,\n            \"evidence\": \"return self.get_help_spec(ctx), help\",\n            \"cwe\": \"CWE-682: Incorrect Return Value\"\n        },\n        {\n            \"file\": \"src/click/core.py\",\n            \"line\": 3419,\n            \"severity\": \"high\",\n            \"rule_id\": \"E0203\",\n            \"message\": \"The `get_help_record` method returns a tuple, but the second element is not used anywhere.\",\n            \"confidence\": 1.0,\n            \"evidence\": \"return self.get_help_spec(ctx), help\",\n            \"cwe\": \"CWE-682: Incorrect Return Value\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:17:03.7582968Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 73972198100,
+     "load_duration": 101844900,
+     "prompt_eval_count": 1475,
+     "prompt_eval_duration": 4746629700,
+     "eval_count": 246,
+     "eval_duration": 23938887200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eaf2-6614-7e10-b119-b32f032bd4f2-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1475,
+     "output_tokens": 246,
+     "total_tokens": 1721
+    }
+   }
+  }
+ ]
+}

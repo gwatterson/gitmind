@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:00:02+00:00",
+ "elapsed_seconds": 109.594,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"db_sqlite.py\",\n            \"line\": 749,\n            \"severity\": \"high\",\n            \"rule_id\": \"S108\",\n            \"message\": \"The variable `filename` can be None and is used without a check.\",\n            \"confidence\": 1.0,\n            \"evidence\": \"-    if not filename:\",\n            \"cwe\": \"CWE-690: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\\nCWE-78: Improper Neutralization of Special Elements used in an SQL Query\"\n        },\n        {\n            \"file\": \"db_sqlite.py\",\n            \"line\": 751,\n            \"severity\": \"high\",\n            \"rule_id\": \"S108\",\n            \"message\": \"The variable `filename` can be None and is used without a check.\",\n            \"confidence\": 1.0,\n            \"evidence\": \"-    success, db_dir = get_db_dir(path)\",\n            \"cwe\": \"CWE-690: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\\nCWE-78: Improper Neutralization of Special Elements used in an SQL Query\"\n        },\n        {\n            \"file\": \"db_sqlite.py\",\n            \"line\": 752,\n            \"severity\": \"high\",\n            \"rule_id\": \"S108\",\n            \"message\": \"The variable `filename` can be None and is used without a check.\",\n            \"confidence\": 1.0,\n            \"evidence\": \"-    if not success:\",\n            \"cwe\": \"CWE-690: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\\nCWE-78: Improper Neutralization of Special Elements used in an SQL Query\"\n        },\n        {\n            \"file\": \"db_sqlite.py\",\n            \"line\": 753,\n            \"severity\": \"high\",\n            \"rule_id\": \"S108\",\n            \"message\": \"The variable `filename` can be None and is used without a check.\",\n            \"confidence\": 1.0,\n            \"evidence\": \"-        return False, db_dir\",\n            \"cwe\": \"CWE-690: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\\nCWE-78: Improper Neutralization of Special Elements used in an SQL Query\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:00:02.5537451Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 109323837100,
+     "load_duration": 97873600,
+     "prompt_eval_count": 833,
+     "prompt_eval_duration": 2730064600,
+     "eval_count": 543,
+     "eval_duration": 50898395000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eae2-46dd-7990-977c-9fe4806d873f-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 833,
+     "output_tokens": 543,
+     "total_tokens": 1376
+    }
+   }
+  }
+ ]
+}

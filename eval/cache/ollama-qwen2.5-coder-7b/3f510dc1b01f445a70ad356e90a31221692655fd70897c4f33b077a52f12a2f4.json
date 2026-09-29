@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:50:17+00:00",
+ "elapsed_seconds": 45.953,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/services/password_reset.py\",\n            \"line\": 14,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing_commit_check\",\n            \"message\": \"The database session commit is not checked for errors.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"db.session.commit()\",\n            \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') or External Control of File Name or Path ('Path Traversal')\"\n        },\n        {\n            \"file\": \"app/services/password_reset.py\",\n            \"line\": 12,\n            \"severity\": \"medium\",\n            \"rule_id\": \"token_length_check\",\n            \"message\": \"The token length is hardcoded and not configurable.\",\n            \"confidence\": 0.6,\n            \"evidence\": \"token = \\\"\\\".join(random.choice(string.ascii_letters + string.digits) for _ in range(32))\",\n            \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') or External Control of File Name or Path ('Path Traversal')\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:50:17.2128727Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 45685702400,
+     "load_duration": 122055300,
+     "prompt_eval_count": 827,
+     "prompt_eval_duration": 1729982100,
+     "eval_count": 264,
+     "eval_duration": 23636088600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb11-3f80-7f73-ad96-3339dbfb220a-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 827,
+     "output_tokens": 264,
+     "total_tokens": 1091
+    }
+   }
+  }
+ ]
+}

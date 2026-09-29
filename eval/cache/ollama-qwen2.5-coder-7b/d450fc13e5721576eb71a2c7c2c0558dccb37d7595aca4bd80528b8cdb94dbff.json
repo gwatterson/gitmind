@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:29:43+00:00",
+ "elapsed_seconds": 46.485,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"starlette/responses.py\",\n            \"line\": 395,\n            \"severity\": \"high\",\n            \"rule_id\": \"S102\",\n            \"message\": \"The function `_handle_simple` is called with parameters that are not yet defined.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"await send_file()\"\n        },\n        {\n            \"file\": \"starlette/responses.py\",\n            \"line\": 395,\n            \"severity\": \"high\",\n            \"rule_id\": \"S102\",\n            \"message\": \"The function `_handle_simple` is called with parameters that are not yet defined.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"await send_file()\"\n        },\n        {\n            \"file\": \"starlette/responses.py\",\n            \"line\": 395,\n            \"severity\": \"high\",\n            \"rule_id\": \"S102\",\n            \"message\": \"The function `_handle_simple` is called with parameters that are not yet defined.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"await send_file()\"\n        },\n        {\n            \"file\": \"starlette/responses.py\",\n            \"line\": 395,\n            \"severity\": \"high\",\n            \"rule_id\": \"S102\",\n            \"message\": \"The function `_handle_simple` is called with parameters that are not yet defined.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"await send_file()\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:29:43.403666Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 46485718800,
+     "load_duration": 86569100,
+     "prompt_eval_count": 2076,
+     "prompt_eval_duration": 4134892900,
+     "eval_count": 347,
+     "eval_duration": 35167933100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eafe-69d4-7da2-bf00-f6474b3816f5-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 2076,
+     "output_tokens": 347,
+     "total_tokens": 2423
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:10:44+00:00",
+ "elapsed_seconds": 195.281,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"prowler/lib/outputs/html/html.py\",\n      \"line\": 55,\n      \"severity\": \"high\",\n      \"rule_id\": \"S108\",\n      \"message\": \"The function `_strip_unsafe_links` is removed, which was used to sanitize HTML content by stripping unsafe links. This could lead to XSS (Cross-Site Scripting) vulnerabilities if the input HTML contains malicious scripts.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-         return _strip_unsafe_links(html_content)\\n+         return html_content\"\n    },\n    {\n      \"file\": \"prowler/lib/outputs/html/html.py\",\n      \"line\": 86,\n      \"severity\": \"medium\",\n      \"rule_id\": \"S107\",\n      \"message\": \"The `escape` function is removed from the code, which could lead to XSS vulnerabilities if the input data contains HTML tags or script content.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-                             <td>{str(escape(finding.resource_uid)).replace(\\\"_\\\", \\\"<wbr />_\\\")}</td>\\n+                             <td>{finding.resource_uid.replace(\\\"<\\\", \\\"&lt;\\\").replace(\\\">\\\", \\\"&gt;\\\").replace(\\\"_\\\", \\\"<wbr />_\\\")}</td>\"\n    },\n    {\n      \"file\": \"prowler/lib/outputs/html/html.py\",\n      \"line\": 89,\n      \"severity\": \"medium\",\n      \"rule_id\": \"S107\",\n      \"message\": \"The `escape` function is removed from the code, which could lead to XSS vulnerabilities if the input data contains HTML tags or script content.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-                             <td><p class=\\\"show-read-more\\\">{HTML.process_markdown(str(escape(finding.metadata.Remediation.Recommendation.Text)))}</p> <a class=\\\"read-more\\\" href=\\\"{str(escape(_safe_url(finding.metadata.Remediation.Recommendation.Url)))}\\\"><i class=\\\"fas fa-external-link-alt\\\"></i></a></td>\\n+                             <td><p class=\\\"show-read-more\\\">{HTML.process_markdown(finding.metadata.Remediation.Recommendation.Text)}</p> <a class=\\\"read-more\\\" href=\\\"{finding.metadata.Remediation.Recommendation.Url}\\\"><i class=\\\"fas fa-external-link-alt\\\"></i></a></td>\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:10:44.0854827Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 195009111400,
+     "load_duration": 91839800,
+     "prompt_eval_count": 1834,
+     "prompt_eval_duration": 6747878100,
+     "eval_count": 542,
+     "eval_duration": 58343766000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eaea-c22d-7c01-8450-44fc72bb8ad1-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1834,
+     "output_tokens": 542,
+     "total_tokens": 2376
+    }
+   }
+  }
+ ]
+}

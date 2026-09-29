@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:02:10+00:00",
+ "elapsed_seconds": 30.281,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"lmdeploy/pytorch/engine/mp_engine/zmq_rpc.py\",\n      \"line\": 35,\n      \"severity\": \"high\",\n      \"rule_id\": \"N/A\",\n      \"message\": \"The server is now accessible from any network interface, which can lead to security vulnerabilities.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+        address = 'tcp://*'\",\n      \"cwe\": \"CWE-255: Insecure Communication Channel\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:02:10.9575865Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 30005613700,
+     "load_duration": 97259900,
+     "prompt_eval_count": 765,
+     "prompt_eval_duration": 2691261500,
+     "eval_count": 119,
+     "eval_duration": 10392790600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eae5-7251-72c3-8d04-20112ceb9899-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 765,
+     "output_tokens": 119,
+     "total_tokens": 884
+    }
+   }
+  }
+ ]
+}

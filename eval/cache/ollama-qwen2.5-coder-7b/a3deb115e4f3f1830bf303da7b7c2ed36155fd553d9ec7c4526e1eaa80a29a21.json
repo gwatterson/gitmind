@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:07:11+00:00",
+ "elapsed_seconds": 47.594,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"backend/open_webui/main.py\",\n      \"line\": 1293,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-78\",\n      \"message\": \"Potential OS command injection vulnerability due to the use of `removeprefix` without proper validation.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"channel_id = chat_id.removeprefix('channel:')\",\n      \"cwe\": \"CWE-78\"\n    },\n    {\n      \"file\": \"backend/open_webui/main.py\",\n      \"line\": 1263,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-601\",\n      \"message\": \"Potential open redirect vulnerability due to the use of `channel_id` without proper validation.\",\n      \"confidence\": 0.8,\n      \"evidence\": \"channel = await Channels.get_channel_by_id(channel_id)\",\n      \"cwe\": \"CWE-601\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:07:11.5441701Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 47340871600,
+     "load_duration": 107737900,
+     "prompt_eval_count": 1125,
+     "prompt_eval_duration": 4597618600,
+     "eval_count": 224,
+     "eval_duration": 21774699700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eae9-c4c8-74f3-9b10-c1f96f18622a-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1125,
+     "output_tokens": 224,
+     "total_tokens": 1349
+    }
+   }
+  }
+ ]
+}

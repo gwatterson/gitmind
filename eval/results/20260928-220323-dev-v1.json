@@ -156,8 +156,8 @@
    "clean_cases": 14,
    "clean_flagged_rate": 1.0,
    "findings_per_clean_case": 7.143,
-   "blocking_recall": 0.5,
-   "clean_blocked_rate": 0.0,
+   "blocking_recall": 0.75,
+   "clean_blocked_rate": 0.143,
    "latency": {
     "live_cases": 12,
     "wall_p50": 109.38,
@@ -286,8 +286,8 @@
    "clean_cases": 14,
    "clean_flagged_rate": 1.0,
    "findings_per_clean_case": 5.643,
-   "blocking_recall": 0.5,
-   "clean_blocked_rate": 0.0,
+   "blocking_recall": 0.75,
+   "clean_blocked_rate": 0.143,
    "latency": {
     "live_cases": 12,
     "wall_p50": 109.38,
@@ -347,7 +347,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "request_changes",
+   "verdict": "comment",
    "findings": [
     {
      "file": "asyncssh/scp.py",
@@ -454,7 +454,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "comment",
+   "verdict": "request_changes",
    "findings": [
     {
      "file": "source/platforms/git/localGetFileAtSHA.ts",
@@ -874,7 +874,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "comment",
+   "verdict": "request_changes",
    "findings": [
     {
      "file": "packages/server/src/controllers/text-to-speech/index.ts",
@@ -1004,7 +1004,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "comment",
+   "verdict": "request_changes",
    "findings": [
     {
      "file": "ghost/core/core/server/api/endpoints/db.js",
@@ -1189,7 +1189,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "comment",
+   "verdict": "request_changes",
    "findings": [
     {
      "file": "lemur/destinations/views.py",
@@ -1767,7 +1767,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "request_changes",
+   "verdict": "comment",
    "findings": [
     {
      "file": "lmdeploy/pytorch/engine/mp_engine/zmq_rpc.py",
@@ -2220,7 +2220,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "comment",
+   "verdict": "request_changes",
    "findings": [
     {
      "file": "backend/open_webui/main.py",
@@ -2330,7 +2330,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "comment",
+   "verdict": "request_changes",
    "findings": [
     {
      "file": "prowler/lib/outputs/html/html.py",
@@ -4691,7 +4691,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "comment",
+   "verdict": "request_changes",
    "findings": [
     {
      "file": "app/jobs/export_orders.py",
@@ -5068,7 +5068,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "request_changes",
+   "verdict": "comment",
    "findings": [
     {
      "file": "app/reports/orders.py",
@@ -5577,7 +5577,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "comment",
+   "verdict": "request_changes",
    "findings": [
     {
      "file": "app/repositories/users.py",
@@ -5847,7 +5847,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "comment",
+   "verdict": "request_changes",
    "findings": [
     {
      "file": "app/services/accounts.py",
@@ -6093,7 +6093,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "comment",
+   "verdict": "request_changes",
    "findings": [
     {
      "file": "src/routes/attachments.ts",
@@ -6321,7 +6321,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "request_changes",
+   "verdict": "comment",
    "findings": [
     {
      "file": "src/feed/posts.ts",
@@ -6566,7 +6566,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "comment",
+   "verdict": "request_changes",
    "findings": [
     {
      "file": "src/components/Comment.tsx",
@@ -6626,7 +6626,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "request_changes",
+   "verdict": "comment",
    "findings": [
     {
      "file": "src/dashboard/widgets.ts",
@@ -6724,7 +6724,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "comment",
+   "verdict": "request_changes",
    "findings": [
     {
      "file": "src/routes/preview.ts",

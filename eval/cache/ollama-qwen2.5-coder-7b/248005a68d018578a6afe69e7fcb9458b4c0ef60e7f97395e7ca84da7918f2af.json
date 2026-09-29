@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:17:50+00:00",
+ "elapsed_seconds": 46.438,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/click/types.py\",\n      \"line\": 1079,\n      \"severity\": \"medium\",\n      \"rule_id\": \"E203\",\n      \"message\": \"The `.. versionchanged::` directive is not properly formatted. It should be indented to align with the previous line.\",\n      \"confidence\": 0.9\n    },\n    {\n      \"file\": \"src/click/types.py\",\n      \"line\": 1148,\n      \"severity\": \"low\",\n      \"rule_id\": \"C0302\",\n      \"message\": \"The method `coerce_path_result` has too many local variables (5). Consider refactoring to reduce complexity.\",\n      \"confidence\": 0.6\n    },\n    {\n      \"file\": \"src/click/types.py\",\n      \"line\": 1148,\n      \"severity\": \"low\",\n      \"rule_id\": \"C0325\",\n      \"message\": \"The variable `rv` is assigned to multiple times and could be simplified.\",\n      \"confidence\": 0.6\n    },\n    {\n      \"file\": \"src/click/types.py\",\n      \"line\": 1148,\n      \"severity\": \"low\",\n      \"rule_id\": \"C0325\",\n      \"message\": \"The variable `path_type` is assigned to multiple times and could be simplified.\",\n      \"confidence\": 0.6\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:17:50.2587141Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 46431691500,
+     "load_duration": 107957000,
+     "prompt_eval_count": 1883,
+     "prompt_eval_duration": 4807759100,
+     "eval_count": 329,
+     "eval_duration": 33448072500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eaf3-8850-72c1-852d-15c4fced7716-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1883,
+     "output_tokens": 329,
+     "total_tokens": 2212
+    }
+   }
+  }
+ ]
+}

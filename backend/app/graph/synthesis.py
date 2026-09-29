@@ -83,16 +83,26 @@ def sort_findings(findings: list[Finding]) -> list[Finding]:
     return sorted(findings, key=_rank)
 
 
-def determine_verdict(findings: list[Finding], min_confidence: float | None = None) -> str:
+def determine_verdict(
+    findings: list[Finding],
+    min_confidence: float | None = None,
+    blocking_categories: set[str] | None = None,
+) -> str:
     """Decide the verdict from the findings.
 
-    - request_changes: a critical or high finding the agent is reasonably sure about
-    - comment: any other finding of medium severity or above (including unsure high ones)
+    - request_changes: a critical or high finding of a blocking category (security by
+      default) with at least the minimum confidence
+    - comment: any other finding of medium severity or above
     - approve: only low or info findings, or none
     """
     threshold = settings.VERDICT_MIN_CONFIDENCE if min_confidence is None else min_confidence
+    categories = (
+        settings.verdict_blocking_categories if blocking_categories is None else blocking_categories
+    )
     blocking = any(
-        f.get("severity") in ("critical", "high") and f.get("confidence", 1.0) >= threshold
+        f.get("severity") in ("critical", "high")
+        and f.get("category") in categories
+        and f.get("confidence", 1.0) >= threshold
         for f in findings
     )
     if blocking:

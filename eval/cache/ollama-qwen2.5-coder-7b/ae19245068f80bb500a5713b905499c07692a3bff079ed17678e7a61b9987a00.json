@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:35:03+00:00",
+ "elapsed_seconds": 13.719,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/session.js\",\n      \"line\": 7,\n      \"severity\": \"low\",\n      \"rule_id\": \"string_concatenation_in_loop\",\n      \"message\": \"String concatenation inside a loop that builds a large string.\",\n      \"confidence\": 0.3,\n      \"evidence\": \"+   const next = req.query.next || \\\"/\\\";\",\n      \"cwe\": \"CWE-190: Numeric Errors\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:35:03.4785261Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 13711157500,
+     "load_duration": 90319200,
+     "prompt_eval_count": 730,
+     "prompt_eval_duration": 1674410400,
+     "eval_count": 112,
+     "eval_duration": 9727871800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb03-cc27-7722-8d84-b6dc31fa818d-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 730,
+     "output_tokens": 112,
+     "total_tokens": 842
+    }
+   }
+  }
+ ]
+}

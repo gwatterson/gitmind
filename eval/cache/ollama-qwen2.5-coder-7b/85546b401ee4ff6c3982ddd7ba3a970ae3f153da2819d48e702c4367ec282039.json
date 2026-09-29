@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:05:20+00:00",
+ "elapsed_seconds": 34.516,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"backend/open_webui/models/messages.py\",\n            \"line\": 332,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing_channel_check\",\n            \"message\": \"The function does not check if the message's channel matches the requested channel.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"-             if not message:\\n+             if not message:\",\n            \"cwe\": \"CWE-284: Improper Access Control\"\n        },\n        {\n            \"file\": \"backend/open_webui/routers/channels.py\",\n            \"line\": 1130,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing_channel_check\",\n            \"message\": \"The function does not check if the message's channel matches the requested channel.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"-             ref = await Messages.get_message_by_id(ref_id, include_thread_replies=False, db=db)\\n-             if not ref or ref.channel_id != channel.id:\",\n            \"cwe\": \"CWE-284: Improper Access Control\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:05:20.8037622Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 34506085500,
+     "load_duration": 115367900,
+     "prompt_eval_count": 976,
+     "prompt_eval_duration": 2910808500,
+     "eval_count": 253,
+     "eval_duration": 25153087200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eae8-4758-7fe3-9ed4-fd722c1f2fd8-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 976,
+     "output_tokens": 253,
+     "total_tokens": 1229
+    }
+   }
+  }
+ ]
+}

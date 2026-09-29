@@ -156,8 +156,8 @@
    "clean_cases": 13,
    "clean_flagged_rate": 1.0,
    "findings_per_clean_case": 6.846,
-   "blocking_recall": 0.364,
-   "clean_blocked_rate": 0.0,
+   "blocking_recall": 0.818,
+   "clean_blocked_rate": 0.077,
    "latency": {
     "live_cases": 48,
     "wall_p50": 92.75,
@@ -286,8 +286,8 @@
    "clean_cases": 13,
    "clean_flagged_rate": 1.0,
    "findings_per_clean_case": 6.385,
-   "blocking_recall": 0.364,
-   "clean_blocked_rate": 0.0,
+   "blocking_recall": 0.818,
+   "clean_blocked_rate": 0.077,
    "latency": {
     "live_cases": 48,
     "wall_p50": 92.75,
@@ -471,7 +471,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "comment",
+   "verdict": "request_changes",
    "findings": [
     {
      "file": "packages/core/src/ci-environment/git.ts",
@@ -624,7 +624,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "comment",
+   "verdict": "request_changes",
    "findings": [
     {
      "file": "packages/aws-cdk-lib/aws-lambda-nodejs/lib/bundling.ts",
@@ -878,7 +878,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "comment",
+   "verdict": "request_changes",
    "findings": [
     {
      "file": "cms/plugin_rendering.py",
@@ -997,7 +997,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "comment",
+   "verdict": "request_changes",
    "findings": [
     {
      "file": "ghost/core/core/server/lib/mobiledoc.js",
@@ -1256,7 +1256,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "comment",
+   "verdict": "request_changes",
    "findings": [
     {
      "file": "git/objects/submodule/base.py",
@@ -1462,7 +1462,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "comment",
+   "verdict": "request_changes",
    "findings": [
     {
      "file": "lightrag/api/utils_api.py",
@@ -1756,7 +1756,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "comment",
+   "verdict": "request_changes",
    "findings": [
     {
      "file": "mlflow/statsmodels/__init__.py",
@@ -1876,7 +1876,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "comment",
+   "verdict": "request_changes",
    "findings": [
     {
      "file": "backend/open_webui/utils/chat.py",
@@ -3492,7 +3492,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "comment",
+   "verdict": "request_changes",
    "findings": [
     {
      "file": "src/routes/contact.js",
@@ -3665,7 +3665,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "comment",
+   "verdict": "request_changes",
    "findings": [
     {
      "file": "src/routes/products.js",
@@ -4420,7 +4420,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "request_changes",
+   "verdict": "comment",
    "findings": [
     {
      "file": "app/importers/products.py",
@@ -4710,7 +4710,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "comment",
+   "verdict": "request_changes",
    "findings": [
     {
      "file": "app/routes/dashboard.py",
@@ -4844,7 +4844,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "comment",
+   "verdict": "request_changes",
    "findings": [
     {
      "file": "app/api/webhooks.py",
@@ -4945,7 +4945,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "comment",
+   "verdict": "request_changes",
    "findings": [
     {
      "file": "app/routes/landing.py",
@@ -5125,7 +5125,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "request_changes",
+   "verdict": "comment",
    "findings": [
     {
      "file": "app/api/events.py",
@@ -5356,7 +5356,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "comment",
+   "verdict": "request_changes",
    "findings": [
     {
      "file": "src/reports/formulas.ts",
@@ -5503,7 +5503,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "comment",
+   "verdict": "request_changes",
    "findings": [
     {
      "file": "src/auth/tokens.ts",

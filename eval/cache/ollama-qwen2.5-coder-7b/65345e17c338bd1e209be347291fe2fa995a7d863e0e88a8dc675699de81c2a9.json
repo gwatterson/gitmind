@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:36:22+00:00",
+ "elapsed_seconds": 54.469,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"public/js/search.js\",\n      \"line\": 7,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing-check-for-undefined-or-empty-results\",\n      \"message\": \"The `results` variable might be undefined or empty, leading to a potential error when accessing `results.length`.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"if (results.length === 0) {\"\n    },\n    {\n      \"file\": \"public/js/search.js\",\n      \"line\": 8,\n      \"severity\": \"medium\",\n      \"rule_id\": \"inverted-check-for-empty-results\",\n      \"message\": \"The check for empty results is inverted. It should be `if (results.length === 0)` to handle the case where there are no results.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"resultsEl.innerHTML = `<p class=\\\"empty\\\">No results for <strong>${query}</strong></p>`;\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:36:22.043288Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 54200479700,
+     "load_duration": 110887400,
+     "prompt_eval_count": 770,
+     "prompt_eval_duration": 1769263800,
+     "eval_count": 221,
+     "eval_duration": 19129657900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb04-5fcd-7100-ae7a-6cd6b00a0cbb-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 770,
+     "output_tokens": 221,
+     "total_tokens": 991
+    }
+   }
+  }
+ ]
+}

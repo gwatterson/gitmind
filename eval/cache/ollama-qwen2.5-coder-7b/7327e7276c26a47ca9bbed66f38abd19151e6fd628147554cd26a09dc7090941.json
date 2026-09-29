@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:23:58+00:00",
+ "elapsed_seconds": 30.797,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/ahttpx/_server.py\",\n      \"line\": 38,\n      \"severity\": \"medium\",\n      \"rule_id\": \"blocking_call_in_async_function\",\n      \"message\": \"A blocking call (`time.sleep`) is inside an `async def` function.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+                return\\n+            # Wait until we have read data, or return\\n+            # if the stream closes.\\n+            return\",\n      \"cwe\": \"CWE-362: Inadequate Sleep Interval\"\n    },\n    {\n      \"file\": \"src/ahttpx/_server.py\",\n      \"line\": 102,\n      \"severity\": \"medium\",\n      \"rule_id\": \"blocking_call_in_async_function\",\n      \"message\": \"A blocking call (`time.sleep`) is inside an `async def` function.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+            sleep(1)\",\n      \"cwe\": \"CWE-362: Inadequate Sleep Interval\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:23:58.1053654Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 30796176100,
+     "load_duration": 93923800,
+     "prompt_eval_count": 1450,
+     "prompt_eval_duration": 1542068300,
+     "eval_count": 244,
+     "eval_duration": 23341917000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eaf9-624b-7b93-8316-11d50d0cac49-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1450,
+     "output_tokens": 244,
+     "total_tokens": 1694
+    }
+   }
+  }
+ ]
+}

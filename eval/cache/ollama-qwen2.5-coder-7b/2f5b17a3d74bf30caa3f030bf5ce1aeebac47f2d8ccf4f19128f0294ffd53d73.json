@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:58:55+00:00",
+ "elapsed_seconds": 42.532,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"db_sqlite.py\",\n      \"line\": 748,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-22\",\n      \"message\": \"The code no longer checks for path traversal, allowing attackers to specify a custom database file name that could traverse out of the intended directory.\",\n      \"confidence\": 0.9\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:58:55.4801995Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 42283135500,
+     "load_duration": 95870600,
+     "prompt_eval_count": 974,
+     "prompt_eval_duration": 2876313400,
+     "eval_count": 94,
+     "eval_duration": 8353647800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eae2-46d5-7161-8465-c8a8386dced5-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 974,
+     "output_tokens": 94,
+     "total_tokens": 1068
+    }
+   }
+  }
+ ]
+}

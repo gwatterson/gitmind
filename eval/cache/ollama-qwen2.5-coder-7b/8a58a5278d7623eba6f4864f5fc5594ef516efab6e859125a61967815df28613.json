@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:52:59+00:00",
+ "elapsed_seconds": 46.0,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"ghost/core/core/server/api/endpoints/db.js\",\n      \"line\": 32,\n      \"severity\": \"low\",\n      \"rule_id\": \"string-concatenation-inside-loop\",\n      \"message\": \"String concatenation inside a loop that builds a large string.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"Object.assign(frame.options, {include: frame.options.withRelated});\\n\\n// NOTE: we need to have `include` property available as backupDatabase uses it internally\",\n      \"cwe\": \"CWE-184: Integer Overflow or Wraparound\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:52:59.8347007Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 45735953900,
+     "load_duration": 97624500,
+     "prompt_eval_count": 1011,
+     "prompt_eval_duration": 2801648600,
+     "eval_count": 146,
+     "eval_duration": 13217412100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eadc-cc0a-7bc0-ae5c-32763f188b3a-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1011,
+     "output_tokens": 146,
+     "total_tokens": 1157
+    }
+   }
+  }
+ ]
+}

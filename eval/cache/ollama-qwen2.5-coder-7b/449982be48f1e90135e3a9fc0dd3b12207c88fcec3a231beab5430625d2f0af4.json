@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:28:52+00:00",
+ "elapsed_seconds": 50.75,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"starlette/middleware/opentelemetry.py\",\n            \"line\": 39,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_argument_check\",\n            \"message\": \"The `tracer_provider` argument is not checked for None before being passed to `OpenTelemetryResponder`. This could lead to unexpected behavior if a non-None value is provided.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"+         self._responder = OpenTelemetryResponder(app, patterns, tracer_provider)\",\n            \"cwe\": \"CWE-476: Null Pointer Dereference\"\n        },\n        {\n            \"file\": \"starlette/middleware/opentelemetry.py\",\n            \"line\": 59,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_argument_check\",\n            \"message\": \"The `tracer_provider` argument is not checked for None before being used. This could lead to unexpected behavior if a non-None value is provided.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"+         self._tracer_provider = tracer_provider or trace.get_tracer_provider()\",\n            \"cwe\": \"CWE-476: Null Pointer Dereference\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:28:52.7629548Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 50492757900,
+     "load_duration": 85768800,
+     "prompt_eval_count": 1505,
+     "prompt_eval_duration": 2613815000,
+     "eval_count": 272,
+     "eval_duration": 26024131900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eafd-9354-7881-8fc3-34c061480f8f-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1505,
+     "output_tokens": 272,
+     "total_tokens": 1777
+    }
+   }
+  }
+ ]
+}

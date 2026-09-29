@@ -215,7 +215,8 @@ All settings come from environment variables (`backend/.env`, see [`.env.example
 | `RATE_LIMIT_RPM_MAX`, `RATE_LIMIT_RPD_MAX`, `RATE_LIMIT_TPM_MAX` | Gemini quota limits |
 | `LLM_INPUT_TOKEN_BUDGET`, `LLM_MAX_CONCURRENCY`, `LLM_MAX_ATTEMPTS` | Batch size, parallel calls and retries |
 | `MAX_REVIEW_FILES`, `MAX_REVIEW_PATCH_CHARS`, `REVIEW_EXCLUDE_PATTERNS` | Review scope |
-| `VERDICT_MIN_CONFIDENCE` | Confidence needed for a critical or high finding to block a PR |
+| `VERDICT_BLOCKING_CATEGORIES` | Categories whose critical or high findings request changes (default `security`) |
+| `VERDICT_MIN_CONFIDENCE` | Self-reported confidence needed to block a PR (default `0`: it was not predictive in the evaluation) |
 | `GITHUB_APP_ID`, `GITHUB_PRIVATE_KEY_PATH` or `GITHUB_TOKEN` | GitHub access |
 | `GITHUB_WEBHOOK_SECRET` | Webhook signature secret (required for webhooks) |
 | `GITHUB_OAUTH_CLIENT_ID`, `GITHUB_OAUTH_CLIENT_SECRET` | Dashboard sign-in |

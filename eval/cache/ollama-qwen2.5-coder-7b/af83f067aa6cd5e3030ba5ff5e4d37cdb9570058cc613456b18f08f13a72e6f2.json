@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:45:52+00:00",
+ "elapsed_seconds": 27.203,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"asyncssh/scp.py\",\n            \"line\": 138,\n            \"severity\": \"high\",\n            \"rule_id\": \"S502\",\n            \"message\": \"The code does not check if `name` is None before splitting it.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"permissions, size, name = args.split(None, 2)\",\n            \"cwe\": \"CWE-184: Integer Overflow or Wraparound\"\n        },\n        {\n            \"file\": \"asyncssh/scp.py\",\n            \"line\": 137,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S501\",\n            \"message\": \"The code does not handle the case where `args` is empty.\",\n            \"confidence\": 0.8,\n            \"evidence\": \"try:\",\n            \"cwe\": \"CWE-476: Null Pointer Dereference\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:45:52.9952576Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 26945815300,
+     "load_duration": 114757900,
+     "prompt_eval_count": 762,
+     "prompt_eval_duration": 2789432300,
+     "eval_count": 216,
+     "eval_duration": 18920923700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ead6-921e-7401-86f2-bd6cab1dc3e1-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 762,
+     "output_tokens": 216,
+     "total_tokens": 978
+    }
+   }
+  }
+ ]
+}

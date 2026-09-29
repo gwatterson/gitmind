@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:33:48+00:00",
+ "elapsed_seconds": 193.468,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"packages/zod/src/v4/core/parse.ts\",\n      \"line\": 87,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-200\",\n      \"message\": \"The code uses a getter to lazily initialize the error object, which can be useful for performance optimization. However, it's important to ensure that this lazy initialization does not introduce any security vulnerabilities.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"get error() { if (!error) error = new Err(issues.map((iss) => util.finalizeIssue(iss, ctx, core.config()))); return error; }\",\n      \"cwe\": \"CWE-200\"\n    },\n    {\n      \"file\": \"packages/zod/src/v4/core/parse.ts\",\n      \"line\": 87,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-561\",\n      \"message\": \"The code uses a getter to lazily initialize the error object, which can be useful for performance optimization. However, it's important to ensure that this lazy initialization does not introduce any security vulnerabilities.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"get error() { if (!error) error = new Err(issues.map((iss) => util.finalizeIssue(iss, ctx, core.config()))); return error; }\",\n      \"cwe\": \"CWE-561\"\n    },\n    {\n      \"file\": \"packages/zod/src/v4/core/parse.ts\",\n      \"line\": 87,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-200\",\n      \"message\": \"The code uses a getter to lazily initialize the error object, which can be useful for performance optimization. However, it's important to ensure that this lazy initialization does not introduce any security vulnerabilities.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"get error() { if (!error) error = new Err(issues.map((iss) => util.finalizeIssue(iss, ctx, core.config()))); return error; }\",\n      \"cwe\": \"CWE-200\"\n    },\n    {\n      \"file\": \"packages/zod/src/v4/core/parse.ts\",\n      \"line\": 87,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-561\",\n      \"message\": \"The code uses a getter to lazily initialize the error object, which can be useful for performance optimization. However, it's important to ensure that this lazy initialization does not introduce any security vulnerabilities.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"get error() { if (!error) error = new Err(issues.map((iss) => util.finalizeIssue(iss, ctx, core.config()))); return error; }\",\n      \"cwe\": \"CWE-561\"\n    },\n    {\n      \"file\": \"packages/zod/src/v4/core/parse.ts\",\n      \"line\": 87,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-200\",\n      \"message\": \"The code uses a getter to lazily initialize the error object, which can be useful for performance optimization. However, it's important to ensure that this lazy initialization does not introduce any security vulnerabilities.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"get error() { if (!error) error = new Err(issues.map((iss) => util.finalizeIssue(iss, ctx, core.config()))); return error; }\",\n      \"cwe\": \"CWE-200\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:33:48.1156369Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 193210116600,
+     "load_duration": 86134300,
+     "prompt_eval_count": 2306,
+     "prompt_eval_duration": 4049916600,
+     "eval_count": 796,
+     "eval_duration": 82736948200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eaff-e794-70d2-aa47-7e4243ac94e5-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 2306,
+     "output_tokens": 796,
+     "total_tokens": 3102
+    }
+   }
+  }
+ ]
+}

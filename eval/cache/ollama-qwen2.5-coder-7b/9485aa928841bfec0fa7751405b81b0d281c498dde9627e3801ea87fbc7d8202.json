@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:52:16+00:00",
+ "elapsed_seconds": 39.437,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/auth/login.py\",\n            \"line\": 12,\n            \"severity\": \"high\",\n            \"rule_id\": \"BCRYPT_CHECKPW_USER_PASSWORD_HASH\",\n            \"message\": \"The user object can be None, leading to a `NoneType` error when calling `user.password_hash`.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"if bcrypt.checkpw(password.encode(), user.password_hash):\"\n        },\n        {\n            \"file\": \"app/auth/login.py\",\n            \"line\": 12,\n            \"severity\": \"high\",\n            \"rule_id\": \"BCRYPT_CHECKPW_PASSWORD_ENCODING\",\n            \"message\": \"The password should be encoded before checking it against the hash.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"if bcrypt.checkpw(password.encode(), user.password_hash):\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:52:16.488512Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 39175315600,
+     "load_duration": 95234000,
+     "prompt_eval_count": 777,
+     "prompt_eval_duration": 1690997700,
+     "eval_count": 199,
+     "eval_duration": 17634094800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb13-2ae0-7473-aabd-bc031ae78010-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 777,
+     "output_tokens": 199,
+     "total_tokens": 976
+    }
+   }
+  }
+ ]
+}

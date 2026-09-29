@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:05:56+00:00",
+ "elapsed_seconds": 70.687,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"backend/open_webui/models/messages.py\",\n      \"line\": 329,\n      \"severity\": \"medium\",\n      \"rule_id\": \"N+1 queries\",\n      \"message\": \"A database query is inside a loop over the results of another query.\",\n      \"confidence\": 0.8,\n      \"evidence\": \"+            message = await db.get(Message, parent_id)\",\n      \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') or Query ('OS Command Injection')\"\n    },\n    {\n      \"file\": \"backend/open_webui/routers/channels.py\",\n      \"line\": 1130,\n      \"severity\": \"medium\",\n      \"rule_id\": \"N+1 queries\",\n      \"message\": \"A database query is inside a loop over the results of another query.\",\n      \"confidence\": 0.8,\n      \"evidence\": \"-             ref = await Messages.get_message_by_id(ref_id, include_thread_replies=False, db=db)\",\n      \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') or Query ('OS Command Injection')\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:05:56.9978392Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 70425104500,
+     "load_duration": 95405700,
+     "prompt_eval_count": 974,
+     "prompt_eval_duration": 2820858100,
+     "eval_count": 272,
+     "eval_duration": 26492635700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eae8-4766-7961-a944-5c3a0f3a84b1-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 974,
+     "output_tokens": 272,
+     "total_tokens": 1246
+    }
+   }
+  }
+ ]
+}

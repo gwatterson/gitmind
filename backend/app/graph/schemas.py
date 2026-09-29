@@ -29,9 +29,9 @@ class ReviewFinding(BaseModel):
     evidence: str = Field(
         default="", description="The exact code fragment from the diff that shows the problem"
     )
+    # Required: with an optional field small models leave the default on almost every finding
     confidence: float = Field(
-        default=0.5,
-        description="Probability that this is a real problem: 0.9 certain, 0.5 plausible, 0.2 speculative",
+        description="Probability that this is a real problem: 0.9 certain, 0.6 plausible, 0.3 speculative",
     )
     cwe: str | None = Field(
         default=None, description="CWE identifier such as CWE-89 (security only)"

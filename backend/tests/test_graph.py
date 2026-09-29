@@ -220,15 +220,23 @@ def test_same_rule_far_apart_is_kept():
 
 
 def test_unsure_high_finding_does_not_block_the_pr():
-    unsure = [_finding(severity="high", confidence=0.3)]
-    sure = [_finding(severity="high", confidence=0.9)]
+    unsure = [_finding(severity="high", category="security", confidence=0.3)]
+    sure = [_finding(severity="high", category="security", confidence=0.9)]
     assert determine_verdict(unsure, min_confidence=0.6) == "comment"
     assert determine_verdict(sure, min_confidence=0.6) == "request_changes"
 
 
 def test_findings_without_confidence_are_treated_as_certain():
-    assert (
-        determine_verdict([_finding(severity="critical")], min_confidence=0.6) == "request_changes"
+    critical = [_finding(severity="critical", category="security")]
+    assert determine_verdict(critical, min_confidence=0.6) == "request_changes"
+
+
+def test_only_blocking_categories_request_changes():
+    """Quality and performance findings never block by default (see eval/README.md)."""
+    quality = [_finding(severity="critical", category="quality", confidence=1.0)]
+    assert determine_verdict(quality) == "comment"
+    assert determine_verdict(quality, blocking_categories={"security", "quality"}) == (
+        "request_changes"
     )
 
 

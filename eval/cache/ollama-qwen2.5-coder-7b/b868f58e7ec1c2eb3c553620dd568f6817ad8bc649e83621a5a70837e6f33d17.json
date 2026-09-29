@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:26:46+00:00",
+ "elapsed_seconds": 26.032,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"source/core/Ky.ts\",\n      \"line\": 268,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1_queries\",\n      \"message\": \"The `response.text()` call is inside a loop over query results, which can lead to N+1 queries.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+                const text = await response.text();\"\n    },\n    {\n      \"file\": \"source/core/Ky.ts\",\n      \"line\": 543,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1_queries\",\n      \"message\": \"The `response.text()` call is inside a loop over query results, which can lead to N+1 queries.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+                const text = await response.text();\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:26:46.8931406Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 26014561400,
+     "load_duration": 80361300,
+     "prompt_eval_count": 1469,
+     "prompt_eval_duration": 2636257000,
+     "eval_count": 199,
+     "eval_duration": 19045635100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eafc-084d-7cb3-abd6-66ae89f9c50a-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1469,
+     "output_tokens": 199,
+     "total_tokens": 1668
+    }
+   }
+  }
+ ]
+}

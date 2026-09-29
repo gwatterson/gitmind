@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:46:24+00:00",
+ "elapsed_seconds": 17.407,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/jobs/export_orders.py\",\n            \"line\": 32,\n            \"severity\": \"low\",\n            \"rule_id\": \"string_concatenation_in_loop\",\n            \"message\": \"String concatenation inside a loop that builds a large string.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"f.writelines(f\\\"{row[0]},{row[1]},{row[2]}\\\\n\\\" for row in rows)\",\n            \"cwe\": \"CWE-134: Improper Control of Formatting Strings\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:46:24.6007625Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 17395553300,
+     "load_duration": 93780100,
+     "prompt_eval_count": 1090,
+     "prompt_eval_duration": 2331335000,
+     "eval_count": 135,
+     "eval_duration": 11878406900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb0e-2263-78b3-9b61-f760313c724d-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1090,
+     "output_tokens": 135,
+     "total_tokens": 1225
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:01:08+00:00",
+ "elapsed_seconds": 15.25,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/feed/posts.ts\",\n      \"line\": 11,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1 queries\",\n      \"message\": \"A database query is inside a loop over the results of another query.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+     const author = await prisma.user.findUnique({ where: { id: post.authorId } });\",\n      \"cwe\": \"CWE-835: Inefficient Data Processing\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:01:08.8300182Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 15240159300,
+     "load_duration": 93632600,
+     "prompt_eval_count": 814,
+     "prompt_eval_duration": 1700770800,
+     "eval_count": 125,
+     "eval_duration": 10789334800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb1b-a8d4-72b2-888a-6aaf23e7175c-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 814,
+     "output_tokens": 125,
+     "total_tokens": 939
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:47:51+00:00",
+ "elapsed_seconds": 104.063,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/jobs/export_orders.py\",\n            \"line\": 14,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing-default-value-check\",\n            \"message\": \"The function `load_job_config` does not check if the input path is None.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"    return yaml.safe_load(f) or {}\",\n            \"cwe\": \"CWE-614: Improper Control of Generation of Code ('Code Injection')\\nCWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n        },\n        {\n            \"file\": \"app/jobs/export_orders.py\",\n            \"line\": 25,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing-default-value-check\",\n            \"message\": \"The function `export_orders` does not check if the input customer_id is None.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"    conn = get_connection()\",\n            \"cwe\": \"CWE-614: Improper Control of Generation of Code ('Code Injection')\\nCWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n        },\n        {\n            \"file\": \"app/jobs/export_orders.py\",\n            \"line\": 25,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing-default-value-check\",\n            \"message\": \"The function `export_orders` does not check if the input name is None.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"    conn = get_connection()\",\n            \"cwe\": \"CWE-614: Improper Control of Generation of Code ('Code Injection')\\nCWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n        },\n        {\n            \"file\": \"app/jobs/export_orders.py\",\n            \"line\": 32,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing-default-value-check\",\n            \"message\": \"The function `export_orders` does not check if the input rows is None.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"    f.writelines(f\\\"{row[0]},{row[1]},{row[2]}\\\\n\\\" for row in rows)\",\n            \"cwe\": \"CWE-614: Improper Control of Generation of Code ('Code Injection')\\nCWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n        },\n        {\n            \"file\": \"app/jobs/export_orders.py\",\n            \"line\": 32,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing-default-value-check\",\n            \"message\": \"The function `export_orders` does not check if the input rows is empty.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"    f.writelines(f\\\"{row[0]},{row[1]},{row[2]}\\\\n\\\" for row in rows)\",\n            \"cwe\": \"CWE-614: Improper Control of Generation of Code ('Code Injection')\\nCWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:47:51.2776796Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 103801756100,
+     "load_duration": 125978000,
+     "prompt_eval_count": 1092,
+     "prompt_eval_duration": 2437076800,
+     "eval_count": 730,
+     "eval_duration": 67777758000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb0e-2274-7902-bb3a-3e147b89c8fd-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1092,
+     "output_tokens": 730,
+     "total_tokens": 1822
+    }
+   }
+  }
+ ]
+}

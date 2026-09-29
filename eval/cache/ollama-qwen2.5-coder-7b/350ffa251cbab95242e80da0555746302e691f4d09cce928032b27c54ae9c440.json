@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:46:07+00:00",
+ "elapsed_seconds": 585.0,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/api/quotes.py\",\n            \"line\": 18,\n            \"severity\": \"high\",\n            \"rule_id\": \"CWE-943 NoSQL injection\",\n            \"message\": \"The code is vulnerable to NoSQL injection because it directly uses user input (`body.currency`) in a query parameter without proper validation or sanitization.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"response = requests.get(RATES_URL, params={\\\"base\\\": \\\"EUR\\\", \\\"symbols\\\": body.currency}, timeout=10)\",\n            \"cwe\": \"CWE-943 NoSQL injection\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:46:07.1243985Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 584744004500,
+     "load_duration": 116852000,
+     "prompt_eval_count": 1004,
+     "prompt_eval_duration": 1840370000,
+     "eval_count": 151,
+     "eval_duration": 13412337300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb05-34e7-78a1-b1d5-60d3bbc822f9-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1004,
+     "output_tokens": 151,
+     "total_tokens": 1155
+    }
+   }
+  }
+ ]
+}

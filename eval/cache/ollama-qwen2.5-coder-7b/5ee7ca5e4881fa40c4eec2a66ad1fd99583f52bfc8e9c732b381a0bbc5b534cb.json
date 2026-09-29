@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:46:11+00:00",
+ "elapsed_seconds": 45.781,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"asyncssh/scp.py\",\n      \"line\": 138,\n      \"severity\": \"critical\",\n      \"rule_id\": \"CWE-22\",\n      \"message\": \"Path traversal vulnerability due to lack of validation on the filename.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-         if b'/' in name or b'\\\\' in name or name == b'..':\\n-             raise _scp_error(SFTPBadMessage, 'Invalid filename')\",\n      \"cwe\": \"CWE-22 Path traversal\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:46:11.5792783Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 45529836000,
+     "load_duration": 119854400,
+     "prompt_eval_count": 903,
+     "prompt_eval_duration": 2782472500,
+     "eval_count": 141,
+     "eval_duration": 12294345100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ead6-9222-7680-9aa6-c197dc70556f-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 903,
+     "output_tokens": 141,
+     "total_tokens": 1044
+    }
+   }
+  }
+ ]
+}

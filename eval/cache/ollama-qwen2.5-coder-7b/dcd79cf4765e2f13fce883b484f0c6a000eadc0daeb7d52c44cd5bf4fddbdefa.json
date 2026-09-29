@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:13:55+00:00",
+ "elapsed_seconds": 91.11,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"tornado/web.py\",\n      \"line\": 370,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-94\",\n      \"message\": \"Potential code injection vulnerability due to direct use of user input in the response message.\",\n      \"confidence\": 0.8,\n      \"evidence\": \"+             self._reason = escape.native_str(reason)\",\n      \"cwe\": \"CWE-94 Code Injection\"\n    },\n    {\n      \"file\": \"tornado/web.py\",\n      \"line\": 1375,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-94\",\n      \"message\": \"Potential code injection vulnerability due to direct use of user input in the response message.\",\n      \"confidence\": 0.8,\n      \"evidence\": \"+                 % {\",\n      \"cwe\": \"CWE-94 Code Injection\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:13:55.6082236Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 90826818100,
+     "load_duration": 89252500,
+     "prompt_eval_count": 1641,
+     "prompt_eval_duration": 5542148800,
+     "eval_count": 210,
+     "eval_duration": 20321938600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eaef-4536-70f0-ae26-22a70e94b01c-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1641,
+     "output_tokens": 210,
+     "total_tokens": 1851
+    }
+   }
+  }
+ ]
+}

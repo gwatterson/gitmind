@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:05:34+00:00",
+ "elapsed_seconds": 57.75,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/preview.ts\",\n      \"line\": 9,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_validation\",\n      \"message\": \"The URL from the query parameter is not validated before being used in a fetch request.\",\n      \"confidence\": 0.8,\n      \"evidence\": \"const url = String(req.query.url ?? \\\"\\\");\"\n    },\n    {\n      \"file\": \"src/routes/preview.ts\",\n      \"line\": 12,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_validation\",\n      \"message\": \"The title extracted from the HTML is not validated before being returned in the response.\",\n      \"confidence\": 0.8,\n      \"evidence\": \"const title = TITLE.exec(html)?.[1] ?? url;\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:05:34.7391844Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 57475896900,
+     "load_duration": 112886400,
+     "prompt_eval_count": 798,
+     "prompt_eval_duration": 1756896900,
+     "eval_count": 186,
+     "eval_duration": 16164898700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb1f-117b-7241-bc03-3dcbd1322e27-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 798,
+     "output_tokens": 186,
+     "total_tokens": 984
+    }
+   }
+  }
+ ]
+}

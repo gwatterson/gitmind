@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:01:40+00:00",
+ "elapsed_seconds": 97.969,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"litellm/llms/litellm_proxy/skills/prompt_injection.py\",\n      \"line\": 107,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-22\",\n      \"message\": \"The code removes a check for invalid paths, which could allow path traversal attacks.\",\n      \"confidence\": 0.9\n    },\n    {\n      \"file\": \"litellm/llms/litellm_proxy/skills/sandbox_executor.py\",\n      \"line\": 100,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-22\",\n      \"message\": \"The code removes a check for invalid paths, which could allow path traversal attacks.\",\n      \"confidence\": 0.9\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:01:40.6009174Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 97684916400,
+     "load_duration": 96352900,
+     "prompt_eval_count": 1323,
+     "prompt_eval_duration": 4798624000,
+     "eval_count": 186,
+     "eval_duration": 17192475100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eae3-f352-75f0-9417-878315eab8ac-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1323,
+     "output_tokens": 186,
+     "total_tokens": 1509
+    }
+   }
+  }
+ ]
+}

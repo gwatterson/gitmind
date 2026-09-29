@@ -132,7 +132,7 @@
    "clean_cases": 14,
    "clean_flagged_rate": 0.071,
    "findings_per_clean_case": 0.071,
-   "blocking_recall": 0.25,
+   "blocking_recall": 0.75,
    "clean_blocked_rate": 0.0,
    "latency": {
     "live_cases": 0,
@@ -262,7 +262,7 @@
    "clean_cases": 14,
    "clean_flagged_rate": 0.071,
    "findings_per_clean_case": 0.071,
-   "blocking_recall": 0.25,
+   "blocking_recall": 0.75,
    "clean_blocked_rate": 0.0,
    "latency": {
     "live_cases": 0,
@@ -373,7 +373,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "comment",
+   "verdict": "request_changes",
    "findings": [
     {
      "file": "source/platforms/git/localGetFileAtSHA.ts",
@@ -1820,7 +1820,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "comment",
+   "verdict": "request_changes",
    "findings": [
     {
      "file": "src/routes/admin/git.js",
@@ -2376,7 +2376,7 @@
    "status": "ok",
    "error": null,
    "agent_errors": [],
-   "verdict": "comment",
+   "verdict": "request_changes",
    "findings": [
     {
      "file": "app/repositories/users.py",

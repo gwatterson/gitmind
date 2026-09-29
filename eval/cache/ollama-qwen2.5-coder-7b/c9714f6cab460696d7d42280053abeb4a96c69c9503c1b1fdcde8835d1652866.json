@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:32:03+00:00",
+ "elapsed_seconds": 88.641,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"packages/zod/src/v4/core/parse.ts\",\n      \"line\": 87,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_error_check\",\n      \"message\": \"The error property is a getter that may not be initialized, leading to undefined behavior when accessed.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"return { success: false, get error() { if (!error) error = new Err(issues.map((iss) => util.finalizeIssue(iss, ctx, core.config()))); return error; }, set error(e: errors.$ZodError) { error = e; } };\",\n      \"cwe\": null\n    },\n    {\n      \"file\": \"packages/zod/src/v4/core/parse.ts\",\n      \"line\": 108,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_error_check\",\n      \"message\": \"The error property is a getter that may not be initialized, leading to undefined behavior when accessed.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"return result.issues.length ? failure(_Err, result.issues, ctx) : ({ success: true, data: result.value } as any);\",\n      \"cwe\": null\n    },\n    {\n      \"file\": \"packages/zod/src/v4/core/schemas.ts\",\n      \"line\": 337,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_error_check\",\n      \"message\": \"The error property is a getter that may not be initialized, leading to undefined behavior when accessed.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"return r.issues.length ? { issues: r.issues.map((iss) => util.finalizeIssue(iss, ctx, core.config())) } : { value: r.value };\",\n      \"cwe\": null\n    },\n    {\n      \"file\": \"packages/zod/src/v4/core/schemas.ts\",\n      \"line\": 350,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_error_check\",\n      \"message\": \"The error property is a getter that may not be initialized, leading to undefined behavior when accessed.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"return validateAsync(inst, value);\",\n      \"cwe\": null\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:32:03.2514684Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 88624496200,
+     "load_duration": 103605200,
+     "prompt_eval_count": 2165,
+     "prompt_eval_duration": 4063400000,
+     "eval_count": 516,
+     "eval_duration": 53677493200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eaff-e780-7cc2-a7a1-39fd519d5e63-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 2165,
+     "output_tokens": 516,
+     "total_tokens": 2681
+    }
+   }
+  }
+ ]
+}

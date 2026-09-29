@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:34:32+00:00",
+ "elapsed_seconds": 44.172,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/admin/git.js\",\n      \"line\": 10,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"The error handling for the `exec` callback is too broad, swallowing all errors.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"if (err) return res.status(500).json({ error: \\\"git failed\\\" });\"\n    },\n    {\n      \"file\": \"src/routes/admin/git.js\",\n      \"line\": 12,\n      \"severity\": \"low\",\n      \"rule_id\": \"unused_variable\",\n      \"message\": \"The `stdout` variable is not used after trimming and splitting.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"res.json(stdout.trim().split(\\\"\\\\n\\\"));\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:34:32.360728Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 43901626300,
+     "load_duration": 108454500,
+     "prompt_eval_count": 865,
+     "prompt_eval_duration": 1795343500,
+     "eval_count": 194,
+     "eval_duration": 16915187600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb02-dbac-7d20-98fb-cb46c935bdf0-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 865,
+     "output_tokens": 194,
+     "total_tokens": 1059
+    }
+   }
+  }
+ ]
+}
