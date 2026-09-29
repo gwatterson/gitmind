@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { ArrowLeft, Pencil, SearchX, Send, Trash2 } from "lucide-react";
 import { DiffViewer } from "@/components/DiffViewer";
 import { FindingCard } from "@/components/FindingCard";
@@ -112,7 +112,12 @@ export default function ReviewDetailPage() {
   const [review, setReview] = useState<Review | null>(null);
   const [findings, setFindings] = useState<Finding[]>([]);
   const [loading, setLoading] = useState(true);
-  const [tab, setTab] = useState<Tab>("findings");
+  const searchParams = useSearchParams();
+  // ?tab=diff or ?tab=summary opens that tab directly (shareable links)
+  const [tab, setTab] = useState<Tab>(() => {
+    const requested = searchParams.get("tab");
+    return requested === "diff" || requested === "summary" ? requested : "findings";
+  });
   const [category, setCategory] = useState("all");
   const [severity, setSeverity] = useState("all");
   const [diffFiles, setDiffFiles] = useState<DiffFile[] | null>(null);

@@ -143,7 +143,10 @@ export default function DashboardPage() {
           <ManualReview onQueued={fetchReviews} />
           <ModelSelector />
           {user?.is_admin ? (
-            <button onClick={handleClearArchive} className="btn-danger w-full">
+            <button
+              onClick={handleClearArchive}
+              className="inline-flex w-full items-center justify-center gap-1.5 py-1 text-xs text-fg-subtle transition-colors hover:text-danger"
+            >
               <Trash2 className="h-4 w-4" aria-hidden />
               Delete all reviews
             </button>
