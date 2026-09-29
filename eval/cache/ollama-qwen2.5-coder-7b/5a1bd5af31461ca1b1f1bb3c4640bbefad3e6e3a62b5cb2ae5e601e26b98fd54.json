@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:15:07+00:00",
+ "elapsed_seconds": 44.406,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"cms/plugin_rendering.py\",\n      \"line\": 601,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-79\",\n      \"message\": \"The code is rendering user input without proper escaping, which can lead to Cross-Site Scripting (XSS).\",\n      \"confidence\": 0.9,\n      \"evidence\": \"<h2 class=\\\"cms-rendering-exception-title\\\">{message}</h2>\",\n      \"cwe\": \"CWE-79\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:15:07.7151613Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 44137471700,
+     "load_duration": 118954600,
+     "prompt_eval_count": 1293,
+     "prompt_eval_duration": 2486997100,
+     "eval_count": 129,
+     "eval_duration": 11944822200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb28-03ce-7cf3-a131-8391437b8efc-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1293,
+     "output_tokens": 129,
+     "total_tokens": 1422
+    }
+   }
+  }
+ ]
+}

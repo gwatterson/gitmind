@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T04:07:04+00:00",
+ "elapsed_seconds": 13.875,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/notifications/client.ts\",\n      \"line\": 7,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-943\",\n      \"message\": \"Potential NoSQL injection vulnerability in the fetchNotifications function.\",\n      \"confidence\": 0.8,\n      \"evidence\": \"const response = await fetch(`/api/users/${userId}/notifications`);\",\n      \"cwe\": \"CWE-943\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T04:07:04.9750427Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 13864189500,
+     "load_duration": 57029400,
+     "prompt_eval_count": 908,
+     "prompt_eval_duration": 1746774900,
+     "eval_count": 112,
+     "eval_duration": 9989918900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb58-0be5-72c1-93c5-8180a519a105-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 908,
+     "output_tokens": 112,
+     "total_tokens": 1020
+    }
+   }
+  }
+ ]
+}

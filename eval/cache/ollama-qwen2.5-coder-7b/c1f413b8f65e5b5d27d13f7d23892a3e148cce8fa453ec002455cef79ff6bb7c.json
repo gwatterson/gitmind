@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T04:02:58+00:00",
+ "elapsed_seconds": 98.797,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/routes/dashboard.py\",\n            \"line\": 13,\n            \"severity\": \"high\",\n            \"rule_id\": \"pickle_deserialization\",\n            \"message\": \"Deserializing data with pickle can be dangerous as it executes arbitrary code.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"return pickle.loads(base64.b64decode(raw))\",\n            \"cwe\": \"CWE-502: Deserialization of Untrusted Data\"\n        },\n        {\n            \"file\": \"app/routes/dashboard.py\",\n            \"line\": 13,\n            \"severity\": \"high\",\n            \"rule_id\": \"base64_decoding\",\n            \"message\": \"Base64 decoding can fail if the input is not valid Base64.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"return pickle.loads(base64.b64decode(raw))\",\n            \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n        },\n        {\n            \"file\": \"app/routes/dashboard.py\",\n            \"line\": 25,\n            \"severity\": \"high\",\n            \"rule_id\": \"pickle_serialization\",\n            \"message\": \"Serializing data with pickle can be dangerous as it can lead to arbitrary code execution.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"response.set_cookie('prefs', base64.b64encode(pickle.dumps(prefs)).decode())\",\n            \"cwe\": \"CWE-502: Deserialization of Untrusted Data\"\n        },\n        {\n            \"file\": \"app/routes/dashboard.py\",\n            \"line\": 25,\n            \"severity\": \"high\",\n            \"rule_id\": \"base64_encoding\",\n            \"message\": \"Base64 encoding can fail if the input is not valid.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"response.set_cookie('prefs', base64.b64encode(pickle.dumps(prefs)).decode())\",\n            \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n        },\n        {\n            \"file\": \"app/routes/dashboard.py\",\n            \"line\": 25,\n            \"severity\": \"high\",\n            \"rule_id\": \"response_status_code\",\n            \"message\": \"Using a status code of 204 (No Content) without setting any content can be misleading.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"return response\",\n            \"cwe\": \"CWE-117: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T04:02:58.4777269Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 98789485900,
+     "load_duration": 52840300,
+     "prompt_eval_count": 981,
+     "prompt_eval_duration": 1875533500,
+     "eval_count": 592,
+     "eval_duration": 55234120500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb52-fd47-71d1-b7f5-fd932389953f-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 981,
+     "output_tokens": 592,
+     "total_tokens": 1573
+    }
+   }
+  }
+ ]
+}

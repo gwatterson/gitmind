@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:13:27+00:00",
+ "elapsed_seconds": 20.031,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"changedetectionio/flask_app.py\",\n      \"line\": 715,\n      \"severity\": \"low\",\n      \"rule_id\": \"S108\",\n      \"message\": \"The regular expression allows periods and hyphens, which might not be necessary for the use case.\",\n      \"confidence\": 0.9\n    },\n    {\n      \"file\": \"changedetectionio/flask_app.py\",\n      \"line\": 715,\n      \"severity\": \"low\",\n      \"rule_id\": \"S108\",\n      \"message\": \"The regular expression allows periods and hyphens, which might not be necessary for the use case.\",\n      \"confidence\": 0.9\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:13:27.6769846Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 20012332900,
+     "load_duration": 90218900,
+     "prompt_eval_count": 863,
+     "prompt_eval_duration": 1824608500,
+     "eval_count": 167,
+     "eval_duration": 14861321500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb26-dc4f-7542-af3c-a5893cab683f-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 863,
+     "output_tokens": 167,
+     "total_tokens": 1030
+    }
+   }
+  }
+ ]
+}

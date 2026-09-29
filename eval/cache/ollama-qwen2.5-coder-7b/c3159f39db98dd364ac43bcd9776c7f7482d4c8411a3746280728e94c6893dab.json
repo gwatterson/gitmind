@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T04:01:49+00:00",
+ "elapsed_seconds": 30.125,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/routes/dashboard.py\",\n            \"line\": 13,\n            \"severity\": \"high\",\n            \"rule_id\": \"N+1 queries\",\n            \"message\": \"The `pickle.loads` call inside the loop over query results is inefficient.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"raw = request.cookies.get(\\\"prefs\\\")\\nif not raw:\\n    return DEFAULT_PREFS\\nreturn pickle.loads(base64.b64decode(raw))\",\n            \"cwe\": \"CWE-502: Deserialization of Untrusted Data\"\n        },\n        {\n            \"file\": \"app/routes/dashboard.py\",\n            \"line\": 27,\n            \"severity\": \"high\",\n            \"rule_id\": \"N+1 queries\",\n            \"message\": \"The `pickle.dumps` call inside the loop over query results is inefficient.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"response.set_cookie(\\\"prefs\\\", base64.b64encode(pickle.dumps(prefs)).decode())\",\n            \"cwe\": \"CWE-502: Deserialization of Untrusted Data\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T04:01:49.8102845Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 30127967200,
+     "load_duration": 54630700,
+     "prompt_eval_count": 979,
+     "prompt_eval_duration": 1562284900,
+     "eval_count": 257,
+     "eval_duration": 23511707600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb52-fd41-70a0-893c-3e34df2edcef-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 979,
+     "output_tokens": 257,
+     "total_tokens": 1236
+    }
+   }
+  }
+ ]
+}

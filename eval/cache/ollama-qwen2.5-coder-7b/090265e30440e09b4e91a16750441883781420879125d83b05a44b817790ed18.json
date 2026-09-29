@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:48:57+00:00",
+ "elapsed_seconds": 30.469,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/contact.js\",\n      \"line\": 21,\n      \"severity\": \"critical\",\n      \"rule_id\": \"CWE-89\",\n      \"message\": \"SQL injection vulnerability in database query.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"await db.query(\\\"INSERT INTO messages (email, body) VALUES (?, ?)\\\", [req.body.email, req.body.message]);\",\n      \"cwe\": \"CWE-89 SQL injection\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:48:57.5341443Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 30213692700,
+     "load_duration": 60682000,
+     "prompt_eval_count": 1160,
+     "prompt_eval_duration": 2484175000,
+     "eval_count": 122,
+     "eval_duration": 11350790200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb47-3340-7bd1-aae6-5c5f1a95572e-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1160,
+     "output_tokens": 122,
+     "total_tokens": 1282
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:59:36+00:00",
+ "elapsed_seconds": 10.094,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"app/admin/bulk.py\",\n      \"line\": 7,\n      \"severity\": \"low\",\n      \"rule_id\": \"N/A\",\n      \"message\": \"The query is not inside a loop, so it does not waste time or memory.\",\n      \"confidence\": 1.0\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:59:36.0470862Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 10096122200,
+     "load_duration": 55354200,
+     "prompt_eval_count": 729,
+     "prompt_eval_duration": 1578832100,
+     "eval_count": 80,
+     "eval_duration": 6708990900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb51-40fd-7280-951e-0854c22d699a-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 729,
+     "output_tokens": 80,
+     "total_tokens": 809
+    }
+   }
+  }
+ ]
+}

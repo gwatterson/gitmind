@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:37:48+00:00",
+ "elapsed_seconds": 219.203,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/ahttpx/_content.py\",\n      \"line\": 182,\n      \"severity\": \"medium\",\n      \"rule_id\": \"R0914\",\n      \"message\": \"Function is too complex (13) - consider breaking it up into smaller functions.\",\n      \"confidence\": 0.6\n    },\n    {\n      \"file\": \"src/ahttpx/_streams.py\",\n      \"line\": 187,\n      \"severity\": \"medium\",\n      \"rule_id\": \"R0914\",\n      \"message\": \"Function is too complex (13) - consider breaking it up into smaller functions.\",\n      \"confidence\": 0.6\n    },\n    {\n      \"file\": \"src/ahttpx/_streams.py\",\n      \"line\": 208,\n      \"severity\": \"medium\",\n      \"rule_id\": \"R0914\",\n      \"message\": \"Function is too complex (13) - consider breaking it up into smaller functions.\",\n      \"confidence\": 0.6\n    },\n    {\n      \"file\": \"src/ahttpx/_streams.py\",\n      \"line\": 217,\n      \"severity\": \"medium\",\n      \"rule_id\": \"R0914\",\n      \"message\": \"Function is too complex (13) - consider breaking it up into smaller functions.\",\n      \"confidence\": 0.6\n    },\n    {\n      \"file\": \"src/ahttpx/_streams.py\",\n      \"line\": 225,\n      \"severity\": \"medium\",\n      \"rule_id\": \"R0914\",\n      \"message\": \"Function is too complex (13) - consider breaking it up into smaller functions.\",\n      \"confidence\": 0.6\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:37:48.797223Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 218945656600,
+     "load_duration": 106665200,
+     "prompt_eval_count": 3347,
+     "prompt_eval_duration": 5762022300,
+     "eval_count": 401,
+     "eval_duration": 44685522800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb3a-1db5-7a70-8e32-70aff894956a-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 3347,
+     "output_tokens": 401,
+     "total_tokens": 3748
+    }
+   }
+  }
+ ]
+}

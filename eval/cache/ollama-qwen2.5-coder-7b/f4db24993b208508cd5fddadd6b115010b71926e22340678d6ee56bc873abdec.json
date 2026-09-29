@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:42:55+00:00",
+ "elapsed_seconds": 114.531,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"starlette/middleware/opentelemetry.py\",\n      \"line\": 47,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-1321\",\n      \"message\": \"The code merges the `scope` dictionary, which could lead to prototype pollution if an attacker can control part of this dictionary.\",\n      \"confidence\": 0.6\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:42:55.4311399Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 114270234400,
+     "load_duration": 60691100,
+     "prompt_eval_count": 3130,
+     "prompt_eval_duration": 5557065500,
+     "eval_count": 99,
+     "eval_duration": 10850973800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb40-646a-7b40-9cc9-0466ef85e23c-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 3130,
+     "output_tokens": 99,
+     "total_tokens": 3229
+    }
+   }
+  }
+ ]
+}

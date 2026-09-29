@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:56:06+00:00",
+ "elapsed_seconds": 114.109,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/api/pagination.py\",\n            \"line\": 23,\n            \"severity\": \"high\",\n            \"rule_id\": \"N+1 queries\",\n            \"message\": \"The query to count the total number of items is executed for every call to `paginate`, which can lead to a large number of database queries if called frequently.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"+    total = session.scalar(select(func.count()).select_from(stmt.subquery())) or 0\",\n            \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') - This is mitigated by using SQLAlchemy's ORM methods, but the N+1 query pattern still applies.\"\n        },\n        {\n            \"file\": \"app/api/pagination.py\",\n            \"line\": 24,\n            \"severity\": \"high\",\n            \"rule_id\": \"N+1 queries\",\n            \"message\": \"The query to fetch items is executed for every call to `paginate`, which can lead to a large number of database queries if called frequently.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"+    items = list(session.scalars(stmt.limit(size).offset((page - 1) * size)))\",\n            \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') - This is mitigated by using SQLAlchemy's ORM methods, but the N+1 query pattern still applies.\"\n        },\n        {\n            \"file\": \"app/api/pagination.py\",\n            \"line\": 32,\n            \"severity\": \"low\",\n            \"rule_id\": \"string concatenation inside a loop\",\n            \"message\": \"String concatenation is used in `csv_line`, which can be inefficient for large lists of values.\",\n            \"confidence\": 0.8,\n            \"evidence\": \"+    return \\\",\\\".join(values) + \\\"\\\\n\\\"\",\n            \"cwe\": \"CWE-190: Numeric Errors - This could lead to performance issues if the list is very large.\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:56:06.3392885Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 113864315600,
+     "load_duration": 61448600,
+     "prompt_eval_count": 1101,
+     "prompt_eval_duration": 2454589700,
+     "eval_count": 460,
+     "eval_duration": 43179928300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb4c-7785-7680-99c9-ab5d9e32299e-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1101,
+     "output_tokens": 460,
+     "total_tokens": 1561
+    }
+   }
+  }
+ ]
+}

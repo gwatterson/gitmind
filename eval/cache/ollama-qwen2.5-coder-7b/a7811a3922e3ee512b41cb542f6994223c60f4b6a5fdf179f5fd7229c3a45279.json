@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:10:22+00:00",
+ "elapsed_seconds": 50.657,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"packages/core/src/ci-environment/git.ts\",\n      \"line\": 87,\n      \"severity\": \"medium\",\n      \"rule_id\": \"shell-injection\",\n      \"message\": \"The command string is constructed using user input, which can lead to shell injection if `input.head` or `input.base` contains malicious content.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"`git fetch --force --update-head-ok --depth ${input.depth} origin ${input.ref}:${input.target}`\",\n      \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n    },\n    {\n      \"file\": \"packages/core/src/ci-environment/git.ts\",\n      \"line\": 154,\n      \"severity\": \"medium\",\n      \"rule_id\": \"shell-injection\",\n      \"message\": \"The command string is constructed using user input, which can lead to shell injection if `maxCount` contains malicious content.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"`git log --format=\\\"%H\\\" ${maxCountArg} ${path}`.trim()\",\n      \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n    },\n    {\n      \"file\": \"packages/core/src/ci-environment/git.ts\",\n      \"line\": 162,\n      \"severity\": \"medium\",\n      \"rule_id\": \"shell-injection\",\n      \"message\": \"The command string is constructed using user input, which can lead to shell injection if `input.sha` contains malicious content.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"`git fetch --depth=${limit} origin ${input.sha}`\",\n      \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:10:22.2787781Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 50652411600,
+     "load_duration": 83679300,
+     "prompt_eval_count": 1342,
+     "prompt_eval_duration": 1694424200,
+     "eval_count": 424,
+     "eval_duration": 40048680600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb23-9068-7203-9c8e-b25e48e4b86c-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1342,
+     "output_tokens": 424,
+     "total_tokens": 1766
+    }
+   }
+  }
+ ]
+}

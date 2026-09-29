@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:57:13+00:00",
+ "elapsed_seconds": 67.578,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/routes/images.py\",\n            \"line\": 10,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing_file_check\",\n            \"message\": \"The uploaded file is not checked for existence before saving.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"file = request.files[\\\"image\\\"]\\nfile.save(UPLOAD_DIR / file.filename)\",\n            \"cwe\": \"CWE-284: Improper Access Control\"\n        },\n        {\n            \"file\": \"app/services/thumbnails.py\",\n            \"line\": 16,\n            \"severity\": \"high\",\n            \"rule_id\": \"shell_injection\",\n            \"message\": \"The `make_thumbnail` function uses shell=True, which can lead to command injection.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"subprocess.run(f\\\"convert {source} -resize {width}x{width} {target}\\\", shell=True, check=True)\",\n            \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:57:13.9891087Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 67328087700,
+     "load_duration": 63967900,
+     "prompt_eval_count": 1031,
+     "prompt_eval_duration": 1947737500,
+     "eval_count": 254,
+     "eval_duration": 23471283300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb4e-358e-7dc0-9764-b6f7a7f15403-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1031,
+     "output_tokens": 254,
+     "total_tokens": 1285
+    }
+   }
+  }
+ ]
+}

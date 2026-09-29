@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T04:07:43+00:00",
+ "elapsed_seconds": 52.437,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/notifications/client.ts\",\n      \"line\": 11,\n      \"severity\": \"high\",\n      \"rule_id\": \"swallowed_error\",\n      \"message\": \"The error is swallowed, and an empty array is returned instead.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"catch (e) {}\",\n      \"cwe\": \"CWE-251: Improper Error Handling\"\n    },\n    {\n      \"file\": \"src/notifications/client.ts\",\n      \"line\": 12,\n      \"severity\": \"high\",\n      \"rule_id\": \"unhandled_result\",\n      \"message\": \"The result of the fetch operation is ignored when an error occurs.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"return [];\",\n      \"cwe\": \"CWE-675: Improper Handling of Exceptions\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T04:07:43.5713344Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 52163818200,
+     "load_duration": 62040300,
+     "prompt_eval_count": 767,
+     "prompt_eval_duration": 1618915700,
+     "eval_count": 203,
+     "eval_duration": 18170449800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb58-0bf7-7400-a9ba-7f0bfb2d468e-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 767,
+     "output_tokens": 203,
+     "total_tokens": 970
+    }
+   }
+  }
+ ]
+}

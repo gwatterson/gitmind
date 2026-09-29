@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:35:19+00:00",
+ "elapsed_seconds": 69.454,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/ahttpx/_content.py\",\n      \"line\": 181,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1 queries\",\n      \"message\": \"Opening a file inside the loop body.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+         fin = open(self._path, 'rb')\\n+         return FileStream(self._path, fin)\",\n      \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n    },\n    {\n      \"file\": \"src/ahttpx/_streams.py\",\n      \"line\": 190,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1 queries\",\n      \"message\": \"Opening a file inside the loop body.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+             self._fin = open(value, 'rb')\",\n      \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n    },\n    {\n      \"file\": \"src/httpx/_content.py\",\n      \"line\": 181,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1 queries\",\n      \"message\": \"Opening a file inside the loop body.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+         fin = open(self._path, 'rb')\\n+         return FileStream(self._path, fin)\",\n      \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n    },\n    {\n      \"file\": \"src/httpx/_streams.py\",\n      \"line\": 190,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1 queries\",\n      \"message\": \"Opening a file inside the loop body.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+             self._fin = open(value, 'rb')\",\n      \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:35:19.0267483Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 69445229400,
+     "load_duration": 92087700,
+     "prompt_eval_count": 3345,
+     "prompt_eval_duration": 5801275800,
+     "eval_count": 483,
+     "eval_duration": 54144588000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb3a-1dac-7f21-928d-7b465848b16b-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 3345,
+     "output_tokens": 483,
+     "total_tokens": 3828
+    }
+   }
+  }
+ ]
+}

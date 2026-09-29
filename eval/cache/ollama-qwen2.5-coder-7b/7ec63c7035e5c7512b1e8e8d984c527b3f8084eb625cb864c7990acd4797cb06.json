@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:45:27+00:00",
+ "elapsed_seconds": 84.063,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"packages/zod/src/v4/core/json-schema-generator.ts\",\n      \"line\": 105,\n      \"severity\": \"high\",\n      \"rule_id\": \"renamed_function_usage\",\n      \"message\": \"The function `process` is being renamed to `processSchema`, but it's still being used with the old name in some places.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"105     return process(schema, this.ctx, _params);\"\n    },\n    {\n      \"file\": \"packages/zod/src/v4/core/json-schema-processors.ts\",\n      \"line\": 268,\n      \"severity\": \"high\",\n      \"rule_id\": \"renamed_function_usage\",\n      \"message\": \"The function `process` is being renamed to `processSchema`, but it's still being used with the old name in some places.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"268       process(parent, ctx, params);\"\n    },\n    {\n      \"file\": \"packages/zod/src/v4/core/to-json-schema.ts\",\n      \"line\": 839,\n      \"severity\": \"high\",\n      \"rule_id\": \"renamed_function_usage\",\n      \"message\": \"The function `process` is being renamed to `processSchema`, but it's still being used with the old name in some places.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"839       process(schema, ctx);\"\n    },\n    {\n      \"file\": \"packages/zod/src/v4/core/to-json-schema.ts\",\n      \"line\": 854,\n      \"severity\": \"high\",\n      \"rule_id\": \"renamed_function_usage\",\n      \"message\": \"The function `process` is being renamed to `processSchema`, but it's still being used with the old name in some places.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"854       process(schema, ctx);\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:45:27.1449385Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 83797862600,
+     "load_duration": 60369800,
+     "prompt_eval_count": 5009,
+     "prompt_eval_duration": 8125325600,
+     "eval_count": 439,
+     "eval_duration": 57758813100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb43-2c0d-71e3-ab3e-af9a14799d07-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 5009,
+     "output_tokens": 439,
+     "total_tokens": 5448
+    }
+   }
+  }
+ ]
+}

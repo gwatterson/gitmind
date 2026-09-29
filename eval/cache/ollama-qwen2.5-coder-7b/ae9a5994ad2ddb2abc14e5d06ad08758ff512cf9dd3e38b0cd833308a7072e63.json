@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:12:39+00:00",
+ "elapsed_seconds": 37.672,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"packages/aws-cdk-lib/aws-lambda-nodejs/lib/bundling.ts\",\n      \"line\": 628,\n      \"severity\": \"high\",\n      \"rule_id\": \"shell_quoting_incorrect\",\n      \"message\": \"Using single quotes for shell commands can lead to issues if the data contains special characters.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"`echo '${data}' > \\\"${filePath}\\\"`\",\n      \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\\nhttps://cwe.mitre.org/data/definitions/78.html\"\n    },\n    {\n      \"file\": \"packages/aws-cdk-lib/aws-lambda-nodejs/lib/bundling.ts\",\n      \"line\": 641,\n      \"severity\": \"high\",\n      \"rule_id\": \"shell_quoting_incorrect\",\n      \"message\": \"Using single quotes for shell commands can lead to issues if the data contains special characters.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"`cp '${src}' '${dest}'`\",\n      \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\\nhttps://cwe.mitre.org/data/definitions/78.html\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:12:39.6527079Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 37426911000,
+     "load_duration": 115725200,
+     "prompt_eval_count": 862,
+     "prompt_eval_duration": 1496902500,
+     "eval_count": 303,
+     "eval_duration": 27216587800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb25-dbba-7c30-80cf-b3444380248f-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 862,
+     "output_tokens": 303,
+     "total_tokens": 1165
+    }
+   }
+  }
+ ]
+}

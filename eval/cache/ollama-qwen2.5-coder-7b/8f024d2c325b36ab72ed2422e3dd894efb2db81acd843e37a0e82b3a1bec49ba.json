@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:31:39+00:00",
+ "elapsed_seconds": 58.953,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/click/core.py\",\n      \"line\": 2406,\n      \"severity\": \"low\",\n      \"rule_id\": \"S103\",\n      \"message\": \"Unused variable 'label'\",\n      \"confidence\": 0.9,\n      \"evidence\": \"label = _format_deprecated_label(deprecated)\",\n      \"cwe\": \"CWE-562: Non-Thread-Safe Access to Shared Resource\"\n    },\n    {\n      \"file\": \"src/click/core.py\",\n      \"line\": 3017,\n      \"severity\": \"low\",\n      \"rule_id\": \"S103\",\n      \"message\": \"Unused variable 'label'\",\n      \"confidence\": 0.9,\n      \"evidence\": \"label = _format_deprecated_label(deprecated)\",\n      \"cwe\": \"CWE-562: Non-Thread-Safe Access to Shared Resource\"\n    },\n    {\n      \"file\": \"src/click/core.py\",\n      \"line\": 3747,\n      \"severity\": \"low\",\n      \"rule_id\": \"S103\",\n      \"message\": \"Unused variable 'label'\",\n      \"confidence\": 0.9,\n      \"evidence\": \"label = _format_deprecated_label(deprecated)\",\n      \"cwe\": \"CWE-562: Non-Thread-Safe Access to Shared Resource\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:31:39.0102952Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 58697092500,
+     "load_duration": 112331800,
+     "prompt_eval_count": 2233,
+     "prompt_eval_duration": 4122894500,
+     "eval_count": 314,
+     "eval_duration": 32228063100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb36-eb3d-7570-96ce-63a318e04da5-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 2233,
+     "output_tokens": 314,
+     "total_tokens": 2547
+    }
+   }
+  }
+ ]
+}

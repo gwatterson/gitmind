@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:18:30+00:00",
+ "elapsed_seconds": 26.609,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"git/objects/submodule/base.py\",\n            \"line\": 365,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing-check-for-allow_unsafe_options\",\n            \"message\": \"The `allow_unsafe_options` variable is set to `True` regardless of its initial value, which can lead to unsafe options being used without proper validation.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"-             allow_unsafe_options = True\"\n        },\n        {\n            \"file\": \"git/repo/base.py\",\n            \"line\": 159,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing-check-for-separate-git-dir\",\n            \"message\": \"The `--separate-git-dir` option is removed from the list of allowed options, which can lead to unexpected behavior if this option was being used.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"-         # Redirects the repository metadata to a caller-controlled path:\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:18:30.3398768Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 26594272400,
+     "load_duration": 87375700,
+     "prompt_eval_count": 1031,
+     "prompt_eval_duration": 1054892900,
+     "eval_count": 230,
+     "eval_duration": 20703861700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb2b-60e0-7f92-b9c3-631f3b693275-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1031,
+     "output_tokens": 230,
+     "total_tokens": 1261
+    }
+   }
+  }
+ ]
+}

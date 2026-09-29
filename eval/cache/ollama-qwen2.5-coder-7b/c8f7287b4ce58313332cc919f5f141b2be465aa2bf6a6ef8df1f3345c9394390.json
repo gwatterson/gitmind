@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:19:57+00:00",
+ "elapsed_seconds": 45.219,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"lemur/authorities/views.py\",\n      \"line\": 235,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-639\",\n      \"message\": \"The code removes a check for the authority owner, which could lead to unauthorized access.\",\n      \"confidence\": 0.9\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:19:57.7692275Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 44942552200,
+     "load_duration": 109929400,
+     "prompt_eval_count": 970,
+     "prompt_eval_duration": 1828778600,
+     "eval_count": 88,
+     "eval_duration": 7693040700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb2c-6da9-75d2-8b88-a9e709165f4c-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 970,
+     "output_tokens": 88,
+     "total_tokens": 1058
+    }
+   }
+  }
+ ]
+}

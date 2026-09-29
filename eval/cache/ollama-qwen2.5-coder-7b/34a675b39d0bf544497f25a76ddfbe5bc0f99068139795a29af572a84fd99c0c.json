@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:25:34+00:00",
+ "elapsed_seconds": 39.64,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"ui/src/utils/extend/extend.js\",\n      \"line\": 59,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-1321\",\n      \"message\": \"Prototype pollution via '__proto__' key in object merging.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-         if (name === '__proto__') {\\n-           continue\\n-         }\",\n      \"cwe\": \"CWE-1321\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:25:34.2894194Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 39377175700,
+     "load_duration": 116863000,
+     "prompt_eval_count": 875,
+     "prompt_eval_duration": 1698020300,
+     "eval_count": 123,
+     "eval_duration": 10777061500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb31-a5f3-75e0-b291-7fe8ad2bf204-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 875,
+     "output_tokens": 123,
+     "total_tokens": 998
+    }
+   }
+  }
+ ]
+}

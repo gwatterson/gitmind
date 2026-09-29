@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T04:01:17+00:00",
+ "elapsed_seconds": 33.797,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"app/content/tags.py\",\n      \"line\": 5,\n      \"severity\": \"low\",\n      \"rule_id\": \"S238\",\n      \"message\": \"Mutable default argument used for `existing`.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"def add_tags(new_tags: list[str], existing: list[str] = []) -> list[str]:\"\n    },\n    {\n      \"file\": \"app/content/tags.py\",\n      \"line\": 7,\n      \"severity\": \"low\",\n      \"rule_id\": \"S238\",\n      \"message\": \"Mutable default argument used for `existing`.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"tag = normalize_tag(tag)\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T04:01:17.1699135Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 33535379200,
+     "load_duration": 61491000,
+     "prompt_eval_count": 750,
+     "prompt_eval_duration": 1694944900,
+     "eval_count": 174,
+     "eval_duration": 14992882200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb52-6f68-7461-9d2d-369dbade03e2-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 750,
+     "output_tokens": 174,
+     "total_tokens": 924
+    }
+   }
+  }
+ ]
+}

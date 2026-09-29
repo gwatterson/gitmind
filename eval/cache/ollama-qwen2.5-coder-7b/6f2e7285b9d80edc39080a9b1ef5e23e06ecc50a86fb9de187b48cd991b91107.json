@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:36:50+00:00",
+ "elapsed_seconds": 160.906,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/ahttpx/_content.py\",\n      \"line\": 182,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-22\",\n      \"message\": \"File path is not validated or sanitized before being used in file operations.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+         fin = open(self._path, 'rb')\\n+         return FileStream(self._path, fin)\",\n      \"cwe\": \"CWE-22 Path Traversal\"\n    },\n    {\n      \"file\": \"src/ahttpx/_streams.py\",\n      \"line\": 184,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-22\",\n      \"message\": \"File path is not validated or sanitized before being used in file operations.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+             self._fin = open(value, 'rb')\\n+             name = key.translate({10: \\\"%0A\\\", 13: \\\"%0D\\\", 34: \\\"%22\\\"})\",\n      \"cwe\": \"CWE-22 Path Traversal\"\n    },\n    {\n      \"file\": \"src/ahttpx/_streams.py\",\n      \"line\": 205,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-22\",\n      \"message\": \"File path is not validated or sanitized before being used in file operations.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+                 self._fin.close()\\n+                 self._fin = None\",\n      \"cwe\": \"CWE-22 Path Traversal\"\n    },\n    {\n      \"file\": \"src/httpx/_content.py\",\n      \"line\": 182,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-22\",\n      \"message\": \"File path is not validated or sanitized before being used in file operations.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+         fin = open(self._path, 'rb')\\n+         return FileStream(self._path, fin)\",\n      \"cwe\": \"CWE-22 Path Traversal\"\n    },\n    {\n      \"file\": \"src/httpx/_streams.py\",\n      \"line\": 184,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-22\",\n      \"message\": \"File path is not validated or sanitized before being used in file operations.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+             self._fin = open(value, 'rb')\\n+             name = key.translate({10: \\\"%0A\\\", 13: \\\"%0D\\\", 34: \\\"%22\\\"})\",\n      \"cwe\": \"CWE-22 Path Traversal\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:36:50.515702Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 160664135600,
+     "load_duration": 103368600,
+     "prompt_eval_count": 3488,
+     "prompt_eval_duration": 5859912900,
+     "eval_count": 640,
+     "eval_duration": 72874566100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb3a-1dc6-7170-ba16-997005555621-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 3488,
+     "output_tokens": 640,
+     "total_tokens": 4128
+    }
+   }
+  }
+ ]
+}

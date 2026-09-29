@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T04:08:06+00:00",
+ "elapsed_seconds": 22.407,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/reports/formulas.ts\",\n      \"line\": 6,\n      \"severity\": \"high\",\n      \"rule_id\": \"eval_injection\",\n      \"message\": \"Using `new Function` to evaluate formulas can lead to code injection vulnerabilities.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"const compute = new Function(...names, `return (${formula});`);\"\n    },\n    {\n      \"file\": \"src/routes/reports.ts\",\n      \"line\": 9,\n      \"severity\": \"medium\",\n      \"rule_id\": \"async_await_without_error_handling\",\n      \"message\": \"The result of `evaluateFormula` is ignored without error handling.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"const values = rows.map((row) => evaluateFormula(req.body.formula, row));\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T04:08:06.0279027Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 22412468300,
+     "load_duration": 56577300,
+     "prompt_eval_count": 892,
+     "prompt_eval_duration": 1011375800,
+     "eval_count": 196,
+     "eval_duration": 17747628100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb58-d8fe-7b10-a550-62236949ab40-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 892,
+     "output_tokens": 196,
+     "total_tokens": 1088
+    }
+   }
+  }
+ ]
+}

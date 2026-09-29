@@ -138,6 +138,41 @@ nor an API key.
 To accept a new level of quality, update the baseline in the same pull request:
 `uv run python -m evals baseline <smoke results.json>`.
 
+## Results
+
+Frozen `test` split, 48 pull requests, `qwen2.5-coder:7b` through Ollama on CPU. Full
+reports: [`results/`](results).
+
+| | semgrep | prompts v1 | prompts v2 |
+|---|---|---|---|
+| Precision | 0.44 | 0.15 | 0.18 |
+| Recall | 0.11 | 0.95 | 0.92 |
+| F1 | 0.17 | 0.26 | 0.30 |
+| CWE accuracy | 0.75 | 0.33 | 0.64 |
+| Unsafe PRs blocked | 0.09 | 0.82 | 0.82 |
+| Clean PRs blocked | 0.00 | 0.08 | 0.15 |
+| Findings per clean PR | 0.0 | 6.8 | 5.2 |
+| Review time p50 / p95 | | 93 s / 1006 s | 70 s / 150 s |
+
+Verdicts of every run are computed with the current rule (critical or high security
+findings request changes), so the columns are comparable.
+
+How v2 was made. The v1 run on `dev` showed three things:
+
+1. Quality and performance agents produced 216 of the 236 false positives, mostly linter
+   remarks (missing type hints, "consider error handling") and N+1 queries outside loops.
+2. 213 of 291 findings carried the default confidence of the output schema (0.5): the model
+   left the field out.
+3. Self-reported confidence did not separate true from false positives at any threshold,
+   neither in v1 nor after making the field required.
+
+v2 narrows the quality and performance prompts to concrete defects, makes an empty answer
+the expected one, caps findings at five, maps common CWEs in the security prompt and makes
+confidence a required field; the verdict stopped relying on confidence (see
+`VERDICT_BLOCKING_CATEGORIES`). Chosen on `dev` (F1 0.24 to 0.29), then confirmed on `test`.
+Two clean pull requests out of thirteen are now blocked by a high security false positive:
+the precision of individual findings is the open problem, addressed next by a verifier agent.
+
 ## Limitations
 
 - **Precision is a lower bound.** Real code (CVE cases, open source pull requests) can

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T04:03:46+00:00",
+ "elapsed_seconds": 21.328,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/api/webhooks.py\",\n            \"line\": 19,\n            \"severity\": \"medium\",\n            \"rule_id\": \"blocking_call_in_async_function\",\n            \"message\": \"A blocking call (httpx.AsyncClient) is inside an async function.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"@router.post(\\\"/test\\\")\\nasync def test_webhook(body: WebhookTest, user: User = Depends(current_user)) -> dict:\\n    async with httpx.AsyncClient(timeout=5) as client:\\n        response = await client.post(body.url, json={\\\"event\\\": body.event, \\\"user\\\": user.id})\",\n            \"cwe\": \"CWE-362: Inadequate Resource Synchronization\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T04:03:46.6071111Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 21336533600,
+     "load_duration": 53286300,
+     "prompt_eval_count": 879,
+     "prompt_eval_duration": 1746536700,
+     "eval_count": 178,
+     "eval_duration": 16104662300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb54-e7d5-7513-9faf-560f84971b3d-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 879,
+     "output_tokens": 178,
+     "total_tokens": 1057
+    }
+   }
+  }
+ ]
+}

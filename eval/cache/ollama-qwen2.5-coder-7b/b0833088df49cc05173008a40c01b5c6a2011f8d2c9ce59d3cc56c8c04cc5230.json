@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:32:47+00:00",
+ "elapsed_seconds": 53.609,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/middleware/jwk/jwk.ts\",\n      \"line\": 190,\n      \"severity\": \"low\",\n      \"rule_id\": \"CWE-79\",\n      \"message\": \"Potential XSS vulnerability due to the use of user-controlled data in the 'WWW-Authenticate' header.\",\n      \"confidence\": 0.8,\n      \"evidence\": \"`WWW-Authenticate': `Bearer realm=\\\"${realm}\\\",error=\\\"${opts.error}\\\",error_description=\\\"${errDescription}\\\"`\",\n      \"cwe\": \"CWE-79\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:32:47.5911331Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 53342711400,
+     "load_duration": 107699100,
+     "prompt_eval_count": 2637,
+     "prompt_eval_duration": 4831660100,
+     "eval_count": 137,
+     "eval_duration": 14350689000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb38-0c01-7b71-bd9b-b1d4dfa5dfca-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 2637,
+     "output_tokens": 137,
+     "total_tokens": 2774
+    }
+   }
+  }
+ ]
+}

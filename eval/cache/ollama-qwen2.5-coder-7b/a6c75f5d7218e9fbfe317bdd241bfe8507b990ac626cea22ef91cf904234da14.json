@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:53:57+00:00",
+ "elapsed_seconds": 49.328,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/security/sessions.py\",\n            \"line\": 31,\n            \"severity\": \"low\",\n            \"rule_id\": \"N/A\",\n            \"message\": \"The `document_for` function performs a database query inside the body of a loop over query results.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"document = Document.query.get_or_404(document_id)\",\n            \"cwe\": \"CWE-835: Inefficient Query Execution\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:53:57.6370128Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 49078319200,
+     "load_duration": 58943900,
+     "prompt_eval_count": 1019,
+     "prompt_eval_duration": 1767783700,
+     "eval_count": 121,
+     "eval_duration": 10962872000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb4b-7dd4-7782-b743-b424eae6248e-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1019,
+     "output_tokens": 121,
+     "total_tokens": 1140
+    }
+   }
+  }
+ ]
+}

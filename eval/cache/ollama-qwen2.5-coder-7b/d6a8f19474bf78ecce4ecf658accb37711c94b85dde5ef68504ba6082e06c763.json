@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T04:09:47+00:00",
+ "elapsed_seconds": 39.188,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/auth/tokens.ts\",\n      \"line\": 3,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-943\",\n      \"message\": \"Hardcoded secret in JWT_SECRET.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const JWT_SECRET = \\\"gitmind-demo-signing-secret-please-change\\\";\",\n      \"cwe\": \"CWE-943\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T04:09:47.732489Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 38919983900,
+     "load_duration": 61886800,
+     "prompt_eval_count": 918,
+     "prompt_eval_duration": 1518031100,
+     "eval_count": 109,
+     "eval_duration": 9769823000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb5a-24c3-72b3-a7fd-3dfb8bdc6395-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 918,
+     "output_tokens": 109,
+     "total_tokens": 1027
+    }
+   }
+  }
+ ]
+}

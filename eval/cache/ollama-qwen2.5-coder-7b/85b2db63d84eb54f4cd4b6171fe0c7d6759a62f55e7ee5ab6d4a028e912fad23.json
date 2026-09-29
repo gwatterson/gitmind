@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:50:15+00:00",
+ "elapsed_seconds": 108.031,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/contact.js\",\n      \"line\": 24,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing-parameter-check\",\n      \"message\": \"The email parameter is not checked for null or undefined before being used in the database query.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"req.body.email\",\n      \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\\nCWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n    },\n    {\n      \"file\": \"src/routes/contact.js\",\n      \"line\": 25,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing-parameter-check\",\n      \"message\": \"The message parameter is not checked for null or undefined before being used in the database query.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"req.body.message\",\n      \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\\nCWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n    },\n    {\n      \"file\": \"src/routes/contact.js\",\n      \"line\": 21,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing-parameter-check\",\n      \"message\": \"The email parameter is not checked for null or undefined before being used in the database query.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"req.body.email\",\n      \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\\nCWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n    },\n    {\n      \"file\": \"src/routes/contact.js\",\n      \"line\": 22,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing-parameter-check\",\n      \"message\": \"The message parameter is not checked for null or undefined before being used in the database query.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"req.body.message\",\n      \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\\nCWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n    },\n    {\n      \"file\": \"src/routes/contact.js\",\n      \"line\": 26,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing-parameter-check\",\n      \"message\": \"The sent parameter is not checked for null or undefined before being used in the render method.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"res.render('contact', { sent: true });\",\n      \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:50:15.0949979Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 107774546300,
+     "load_duration": 60682000,
+     "prompt_eval_count": 1019,
+     "prompt_eval_duration": 1762470900,
+     "eval_count": 664,
+     "eval_duration": 62489386600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb47-3331-7410-8873-7b3fdf46166e-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1019,
+     "output_tokens": 664,
+     "total_tokens": 1683
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:18:03+00:00",
+ "elapsed_seconds": 111.953,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"ghost/core/core/server/adapters/storage/LocalStorageBase.ts\",\n      \"line\": 143,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing-validation\",\n      \"message\": \"The code no longer checks if the file is being saved directly under `targetDir` and not outside of it.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-         // Verify that we are saving directly under `targetDir` and not outside of it.\\n-         const expectedPrefix = path.join(path.resolve(targetDir), '/');\\n-         if (!path.resolve(targetFilename).startsWith(expectedPrefix)) {\\n-             throw new errors.BadRequestError({message: 'Cannot save to the given filename'});\\n-         }\",\n      \"cwe\": \"CWE-264: Permissions, Access Control\"\n    },\n    {\n      \"file\": \"ghost/core/core/server/services/themes/storage.js\",\n      \"line\": 59,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing-validation\",\n      \"message\": \"The code no longer checks if the theme name contains only path elements.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-         // Reject theme names that only contain path elements.\\n-         if (INVALID_THEME_REGEX.test(themeName)) {\\n-             throw new errors.ValidationError({\\n-                 message: 'Invalid theme name.'\\n-             });\",\n      \"cwe\": \"CWE-264: Permissions, Access Control\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:18:03.6825196Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 111703755500,
+     "load_duration": 120685500,
+     "prompt_eval_count": 1022,
+     "prompt_eval_duration": 1758657700,
+     "eval_count": 337,
+     "eval_duration": 30295695300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb29-ab55-7eb2-81dd-39b047913e20-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1022,
+     "output_tokens": 337,
+     "total_tokens": 1359
+    }
+   }
+  }
+ ]
+}
