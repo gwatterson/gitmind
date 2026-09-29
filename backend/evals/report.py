@@ -117,6 +117,27 @@ def render_report(document: dict[str, Any], compare: dict[str, Any] | None = Non
         rows.append(row)
     lines += ["## Headline", "", *_table(rows, header), ""]
 
+    curve = metrics.get("verifier_curve") or []
+    if curve:
+        rows = [
+            [
+                f"{point['threshold']:.1f}",
+                _fmt(point["precision"]),
+                _fmt(point["recall"]),
+                _fmt(point["f1"]),
+                _fmt(point["findings_per_clean_case"]),
+            ]
+            for point in curve
+        ]
+        lines += [
+            "## Verifier threshold",
+            "",
+            "Metrics replayed from the recorded verifier answers (0.0 keeps every finding).",
+            "",
+            *_table(rows, ["Threshold", "Precision", "Recall", "F1", "Findings per clean PR"]),
+            "",
+        ]
+
     lines += ["## By category", "", *_counts_table(all_metrics["by_category"], "Category"), ""]
     lines += ["## By source", "", *_counts_table(all_metrics["by_source"], "Source"), ""]
     lines += ["## By language", "", *_counts_table(all_metrics["by_language"], "Language"), ""]

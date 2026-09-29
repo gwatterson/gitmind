@@ -79,6 +79,7 @@ def cmd_run(args: argparse.Namespace) -> None:
         prompts_dir=str(Path(args.prompts_dir).resolve()) if args.prompts_dir else "",
         label=args.label,
         filters=filters,
+        verifier=args.verifier == "on",
     )
     # The pipeline logs every step: keep only warnings and errors on the console
     logging.getLogger().setLevel(logging.WARNING)
@@ -283,6 +284,7 @@ def main() -> None:
     run.add_argument("--concurrency", type=int, default=1, help="cases run in parallel")
     run.add_argument("--timeout", type=float, default=600.0, help="seconds per LLM call")
     run.add_argument("--prompts-dir", help="evaluate an alternative prompt directory")
+    run.add_argument("--verifier", choices=("on", "off"), default="on", help="verifier node")
     run.add_argument("--label", default="", help="name of the run in the results file")
     run.add_argument("--compare", help="results file to compare with in the report")
     run.add_argument("--prune-cache", action="store_true", help="delete unused cached answers")

@@ -28,6 +28,8 @@ class Finding(TypedDict):
     confidence: NotRequired[float]  # 0-1, as estimated by the agent
     cwe: NotRequired[str | None]
     evidence: NotRequired[str]  # code fragment quoted from the diff
+    verifier_confidence: NotRequired[float]  # set by the verifier node
+    verifier_note: NotRequired[str]
 
 
 class SkippedFile(TypedDict):
@@ -68,6 +70,9 @@ class PRState(TypedDict):
     security_findings: list[Finding]
     quality_findings: list[Finding]
     performance_findings: list[Finding]
+
+    # Findings the verifier did not confirm: stored for analysis, never published
+    suppressed_findings: NotRequired[list[Finding]]
 
     # Final output
     all_findings: list[Finding]

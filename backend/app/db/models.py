@@ -112,6 +112,8 @@ ADDED_COLUMNS = [
     ("reviews", "llm_provider", "TEXT"),
     ("reviews", "llm_model", "TEXT"),
     ("reviews", "prompt_versions", "TEXT"),
+    ("findings", "suppressed", "INTEGER NOT NULL DEFAULT 0"),
+    ("findings", "verifier_note", "TEXT"),
 ]
 
 # Idempotent data fixes applied at startup

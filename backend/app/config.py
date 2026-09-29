@@ -86,6 +86,11 @@ class Settings(BaseSettings):
     MAX_REVIEW_PATCH_CHARS: int = 400_000
     REVIEW_EXCLUDE_PATTERNS: str = ""  # extra comma-separated globs, e.g. "docs/*,*.md"
 
+    # Verifier node: a second LLM pass that suppresses findings the code does not support.
+    # Findings below the threshold are stored as suppressed and never published.
+    VERIFIER_ENABLED: bool = True
+    VERIFIER_MIN_CONFIDENCE: float = 0.5
+
     # Which findings can make the verdict "request_changes": critical or high findings of
     # these categories, with at least this self-reported confidence. The evaluation showed
     # that quality and performance findings are mostly noise and that the confidence the

@@ -247,9 +247,12 @@ async def create_finding(
 
 
 async def create_findings_batch(
-    review_id: str, findings: Sequence[Mapping[str, Any]]
+    review_id: str, findings: Sequence[Mapping[str, Any]], *, suppressed: bool = False
 ) -> list[dict]:
-    """Create multiple findings in a single transaction."""
+    """Create multiple findings in a single transaction.
+
+    Suppressed findings (rejected by the verifier) are stored for analysis only.
+    """
     db = await get_db()
     results = []
     try:
@@ -257,8 +260,9 @@ async def create_findings_batch(
             finding_id = str(uuid.uuid4())
             await db.execute(
                 """INSERT INTO findings (id, review_id, file, line, severity, category, rule_id,
-                                         message, suggestion, agent, confidence, cwe, evidence)
-                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                                         message, suggestion, agent, confidence, cwe, evidence,
+                                         suppressed, verifier_note)
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
                 (
                     finding_id,
                     review_id,
@@ -273,6 +277,8 @@ async def create_findings_batch(
                     f.get("confidence"),
                     f.get("cwe"),
                     f.get("evidence", ""),
+                    int(suppressed),
+                    f.get("verifier_note"),
                 ),
             )
             results.append({**f, "id": finding_id, "review_id": review_id})
@@ -282,13 +288,14 @@ async def create_findings_batch(
         await db.close()
 
 
-async def get_findings(review_id: str) -> list[dict]:
-    """Get all findings for a review."""
+async def get_findings(review_id: str, *, include_suppressed: bool = False) -> list[dict]:
+    """Get the findings of a review (without the ones the verifier suppressed, by default)."""
     db = await get_db()
     try:
         cursor = await db.execute(
-            f"SELECT * FROM findings WHERE review_id = ? ORDER BY {_SEVERITY_RANK_SQL}, file, line",  # noqa: S608 (constant expression)
-            (review_id,),
+            "SELECT * FROM findings WHERE review_id = ? AND (suppressed = 0 OR ?) "  # noqa: S608 (constant expression)
+            f"ORDER BY {_SEVERITY_RANK_SQL}, file, line",
+            (review_id, int(include_suppressed)),
         )
         rows = await cursor.fetchall()
         return [dict(row) for row in rows]
@@ -407,14 +414,14 @@ async def get_review_stats() -> dict:
 
         # Findings by category
         cursor = await db.execute(
-            "SELECT category, COUNT(*) as count FROM findings GROUP BY category"
+            "SELECT category, COUNT(*) as count FROM findings WHERE suppressed = 0 GROUP BY category"
         )
         category_rows = await cursor.fetchall()
         category_counts = {row["category"]: row["count"] for row in category_rows}
 
         # Findings by severity
         cursor = await db.execute(
-            "SELECT severity, COUNT(*) as count FROM findings GROUP BY severity"
+            "SELECT severity, COUNT(*) as count FROM findings WHERE suppressed = 0 GROUP BY severity"
         )
         severity_rows = await cursor.fetchall()
         severity_counts = {row["severity"]: row["count"] for row in severity_rows}
@@ -424,7 +431,7 @@ async def get_review_stats() -> dict:
         row = await cursor.fetchone()
         total_reviews = row["total"] if row else 0
 
-        cursor = await db.execute("SELECT COUNT(*) as total FROM findings")
+        cursor = await db.execute("SELECT COUNT(*) as total FROM findings WHERE suppressed = 0")
         row = await cursor.fetchone()
         total_findings = row["total"] if row else 0
 

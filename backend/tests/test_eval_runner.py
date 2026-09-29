@@ -26,6 +26,7 @@ class ScriptedChatModel(BaseChatModel):
 
     calls: int = 0
     invalid_answers: int = 0  # the first N security answers are truncated JSON
+    verifier_confidence: float = 0.95  # what the verifier answers for every finding
 
     @property
     def _llm_type(self) -> str:
@@ -36,6 +37,14 @@ class ScriptedChatModel(BaseChatModel):
     ) -> ChatResult:
         self.calls += 1
         prompt = str(messages[-1].content)
+        if prompt.startswith("Findings to verify"):
+            verdict = {
+                "id": 0,
+                "real": True,
+                "confidence": self.verifier_confidence,
+                "reason": "ok",
+            }
+            return self._answer(json.dumps({"verdicts": [verdict]}))
         findings = []
         if "security vulnerabilities" in prompt and "### File: app/db.py" in prompt:
             findings.append(
@@ -54,6 +63,10 @@ class ScriptedChatModel(BaseChatModel):
         if findings and self.invalid_answers > 0:
             self.invalid_answers -= 1
             content = content[:40]
+        return self._answer(content)
+
+    @staticmethod
+    def _answer(content: str) -> ChatResult:
         message = AIMessage(
             content=content,
             usage_metadata={"input_tokens": 100, "output_tokens": 20, "total_tokens": 120},
@@ -89,6 +102,7 @@ def eval_env(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> ScriptedChatMod
         "HITL_ENABLED",
         "LLM_TIMEOUT_SECONDS",
         "PROMPTS_DIR",
+        "VERIFIER_ENABLED",
     ):
         monkeypatch.setattr(settings, name, getattr(settings, name))
     yield model
@@ -100,8 +114,13 @@ def case(tmp_path: Path) -> Case:
     return load_case(write_case(tmp_path / "cases"))
 
 
-def config(cache_mode: str) -> RunConfig:
-    return RunConfig(provider="ollama", model="scripted-model", cache_mode=cache_mode)  # type: ignore[arg-type]
+def config(cache_mode: str, verifier: bool = False) -> RunConfig:
+    return RunConfig(
+        provider="ollama",
+        model="scripted-model",
+        cache_mode=cache_mode,  # type: ignore[arg-type]
+        verifier=verifier,
+    )
 
 
 async def test_run_records_answers_then_replays_them(eval_env, case, tmp_path):
@@ -138,6 +157,24 @@ async def test_retry_after_an_invalid_answer_calls_the_model_again(eval_env, cas
     stats = replayed["cases"][0]["stats"]
     assert (stats["live_calls"], stats["cached_calls"]) == (0, 3)  # the valid answer was kept
     assert replayed["cases"][0]["findings"] == first["cases"][0]["findings"]
+
+
+@pytest.mark.parametrize(("confidence", "kept"), [(0.95, 1), (0.2, 0)])
+async def test_verifier_keeps_or_suppresses_and_results_record_both(
+    eval_env, case, confidence, kept
+):
+    eval_env.verifier_confidence = confidence
+    document = await run_evaluation(config("use", verifier=True), [case], progress=lambda _: None)
+    [result] = document["cases"]
+    assert result["stats"]["live_calls"] == 4  # three agents and one verifier call
+    assert len(result["findings"]) == kept
+    assert len(result["suppressed"]) == 1 - kept
+    candidate = (result["findings"] or result["suppressed"])[0]
+    assert candidate["verifier_confidence"] == confidence
+    assert document["run"]["verifier"]["enabled"] is True
+    if not kept:  # the curve replays thresholds: at 0 the suppressed finding comes back
+        curve = {point["threshold"]: point for point in document["metrics"]["verifier_curve"]}
+        assert curve[0.0]["recall"] == 1.0 and curve[0.5]["recall"] == 0.0
 
 
 async def test_replay_fails_when_an_answer_was_never_recorded(eval_env, case):

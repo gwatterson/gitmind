@@ -10,6 +10,9 @@ from collections import defaultdict
 from dataclasses import asdict, dataclass, field
 from typing import Any
 
+from app.graph.state import Finding
+from app.graph.synthesis import deduplicate_findings
+from app.graph.taxonomy import assign_owner_category
 from evals.dataset import SEVERITY_RANK, Case
 from evals.matching import match_case
 
@@ -213,3 +216,44 @@ def compute_metrics(results: list[dict[str, Any]], min_severity: str = "info") -
         metrics.live_calls += int(stats.get("live_calls", 0))
         metrics.cached_calls += int(stats.get("cached_calls", 0))
     return metrics
+
+
+VERIFIER_THRESHOLDS = (0.0, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9)
+
+
+def _as_findings(items: list[dict[str, Any]]) -> list[Finding]:
+    return [Finding(**{"suggestion": "", "message": "", **item}) for item in items]  # type: ignore[typeddict-item]
+
+
+def verifier_curve(
+    results: list[dict[str, Any]], thresholds: tuple[float, ...] = VERIFIER_THRESHOLDS
+) -> list[dict[str, Any]]:
+    """Metrics as if the verifier had used each threshold, from the recorded candidates.
+
+    Every candidate the verifier judged is in the results (kept or suppressed) with its
+    confidence, so any threshold can be replayed without calling the model. Candidates are
+    merged like the synthesis does: owner category, then duplicates.
+    """
+    if not any(result.get("suppressed") for result in results):
+        return []
+    curve = []
+    for threshold in thresholds:
+        replayed = []
+        for result in results:
+            candidates = [*result.get("findings", []), *result.get("suppressed", [])]
+            passing = [
+                c
+                for c in candidates
+                if c.get("verifier_confidence") is None or c["verifier_confidence"] >= threshold
+            ]
+            merged = deduplicate_findings([assign_owner_category(f) for f in _as_findings(passing)])
+            replayed.append({**result, "findings": [dict(f) for f in merged]})
+        metrics = compute_metrics(replayed).to_dict()
+        curve.append(
+            {
+                "threshold": threshold,
+                **{k: metrics["overall"][k] for k in ("precision", "recall", "f1")},
+                "findings_per_clean_case": metrics["findings_per_clean_case"],
+            }
+        )
+    return curve

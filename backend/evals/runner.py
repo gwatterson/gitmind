@@ -26,12 +26,22 @@ from app.rate_limiter import DailyQuotaExhaustedError
 from evals.dataset import EVAL_DIR, Case, dataset_fingerprint
 from evals.llm_cache import CacheMode, CallStats, DiskCache, track_calls
 from evals.matching import LINE_TOLERANCE
-from evals.metrics import compute_metrics
+from evals.metrics import compute_metrics, verifier_curve
 
 CACHE_DIR = EVAL_DIR / "cache"
 RESULTS_DIR = EVAL_DIR / "results"
 
-FINDING_FIELDS = ("file", "line", "severity", "category", "rule_id", "cwe", "confidence", "agent")
+FINDING_FIELDS = (
+    "file",
+    "line",
+    "severity",
+    "category",
+    "rule_id",
+    "cwe",
+    "confidence",
+    "agent",
+    "verifier_confidence",
+)
 
 
 @dataclass
@@ -43,6 +53,7 @@ class RunConfig:
     concurrency: int = 1
     timeout_seconds: float = 600.0
     prompts_dir: str = ""
+    verifier: bool = True
     label: str = ""
     filters: dict[str, Any] = field(default_factory=dict)
 
@@ -75,6 +86,7 @@ def configure(config: RunConfig, database_path: Path) -> DiskCache:
     settings.HITL_ENABLED = False
     settings.LLM_TIMEOUT_SECONDS = config.timeout_seconds
     settings.PROMPTS_DIR = config.prompts_dir
+    settings.VERIFIER_ENABLED = config.verifier
     factory.reset_runtime_provider()
     models.DATABASE_PATH = str(database_path)
 
@@ -126,6 +138,7 @@ async def run_case(case: Case, graph: Any) -> dict[str, Any]:
         "agent_errors": list(final.get("errors", [])),
         "verdict": final.get("verdict", ""),
         "findings": [_finding(dict(f)) for f in final.get("all_findings", [])],
+        "suppressed": [_finding(dict(f)) for f in final.get("suppressed_findings", [])],
         "files": [f["filename"] for f in case.files],
         "wall_seconds": round(wall_seconds, 2),
         "stats": asdict(stats),
@@ -156,6 +169,12 @@ def run_metadata(config: RunConfig, cases: list[Case], pipeline: str) -> dict[st
         "code_revision": git_revision(),
         "cache_mode": config.cache_mode,
         "line_tolerance": LINE_TOLERANCE,
+        "verifier": {
+            "enabled": settings.VERIFIER_ENABLED,
+            "min_confidence": settings.VERIFIER_MIN_CONFIDENCE,
+        }
+        if pipeline == "gitmind"
+        else None,
     }
 
 
@@ -165,6 +184,7 @@ def build_document(meta: dict[str, Any], results: list[dict[str, Any]]) -> dict[
         "metrics": {
             "all": compute_metrics(results, "info").to_dict(),
             "medium_plus": compute_metrics(results, "medium").to_dict(),
+            "verifier_curve": verifier_curve(results),
         },
         "cases": results,
     }

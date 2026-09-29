@@ -24,7 +24,15 @@ from app.config import settings
 
 DEFAULT_PROMPTS_DIR = Path(__file__).parent
 
-PROMPT_NAMES = ("security", "quality", "performance", "agent_rules", "supervisor", "synthesis")
+PROMPT_NAMES = (
+    "security",
+    "quality",
+    "performance",
+    "agent_rules",
+    "verifier",
+    "supervisor",
+    "synthesis",
+)
 
 
 class PromptError(ValueError):

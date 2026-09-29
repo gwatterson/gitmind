@@ -69,6 +69,22 @@ class AgentReview(BaseModel):
     findings: list[ReviewFinding] = Field(default_factory=list)
 
 
+class VerifierVerdict(BaseModel):
+    id: int = Field(description="The id of the finding being judged")
+    real: bool = Field(description="True if the code in the diff supports the finding")
+    confidence: float = Field(description="Probability that the finding is real, 0 to 1")
+    reason: str = Field(default="", description="One sentence")
+
+    @field_validator("confidence", mode="before")
+    @classmethod
+    def _clamp_confidence(cls, value: Any) -> float:
+        return ReviewFinding._clamp_confidence(value)
+
+
+class VerifierReview(BaseModel):
+    verdicts: list[VerifierVerdict] = Field(default_factory=list)
+
+
 class SupervisorAssignment(BaseModel):
     """Which files need quality and performance review. Security reviews every file."""
 

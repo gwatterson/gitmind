@@ -34,6 +34,8 @@ os.environ.update(
         "LLM_PROVIDER": "gemini",
         "LLM_RETRY_WAIT_SECONDS": "0",
         "OLLAMA_BASE_URL": "http://ollama.test:11434",
+        # Pipeline tests script the agents' answers; the verifier has its own tests
+        "VERIFIER_ENABLED": "false",
     }
 )
 

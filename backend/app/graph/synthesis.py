@@ -200,6 +200,9 @@ async def synthesize(state: PRState, *, write_summary: bool) -> dict[str, Any]:
 
     if all_findings:
         await crud.create_findings_batch(review_id, all_findings)
+    suppressed = state.get("suppressed_findings", [])
+    if suppressed:
+        await crud.create_findings_batch(review_id, suppressed, suppressed=True)
 
     log.info(
         "synthesis_findings",

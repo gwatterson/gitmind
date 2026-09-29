@@ -17,6 +17,7 @@ from app.graph.prompts import prompt_versions
 from app.graph.state import PRState
 from app.graph.supervisor import supervisor_node
 from app.graph.synthesis import findings_only_synthesis_node, synthesis_node
+from app.graph.verifier import verify_node
 from app.llm import factory
 from app.rate_limiter import DailyQuotaExhaustedError
 from app.services import publisher
@@ -90,6 +91,7 @@ def build_graph(*, deliver: bool = True) -> CompiledStateGraph:
     graph.add_node("security", security_agent_node)
     graph.add_node("quality", quality_agent_node)
     graph.add_node("performance", performance_agent_node)
+    graph.add_node("verify", verify_node)
     graph.add_node("synthesis", synthesis_node if deliver else findings_only_synthesis_node)
 
     graph.set_entry_point("supervisor")
@@ -99,10 +101,11 @@ def build_graph(*, deliver: bool = True) -> CompiledStateGraph:
     graph.add_edge("supervisor", "quality")
     graph.add_edge("supervisor", "performance")
 
-    # Fan-in: all three agents must complete before synthesis
-    graph.add_edge("security", "synthesis")
-    graph.add_edge("quality", "synthesis")
-    graph.add_edge("performance", "synthesis")
+    # Fan-in: all three agents must complete before the verifier checks their findings
+    graph.add_edge("security", "verify")
+    graph.add_edge("quality", "verify")
+    graph.add_edge("performance", "verify")
+    graph.add_edge("verify", "synthesis")
 
     if not deliver:
         graph.add_edge("synthesis", END)

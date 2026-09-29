@@ -25,6 +25,8 @@ venv/
 coverage.xml
 htmlcov/
 *.db
+*.db-shm
+*.db-wal
 
 # --- Node.js ---
 node_modules/
