@@ -44,9 +44,9 @@ function parsePatch(patch: string): Array<{
 
 const LINE_COLORS = {
   add: "bg-emerald-500/10 border-l-2 border-emerald-500/40",
-  del: "bg-red-500/10 border-l-2 border-red-500/40",
+  del: "bg-danger/10 border-l-2 border-red-500/40",
   ctx: "border-l-2 border-transparent",
-  header: "bg-indigo-500/10 border-l-2 border-indigo-500/30",
+  header: "bg-accent-soft border-l-2 border-accent/30",
 };
 
 const SEVERITY_DOT: Record<string, string> = {
@@ -79,18 +79,18 @@ export function DiffViewer({
 
   if (!patch) {
     return (
-      <div className="glass-card p-4 text-center text-sm text-slate-500">
+      <div className="panel p-4 text-center text-sm text-fg-subtle">
         No diff available for this file.
       </div>
     );
   }
 
   return (
-    <div className="overflow-hidden glass-card">
+    <div className="overflow-hidden panel">
       {/* File header */}
-      <div className="flex items-center gap-2 border-b border-white/5 px-4 py-2.5">
+      <div className="flex items-center gap-2 border-b border-line px-4 py-2.5">
         <svg
-          className="h-4 w-4 text-slate-500"
+          className="h-4 w-4 text-fg-subtle"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -102,9 +102,9 @@ export function DiffViewer({
             d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
           />
         </svg>
-        <span className="truncate mono text-sm text-slate-300">{filename}</span>
+        <span className="truncate mono text-sm text-fg-muted">{filename}</span>
         {fileFindings.length > 0 && (
-          <span className="ml-auto badge badge-high">
+          <span className="ml-auto pill tone-high">
             {fileFindings.length} finding{fileFindings.length !== 1 ? "s" : ""}
           </span>
         )}
@@ -114,11 +114,11 @@ export function DiffViewer({
       <div className="overflow-x-auto mono text-[13px] leading-5">
         {lines.map((line, idx) => (
           <div key={idx}>
-            <div className={`flex hover:bg-white/2 ${LINE_COLORS[line.type]}`}>
-              <span className="w-12 shrink-0 border-r border-white/5 px-2 text-right text-slate-700 select-none">
+            <div className={`flex hover:bg-surface-2 ${LINE_COLORS[line.type]}`}>
+              <span className="w-12 shrink-0 border-r border-line px-2 text-right text-fg-subtle select-none">
                 {line.lineNum || ""}
               </span>
-              <span className="w-5 shrink-0 text-center text-slate-600 select-none">
+              <span className="w-5 shrink-0 text-center text-fg-subtle select-none">
                 {line.type === "add"
                   ? "+"
                   : line.type === "del"
@@ -135,7 +135,7 @@ export function DiffViewer({
                     <span
                       key={fi}
                       className={`h-2 w-2 rounded-full ${
-                        SEVERITY_DOT[f.severity] || "bg-slate-500"
+                        SEVERITY_DOT[f.severity] || "bg-fg-subtle"
                       }`}
                       title={f.message}
                     />
@@ -148,17 +148,17 @@ export function DiffViewer({
             {line.lineNum &&
               findingsByLine.has(line.lineNum) &&
               findingsByLine.get(line.lineNum)!.map((f, fi) => (
-                <div key={fi} className="ml-12 flex border-l-2 border-amber-500/50 bg-amber-500/5">
+                <div key={fi} className="ml-12 flex border-l-2 border-warning/50 bg-warning/5">
                   <div className="px-4 py-2 text-xs">
                     <span
                       className={`mr-1.5 inline-block h-2 w-2 rounded-full ${
-                        SEVERITY_DOT[f.severity] || "bg-slate-500"
+                        SEVERITY_DOT[f.severity] || "bg-fg-subtle"
                       }`}
                     />
-                    <span className="font-medium text-amber-300/80">{f.agent}:</span>{" "}
-                    <span className="text-slate-400">{f.message}</span>
+                    <span className="font-medium text-warning">{f.agent}:</span>{" "}
+                    <span className="text-fg-muted">{f.message}</span>
                     {f.suggestion && (
-                      <p className="mt-0.5 ml-3.5 text-slate-600">💡 {f.suggestion}</p>
+                      <p className="mt-0.5 ml-3.5 text-fg-subtle">Fix: {f.suggestion}</p>
                     )}
                   </div>
                 </div>

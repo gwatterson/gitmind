@@ -3,10 +3,12 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
-import { ReviewStream } from "@/components/ReviewStream";
+import { ArrowLeft, Pencil, SearchX, Send, Trash2 } from "lucide-react";
+import { DiffViewer } from "@/components/DiffViewer";
 import { FindingCard } from "@/components/FindingCard";
 import { Markdown } from "@/components/Markdown";
-import { DiffViewer } from "@/components/DiffViewer";
+import { ReviewStream } from "@/components/ReviewStream";
+import { EmptyState, SEVERITIES, StatusLabel, VERDICT } from "@/components/ui";
 import {
   approveReview,
   deleteReview,
@@ -15,20 +17,92 @@ import {
   getReviewDiff,
   updateFinding,
 } from "@/lib/api";
-import type { Review, Finding, DiffFile } from "@/lib/types";
+import type { DiffFile, Finding, Review } from "@/lib/types";
 
-const VERDICT_CONFIG: Record<string, { label: string; class: string; icon: string }> = {
-  approve: { label: "Looks Good", class: "badge-completed", icon: "✅" },
-  comment: { label: "Comment", class: "badge-info", icon: "💬" },
-  request_changes: { label: "Changes Requested", class: "badge-critical", icon: "🔴" },
-};
+type Tab = "findings" | "diff" | "summary";
+type Notice = { tone: "success" | "warning" | "danger"; text: string } | null;
+type Busy = "approving" | "deleting" | null;
 
-const SEVERITY_ORDER = ["critical", "high", "medium", "low", "info"];
-const CATEGORY_ICONS: Record<string, string> = {
-  security: "🔒",
-  quality: "📐",
-  performance: "⚡",
-};
+const CATEGORIES = ["security", "quality", "performance"];
+
+function VerdictBanner({ review, findings }: { review: Review; findings: Finding[] }) {
+  const running = review.status === "running" || review.status === "pending";
+  const blocking = findings.filter(
+    (f) => f.category === "security" && (f.severity === "critical" || f.severity === "high"),
+  ).length;
+  const verdict = review.verdict ? VERDICT[review.verdict] : null;
+
+  if (running || !verdict) {
+    return (
+      <div className="flex items-center justify-between gap-4 panel px-5 py-4">
+        <div>
+          <p className="text-xs text-fg-subtle">Status</p>
+          <div className="mt-1">
+            <StatusLabel status={review.status} />
+          </div>
+        </div>
+        {review.error ? <p className="max-w-md text-sm text-danger">{review.error}</p> : null}
+      </div>
+    );
+  }
+
+  const Icon = verdict.icon;
+  const detail =
+    review.verdict === "request_changes"
+      ? `${blocking} blocking security finding${blocking === 1 ? "" : "s"} of ${findings.length}`
+      : `${findings.length} finding${findings.length === 1 ? "" : "s"}, none blocking`;
+  return (
+    <div className={`flex items-center gap-4 rounded-lg border px-5 py-4 ${verdict.tone}`}>
+      <Icon className="h-6 w-6 shrink-0" aria-hidden />
+      <div className="min-w-0">
+        <p className="text-base font-semibold">{verdict.label}</p>
+        <p className="text-sm text-fg-muted">{detail}</p>
+      </div>
+      <div className="ml-auto">
+        <StatusLabel status={review.status} />
+      </div>
+    </div>
+  );
+}
+
+function FilterChips({
+  label,
+  options,
+  value,
+  counts,
+  onChange,
+}: {
+  label: string;
+  options: string[];
+  value: string;
+  counts: Record<string, number>;
+  onChange: (value: string) => void;
+}) {
+  return (
+    <div className="flex flex-wrap items-center gap-1" role="group" aria-label={label}>
+      {["all", ...options].map((option) => {
+        const active = value === option;
+        const count = option === "all" ? undefined : (counts[option] ?? 0);
+        if (count === 0 && !active) return null;
+        return (
+          <button
+            key={option}
+            onClick={() => onChange(option)}
+            aria-pressed={active}
+            className={`rounded-md px-2 py-1 text-xs capitalize transition-colors ${
+              active ? "bg-surface-3 text-fg" : "text-fg-subtle hover:text-fg"
+            }`}
+          >
+            {option === "all" ? `All ${label.toLowerCase()}` : option}
+            {count !== undefined ? (
+              <span className="ml-1 text-fg-subtle tabular">{count}</span>
+            ) : null}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
 
 export default function ReviewDetailPage() {
   const params = useParams();
@@ -38,374 +112,322 @@ export default function ReviewDetailPage() {
   const [review, setReview] = useState<Review | null>(null);
   const [findings, setFindings] = useState<Finding[]>([]);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<"findings" | "diff">("findings");
-  const [filterCategory, setFilterCategory] = useState("all");
-  const [filterSeverity, setFilterSeverity] = useState("all");
+  const [tab, setTab] = useState<Tab>("findings");
+  const [category, setCategory] = useState("all");
+  const [severity, setSeverity] = useState("all");
   const [diffFiles, setDiffFiles] = useState<DiffFile[] | null>(null);
-  const [loadingDiff, setLoadingDiff] = useState(false);
+  const [notice, setNotice] = useState<Notice>(null);
+  const [busy, setBusy] = useState<Busy>(null);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editForm, setEditForm] = useState({ message: "", suggestion: "" });
 
   useEffect(() => {
-    const fetchDetail = async () => {
-      try {
-        const data = await getReviewDetail(reviewId);
-        setReview(data.review);
-        setFindings(data.findings || []);
-      } catch {
-        // Unauthorized or not found: the page shows its own empty state
-      } finally {
-        setLoading(false);
-      }
-    };
-
+    const fetchDetail = () =>
+      getReviewDetail(reviewId)
+        .then((data) => {
+          setReview(data.review);
+          setFindings(data.findings || []);
+        })
+        .catch(() => {
+          // Unauthorized or not found: the page shows its own empty state
+        })
+        .finally(() => setLoading(false));
     fetchDetail();
-    // Refresh while running
     const interval = setInterval(fetchDetail, 5000);
     return () => clearInterval(interval);
   }, [reviewId]);
 
-  // Fetch diff on-demand when user switches to "diff" tab
   useEffect(() => {
-    if (activeTab === "diff" && !diffFiles && review && review.status !== "running") {
-      const fetchDiff = async () => {
-        setLoadingDiff(true);
-        try {
-          const data = await getReviewDiff(reviewId);
-          setDiffFiles(data.files || []);
-        } catch (error) {
-          console.error("Failed to fetch diff", error);
-        } finally {
-          setLoadingDiff(false);
-        }
-      };
-      fetchDiff();
-    }
-  }, [activeTab, diffFiles, review, reviewId]);
-
-  const [actionStatus, setActionStatus] = useState<string | null>(null);
+    if (tab !== "diff" || diffFiles || !review || review.status === "running") return;
+    getReviewDiff(reviewId)
+      .then((data) => setDiffFiles(data.files || []))
+      .catch(() => setDiffFiles([]));
+  }, [tab, diffFiles, review, reviewId]);
 
   const handleApprove = async () => {
-    setActionStatus("approving...");
+    setBusy("approving");
     try {
       const data = await approveReview(reviewId);
       setReview((prev) => (prev ? { ...prev, status: "completed" } : null));
-      if (data.warning) {
-        setActionStatus(`⚠️ ${data.warning}`);
-      } else {
-        setActionStatus("✅ Review approved and posted to GitHub.");
-      }
+      setNotice(
+        data.warning
+          ? { tone: "warning", text: data.warning }
+          : { tone: "success", text: "Review approved and posted to GitHub." },
+      );
     } catch (error) {
-      setActionStatus(`❌ ${errorMessage(error)}`);
+      setNotice({ tone: "danger", text: errorMessage(error) });
+    } finally {
+      setBusy(null);
     }
   };
 
-  const handleRejectAndDelete = async () => {
-    if (
-      !confirm(
-        "Are you sure you want to delete this review? This action cannot be undone and has no effect on GitHub.",
-      )
-    )
+  const handleDelete = async () => {
+    if (!window.confirm("Delete this review? It cannot be undone and has no effect on GitHub."))
       return;
-
-    setActionStatus("rejecting...");
+    setBusy("deleting");
     try {
       await deleteReview(reviewId);
       router.push("/");
     } catch (error) {
-      setActionStatus(`❌ ${errorMessage(error)}`);
+      setNotice({ tone: "danger", text: errorMessage(error) });
+      setBusy(null);
     }
-  };
-
-  // Editing states
-  const [editingFindingId, setEditingFindingId] = useState<string | null>(null);
-  const [editForm, setEditForm] = useState({ message: "", suggestion: "" });
-
-  const startEditing = (f: Finding) => {
-    setEditingFindingId(f.id);
-    setEditForm({ message: f.message, suggestion: f.suggestion || "" });
   };
 
   const saveFinding = async (id: string) => {
     try {
       const data = await updateFinding(reviewId, id, editForm);
       setFindings((prev) => prev.map((f) => (f.id === id ? { ...f, ...data.finding } : f)));
-      setEditingFindingId(null);
+      setEditingId(null);
     } catch (error) {
-      setActionStatus(`❌ Could not save the finding: ${errorMessage(error)}`);
+      setNotice({ tone: "danger", text: `Could not save the finding: ${errorMessage(error)}` });
     }
   };
 
   if (loading) {
     return (
-      <div className="animate-pulse space-y-4">
-        <div className="h-20 glass-card" />
-        <div className="grid grid-cols-2 gap-4">
-          <div className="h-60 glass-card" />
-          <div className="h-60 glass-card" />
-        </div>
+      <div className="space-y-4">
+        <div className="h-16 animate-pulse panel" />
+        <div className="h-20 animate-pulse panel" />
+        <div className="h-72 animate-pulse panel" />
       </div>
     );
   }
 
   if (!review) {
-    return (
-      <div className="glass-card p-8 text-center">
-        <p className="mb-2 text-xl">🔍</p>
-        <p className="text-slate-400">Review not found</p>
-      </div>
-    );
+    return <EmptyState icon={SearchX} title="Review not found" hint="It may have been deleted." />;
   }
 
-  const verdict = review.verdict ? VERDICT_CONFIG[review.verdict] : null;
-
-  // Group findings by category
   const categoryCounts: Record<string, number> = {};
   const severityCounts: Record<string, number> = {};
   findings.forEach((f) => {
     categoryCounts[f.category] = (categoryCounts[f.category] || 0) + 1;
     severityCounts[f.severity] = (severityCounts[f.severity] || 0) + 1;
   });
-
-  const filteredFindings = findings.filter((f) => {
-    if (filterCategory !== "all" && f.category !== filterCategory) return false;
-    if (filterSeverity !== "all" && f.severity !== filterSeverity) return false;
-    return true;
-  });
+  const visible = findings.filter(
+    (f) =>
+      (category === "all" || f.category === category) &&
+      (severity === "all" || f.severity === severity),
+  );
+  const canEdit = review.status === "hitl_pending";
+  const finished = review.status !== "pending" && review.status !== "running";
 
   return (
     <div className="animate-fade-in space-y-6">
-      {/* Back + Header */}
       <div>
         <Link
           href="/"
-          className="mb-2 inline-block text-xs text-slate-500 transition-colors hover:text-slate-300"
+          className="inline-flex items-center gap-1.5 text-sm text-fg-subtle hover:text-fg"
         >
-          ← Back to Dashboard
+          <ArrowLeft className="h-4 w-4" aria-hidden />
+          Reviews
         </Link>
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <h1 className="mb-1 text-xl font-bold text-slate-100">
-              {review.pr_title || `PR #${review.pr_number}`}
+        <div className="mt-3 flex flex-wrap items-start justify-between gap-4">
+          <div className="min-w-0">
+            <h1 className="text-xl font-semibold tracking-tight text-fg">
+              {review.pr_title || `Pull request #${review.pr_number}`}
             </h1>
-            <div className="flex items-center gap-3 text-xs text-slate-500">
-              <span className="mono">{review.repo}</span>
-              <span>#{review.pr_number}</span>
-              {review.pr_author && <span>by {review.pr_author}</span>}
+            <p className="mt-1 flex flex-wrap items-center gap-x-2 text-sm text-fg-subtle">
+              <span className="mono">
+                {review.repo}#{review.pr_number}
+              </span>
+              {review.pr_author ? <span>· {review.pr_author}</span> : null}
               {review.llm_model ? (
                 <span
-                  className="rounded-sm bg-slate-800/50 px-1.5 py-0.5 mono text-[10px] text-slate-400"
                   title={review.prompt_versions ? `Prompts: ${review.prompt_versions}` : undefined}
                 >
-                  {review.llm_model}
-                  {review.llm_provider ? ` (${review.llm_provider})` : ""}
+                  · <span className="mono">{review.llm_model}</span>
                 </span>
               ) : null}
-            </div>
+            </p>
           </div>
           <div className="flex items-center gap-2">
-            {verdict && (
-              <span className={`badge text-sm ${verdict.class}`}>
-                {verdict.icon} {verdict.label}
-              </span>
-            )}
-            {review.status === "hitl_pending" && (
-              <button
-                onClick={handleApprove}
-                disabled={actionStatus === "approving..." || actionStatus === "rejecting..."}
-                className="btn-primary text-sm disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                {actionStatus === "approving..." ? "⏳ Approving..." : "✅ Approve & Post"}
+            {finished ? (
+              <button onClick={handleDelete} disabled={busy !== null} className="btn-secondary">
+                <Trash2 className="h-4 w-4" aria-hidden />
+                {busy === "deleting" ? "Deleting..." : "Delete"}
               </button>
-            )}
-            {review.status !== "pending" && review.status !== "running" && (
-              <button
-                onClick={handleRejectAndDelete}
-                disabled={actionStatus === "approving..." || actionStatus === "rejecting..."}
-                className="rounded-md bg-rose-600 px-4 py-1.5 text-sm font-medium text-white shadow-lg transition-colors hover:bg-rose-500 disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                {actionStatus === "rejecting..." ? "⏳ Deleting..." : "🗑️ Reject & Delete"}
+            ) : null}
+            {review.status === "hitl_pending" ? (
+              <button onClick={handleApprove} disabled={busy !== null} className="btn-primary">
+                <Send className="h-4 w-4" aria-hidden />
+                {busy === "approving" ? "Posting..." : "Approve and post"}
               </button>
-            )}
+            ) : null}
           </div>
         </div>
-        {actionStatus && actionStatus !== "approving..." && actionStatus !== "rejecting..." && (
-          <div
-            className={`mt-3 rounded-md border p-3 text-sm ${actionStatus.startsWith("❌") ? "border-red-500/20 bg-red-500/10 text-red-400" : actionStatus.startsWith("⚠️") ? "border-amber-500/20 bg-amber-500/10 text-amber-400" : actionStatus.startsWith("🚫") ? "border-rose-500/20 bg-rose-500/10 text-rose-400" : "border-emerald-500/20 bg-emerald-500/10 text-emerald-400"}`}
-          >
-            <p>{actionStatus}</p>
-          </div>
-        )}
       </div>
 
-      {/* Main content */}
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        {/* Left panel: Reasoning trace */}
-        <div className="lg:col-span-1">
-          <ReviewStream reviewId={reviewId} />
-        </div>
+      <VerdictBanner review={review} findings={findings} />
 
-        {/* Right panel: Findings / Diff */}
-        <div className="space-y-4 lg:col-span-2">
-          {/* Tab switcher */}
-          <div className="flex items-center gap-2 border-b border-white/5 pb-2">
-            <button
-              onClick={() => setActiveTab("findings")}
-              className={`rounded-md px-3 py-1.5 text-sm font-medium transition-all ${
-                activeTab === "findings"
-                  ? "bg-indigo-500/10 text-indigo-400"
-                  : "text-slate-500 hover:text-slate-300"
-              }`}
-            >
-              🔍 Findings ({findings.length})
-            </button>
-            <button
-              onClick={() => setActiveTab("diff")}
-              className={`rounded-md px-3 py-1.5 text-sm font-medium transition-all ${
-                activeTab === "diff"
-                  ? "bg-indigo-500/10 text-indigo-400"
-                  : "text-slate-500 hover:text-slate-300"
-              }`}
-            >
-              📄 Diff
-            </button>
+      {notice ? (
+        <p
+          role="status"
+          className={`rounded-md border px-4 py-3 text-sm ${
+            notice.tone === "danger"
+              ? "tone-critical"
+              : notice.tone === "warning"
+                ? "tone-medium"
+                : "tone-low"
+          }`}
+        >
+          {notice.text}
+        </p>
+      ) : null}
+
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_320px]">
+        <section className="min-w-0 space-y-4">
+          <div className="flex items-center gap-1 border-b border-line" role="tablist">
+            {(
+              [
+                ["findings", `Findings`, findings.length],
+                ["diff", "Diff", null],
+                ["summary", "Summary", null],
+              ] as const
+            ).map(([id, label, count]) => (
+              <button
+                key={id}
+                role="tab"
+                aria-selected={tab === id}
+                onClick={() => setTab(id)}
+                className={`-mb-px border-b-2 px-3 py-2 text-sm transition-colors ${
+                  tab === id
+                    ? "border-fg text-fg"
+                    : "border-transparent text-fg-subtle hover:text-fg"
+                }`}
+              >
+                {label}
+                {count !== null ? (
+                  <span className="ml-1.5 text-fg-subtle tabular">{count}</span>
+                ) : null}
+              </button>
+            ))}
           </div>
 
-          {activeTab === "findings" && (
+          {tab === "findings" ? (
             <div className="space-y-3">
-              {/* Filters */}
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="text-xs text-slate-600">Category:</span>
-                {["all", "security", "quality", "performance"].map((cat) => (
-                  <button
-                    key={cat}
-                    onClick={() => setFilterCategory(cat)}
-                    className={`badge cursor-pointer text-[11px] transition-all ${
-                      filterCategory === cat
-                        ? "border border-indigo-500/30 bg-indigo-500/20 text-indigo-400"
-                        : "bg-slate-800/50 text-slate-500"
-                    }`}
-                  >
-                    {cat === "all"
-                      ? `All (${findings.length})`
-                      : `${CATEGORY_ICONS[cat] || ""} ${cat} (${categoryCounts[cat] || 0})`}
-                  </button>
-                ))}
-                <span className="text-slate-800">|</span>
-                <span className="text-xs text-slate-600">Severity:</span>
-                {["all", ...SEVERITY_ORDER].map((sev) => (
-                  <button
-                    key={sev}
-                    onClick={() => setFilterSeverity(sev)}
-                    className={`badge cursor-pointer text-[11px] transition-all ${
-                      filterSeverity === sev
-                        ? "border border-indigo-500/30 bg-indigo-500/20 text-indigo-400"
-                        : "bg-slate-800/50 text-slate-500"
-                    }`}
-                  >
-                    {sev === "all" ? `All` : `${sev} (${severityCounts[sev] || 0})`}
-                  </button>
-                ))}
-              </div>
+              {findings.length > 0 ? (
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <FilterChips
+                    label="Severities"
+                    options={[...SEVERITIES]}
+                    value={severity}
+                    counts={severityCounts}
+                    onChange={setSeverity}
+                  />
+                  <FilterChips
+                    label="Categories"
+                    options={CATEGORIES}
+                    value={category}
+                    counts={categoryCounts}
+                    onChange={setCategory}
+                  />
+                </div>
+              ) : null}
 
-              {/* Finding cards */}
-              {filteredFindings.map((finding) => (
-                <div key={finding.id} className="group relative">
-                  {editingFindingId === finding.id ? (
-                    <div className="space-y-3 glass-card border border-indigo-500/50 p-4">
-                      <div className="text-sm font-semibold text-slate-200">Edit Finding</div>
-                      <textarea
-                        className="w-full rounded-sm border border-white/10 bg-slate-900/50 p-2 text-sm text-slate-300 focus:border-indigo-500 focus:outline-hidden"
-                        rows={3}
-                        value={editForm.message}
-                        onChange={(e) => setEditForm({ ...editForm, message: e.target.value })}
-                      />
-                      <textarea
-                        className="w-full rounded-sm border border-white/10 bg-slate-900/50 p-2 font-mono text-sm text-slate-300 focus:border-indigo-500 focus:outline-hidden"
-                        rows={3}
-                        placeholder="Suggestion (optional)"
-                        value={editForm.suggestion}
-                        onChange={(e) => setEditForm({ ...editForm, suggestion: e.target.value })}
-                      />
-                      <div className="mt-2 flex justify-end gap-2">
-                        <button
-                          className="rounded-md border border-white/5 bg-slate-800 px-3 py-1.5 text-xs text-slate-300 transition-colors hover:bg-slate-700"
-                          onClick={() => setEditingFindingId(null)}
-                        >
-                          Cancel
-                        </button>
-                        <button
-                          className="rounded-md bg-indigo-600 px-3 py-1.5 text-xs text-white transition-colors hover:bg-indigo-500"
-                          onClick={() => saveFinding(finding.id)}
-                        >
-                          Save Changes
-                        </button>
-                      </div>
+              {visible.map((finding) =>
+                editingId === finding.id ? (
+                  <div key={finding.id} className="space-y-3 panel border-accent/50 p-4">
+                    <p className="text-sm font-medium text-fg">Edit finding</p>
+                    <textarea
+                      className="field"
+                      rows={3}
+                      aria-label="Message"
+                      value={editForm.message}
+                      onChange={(e) => setEditForm({ ...editForm, message: e.target.value })}
+                    />
+                    <textarea
+                      className="field mono"
+                      rows={3}
+                      aria-label="Suggested fix"
+                      placeholder="Suggested fix (optional)"
+                      value={editForm.suggestion}
+                      onChange={(e) => setEditForm({ ...editForm, suggestion: e.target.value })}
+                    />
+                    <div className="flex justify-end gap-2">
+                      <button className="btn-secondary" onClick={() => setEditingId(null)}>
+                        Cancel
+                      </button>
+                      <button className="btn-primary" onClick={() => saveFinding(finding.id)}>
+                        Save
+                      </button>
                     </div>
-                  ) : (
-                    <>
-                      <FindingCard finding={finding} />
-                      {review.status === "hitl_pending" && finding.id && (
+                  </div>
+                ) : (
+                  <FindingCard
+                    key={finding.id}
+                    finding={finding}
+                    actions={
+                      canEdit ? (
                         <button
-                          onClick={() => startEditing(finding)}
-                          className="absolute top-3 right-3 rounded-md border border-white/10 bg-slate-800 px-2.5 py-1 text-xs text-slate-300 opacity-0 shadow-lg transition-opacity group-hover:opacity-100 hover:bg-slate-700"
+                          onClick={() => {
+                            setEditingId(finding.id);
+                            setEditForm({
+                              message: finding.message,
+                              suggestion: finding.suggestion || "",
+                            });
+                          }}
+                          className="inline-flex items-center gap-1 text-xs text-fg-subtle hover:text-fg"
                         >
-                          ✏️ Edit
+                          <Pencil className="h-3.5 w-3.5" aria-hidden />
+                          Edit
                         </button>
-                      )}
-                    </>
-                  )}
-                </div>
-              ))}
-              {filteredFindings.length === 0 && (
-                <div className="glass-card p-6 text-center">
-                  <p className="text-sm text-slate-500">
-                    {findings.length === 0
-                      ? "No findings yet. The review may still be running."
-                      : "No findings match the selected filters."}
-                  </p>
-                </div>
+                      ) : null
+                    }
+                  />
+                ),
               )}
-            </div>
-          )}
 
-          {activeTab === "diff" && (
+              {visible.length === 0 ? (
+                <EmptyState
+                  icon={SearchX}
+                  title={
+                    findings.length === 0
+                      ? finished
+                        ? "No issues found"
+                        : "The agents are still reviewing"
+                      : "No findings match these filters"
+                  }
+                />
+              ) : null}
+            </div>
+          ) : null}
+
+          {tab === "diff" ? (
             <div className="space-y-4">
               {review.status === "running" ? (
-                <div className="animate-pulse glass-card p-6 text-center">
-                  <p className="text-sm text-slate-500">
-                    Diff viewer will display annotated code once the review completes.
-                  </p>
-                </div>
-              ) : loadingDiff ? (
-                <div className="animate-pulse glass-card p-6 text-center">
-                  <p className="text-sm text-slate-500">Loading diff data...</p>
-                </div>
+                <EmptyState icon={SearchX} title="The diff is shown when the review completes" />
+              ) : diffFiles === null ? (
+                <div className="h-48 animate-pulse panel" />
               ) : diffFiles && diffFiles.length > 0 ? (
-                diffFiles.map((file, idx) => (
+                diffFiles.map((file) => (
                   <DiffViewer
-                    key={idx}
+                    key={file.filename}
                     filename={file.filename}
                     patch={file.patch}
                     findings={findings}
                   />
                 ))
               ) : (
-                <div className="glass-card p-6 text-center">
-                  <p className="text-sm text-slate-500">No diff data available for this review.</p>
-                </div>
+                <EmptyState icon={SearchX} title="No diff available for this review" />
               )}
             </div>
-          )}
+          ) : null}
 
-          {/* Summary */}
-          {review.summary && (
-            <div className="glass-card p-4">
-              <h3 className="mb-2 text-sm font-semibold tracking-wider text-slate-200 uppercase">
-                Review Summary
-              </h3>
-              <Markdown>{review.summary}</Markdown>
-            </div>
-          )}
-        </div>
+          {tab === "summary" ? (
+            review.summary ? (
+              <div className="panel p-5">
+                <Markdown>{review.summary}</Markdown>
+              </div>
+            ) : (
+              <EmptyState icon={SearchX} title="The summary is written when the review completes" />
+            )
+          ) : null}
+        </section>
+
+        <aside>
+          <ReviewStream reviewId={reviewId} />
+        </aside>
       </div>
     </div>
   );

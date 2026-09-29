@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Check } from "lucide-react";
 import { errorMessage } from "@/lib/api";
 import type { LlmProviderOption } from "@/lib/types";
 import { useAuth } from "./AuthProvider";
@@ -14,7 +15,7 @@ export function ModelSelector() {
   const [error, setError] = useState<string | null>(null);
 
   if (!settings) {
-    return <div className="h-32 animate-pulse glass-card" />;
+    return <div className="h-40 animate-pulse panel" />;
   }
 
   const canSwitch = Boolean(user?.is_admin);
@@ -34,13 +35,15 @@ export function ModelSelector() {
   };
 
   return (
-    <div className="glass-card p-4">
-      <div className="mb-3 flex items-center justify-between">
-        <h3 className="text-sm font-semibold tracking-wider text-slate-200 uppercase">Model</h3>
-        <span className="mono text-[11px] text-slate-500">{settings.model}</span>
-      </div>
+    <div className="panel p-4">
+      <h2 className="text-sm font-medium text-fg">Model</h2>
+      <p className="mt-1 text-xs text-fg-subtle">
+        {canSwitch
+          ? "Used for reviews started from now on."
+          : "Only administrators can change the model."}
+      </p>
 
-      <div role="radiogroup" aria-label="LLM provider" className="space-y-2">
+      <div role="radiogroup" aria-label="LLM provider" className="mt-4 space-y-1.5">
         {settings.providers.map((option) => {
           const active = option.id === settings.provider;
           const disabled = !canSwitch || !option.available || pending !== null;
@@ -52,41 +55,27 @@ export function ModelSelector() {
               onClick={() => choose(option)}
               disabled={disabled && !active}
               title={option.reason ?? undefined}
-              className={`w-full rounded-lg border px-3 py-2 text-left transition-colors ${
+              className={`flex w-full items-center gap-3 rounded-md border px-3 py-2 text-left transition-colors disabled:cursor-not-allowed disabled:opacity-50 ${
                 active
-                  ? "border-indigo-500/40 bg-indigo-500/10"
-                  : "border-white/5 bg-slate-800/30 hover:border-white/10"
-              } disabled:cursor-not-allowed disabled:opacity-50`}
+                  ? "border-accent/50 bg-accent-soft"
+                  : "border-line bg-surface-2 hover:border-line-strong"
+              }`}
             >
-              <div className="flex items-center justify-between gap-2">
-                <span className="text-sm font-medium text-slate-200">{option.label}</span>
-                <span
-                  className={`h-2 w-2 shrink-0 rounded-full ${
-                    active
-                      ? "bg-indigo-400"
-                      : option.available
-                        ? "bg-emerald-400/70"
-                        : "bg-slate-600"
-                  }`}
-                />
+              <div className="min-w-0 flex-1">
+                <div className="text-sm text-fg">{option.label}</div>
+                <div className="truncate mono text-xs text-fg-subtle">
+                  {pending === option.id ? "Switching..." : option.model}
+                </div>
+                {!option.available && option.reason ? (
+                  <div className="mt-1 text-xs text-warning">{option.reason}</div>
+                ) : null}
               </div>
-              <div className="mt-0.5 mono text-[11px] text-slate-500">
-                {pending === option.id ? "Switching..." : option.model}
-              </div>
-              {!option.available && option.reason ? (
-                <div className="mt-1 text-[11px] text-amber-400/80">{option.reason}</div>
-              ) : null}
+              {active ? <Check className="h-4 w-4 shrink-0 text-accent" aria-hidden /> : null}
             </button>
           );
         })}
       </div>
-
-      <p className="mt-3 text-[11px] text-slate-500">
-        {canSwitch
-          ? "Applies to reviews started from now on."
-          : "Only administrators can change the model."}
-      </p>
-      {error ? <p className="mt-2 text-xs text-red-400">{error}</p> : null}
+      {error ? <p className="mt-2 text-xs text-danger">{error}</p> : null}
     </div>
   );
 }

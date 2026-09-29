@@ -2,40 +2,53 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { API_URL } from "@/lib/api";
 import { useAuth } from "./AuthProvider";
+import { useLlmSettings } from "./LlmSettingsProvider";
 import { QuotaButton } from "./QuotaButton";
+
+function ActiveModel() {
+  const { settings } = useLlmSettings();
+  if (!settings) return null;
+  return (
+    <span
+      className="hidden items-center gap-2 text-xs text-fg-subtle md:inline-flex"
+      title="Model used for new reviews"
+    >
+      <span className="h-1.5 w-1.5 rounded-full bg-success" aria-hidden />
+      <span className="mono text-fg-muted">{settings.model}</span>
+    </span>
+  );
+}
 
 function UserMenu() {
   const { user, authDisabled, logout } = useAuth();
   if (!user) return null;
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-3 border-l border-line pl-4">
       {authDisabled ? (
-        <span className="badge badge-pending" title="AUTH_DISABLED=true on the backend">
-          Auth disabled
+        <span className="pill tone-medium" title="AUTH_DISABLED=true on the backend">
+          Auth off
         </span>
       ) : null}
-      <span className="flex items-center gap-2 text-xs text-slate-300">
+      <span className="flex items-center gap-2 text-sm text-fg-muted">
         {user.avatar_url ? (
           <Image
             src={user.avatar_url}
             alt=""
-            width={24}
-            height={24}
-            className="h-6 w-6 rounded-full"
+            width={22}
+            height={22}
+            className="h-[22px] w-[22px] rounded-full"
             unoptimized
           />
         ) : null}
         {user.login}
-        {user.is_admin ? <span className="text-[10px] text-indigo-400">admin</span> : null}
+        {user.is_admin ? <span className="text-xs text-fg-subtle">admin</span> : null}
       </span>
       {!authDisabled ? (
-        <button
-          onClick={logout}
-          className="text-xs font-medium text-slate-500 transition-colors hover:text-slate-300"
-        >
+        <button onClick={logout} className="text-sm text-fg-subtle hover:text-fg">
           Sign out
         </button>
       ) : null}
@@ -45,43 +58,34 @@ function UserMenu() {
 
 export function NavBar() {
   return (
-    <nav className="sticky top-0 z-50 border-b border-white/5 bg-[#0a0a0f]/80 backdrop-blur-xl">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-14 items-center justify-between">
-          <Link href="/" className="group flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-linear-to-br from-indigo-500/20 to-violet-600/20 shadow-lg shadow-indigo-500/10 transition-all duration-300 group-hover:shadow-indigo-500/20">
-              <Image
-                src="/logo.svg"
-                alt="GitMind Logo"
-                width={28}
-                height={28}
-                className="h-7 w-7"
-              />
-            </div>
-            <span className="text-lg font-bold tracking-tight text-slate-100">
-              Git<span className="text-indigo-400">Mind</span>
-            </span>
+    <header className="sticky top-0 z-50 border-b border-line bg-canvas/90 backdrop-blur">
+      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6">
+        <div className="flex items-center gap-8">
+          <Link href="/" className="flex items-center gap-2.5">
+            <Image src="/logo.svg" alt="" width={22} height={22} className="h-[22px] w-[22px]" />
+            <span className="text-[15px] font-semibold tracking-tight text-fg">GitMind</span>
           </Link>
-          <div className="flex items-center gap-4">
-            <Link
-              href="/"
-              className="text-xs font-medium text-slate-400 transition-colors hover:text-slate-200"
-            >
-              Dashboard
+          <nav className="flex items-center gap-5 text-sm">
+            <Link href="/" className="text-fg-muted hover:text-fg">
+              Reviews
             </Link>
             <a
               href={`${API_URL}/docs`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-medium text-slate-500 transition-colors hover:text-slate-300"
+              className="inline-flex items-center gap-1 text-fg-subtle hover:text-fg"
             >
-              API Docs ↗
+              API
+              <ArrowUpRight className="h-3.5 w-3.5" aria-hidden />
             </a>
-            <QuotaButton />
-            <UserMenu />
-          </div>
+          </nav>
+        </div>
+        <div className="flex items-center gap-4">
+          <ActiveModel />
+          <QuotaButton />
+          <UserMenu />
         </div>
       </div>
-    </nav>
+    </header>
   );
 }
