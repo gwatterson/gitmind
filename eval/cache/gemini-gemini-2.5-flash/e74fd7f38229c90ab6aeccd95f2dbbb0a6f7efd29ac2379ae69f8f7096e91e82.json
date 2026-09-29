@@ -1,0 +1,37 @@
+{
+ "provider": "gemini",
+ "model": "gemini-2.5-flash",
+ "created_at": "2026-09-29T07:35:17+00:00",
+ "elapsed_seconds": 5.484,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"source/platforms/git/localGetFileAtSHA.ts\",\n      \"line\": 8,\n      \"severity\": \"high\",\n      \"rule_id\": \"shell-injection\",\n      \"message\": \"The change from `execFile` to `exec` and constructing the command string directly from `path` introduces a shell injection vulnerability. If `path` contains shell metacharacters, an attacker could execute arbitrary commands.\",\n      \"suggestion\": \"Revert to using `execFile` with an array of arguments, which prevents shell interpretation of the path. If `exec` must be used, ensure `path` is rigorously sanitized or properly escaped for the shell.\",\n      \"evidence\": \"const call = `git show ${sha}:\\\"${path}\\\"`\",\n      \"confidence\": 0.9\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "finish_reason": "STOP",
+     "model_name": "gemini-2.5-flash",
+     "safety_ratings": [],
+     "model_provider": "google_genai"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ec16-cd58-7a80-a131-840501852948-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 945,
+     "output_tokens": 1004,
+     "total_tokens": 1949,
+     "input_token_details": {
+      "cache_read": 0
+     },
+     "output_token_details": {
+      "reasoning": 808
+     }
+    }
+   }
+  }
+ ]
+}

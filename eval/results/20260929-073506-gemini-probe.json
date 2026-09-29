@@ -1,0 +1,665 @@
+{
+ "run": {
+  "id": "20260929-073506-gemini-probe",
+  "label": "gemini-probe",
+  "created_at": "2026-09-29T07:35:06+00:00",
+  "pipeline": "gitmind",
+  "provider": "gemini",
+  "model": "gemini-2.5-flash",
+  "prompt_versions": "security@2,quality@2,performance@2,agent_rules@2,supervisor@1,synthesis@1",
+  "prompts": {
+   "security": {
+    "version": "2",
+    "sha": "be2997b4"
+   },
+   "quality": {
+    "version": "2",
+    "sha": "c9f56529"
+   },
+   "performance": {
+    "version": "2",
+    "sha": "57967ddc"
+   },
+   "agent_rules": {
+    "version": "2",
+    "sha": "f641d4e8"
+   },
+   "supervisor": {
+    "version": "1",
+    "sha": "818fd4e7"
+   },
+   "synthesis": {
+    "version": "1",
+    "sha": "36a14149"
+   }
+  },
+  "prompts_dir": null,
+  "split": "all",
+  "filters": {
+   "case": [
+    "cve-asyncssh-scp-traversal",
+    "cve-danger-path-injection",
+    "oss-hono-5376",
+    "syn-py-clean-safe-patterns",
+    "syn-py-sqli-search"
+   ]
+  },
+  "cases": 5,
+  "dataset_fingerprint": "9fc5db45654d",
+  "code_revision": "eabc7b8",
+  "cache_mode": "use",
+  "line_tolerance": 3
+ },
+ "metrics": {
+  "all": {
+   "min_severity": "info",
+   "cases": 5,
+   "cases_failed": 0,
+   "cases_with_agent_errors": 0,
+   "overall": {
+    "tp": 3,
+    "fp": 3,
+    "expected": 3,
+    "found": 3,
+    "precision": 0.5,
+    "recall": 1.0,
+    "f1": 0.667
+   },
+   "by_category": {
+    "performance": {
+     "tp": 0,
+     "fp": 1,
+     "expected": 0,
+     "found": 0,
+     "precision": 0.0,
+     "recall": null,
+     "f1": null
+    },
+    "quality": {
+     "tp": 0,
+     "fp": 1,
+     "expected": 0,
+     "found": 0,
+     "precision": 0.0,
+     "recall": null,
+     "f1": null
+    },
+    "security": {
+     "tp": 3,
+     "fp": 1,
+     "expected": 3,
+     "found": 3,
+     "precision": 0.75,
+     "recall": 1.0,
+     "f1": 0.857
+    }
+   },
+   "by_language": {
+    "python": {
+     "tp": 2,
+     "fp": 3,
+     "expected": 2,
+     "found": 2,
+     "precision": 0.4,
+     "recall": 1.0,
+     "f1": 0.571
+    },
+    "typescript": {
+     "tp": 1,
+     "fp": 0,
+     "expected": 1,
+     "found": 1,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0
+    }
+   },
+   "by_source": {
+    "cve": {
+     "tp": 2,
+     "fp": 0,
+     "expected": 2,
+     "found": 2,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0
+    },
+    "oss": {
+     "tp": 0,
+     "fp": 0,
+     "expected": 0,
+     "found": 0,
+     "precision": null,
+     "recall": null,
+     "f1": null
+    },
+    "synthetic": {
+     "tp": 1,
+     "fp": 3,
+     "expected": 1,
+     "found": 1,
+     "precision": 0.25,
+     "recall": 1.0,
+     "f1": 0.4
+    }
+   },
+   "localization_recall": 1.0,
+   "line_exact_rate": 1.0,
+   "mean_line_distance": 0.0,
+   "cwe_accuracy": 1.0,
+   "severity_adequate_rate": 1.0,
+   "duplicates": 0,
+   "unplaced_findings": 0,
+   "must_not_flag": 5,
+   "must_not_flag_hits": 0,
+   "clean_cases": 2,
+   "clean_flagged_rate": 0.5,
+   "findings_per_clean_case": 1.5,
+   "blocking_recall": 1.0,
+   "clean_blocked_rate": 0.5,
+   "latency": {
+    "live_cases": 5,
+    "wall_p50": 7.64,
+    "wall_p95": 62.91,
+    "llm_seconds_p50": 16.33,
+    "llm_seconds_p95": 30.45
+   },
+   "usage": {
+    "calls_per_case": 3.0,
+    "input_tokens_per_case": 3125,
+    "output_tokens_per_case": 3579,
+    "live_calls": 15,
+    "cached_calls": 0
+   }
+  },
+  "medium_plus": {
+   "min_severity": "medium",
+   "cases": 5,
+   "cases_failed": 0,
+   "cases_with_agent_errors": 0,
+   "overall": {
+    "tp": 3,
+    "fp": 3,
+    "expected": 3,
+    "found": 3,
+    "precision": 0.5,
+    "recall": 1.0,
+    "f1": 0.667
+   },
+   "by_category": {
+    "performance": {
+     "tp": 0,
+     "fp": 1,
+     "expected": 0,
+     "found": 0,
+     "precision": 0.0,
+     "recall": null,
+     "f1": null
+    },
+    "quality": {
+     "tp": 0,
+     "fp": 1,
+     "expected": 0,
+     "found": 0,
+     "precision": 0.0,
+     "recall": null,
+     "f1": null
+    },
+    "security": {
+     "tp": 3,
+     "fp": 1,
+     "expected": 3,
+     "found": 3,
+     "precision": 0.75,
+     "recall": 1.0,
+     "f1": 0.857
+    }
+   },
+   "by_language": {
+    "python": {
+     "tp": 2,
+     "fp": 3,
+     "expected": 2,
+     "found": 2,
+     "precision": 0.4,
+     "recall": 1.0,
+     "f1": 0.571
+    },
+    "typescript": {
+     "tp": 1,
+     "fp": 0,
+     "expected": 1,
+     "found": 1,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0
+    }
+   },
+   "by_source": {
+    "cve": {
+     "tp": 2,
+     "fp": 0,
+     "expected": 2,
+     "found": 2,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0
+    },
+    "oss": {
+     "tp": 0,
+     "fp": 0,
+     "expected": 0,
+     "found": 0,
+     "precision": null,
+     "recall": null,
+     "f1": null
+    },
+    "synthetic": {
+     "tp": 1,
+     "fp": 3,
+     "expected": 1,
+     "found": 1,
+     "precision": 0.25,
+     "recall": 1.0,
+     "f1": 0.4
+    }
+   },
+   "localization_recall": 1.0,
+   "line_exact_rate": 1.0,
+   "mean_line_distance": 0.0,
+   "cwe_accuracy": 1.0,
+   "severity_adequate_rate": 1.0,
+   "duplicates": 0,
+   "unplaced_findings": 0,
+   "must_not_flag": 5,
+   "must_not_flag_hits": 0,
+   "clean_cases": 2,
+   "clean_flagged_rate": 0.5,
+   "findings_per_clean_case": 1.5,
+   "blocking_recall": 1.0,
+   "clean_blocked_rate": 0.5,
+   "latency": {
+    "live_cases": 5,
+    "wall_p50": 7.64,
+    "wall_p95": 62.91,
+    "llm_seconds_p50": 16.33,
+    "llm_seconds_p95": 30.45
+   },
+   "usage": {
+    "calls_per_case": 3.0,
+    "input_tokens_per_case": 3125,
+    "output_tokens_per_case": 3579,
+    "live_calls": 15,
+    "cached_calls": 0
+   }
+  }
+ },
+ "cases": [
+  {
+   "case": {
+    "id": "cve-asyncssh-scp-traversal",
+    "split": "dev",
+    "source": "cve",
+    "language": "python",
+    "title": "Simplify SCP header parsing",
+    "description": "File names received from the SCP peer are no longer checked for path separators or '..' (arbitrary file write). Built by reversing the upstream security fix.",
+    "smoke": true,
+    "origin": {
+     "repo": "ronf/asyncssh",
+     "url": "https://github.com/ronf/asyncssh/commit/d730803b8e4e94c20c7580d90f94d1e05f9f58de",
+     "license": "EPL-2.0",
+     "commit": "d730803b8e4e94c20c7580d90f94d1e05f9f58de",
+     "parent": null,
+     "advisory": "GHSA-2wxc-x7rj-hg8f",
+     "cve": "CVE-2026-54591"
+    },
+    "expected_findings": [
+     {
+      "file": "asyncssh/scp.py",
+      "lines": [
+       138,
+       139
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-22",
+       "CWE-23"
+      ],
+      "severity_min": "medium",
+      "description": "Remote file name used without rejecting '/' or '..'",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "request_changes",
+   "findings": [
+    {
+     "file": "asyncssh/scp.py",
+     "line": 138,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "path-traversal",
+     "cwe": "CWE-22",
+     "confidence": 0.9,
+     "agent": "security",
+     "message": "The removal of path validation allows an attacker to specify filenames containing path traversal sequences (e.g., ../, /, \\), potentially leading to arbitrary file writes or reads outside the intended directory.",
+     "evidence": "if b'/' in name or b'\\' in name or name == b'..':\n            raise _scp_error(SFTPBadMessage, 'Invalid filename')"
+    }
+   ],
+   "files": [
+    "asyncssh/scp.py"
+   ],
+   "wall_seconds": 6.12,
+   "stats": {
+    "live_calls": 3,
+    "cached_calls": 0,
+    "missing_calls": 0,
+    "llm_seconds": 12.452999999979511,
+    "input_tokens": 2481,
+    "output_tokens": 2010,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "cve-danger-path-injection",
+    "split": "dev",
+    "source": "cve",
+    "language": "typescript",
+    "title": "Use exec for git show",
+    "description": "The file path is interpolated into a shell command run with exec (command injection). Built by reversing the upstream security fix.",
+    "smoke": true,
+    "origin": {
+     "repo": "danger/danger-js",
+     "url": "https://github.com/danger/danger-js/commit/087a7290264cc6fb7154ea8c2552a7b2cb8b33a3",
+     "license": "MIT",
+     "commit": "087a7290264cc6fb7154ea8c2552a7b2cb8b33a3",
+     "parent": null,
+     "advisory": "GHSA-3x93-p86w-5jvh",
+     "cve": "CVE-2026-16629"
+    },
+    "expected_findings": [
+     {
+      "file": "source/platforms/git/localGetFileAtSHA.ts",
+      "lines": [
+       8,
+       11
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-78",
+       "CWE-77"
+      ],
+      "severity_min": "medium",
+      "description": "File path interpolated into a shell command",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "request_changes",
+   "findings": [
+    {
+     "file": "source/platforms/git/localGetFileAtSHA.ts",
+     "line": 8,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "os-command-injection",
+     "cwe": "CWE-78",
+     "confidence": 0.9,
+     "agent": "security",
+     "message": "The change from `execFile` to `exec` introduces an OS command injection vulnerability. User-controlled input in the `path` variable is directly interpolated into a shell command string, allowing an attacker to execute arbitrary commands.",
+     "evidence": "const call = `git show ${sha}:\"${path}\"`"
+    }
+   ],
+   "files": [
+    "source/platforms/git/localGetFileAtSHA.ts"
+   ],
+   "wall_seconds": 61.12,
+   "stats": {
+    "live_calls": 3,
+    "cached_calls": 0,
+    "missing_calls": 0,
+    "llm_seconds": 18.51500000001397,
+    "input_tokens": 2982,
+    "output_tokens": 3366,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "oss-hono-5376",
+    "split": "dev",
+    "source": "oss",
+    "language": "typescript",
+    "title": "fix(accepts): match media types and language tags case-insensitively",
+    "description": "Merged pull request reviewed by the maintainers.",
+    "smoke": true,
+    "origin": {
+     "repo": "honojs/hono",
+     "url": "https://github.com/honojs/hono/pull/5376",
+     "license": "MIT",
+     "commit": "79e50aa8a38bbe27f7617cf59c9aebbf57864d9a",
+     "parent": null,
+     "advisory": null,
+     "cve": null
+    },
+    "expected_findings": [],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "src/helper/accepts/accepts.ts"
+   ],
+   "wall_seconds": 7.64,
+   "stats": {
+    "live_calls": 3,
+    "cached_calls": 0,
+    "missing_calls": 0,
+    "llm_seconds": 16.29699999996228,
+    "input_tokens": 3198,
+    "output_tokens": 2956,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "syn-py-clean-safe-patterns",
+    "split": "dev",
+    "source": "synthetic",
+    "language": "python",
+    "title": "Order export job",
+    "description": "Clean change with patterns that resemble vulnerabilities: parameterized SQL, subprocess with an argument list, safe_load, secrets for tokens, a validated path.",
+    "smoke": true,
+    "origin": null,
+    "expected_findings": [],
+    "must_not_flag": [
+     {
+      "file": "app/jobs/export_orders.py",
+      "lines": [
+       27,
+       27
+      ],
+      "anchor": "\"SELECT id, total, created_at FROM orders WHERE customer_id = ?",
+      "span": 0,
+      "reason": "parameterized query"
+     },
+     {
+      "file": "app/jobs/export_orders.py",
+      "lines": [
+       33,
+       33
+      ],
+      "anchor": "subprocess.run([\"gzip\", \"--force\", str(target)], check=True)",
+      "span": 0,
+      "reason": "argument list, no shell"
+     },
+     {
+      "file": "app/jobs/export_orders.py",
+      "lines": [
+       14,
+       14
+      ],
+      "anchor": "return yaml.safe_load(f) or {}",
+      "span": 0,
+      "reason": "safe loader"
+     },
+     {
+      "file": "app/jobs/export_orders.py",
+      "lines": [
+       18,
+       20
+      ],
+      "anchor": "target = (EXPORT_DIR / name).resolve()",
+      "span": 2,
+      "reason": "path is validated on the next lines"
+     }
+    ]
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "request_changes",
+   "findings": [
+    {
+     "file": "app/jobs/export_orders.py",
+     "line": 32,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "csv-manual-formatting",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "message": "Manually formatting CSV lines with f-strings can lead to malformed output if data fields contain the delimiter (comma) or newlines. This can corrupt the exported data, making it difficult or impossible to parse correctly.",
+     "evidence": "f.writelines(f\"{row[0]},{row[1]},{row[2]}\\n\" for row in rows)"
+    },
+    {
+     "file": "app/jobs/export_orders.py",
+     "line": 29,
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "unbounded-query-fetch",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "message": "The `fetchall()` call loads all query results into memory at once. If a customer has a very large number of orders, this can lead to high memory consumption and potential out-of-memory errors.",
+     "evidence": ").fetchall()"
+    },
+    {
+     "file": "app/jobs/export_orders.py",
+     "line": 13,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "path-traversal-file-read",
+     "cwe": "CWE-22",
+     "confidence": 0.6,
+     "agent": "security",
+     "message": "The `load_job_config` function opens a file specified by `path` without validating that `path` is within an expected directory. If `path` is derived from user input, this could lead to path traversal, allowing an attacker to read arbitrary files on the server.",
+     "evidence": "with path.open(encoding=\"utf-8\") as f:"
+    }
+   ],
+   "files": [
+    "app/jobs/export_orders.py"
+   ],
+   "wall_seconds": 63.36,
+   "stats": {
+    "live_calls": 3,
+    "cached_calls": 0,
+    "missing_calls": 0,
+    "llm_seconds": 33.43800000002375,
+    "input_tokens": 3549,
+    "output_tokens": 6436,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "syn-py-sqli-search",
+    "split": "dev",
+    "source": "synthetic",
+    "language": "python",
+    "title": "Add user search to the repository",
+    "description": "Search builds the SQL query with an f-string from the search term (SQL injection). The new count query is parameterized and safe.",
+    "smoke": true,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "app/repositories/users.py",
+      "lines": [
+       23,
+       24
+      ],
+      "anchor": "query = f\"SELECT id, email, name FROM users WHERE name LIKE",
+      "span": 1,
+      "category": "security",
+      "cwe": [
+       "CWE-89"
+      ],
+      "severity_min": "high",
+      "description": "User-controlled search term interpolated into the SQL query",
+      "also": []
+     }
+    ],
+    "must_not_flag": [
+     {
+      "file": "app/repositories/users.py",
+      "lines": [
+       28,
+       28
+      ],
+      "anchor": "SELECT COUNT(*) FROM users WHERE active = ?",
+      "span": 0,
+      "reason": "parameterized query with a constant"
+     }
+    ]
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "request_changes",
+   "findings": [
+    {
+     "file": "app/repositories/users.py",
+     "line": 23,
+     "severity": "critical",
+     "category": "security",
+     "rule_id": "sql-injection",
+     "cwe": "CWE-89",
+     "confidence": 0.9,
+     "agent": "security",
+     "message": "The `search` method constructs an SQL query by directly embedding the `term` parameter using an f-string. This allows an attacker to inject malicious SQL code.",
+     "evidence": "query = f\"SELECT id, email, name FROM users WHERE name LIKE '%{term}%' LIMIT {limit}\""
+    }
+   ],
+   "files": [
+    "app/repositories/users.py",
+    "app/routes/users.py"
+   ],
+   "wall_seconds": 7.45,
+   "stats": {
+    "live_calls": 3,
+    "cached_calls": 0,
+    "missing_calls": 0,
+    "llm_seconds": 16.32800000003772,
+    "input_tokens": 3417,
+    "output_tokens": 3125,
+    "purposes": []
+   }
+  }
+ ]
+}

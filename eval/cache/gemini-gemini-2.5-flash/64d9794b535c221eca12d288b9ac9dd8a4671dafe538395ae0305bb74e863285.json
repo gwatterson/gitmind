@@ -1,0 +1,37 @@
+{
+ "provider": "gemini",
+ "model": "gemini-2.5-flash",
+ "created_at": "2026-09-29T07:37:21+00:00",
+ "elapsed_seconds": 14.0,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"app/jobs/export_orders.py\",\n      \"line\": 32,\n      \"severity\": \"high\",\n      \"rule_id\": \"csv-manual-formatting\",\n      \"message\": \"Manually formatting CSV lines with f-strings can lead to malformed output if data fields contain the delimiter (comma) or newlines. This can corrupt the exported data, making it difficult or impossible to parse correctly.\",\n      \"suggestion\": \"Use Python's `csv` module to correctly handle quoting and escaping of data fields. For example, `csv.writer` can be used to write rows, ensuring proper CSV formatting.\",\n      \"evidence\": \"f.writelines(f\\\"{row[0]},{row[1]},{row[2]}\\\\n\\\" for row in rows)\",\n      \"confidence\": 0.9\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "finish_reason": "STOP",
+     "model_name": "gemini-2.5-flash",
+     "safety_ratings": [],
+     "model_provider": "google_genai"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ec18-8e0e-7682-9dbd-2bebe37e64ef-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1134,
+     "output_tokens": 2692,
+     "total_tokens": 3826,
+     "input_token_details": {
+      "cache_read": 0
+     },
+     "output_token_details": {
+      "reasoning": 2490
+     }
+    }
+   }
+  }
+ ]
+}

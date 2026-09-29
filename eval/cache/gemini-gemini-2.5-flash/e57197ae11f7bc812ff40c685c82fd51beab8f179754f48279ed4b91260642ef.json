@@ -1,0 +1,37 @@
+{
+ "provider": "gemini",
+ "model": "gemini-2.5-flash",
+ "created_at": "2026-09-29T07:35:11+00:00",
+ "elapsed_seconds": 4.687,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"asyncssh/scp.py\",\n      \"line\": 138,\n      \"severity\": \"high\",\n      \"rule_id\": \"path-traversal-vulnerability\",\n      \"message\": \"The removal of filename validation allows `name` to contain path separators or be `..`, which can lead to path traversal vulnerabilities if `name` is later used to construct file paths. This could allow an attacker to write files to arbitrary locations.\",\n      \"suggestion\": \"Reintroduce the validation to prevent malicious filenames from being processed. For example, `if b'/' in name or b'\\\\' in name or name == b'..': raise _scp_error(SFTPBadMessage, 'Invalid filename')`.\",\n      \"evidence\": \"        if b'/' in name or b'\\\\' in name or name == b'..':\\n            raise _scp_error(SFTPBadMessage, 'Invalid filename')\",\n      \"confidence\": 0.9\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "finish_reason": "STOP",
+     "model_name": "gemini-2.5-flash",
+     "safety_ratings": [],
+     "model_provider": "google_genai"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ec16-b889-7d20-b189-8e5f9ff23f37-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 778,
+     "output_tokens": 798,
+     "total_tokens": 1576,
+     "input_token_details": {
+      "cache_read": 0
+     },
+     "output_token_details": {
+      "reasoning": 567
+     }
+    }
+   }
+  }
+ ]
+}
