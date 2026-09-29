@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:42:43+00:00",
+ "elapsed_seconds": 45.516,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/login.ts\",\n      \"line\": 8,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1_queries\",\n      \"message\": \"Database query inside a loop (implied by the context).\",\n      \"evidence\": \"const user = await db.collection(\\\"users\\\").findOne({ email: req.body.email, password: req.body.password });\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:42:43.9363256Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 45254413000,
+     "load_duration": 113632300,
+     "prompt_eval_count": 640,
+     "prompt_eval_duration": 2656864300,
+     "eval_count": 99,
+     "eval_duration": 9046119800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ead3-6814-7200-ad55-49df1d21dbae-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 640,
+     "output_tokens": 99,
+     "total_tokens": 739
+    }
+   }
+  }
+ ]
+}

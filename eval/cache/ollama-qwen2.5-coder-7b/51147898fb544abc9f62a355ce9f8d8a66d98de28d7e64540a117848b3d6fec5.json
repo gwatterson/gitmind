@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:40:17+00:00",
+ "elapsed_seconds": 10.844,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/orders/cancel.ts\",\n      \"line\": 5,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-89\",\n      \"message\": \"SQL injection vulnerability in the database query.\",\n      \"evidence\": \"where: { id: orderId }\",\n      \"cwe\": \"CWE-89\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:40:17.6053804Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 10848061500,
+     "load_duration": 124212700,
+     "prompt_eval_count": 612,
+     "prompt_eval_duration": 720744600,
+     "eval_count": 91,
+     "eval_duration": 7937408300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ead1-b3e9-7e92-874c-13cd872bc98a-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 612,
+     "output_tokens": 91,
+     "total_tokens": 703
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:09:10+00:00",
+ "elapsed_seconds": 13.063,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/content/tags.py\",\n            \"line\": 7,\n            \"severity\": \"low\",\n            \"rule_id\": \"string_concatenation_in_loop\",\n            \"message\": \"String concatenation inside a loop can be inefficient.\",\n            \"evidence\": \"+    tag = normalize_tag(tag)\",\n            \"confidence\": 100\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:09:10.3920923Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 13054979400,
+     "load_duration": 106467000,
+     "prompt_eval_count": 564,
+     "prompt_eval_duration": 3348756700,
+     "eval_count": 89,
+     "eval_duration": 7478558600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eab5-2d76-79c1-a3bf-c0c1f7ce3c0a-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 564,
+     "output_tokens": 89,
+     "total_tokens": 653
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:21:39+00:00",
+ "elapsed_seconds": 50.609,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/api/webhooks.py\",\n            \"line\": 18,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"Error handling is missing for HTTP requests.\",\n            \"evidence\": \"@router.post(\\\"/test\\\")\\nasync def test_webhook(body: WebhookTest, user: User = Depends(current_user)) -> dict:\\n    async with httpx.AsyncClient(timeout=5) as client:\\n        response = await client.post(body.url, json={\\\"event\\\": body.event, \\\"user\\\": user.id})\\n    return {\\\"status\\\": response.status_code, \\\"body\\\": response.text[:500]}\",\n            \"confidence\": 1,\n            \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') or External Control of File Name or Path ('Path Traversal')\"\n        },\n        {\n            \"file\": \"app/api/webhooks.py\",\n            \"line\": 20,\n            \"severity\": \"low\",\n            \"rule_id\": \"string_slice\",\n            \"message\": \"Slicing the response body to a maximum length of 500 characters may truncate important information.\",\n            \"evidence\": \"@router.post(\\\"/test\\\")\\nasync def test_webhook(body: WebhookTest, user: User = Depends(current_user)) -> dict:\\n    async with httpx.AsyncClient(timeout=5) as client:\\n        response = await client.post(body.url, json={\\\"event\\\": body.event, \\\"user\\\": user.id})\\n    return {\\\"status\\\": response.status_code, \\\"body\\\": response.text[:500]}\",\n            \"confidence\": 1,\n            \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:21:39.4130394Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 50606303300,
+     "load_duration": 112190400,
+     "prompt_eval_count": 691,
+     "prompt_eval_duration": 778583900,
+     "eval_count": 409,
+     "eval_duration": 39172914600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eac0-08a5-7013-b184-0319c5c874cb-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 691,
+     "output_tokens": 409,
+     "total_tokens": 1100
+    }
+   }
+  }
+ ]
+}

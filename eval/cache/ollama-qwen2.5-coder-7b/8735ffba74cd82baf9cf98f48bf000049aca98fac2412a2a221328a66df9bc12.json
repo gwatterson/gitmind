@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T00:47:17+00:00",
+ "elapsed_seconds": 37.109,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/exports.js\",\n      \"line\": 9,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-22\",\n      \"message\": \"Path traversal vulnerability due to untrusted input in file path construction.\",\n      \"evidence\": \"const filePath = path.join(EXPORT_DIR, req.params.file);\",\n      \"cwe\": \"CWE-22\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T00:47:17.1357747Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 36845225700,
+     "load_duration": 73262200,
+     "prompt_eval_count": 627,
+     "prompt_eval_duration": 2757311400,
+     "eval_count": 102,
+     "eval_duration": 9030009800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eaa0-c59c-7b13-9d16-91d5025ea83f-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 627,
+     "output_tokens": 102,
+     "total_tokens": 729
+    }
+   }
+  }
+ ]
+}

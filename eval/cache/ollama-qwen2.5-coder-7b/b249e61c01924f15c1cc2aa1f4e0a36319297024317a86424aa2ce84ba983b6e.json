@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T00:46:19+00:00",
+ "elapsed_seconds": 26.032,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/contact.js\",\n      \"line\": 24,\n      \"severity\": \"medium\",\n      \"rule_id\": \"unused_variable\",\n      \"message\": \"The variable `body` is assigned but never used.\",\n      \"evidence\": \"req.body.message, req.body.message\"\n    },\n    {\n      \"file\": \"src/routes/contact.js\",\n      \"line\": 26,\n      \"severity\": \"medium\",\n      \"rule_id\": \"unused_variable\",\n      \"message\": \"The variable `sent` is assigned but never used.\",\n      \"evidence\": \"res.render(\\\"contact\\\", { sent: true });\"\n    },\n    {\n      \"file\": \"src/routes/contact.js\",\n      \"line\": 27,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"The error handling for the database query is too broad, swallowing all errors.\",\n      \"evidence\": \"next(err);\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T00:46:19.2681372Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 26019044900,
+     "load_duration": 82516700,
+     "prompt_eval_count": 829,
+     "prompt_eval_duration": 962203000,
+     "eval_count": 219,
+     "eval_duration": 20011086000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eaa0-0edf-7cf0-ae5a-9aa8ecaa335b-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 829,
+     "output_tokens": 219,
+     "total_tokens": 1048
+    }
+   }
+  }
+ ]
+}

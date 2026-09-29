@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T22:06:44+00:00",
+ "elapsed_seconds": 79.312,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"src/click/core.py\",\n            \"line\": 3419,\n            \"severity\": \"info\",\n            \"rule_id\": \"S502\",\n            \"message\": \"The `get_help_record` method is being replaced with a call to `get_help_spec`, which does not include the help text. This might lead to incomplete help information.\",\n            \"suggestion\": \"Consider including the help text in the `get_help_spec` method or ensure that the help text is still accessible through another means.\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T22:06:44.6173566Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 79045215900,
+     "load_duration": 63704700,
+     "prompt_eval_count": 1319,
+     "prompt_eval_duration": 10931911700,
+     "eval_count": 126,
+     "eval_duration": 11984885700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea0d-25bc-75d2-a519-0cec96ab8552-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1319,
+     "output_tokens": 126,
+     "total_tokens": 1445
+    }
+   }
+  }
+ ]
+}

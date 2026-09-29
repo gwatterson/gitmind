@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:32:11+00:00",
+ "elapsed_seconds": 12.968,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/newsletter/recipients.py\",\n            \"line\": 7,\n            \"severity\": \"low\",\n            \"rule_id\": \"S2658\",\n            \"message\": \"String concatenation in a loop.\",\n            \"evidence\": \"+         email = contact.email.strip().lower()\",\n            \"confidence\": 100\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:32:11.6948355Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 12958837000,
+     "load_duration": 85122000,
+     "prompt_eval_count": 587,
+     "prompt_eval_duration": 2918670900,
+     "eval_count": 90,
+     "eval_duration": 7981826900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9ee-878e-7f80-80c3-4db822153927-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 587,
+     "output_tokens": 90,
+     "total_tokens": 677
+    }
+   }
+  }
+ ]
+}

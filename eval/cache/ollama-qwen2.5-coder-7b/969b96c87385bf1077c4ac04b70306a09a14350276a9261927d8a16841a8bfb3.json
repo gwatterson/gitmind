@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:10:03+00:00",
+ "elapsed_seconds": 123.188,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"src/mistune/directives/admonition.py\",\n            \"line\": 65,\n            \"severity\": \"low\",\n            \"rule_id\": \"string_concatenation_in_loop\",\n            \"message\": \"String concatenation in a loop.\",\n            \"evidence\": \"+         html += \\\" \\\" + _cls\"\n        },\n        {\n            \"file\": \"src/mistune/directives/image.py\",\n            \"line\": 163,\n            \"severity\": \"low\",\n            \"rule_id\": \"string_concatenation_in_loop\",\n            \"message\": \"String concatenation in a loop.\",\n            \"evidence\": \"+         html += \\\" \\\" + figclass\"\n        },\n        {\n            \"file\": \"src/mistune/renderers/html.py\",\n            \"line\": 140,\n            \"severity\": \"low\",\n            \"rule_id\": \"string_concatenation_in_loop\",\n            \"message\": \"String concatenation in a loop.\",\n            \"evidence\": \"+         return '<div class=\\\"error\\\"><pre>' + text + \\\"</pre></div>\\\\n\\\"\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:10:03.8873116Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 122939440000,
+     "load_duration": 60436900,
+     "prompt_eval_count": 972,
+     "prompt_eval_duration": 5203866200,
+     "eval_count": 250,
+     "eval_duration": 25032916900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9d8-963f-73d3-8f7f-5a34b76caa14-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 972,
+     "output_tokens": 250,
+     "total_tokens": 1222
+    }
+   }
+  }
+ ]
+}

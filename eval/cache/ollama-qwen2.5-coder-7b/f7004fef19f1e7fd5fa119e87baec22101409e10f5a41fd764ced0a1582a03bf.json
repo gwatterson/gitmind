@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:11:35+00:00",
+ "elapsed_seconds": 91.657,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"backend/open_webui/models/messages.py\",\n            \"line\": 330,\n            \"severity\": \"high\",\n            \"rule_id\": \"S658\",\n            \"message\": \"Missing validation of untrusted input at trust boundaries.\",\n            \"suggestion\": \"Add a check to ensure that the `parent_id` is valid and belongs to the requested channel before proceeding with the operation.\"\n        },\n        {\n            \"file\": \"backend/open_webui/routers/channels.py\",\n            \"line\": 1130,\n            \"severity\": \"high\",\n            \"rule_id\": \"S658\",\n            \"message\": \"Missing validation of untrusted input at trust boundaries.\",\n            \"suggestion\": \"Add a check to ensure that the `parent_id` and `reply_to_id` are valid and belong to the requested channel before proceeding with the operation.\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:11:35.6003971Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 91380245500,
+     "load_duration": 65825400,
+     "prompt_eval_count": 820,
+     "prompt_eval_duration": 4897331800,
+     "eval_count": 200,
+     "eval_duration": 19228591500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9da-77b1-7572-a0b4-d7b85582ccbd-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 820,
+     "output_tokens": 200,
+     "total_tokens": 1020
+    }
+   }
+  }
+ ]
+}

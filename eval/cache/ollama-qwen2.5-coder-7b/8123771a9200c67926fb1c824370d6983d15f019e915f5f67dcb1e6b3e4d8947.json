@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T23:06:29+00:00",
+ "elapsed_seconds": 48.531,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"lemur/authorities/views.py\",\n            \"line\": 235,\n            \"severity\": \"medium\",\n            \"rule_id\": \"CWE-78\",\n            \"message\": \"Potential injection vulnerability due to direct use of user input in a permission check.\",\n            \"evidence\": \"if not validators.is_valid_owner(data[\\\"owner\\\"]):\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T23:06:29.9491113Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 48268687400,
+     "load_duration": 108123400,
+     "prompt_eval_count": 673,
+     "prompt_eval_duration": 2118684200,
+     "eval_count": 95,
+     "eval_duration": 8469027900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea44-532f-7922-a039-eeae856e8e82-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 673,
+     "output_tokens": 95,
+     "total_tokens": 768
+    }
+   }
+  }
+ ]
+}

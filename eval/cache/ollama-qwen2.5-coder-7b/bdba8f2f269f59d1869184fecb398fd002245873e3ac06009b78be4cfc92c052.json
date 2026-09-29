@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:01:08+00:00",
+ "elapsed_seconds": 39.547,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/api/pagination.py\",\n            \"line\": 23,\n            \"severity\": \"high\",\n            \"rule_id\": \"N+1-query\",\n            \"message\": \"Database query inside a loop (select(func.count()).select_from(stmt.subquery()))\",\n            \"evidence\": \"total = session.scalar(select(func.count()).select_from(stmt.subquery())) or 0\"\n        },\n        {\n            \"file\": \"app/api/pagination.py\",\n            \"line\": 24,\n            \"severity\": \"high\",\n            \"rule_id\": \"N+1-query\",\n            \"message\": \"Database query inside a loop (session.scalars(stmt.limit(size).offset((page - 1) * size)))\",\n            \"evidence\": \"items = list(session.scalars(stmt.limit(size).offset((page - 1) * size)))\"\n        },\n        {\n            \"file\": \"app/api/pagination.py\",\n            \"line\": 32,\n            \"severity\": \"high\",\n            \"rule_id\": \"N+1-query\",\n            \"message\": \"Database query inside a loop (seen.add(key))\",\n            \"evidence\": \"seen.add(key)\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:01:08.862952Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 39283333900,
+     "load_duration": 105973400,
+     "prompt_eval_count": 917,
+     "prompt_eval_duration": 3608622100,
+     "eval_count": 262,
+     "eval_duration": 25454167700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eaad-6d0d-7201-b147-07aad88dc8de-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 917,
+     "output_tokens": 262,
+     "total_tokens": 1179
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:53:57+00:00",
+ "elapsed_seconds": 20.25,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/preview.ts\",\n      \"line\": 7,\n      \"severity\": \"medium\",\n      \"rule_id\": \"blocking_io_in_async_code\",\n      \"message\": \"Blocking I/O operation inside an async function.\",\n      \"evidence\": \"const response = await fetch(url, { redirect: \\\"follow\\\" });\"\n    },\n    {\n      \"file\": \"src/routes/preview.ts\",\n      \"line\": 10,\n      \"severity\": \"medium\",\n      \"rule_id\": \"blocking_io_in_async_code\",\n      \"message\": \"Blocking I/O operation inside an async function.\",\n      \"evidence\": \"const html = await response.text();\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:53:57.8025602Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 20244209300,
+     "load_duration": 102357700,
+     "prompt_eval_count": 612,
+     "prompt_eval_duration": 2801006100,
+     "eval_count": 157,
+     "eval_duration": 13735642300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea02-5915-74f0-96df-8d7759174287-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 612,
+     "output_tokens": 157,
+     "total_tokens": 769
+    }
+   }
+  }
+ ]
+}

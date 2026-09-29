@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:03:06+00:00",
+ "elapsed_seconds": 258.625,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"lemur/destinations/schemas.py\",\n            \"line\": 30,\n            \"severity\": \"info\",\n            \"rule_id\": \"CWE-798\",\n            \"message\": \"Potential sensitive data exposure in the response.\",\n            \"evidence\": \"-             if option.get(\\\"sensitive\\\"):\",\n            \"cwe\": \"CWE-798: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n        },\n        {\n            \"file\": \"lemur/destinations/views.py\",\n            \"line\": 35,\n            \"severity\": \"high\",\n            \"rule_id\": \"CWE-284\",\n            \"message\": \"Missing authentication check for the 'get' method.\",\n            \"evidence\": \"-     @admin_permission.require(http_exception=403)\",\n            \"cwe\": \"CWE-284: Improper Access Control\"\n        },\n        {\n            \"file\": \"lemur/destinations/views.py\",\n            \"line\": 197,\n            \"severity\": \"high\",\n            \"rule_id\": \"CWE-284\",\n            \"message\": \"Missing authentication check for the 'get' method with destination_id.\",\n            \"evidence\": \"-     @admin_permission.require(http_exception=403)\",\n            \"cwe\": \"CWE-284: Improper Access Control\"\n        },\n        {\n            \"file\": \"lemur/destinations/views.py\",\n            \"line\": 360,\n            \"severity\": \"high\",\n            \"rule_id\": \"CWE-284\",\n            \"message\": \"Missing authentication check for the 'get' method with certificate_id.\",\n            \"evidence\": \"-     @admin_permission.require(http_exception=403)\",\n            \"cwe\": \"CWE-284: Improper Access Control\"\n        },\n        {\n            \"file\": \"lemur/plugins/lemur_sftp/plugin.py\",\n            \"line\": 65,\n            \"severity\": \"info\",\n            \"rule_id\": \"CWE-798\",\n            \"message\": \"Potential sensitive data exposure in the response.\",\n            \"evidence\": \"-             \\\"sensitive\\\": True,\",\n            \"cwe\": \"CWE-798: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n        },\n        {\n            \"file\": \"lemur/plugins/lemur_sftp/plugin.py\",\n            \"line\": 79,\n            \"severity\": \"info\",\n            \"rule_id\": \"CWE-798\",\n            \"message\": \"Potential sensitive data exposure in the response.\",\n            \"evidence\": \"-             \\\"sensitive\\\": True,\",\n            \"cwe\": \"CWE-798: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:03:06.141342Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 258370330600,
+     "load_duration": 59902400,
+     "prompt_eval_count": 1182,
+     "prompt_eval_duration": 9191441400,
+     "eval_count": 622,
+     "eval_duration": 72354243400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9d0-2553-7411-902e-212d114e1a3f-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1182,
+     "output_tokens": 622,
+     "total_tokens": 1804
+    }
+   }
+  }
+ ]
+}

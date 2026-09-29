@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T22:11:41+00:00",
+ "elapsed_seconds": 62.297,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"src/click/core.py\",\n            \"line\": 109,\n            \"severity\": \"high\",\n            \"rule_id\": \"N+1_queries\",\n            \"message\": \"The function `_outside_click_stacklevel` makes a database or API call inside a loop.\",\n            \"evidence\": \"frame: FrameType | None = sys._getframe(1)\",\n            \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\"\n        },\n        {\n            \"file\": \"src/click/core.py\",\n            \"line\": 2479,\n            \"severity\": \"high\",\n            \"rule_id\": \"N+1_queries\",\n            \"message\": \"The function `_check_name_is_usable` makes a database or API call inside a loop.\",\n            \"evidence\": \"import keyword\",\n            \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\"\n        },\n        {\n            \"file\": \"src/click/core.py\",\n            \"line\": 3356,\n            \"severity\": \"high\",\n            \"rule_id\": \"N+1_queries\",\n            \"message\": \"The function `_parse_decls` makes a database or API call inside a loop.\",\n            \"evidence\": \"self._check_name_is_usable(name, decls)\",\n            \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\"\n        },\n        {\n            \"file\": \"src/click/core.py\",\n            \"line\": 3780,\n            \"severity\": \"high\",\n            \"rule_id\": \"N+1_queries\",\n            \"message\": \"The function `_parse_argument` makes a database or API call inside a loop.\",\n            \"evidence\": \"self._check_name_is_usable(name, decls)\",\n            \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T22:11:41.4598077Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 62284363800,
+     "load_duration": 57527000,
+     "prompt_eval_count": 2692,
+     "prompt_eval_duration": 4604424100,
+     "eval_count": 449,
+     "eval_duration": 47841626900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea11-efc6-7ae0-913b-fc722e8dfe5f-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 2692,
+     "output_tokens": 449,
+     "total_tokens": 3141
+    }
+   }
+  }
+ ]
+}

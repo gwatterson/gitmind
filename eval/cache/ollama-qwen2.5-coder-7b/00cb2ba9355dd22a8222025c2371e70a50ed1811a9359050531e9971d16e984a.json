@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T22:17:27+00:00",
+ "elapsed_seconds": 251.531,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"src/ahttpx/_parsers.py\",\n            \"line\": 228,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"The `wait_ready` method in `ahttpx._parsers.py` does not handle exceptions that may occur during the call to `self.parser.wait_ready()`. This could lead to unhandled exceptions if an error occurs.\",\n            \"evidence\": \"+         return await self.parser.wait_ready()\"\n        },\n        {\n            \"file\": \"src/httpx/_parsers.py\",\n            \"line\": 228,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"The `wait_ready` method in `httpx._parsers.py` does not handle exceptions that may occur during the call to `self.parser.wait_ready()`. This could lead to unhandled exceptions if an error occurs.\",\n            \"evidence\": \"+         return self.parser.wait_ready()\"\n        },\n        {\n            \"file\": \"src/ahttpx/_parsers.py\",\n            \"line\": 468,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"The `wait_ready` method in `ahttpx._parsers.py` does not handle exceptions that may occur during the call to `self._read_some()`. This could lead to unhandled exceptions if an error occurs.\",\n            \"evidence\": \"+         data = await self._read_some()\"\n        },\n        {\n            \"file\": \"src/httpx/_parsers.py\",\n            \"line\": 468,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"The `wait_ready` method in `httpx._parsers.py` does not handle exceptions that may occur during the call to `self._read_some()`. This could lead to unhandled exceptions if an error occurs.\",\n            \"evidence\": \"+         data = self._read_some()\"\n        },\n        {\n            \"file\": \"src/ahttpx/_parsers.py\",\n            \"line\": 234,\n            \"severity\": \"medium\",\n            \"rule_id\": \"function_complexity\",\n            \"message\": \"The `wait_ready` method in `ahttpx._parsers.py` is too complex and deeply nested. It should be refactored to improve readability and maintainability.\",\n            \"evidence\": \"+     async def wait_ready(self) -> bool:\"\n        },\n        {\n            \"file\": \"src/httpx/_parsers.py\",\n            \"line\": 234,\n            \"severity\": \"medium\",\n            \"rule_id\": \"function_complexity\",\n            \"message\": \"The `wait_ready` method in `httpx._parsers.py` is too complex and deeply nested. It should be refactored to improve readability and maintainability.\",\n            \"evidence\": \"+     def wait_ready(self) -> bool:\"\n        },\n        {\n            \"file\": \"src/ahttpx/_parsers.py\",\n            \"line\": 472,\n            \"severity\": \"medium\",\n            \"rule_id\": \"function_complexity\",\n            \"message\": \"The `read` method in `ahttpx._parsers.py` is too complex and deeply nested. It should be refactored to improve readability and maintainability.\",\n            \"evidence\": \"+     async def read(self, size: int) -> bytes:\"\n        },\n        {\n            \"file\": \"src/httpx/_parsers.py\",\n            \"line\": 472,\n            \"severity\": \"medium\",\n            \"rule_id\": \"function_complexity\",\n            \"message\": \"The `read` method in `httpx._parsers.py` is too complex and deeply nested. It should be refactored to improve readability and maintainability.\",\n            \"evidence\": \"+     def read(self, size: int) -> bytes:\"\n        },\n        {\n            \"file\": \"src/ahttpx/_parsers.py\",\n            \"line\": 234,\n            \"severity\": \"info\",\n            \"rule_id\": \"missing_type_hints\",\n            \"message\": \"The `wait_ready` method in `ahttpx._parsers.py` is missing type hints for its parameters and return value.\",\n            \"evidence\": \"+     async def wait_ready(self) -> bool:\"\n        },\n        {\n            \"file\": \"src/httpx/_parsers.py\",\n            \"line\": 234,\n            \"severity\": \"info\",\n            \"rule_id\": \"missing_type_hints\",\n            \"message\": \"The `wait_ready` method in `httpx._parsers.py` is missing type hints for its parameters and return value.\",\n            \"evidence\": \"+     def wait_ready(self) -> bool:\"\n        },\n        {\n            \"file\": \"src/ahttpx/_parsers.py\",\n            \"line\": 472,\n            \"severity\": \"info\",\n            \"rule_id\": \"missing_type_hints\",\n            \"message\": \"The `read` method in `ahttpx._parsers.py` is missing type hints for its parameters and return value.\",\n            \"evidence\": \"+     async def read(self, size: int) -> bytes:\"\n        },\n        {\n            \"file\": \"src/httpx/_parsers.py\",\n            \"line\": 472,\n            \"severity\": \"info\",\n            \"rule_id\": \"missing_type_hints\",\n            \"message\": \"The `read` method in `httpx._parsers.py` is missing type hints for its parameters and return value.\",\n            \"evidence\": \"+     def read(self, size: int) -> bytes:\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T22:17:27.4613629Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 251279732000,
+     "load_duration": 70914800,
+     "prompt_eval_count": 1235,
+     "prompt_eval_duration": 3367555900,
+     "eval_count": 1191,
+     "eval_duration": 122249268900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea14-5425-7f41-ba98-f60d1ce25889-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1235,
+     "output_tokens": 1191,
+     "total_tokens": 2426
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:04:06+00:00",
+ "elapsed_seconds": 27.25,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"db_sqlite.py\",\n            \"line\": 748,\n            \"severity\": \"info\",\n            \"rule_id\": \"S108\",\n            \"message\": \"The code no longer enforces a safe database filename, which could lead to security vulnerabilities.\",\n            \"evidence\": \"-     # Confine the database to the secured per-user directory: a filename must be\\n-     # a plain basename. Reject anything that carries a path separator, a\\n-     # parent-directory reference or an absolute path, so a caller-supplied name\\n-     # cannot traverse out of the directory get_db_dir() just hardened.\\n-     if filename in ('.', '..') or os.path.basename(filename) != filename:\\n-         return False, f'Refusing unsafe database filename: {filename!r}'\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:04:06.9626571Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 27245321300,
+     "load_duration": 69359200,
+     "prompt_eval_count": 647,
+     "prompt_eval_duration": 2738772400,
+     "eval_count": 189,
+     "eval_duration": 19168760000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9d4-9ac4-76e0-bb4a-984250878b79-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 647,
+     "output_tokens": 189,
+     "total_tokens": 836
+    }
+   }
+  }
+ ]
+}

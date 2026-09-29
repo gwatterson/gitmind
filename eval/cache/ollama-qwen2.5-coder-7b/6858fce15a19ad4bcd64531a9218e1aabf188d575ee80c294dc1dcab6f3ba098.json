@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T22:13:00+00:00",
+ "elapsed_seconds": 42.141,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/helper/accepts/accepts.ts\",\n      \"line\": 21,\n      \"severity\": \"medium\",\n      \"rule_id\": \"S5804\",\n      \"message\": \"The function `matchType` is now more complex and deeply nested.\",\n      \"evidence\": \"+   const accept = acceptType.toLowerCase()\\n+   const supported = supportedType.toLowerCase()\"\n    },\n    {\n      \"file\": \"src/helper/accepts/accepts.ts\",\n      \"line\": 21,\n      \"severity\": \"low\",\n      \"rule_id\": \"S5804\",\n      \"message\": \"The function `matchType` now has duplicated logic.\",\n      \"evidence\": \"+   if (accept === supported) {\\n+     return true\\n+   }\\n+   if (accept === '*/*' || accept === '*') {\\n+     return false\\n+   }\\n+   if (accept.endsWith('/*')) {\\n+     const [acceptMain] = accept.split('/')\\n+     const [supportedMain] = supported.split('/')\\n+     return acceptMain === supportedMain\\n+   }\"\n    },\n    {\n      \"file\": \"src/helper/accepts/accepts.ts\",\n      \"line\": 21,\n      \"severity\": \"low\",\n      \"rule_id\": \"S5804\",\n      \"message\": \"The function `matchType` now has misleading names.\",\n      \"evidence\": \"+   const accept = acceptType.toLowerCase()\\n+   const supported = supportedType.toLowerCase()\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T22:13:00.3410658Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 42139391500,
+     "load_duration": 52727800,
+     "prompt_eval_count": 813,
+     "prompt_eval_duration": 1539877100,
+     "eval_count": 347,
+     "eval_duration": 31997747200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea13-7298-76d2-9b72-13ac418b5f61-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 813,
+     "output_tokens": 347,
+     "total_tokens": 1160
+    }
+   }
+  }
+ ]
+}

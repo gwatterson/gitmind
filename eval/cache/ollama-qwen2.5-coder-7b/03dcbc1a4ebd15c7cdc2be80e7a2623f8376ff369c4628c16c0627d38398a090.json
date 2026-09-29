@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:24:53+00:00",
+ "elapsed_seconds": 61.531,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/api/events.py\",\n            \"line\": 12,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"The query does not handle potential database errors.\",\n            \"evidence\": \"@router.get(\\\"\\\")\\n    def list_events(page: int = 1, size: int = 50, session: Session = Depends(get_session)):\\n        events = session.query(Event).order_by(Event.created_at.desc()).all()\\n        start = (page - 1) * size\\n        return {\\\"total\\\": len(events), \\\"items\\\": [e.to_dict() for e in events[start : start + size]]}\",\n            \"confidence\": 0.9\n        },\n        {\n            \"file\": \"app/api/events.py\",\n            \"line\": 12,\n            \"severity\": \"medium\",\n            \"rule_id\": \"duplicated_logic\",\n            \"message\": \"The logic for slicing the events list is duplicated.\",\n            \"evidence\": \"@router.get(\\\"\\\")\\n    def list_events(page: int = 1, size: int = 50, session: Session = Depends(get_session)):\\n        events = session.query(Event).order_by(Event.created_at.desc()).all()\\n        start = (page - 1) * size\\n        return {\\\"total\\\": len(events), \\\"items\\\": [e.to_dict() for e in events[start : start + size]]}\",\n            \"confidence\": 0.8\n        },\n        {\n            \"file\": \"app/api/events.py\",\n            \"line\": 12,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_type_hints\",\n            \"message\": \"The function lacks type hints for parameters and return value.\",\n            \"evidence\": \"@router.get(\\\"\\\")\\n    def list_events(page: int = 1, size: int = 50, session: Session = Depends(get_session)):\\n        events = session.query(Event).order_by(Event.created_at.desc()).all()\\n        start = (page - 1) * size\\n        return {\\\"total\\\": len(events), \\\"items\\\": [e.to_dict() for e in events[start : start + size]]}\",\n            \"confidence\": 0.7\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:24:53.6614445Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 61520841600,
+     "load_duration": 110574300,
+     "prompt_eval_count": 632,
+     "prompt_eval_duration": 2757398100,
+     "eval_count": 495,
+     "eval_duration": 45824415300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eac2-d4ca-7a91-832b-3cf72ba75e01-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 632,
+     "output_tokens": 495,
+     "total_tokens": 1127
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:40:06+00:00",
+ "elapsed_seconds": 36.625,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/middleware/auth.ts\",\n      \"line\": 15,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-306\",\n      \"message\": \"JWT decoding without verification is used, which can lead to replay attacks.\",\n      \"evidence\": \"const claims = jwt.decode(token) as TokenClaims | null;\",\n      \"cwe\": \"CWE-306: Inadequate Encryption Strength\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:40:06.6909423Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 36349820600,
+     "load_duration": 94989300,
+     "prompt_eval_count": 752,
+     "prompt_eval_duration": 2698136400,
+     "eval_count": 111,
+     "eval_duration": 9635024600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ead1-249f-7eb3-962e-a6a51b44f133-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 752,
+     "output_tokens": 111,
+     "total_tokens": 863
+    }
+   }
+  }
+ ]
+}

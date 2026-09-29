@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:26:47+00:00",
+ "elapsed_seconds": 12.891,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/services/password_reset.py\",\n            \"line\": 13,\n            \"severity\": \"low\",\n            \"rule_id\": \"S506\",\n            \"message\": \"Unnecessary database session commit inside a function that could be called multiple times.\",\n            \"suggestion\": \"Consider using a context manager to handle the session lifecycle.\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:26:47.0601636Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 12875949900,
+     "load_duration": 78254800,
+     "prompt_eval_count": 641,
+     "prompt_eval_duration": 2858663300,
+     "eval_count": 89,
+     "eval_duration": 8057878100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9e9-93c6-7c73-ad59-45f51c049077-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 641,
+     "output_tokens": 89,
+     "total_tokens": 730
+    }
+   }
+  }
+ ]
+}

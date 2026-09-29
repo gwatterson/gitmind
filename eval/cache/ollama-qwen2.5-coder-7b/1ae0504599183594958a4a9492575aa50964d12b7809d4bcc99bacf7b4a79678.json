@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T20:35:42+00:00",
+ "elapsed_seconds": 38.891,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/jobs/export_orders.py\",\n            \"line\": 26,\n            \"severity\": \"high\",\n            \"rule_id\": \"CWE-89\",\n            \"message\": \"SQL injection vulnerability in the query execution.\",\n            \"evidence\": \"conn.execute(\\\"SELECT id, total, created_at FROM orders WHERE customer_id = ? ORDER BY id\\\", (customer_id,)).fetchall()\",\n            \"cwe\": \"CWE-89\"\n        },\n        {\n            \"file\": \"app/jobs/export_orders.py\",\n            \"line\": 32,\n            \"severity\": \"high\",\n            \"rule_id\": \"CWE-78\",\n            \"message\": \"OS command injection vulnerability in the subprocess call.\",\n            \"evidence\": \"subprocess.run([\\\"gzip\\\", \\\"--force\\\", str(target)], check=True)\",\n            \"cwe\": \"CWE-78\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T20:35:42.9335542Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 38624939900,
+     "load_duration": 5754411100,
+     "prompt_eval_count": 936,
+     "prompt_eval_duration": 5862012100,
+     "eval_count": 207,
+     "eval_duration": 20829757200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9ba-6cf0-77f3-bd2b-dc3bda3d586d-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 936,
+     "output_tokens": 207,
+     "total_tokens": 1143
+    }
+   }
+  }
+ ]
+}

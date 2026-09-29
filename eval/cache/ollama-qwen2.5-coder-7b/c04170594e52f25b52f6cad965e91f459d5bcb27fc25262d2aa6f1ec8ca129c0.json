@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T22:21:24+00:00",
+ "elapsed_seconds": 55.422,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"starlette/responses.py\",\n            \"line\": 395,\n            \"severity\": \"medium\",\n            \"rule_id\": \"N+1_queries\",\n            \"message\": \"The `_handle_simple`, `_handle_single_range`, and `_handle_multiple_ranges` methods are called multiple times inside loops, which could lead to N+1 queries if they involve database or API calls.\",\n            \"evidence\": \"+             await send_file()\"\n        },\n        {\n            \"file\": \"starlette/responses.py\",\n            \"line\": 403,\n            \"severity\": \"medium\",\n            \"rule_id\": \"blocking_I/O_in_async_code\",\n            \"message\": \"The `send_file` function is called inside a loop, which could block the event loop if it involves blocking I/O operations like file or network calls.\",\n            \"evidence\": \"+                 await send_file()\"\n        },\n        {\n            \"file\": \"starlette/responses.py\",\n            \"line\": 403,\n            \"severity\": \"medium\",\n            \"rule_id\": \"unbounded_queries_or_reads\",\n            \"message\": \"The `send_file` function is called inside a loop without any limits, which could lead to unbounded queries or reads if the input size grows.\",\n            \"evidence\": \"+                 await send_file()\"\n        },\n        {\n            \"file\": \"starlette/responses.py\",\n            \"line\": 403,\n            \"severity\": \"medium\",\n            \"rule_id\": \"resources_that_are_never_closed\",\n            \"message\": \"The `send_file` function is called inside a loop, which could lead to resources that are never closed if the input size grows.\",\n            \"evidence\": \"+                 await send_file()\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T22:21:24.174268Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 55413531800,
+     "load_duration": 120481600,
+     "prompt_eval_count": 1890,
+     "prompt_eval_duration": 4921325800,
+     "eval_count": 376,
+     "eval_duration": 40708780600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea1a-eed7-72a0-b128-16b3a46421e0-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1890,
+     "output_tokens": 376,
+     "total_tokens": 2266
+    }
+   }
+  }
+ ]
+}

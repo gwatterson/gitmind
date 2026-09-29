@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:14:33+00:00",
+ "elapsed_seconds": 114.781,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"prowler/lib/outputs/html/html.py\",\n            \"line\": 55,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S108\",\n            \"message\": \"Unnecessary string conversion and escaping in a loop.\",\n            \"suggestion\": \"Remove unnecessary `str(escape(...))` calls.\"\n        },\n        {\n            \"file\": \"prowler/lib/outputs/html/html.py\",\n            \"line\": 79,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S108\",\n            \"message\": \"Unnecessary string conversion and escaping in a loop.\",\n            \"suggestion\": \"Remove unnecessary `str(escape(...))` calls.\"\n        },\n        {\n            \"file\": \"prowler/lib/outputs/html/html.py\",\n            \"line\": 82,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S108\",\n            \"message\": \"Unnecessary string conversion and escaping in a loop.\",\n            \"suggestion\": \"Remove unnecessary `str(escape(...))` calls.\"\n        },\n        {\n            \"file\": \"prowler/lib/outputs/html/html.py\",\n            \"line\": 85,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S108\",\n            \"message\": \"Unnecessary string conversion and escaping in a loop.\",\n            \"suggestion\": \"Remove unnecessary `str(escape(...))` calls.\"\n        },\n        {\n            \"file\": \"prowler/lib/outputs/html/html.py\",\n            \"line\": 88,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S108\",\n            \"message\": \"Unnecessary string conversion and escaping in a loop.\",\n            \"suggestion\": \"Remove unnecessary `str(escape(...))` calls.\"\n        },\n        {\n            \"file\": \"prowler/lib/outputs/html/html.py\",\n            \"line\": 91,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S108\",\n            \"message\": \"Unnecessary string conversion and escaping in a loop.\",\n            \"suggestion\": \"Remove unnecessary `str(escape(...))` calls.\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:14:33.8850433Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 114524522900,
+     "load_duration": 60238600,
+     "prompt_eval_count": 1648,
+     "prompt_eval_duration": 11974462800,
+     "eval_count": 485,
+     "eval_duration": 49832364600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9dc-d5c4-79c0-90dd-e75edee8dceb-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1648,
+     "output_tokens": 485,
+     "total_tokens": 2133
+    }
+   }
+  }
+ ]
+}

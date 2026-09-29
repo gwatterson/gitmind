@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:21:20+00:00",
+ "elapsed_seconds": 135.297,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"tornado/web.py\",\n            \"line\": 371,\n            \"severity\": \"medium\",\n            \"rule_id\": \"SimplificationPotential\",\n            \"message\": \"The condition to check for '<' in the reason phrase is removed, which might lead to potential security issues if not properly handled elsewhere.\",\n            \"evidence\": \"-             if \\\"<\\\" in reason or not httputil._ABNF.reason_phrase.fullmatch(reason):\"\n        },\n        {\n            \"file\": \"tornado/web.py\",\n            \"line\": 1348,\n            \"severity\": \"medium\",\n            \"rule_id\": \"RedundantCode\",\n            \"message\": \"The line `self.write_error(status_code, **kwargs)` is duplicated.\",\n            \"evidence\": \"+             self.write_error(status_code, **kwargs)\"\n        },\n        {\n            \"file\": \"tornado/web.py\",\n            \"line\": 1376,\n            \"severity\": \"medium\",\n            \"rule_id\": \"PotentialXSS\",\n            \"message\": \"The reason phrase is directly used in the HTML response without escaping, which could lead to XSS attacks.\",\n            \"evidence\": \"+                 % {\"} , {\"file\": \"tornado/web.py\", \"line\": 1376, \"severity\": \"medium\", \"rule_id\": \"PotentialXSS\", \"message\": \"The reason phrase is directly used in the HTML response without escaping, which could lead to XSS attacks.\", \"evidence\": \"+                 % {\"} ]}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:21:20.5960056Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 135017927400,
+     "load_duration": 61251100,
+     "prompt_eval_count": 1310,
+     "prompt_eval_duration": 10952003500,
+     "eval_count": 331,
+     "eval_duration": 32611637300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9e2-ba53-74c0-a219-dc35c8efe82a-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1310,
+     "output_tokens": 331,
+     "total_tokens": 1641
+    }
+   }
+  }
+ ]
+}

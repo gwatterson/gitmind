@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T22:23:51+00:00",
+ "elapsed_seconds": 55.875,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"packages/zod/src/v4/core/parse.ts\",\n      \"line\": 87,\n      \"severity\": \"medium\",\n      \"rule_id\": \"getter_in_loop\",\n      \"message\": \"The 'error' getter inside the 'failure' function is called on every access, which can be costly if accessed frequently.\",\n      \"evidence\": \"get error() { ... }\"\n    },\n    {\n      \"file\": \"packages/zod/src/v4/core/parse.ts\",\n      \"line\": 108,\n      \"severity\": \"medium\",\n      \"rule_id\": \"getter_in_loop\",\n      \"message\": \"The 'error' getter inside the 'failure' function is called on every access, which can be costly if accessed frequently.\",\n      \"evidence\": \"get error() { ... }\"\n    },\n    {\n      \"file\": \"packages/zod/src/v4/core/schemas.ts\",\n      \"line\": 337,\n      \"severity\": \"medium\",\n      \"rule_id\": \"getter_in_loop\",\n      \"message\": \"The 'error' getter inside the 'failure' function is called on every access, which can be costly if accessed frequently.\",\n      \"evidence\": \"get error() { ... }\"\n    },\n    {\n      \"file\": \"packages/zod/src/v4/core/schemas.ts\",\n      \"line\": 350,\n      \"severity\": \"medium\",\n      \"rule_id\": \"getter_in_loop\",\n      \"message\": \"The 'error' getter inside the 'failure' function is called on every access, which can be costly if accessed frequently.\",\n      \"evidence\": \"get error() { ... }\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T22:23:51.6563182Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 55866925400,
+     "load_duration": 129485800,
+     "prompt_eval_count": 1979,
+     "prompt_eval_duration": 4953410700,
+     "eval_count": 366,
+     "eval_duration": 41241123000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea1d-2d2b-7331-b90a-e28a8eae2a03-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1979,
+     "output_tokens": 366,
+     "total_tokens": 2345
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T20:56:06+00:00",
+ "elapsed_seconds": 31.797,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"packages/server/src/controllers/text-to-speech/index.ts\",\n            \"line\": 39,\n            \"severity\": \"high\",\n            \"rule_id\": \"N+1_queries\",\n            \"message\": \"The code checks if the chatflow is public inside a loop, which could lead to N+1 queries.\",\n            \"evidence\": \"-                 if (!chatflow.isPublic) {\"\n        },\n        {\n            \"file\": \"packages/server/src/controllers/text-to-speech/index.ts\",\n            \"line\": 204,\n            \"severity\": \"high\",\n            \"rule_id\": \"blocking_I/O_in_async_code\",\n            \"message\": \"The code performs a blocking I/O operation (aborting an AbortController) inside an async function, which could block the event loop.\",\n            \"evidence\": \"+             appServer.abortControllerPool.abort(chatFlowAbortId)\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T20:56:06.4775065Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 31792544000,
+     "load_duration": 62257000,
+     "prompt_eval_count": 830,
+     "prompt_eval_duration": 4915991100,
+     "eval_count": 199,
+     "eval_duration": 21617271400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9cd-341b-74b3-9b51-7b58f0a8b6bd-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 830,
+     "output_tokens": 199,
+     "total_tokens": 1029
+    }
+   }
+  }
+ ]
+}

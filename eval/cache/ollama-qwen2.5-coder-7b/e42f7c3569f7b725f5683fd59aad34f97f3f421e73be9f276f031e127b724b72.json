@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T22:54:13+00:00",
+ "elapsed_seconds": 31.781,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"providers/google/src/airflow/providers/google/cloud/transfers/gcs_to_sftp.py\",\n            \"line\": 179,\n            \"severity\": \"medium\",\n            \"rule_id\": \"CWE-23\",\n            \"message\": \"Path traversal vulnerability due to the use of `os.path.join` without validation.\",\n            \"suggestion\": \"Validate and sanitize the input before joining it with the destination path.\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T22:54:13.1370141Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 31538191200,
+     "load_duration": 126744700,
+     "prompt_eval_count": 892,
+     "prompt_eval_duration": 2329610900,
+     "eval_count": 108,
+     "eval_duration": 10894254400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea39-566b-7651-ae9e-234ce3d1b282-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 892,
+     "output_tokens": 108,
+     "total_tokens": 1000
+    }
+   }
+  }
+ ]
+}

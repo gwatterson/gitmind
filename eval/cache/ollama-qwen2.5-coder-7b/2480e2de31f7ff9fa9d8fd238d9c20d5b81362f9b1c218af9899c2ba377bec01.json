@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:03:00+00:00",
+ "elapsed_seconds": 111.562,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/routes/images.py\",\n            \"line\": 12,\n            \"severity\": \"high\",\n            \"rule_id\": \"N+1_queries\",\n            \"message\": \"Database or API calls inside loops.\",\n            \"evidence\": \"+    thumb = make_thumbnail(file.filename)\",\n            \"confidence\": 1.0\n        },\n        {\n            \"file\": \"app/services/thumbnails.py\",\n            \"line\": 17,\n            \"severity\": \"high\",\n            \"rule_id\": \"blocking_I/O_in_async_code\",\n            \"message\": \"Blocking I/O in async code, file or network calls inside hot loops.\",\n            \"evidence\": \"+    subprocess.run(f\\\"convert {source} -resize {width}x{width} {target}\\\", shell=True, check=True)\",\n            \"confidence\": 1.0\n        },\n        {\n            \"file\": \"app/services/thumbnails.py\",\n            \"line\": 8,\n            \"severity\": \"high\",\n            \"rule_id\": \"unbounded_queries_or_reads\",\n            \"message\": \"Unbounded queries or reads (no LIMIT, loading whole files or tables into memory).\",\n            \"evidence\": \"+    result = subprocess.run(\\n+        [\\\"identify\\\", \\\"-format\\\", \\\"%wx%h\\\", str(path)], capture_output=True, text=True, check=True\\n+    )\",\n            \"confidence\": 1.0\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:03:00.5329407Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 111305367600,
+     "load_duration": 95333900,
+     "prompt_eval_count": 845,
+     "prompt_eval_duration": 2872155100,
+     "eval_count": 310,
+     "eval_duration": 30948423800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eaae-07ee-7373-a756-c2a347fafec8-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 845,
+     "output_tokens": 310,
+     "total_tokens": 1155
+    }
+   }
+  }
+ ]
+}

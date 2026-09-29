@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T22:05:50+00:00",
+ "elapsed_seconds": 25.281,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"src/click/core.py\",\n            \"line\": 3390,\n            \"severity\": \"low\",\n            \"rule_id\": \"S125\",\n            \"message\": \"Unnecessary list comprehension for a single element.\",\n            \"evidence\": \"[_write_opts(self.opts)]\",\n            \"confidence\": 1.0\n        },\n        {\n            \"file\": \"src/click/core.py\",\n            \"line\": 3420,\n            \"severity\": \"low\",\n            \"rule_id\": \"S125\",\n            \"message\": \"Unnecessary list comprehension for a single element.\",\n            \"evidence\": \"[_write_opts(self.opts)]\",\n            \"confidence\": 1.0\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T22:05:50.5774912Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 25276773500,
+     "load_duration": 61758300,
+     "prompt_eval_count": 1289,
+     "prompt_eval_duration": 5233331100,
+     "eval_count": 169,
+     "eval_duration": 16121043800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea0d-25b3-7f32-8125-593ae41297c0-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1289,
+     "output_tokens": 169,
+     "total_tokens": 1458
+    }
+   }
+  }
+ ]
+}

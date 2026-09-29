@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:46:05+00:00",
+ "elapsed_seconds": 28.86,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/attachments.ts\",\n      \"line\": 29,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1_queries\",\n      \"message\": \"The 'file' command is called inside a hot loop, which can lead to performance issues as the number of attachments grows.\",\n      \"evidence\": \"const { stdout } = await run(\\\"file\\\", [\\\"--brief\\\", \\\"--mime-type\\\", target]);\"\n    },\n    {\n      \"file\": \"src/routes/attachments.ts\",\n      \"line\": 32,\n      \"severity\": \"high\",\n      \"rule_id\": \"unbounded_queries\",\n      \"message\": \"The query does not have a LIMIT, which can lead to loading an unbounded number of attachments into memory.\",\n      \"evidence\": \"const { rows } = await pool.query(\\\"SELECT name, size FROM attachments WHERE owner_id = $1 AND name ILIKE $2\\\", [res.locals.user.sub, `%${String(req.query.q ?? \\\"\\\")}%`]);\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:46:05.0589638Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 28848693200,
+     "load_duration": 89827700,
+     "prompt_eval_count": 952,
+     "prompt_eval_duration": 1832836400,
+     "eval_count": 231,
+     "eval_duration": 21276468800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9fb-00d1-74f2-84a3-798f64a38903-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 952,
+     "output_tokens": 231,
+     "total_tokens": 1183
+    }
+   }
+  }
+ ]
+}

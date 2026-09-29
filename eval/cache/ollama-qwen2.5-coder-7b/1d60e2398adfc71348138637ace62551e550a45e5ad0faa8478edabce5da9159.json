@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:02:19+00:00",
+ "elapsed_seconds": 70.109,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/routes/images.py\",\n            \"line\": 10,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"The file upload does not handle missing or empty files.\",\n            \"evidence\": \"+    file = request.files[\\\"image\\\"]\"\n        },\n        {\n            \"file\": \"app/routes/images.py\",\n            \"line\": 12,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"The thumbnail creation does not handle missing or empty files.\",\n            \"evidence\": \"+    thumb = make_thumbnail(file.filename)\"\n        },\n        {\n            \"file\": \"app/services/thumbnails.py\",\n            \"line\": 14,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"The thumbnail creation does not handle missing or empty files.\",\n            \"evidence\": \"+    source = UPLOAD_DIR / filename\"\n        },\n        {\n            \"file\": \"app/services/thumbnails.py\",\n            \"line\": 16,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"The thumbnail creation does not handle missing or empty files.\",\n            \"evidence\": \"+    target = UPLOAD_DIR / \\\"thumbs\\\" / filename\"\n        },\n        {\n            \"file\": \"app/services/thumbnails.py\",\n            \"line\": 17,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"The thumbnail creation does not handle missing or empty files.\",\n            \"evidence\": \"+    subprocess.run(f\\\"convert {source} -resize {width}x{width} {target}\\\", shell=True, check=True)\"\n        },\n        {\n            \"file\": \"app/services/thumbnails.py\",\n            \"line\": 17,\n            \"severity\": \"medium\",\n            \"rule_id\": \"shell_injection\",\n            \"message\": \"The use of `subprocess.run` with shell=True is vulnerable to shell injection.\",\n            \"evidence\": \"+    subprocess.run(f\\\"convert {source} -resize {width}x{width} {target}\\\", shell=True, check=True)\"\n        },\n        {\n            \"file\": \"app/services/thumbnails.py\",\n            \"line\": 17,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_type_hints\",\n            \"message\": \"The function `make_thumbnail` is missing type hints for its parameters.\",\n            \"evidence\": \"+def make_thumbnail(filename: str, width: int = 200) -> Path:\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:02:19.0670184Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 70107459700,
+     "load_duration": 128052100,
+     "prompt_eval_count": 841,
+     "prompt_eval_duration": 2816573700,
+     "eval_count": 566,
+     "eval_duration": 53202611400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eaae-07dd-7e71-9121-ad1ed9aa2a06-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 841,
+     "output_tokens": 566,
+     "total_tokens": 1407
+    }
+   }
+  }
+ ]
+}

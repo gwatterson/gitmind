@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:22:44+00:00",
+ "elapsed_seconds": 84.046,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/admin/git.js\",\n      \"line\": 10,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"Error handling for `exec` is incomplete.\",\n      \"evidence\": \"if (err) return res.status(500).json({ error: \\\"git failed\\\" });\"\n    },\n    {\n      \"file\": \"src/routes/admin/git.js\",\n      \"line\": 12,\n      \"severity\": \"low\",\n      \"rule_id\": \"unused_variable\",\n      \"message\": \"The `stdout` variable is not used.\",\n      \"evidence\": \"res.json(stdout.trim().split(\\\"\\\\n\\\"));\"\n    },\n    {\n      \"file\": \"src/routes/admin/git.js\",\n      \"line\": 13,\n      \"severity\": \"low\",\n      \"rule_id\": \"unused_variable\",\n      \"message\": \"The `branch` variable is not used.\",\n      \"evidence\": \"const branch = req.query.branch || \\\"main\\\";\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:22:44.6901006Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 83776539300,
+     "load_duration": 62940700,
+     "prompt_eval_count": 675,
+     "prompt_eval_duration": 3035756500,
+     "eval_count": 234,
+     "eval_duration": 22012454300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9e4-cb0a-7391-b524-5524b514c3c8-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 675,
+     "output_tokens": 234,
+     "total_tokens": 909
+    }
+   }
+  }
+ ]
+}

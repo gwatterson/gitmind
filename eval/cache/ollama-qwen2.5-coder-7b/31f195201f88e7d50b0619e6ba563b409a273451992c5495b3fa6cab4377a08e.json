@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T23:14:38+00:00",
+ "elapsed_seconds": 42.484,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"ui/src/utils/extend/extend.js\",\n      \"line\": 59,\n      \"severity\": \"medium\",\n      \"rule_id\": \"unused_code\",\n      \"message\": \"Unused code: The loop condition checks for `options` being not null, but the loop body does not handle `null` or `undefined` values.\",\n      \"evidence\": \"if ((options = args[i]) !== null) {\"\n    },\n    {\n      \"file\": \"ui/src/utils/extend/extend.js\",\n      \"line\": 60,\n      \"severity\": \"medium\",\n      \"rule_id\": \"unused_code\",\n      \"message\": \"Unused code: The loop iterates over all properties of `options`, but the condition to skip `__proto__` is removed.\",\n      \"evidence\": \"for (name in options) {\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T23:14:38.7158544Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 42212341800,
+     "load_duration": 104869200,
+     "prompt_eval_count": 544,
+     "prompt_eval_duration": 2403055200,
+     "eval_count": 195,
+     "eval_duration": 17272669700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea4b-e00c-7372-ae34-f1db76f2e651-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 544,
+     "output_tokens": 195,
+     "total_tokens": 739
+    }
+   }
+  }
+ ]
+}

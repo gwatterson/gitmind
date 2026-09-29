@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:01:29+00:00",
+ "elapsed_seconds": 161.515,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"lemur/destinations/schemas.py\",\n            \"line\": 30,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"The function `fill_object` does not handle the case where `data.get('options', [])` is empty.\",\n            \"evidence\": \"-             for option in data.get(\\\"options\\\", []):\"\n        },\n        {\n            \"file\": \"lemur/destinations/views.py\",\n            \"line\": 34,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"The function `get` does not handle the case where `admin_permission.require(http_exception=403)` is not present.\",\n            \"evidence\": \"-     @admin_permission.require(http_exception=403)\"\n        },\n        {\n            \"file\": \"lemur/destinations/views.py\",\n            \"line\": 197,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"The function `get` does not handle the case where `admin_permission.require(http_exception=403)` is not present.\",\n            \"evidence\": \"-     @admin_permission.require(http_exception=403)\"\n        },\n        {\n            \"file\": \"lemur/destinations/views.py\",\n            \"line\": 360,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"The function `get` does not handle the case where `admin_permission.require(http_exception=403)` is not present.\",\n            \"evidence\": \"-     @admin_permission.require(http_exception=403)\"\n        },\n        {\n            \"file\": \"lemur/plugins/lemur_sftp/plugin.py\",\n            \"line\": 65,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"The dictionary for the 'password' option does not handle the case where `sensitive` is not present.\",\n            \"evidence\": \"-             \\\"sensitive\\\": True,\"\n        },\n        {\n            \"file\": \"lemur/plugins/lemur_sftp/plugin.py\",\n            \"line\": 79,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"The dictionary for the 'privateKeyPath' option does not handle the case where `sensitive` is not present.\",\n            \"evidence\": \"-             \\\"sensitive\\\": True,\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:01:29.0366323Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 161265620900,
+     "load_duration": 59902400,
+     "prompt_eval_count": 1148,
+     "prompt_eval_duration": 8808412000,
+     "eval_count": 547,
+     "eval_duration": 62815579300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9d0-2563-7643-b242-9e2df1890140-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1148,
+     "output_tokens": 547,
+     "total_tokens": 1695
+    }
+   }
+  }
+ ]
+}

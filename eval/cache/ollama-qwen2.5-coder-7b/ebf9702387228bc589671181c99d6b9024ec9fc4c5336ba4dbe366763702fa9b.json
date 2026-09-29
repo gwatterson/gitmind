@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:49:05+00:00",
+ "elapsed_seconds": 19.828,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/admin/paging.ts\",\n      \"line\": 7,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_type_hints\",\n      \"message\": \"Missing type hints on function parameters and return type.\",\n      \"evidence\": \"export function pageInfo(totalItems: number, page: number, pageSize = 20): PageInfo {\"\n    },\n    {\n      \"file\": \"src/admin/paging.ts\",\n      \"line\": 7,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_docstring\",\n      \"message\": \"Missing docstring for the function.\",\n      \"evidence\": \"export function pageInfo(totalItems: number, page: number, pageSize = 20): PageInfo {\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:49:05.742436Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 19817299600,
+     "load_duration": 95247600,
+     "prompt_eval_count": 562,
+     "prompt_eval_duration": 814919700,
+     "eval_count": 171,
+     "eval_duration": 14849143400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9fd-e5e3-7250-9521-e54b13b821f5-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 562,
+     "output_tokens": 171,
+     "total_tokens": 733
+    }
+   }
+  }
+ ]
+}

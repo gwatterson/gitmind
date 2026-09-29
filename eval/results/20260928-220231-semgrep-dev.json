@@ -1,0 +1,2909 @@
+{
+ "run": {
+  "id": "20260928-220231-semgrep-dev",
+  "label": "semgrep-dev",
+  "created_at": "2026-09-28T22:02:31+00:00",
+  "pipeline": "semgrep",
+  "provider": "semgrep",
+  "model": "1.177.0, p/default",
+  "prompt_versions": null,
+  "prompts": null,
+  "prompts_dir": null,
+  "split": "dev",
+  "filters": {},
+  "cases": 53,
+  "dataset_fingerprint": "175365795c22",
+  "code_revision": "02ede0b",
+  "cache_mode": "off",
+  "line_tolerance": 3,
+  "semgrep_errors": 1
+ },
+ "metrics": {
+  "all": {
+   "min_severity": "info",
+   "cases": 53,
+   "cases_failed": 0,
+   "cases_with_agent_errors": 0,
+   "overall": {
+    "tp": 5,
+    "fp": 1,
+    "expected": 44,
+    "found": 5,
+    "precision": 0.833,
+    "recall": 0.114,
+    "f1": 0.2
+   },
+   "by_category": {
+    "performance": {
+     "tp": 0,
+     "fp": 0,
+     "expected": 5,
+     "found": 0,
+     "precision": null,
+     "recall": 0.0,
+     "f1": null
+    },
+    "quality": {
+     "tp": 0,
+     "fp": 0,
+     "expected": 4,
+     "found": 0,
+     "precision": null,
+     "recall": 0.0,
+     "f1": null
+    },
+    "security": {
+     "tp": 5,
+     "fp": 1,
+     "expected": 35,
+     "found": 5,
+     "precision": 0.833,
+     "recall": 0.143,
+     "f1": 0.244
+    }
+   },
+   "by_language": {
+    "javascript": {
+     "tp": 1,
+     "fp": 0,
+     "expected": 5,
+     "found": 1,
+     "precision": 1.0,
+     "recall": 0.2,
+     "f1": 0.333
+    },
+    "python": {
+     "tp": 3,
+     "fp": 0,
+     "expected": 29,
+     "found": 3,
+     "precision": 1.0,
+     "recall": 0.103,
+     "f1": 0.188
+    },
+    "typescript": {
+     "tp": 1,
+     "fp": 1,
+     "expected": 10,
+     "found": 1,
+     "precision": 0.5,
+     "recall": 0.1,
+     "f1": 0.167
+    }
+   },
+   "by_source": {
+    "cve": {
+     "tp": 1,
+     "fp": 0,
+     "expected": 23,
+     "found": 1,
+     "precision": 1.0,
+     "recall": 0.043,
+     "f1": 0.083
+    },
+    "oss": {
+     "tp": 0,
+     "fp": 0,
+     "expected": 0,
+     "found": 0,
+     "precision": null,
+     "recall": null,
+     "f1": null
+    },
+    "synthetic": {
+     "tp": 4,
+     "fp": 1,
+     "expected": 21,
+     "found": 4,
+     "precision": 0.8,
+     "recall": 0.19,
+     "f1": 0.308
+    }
+   },
+   "localization_recall": 0.114,
+   "line_exact_rate": 1.0,
+   "mean_line_distance": 0.0,
+   "cwe_accuracy": 1.0,
+   "severity_adequate_rate": 0.8,
+   "duplicates": 2,
+   "unplaced_findings": 0,
+   "must_not_flag": 13,
+   "must_not_flag_hits": 0,
+   "clean_cases": 14,
+   "clean_flagged_rate": 0.071,
+   "findings_per_clean_case": 0.071,
+   "blocking_recall": 0.25,
+   "clean_blocked_rate": 0.0,
+   "latency": {
+    "live_cases": 0,
+    "wall_p50": null,
+    "wall_p95": null,
+    "llm_seconds_p50": 0.0,
+    "llm_seconds_p95": 0.0
+   },
+   "usage": {
+    "calls_per_case": 0.0,
+    "input_tokens_per_case": 0,
+    "output_tokens_per_case": 0,
+    "live_calls": 0,
+    "cached_calls": 0
+   }
+  },
+  "medium_plus": {
+   "min_severity": "medium",
+   "cases": 53,
+   "cases_failed": 0,
+   "cases_with_agent_errors": 0,
+   "overall": {
+    "tp": 5,
+    "fp": 1,
+    "expected": 44,
+    "found": 5,
+    "precision": 0.833,
+    "recall": 0.114,
+    "f1": 0.2
+   },
+   "by_category": {
+    "performance": {
+     "tp": 0,
+     "fp": 0,
+     "expected": 5,
+     "found": 0,
+     "precision": null,
+     "recall": 0.0,
+     "f1": null
+    },
+    "quality": {
+     "tp": 0,
+     "fp": 0,
+     "expected": 4,
+     "found": 0,
+     "precision": null,
+     "recall": 0.0,
+     "f1": null
+    },
+    "security": {
+     "tp": 5,
+     "fp": 1,
+     "expected": 35,
+     "found": 5,
+     "precision": 0.833,
+     "recall": 0.143,
+     "f1": 0.244
+    }
+   },
+   "by_language": {
+    "javascript": {
+     "tp": 1,
+     "fp": 0,
+     "expected": 5,
+     "found": 1,
+     "precision": 1.0,
+     "recall": 0.2,
+     "f1": 0.333
+    },
+    "python": {
+     "tp": 3,
+     "fp": 0,
+     "expected": 29,
+     "found": 3,
+     "precision": 1.0,
+     "recall": 0.103,
+     "f1": 0.188
+    },
+    "typescript": {
+     "tp": 1,
+     "fp": 1,
+     "expected": 10,
+     "found": 1,
+     "precision": 0.5,
+     "recall": 0.1,
+     "f1": 0.167
+    }
+   },
+   "by_source": {
+    "cve": {
+     "tp": 1,
+     "fp": 0,
+     "expected": 23,
+     "found": 1,
+     "precision": 1.0,
+     "recall": 0.043,
+     "f1": 0.083
+    },
+    "oss": {
+     "tp": 0,
+     "fp": 0,
+     "expected": 0,
+     "found": 0,
+     "precision": null,
+     "recall": null,
+     "f1": null
+    },
+    "synthetic": {
+     "tp": 4,
+     "fp": 1,
+     "expected": 21,
+     "found": 4,
+     "precision": 0.8,
+     "recall": 0.19,
+     "f1": 0.308
+    }
+   },
+   "localization_recall": 0.114,
+   "line_exact_rate": 1.0,
+   "mean_line_distance": 0.0,
+   "cwe_accuracy": 1.0,
+   "severity_adequate_rate": 0.8,
+   "duplicates": 2,
+   "unplaced_findings": 0,
+   "must_not_flag": 13,
+   "must_not_flag_hits": 0,
+   "clean_cases": 14,
+   "clean_flagged_rate": 0.071,
+   "findings_per_clean_case": 0.071,
+   "blocking_recall": 0.25,
+   "clean_blocked_rate": 0.0,
+   "latency": {
+    "live_cases": 0,
+    "wall_p50": null,
+    "wall_p95": null,
+    "llm_seconds_p50": 0.0,
+    "llm_seconds_p95": 0.0
+   },
+   "usage": {
+    "calls_per_case": 0.0,
+    "input_tokens_per_case": 0,
+    "output_tokens_per_case": 0,
+    "live_calls": 0,
+    "cached_calls": 0
+   }
+  }
+ },
+ "cases": [
+  {
+   "case": {
+    "id": "cve-asyncssh-scp-traversal",
+    "split": "dev",
+    "source": "cve",
+    "language": "python",
+    "title": "Simplify SCP header parsing",
+    "description": "File names received from the SCP peer are no longer checked for path separators or '..' (arbitrary file write). Built by reversing the upstream security fix.",
+    "smoke": true,
+    "origin": {
+     "repo": "ronf/asyncssh",
+     "url": "https://github.com/ronf/asyncssh/commit/d730803b8e4e94c20c7580d90f94d1e05f9f58de",
+     "license": "EPL-2.0",
+     "commit": "d730803b8e4e94c20c7580d90f94d1e05f9f58de",
+     "parent": null,
+     "advisory": "GHSA-2wxc-x7rj-hg8f",
+     "cve": "CVE-2026-54591"
+    },
+    "expected_findings": [
+     {
+      "file": "asyncssh/scp.py",
+      "lines": [
+       138,
+       139
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-22",
+       "CWE-23"
+      ],
+      "severity_min": "medium",
+      "description": "Remote file name used without rejecting '/' or '..'",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "asyncssh/scp.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "cve-danger-path-injection",
+    "split": "dev",
+    "source": "cve",
+    "language": "typescript",
+    "title": "Use exec for git show",
+    "description": "The file path is interpolated into a shell command run with exec (command injection). Built by reversing the upstream security fix.",
+    "smoke": true,
+    "origin": {
+     "repo": "danger/danger-js",
+     "url": "https://github.com/danger/danger-js/commit/087a7290264cc6fb7154ea8c2552a7b2cb8b33a3",
+     "license": "MIT",
+     "commit": "087a7290264cc6fb7154ea8c2552a7b2cb8b33a3",
+     "parent": null,
+     "advisory": "GHSA-3x93-p86w-5jvh",
+     "cve": "CVE-2026-16629"
+    },
+    "expected_findings": [
+     {
+      "file": "source/platforms/git/localGetFileAtSHA.ts",
+      "lines": [
+       8,
+       11
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-78",
+       "CWE-77"
+      ],
+      "severity_min": "medium",
+      "description": "File path interpolated into a shell command",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "source/platforms/git/localGetFileAtSHA.ts",
+     "line": 11,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "detect-child-process",
+     "cwe": "CWE-78",
+     "confidence": 0.3,
+     "agent": "semgrep",
+     "message": "Detected calls to child_process from a function argument `path`. This could lead to a command injection if the input is user controllable. Try to avoid calls to child_process, and if it is needed ensure user input is correctly sanitized or sandboxed. ",
+     "evidence": "requires login"
+    },
+    {
+     "file": "source/platforms/git/localGetFileAtSHA.ts",
+     "line": 11,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "detect-child-process",
+     "cwe": "CWE-78",
+     "confidence": 0.3,
+     "agent": "semgrep",
+     "message": "Detected calls to child_process from a function argument `sha`. This could lead to a command injection if the input is user controllable. Try to avoid calls to child_process, and if it is needed ensure user input is correctly sanitized or sandboxed. ",
+     "evidence": "requires login"
+    }
+   ],
+   "files": [
+    "source/platforms/git/localGetFileAtSHA.ts"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "cve-datamodel-codegen-injection",
+    "split": "dev",
+    "source": "cve",
+    "language": "python",
+    "title": "Pass default_factory through from the schema",
+    "description": "default_factory from the input schema is copied into generated code without the allowlist check (code injection). Built by reversing the upstream security fix.",
+    "smoke": false,
+    "origin": {
+     "repo": "koxudaxi/datamodel-code-generator",
+     "url": "https://github.com/koxudaxi/datamodel-code-generator/commit/17fc235e234cbcfaaadef8c74cb72c9687db0d1d",
+     "license": "MIT",
+     "commit": "17fc235e234cbcfaaadef8c74cb72c9687db0d1d",
+     "parent": null,
+     "advisory": "GHSA-386q-5hp3-95m9",
+     "cve": "CVE-2026-54653"
+    },
+    "expected_findings": [
+     {
+      "file": "src/datamodel_code_generator/parser/jsonschema.py",
+      "lines": [
+       811,
+       812
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-94",
+       "CWE-95",
+       "CWE-1336"
+      ],
+      "severity_min": "medium",
+      "description": "Schema-controlled default_factory emitted into generated code",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "src/datamodel_code_generator/parser/jsonschema.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "cve-defaults-deep-pollution",
+    "split": "dev",
+    "source": "cve",
+    "language": "typescript",
+    "title": "Simplify recursive merge",
+    "description": "The recursive merge no longer skips __proto__, constructor and prototype keys (prototype pollution). Built by reversing the upstream security fix.",
+    "smoke": false,
+    "origin": {
+     "repo": "phun-ky/defaults-deep",
+     "url": "https://github.com/phun-ky/defaults-deep/commit/807dba930f8718f9126cad59d949b8fd3539b059",
+     "license": "ISC",
+     "commit": "807dba930f8718f9126cad59d949b8fd3539b059",
+     "parent": null,
+     "advisory": "GHSA-mj3g-7xcc-x4vh",
+     "cve": "CVE-2026-54737"
+    },
+    "expected_findings": [
+     {
+      "file": "src/utils/merge-with.ts",
+      "lines": [
+       174,
+       175
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-1321",
+       "CWE-915"
+      ],
+      "severity_min": "medium",
+      "description": "Unsafe keys merged recursively",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "src/utils/merge-with.ts"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "cve-dicebear-rotate-injection",
+    "split": "dev",
+    "source": "cve",
+    "language": "typescript",
+    "title": "Refactor SVG attribute rendering",
+    "description": "Numeric options are interpolated into SVG attributes without escaping (SVG/XSS injection when options come from the URL). Built by reversing the upstream security fix.",
+    "smoke": true,
+    "origin": {
+     "repo": "dicebear/dicebear",
+     "url": "https://github.com/dicebear/dicebear/commit/922946d738c4e77ab6c412e27ede75941fec4b59",
+     "license": "MIT",
+     "commit": "922946d738c4e77ab6c412e27ede75941fec4b59",
+     "parent": null,
+     "advisory": "GHSA-gcr2-9v8m-gq45",
+     "cve": "CVE-2026-68921"
+    },
+    "expected_findings": [
+     {
+      "file": "packages/@dicebear/core/src/utils/svg.ts",
+      "lines": [
+       79,
+       79
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-79",
+       "CWE-91",
+       "CWE-74",
+       "CWE-116"
+      ],
+      "severity_min": "medium",
+      "description": "Option interpolated into SVG without escaping",
+      "also": [
+       {
+        "file": "packages/@dicebear/initials/src/index.ts",
+        "lines": [
+         38,
+         38
+        ],
+        "anchor": null,
+        "span": 0
+       }
+      ]
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "packages/@dicebear/core/src/utils/svg.ts",
+    "packages/@dicebear/initials/src/index.ts"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "cve-flowise-tts-auth",
+    "split": "dev",
+    "source": "cve",
+    "language": "typescript",
+    "title": "Fall back to the chatflow workspace for text to speech",
+    "description": "The endpoint no longer rejects non-public chatflows when the caller has no workspace, allowing use of private TTS credentials. Built by reversing the upstream security fix.",
+    "smoke": false,
+    "origin": {
+     "repo": "FlowiseAI/Flowise",
+     "url": "https://github.com/FlowiseAI/Flowise/commit/dbec8f9fd3c42faab49416fe81ff1774a5344cba",
+     "license": "Apache-2.0 (code outside packages/server/src/enterprise)",
+     "commit": "dbec8f9fd3c42faab49416fe81ff1774a5344cba",
+     "parent": null,
+     "advisory": "GHSA-8gj2-2cvc-6xx7",
+     "cve": null
+    },
+    "expected_findings": [
+     {
+      "file": "packages/server/src/controllers/text-to-speech/index.ts",
+      "lines": [
+       40,
+       41
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-862",
+       "CWE-285",
+       "CWE-306",
+       "CWE-639"
+      ],
+      "severity_min": "medium",
+      "description": "Private chatflow used without authorization",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "packages/server/src/controllers/text-to-speech/index.ts"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "cve-ghost-backup-traversal",
+    "split": "dev",
+    "source": "cve",
+    "language": "javascript",
+    "title": "Support custom export file names",
+    "description": "The export file name from the request is used without reducing it to a base name (path traversal on backup). Built by reversing the upstream security fix.",
+    "smoke": false,
+    "origin": {
+     "repo": "TryGhost/Ghost",
+     "url": "https://github.com/TryGhost/Ghost/commit/f466c300191a609ed36c8d7c5d1e33ccd440786b",
+     "license": "MIT",
+     "commit": "f466c300191a609ed36c8d7c5d1e33ccd440786b",
+     "parent": null,
+     "advisory": "GHSA-cj62-hvv2-2q5h",
+     "cve": "CVE-2026-70592"
+    },
+    "expected_findings": [
+     {
+      "file": "ghost/core/core/server/data/exporter/export-filename.js",
+      "lines": [
+       17,
+       17
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-22",
+       "CWE-23",
+       "CWE-73"
+      ],
+      "severity_min": "medium",
+      "description": "User file name used as a path",
+      "also": [
+       {
+        "file": "ghost/core/core/server/api/endpoints/db.js",
+        "lines": [
+         31,
+         32
+        ],
+        "anchor": null,
+        "span": 0
+       }
+      ]
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "ghost/core/core/server/api/endpoints/db.js",
+    "ghost/core/core/server/data/exporter/export-filename.js"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "cve-lemur-destination-read",
+    "split": "dev",
+    "source": "cve",
+    "language": "python",
+    "title": "Simplify destination endpoints",
+    "description": "Destination read endpoints lost their admin permission check and sensitive options (passwords) are no longer redacted. Built by reversing the upstream security fix.",
+    "smoke": false,
+    "origin": {
+     "repo": "Netflix/lemur",
+     "url": "https://github.com/Netflix/lemur/commit/751c970ec42a53d00ecc9c6a96e0e51b6737ae53",
+     "license": "Apache-2.0",
+     "commit": "751c970ec42a53d00ecc9c6a96e0e51b6737ae53",
+     "parent": null,
+     "advisory": "GHSA-6c8m-q6g9-vrw3",
+     "cve": "CVE-2026-71307"
+    },
+    "expected_findings": [
+     {
+      "file": "lemur/destinations/views.py",
+      "lines": [
+       36,
+       37
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-862",
+       "CWE-285",
+       "CWE-284",
+       "CWE-863"
+      ],
+      "severity_min": "medium",
+      "description": "Admin permission removed from destination read endpoints",
+      "also": [
+       {
+        "file": "lemur/destinations/views.py",
+        "lines": [
+         198,
+         199
+        ],
+        "anchor": null,
+        "span": 0
+       },
+       {
+        "file": "lemur/destinations/views.py",
+        "lines": [
+         360,
+         361
+        ],
+        "anchor": null,
+        "span": 0
+       }
+      ]
+     },
+     {
+      "file": "lemur/destinations/schemas.py",
+      "lines": [
+       32,
+       33
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-200",
+       "CWE-312",
+       "CWE-522",
+       "CWE-359",
+       "CWE-213"
+      ],
+      "severity_min": "medium",
+      "description": "Sensitive option values returned in API responses",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "lemur/destinations/schemas.py",
+    "lemur/destinations/views.py",
+    "lemur/plugins/lemur_sftp/plugin.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "cve-libreoffice-convert-traversal",
+    "split": "dev",
+    "source": "cve",
+    "language": "javascript",
+    "title": "Preserve the file name option in conversions",
+    "description": "The caller-supplied file name is no longer reduced to its base name before being written in the temp directory. Built by reversing the upstream security fix.",
+    "smoke": false,
+    "origin": {
+     "repo": "elwerene/libreoffice-convert",
+     "url": "https://github.com/elwerene/libreoffice-convert/commit/b78f17df9b9183bd503fc4635fc8b3df6705047b",
+     "license": "MIT",
+     "commit": "b78f17df9b9183bd503fc4635fc8b3df6705047b",
+     "parent": null,
+     "advisory": "GHSA-gmxc-r82q-347r",
+     "cve": "CVE-2026-54732"
+    },
+    "expected_findings": [
+     {
+      "file": "index.js",
+      "lines": [
+       14,
+       14
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-22",
+       "CWE-23",
+       "CWE-73"
+      ],
+      "severity_min": "medium",
+      "description": "File name with path components written to disk",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "index.js"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "cve-linuxfabrik-file-read",
+    "split": "dev",
+    "source": "cve",
+    "language": "python",
+    "title": "Allow custom database file names",
+    "description": "The database file name is no longer required to be a plain base name: a caller can point it outside the hardened directory. Built by reversing the upstream security fix.",
+    "smoke": false,
+    "origin": {
+     "repo": "Linuxfabrik/lib",
+     "url": "https://github.com/Linuxfabrik/lib/commit/d665042c55fae83a295ebc0023e8b77f6c473a28",
+     "license": "Unlicense",
+     "commit": "d665042c55fae83a295ebc0023e8b77f6c473a28",
+     "parent": null,
+     "advisory": "GHSA-rh9c-rqvg-f7pr",
+     "cve": "CVE-2026-73974"
+    },
+    "expected_findings": [
+     {
+      "file": "db_sqlite.py",
+      "lines": [
+       750,
+       751
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-22",
+       "CWE-23",
+       "CWE-73"
+      ],
+      "severity_min": "medium",
+      "description": "File name with path components accepted",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "db_sqlite.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "cve-litellm-archive-traversal",
+    "split": "dev",
+    "source": "cve",
+    "language": "python",
+    "title": "Simplify skill archive extraction",
+    "description": "Zip entry names are used as file paths without normalization or containment checks (zip slip). Built by reversing the upstream security fix.",
+    "smoke": true,
+    "origin": {
+     "repo": "BerriAI/litellm",
+     "url": "https://github.com/BerriAI/litellm/commit/6a15adcd64137d37f73dee76dfe7481f8c2d9196",
+     "license": "MIT (code outside enterprise/)",
+     "commit": "6a15adcd64137d37f73dee76dfe7481f8c2d9196",
+     "parent": null,
+     "advisory": "GHSA-5jmr-gcrj-2c9q",
+     "cve": "CVE-2026-59820"
+    },
+    "expected_findings": [
+     {
+      "file": "litellm/llms/litellm_proxy/skills/prompt_injection.py",
+      "lines": [
+       106,
+       107
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-22",
+       "CWE-23"
+      ],
+      "severity_min": "medium",
+      "description": "Archive entry path not validated",
+      "also": [
+       {
+        "file": "litellm/llms/litellm_proxy/skills/sandbox_executor.py",
+        "lines": [
+         99,
+         99
+        ],
+        "anchor": null,
+        "span": 0
+       }
+      ]
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "litellm/llms/litellm_proxy/skills/prompt_injection.py",
+    "litellm/llms/litellm_proxy/skills/sandbox_executor.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "cve-lmdeploy-pickle-zmq",
+    "split": "dev",
+    "source": "cve",
+    "language": "python",
+    "title": "Simplify RPC server address setup",
+    "description": "The RPC server, which deserializes requests with pickle, now binds to every network interface instead of localhost. Built by reversing the upstream security fix.",
+    "smoke": false,
+    "origin": {
+     "repo": "InternLM/lmdeploy",
+     "url": "https://github.com/InternLM/lmdeploy/commit/d86046a0e6b02ecaaf7cdb74346d0477130221c2",
+     "license": "Apache-2.0",
+     "commit": "d86046a0e6b02ecaaf7cdb74346d0477130221c2",
+     "parent": null,
+     "advisory": "GHSA-5h8j-6crg-7rmw",
+     "cve": "CVE-2025-59953"
+    },
+    "expected_findings": [
+     {
+      "file": "lmdeploy/pytorch/engine/mp_engine/zmq_rpc.py",
+      "lines": [
+       35,
+       35
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-502",
+       "CWE-668",
+       "CWE-1327",
+       "CWE-284",
+       "CWE-306"
+      ],
+      "severity_min": "medium",
+      "description": "Pickle-based RPC server exposed on all interfaces",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "lmdeploy/pytorch/engine/mp_engine/zmq_rpc.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "cve-mistune-admonition-xss",
+    "split": "dev",
+    "source": "cve",
+    "language": "python",
+    "title": "Refactor directive option rendering",
+    "description": "Directive options and error text are concatenated into HTML without escaping (XSS). Built by reversing the upstream security fix.",
+    "smoke": false,
+    "origin": {
+     "repo": "lepture/mistune",
+     "url": "https://github.com/lepture/mistune/commit/a3cb6e5655308797e8be021d6c7b5bab13cbace2",
+     "license": "BSD-3-Clause",
+     "commit": "a3cb6e5655308797e8be021d6c7b5bab13cbace2",
+     "parent": null,
+     "advisory": "GHSA-g97x-gvcm-x72h",
+     "cve": "CVE-2026-59926"
+    },
+    "expected_findings": [
+     {
+      "file": "src/mistune/directives/admonition.py",
+      "lines": [
+       67,
+       67
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-79"
+      ],
+      "severity_min": "medium",
+      "description": "Unescaped class option in HTML attribute",
+      "also": [
+       {
+        "file": "src/mistune/directives/image.py",
+        "lines": [
+         163,
+         163
+        ],
+        "anchor": null,
+        "span": 0
+       },
+       {
+        "file": "src/mistune/directives/image.py",
+        "lines": [
+         167,
+         167
+        ],
+        "anchor": null,
+        "span": 0
+       }
+      ]
+     },
+     {
+      "file": "src/mistune/renderers/html.py",
+      "lines": [
+       141,
+       141
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-79"
+      ],
+      "severity_min": "medium",
+      "description": "Error text rendered without escaping",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "src/mistune/directives/admonition.py",
+    "src/mistune/directives/image.py",
+    "src/mistune/renderers/html.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "cve-openwebui-channel-disclosure",
+    "split": "dev",
+    "source": "cve",
+    "language": "python",
+    "title": "Simplify thread parent lookups",
+    "description": "Thread parents are no longer required to belong to the requested channel, disclosing messages of private channels. Built by reversing the upstream security fix.",
+    "smoke": false,
+    "origin": {
+     "repo": "open-webui/open-webui",
+     "url": "https://github.com/open-webui/open-webui/commit/a66477b7104c5d141ce7bffaea424b43e7666ef1",
+     "license": "Open WebUI License (BSD-3-Clause with a branding clause)",
+     "commit": "a66477b7104c5d141ce7bffaea424b43e7666ef1",
+     "parent": null,
+     "advisory": "GHSA-73x5-h92w-xc2j",
+     "cve": "CVE-2026-59215"
+    },
+    "expected_findings": [
+     {
+      "file": "backend/open_webui/models/messages.py",
+      "lines": [
+       331,
+       331
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-639",
+       "CWE-862",
+       "CWE-863",
+       "CWE-200"
+      ],
+      "severity_min": "low",
+      "description": "Parent message not checked against the channel",
+      "also": []
+     },
+     {
+      "file": "backend/open_webui/routers/channels.py",
+      "lines": [
+       1131,
+       1132
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-639",
+       "CWE-862",
+       "CWE-863"
+      ],
+      "severity_min": "low",
+      "description": "Parent and reply ids not validated against the channel",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "backend/open_webui/models/messages.py",
+    "backend/open_webui/routers/channels.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "cve-openwebui-message-overwrite",
+    "split": "dev",
+    "source": "cve",
+    "language": "python",
+    "title": "Simplify the channel message check in chat completions",
+    "description": "The check that the target message belongs to the caller was dropped: any channel member can overwrite another member's message. Built by reversing the upstream security fix.",
+    "smoke": false,
+    "origin": {
+     "repo": "open-webui/open-webui",
+     "url": "https://github.com/open-webui/open-webui/commit/7d392bedc9c1aaecc94509a58e59186b614433dc",
+     "license": "Open WebUI License (BSD-3-Clause with a branding clause)",
+     "commit": "7d392bedc9c1aaecc94509a58e59186b614433dc",
+     "parent": null,
+     "advisory": "GHSA-fmqh-xp37-5hr8",
+     "cve": "CVE-2026-87994"
+    },
+    "expected_findings": [
+     {
+      "file": "backend/open_webui/main.py",
+      "lines": [
+       1293,
+       1293
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-639",
+       "CWE-862",
+       "CWE-863",
+       "CWE-285",
+       "CWE-284"
+      ],
+      "severity_min": "medium",
+      "description": "Message ownership no longer checked before overwriting",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "backend/open_webui/main.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "cve-prowler-report-xss",
+    "split": "dev",
+    "source": "cve",
+    "language": "python",
+    "title": "Simplify HTML report rendering",
+    "description": "Finding fields (including cloud resource tags) are rendered into the HTML report without escaping, and unsafe links are no longer stripped. Built by reversing the upstream security fix.",
+    "smoke": false,
+    "origin": {
+     "repo": "prowler-cloud/prowler",
+     "url": "https://github.com/prowler-cloud/prowler/commit/6db407ed3c17d4c73a8f619fdb30580c8465027f",
+     "license": "Apache-2.0",
+     "commit": "6db407ed3c17d4c73a8f619fdb30580c8465027f",
+     "parent": null,
+     "advisory": "GHSA-c2jg-2778-ggm4",
+     "cve": "CVE-2026-73262"
+    },
+    "expected_findings": [
+     {
+      "file": "prowler/lib/outputs/html/html.py",
+      "lines": [
+       80,
+       89
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-79"
+      ],
+      "severity_min": "medium",
+      "description": "Finding fields interpolated into HTML without escaping",
+      "also": []
+     },
+     {
+      "file": "prowler/lib/outputs/html/html.py",
+      "lines": [
+       55,
+       55
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-79"
+      ],
+      "severity_min": "low",
+      "description": "Links with non-http schemes are no longer removed from rendered markdown",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "prowler/lib/outputs/html/html.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "cve-sqlparse-snippet-breakout",
+    "split": "dev",
+    "source": "cve",
+    "language": "python",
+    "title": "Only escape quotes in generated snippets",
+    "description": "Backslashes are no longer escaped in generated Python/PHP string literals, so a trailing backslash breaks out of the string. Built by reversing the upstream security fix.",
+    "smoke": false,
+    "origin": {
+     "repo": "andialbrecht/sqlparse",
+     "url": "https://github.com/andialbrecht/sqlparse/commit/53ff44b53e27cff78259acc1af015506fea60f63",
+     "license": "BSD-3-Clause",
+     "commit": "53ff44b53e27cff78259acc1af015506fea60f63",
+     "parent": null,
+     "advisory": "GHSA-3496-9g83-7v6x",
+     "cve": "CVE-2026-59894"
+    },
+    "expected_findings": [
+     {
+      "file": "sqlparse/filters/output.py",
+      "lines": [
+       65,
+       67
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-94",
+       "CWE-116",
+       "CWE-74"
+      ],
+      "severity_min": "low",
+      "description": "Backslashes not escaped in generated string literals",
+      "also": [
+       {
+        "file": "sqlparse/filters/output.py",
+        "lines": [
+         114,
+         116
+        ],
+        "anchor": null,
+        "span": 0
+       }
+      ]
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "sqlparse/filters/output.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "cve-tornado-reason-xss",
+    "split": "dev",
+    "source": "cve",
+    "language": "python",
+    "title": "Simplify status reason handling",
+    "description": "The custom reason phrase is no longer validated (header injection) and is inserted into the default error page without escaping (XSS). Built by reversing the upstream security fix.",
+    "smoke": false,
+    "origin": {
+     "repo": "tornadoweb/tornado",
+     "url": "https://github.com/tornadoweb/tornado/commit/9c163aebeaad9e6e7d28bac1f33580eb00b0e421",
+     "license": "Apache-2.0",
+     "commit": "9c163aebeaad9e6e7d28bac1f33580eb00b0e421",
+     "parent": null,
+     "advisory": "GHSA-pr2v-jx2c-wg9f",
+     "cve": "CVE-2025-67724"
+    },
+    "expected_findings": [
+     {
+      "file": "tornado/web.py",
+      "lines": [
+       371,
+       372
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-79",
+       "CWE-113",
+       "CWE-20",
+       "CWE-93"
+      ],
+      "severity_min": "medium",
+      "description": "Reason phrase accepted without validation",
+      "also": []
+     },
+     {
+      "file": "tornado/web.py",
+      "lines": [
+       1376,
+       1376
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-79"
+      ],
+      "severity_min": "medium",
+      "description": "Reason inserted into the error page without escaping",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "tornado/web.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "oss-axios-11182",
+    "split": "dev",
+    "source": "oss",
+    "language": "javascript",
+    "title": "fix(http): normalize the configured proxy protocol",
+    "description": "Merged pull request reviewed by the maintainers.",
+    "smoke": false,
+    "origin": {
+     "repo": "axios/axios",
+     "url": "https://github.com/axios/axios/pull/11182",
+     "license": "MIT",
+     "commit": "4a88f1396a1cadc122de3b9180025c36d76f76ad",
+     "parent": null,
+     "advisory": null,
+     "cve": null
+    },
+    "expected_findings": [],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "lib/adapters/http.js"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "oss-click-3821",
+    "split": "dev",
+    "source": "oss",
+    "language": "python",
+    "title": "Add `Option.get_help_spec` to extract the help's left part of an hidden option",
+    "description": "Merged pull request reviewed by the maintainers.",
+    "smoke": false,
+    "origin": {
+     "repo": "pallets/click",
+     "url": "https://github.com/pallets/click/pull/3821",
+     "license": "BSD-3-Clause",
+     "commit": "271effb3d96da5575eb527216ce3552bd7628fab",
+     "parent": null,
+     "advisory": null,
+     "cve": null
+    },
+    "expected_findings": [],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "src/click/core.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "oss-click-3858",
+    "split": "dev",
+    "source": "oss",
+    "language": "python",
+    "title": "Make `click.Path` generic on `path_type`",
+    "description": "Merged pull request reviewed by the maintainers.",
+    "smoke": false,
+    "origin": {
+     "repo": "pallets/click",
+     "url": "https://github.com/pallets/click/pull/3858",
+     "license": "BSD-3-Clause",
+     "commit": "22177f857a34e3c35ba957553853a37f23feb37e",
+     "parent": null,
+     "advisory": null,
+     "cve": null
+    },
+    "expected_findings": [],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "src/click/types.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "oss-click-3860",
+    "split": "dev",
+    "source": "oss",
+    "language": "python",
+    "title": "Always list all positional arguments",
+    "description": "Merged pull request reviewed by the maintainers.",
+    "smoke": true,
+    "origin": {
+     "repo": "pallets/click",
+     "url": "https://github.com/pallets/click/pull/3860",
+     "license": "BSD-3-Clause",
+     "commit": "05f6fd0df4ecbd104eb7a229f9f185c2484dee69",
+     "parent": null,
+     "advisory": null,
+     "cve": null
+    },
+    "expected_findings": [],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "src/click/core.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "oss-click-3865",
+    "split": "dev",
+    "source": "oss",
+    "language": "python",
+    "title": "Fix short help abbreviation",
+    "description": "Merged pull request reviewed by the maintainers.",
+    "smoke": false,
+    "origin": {
+     "repo": "pallets/click",
+     "url": "https://github.com/pallets/click/pull/3865",
+     "license": "BSD-3-Clause",
+     "commit": "f67c2bb6c2f055c1c7a57cd46c3697fc26a7742e",
+     "parent": null,
+     "advisory": null,
+     "cve": null
+    },
+    "expected_findings": [],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "src/click/utils.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "oss-click-3866",
+    "split": "dev",
+    "source": "oss",
+    "language": "python",
+    "title": "Deprecate parameter names that are: not a Python identifier, or a Python Keyword, or not lower-cased",
+    "description": "Merged pull request reviewed by the maintainers.",
+    "smoke": false,
+    "origin": {
+     "repo": "pallets/click",
+     "url": "https://github.com/pallets/click/pull/3866",
+     "license": "BSD-3-Clause",
+     "commit": "b90faad1788bc030bb3320938f07c9189f42d7d0",
+     "parent": null,
+     "advisory": null,
+     "cve": null
+    },
+    "expected_findings": [],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "src/click/core.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "oss-hono-5376",
+    "split": "dev",
+    "source": "oss",
+    "language": "typescript",
+    "title": "fix(accepts): match media types and language tags case-insensitively",
+    "description": "Merged pull request reviewed by the maintainers.",
+    "smoke": true,
+    "origin": {
+     "repo": "honojs/hono",
+     "url": "https://github.com/honojs/hono/pull/5376",
+     "license": "MIT",
+     "commit": "79e50aa8a38bbe27f7617cf59c9aebbf57864d9a",
+     "parent": null,
+     "advisory": null,
+     "cve": null
+    },
+    "expected_findings": [],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "src/helper/accepts/accepts.ts"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "oss-httpx-3690",
+    "split": "dev",
+    "source": "oss",
+    "language": "python",
+    "title": "Add `.wait_ready` to parser for clean server disconnects",
+    "description": "Merged pull request reviewed by the maintainers.",
+    "smoke": false,
+    "origin": {
+     "repo": "encode/httpx",
+     "url": "https://github.com/encode/httpx/pull/3690",
+     "license": "BSD-3-Clause",
+     "commit": "350221558d4f079fc4ab3673d81a4bc730fbb9c3",
+     "parent": null,
+     "advisory": null,
+     "cve": null
+    },
+    "expected_findings": [],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "src/ahttpx/_parsers.py",
+    "src/ahttpx/_server.py",
+    "src/httpx/_parsers.py",
+    "src/httpx/_server.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "oss-ky-854",
+    "split": "dev",
+    "source": "oss",
+    "language": "typescript",
+    "title": "Make `json()` throw on empty responses",
+    "description": "Merged pull request reviewed by the maintainers.",
+    "smoke": false,
+    "origin": {
+     "repo": "sindresorhus/ky",
+     "url": "https://github.com/sindresorhus/ky/pull/854",
+     "license": "MIT",
+     "commit": "1af0fabd89a6b308a21c600087a6c782b99fc81e",
+     "parent": null,
+     "advisory": null,
+     "cve": null
+    },
+    "expected_findings": [],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "source/core/Ky.ts",
+    "source/types/ResponsePromise.ts"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "oss-starlette-3520",
+    "split": "dev",
+    "source": "oss",
+    "language": "python",
+    "title": "Add provider parameters to OpenTelemetryMiddleware",
+    "description": "Merged pull request reviewed by the maintainers.",
+    "smoke": false,
+    "origin": {
+     "repo": "encode/starlette",
+     "url": "https://github.com/Kludex/starlette/pull/3520",
+     "license": "BSD-3-Clause",
+     "commit": "ed992fdcead99aa9271d1597d285d0dc4bf936b3",
+     "parent": null,
+     "advisory": null,
+     "cve": null
+    },
+    "expected_findings": [],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "starlette/middleware/opentelemetry.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "oss-starlette-3523",
+    "split": "dev",
+    "source": "oss",
+    "language": "python",
+    "title": "Stop file transfers when HTTP clients disconnect",
+    "description": "Merged pull request reviewed by the maintainers.",
+    "smoke": false,
+    "origin": {
+     "repo": "encode/starlette",
+     "url": "https://github.com/Kludex/starlette/pull/3523",
+     "license": "BSD-3-Clause",
+     "commit": "7c917f8883b982b9687f6e6645ec4453afd9a676",
+     "parent": null,
+     "advisory": null,
+     "cve": null
+    },
+    "expected_findings": [],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "starlette/responses.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "oss-zod-6519",
+    "split": "dev",
+    "source": "oss",
+    "language": "typescript",
+    "title": "perf(v4): build the safeParse error on first read",
+    "description": "Merged pull request reviewed by the maintainers.",
+    "smoke": false,
+    "origin": {
+     "repo": "colinhacks/zod",
+     "url": "https://github.com/colinhacks/zod/pull/6519",
+     "license": "MIT",
+     "commit": "1e4436805eca7c2fee4bedc5ccd0fbe74936c09c",
+     "parent": null,
+     "advisory": null,
+     "cve": null
+    },
+    "expected_findings": [],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "packages/zod/src/v4/core/parse.ts",
+    "packages/zod/src/v4/core/schemas.ts"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "syn-js-cmdi-git-log",
+    "split": "dev",
+    "source": "synthetic",
+    "language": "javascript",
+    "title": "Expose recent commits of a branch in the admin panel",
+    "description": "The branch name from the query string is interpolated into a shell command.",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "src/routes/admin/git.js",
+      "lines": [
+       10,
+       10
+      ],
+      "anchor": "exec(`git -C ${REPO_DIR} log --oneline -n 20 ${branch}`",
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-78",
+       "CWE-88"
+      ],
+      "severity_min": "high",
+      "description": "Query parameter interpolated into a shell command",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "src/routes/admin/git.js",
+     "line": 10,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "detect-child-process",
+     "cwe": "CWE-78",
+     "confidence": 0.3,
+     "agent": "semgrep",
+     "message": "Detected calls to child_process from a function argument `req`. This could lead to a command injection if the input is user controllable. Try to avoid calls to child_process, and if it is needed ensure user input is correctly sanitized or sandboxed. ",
+     "evidence": "requires login"
+    }
+   ],
+   "files": [
+    "src/routes/admin/git.js"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "syn-js-open-redirect",
+    "split": "dev",
+    "source": "synthetic",
+    "language": "javascript",
+    "title": "Return to the previous page after login",
+    "description": "The redirect target comes from the query string without validation (open redirect).",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "src/routes/session.js",
+      "lines": [
+       7,
+       8
+      ],
+      "anchor": "const next = req.query.next || \"/\";",
+      "span": 1,
+      "category": "security",
+      "cwe": [
+       "CWE-601"
+      ],
+      "severity_min": "medium",
+      "description": "Unvalidated redirect target",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "src/routes/session.js"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "syn-js-xss-search-results",
+    "split": "dev",
+    "source": "synthetic",
+    "language": "javascript",
+    "title": "Show a message when the search has no results",
+    "description": "The search query from the URL is written into innerHTML (DOM XSS). The result titles are set with textContent and are safe.",
+    "smoke": true,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "public/js/search.js",
+      "lines": [
+       8,
+       8
+      ],
+      "anchor": "resultsEl.innerHTML = `<p class=\"empty\">No results for",
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-79"
+      ],
+      "severity_min": "medium",
+      "description": "URL parameter written into innerHTML",
+      "also": []
+     }
+    ],
+    "must_not_flag": [
+     {
+      "file": "public/js/search.js",
+      "lines": [
+       13,
+       13
+      ],
+      "anchor": "item.textContent = result.title;",
+      "span": 0,
+      "reason": "textContent does not parse HTML"
+     }
+    ]
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "public/js/search.js"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "syn-py-blocking-async",
+    "split": "dev",
+    "source": "synthetic",
+    "language": "python",
+    "title": "Fetch the exchange rate when creating a quote",
+    "description": "A synchronous HTTP call (requests) inside an async FastAPI endpoint blocks the event loop.",
+    "smoke": true,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "app/api/quotes.py",
+      "lines": [
+       17,
+       17
+      ],
+      "anchor": "response = requests.get(RATES_URL",
+      "span": 0,
+      "category": "performance",
+      "cwe": [],
+      "severity_min": "medium",
+      "description": "Blocking HTTP call inside an async endpoint",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "app/api/quotes.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "syn-py-clean-safe-patterns",
+    "split": "dev",
+    "source": "synthetic",
+    "language": "python",
+    "title": "Order export job",
+    "description": "Clean change with patterns that resemble vulnerabilities: parameterized SQL, subprocess with an argument list, safe_load, secrets for tokens, a validated path.",
+    "smoke": true,
+    "origin": null,
+    "expected_findings": [],
+    "must_not_flag": [
+     {
+      "file": "app/jobs/export_orders.py",
+      "lines": [
+       27,
+       27
+      ],
+      "anchor": "\"SELECT id, total, created_at FROM orders WHERE customer_id = ?",
+      "span": 0,
+      "reason": "parameterized query"
+     },
+     {
+      "file": "app/jobs/export_orders.py",
+      "lines": [
+       33,
+       33
+      ],
+      "anchor": "subprocess.run([\"gzip\", \"--force\", str(target)], check=True)",
+      "span": 0,
+      "reason": "argument list, no shell"
+     },
+     {
+      "file": "app/jobs/export_orders.py",
+      "lines": [
+       14,
+       14
+      ],
+      "anchor": "return yaml.safe_load(f) or {}",
+      "span": 0,
+      "reason": "safe loader"
+     },
+     {
+      "file": "app/jobs/export_orders.py",
+      "lines": [
+       18,
+       20
+      ],
+      "anchor": "target = (EXPORT_DIR / name).resolve()",
+      "span": 2,
+      "reason": "path is validated on the next lines"
+     }
+    ]
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "app/jobs/export_orders.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "syn-py-hardcoded-credentials",
+    "split": "dev",
+    "source": "synthetic",
+    "language": "python",
+    "title": "Configure the transactional mail provider",
+    "description": "The SMTP password of the production mail account is committed in the settings module.",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "app/settings.py",
+      "lines": [
+       10,
+       10
+      ],
+      "anchor": "SMTP_PASSWORD = \"Qx7!mvRt2024-shopfront\"",
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-798",
+       "CWE-259"
+      ],
+      "severity_min": "medium",
+      "description": "Hardcoded SMTP password",
+      "also": []
+     }
+    ],
+    "must_not_flag": [
+     {
+      "file": "app/settings.py",
+      "lines": [
+       8,
+       8
+      ],
+      "anchor": "SMTP_PORT = int(os.environ.get(\"SMTP_PORT\", \"587\"))",
+      "span": 0,
+      "reason": "configuration read from the environment"
+     }
+    ]
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "app/settings.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "syn-py-insecure-reset-token",
+    "split": "dev",
+    "source": "synthetic",
+    "language": "python",
+    "title": "Password reset tokens",
+    "description": "Reset tokens are generated with the random module, which is predictable.",
+    "smoke": true,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "app/services/password_reset.py",
+      "lines": [
+       12,
+       12
+      ],
+      "anchor": "token = \"\".join(random.choice(",
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-330",
+       "CWE-338"
+      ],
+      "severity_min": "medium",
+      "description": "Security token generated with a non-cryptographic PRNG",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "app/services/password_reset.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "syn-py-n-plus-one-orders",
+    "split": "dev",
+    "source": "synthetic",
+    "language": "python",
+    "title": "Show customer names in the recent orders report",
+    "description": "One query per order to load its customer (N+1 queries) instead of a join or selectinload.",
+    "smoke": true,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "app/reports/orders.py",
+      "lines": [
+       15,
+       17
+      ],
+      "anchor": "customer = session.scalars(",
+      "span": 2,
+      "category": "performance",
+      "cwe": [],
+      "severity_min": "medium",
+      "description": "A query per order inside the loop (N+1)",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "app/reports/orders.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "syn-py-none-dereference",
+    "split": "dev",
+    "source": "synthetic",
+    "language": "python",
+    "title": "Login with email and password",
+    "description": "The user lookup can return None, which is dereferenced without a check.",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "app/auth/login.py",
+      "lines": [
+       12,
+       12
+      ],
+      "anchor": "if bcrypt.checkpw(password.encode(), user.password_hash):",
+      "span": 0,
+      "category": "quality",
+      "cwe": [],
+      "severity_min": "medium",
+      "description": "Possible None dereference when the email is unknown",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "app/auth/login.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "syn-py-off-by-one-total",
+    "split": "dev",
+    "source": "synthetic",
+    "language": "python",
+    "title": "Compute cart totals with discounts",
+    "description": "The loop stops one item early, so the last cart line is never counted.",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "app/cart/totals.py",
+      "lines": [
+       8,
+       8
+      ],
+      "anchor": "for i in range(len(lines) - 1):",
+      "span": 0,
+      "category": "quality",
+      "cwe": [],
+      "severity_min": "medium",
+      "description": "Off-by-one: the last line is skipped",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "app/cart/totals.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "syn-py-path-traversal-download",
+    "split": "dev",
+    "source": "synthetic",
+    "language": "python",
+    "title": "Allow downloading any archived report",
+    "description": "The new route joins the user-supplied path to the reports directory and sends the file (path traversal with ../). The existing route uses send_from_directory.",
+    "smoke": true,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "app/routes/reports.py",
+      "lines": [
+       23,
+       26
+      ],
+      "anchor": "path = os.path.join(REPORTS_DIR, \"archive\", name)",
+      "span": 3,
+      "category": "security",
+      "cwe": [
+       "CWE-22",
+       "CWE-23",
+       "CWE-73"
+      ],
+      "severity_min": "high",
+      "description": "User-controlled path joined to the reports directory and served",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "app/routes/reports.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "syn-py-quadratic-dedup",
+    "split": "dev",
+    "source": "synthetic",
+    "language": "python",
+    "title": "Deduplicate contacts before the newsletter send",
+    "description": "Membership test on a growing list inside the loop: quadratic on large contact lists.",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "app/newsletter/recipients.py",
+      "lines": [
+       9,
+       9
+      ],
+      "anchor": "if email in seen_emails:",
+      "span": 0,
+      "category": "performance",
+      "cwe": [],
+      "severity_min": "low",
+      "description": "Linear search in a list inside a loop: use a set",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "app/newsletter/recipients.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "syn-py-sqli-search",
+    "split": "dev",
+    "source": "synthetic",
+    "language": "python",
+    "title": "Add user search to the repository",
+    "description": "Search builds the SQL query with an f-string from the search term (SQL injection). The new count query is parameterized and safe.",
+    "smoke": true,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "app/repositories/users.py",
+      "lines": [
+       23,
+       24
+      ],
+      "anchor": "query = f\"SELECT id, email, name FROM users WHERE name LIKE",
+      "span": 1,
+      "category": "security",
+      "cwe": [
+       "CWE-89"
+      ],
+      "severity_min": "high",
+      "description": "User-controlled search term interpolated into the SQL query",
+      "also": []
+     }
+    ],
+    "must_not_flag": [
+     {
+      "file": "app/repositories/users.py",
+      "lines": [
+       28,
+       28
+      ],
+      "anchor": "SELECT COUNT(*) FROM users WHERE active = ?",
+      "span": 0,
+      "reason": "parameterized query with a constant"
+     }
+    ]
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "app/repositories/users.py",
+     "line": 24,
+     "severity": "medium",
+     "category": "security",
+     "rule_id": "formatted-sql-query",
+     "cwe": "CWE-89",
+     "confidence": 0.3,
+     "agent": "semgrep",
+     "message": "Detected possible formatted SQL query. Use parameterized queries instead.",
+     "evidence": "requires login"
+    },
+    {
+     "file": "app/repositories/users.py",
+     "line": 24,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "sqlalchemy-execute-raw-query",
+     "cwe": "CWE-89",
+     "confidence": 0.3,
+     "agent": "semgrep",
+     "message": "Avoiding SQL string concatenation: untrusted input concatenated with raw SQL query can result in SQL Injection. In order to execute raw query safely, prepared statement should be used. SQLAlchemy provides TextualSQL to easily used prepared statement with named parameters. For complex SQL composition, use SQL Expression Language or Schema Definition Language. In most cases, SQLAlchemy ORM will be a",
+     "evidence": "requires login"
+    }
+   ],
+   "files": [
+    "app/repositories/users.py",
+    "app/routes/users.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "syn-py-swallowed-exception",
+    "split": "dev",
+    "source": "synthetic",
+    "language": "python",
+    "title": "Retry failed refunds",
+    "description": "Every exception of the payment call is swallowed and the refund is reported as done.",
+    "smoke": true,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "app/payments/refunds.py",
+      "lines": [
+       11,
+       12
+      ],
+      "anchor": "except Exception:",
+      "span": 1,
+      "category": "quality",
+      "cwe": [],
+      "severity_min": "medium",
+      "description": "Exception swallowed and success returned anyway",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "app/payments/refunds.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "syn-py-weak-password-hash",
+    "split": "dev",
+    "source": "synthetic",
+    "language": "python",
+    "title": "Store password hashes for new accounts",
+    "description": "Passwords are hashed with unsalted MD5. The SHA-256 of uploaded files is only a checksum and is fine.",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "app/services/accounts.py",
+      "lines": [
+       8,
+       8
+      ],
+      "anchor": "return hashlib.md5(password.encode()).hexdigest()",
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-327",
+       "CWE-328",
+       "CWE-916",
+       "CWE-759",
+       "CWE-256"
+      ],
+      "severity_min": "medium",
+      "description": "Passwords hashed with unsalted MD5",
+      "also": []
+     }
+    ],
+    "must_not_flag": [
+     {
+      "file": "app/services/accounts.py",
+      "lines": [
+       23,
+       23
+      ],
+      "anchor": "return hashlib.sha256(data).hexdigest()",
+      "span": 0,
+      "reason": "integrity checksum, not a password"
+     }
+    ]
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "app/services/accounts.py",
+     "line": 8,
+     "severity": "medium",
+     "category": "security",
+     "rule_id": "md5-used-as-password",
+     "cwe": "CWE-327",
+     "confidence": 0.6,
+     "agent": "semgrep",
+     "message": "It looks like MD5 is used as a password hash. MD5 is not considered a secure password hash because it can be cracked by an attacker in a short amount of time. Use a suitable password hashing function such as scrypt. You can use `hashlib.scrypt`.",
+     "evidence": "requires login"
+    }
+   ],
+   "files": [
+    "app/services/accounts.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "syn-py-yaml-import",
+    "split": "dev",
+    "source": "synthetic",
+    "language": "python",
+    "title": "Import project settings from a YAML file",
+    "description": "Uploaded YAML is parsed with the full yaml.Loader, which can instantiate arbitrary Python objects. The defaults file is read with safe_load.",
+    "smoke": true,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "app/services/project_import.py",
+      "lines": [
+       17,
+       17
+      ],
+      "anchor": "settings.update(yaml.load(uploaded, Loader=yaml.Loader))",
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-502",
+       "CWE-20"
+      ],
+      "severity_min": "high",
+      "description": "Unsafe YAML loader on user-uploaded content",
+      "also": []
+     }
+    ],
+    "must_not_flag": [
+     {
+      "file": "app/services/project_import.py",
+      "lines": [
+       12,
+       12
+      ],
+      "anchor": "return yaml.safe_load(f)",
+      "span": 0,
+      "reason": "safe loader on a bundled file"
+     }
+    ]
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "request_changes",
+   "findings": [
+    {
+     "file": "app/services/project_import.py",
+     "line": 17,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "avoid-pyyaml-load",
+     "cwe": "CWE-502",
+     "confidence": 0.6,
+     "agent": "semgrep",
+     "message": "Detected a possible YAML deserialization vulnerability. `yaml.unsafe_load`, `yaml.Loader`, `yaml.CLoader`, and `yaml.UnsafeLoader` are all known to be unsafe methods of deserializing YAML. An attacker with control over the YAML input could create special YAML input that allows the attacker to run arbitrary Python code. This would allow the attacker to steal files, download and install malware, or ",
+     "evidence": "requires login"
+    }
+   ],
+   "files": [
+    "app/services/project_import.py"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "syn-ts-clean-safe-handlers",
+    "split": "dev",
+    "source": "synthetic",
+    "language": "typescript",
+    "title": "Attachment download and search endpoints",
+    "description": "Clean change with safe versions of common patterns: parameterized query, execFile with an argument array, path containment check, textContent, verified JWT.",
+    "smoke": true,
+    "origin": null,
+    "expected_findings": [],
+    "must_not_flag": [
+     {
+      "file": "src/routes/attachments.ts",
+      "lines": [
+       28,
+       28
+      ],
+      "anchor": "const { stdout } = await run(\"file\", [\"--brief\", \"--mime-type\", target]);",
+      "span": 0,
+      "reason": "execFile with an argument array"
+     },
+     {
+      "file": "src/routes/attachments.ts",
+      "lines": [
+       24,
+       25
+      ],
+      "anchor": "const target = path.resolve(ATTACHMENTS, req.params.name);",
+      "span": 1,
+      "reason": "containment checked on the next line"
+     },
+     {
+      "file": "src/routes/attachments.ts",
+      "lines": [
+       34,
+       35
+      ],
+      "anchor": "\"SELECT name, size FROM attachments WHERE owner_id = $1 AND name ILIKE $2 LIMIT 50\",",
+      "span": 1,
+      "reason": "parameterized query"
+     }
+    ]
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "src/routes/attachments.ts",
+     "line": 29,
+     "severity": "medium",
+     "category": "security",
+     "rule_id": "express-res-sendfile",
+     "cwe": "CWE-73",
+     "confidence": 0.6,
+     "agent": "semgrep",
+     "message": "The application processes user-input, this is passed to res.sendFile which can allow an attacker to arbitrarily read files on the system through path traversal. It is recommended to perform input validation in addition to canonicalizing the path. This allows you to validate the path against the intended directory it should be accessing.",
+     "evidence": "requires login"
+    }
+   ],
+   "files": [
+    "src/routes/attachments.ts"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "syn-ts-pagination-off-by-one",
+    "split": "dev",
+    "source": "synthetic",
+    "language": "typescript",
+    "title": "Page count for the admin tables",
+    "description": "Math.floor drops the last partial page: 45 items with 20 per page gives 2 pages.",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "src/admin/paging.ts",
+      "lines": [
+       8,
+       8
+      ],
+      "anchor": "const totalPages = Math.floor(totalItems / pageSize);",
+      "span": 0,
+      "category": "quality",
+      "cwe": [],
+      "severity_min": "medium",
+      "description": "Off-by-one: the last partial page is lost",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "src/admin/paging.ts"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "syn-ts-prisma-n-plus-one",
+    "split": "dev",
+    "source": "synthetic",
+    "language": "typescript",
+    "title": "Include author names in the posts feed",
+    "description": "One query per post to load its author, inside the loop (N+1).",
+    "smoke": true,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "src/feed/posts.ts",
+      "lines": [
+       11,
+       11
+      ],
+      "anchor": "const author = await prisma.user.findUnique({ where: { id: post.authorId } });",
+      "span": 0,
+      "category": "performance",
+      "cwe": [],
+      "severity_min": "medium",
+      "description": "A query per post inside the loop (N+1)",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "src/feed/posts.ts"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "syn-ts-prototype-pollution",
+    "split": "dev",
+    "source": "synthetic",
+    "language": "typescript",
+    "title": "Partial updates of workspace settings",
+    "description": "A recursive merge copies every key of the request body, including __proto__, into the settings object (prototype pollution).",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "src/settings/merge.ts",
+      "lines": [
+       4,
+       10
+      ],
+      "anchor": "for (const key in source) {",
+      "span": 6,
+      "category": "security",
+      "cwe": [
+       "CWE-1321",
+       "CWE-915"
+      ],
+      "severity_min": "medium",
+      "description": "Recursive merge of untrusted keys (prototype pollution)",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "src/routes/settings.ts",
+    "src/settings/merge.ts"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "syn-ts-react-dangerous-html",
+    "split": "dev",
+    "source": "synthetic",
+    "language": "typescript",
+    "title": "Render comments with formatting",
+    "description": "User comments are rendered with dangerouslySetInnerHTML without sanitization (stored XSS).",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "src/components/Comment.tsx",
+      "lines": [
+       7,
+       7
+      ],
+      "anchor": "dangerouslySetInnerHTML={{ __html: comment.body }}",
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-79"
+      ],
+      "severity_min": "medium",
+      "description": "Unsanitized user HTML rendered",
+      "also": []
+     }
+    ],
+    "must_not_flag": [
+     {
+      "file": "src/components/Comment.tsx",
+      "lines": [
+       6,
+       6
+      ],
+      "anchor": "<header>{comment.author}</header>",
+      "span": 0,
+      "reason": "React escapes text content"
+     }
+    ]
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "src/components/Comment.tsx"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "syn-ts-sequential-awaits",
+    "split": "dev",
+    "source": "synthetic",
+    "language": "typescript",
+    "title": "Load dashboard widgets",
+    "description": "Independent requests are awaited one after the other inside a loop instead of in parallel.",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "src/dashboard/widgets.ts",
+      "lines": [
+       11,
+       11
+      ],
+      "anchor": "const data = await api.get(`/widgets/${id}`);",
+      "span": 0,
+      "category": "performance",
+      "cwe": [],
+      "severity_min": "low",
+      "description": "Independent requests awaited sequentially in a loop",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "src/dashboard/widgets.ts"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  },
+  {
+   "case": {
+    "id": "syn-ts-ssrf-link-preview",
+    "split": "dev",
+    "source": "synthetic",
+    "language": "typescript",
+    "title": "Link previews in chat messages",
+    "description": "The server fetches any URL sent by the client to build a preview (SSRF).",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "src/routes/preview.ts",
+      "lines": [
+       9,
+       9
+      ],
+      "anchor": "const response = await fetch(url, { redirect: \"follow\" });",
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-918"
+      ],
+      "severity_min": "medium",
+      "description": "Server-side fetch of a user-supplied URL",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "files": [
+    "src/routes/preview.ts"
+   ],
+   "wall_seconds": 0.0,
+   "stats": {}
+  }
+ ]
+}

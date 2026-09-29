@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:20:48+00:00",
+ "elapsed_seconds": 105.875,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/routes/dashboard.py\",\n            \"line\": 13,\n            \"severity\": \"high\",\n            \"rule_id\": \"pickle_unsafe\",\n            \"message\": \"Using pickle to deserialize data from an untrusted source is unsafe.\",\n            \"evidence\": \"return pickle.loads(base64.b64decode(raw))\"\n        },\n        {\n            \"file\": \"app/routes/dashboard.py\",\n            \"line\": 25,\n            \"severity\": \"high\",\n            \"rule_id\": \"pickle_unsafe\",\n            \"message\": \"Using pickle to serialize data for storage is unsafe.\",\n            \"evidence\": \"response.set_cookie('prefs', base64.b64encode(pickle.dumps(prefs)).decode())\"\n        },\n        {\n            \"file\": \"app/routes/dashboard.py\",\n            \"line\": 20,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"Missing error handling for cookie parsing.\",\n            \"evidence\": \"return render_template('dashboard.html', prefs=load_prefs())\"\n        },\n        {\n            \"file\": \"app/routes/dashboard.py\",\n            \"line\": 26,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"Missing error handling for form data.\",\n            \"evidence\": \"prefs = {\\\"theme\\\": request.form[\\\"theme\\\"], \\\"widgets\\\": request.form.getlist(\\\"widgets\\\")}\"\n        },\n        {\n            \"file\": \"app/routes/dashboard.py\",\n            \"line\": 27,\n            \"severity\": \"medium\",\n            \"rule_id\": \"unused_variable\",\n            \"message\": \"Unused variable 'response'.\",\n            \"evidence\": \"response = make_response('', 204)\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:20:48.68753Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 105612481000,
+     "load_duration": 110327800,
+     "prompt_eval_count": 791,
+     "prompt_eval_duration": 2830093100,
+     "eval_count": 384,
+     "eval_duration": 35155555700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eabe-6a94-70b3-b406-b04af460177d-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 791,
+     "output_tokens": 384,
+     "total_tokens": 1175
+    }
+   }
+  }
+ ]
+}

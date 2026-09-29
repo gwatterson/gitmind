@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T22:53:37+00:00",
+ "elapsed_seconds": 31.062,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/newsletter/recipients.py\",\n            \"line\": 9,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S108\",\n            \"message\": \"The condition `if email in seen_emails` will always be False because the list is not updated before the check.\",\n            \"evidence\": \"if email in seen_emails:\"\n        },\n        {\n            \"file\": \"app/newsletter/recipients.py\",\n            \"line\": 10,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S108\",\n            \"message\": \"The `continue` statement will never be reached because the condition is always False.\",\n            \"evidence\": \"continue\"\n        },\n        {\n            \"file\": \"app/newsletter/recipients.py\",\n            \"line\": 9,\n            \"severity\": \"low\",\n            \"rule_id\": \"S108\",\n            \"message\": \"The variable `email` should be declared as a type hint to improve readability.\",\n            \"evidence\": \"email = contact.email.strip().lower()\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T22:53:37.3755628Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 30795195700,
+     "load_duration": 107030100,
+     "prompt_eval_count": 583,
+     "prompt_eval_duration": 859484500,
+     "eval_count": 239,
+     "eval_duration": 24068452500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea38-cd8b-7cf0-ac06-a64892b54db2-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 583,
+     "output_tokens": 239,
+     "total_tokens": 822
+    }
+   }
+  }
+ ]
+}

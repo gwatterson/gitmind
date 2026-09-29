@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:55:00+00:00",
+ "elapsed_seconds": 83.157,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/preview.ts\",\n      \"line\": 9,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"The fetch call may fail, but the error is not handled.\",\n      \"evidence\": \"const response = await fetch(url, { redirect: \\\"follow\\\" });\"\n    },\n    {\n      \"file\": \"src/routes/preview.ts\",\n      \"line\": 10,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"The text extraction may fail if the response is not HTML.\",\n      \"evidence\": \"const html = await response.text();\"\n    },\n    {\n      \"file\": \"src/routes/preview.ts\",\n      \"line\": 11,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"The title extraction may fail if no <title> tag is found.\",\n      \"evidence\": \"const title = TITLE.exec(html)?.[1] ?? url;\"\n    },\n    {\n      \"file\": \"src/routes/preview.ts\",\n      \"line\": 7,\n      \"severity\": \"low\",\n      \"rule_id\": \"unused_variable\",\n      \"message\": \"The `TITLE` constant is declared but not used.\",\n      \"evidence\": \"const TITLE = /<title>([^<]*)</title>/i;\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:55:00.7262211Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 82869599600,
+     "load_duration": 98491400,
+     "prompt_eval_count": 608,
+     "prompt_eval_duration": 2942045100,
+     "eval_count": 313,
+     "eval_duration": 29545608300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea02-592c-7cb1-9f70-4768e607fbf2-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 608,
+     "output_tokens": 313,
+     "total_tokens": 921
+    }
+   }
+  }
+ ]
+}

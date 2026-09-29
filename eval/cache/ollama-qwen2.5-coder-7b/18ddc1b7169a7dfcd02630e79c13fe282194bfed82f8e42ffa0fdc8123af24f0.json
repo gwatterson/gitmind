@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T00:49:18+00:00",
+ "elapsed_seconds": 55.781,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/invoices.js\",\n      \"line\": 12,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"The `fs.readFileSync` call does not handle errors.\",\n      \"evidence\": \"const template = fs.readFileSync(TEMPLATE, \\\"utf8\\\");\"\n    },\n    {\n      \"file\": \"src/routes/invoices.js\",\n      \"line\": 13,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_type_hints\",\n      \"message\": \"Missing type hints for function parameters and return values.\",\n      \"evidence\": \"router.get(\\\"/invoices/:id/preview\\\", async (req, res, next) => {\"\n    },\n    {\n      \"file\": \"src/routes/invoices.js\",\n      \"line\": 13,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_docstrings\",\n      \"message\": \"Missing docstring for the route handler function.\",\n      \"evidence\": \"router.get(\\\"/invoices/:id/preview\\\", async (req, res, next) => {\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T00:49:18.8050023Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 55512708100,
+     "load_duration": 87226500,
+     "prompt_eval_count": 668,
+     "prompt_eval_duration": 2679133900,
+     "eval_count": 251,
+     "eval_duration": 22636880400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eaa2-57eb-77a1-841d-82bc00b61031-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 668,
+     "output_tokens": 251,
+     "total_tokens": 919
+    }
+   }
+  }
+ ]
+}

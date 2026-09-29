@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:43:07+00:00",
+ "elapsed_seconds": 13.891,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/services/accounts.py\",\n            \"line\": 14,\n            \"severity\": \"low\",\n            \"rule_id\": \"S108\",\n            \"message\": \"Unnecessary database session commit in a single operation.\",\n            \"suggestion\": \"Consider using `db.session.add(account)` followed by `db.session.commit()` only once at the end of the transaction.\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:43:07.3936047Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 13877457900,
+     "load_duration": 93041100,
+     "prompt_eval_count": 688,
+     "prompt_eval_duration": 3149729100,
+     "eval_count": 96,
+     "eval_duration": 8455498200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9f8-854d-7e80-a355-22e9934005b4-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 688,
+     "output_tokens": 96,
+     "total_tokens": 784
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T22:56:19+00:00",
+ "elapsed_seconds": 111.032,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"packages/core/src/ci-environment/git.ts\",\n      \"line\": 87,\n      \"severity\": \"medium\",\n      \"rule_id\": \"N+1_queries\",\n      \"message\": \"String concatenation inside a function call can be inefficient.\",\n      \"evidence\": \"`execSync(`git fetch --force --update-head-ok --depth ${input.depth} origin ${input.ref}:${input.target}`,);`\",\n      \"confidence\": 0.9,\n      \"cwe\": \"CWE-184: Integer Overflow or Wraparound\"\n    },\n    {\n      \"file\": \"packages/core/src/ci-environment/git.ts\",\n      \"line\": 153,\n      \"severity\": \"medium\",\n      \"rule_id\": \"N+1_queries\",\n      \"message\": \"String concatenation inside a function call can be inefficient.\",\n      \"evidence\": \"`execSync(`git log --format=\\\"%H\\\" ${maxCountArg} ${path}`.trim());`\",\n      \"confidence\": 0.9,\n      \"cwe\": \"CWE-184: Integer Overflow or Wraparound\"\n    },\n    {\n      \"file\": \"packages/core/src/ci-environment/git.ts\",\n      \"line\": 162,\n      \"severity\": \"medium\",\n      \"rule_id\": \"N+1_queries\",\n      \"message\": \"String concatenation inside a function call can be inefficient.\",\n      \"evidence\": \"`execSync(`git fetch --depth=${limit} origin ${input.sha}`,);`\",\n      \"confidence\": 0.9,\n      \"cwe\": \"CWE-184: Integer Overflow or Wraparound\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T22:56:19.09834Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 110781433000,
+     "load_duration": 107215700,
+     "prompt_eval_count": 1156,
+     "prompt_eval_duration": 3283402500,
+     "eval_count": 367,
+     "eval_duration": 38130240400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea3a-0ce9-7d82-abd0-52fa68046289-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1156,
+     "output_tokens": 367,
+     "total_tokens": 1523
+    }
+   }
+  }
+ ]
+}

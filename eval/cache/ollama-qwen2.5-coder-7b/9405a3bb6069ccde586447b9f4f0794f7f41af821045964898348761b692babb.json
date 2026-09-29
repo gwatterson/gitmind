@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T22:04:56+00:00",
+ "elapsed_seconds": 90.922,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"lib/adapters/http.js\",\n      \"line\": 147,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_type_hints\",\n      \"message\": \"Missing type hints for function parameters and return values.\",\n      \"evidence\": \"function normalizeProxyProtocol(protocol) {\"\n    },\n    {\n      \"file\": \"lib/adapters/http.js\",\n      \"line\": 147,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_docstring\",\n      \"message\": \"Missing docstring for function.\",\n      \"evidence\": \"function normalizeProxyProtocol(protocol) {\"\n    },\n    {\n      \"file\": \"lib/adapters/http.js\",\n      \"line\": 147,\n      \"severity\": \"medium\",\n      \"rule_id\": \"complex_function\",\n      \"message\": \"Function is too complex and deeply nested.\",\n      \"evidence\": \"function normalizeProxyProtocol(protocol) {\"\n    },\n    {\n      \"file\": \"lib/adapters/http.js\",\n      \"line\": 147,\n      \"severity\": \"medium\",\n      \"rule_id\": \"duplicated_logic\",\n      \"message\": \"Duplicated logic for handling 'http' and 'https'.\",\n      \"evidence\": \"if (normalized === 'http' || normalized === 'https') {\"\n    },\n    {\n      \"file\": \"lib/adapters/http.js\",\n      \"line\": 147,\n      \"severity\": \"medium\",\n      \"rule_id\": \"misleading_names\",\n      \"message\": \"Misleading function name, as it only normalizes the protocol if it's 'http' or 'https'.\",\n      \"evidence\": \"function normalizeProxyProtocol(protocol) {\"\n    },\n    {\n      \"file\": \"lib/adapters/http.js\",\n      \"line\": 147,\n      \"severity\": \"medium\",\n      \"rule_id\": \"unused_variables\",\n      \"message\": \"Unused variable 'location'.\",\n      \"evidence\": \"var location = url.parse(options.path).pathname;\"\n    },\n    {\n      \"file\": \"lib/adapters/http.js\",\n      \"line\": 147,\n      \"severity\": \"medium\",\n      \"rule_id\": \"dead_code\",\n      \"message\": \"Dead code after the function definition.\",\n      \"evidence\": \"function normalizeProxyProtocol(protocol) {\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T22:04:56.4928874Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 90639059600,
+     "load_duration": 5499810700,
+     "prompt_eval_count": 1378,
+     "prompt_eval_duration": 11349405700,
+     "eval_count": 511,
+     "eval_duration": 50239838100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea0b-51fd-7971-a878-f2ed6626a545-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1378,
+     "output_tokens": 511,
+     "total_tokens": 1889
+    }
+   }
+  }
+ ]
+}

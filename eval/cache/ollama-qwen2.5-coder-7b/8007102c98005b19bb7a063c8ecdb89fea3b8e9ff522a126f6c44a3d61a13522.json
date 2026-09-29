@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:27:04+00:00",
+ "elapsed_seconds": 54.719,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/notifications/client.ts\",\n      \"line\": 7,\n      \"severity\": \"low\",\n      \"rule_id\": \"fetch-notifications-async\",\n      \"message\": \"The fetchNotifications function is an async function but does not handle errors properly.\",\n      \"evidence\": \"    7 + export async function fetchNotifications(userId: string): Promise<Notification[]> {\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:27:04.937317Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 54463496300,
+     "load_duration": 114490300,
+     "prompt_eval_count": 581,
+     "prompt_eval_duration": 2615151200,
+     "eval_count": 97,
+     "eval_duration": 8168737400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eac4-f022-7920-8be2-c97e581618d9-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 581,
+     "output_tokens": 97,
+     "total_tokens": 678
+    }
+   }
+  }
+ ]
+}

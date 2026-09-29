@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:07:13+00:00",
+ "elapsed_seconds": 122.656,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"litellm/llms/litellm_proxy/skills/prompt_injection.py\",\n            \"line\": 107,\n            \"severity\": \"medium\",\n            \"rule_id\": \"SimplificationIssue\",\n            \"message\": \"The condition `if clean_path:` is redundant because it's checked again in the next line.\",\n            \"evidence\": \"+                        if clean_path:\\n+                            files[clean_path] = zf.read(name)\",\n            \"confidence\": 1,\n            \"cwe\": null\n        },\n        {\n            \"file\": \"litellm/llms/litellm_proxy/skills/sandbox_executor.py\",\n            \"line\": 99,\n            \"severity\": \"medium\",\n            \"rule_id\": \"SimplificationIssue\",\n            \"message\": \"The condition `if not local_path.startswith(tmpdir_abs + os.sep):` is redundant because it's checked again in the next line.\",\n            \"evidence\": \"+                         if not local_path.startswith(tmpdir_abs + os.sep):\\n+                             verbose_logger.warning(\\n+                                 f\\\"SkillsSandboxExecutor: Skipping file with invalid path: {path}\\\"\\n+                             )\\n+                             continue\",\n            \"confidence\": 1,\n            \"cwe\": null\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:07:13.3402119Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 122396312700,
+     "load_duration": 61511100,
+     "prompt_eval_count": 992,
+     "prompt_eval_duration": 5317657700,
+     "eval_count": 284,
+     "eval_duration": 32578582300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9d5-fe18-7233-979d-82fc094de1c9-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 992,
+     "output_tokens": 284,
+     "total_tokens": 1276
+    }
+   }
+  }
+ ]
+}

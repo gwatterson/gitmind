@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T23:12:57+00:00",
+ "elapsed_seconds": 79.922,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"mlflow/statsmodels/__init__.py\",\n      \"line\": 305,\n      \"severity\": \"low\",\n      \"rule_id\": \"unused-imports\",\n      \"message\": \"Unused import statements removed.\",\n      \"evidence\": \"- from mlflow.environment_variables import MLFLOW_ALLOW_PICKLE_DESERIALIZATION\\n- from mlflow.utils.databricks_utils import (\\n-     is_in_databricks_model_serving_environment,\\n-     is_in_databricks_runtime,\\n- )\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T23:12:57.6789589Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 79673366500,
+     "load_duration": 99157800,
+     "prompt_eval_count": 865,
+     "prompt_eval_duration": 7698808300,
+     "eval_count": 124,
+     "eval_duration": 13012239400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea49-c320-7092-9596-47a4bd79c904-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 865,
+     "output_tokens": 124,
+     "total_tokens": 989
+    }
+   }
+  }
+ ]
+}

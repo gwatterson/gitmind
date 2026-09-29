@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:12:22+00:00",
+ "elapsed_seconds": 46.375,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"backend/open_webui/main.py\",\n            \"line\": 1293,\n            \"severity\": \"medium\",\n            \"rule_id\": \"N+1_queries\",\n            \"message\": \"The code makes an API call inside a loop, which can lead to N+1 queries.\",\n            \"evidence\": \"-                     if target_message and (\\n-                         target_message.channel_id != channel.id\\n-                         # Write access is not authorship — block cross-member edits.\\n-                         or (user.role != 'admin' and target_message.user_id != user.id)\\n-                     ):\",\n            \"confidence\": 1,\n            \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:12:22.0200365Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 46115936300,
+     "load_duration": 60979400,
+     "prompt_eval_count": 798,
+     "prompt_eval_duration": 4712409000,
+     "eval_count": 177,
+     "eval_duration": 17364003900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9db-dde7-7ee2-bd9e-630e94924ad3-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 798,
+     "output_tokens": 177,
+     "total_tokens": 975
+    }
+   }
+  }
+ ]
+}

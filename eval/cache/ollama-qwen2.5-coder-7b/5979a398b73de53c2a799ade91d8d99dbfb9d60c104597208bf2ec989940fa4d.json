@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:43:54+00:00",
+ "elapsed_seconds": 61.328,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/services/accounts.py\",\n            \"line\": 7,\n            \"severity\": \"high\",\n            \"rule_id\": \"MD5\",\n            \"message\": \"Using MD5 for password hashing is insecure.\",\n            \"evidence\": \"return hashlib.md5(password.encode()).hexdigest()\"\n        },\n        {\n            \"file\": \"app/services/accounts.py\",\n            \"line\": 13,\n            \"severity\": \"medium\",\n            \"rule_id\": \"NoneCheck\",\n            \"message\": \"Missing error handling for database operations.\",\n            \"evidence\": \"db.session.add(account)\\ndb.session.commit()\"\n        },\n        {\n            \"file\": \"app/services/accounts.py\",\n            \"line\": 19,\n            \"severity\": \"medium\",\n            \"rule_id\": \"NoneCheck\",\n            \"message\": \"Missing error handling for password verification.\",\n            \"evidence\": \"return account.password_hash == hash_password(password)\"\n        },\n        {\n            \"file\": \"app/services/accounts.py\",\n            \"line\": 23,\n            \"severity\": \"low\",\n            \"rule_id\": \"UnusedFunction\",\n            \"message\": \"The function 'avatar_checksum' is not used.\",\n            \"evidence\": \"def avatar_checksum(data: bytes) -> str:\\n    return hashlib.sha256(data).hexdigest()\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:43:54.8656852Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 61059789400,
+     "load_duration": 94727600,
+     "prompt_eval_count": 684,
+     "prompt_eval_duration": 3047503000,
+     "eval_count": 289,
+     "eval_duration": 25737423800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9f8-8567-7b91-bc93-43d7f3235ef6-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 684,
+     "output_tokens": 289,
+     "total_tokens": 973
+    }
+   }
+  }
+ ]
+}

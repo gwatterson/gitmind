@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T22:19:35+00:00",
+ "elapsed_seconds": 128.329,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"source/core/Ky.ts\",\n      \"line\": 268,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"The `await response.text()` call can throw an error if the response cannot be read.\",\n      \"evidence\": \"+                const text = await response.text();\"\n    },\n    {\n      \"file\": \"source/core/Ky.ts\",\n      \"line\": 274,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"The `JSON.parse(text)` call can throw an error if the text is not valid JSON.\",\n      \"evidence\": \"+                return JSON.parse(text);\"\n    },\n    {\n      \"file\": \"source/core/Ky.ts\",\n      \"line\": 543,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"The `await response.text()` call can throw an error if the response cannot be read.\",\n      \"evidence\": \"+                const text = await response.text();\"\n    },\n    {\n      \"file\": \"source/core/Ky.ts\",\n      \"line\": 547,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"The `JSON.parse(text)` call can throw an error if the text is not valid JSON.\",\n      \"evidence\": \"+                return JSON.parse(text);\"\n    },\n    {\n      \"file\": \"source/types/ResponsePromise.ts\",\n      \"line\": 47,\n      \"severity\": \"info\",\n      \"rule_id\": \"type_hint_change\",\n      \"message\": \"The type hint for the `.json()` method has changed from `JsonType | undefined` to `JsonType`. This might break existing code that relies on the possibility of getting `undefined`.\",\n      \"evidence\": \"-        <JsonType = T>(): Promise<JsonType | undefined>;\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T22:19:35.8923814Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 128039612400,
+     "load_duration": 99074200,
+     "prompt_eval_count": 1281,
+     "prompt_eval_duration": 3412094700,
+     "eval_count": 432,
+     "eval_duration": 46408604200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea18-2b1c-7563-bc83-7f68e919ae92-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1281,
+     "output_tokens": 432,
+     "total_tokens": 1713
+    }
+   }
+  }
+ ]
+}

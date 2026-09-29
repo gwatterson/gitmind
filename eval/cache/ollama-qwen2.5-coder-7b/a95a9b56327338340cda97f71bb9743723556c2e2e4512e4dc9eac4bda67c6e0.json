@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T20:55:34+00:00",
+ "elapsed_seconds": 79.578,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"packages/@dicebear/core/src/utils/svg.ts\",\n      \"line\": 78,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_type_hints\",\n      \"message\": \"Missing type hints for function parameters and return type.\",\n      \"evidence\": \"export function addRotate(result: StyleCreateResult, rotate: number) {\"\n    },\n    {\n      \"file\": \"packages/@dicebear/initials/src/index.ts\",\n      \"line\": 38,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_type_hints\",\n      \"message\": \"Missing type hints for function parameters and return type.\",\n      \"evidence\": \"const svg = [\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T20:55:34.6390243Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 79307268800,
+     "load_duration": 111823000,
+     "prompt_eval_count": 801,
+     "prompt_eval_duration": 5056629900,
+     "eval_count": 165,
+     "eval_duration": 19422650900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9cb-fd0f-7691-adc6-0291f4d1a143-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 801,
+     "output_tokens": 165,
+     "total_tokens": 966
+    }
+   }
+  }
+ ]
+}

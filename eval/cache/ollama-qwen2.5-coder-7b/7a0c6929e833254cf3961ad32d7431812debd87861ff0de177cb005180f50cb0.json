@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T23:05:55+00:00",
+ "elapsed_seconds": 14.547,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"lemur/authorities/views.py\",\n            \"line\": 235,\n            \"severity\": \"low\",\n            \"rule_id\": \"Simplification\",\n            \"message\": \"The `validators.is_valid_owner` function is called without any context or caching, which might be redundant if it's called multiple times.\",\n            \"evidence\": \"if not validators.is_valid_owner(data[\\\"owner\\\"]):\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T23:05:55.9618212Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 14543076500,
+     "load_duration": 102720900,
+     "prompt_eval_count": 643,
+     "prompt_eval_duration": 2146109900,
+     "eval_count": 105,
+     "eval_duration": 9759317900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea44-5328-7b00-be5d-041ceb601946-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 643,
+     "output_tokens": 105,
+     "total_tokens": 748
+    }
+   }
+  }
+ ]
+}

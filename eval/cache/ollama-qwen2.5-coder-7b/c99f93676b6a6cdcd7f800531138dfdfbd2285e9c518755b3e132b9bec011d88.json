@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T20:37:20+00:00",
+ "elapsed_seconds": 136.969,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/jobs/export_orders.py\",\n            \"line\": 14,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"Error handling is missing for file operations.\",\n            \"evidence\": \"return yaml.safe_load(f) or {}\",\n            \"confidence\": 0.9\n        },\n        {\n            \"file\": \"app/jobs/export_orders.py\",\n            \"line\": 26,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"Error handling is missing for database operations.\",\n            \"evidence\": \"rows = conn.execute(...).fetchall()\",\n            \"confidence\": 0.9\n        },\n        {\n            \"file\": \"app/jobs/export_orders.py\",\n            \"line\": 32,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"Error handling is missing for file writing.\",\n            \"evidence\": \"with target.open('w', encoding='utf-8') as f:\",\n            \"confidence\": 0.9\n        },\n        {\n            \"file\": \"app/jobs/export_orders.py\",\n            \"line\": 34,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"Error handling is missing for subprocess operations.\",\n            \"evidence\": \"subprocess.run(['gzip', '--force', str(target)], check=True)\",\n            \"confidence\": 0.9\n        },\n        {\n            \"file\": \"app/jobs/export_orders.py\",\n            \"line\": 18,\n            \"severity\": \"medium\",\n            \"rule_id\": \"misleading_names\",\n            \"message\": \"The function name 'export_path' might be misleading as it does not export anything.\",\n            \"evidence\": \"def export_path(name: str) -> Path:\",\n            \"confidence\": 0.7\n        },\n        {\n            \"file\": \"app/jobs/export_orders.py\",\n            \"line\": 24,\n            \"severity\": \"medium\",\n            \"rule_id\": \"duplicated_logic\",\n            \"message\": \"The logic for generating the target file path is duplicated in 'export_path' and 'export_orders'.\",\n            \"evidence\": \"target = export_path(name)\\nwith target.open('w', encoding='utf-8') as f:\",\n            \"confidence\": 0.7\n        },\n        {\n            \"file\": \"app/jobs/export_orders.py\",\n            \"line\": 24,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_type_hints\",\n            \"message\": \"Type hints are missing for function parameters and return types.\",\n            \"evidence\": \"def export_orders(customer_id: int, name: str) -> Path:\",\n            \"confidence\": 0.7\n        },\n        {\n            \"file\": \"app/jobs/export_orders.py\",\n            \"line\": 24,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_docstrings\",\n            \"message\": \"Docstrings are missing for public functions.\",\n            \"evidence\": \"def export_orders(customer_id: int, name: str) -> Path:\",\n            \"confidence\": 0.7\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T20:37:20.976604Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 136667989700,
+     "load_duration": 5754411100,
+     "prompt_eval_count": 902,
+     "prompt_eval_duration": 5176243400,
+     "eval_count": 700,
+     "eval_duration": 75293123000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9ba-6ccd-7f83-b1ee-15f7ab6ea6a4-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 902,
+     "output_tokens": 700,
+     "total_tokens": 1602
+    }
+   }
+  }
+ ]
+}

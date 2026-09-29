@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:05:10+00:00",
+ "elapsed_seconds": 90.86,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"db_sqlite.py\",\n            \"line\": 748,\n            \"severity\": \"medium\",\n            \"rule_id\": \"CWE-20\",\n            \"message\": \"The code no longer checks for path traversal vulnerabilities, which could allow attackers to access or manipulate files outside the intended directory.\",\n            \"evidence\": \"-     if filename in ('.', '..') or os.path.basename(filename) != filename:\\n-         return False, f'Refusing unsafe database filename: {filename!r}'\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:05:10.6078088Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 90598075000,
+     "load_duration": 60866200,
+     "prompt_eval_count": 677,
+     "prompt_eval_duration": 2966295100,
+     "eval_count": 125,
+     "eval_duration": 13777430700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9d4-9ae3-7172-bf2f-1a84fb813df5-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 677,
+     "output_tokens": 125,
+     "total_tokens": 802
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T22:55:28+00:00",
+ "elapsed_seconds": 60.578,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"packages/core/src/ci-environment/git.ts\",\n      \"line\": 67,\n      \"severity\": \"critical\",\n      \"rule_id\": \"CWE-88\",\n      \"message\": \"OS command injection vulnerability due to string interpolation in `execSync`.\",\n      \"evidence\": \"`return execSync(`git merge-base ${input.head} ${input.base}`).toString().trim();`\",\n      \"cwe\": \"CWE-88\"\n    },\n    {\n      \"file\": \"packages/core/src/ci-environment/git.ts\",\n      \"line\": 89,\n      \"severity\": \"critical\",\n      \"rule_id\": \"CWE-88\",\n      \"message\": \"OS command injection vulnerability due to string interpolation in `execSync`.\",\n      \"evidence\": \"`execSync(`git fetch --force --update-head-ok --depth ${input.depth} origin ${input.ref}:${input.target}`,);`\",\n      \"cwe\": \"CWE-88\"\n    },\n    {\n      \"file\": \"packages/core/src/ci-environment/git.ts\",\n      \"line\": 154,\n      \"severity\": \"critical\",\n      \"rule_id\": \"CWE-88\",\n      \"message\": \"OS command injection vulnerability due to string interpolation in `execSync`.\",\n      \"evidence\": \"`const raw = execSync(`git log --format=\\\"%H\\\" ${maxCountArg} ${path}`.trim());`\",\n      \"cwe\": \"CWE-88\"\n    },\n    {\n      \"file\": \"packages/core/src/ci-environment/git.ts\",\n      \"line\": 162,\n      \"severity\": \"critical\",\n      \"rule_id\": \"CWE-88\",\n      \"message\": \"OS command injection vulnerability due to string interpolation in `execSync`.\",\n      \"evidence\": \"`execSync(`git fetch --depth=${limit} origin ${input.sha}`,);`\",\n      \"cwe\": \"CWE-88\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T22:55:28.6335638Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 60579364200,
+     "load_duration": 114956000,
+     "prompt_eval_count": 1186,
+     "prompt_eval_duration": 3352936800,
+     "eval_count": 439,
+     "eval_duration": 46238452700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea3a-0cd4-7360-bbc7-0eebf913459d-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1186,
+     "output_tokens": 439,
+     "total_tokens": 1625
+    }
+   }
+  }
+ ]
+}

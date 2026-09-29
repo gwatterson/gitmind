@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T20:39:28+00:00",
+ "elapsed_seconds": 91.906,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/repositories/users.py\",\n            \"line\": 24,\n            \"severity\": \"high\",\n            \"rule_id\": \"N+1_queries\",\n            \"message\": \"The search method constructs a query with an unbounded number of results.\",\n            \"evidence\": \"query = f\\\"SELECT id, email, name FROM users WHERE name LIKE '%{term}%' LIMIT {limit}\\\"\"\n        },\n        {\n            \"file\": \"app/repositories/users.py\",\n            \"line\": 24,\n            \"severity\": \"high\",\n            \"rule_id\": \"unbounded_queries\",\n            \"message\": \"The search method does not limit the number of results, which can lead to excessive memory usage.\",\n            \"evidence\": \"query = f\\\"SELECT id, email, name FROM users WHERE name LIKE '%{term}%' LIMIT {limit}\\\"\"\n        },\n        {\n            \"file\": \"app/routes/users.py\",\n            \"line\": 18,\n            \"severity\": \"high\",\n            \"rule_id\": \"N+1_queries\",\n            \"message\": \"The search_users route constructs a query with an unbounded number of results.\",\n            \"evidence\": \"users = UserRepository(get_connection()).search(term)\"\n        },\n        {\n            \"file\": \"app/routes/users.py\",\n            \"line\": 18,\n            \"severity\": \"high\",\n            \"rule_id\": \"unbounded_queries\",\n            \"message\": \"The search_users route does not limit the number of results, which can lead to excessive memory usage.\",\n            \"evidence\": \"users = UserRepository(get_connection()).search(term)\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T20:39:28.8289945Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 91649943400,
+     "load_duration": 61050500,
+     "prompt_eval_count": 864,
+     "prompt_eval_duration": 2800640300,
+     "eval_count": 351,
+     "eval_duration": 35457986200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9bd-1032-7cf3-a37e-a521ec3603e3-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 864,
+     "output_tokens": 351,
+     "total_tokens": 1215
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T22:58:52+00:00",
+ "elapsed_seconds": 26.812,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"changedetectionio/flask_app.py\",\n            \"line\": 715,\n            \"severity\": \"medium\",\n            \"rule_id\": \"CWE-23\",\n            \"message\": \"The regular expression allows characters that could be used for path traversal (e.g., '.', '..').\",\n            \"evidence\": \"+        group = re.sub(r'[^\\u0000-\\u007F\\u0080-\\uFFFF]+', '', group.lower())\"\n        },\n        {\n            \"file\": \"changedetectionio/flask_app.py\",\n            \"line\": 716,\n            \"severity\": \"medium\",\n            \"rule_id\": \"CWE-23\",\n            \"message\": \"The regular expression allows characters that could be used for path traversal (e.g., '.', '..').\",\n            \"evidence\": \"+        filename = re.sub(r'[^\\u0000-\\u007F\\u0080-\\uFFFF]+', '', filename.lower())\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T22:58:52.8398364Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 26804503400,
+     "load_duration": 87111500,
+     "prompt_eval_count": 709,
+     "prompt_eval_duration": 1013686300,
+     "eval_count": 231,
+     "eval_duration": 20221471200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea3d-ae70-7073-bb01-2a89e9a2749a-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 709,
+     "output_tokens": 231,
+     "total_tokens": 940
+    }
+   }
+  }
+ ]
+}

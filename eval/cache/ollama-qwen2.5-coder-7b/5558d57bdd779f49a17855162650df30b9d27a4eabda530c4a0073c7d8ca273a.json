@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:29:00+00:00",
+ "elapsed_seconds": 16.563,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/auth/tokens.ts\",\n      \"line\": 3,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-798\",\n      \"message\": \"Hardcoded secret in the code.\",\n      \"evidence\": \"\\\"gitmind-demo-signing-secret-please-change\\\"\",\n      \"cwe\": \"CWE-798: Use of Hard-coded Credentials\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:29:00.1745526Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 16297699400,
+     "load_duration": 102467900,
+     "prompt_eval_count": 621,
+     "prompt_eval_duration": 2527138200,
+     "eval_count": 100,
+     "eval_duration": 8700881700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eac7-4764-7520-ae6a-c7be0e49f778-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 621,
+     "output_tokens": 100,
+     "total_tokens": 721
+    }
+   }
+  }
+ ]
+}

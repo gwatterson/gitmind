@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:22:14+00:00",
+ "elapsed_seconds": 53.391,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/admin/git.js\",\n      \"line\": 10,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1_queries\",\n      \"message\": \"The use of `exec` inside a route handler can lead to N+1 queries if the route is called multiple times.\",\n      \"evidence\": \"exec(`git -C ${REPO_DIR} log --oneline -n 20 ${branch}`, (err, stdout) => {\",\n      \"confidence\": 1,\n      \"cwe\": \"CWE-78: OS Command Injection\"\n    },\n    {\n      \"file\": \"src/routes/admin/git.js\",\n      \"line\": 10,\n      \"severity\": \"high\",\n      \"rule_id\": \"blocking_I/O_in_async_code\",\n      \"message\": \"The `exec` function is a blocking I/O operation and should not be used in an async context.\",\n      \"evidence\": \"exec(`git -C ${REPO_DIR} log --oneline -n 20 ${branch}`, (err, stdout) => {\",\n      \"confidence\": 1,\n      \"cwe\": \"CWE-397: Improper Resource Shutdown or Release\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:22:14.048557Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 53134995700,
+     "load_duration": 62032700,
+     "prompt_eval_count": 679,
+     "prompt_eval_duration": 3063614400,
+     "eval_count": 273,
+     "eval_duration": 25550732800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9e4-cb1b-7423-83db-af0a7c1c8b44-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 679,
+     "output_tokens": 273,
+     "total_tokens": 952
+    }
+   }
+  }
+ ]
+}

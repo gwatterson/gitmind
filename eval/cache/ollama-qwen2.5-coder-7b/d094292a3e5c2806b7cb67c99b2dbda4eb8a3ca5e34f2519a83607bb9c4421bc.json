@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T22:05:25+00:00",
+ "elapsed_seconds": 119.672,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"lib/adapters/http.js\",\n      \"line\": 157,\n      \"severity\": \"low\",\n      \"rule_id\": \"string_concatenation_in_loop\",\n      \"message\": \"String concatenation inside a conditional block.\",\n      \"evidence\": \"return normalized + ':';\"\n    },\n    {\n      \"file\": \"lib/adapters/http.js\",\n      \"line\": 226,\n      \"severity\": \"low\",\n      \"rule_id\": \"string_concatenation_in_loop\",\n      \"message\": \"String concatenation inside a conditional block.\",\n      \"evidence\": \"options.protocol = proxyProtocol;\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T22:05:25.2525879Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 119398760100,
+     "load_duration": 5500357600,
+     "prompt_eval_count": 1382,
+     "prompt_eval_duration": 11117406600,
+     "eval_count": 149,
+     "eval_duration": 14260513700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea0b-5218-77a0-b503-6ef3f0fef5d3-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1382,
+     "output_tokens": 149,
+     "total_tokens": 1531
+    }
+   }
+  }
+ ]
+}

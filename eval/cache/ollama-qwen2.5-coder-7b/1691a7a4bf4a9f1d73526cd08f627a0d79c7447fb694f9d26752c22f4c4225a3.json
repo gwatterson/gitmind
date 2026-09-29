@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T23:33:32+00:00",
+ "elapsed_seconds": 178.844,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/middleware/jwk/jwk.ts\",\n      \"line\": 29,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_type_hints\",\n      \"message\": \"Missing type hints for parameters and return types.\",\n      \"evidence\": \"@param {string} [options.cookie] - If this value is set, then the value is retrieved from the cookie header using that value as a key, which is then validated as a token.\\n@returns {MiddlewareHandler} The middleware handler function.\"\n    },\n    {\n      \"file\": \"src/middleware/jwk/jwk.ts\",\n      \"line\": 182,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_type_hints\",\n      \"message\": \"Missing type hints for parameters and return types.\",\n      \"evidence\": \"function createUnauthorizedResponse(opts: { ctx: Context; error: string; errDescription: string; statusText?: string; realm?: string }): Response {\"\n    },\n    {\n      \"file\": \"src/middleware/jwk/jwk.ts\",\n      \"line\": 182,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_docstrings\",\n      \"message\": \"Missing docstring for the function.\",\n      \"evidence\": \"function createUnauthorizedResponse(opts: { ctx: Context; error: string; errDescription: string; statusText?: string; realm?: string }): Response {\"\n    },\n    {\n      \"file\": \"src/middleware/jwk/jwk.ts\",\n      \"line\": 182,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_type_hints\",\n      \"message\": \"Missing type hints for parameters and return types.\",\n      \"evidence\": \"function createUnauthorizedResponse(opts: { ctx: Context; error: string; errDescription: string; statusText?: string; realm?: string }): Response {\"\n    },\n    {\n      \"file\": \"src/middleware/jwk/jwk.ts\",\n      \"line\": 182,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_docstrings\",\n      \"message\": \"Missing docstring for the function.\",\n      \"evidence\": \"function createUnauthorizedResponse(opts: { ctx: Context; error: string; errDescription: string; statusText?: string; realm?: string }): Response {\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T23:33:32.524218Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 178573085700,
+     "load_duration": 112608600,
+     "prompt_eval_count": 2306,
+     "prompt_eval_duration": 5995491300,
+     "eval_count": 508,
+     "eval_duration": 59551219900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea5b-184c-75e3-bfa1-050471328281-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 2306,
+     "output_tokens": 508,
+     "total_tokens": 2814
+    }
+   }
+  }
+ ]
+}

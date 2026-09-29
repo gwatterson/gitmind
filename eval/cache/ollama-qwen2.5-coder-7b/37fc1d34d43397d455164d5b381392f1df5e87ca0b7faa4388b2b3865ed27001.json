@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T20:51:20+00:00",
+ "elapsed_seconds": 44.344,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"source/platforms/git/localGetFileAtSHA.ts\",\n      \"line\": 8,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-78\",\n      \"message\": \"OS command injection vulnerability due to the use of user-supplied input in a shell command.\",\n      \"evidence\": \"const call = `git show ${sha}:\\\"${path}\\\"`\",\n      \"cwe\": \"CWE-78: OS Command Injection\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T20:51:20.5357598Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 44073594600,
+     "load_duration": 67656300,
+     "prompt_eval_count": 766,
+     "prompt_eval_duration": 3258679400,
+     "eval_count": 117,
+     "eval_duration": 11599202500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9c8-a629-7d43-8d66-0681f78e8371-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 766,
+     "output_tokens": 117,
+     "total_tokens": 883
+    }
+   }
+  }
+ ]
+}

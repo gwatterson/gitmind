@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:23:05+00:00",
+ "elapsed_seconds": 21.188,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/session.js\",\n      \"line\": 7,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-89\",\n      \"message\": \"Untrusted input 'next' is used in a redirect without validation.\",\n      \"evidence\": \"const next = req.query.next || \\\"/\\\";\",\n      \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:23:05.9297591Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 20929555700,
+     "load_duration": 59367700,
+     "prompt_eval_count": 576,
+     "prompt_eval_duration": 5006016500,
+     "eval_count": 115,
+     "eval_duration": 10935099300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9e6-1386-7ca2-9a0f-6a496848d779-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 576,
+     "output_tokens": 115,
+     "total_tokens": 691
+    }
+   }
+  }
+ ]
+}

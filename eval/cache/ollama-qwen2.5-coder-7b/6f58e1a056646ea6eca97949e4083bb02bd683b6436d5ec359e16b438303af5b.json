@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:11:06+00:00",
+ "elapsed_seconds": 62.375,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"backend/open_webui/models/messages.py\",\n            \"line\": 332,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"The function does not handle the case where `message` is None.\",\n            \"evidence\": \"if not message:\",\n            \"confidence\": 1.0\n        },\n        {\n            \"file\": \"backend/open_webui/routers/channels.py\",\n            \"line\": 1132,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"The function does not handle the case where `ref` is None.\",\n            \"evidence\": \"if not ref or ref.channel_id != channel.id:\",\n            \"confidence\": 1.0\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:11:06.3191445Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 62098992900,
+     "load_duration": 65404700,
+     "prompt_eval_count": 786,
+     "prompt_eval_duration": 4716361100,
+     "eval_count": 183,
+     "eval_duration": 17814527400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9da-77a4-7bb2-afad-1dfce7326480-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 786,
+     "output_tokens": 183,
+     "total_tokens": 969
+    }
+   }
+  }
+ ]
+}
