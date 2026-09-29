@@ -1,0 +1,37 @@
+{
+ "provider": "gemini",
+ "model": "gemini-2.5-flash",
+ "created_at": "2026-09-29T07:37:31+00:00",
+ "elapsed_seconds": 7.281,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"app/repositories/users.py\",\n      \"line\": 23,\n      \"severity\": \"critical\",\n      \"rule_id\": \"sql-injection\",\n      \"message\": \"The `search` method constructs an SQL query by directly embedding the `term` parameter using an f-string. This allows an attacker to inject malicious SQL code.\",\n      \"suggestion\": \"Use parameterized queries (e.g., `self.conn.execute(\\\"... WHERE name LIKE ?\\\", (f\\\"%{term}%\\\",))`) to prevent SQL injection.\",\n      \"evidence\": \"query = f\\\"SELECT id, email, name FROM users WHERE name LIKE '%{term}%' LIMIT {limit}\\\"\",\n      \"confidence\": 0.9,\n      \"cwe\": \"CWE-89\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "finish_reason": "STOP",
+     "model_name": "gemini-2.5-flash",
+     "safety_ratings": [],
+     "model_provider": "google_genai"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ec18-d1ef-7100-b2cc-c0a11f983223-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1236,
+     "output_tokens": 1482,
+     "total_tokens": 2718,
+     "input_token_details": {
+      "cache_read": 533
+     },
+     "output_token_details": {
+      "reasoning": 1287
+     }
+    }
+   }
+  }
+ ]
+}

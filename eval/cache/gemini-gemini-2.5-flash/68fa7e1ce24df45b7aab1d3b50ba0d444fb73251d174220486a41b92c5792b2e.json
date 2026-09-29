@@ -1,0 +1,37 @@
+{
+ "provider": "gemini",
+ "model": "gemini-2.5-flash",
+ "created_at": "2026-09-29T07:36:13+00:00",
+ "elapsed_seconds": 6.25,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"source/platforms/git/localGetFileAtSHA.ts\",\n      \"line\": 8,\n      \"severity\": \"high\",\n      \"rule_id\": \"os-command-injection\",\n      \"message\": \"The change from `execFile` to `exec` introduces an OS command injection vulnerability. User-controlled input in the `path` variable is directly interpolated into a shell command string, allowing an attacker to execute arbitrary commands.\",\n      \"suggestion\": \"Revert to using `execFile` with an array of arguments, which prevents shell interpretation of arguments. If `exec` must be used, ensure all user-controlled input is rigorously sanitized or escaped for shell metacharacters.\",\n      \"evidence\": \"const call = `git show ${sha}:\\\"${path}\\\"`\",\n      \"confidence\": 0.9,\n      \"cwe\": \"CWE-78\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "finish_reason": "STOP",
+     "model_name": "gemini-2.5-flash",
+     "safety_ratings": [],
+     "model_provider": "google_genai"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ec17-a32f-7e71-9a04-e7832ace356c-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1091,
+     "output_tokens": 1131,
+     "total_tokens": 2222,
+     "input_token_details": {
+      "cache_read": 0
+     },
+     "output_token_details": {
+      "reasoning": 916
+     }
+    }
+   }
+  }
+ ]
+}

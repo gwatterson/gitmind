@@ -1,0 +1,37 @@
+{
+ "provider": "gemini",
+ "model": "gemini-2.5-flash",
+ "created_at": "2026-09-29T07:37:28+00:00",
+ "elapsed_seconds": 3.625,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\"findings\": []}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "finish_reason": "STOP",
+     "model_name": "gemini-2.5-flash",
+     "safety_ratings": [],
+     "model_provider": "google_genai"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ec18-d1da-7fa0-acc3-56389c6e42a6-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1091,
+     "output_tokens": 631,
+     "total_tokens": 1722,
+     "input_token_details": {
+      "cache_read": 0
+     },
+     "output_token_details": {
+      "reasoning": 626
+     }
+    }
+   }
+  }
+ ]
+}

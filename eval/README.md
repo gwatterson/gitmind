@@ -173,6 +173,15 @@ confidence a required field; the verdict stopped relying on confidence (see
 Two clean pull requests out of thirteen are now blocked by a high security false positive:
 the precision of individual findings is the open problem, addressed next by a verifier agent.
 
+### First look at a larger model
+
+A probe with `gemini-2.5-flash` on five cases (two reversed CVEs, a synthetic SQL injection,
+a synthetic clean change and a clean open source pull request), capped at 18 requests to
+stay within the free tier: same three problems found as qwen, 3 false positives instead of
+18, the open source pull request approved with no findings, about 7 seconds per review.
+Five cases are not a result; the full comparison on the test split belongs to the model
+comparison of the next phase.
+
 ## Limitations
 
 - **Precision is a lower bound.** Real code (CVE cases, open source pull requests) can
