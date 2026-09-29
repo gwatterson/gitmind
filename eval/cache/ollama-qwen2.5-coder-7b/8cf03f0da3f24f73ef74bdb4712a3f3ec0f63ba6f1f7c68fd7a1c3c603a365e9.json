@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:21:23+00:00",
+ "elapsed_seconds": 21.953,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"verdicts\": [\n    {\n      \"id\": 0,\n      \"real\": false,\n      \"confidence\": 0.9,\n      \"reason\": \"The token is decoded and verified, so it does not lead to potential security issues.\"\n    },\n    {\n      \"id\": 1,\n      \"real\": false,\n      \"confidence\": 0.9,\n      \"reason\": \"The token is decoded and verified, so it does not lead to potential security issues.\"\n    },\n    {\n      \"id\": 2,\n      \"real\": false,\n      \"confidence\": 0.9,\n      \"reason\": \"The token is decoded and verified, so it does not lead to potential security issues.\"\n    },\n    {\n      \"id\": 3,\n      \"real\": false,\n      \"confidence\": 0.9,\n      \"reason\": \"The token is decoded and verified, so it does not lead to potential security issues.\"\n    },\n    {\n      \"id\": 4,\n      \"real\": false,\n      \"confidence\": 0.9,\n      \"reason\": \"The token is decoded and verified, so it does not lead to potential security issues.\"\n    },\n    {\n      \"id\": 5,\n      \"real\": false,\n      \"confidence\": 0.9,\n      \"reason\": \"The token is decoded and verified, so it does not lead to potential security issues.\"\n    },\n    {\n      \"id\": 6,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The token's expiration is checked in the next step after decoding.\"\n    },\n    {\n      \"id\": 7,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The token's audience is checked in the next step after decoding.\"\n    },\n    {\n      \"id\": 8,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The token's issuer is checked in the next step after decoding.\"\n    },\n    {\n      \"id\": 9,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The token's nonce is checked in the next step after decoding.\"\n    },\n    {\n      \"id\": 10,\n      \"real\": false,\n      \"confidence\": 0.9,\n      \"reason\": \"JWT decoding is performed with verifying the token's signature, so it does not lead to performance issues.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:21:23.6850153Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 21944899900,
+     "load_duration": 52275600,
+     "prompt_eval_count": 1392,
+     "prompt_eval_duration": 548812300,
+     "eval_count": 528,
+     "eval_duration": 9310640000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edc1-462b-7c70-86f4-f8a45143eb70-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1392,
+     "output_tokens": 528,
+     "total_tokens": 1920
+    }
+   }
+  }
+ ]
+}

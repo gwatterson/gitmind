@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T14:59:48+00:00",
+ "elapsed_seconds": 14.484,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"verdicts\": [\n    {\n      \"id\": 0,\n      \"real\": false,\n      \"confidence\": 0.1,\n      \"reason\": \"The `fontSize` parameter is not directly interpolated into a SQL query or shell command, and it is already validated through the use of `escapeXml`, making this finding unlikely to be real.\"\n    },\n    {\n      \"id\": 1,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The `fontSize` parameter is used without type hints, which can lead to runtime errors if it's not a number, as the change does not address this issue.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T14:59:48.8652264Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 14218915000,
+     "load_duration": 79845900,
+     "prompt_eval_count": 676,
+     "prompt_eval_duration": 185656500,
+     "eval_count": 145,
+     "eval_duration": 2640022100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edad-a174-7903-a075-270fa2fb9100-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 676,
+     "output_tokens": 145,
+     "total_tokens": 821
+    }
+   }
+  }
+ ]
+}

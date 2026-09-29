@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:09:16+00:00",
+ "elapsed_seconds": 12.468,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n \"verdicts\": [\n  {\n   \"id\": 0,\n   \"real\": false,\n   \"confidence\": 0.1,\n   \"reason\": \"The code does not use MD5 for password hashing; it uses a custom function that is not specified.\"\n  },\n  {\n   \"id\": 1,\n   \"real\": false,\n   \"confidence\": 0.1,\n   \"reason\": \"The code does not use MD5 for password hashing; it uses a custom function that is not specified.\"\n  },\n  {\n   \"id\": 2,\n   \"real\": true,\n   \"confidence\": 0.9,\n   \"reason\": \"The code stores password hashes without salting, which is less secure.\"\n  },\n  {\n   \"id\": 3,\n   \"real\": false,\n   \"confidence\": 0.1,\n   \"reason\": \"The commit operation does not show any evidence of being part of the change.\"\n  },\n  {\n   \"id\": 4,\n   \"real\": true,\n   \"confidence\": 0.9,\n   \"reason\": \"The password hash is recalculated every time the account is saved, which could be inefficient.\"\n  }\n ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:09:16.5997839Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 12460382700,
+     "load_duration": 71315700,
+     "prompt_eval_count": 930,
+     "prompt_eval_duration": 327328600,
+     "eval_count": 254,
+     "eval_duration": 4694159600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edb6-5309-7b90-86c3-61487a7b1dd4-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 930,
+     "output_tokens": 254,
+     "total_tokens": 1184
+    }
+   }
+  }
+ ]
+}

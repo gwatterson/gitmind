@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:20:25+00:00",
+ "elapsed_seconds": 4.187,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"verdicts\": [\n    {\n      \"id\": 0,\n      \"real\": false,\n      \"confidence\": 0.1,\n      \"reason\": \"The function parameters and return value are already typed with type hints.\"\n    },\n    {\n      \"id\": 1,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"String concatenation inside a loop that builds a large string can be inefficient.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:20:25.9018409Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 4193100000,
+     "load_duration": 98692400,
+     "prompt_eval_count": 575,
+     "prompt_eval_duration": 141316600,
+     "eval_count": 102,
+     "eval_duration": 1812470400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edc0-a9cb-7b62-9818-659ae01d9011-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 575,
+     "output_tokens": 102,
+     "total_tokens": 677
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:05:04+00:00",
+ "elapsed_seconds": 20.047,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n \"verdicts\": [\n  {\n   \"id\": 0,\n   \"real\": true,\n   \"confidence\": 1.0,\n   \"reason\": \"The method `wait_ready` is defined twice in the same class, once as an asynchronous method and once as a synchronous method.\"\n  }\n ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:05:04.2678719Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 19779615800,
+     "load_duration": 182746100,
+     "prompt_eval_count": 853,
+     "prompt_eval_duration": 299574500,
+     "eval_count": 67,
+     "eval_duration": 1224373700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edb2-5bb7-7421-8afd-3187424e34da-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 853,
+     "output_tokens": 67,
+     "total_tokens": 920
+    }
+   }
+  }
+ ]
+}

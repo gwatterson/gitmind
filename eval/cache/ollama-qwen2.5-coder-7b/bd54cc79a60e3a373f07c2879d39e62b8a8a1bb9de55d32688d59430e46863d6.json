@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:06:45+00:00",
+ "elapsed_seconds": 8.859,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"verdicts\": [\n    {\n      \"id\": 0,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The code uses user input (`req.query.next`) directly in a redirect URL without any validation.\"\n    },\n    {\n      \"id\": 1,\n      \"real\": false,\n      \"confidence\": 0.5,\n      \"reason\": \"The variable `next` shadows the built-in JavaScript function `next()`, but this is a style issue and does not affect the security or functionality of the code.\"\n    },\n    {\n      \"id\": 2,\n      \"real\": false,\n      \"confidence\": 0.1,\n      \"reason\": \"String concatenation inside a loop that builds a large string is not applicable here as there is no loop in the provided diff.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:06:45.6222204Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 8853746400,
+     "load_duration": 81969200,
+     "prompt_eval_count": 634,
+     "prompt_eval_duration": 177306600,
+     "eval_count": 182,
+     "eval_duration": 3353769900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edb4-135f-7590-93be-5000ab43c0fb-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 634,
+     "output_tokens": 182,
+     "total_tokens": 816
+    }
+   }
+  }
+ ]
+}

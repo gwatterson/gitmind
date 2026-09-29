@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:20:21+00:00",
+ "elapsed_seconds": 7.062,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"verdicts\": [\n    {\n      \"id\": 0,\n      \"real\": false,\n      \"confidence\": 0.9,\n      \"reason\": \"The code does not directly embed user input in the HTML response; it uses `render_template_string` instead.\"\n    },\n    {\n      \"id\": 1,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The use of `render_template_string` with user input (`name`) can lead to XSS if not properly sanitized.\"\n    },\n    {\n      \"id\": 2,\n      \"real\": false,\n      \"confidence\": 0.9,\n      \"reason\": \"String concatenation inside a loop is not present in the code; it only occurs once.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:20:21.5940761Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 7045951100,
+     "load_duration": 100100100,
+     "prompt_eval_count": 710,
+     "prompt_eval_duration": 211072800,
+     "eval_count": 168,
+     "eval_duration": 2821944500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edc0-8dd2-7fe1-b8e8-5121f0fcb92c-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 710,
+     "output_tokens": 168,
+     "total_tokens": 878
+    }
+   }
+  }
+ ]
+}

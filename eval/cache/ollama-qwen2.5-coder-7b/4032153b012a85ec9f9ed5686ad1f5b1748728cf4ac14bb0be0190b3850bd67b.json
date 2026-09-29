@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:15:36+00:00",
+ "elapsed_seconds": 6.703,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n \"verdicts\": [\n  {\n   \"id\": 0,\n   \"real\": true,\n   \"confidence\": 0.9,\n   \"reason\": \"The file path is opened and used in a file operation without validation or sanitization.\"\n  },\n  {\n   \"id\": 1,\n   \"real\": false,\n   \"confidence\": 0.5,\n   \"reason\": \"The function complexity is not directly related to the changes made in this pull request.\"\n  },\n  {\n   \"id\": 2,\n   \"real\": true,\n   \"confidence\": 0.9,\n   \"reason\": \"A file is opened inside a loop body, which could lead to performance issues if the loop iterates many times.\"\n  }\n ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:15:36.5449723Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 6697287600,
+     "load_duration": 50880800,
+     "prompt_eval_count": 679,
+     "prompt_eval_duration": 188032900,
+     "eval_count": 159,
+     "eval_duration": 2726322300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edbc-35b5-78d1-a631-0b22a46dc2e0-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 679,
+     "output_tokens": 159,
+     "total_tokens": 838
+    }
+   }
+  }
+ ]
+}

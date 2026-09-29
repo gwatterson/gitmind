@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:16:57+00:00",
+ "elapsed_seconds": 29.719,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"verdicts\": [\n    {\n      \"id\": 0,\n      \"real\": false,\n      \"confidence\": 0.1,\n      \"reason\": \"The code does not merge the `scope` dictionary; it adds a new key-value pair.\"\n    },\n    {\n      \"id\": 1,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The tracer provider might be None, which could lead to a NoOpTracerProvider being used.\"\n    },\n    {\n      \"id\": 2,\n      \"real\": false,\n      \"confidence\": 0.1,\n      \"reason\": \"The URL is checked for `None` before accessing its attributes.\"\n    },\n    {\n      \"id\": 3,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The exception handling block does not re-raise the exception, which could lead to it being swallowed.\"\n    },\n    {\n      \"id\": 4,\n      \"real\": false,\n      \"confidence\": 0.1,\n      \"reason\": \"The scope deletion is attempted, but the key 'starlette.opentelemetry' is always added before this point.\"\n    },\n    {\n      \"id\": 5,\n      \"real\": false,\n      \"confidence\": 0.1,\n      \"reason\": \"The scope deletion is attempted, but the key 'starlette.opentelemetry' is always added before this point.\"\n    },\n    {\n      \"id\": 6,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The `any(pattern.search(str(url)) for pattern in self._excluded_urls)` call inside the loop over `self._excluded_urls` is an N+1 query.\"\n    },\n    {\n      \"id\": 7,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The `any(pattern.search(str(url)) for pattern in self._excluded_urls)` call inside the loop over `self._excluded_urls` is an N+1 query.\"\n    },\n    {\n      \"id\": 8,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The `any(pattern.search(str(url)) for pattern in self._excluded_urls)` call inside the loop over `self._excluded_urls` is an N+1 query.\"\n    },\n    {\n      \"id\": 9,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The `any(pattern.search(str(url)) for pattern in self._excluded_urls)` call inside the loop over `self._excluded_urls` is an N+1 query.\"\n    },\n    {\n      \"id\": 10,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The `any(pattern.search(str(url)) for pattern in self._excluded_urls)` call inside the loop over `self._excluded_urls` is an N+1 query.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:16:57.7399501Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 29704162700,
+     "load_duration": 50516200,
+     "prompt_eval_count": 3603,
+     "prompt_eval_duration": 1765569000,
+     "eval_count": 652,
+     "eval_duration": 12339543300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edbd-1902-7f30-ab84-d3161f85ddba-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 3603,
+     "output_tokens": 652,
+     "total_tokens": 4255
+    }
+   }
+  }
+ ]
+}

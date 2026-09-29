@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:17:37+00:00",
+ "elapsed_seconds": 26.219,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"verdicts\": [\n    {\n      \"id\": 0,\n      \"real\": false,\n      \"confidence\": 0.1,\n      \"reason\": \"The code does not show any database or API call inside a loop over query results.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:17:37.8355974Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 25960129200,
+     "load_duration": 68610700,
+     "prompt_eval_count": 527,
+     "prompt_eval_duration": 135873900,
+     "eval_count": 60,
+     "eval_duration": 956108700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edbd-c342-7ff2-860b-2bbc91c6c73a-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 527,
+     "output_tokens": 60,
+     "total_tokens": 587
+    }
+   }
+  }
+ ]
+}

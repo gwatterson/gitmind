@@ -1,0 +1,6069 @@
+{
+ "run": {
+  "id": "20260929-151106-test-v2-verifier",
+  "label": "test-v2-verifier",
+  "created_at": "2026-09-29T15:11:06+00:00",
+  "pipeline": "gitmind",
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_versions": "security@2,quality@2,performance@2,agent_rules@2,verifier@1,supervisor@1,synthesis@1",
+  "prompts": {
+   "security": {
+    "version": "2",
+    "sha": "be2997b4"
+   },
+   "quality": {
+    "version": "2",
+    "sha": "c9f56529"
+   },
+   "performance": {
+    "version": "2",
+    "sha": "57967ddc"
+   },
+   "agent_rules": {
+    "version": "2",
+    "sha": "f641d4e8"
+   },
+   "verifier": {
+    "version": "1",
+    "sha": "eb832dad"
+   },
+   "supervisor": {
+    "version": "1",
+    "sha": "818fd4e7"
+   },
+   "synthesis": {
+    "version": "1",
+    "sha": "36a14149"
+   }
+  },
+  "prompts_dir": null,
+  "split": "test",
+  "filters": {},
+  "cases": 48,
+  "dataset_fingerprint": "623a658f39b7",
+  "code_revision": "c8cf899",
+  "cache_mode": "use",
+  "line_tolerance": 3,
+  "verifier": {
+   "enabled": true,
+   "min_confidence": 0.5
+  }
+ },
+ "metrics": {
+  "all": {
+   "min_severity": "info",
+   "cases": 48,
+   "cases_failed": 0,
+   "cases_with_agent_errors": 0,
+   "overall": {
+    "tp": 16,
+    "fp": 77,
+    "expected": 37,
+    "found": 16,
+    "precision": 0.172,
+    "recall": 0.432,
+    "f1": 0.246
+   },
+   "by_category": {
+    "performance": {
+     "tp": 4,
+     "fp": 25,
+     "expected": 4,
+     "found": 4,
+     "precision": 0.138,
+     "recall": 1.0,
+     "f1": 0.242
+    },
+    "quality": {
+     "tp": 3,
+     "fp": 45,
+     "expected": 5,
+     "found": 3,
+     "precision": 0.062,
+     "recall": 0.6,
+     "f1": 0.113
+    },
+    "security": {
+     "tp": 9,
+     "fp": 7,
+     "expected": 28,
+     "found": 9,
+     "precision": 0.562,
+     "recall": 0.321,
+     "f1": 0.409
+    }
+   },
+   "by_language": {
+    "javascript": {
+     "tp": 2,
+     "fp": 10,
+     "expected": 5,
+     "found": 2,
+     "precision": 0.167,
+     "recall": 0.4,
+     "f1": 0.235
+    },
+    "python": {
+     "tp": 10,
+     "fp": 46,
+     "expected": 23,
+     "found": 10,
+     "precision": 0.179,
+     "recall": 0.435,
+     "f1": 0.253
+    },
+    "typescript": {
+     "tp": 4,
+     "fp": 21,
+     "expected": 9,
+     "found": 4,
+     "precision": 0.16,
+     "recall": 0.444,
+     "f1": 0.235
+    }
+   },
+   "by_source": {
+    "cve": {
+     "tp": 4,
+     "fp": 20,
+     "expected": 17,
+     "found": 4,
+     "precision": 0.167,
+     "recall": 0.235,
+     "f1": 0.195
+    },
+    "oss": {
+     "tp": 0,
+     "fp": 26,
+     "expected": 0,
+     "found": 0,
+     "precision": 0.0,
+     "recall": null,
+     "f1": null
+    },
+    "synthetic": {
+     "tp": 12,
+     "fp": 31,
+     "expected": 20,
+     "found": 12,
+     "precision": 0.279,
+     "recall": 0.6,
+     "f1": 0.381
+    }
+   },
+   "localization_recall": 0.973,
+   "line_exact_rate": 0.75,
+   "mean_line_distance": 0.438,
+   "cwe_accuracy": 0.444,
+   "severity_adequate_rate": 0.875,
+   "duplicates": 2,
+   "unplaced_findings": 2,
+   "must_not_flag": 5,
+   "must_not_flag_hits": 3,
+   "clean_cases": 13,
+   "clean_flagged_rate": 1.0,
+   "findings_per_clean_case": 2.462,
+   "blocking_recall": 0.364,
+   "clean_blocked_rate": 0.077,
+   "latency": {
+    "live_cases": 0,
+    "wall_p50": null,
+    "wall_p95": null,
+    "llm_seconds_p50": 150.23,
+    "llm_seconds_p95": 353.09
+   },
+   "usage": {
+    "calls_per_case": 4.292,
+    "input_tokens_per_case": 5562,
+    "output_tokens_per_case": 932,
+    "live_calls": 61,
+    "cached_calls": 145
+   }
+  },
+  "medium_plus": {
+   "min_severity": "medium",
+   "cases": 48,
+   "cases_failed": 0,
+   "cases_with_agent_errors": 0,
+   "overall": {
+    "tp": 13,
+    "fp": 67,
+    "expected": 37,
+    "found": 13,
+    "precision": 0.163,
+    "recall": 0.351,
+    "f1": 0.222
+   },
+   "by_category": {
+    "performance": {
+     "tp": 3,
+     "fp": 16,
+     "expected": 4,
+     "found": 3,
+     "precision": 0.158,
+     "recall": 0.75,
+     "f1": 0.261
+    },
+    "quality": {
+     "tp": 3,
+     "fp": 45,
+     "expected": 5,
+     "found": 3,
+     "precision": 0.062,
+     "recall": 0.6,
+     "f1": 0.113
+    },
+    "security": {
+     "tp": 7,
+     "fp": 6,
+     "expected": 28,
+     "found": 7,
+     "precision": 0.538,
+     "recall": 0.25,
+     "f1": 0.341
+    }
+   },
+   "by_language": {
+    "javascript": {
+     "tp": 2,
+     "fp": 9,
+     "expected": 5,
+     "found": 2,
+     "precision": 0.182,
+     "recall": 0.4,
+     "f1": 0.25
+    },
+    "python": {
+     "tp": 7,
+     "fp": 39,
+     "expected": 23,
+     "found": 7,
+     "precision": 0.152,
+     "recall": 0.304,
+     "f1": 0.203
+    },
+    "typescript": {
+     "tp": 4,
+     "fp": 19,
+     "expected": 9,
+     "found": 4,
+     "precision": 0.174,
+     "recall": 0.444,
+     "f1": 0.25
+    }
+   },
+   "by_source": {
+    "cve": {
+     "tp": 3,
+     "fp": 18,
+     "expected": 17,
+     "found": 3,
+     "precision": 0.143,
+     "recall": 0.176,
+     "f1": 0.158
+    },
+    "oss": {
+     "tp": 0,
+     "fp": 23,
+     "expected": 0,
+     "found": 0,
+     "precision": 0.0,
+     "recall": null,
+     "f1": null
+    },
+    "synthetic": {
+     "tp": 10,
+     "fp": 26,
+     "expected": 20,
+     "found": 10,
+     "precision": 0.278,
+     "recall": 0.5,
+     "f1": 0.357
+    }
+   },
+   "localization_recall": 0.811,
+   "line_exact_rate": 0.846,
+   "mean_line_distance": 0.308,
+   "cwe_accuracy": 0.571,
+   "severity_adequate_rate": 1.0,
+   "duplicates": 1,
+   "unplaced_findings": 2,
+   "must_not_flag": 5,
+   "must_not_flag_hits": 3,
+   "clean_cases": 13,
+   "clean_flagged_rate": 0.923,
+   "findings_per_clean_case": 2.154,
+   "blocking_recall": 0.364,
+   "clean_blocked_rate": 0.077,
+   "latency": {
+    "live_cases": 0,
+    "wall_p50": null,
+    "wall_p95": null,
+    "llm_seconds_p50": 150.23,
+    "llm_seconds_p95": 353.09
+   },
+   "usage": {
+    "calls_per_case": 4.292,
+    "input_tokens_per_case": 5562,
+    "output_tokens_per_case": 932,
+    "live_calls": 61,
+    "cached_calls": 145
+   }
+  },
+  "verifier_curve": [
+   {
+    "threshold": 0.0,
+    "precision": 0.181,
+    "recall": 0.919,
+    "f1": 0.302,
+    "findings_per_clean_case": 5.154
+   },
+   {
+    "threshold": 0.3,
+    "precision": 0.196,
+    "recall": 0.73,
+    "f1": 0.309,
+    "findings_per_clean_case": 3.615
+   },
+   {
+    "threshold": 0.4,
+    "precision": 0.196,
+    "recall": 0.73,
+    "f1": 0.309,
+    "findings_per_clean_case": 3.615
+   },
+   {
+    "threshold": 0.5,
+    "precision": 0.196,
+    "recall": 0.73,
+    "f1": 0.309,
+    "findings_per_clean_case": 3.615
+   },
+   {
+    "threshold": 0.6,
+    "precision": 0.215,
+    "recall": 0.703,
+    "f1": 0.329,
+    "findings_per_clean_case": 2.769
+   },
+   {
+    "threshold": 0.7,
+    "precision": 0.215,
+    "recall": 0.703,
+    "f1": 0.329,
+    "findings_per_clean_case": 2.769
+   },
+   {
+    "threshold": 0.8,
+    "precision": 0.215,
+    "recall": 0.703,
+    "f1": 0.329,
+    "findings_per_clean_case": 2.769
+   },
+   {
+    "threshold": 0.9,
+    "precision": 0.217,
+    "recall": 0.703,
+    "f1": 0.331,
+    "findings_per_clean_case": 2.692
+   }
+  ]
+ },
+ "cases": [
+  {
+   "case": {
+    "id": "cve-airflow-gcs-traversal",
+    "split": "test",
+    "source": "cve",
+    "language": "python",
+    "title": "Simplify destination path resolution",
+    "description": "GCS object names are joined to the SFTP destination path without checking that the result stays inside it. Built by reversing the upstream security fix.",
+    "smoke": false,
+    "origin": {
+     "repo": "apache/airflow",
+     "url": "https://github.com/apache/airflow/commit/0385bae70553223677753047b3e779d8b86b15c4",
+     "license": "Apache-2.0",
+     "commit": "0385bae70553223677753047b3e779d8b86b15c4",
+     "parent": null,
+     "advisory": "GHSA-v3mh-27qj-w836",
+     "cve": "CVE-2026-49297"
+    },
+    "expected_findings": [
+     {
+      "file": "providers/google/src/airflow/providers/google/cloud/transfers/gcs_to_sftp.py",
+      "lines": [
+       179,
+       179
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-22",
+       "CWE-23"
+      ],
+      "severity_min": "medium",
+      "description": "Object name joined to the destination without containment check",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "providers/google/src/airflow/providers/google/cloud/transfers/gcs_to_sftp.py",
+     "line": 179,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "s502",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The code does not check if the resolved path escapes the configured destination_path.",
+     "evidence": "return os.path.join(self.destination_path, source_object)"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "providers/google/src/airflow/providers/google/cloud/transfers/gcs_to_sftp.py",
+     "line": 179,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "cwe-22",
+     "cwe": "CWE-22",
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "message": "Path traversal vulnerability due to the use of `os.path.join` without validation.",
+     "evidence": "+        return os.path.join(self.destination_path, source_object)"
+    },
+    {
+     "file": "providers/google/src/airflow/providers/google/cloud/transfers/gcs_to_sftp.py",
+     "line": 179,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "s503",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "performance",
+     "verifier_confidence": 0.1,
+     "message": "String concatenation inside a loop that builds a large string.",
+     "evidence": "+         return os.path.join(self.destination_path, source_object)"
+    }
+   ],
+   "files": [
+    "providers/google/src/airflow/providers/google/cloud/transfers/gcs_to_sftp.py"
+   ],
+   "wall_seconds": 11.06,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 111.68900000000652,
+    "input_tokens": 4262,
+    "output_tokens": 562,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "cve-argos-branch-injection",
+    "split": "test",
+    "source": "cve",
+    "language": "typescript",
+    "title": "Use execSync for git helpers",
+    "description": "Branch names, refs and paths are interpolated into shell commands run with execSync (command injection). Built by reversing the upstream security fix.",
+    "smoke": false,
+    "origin": {
+     "repo": "argos-ci/argos-javascript",
+     "url": "https://github.com/argos-ci/argos-javascript/commit/8355f3af3be3f4fe361d58a688d21535cf672717",
+     "license": "MIT",
+     "commit": "8355f3af3be3f4fe361d58a688d21535cf672717",
+     "parent": null,
+     "advisory": "GHSA-4x45-gxvp-6283",
+     "cve": "CVE-2026-59960"
+    },
+    "expected_findings": [
+     {
+      "file": "packages/core/src/ci-environment/git.ts",
+      "lines": [
+       67,
+       67
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-78",
+       "CWE-77",
+       "CWE-88"
+      ],
+      "severity_min": "high",
+      "description": "Git arguments interpolated into a shell command",
+      "also": [
+       {
+        "file": "packages/core/src/ci-environment/git.ts",
+        "lines": [
+         88,
+         90
+        ],
+        "anchor": null,
+        "span": 0
+       },
+       {
+        "file": "packages/core/src/ci-environment/git.ts",
+        "lines": [
+         154,
+         154
+        ],
+        "anchor": null,
+        "span": 0
+       },
+       {
+        "file": "packages/core/src/ci-environment/git.ts",
+        "lines": [
+         162,
+         162
+        ],
+        "anchor": null,
+        "span": 0
+       }
+      ]
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "request_changes",
+   "findings": [
+    {
+     "file": "packages/core/src/ci-environment/git.ts",
+     "line": 67,
+     "severity": "critical",
+     "category": "security",
+     "rule_id": "cwe-88-os-command-injection",
+     "cwe": "CWE-88",
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "message": "User input is directly used in an OS command, which can lead to command injection.",
+     "evidence": "`return execSync(`git merge-base ${input.head} ${input.base}`)`"
+    },
+    {
+     "file": "packages/core/src/ci-environment/git.ts",
+     "line": 89,
+     "severity": "critical",
+     "category": "security",
+     "rule_id": "cwe-88-os-command-injection",
+     "cwe": "CWE-88",
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "message": "User input is directly used in an OS command, which can lead to command injection.",
+     "evidence": "`execSync(`git fetch --force --update-head-ok --depth ${input.depth} origin ${input.ref}:${input.target}`,`)"
+    },
+    {
+     "file": "packages/core/src/ci-environment/git.ts",
+     "line": 89,
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "n+1-queries",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "The `git fetch` command is called inside a loop, which can lead to N+1 queries.",
+     "evidence": "execSync(`git fetch --force --update-head-ok --depth ${input.depth} origin ${input.ref}:${input.target}`,);"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "packages/core/src/ci-environment/git.ts",
+     "line": 89,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "shell-injection",
+     "cwe": null,
+     "confidence": 0.5,
+     "agent": "quality",
+     "verifier_confidence": 0.5,
+     "message": "The command string is constructed using user input, which can lead to shell injection if `input.head` or `input.base` contains malicious content.",
+     "evidence": "`git fetch --force --update-head-ok --depth ${input.depth} origin ${input.ref}:${input.target}`"
+    },
+    {
+     "file": "packages/core/src/ci-environment/git.ts",
+     "line": 154,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "shell-injection",
+     "cwe": null,
+     "confidence": 0.5,
+     "agent": "quality",
+     "verifier_confidence": 0.5,
+     "message": "The command string is constructed using user input, which can lead to shell injection if `maxCount` contains malicious content.",
+     "evidence": "`git log --format=\"%H\" ${maxCountArg} ${path}`.trim()"
+    },
+    {
+     "file": "packages/core/src/ci-environment/git.ts",
+     "line": 162,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "shell-injection",
+     "cwe": null,
+     "confidence": 0.5,
+     "agent": "quality",
+     "verifier_confidence": 0.5,
+     "message": "The command string is constructed using user input, which can lead to shell injection if `input.sha` contains malicious content.",
+     "evidence": "`git fetch --depth=${limit} origin ${input.sha}`"
+    }
+   ],
+   "files": [
+    "packages/core/src/ci-environment/git.ts"
+   ],
+   "wall_seconds": 13.19,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 304.10999999998273,
+    "input_tokens": 5981,
+    "output_tokens": 1484,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "cve-awscdk-bundling-injection",
+    "split": "test",
+    "source": "cve",
+    "language": "typescript",
+    "title": "Simplify shell quoting in bundling commands",
+    "description": "Values are wrapped in plain quotes instead of being escaped for the POSIX shell (command injection). Built by reversing the upstream security fix.",
+    "smoke": false,
+    "origin": {
+     "repo": "aws/aws-cdk",
+     "url": "https://github.com/aws/aws-cdk/commit/baa9e1dff469306cc23b8f4bd232d703f98bf68a",
+     "license": "Apache-2.0",
+     "commit": "baa9e1dff469306cc23b8f4bd232d703f98bf68a",
+     "parent": null,
+     "advisory": "GHSA-vcrf-j523-4mrf",
+     "cve": "CVE-2026-13760"
+    },
+    "expected_findings": [
+     {
+      "file": "packages/aws-cdk-lib/aws-lambda-nodejs/lib/bundling.ts",
+      "lines": [
+       628,
+       628
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-78",
+       "CWE-77"
+      ],
+      "severity_min": "medium",
+      "description": "Shell arguments quoted without escaping",
+      "also": [
+       {
+        "file": "packages/aws-cdk-lib/aws-lambda-nodejs/lib/bundling.ts",
+        "lines": [
+         641,
+         641
+        ],
+        "anchor": null,
+        "span": 0
+       }
+      ]
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "packages/aws-cdk-lib/aws-lambda-nodejs/lib/bundling.ts",
+     "line": 628,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "shell-quoting-incorrect",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "Using single quotes for shell commands can lead to issues if the data contains special characters.",
+     "evidence": "`echo '${data}' > \"${filePath}\"`"
+    },
+    {
+     "file": "packages/aws-cdk-lib/aws-lambda-nodejs/lib/bundling.ts",
+     "line": 641,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "shell-quoting-incorrect",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "Using single quotes for shell commands can lead to issues if the data contains special characters.",
+     "evidence": "`cp '${src}' '${dest}'`"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "packages/aws-cdk-lib/aws-lambda-nodejs/lib/bundling.ts",
+     "line": 628,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "cwe-78-os-command-injection",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "message": "The code uses string interpolation to construct a shell command, which can be exploited if `data` contains malicious input.",
+     "evidence": "`echo '${data}' > \"${filePath}\"`"
+    },
+    {
+     "file": "packages/aws-cdk-lib/aws-lambda-nodejs/lib/bundling.ts",
+     "line": 641,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "cwe-78-os-command-injection",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "message": "The code uses string interpolation to construct a shell command, which can be exploited if `src` or `dest` contains malicious input.",
+     "evidence": "`cp \"${src}\" \"${dest}\"`"
+    }
+   ],
+   "files": [
+    "packages/aws-cdk-lib/aws-lambda-nodejs/lib/bundling.ts"
+   ],
+   "wall_seconds": 11.53,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 117.470000000027,
+    "input_tokens": 3607,
+    "output_tokens": 757,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "cve-changedetection-static-traversal",
+    "split": "test",
+    "source": "cve",
+    "language": "python",
+    "title": "Relax static file name sanitization",
+    "description": "The sanitization of static file group and name now keeps '.' so '..' sequences survive (path traversal). Built by reversing the upstream security fix.",
+    "smoke": false,
+    "origin": {
+     "repo": "dgtlmoon/changedetection.io",
+     "url": "https://github.com/dgtlmoon/changedetection.io/commit/9d38b4517364831889b5b0d7b3465fd060403fd4",
+     "license": "Apache-2.0",
+     "commit": "9d38b4517364831889b5b0d7b3465fd060403fd4",
+     "parent": null,
+     "advisory": "GHSA-9jj8-v89v-xjvw",
+     "cve": "CVE-2026-25527"
+    },
+    "expected_findings": [
+     {
+      "file": "changedetectionio/flask_app.py",
+      "lines": [
+       715,
+       716
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-22",
+       "CWE-23"
+      ],
+      "severity_min": "medium",
+      "description": "Sanitization allows dots and path traversal",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "changedetectionio/flask_app.py",
+     "line": 715,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "s2384",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The regular expression allows periods and hyphens, which could be used to bypass the intended sanitization.",
+     "evidence": "+         group = re.sub(r'[^\u0000-]+', '', group.lower())"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "changedetectionio/flask_app.py",
+     "line": 715,
+     "severity": "medium",
+     "category": "security",
+     "rule_id": "cwe-22",
+     "cwe": "CWE-22",
+     "confidence": 0.1,
+     "agent": "security",
+     "verifier_confidence": 0.1,
+     "message": "The regular expression allows characters that could be used for path traversal (e.g., '.', '..').",
+     "evidence": "-         group = re.sub(r'[^一-龥a-zA-Z0-9_]+', '', group.lower())\n+         group = re.sub(r'[^一-龥a-zA-Z0-9_]+', '', group.lower())"
+    },
+    {
+     "file": "changedetectionio/flask_app.py",
+     "line": 715,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "s108",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "performance",
+     "verifier_confidence": 0.1,
+     "message": "The regular expression allows periods and hyphens, which might not be necessary for the use case.",
+     "evidence": ""
+    },
+    {
+     "file": "changedetectionio/flask_app.py",
+     "line": 715,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "s108",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "performance",
+     "verifier_confidence": 0.1,
+     "message": "The regular expression allows periods and hyphens, which might not be necessary for the use case.",
+     "evidence": ""
+    }
+   ],
+   "files": [
+    "changedetectionio/flask_app.py"
+   ],
+   "wall_seconds": 14.24,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 163.82799999999673,
+    "input_tokens": 3748,
+    "output_tokens": 894,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "cve-djangocms-plugin-xss",
+    "split": "test",
+    "source": "cve",
+    "language": "python",
+    "title": "Render plugin exception headings with an f-string",
+    "description": "The exception message is formatted into HTML without escaping (stored XSS); clearing the clipboard is also allowed on GET. Built by reversing the upstream security fix.",
+    "smoke": false,
+    "origin": {
+     "repo": "django-cms/django-cms",
+     "url": "https://github.com/django-cms/django-cms/commit/b56a568844ff3702495945f73a31d0868285bf88",
+     "license": "BSD-3-Clause",
+     "commit": "b56a568844ff3702495945f73a31d0868285bf88",
+     "parent": null,
+     "advisory": "GHSA-hvq6-2r72-p2x7",
+     "cve": "CVE-2026-75526"
+    },
+    "expected_findings": [
+     {
+      "file": "cms/plugin_rendering.py",
+      "lines": [
+       601,
+       601
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-79"
+      ],
+      "severity_min": "medium",
+      "description": "Exception message interpolated into HTML without escaping",
+      "also": []
+     },
+     {
+      "file": "cms/admin/placeholderadmin.py",
+      "lines": [
+       1180,
+       1181
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-352",
+       "CWE-650"
+      ],
+      "severity_min": "low",
+      "description": "State-changing clear operation no longer requires POST",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "request_changes",
+   "findings": [
+    {
+     "file": "cms/plugin_rendering.py",
+     "line": 601,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "xss",
+     "cwe": "CWE-79",
+     "confidence": 1.0,
+     "agent": "security",
+     "verifier_confidence": 1.0,
+     "message": "The code is rendering user input without proper escaping, which can lead to Cross-Site Scripting (XSS).",
+     "evidence": "<h2 class=\"cms-rendering-exception-title\">{message}</h2>"
+    },
+    {
+     "file": "cms/admin/placeholderadmin.py",
+     "line": 1179,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "missing-csrf-protection",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The removal of the `HttpResponseNotAllowed` check removes CSRF protection for a state-changing operation.",
+     "evidence": "-             if request.method != \"POST\":\n-                 return HttpResponseNotAllowed([\"POST\"])"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "cms/plugin_rendering.py",
+     "line": 601,
+     "severity": "low",
+     "category": "quality",
+     "rule_id": "f-string-in-html",
+     "cwe": null,
+     "confidence": 0.5,
+     "agent": "quality",
+     "verifier_confidence": 0.5,
+     "message": "Using an f-string to generate HTML can lead to XSS if the `message` variable is not properly sanitized.",
+     "evidence": "+             heading = f'<h2 class=\"cms-rendering-exception-title\">{message}</h2>'"
+    },
+    {
+     "file": "cms/plugin_rendering.py",
+     "line": 601,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "string-concatenation-in-loop",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "performance",
+     "verifier_confidence": 0.1,
+     "message": "String concatenation inside a loop that builds a large string.",
+     "evidence": "heading = f'<h2 class=\"cms-rendering-exception-title\">{message}</h2>'"
+    }
+   ],
+   "files": [
+    "cms/admin/placeholderadmin.py",
+    "cms/plugin_rendering.py"
+   ],
+   "wall_seconds": 12.45,
+   "stats": {
+    "live_calls": 2,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 154.32799999994504,
+    "input_tokens": 5121,
+    "output_tokens": 702,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "cve-ghost-image-size-ssrf",
+    "split": "test",
+    "source": "cve",
+    "language": "javascript",
+    "title": "Fetch image sizes for all external images",
+    "description": "Image sizes are fetched for any URL in the document, not only internal images (SSRF). Built by reversing the upstream security fix.",
+    "smoke": false,
+    "origin": {
+     "repo": "TryGhost/Ghost",
+     "url": "https://github.com/TryGhost/Ghost/commit/ba692df7f27162d0440d57487f16c530416a8eb2",
+     "license": "MIT",
+     "commit": "ba692df7f27162d0440d57487f16c530416a8eb2",
+     "parent": null,
+     "advisory": "GHSA-g366-23fw-ggp6",
+     "cve": "CVE-2026-53946"
+    },
+    "expected_findings": [
+     {
+      "file": "ghost/core/core/server/lib/mobiledoc.js",
+      "lines": [
+       143,
+       144
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-918"
+      ],
+      "severity_min": "medium",
+      "description": "Server fetches arbitrary image URLs",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "ghost/core/core/server/lib/mobiledoc.js",
+     "line": 143,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "missing-else-branch",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The `else` branch will always execute, as all previous conditions are mutually exclusive.",
+     "evidence": "-                 } else if (storageUtils.isInternalImage(payload.src)) {"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "ghost/core/core/server/lib/mobiledoc.js",
+     "line": 143,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "cwe-89",
+     "cwe": "CWE-89",
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "message": "The code now handles all cases without checking if the image source is internal, which could lead to SQL injection if `payload.src` is used in a database query.",
+     "evidence": "-                 } else if (storageUtils.isInternalImage(payload.src)) {"
+    },
+    {
+     "file": "ghost/core/core/server/lib/mobiledoc.js",
+     "line": 143,
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "n+1-queries",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "The code makes a database or API call inside the body of a loop over query results.",
+     "evidence": "-                 } else if (storageUtils.isInternalImage(payload.src)) {"
+    }
+   ],
+   "files": [
+    "ghost/core/core/server/lib/mobiledoc.js"
+   ],
+   "wall_seconds": 11.05,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 102.90500000001398,
+    "input_tokens": 3146,
+    "output_tokens": 570,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "cve-ghost-theme-traversal",
+    "split": "test",
+    "source": "cve",
+    "language": "typescript",
+    "title": "Simplify theme upload validation",
+    "description": "Theme names made only of path elements and target paths outside the storage directory are no longer rejected. Built by reversing the upstream security fix.",
+    "smoke": false,
+    "origin": {
+     "repo": "TryGhost/Ghost",
+     "url": "https://github.com/TryGhost/Ghost/commit/fbaa92327e52607036a1e42204c9eadcc751d82c",
+     "license": "MIT",
+     "commit": "fbaa92327e52607036a1e42204c9eadcc751d82c",
+     "parent": null,
+     "advisory": "GHSA-cjc9-q5gf-327p",
+     "cve": "CVE-2026-70593"
+    },
+    "expected_findings": [
+     {
+      "file": "ghost/core/core/server/adapters/storage/LocalStorageBase.ts",
+      "lines": [
+       143,
+       144
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-22",
+       "CWE-23"
+      ],
+      "severity_min": "medium",
+      "description": "Saved path not checked against the target directory",
+      "also": [
+       {
+        "file": "ghost/core/core/server/services/themes/storage.js",
+        "lines": [
+         59,
+         61
+        ],
+        "anchor": null,
+        "span": 0
+       }
+      ]
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "ghost/core/core/server/adapters/storage/LocalStorageBase.ts",
+     "line": 143,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "missing-validation",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The code no longer checks if the file is being saved directly under `targetDir` and not outside of it.",
+     "evidence": "-         // Verify that we are saving directly under `targetDir` and not outside of it.\n-         const expectedPrefix = path.join(path.resolve(targetDir), '/');\n-         if (!path.resolve(targetFilename).startsWith(expectedPrefix)) {\n-             throw new errors.BadRequestError({message: 'Canno"
+    },
+    {
+     "file": "ghost/core/core/server/services/themes/storage.js",
+     "line": 59,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "missing-validation",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The code no longer checks if the theme name contains only path elements.",
+     "evidence": "-         // Reject theme names that only contain path elements.\n-         if (INVALID_THEME_REGEX.test(themeName)) {\n-             throw new errors.ValidationError({\n-                 message: 'Invalid theme name.'\n-             });"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "ghost/core/core/server/adapters/storage/LocalStorageBase.ts",
+     "line": 143,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "cwe-22",
+     "cwe": "CWE-22",
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "message": "Path traversal vulnerability due to lack of validation on the target filename.",
+     "evidence": "-         const expectedPrefix = path.join(path.resolve(targetDir), '/');\n-         if (!path.resolve(targetFilename).startsWith(expectedPrefix)) {\n-             throw new errors.BadRequestError({message: 'Cannot save to the given filename'});\n-         }"
+    },
+    {
+     "file": "ghost/core/core/server/adapters/storage/LocalStorageBase.ts",
+     "line": 143,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "string-concatenation-in-loop",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "performance",
+     "verifier_confidence": 0.1,
+     "message": "String concatenation inside a loop that builds a large string.",
+     "evidence": "+ targetFilename = filename;"
+    },
+    {
+     "file": "ghost/core/core/server/services/themes/storage.js",
+     "line": 59,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "cwe-22",
+     "cwe": "CWE-22",
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "message": "Path traversal vulnerability due to lack of validation on the theme name.",
+     "evidence": "-         // Reject theme names that only contain path elements.\n-         if (INVALID_THEME_REGEX.test(themeName)) {\n-             throw new errors.ValidationError({\n-                 message: 'Invalid theme name.'"
+    },
+    {
+     "file": "ghost/core/core/server/services/themes/storage.js",
+     "line": 58,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "string-concatenation-in-loop",
+     "cwe": null,
+     "confidence": 0.5,
+     "agent": "performance",
+     "verifier_confidence": 0.5,
+     "message": "String concatenation inside a loop that builds a large string.",
+     "evidence": "+ throw new errors.ValidationError({\n+     message: tpl(messages.overrideDefaultTheme)\n+ });"
+    }
+   ],
+   "files": [
+    "ghost/core/core/server/adapters/storage/LocalStorageBase.ts",
+    "ghost/core/core/server/services/themes/storage.js"
+   ],
+   "wall_seconds": 20.23,
+   "stats": {
+    "live_calls": 2,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 251.79699999996228,
+    "input_tokens": 4867,
+    "output_tokens": 1284,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "cve-gitpython-clone-options",
+    "split": "test",
+    "source": "cve",
+    "language": "python",
+    "title": "Streamline submodule clone options",
+    "description": "Unsafe git clone options are no longer validated for submodules, and --separate-git-dir left the denylist. Built by reversing the upstream security fix.",
+    "smoke": false,
+    "origin": {
+     "repo": "gitpython-developers/GitPython",
+     "url": "https://github.com/gitpython-developers/GitPython/commit/b68afff45af0f49e79a3e2d2162018986b37ad5d",
+     "license": "BSD-3-Clause",
+     "commit": "b68afff45af0f49e79a3e2d2162018986b37ad5d",
+     "parent": null,
+     "advisory": "GHSA-8mcc-hrx5-hvxc",
+     "cve": "CVE-2026-78677"
+    },
+    "expected_findings": [
+     {
+      "file": "git/objects/submodule/base.py",
+      "lines": [
+       365,
+       366
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-88",
+       "CWE-78",
+       "CWE-22",
+       "CWE-73",
+       "CWE-184"
+      ],
+      "severity_min": "medium",
+      "description": "Caller-supplied clone options are no longer checked for unsafe flags",
+      "also": []
+     },
+     {
+      "file": "git/repo/base.py",
+      "lines": [
+       161,
+       162
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-184",
+       "CWE-88",
+       "CWE-22",
+       "CWE-73"
+      ],
+      "severity_min": "low",
+      "description": "--separate-git-dir removed from the unsafe options denylist",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "git/objects/submodule/base.py",
+     "line": 365,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "missing-check-for-allow-unsafe-options",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The `allow_unsafe_options` variable is set to `True` regardless of its initial value, which can lead to unsafe options being used without proper validation.",
+     "evidence": "-             allow_unsafe_options = True"
+    },
+    {
+     "file": "git/repo/base.py",
+     "line": 161,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "unused-import",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "Unused import '--separate-git-dir'",
+     "evidence": ""
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "git/objects/submodule/base.py",
+     "line": 365,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "cwe-78-os-command-injection",
+     "cwe": "CWE-78",
+     "confidence": 0.1,
+     "agent": "security",
+     "verifier_confidence": 0.1,
+     "message": "The removal of `shlex.split` and direct use of user-controlled input in `multi_options` can lead to OS command injection.",
+     "evidence": "-             Git.check_unsafe_options(Git._option_candidates([], kwargs), repo.unsafe_git_clone_options)\n-                 multi_options = kwargs.get(\"multi_options\")\n-                 if multi_options:\n-                     Git.check_unsafe_options(\n-                         shlex.split(\" \".join(c"
+    },
+    {
+     "file": "git/objects/submodule/base.py",
+     "line": 365,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "unused-import",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "performance",
+     "verifier_confidence": 0.1,
+     "message": "Unused import 'shlex'",
+     "evidence": ""
+    },
+    {
+     "file": "git/repo/base.py",
+     "line": 159,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "missing-check-for-separate-git-dir",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "quality",
+     "verifier_confidence": 0.1,
+     "message": "The `--separate-git-dir` option is removed from the list of allowed options, which can lead to unexpected behavior if this option was being used.",
+     "evidence": "-         # Redirects the repository metadata to a caller-controlled path:"
+    }
+   ],
+   "files": [
+    "git/objects/submodule/base.py",
+    "git/repo/base.py"
+   ],
+   "wall_seconds": 18.08,
+   "stats": {
+    "live_calls": 2,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 166.60899999998279,
+    "input_tokens": 4730,
+    "output_tokens": 885,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "cve-lemur-subca-permission",
+    "split": "test",
+    "source": "cve",
+    "language": "python",
+    "title": "Simplify authority creation checks",
+    "description": "Creating a sub-CA no longer checks the caller's permission on the parent authority. Built by reversing the upstream security fix.",
+    "smoke": false,
+    "origin": {
+     "repo": "Netflix/lemur",
+     "url": "https://github.com/Netflix/lemur/commit/8669011203ca3dd89d9e39bab9ef6850eca723f9",
+     "license": "Apache-2.0",
+     "commit": "8669011203ca3dd89d9e39bab9ef6850eca723f9",
+     "parent": null,
+     "advisory": "GHSA-g7p5-89mh-248h",
+     "cve": "CVE-2026-71317"
+    },
+    "expected_findings": [
+     {
+      "file": "lemur/authorities/views.py",
+      "lines": [
+       234,
+       235
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-862",
+       "CWE-285",
+       "CWE-863"
+      ],
+      "severity_min": "medium",
+      "description": "Missing authorization check on the parent authority",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "lemur/authorities/views.py",
+     "line": 235,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "missing-parent-check",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The parent authority check was removed, but it is still necessary to ensure the user has permission to use the specified parent authority.",
+     "evidence": "-         if not AuthorityPermission(parent.id, parent_roles).can():\n-             return dict(message=\"You are not authorized to use the specified parent authority.\"), 403"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "lemur/authorities/views.py",
+     "line": 235,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "cwe-639",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "message": "The code removes a check for the authority owner, which could lead to unauthorized access.",
+     "evidence": ""
+    },
+    {
+     "file": "lemur/authorities/views.py",
+     "line": 235,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "s107",
+     "cwe": null,
+     "confidence": 0.5,
+     "agent": "performance",
+     "verifier_confidence": 0.5,
+     "message": "String concatenation inside a loop that builds a large string.",
+     "evidence": "f'Invalid owner: check if {data['owner']} is a valid group email. Individuals cannot be authority owners.'"
+    }
+   ],
+   "files": [
+    "lemur/authorities/views.py"
+   ],
+   "wall_seconds": 9.77,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 104.06300000002048,
+    "input_tokens": 3415,
+    "output_tokens": 556,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "cve-lightrag-default-token",
+    "split": "test",
+    "source": "cve",
+    "language": "python",
+    "title": "Simplify token validation",
+    "description": "A guest token is accepted even when an API key is configured, bypassing the X-API-Key check. Built by reversing the upstream security fix.",
+    "smoke": false,
+    "origin": {
+     "repo": "HKUDS/LightRAG",
+     "url": "https://github.com/HKUDS/LightRAG/commit/f7819aa3a49a9d8d92eed8251d82d6ebcafa8cba",
+     "license": "MIT",
+     "commit": "f7819aa3a49a9d8d92eed8251d82d6ebcafa8cba",
+     "parent": null,
+     "advisory": "GHSA-f4vv-55c2-5789",
+     "cve": "CVE-2026-61740"
+    },
+    "expected_findings": [
+     {
+      "file": "lightrag/api/utils_api.py",
+      "lines": [
+       214,
+       216
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-287",
+       "CWE-306",
+       "CWE-863",
+       "CWE-285"
+      ],
+      "severity_min": "medium",
+      "description": "Guest token accepted when the API key should be mandatory",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "lightrag/api/utils_api.py",
+     "line": 215,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "s374",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The code incorrectly accepts guest tokens when no authentication is configured.",
+     "evidence": "if not auth_configured and token_info.get(\"role\") == \"guest\":\n    return"
+    },
+    {
+     "file": "lightrag/api/utils_api.py",
+     "line": 221,
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "s374",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "Token validation logic is duplicated and can be simplified.",
+     "evidence": "+                 # Token validation failed, immediately return 401 error\n+                 raise HTTPException(\n+                     status_code=status.HTTP_401_UNAUTHORIZED,\n+                     detail=\"Invalid token. Please login again.\",\n+                 )"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "lightrag/api/utils_api.py",
+     "line": 217,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "cwe-327",
+     "cwe": "CWE-327",
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "message": "The code removes a validation check that ensures the token is valid for the configured authentication mode.",
+     "evidence": "-                 # Token present but not valid for the configured auth mode.\n-                     raise HTTPException(\n-                         status_code=status.HTTP_401_UNAUTHORIZED,\n-                         detail=\"Invalid token. Please login again.\",\n-                     )"
+    },
+    {
+     "file": "lightrag/api/utils_api.py",
+     "line": 218,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "s374",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The code incorrectly raises a 401 error for non-guest tokens when authentication is configured.",
+     "evidence": "if auth_configured and token_info.get(\"role\") != \"guest\":\n    return\n\n# Token validation failed, immediately return 401 error\nraise HTTPException(\n    status_code=status.HTTP_401_UNAUTHORIZED,\n    detail=\"Invalid token. Please login again.\",\n)"
+    }
+   ],
+   "files": [
+    "lightrag/api/utils_api.py"
+   ],
+   "wall_seconds": 10.42,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 183.278999999973,
+    "input_tokens": 5306,
+    "output_tokens": 827,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "cve-lmdeploy-pickle-handler",
+    "split": "test",
+    "source": "cve",
+    "language": "python",
+    "title": "Send cache free requests as Python objects",
+    "description": "Messages from peer engines are received with recv_pyobj, which unpickles untrusted bytes (remote code execution). Built by reversing the upstream security fix.",
+    "smoke": false,
+    "origin": {
+     "repo": "InternLM/lmdeploy",
+     "url": "https://github.com/InternLM/lmdeploy/commit/f05b4ad8bf2e2d84101a1d63b3c44fadd99223b2",
+     "license": "Apache-2.0",
+     "commit": "f05b4ad8bf2e2d84101a1d63b3c44fadd99223b2",
+     "parent": null,
+     "advisory": "GHSA-2vh9-42vm-xmv2",
+     "cve": "CVE-2025-66455"
+    },
+    "expected_findings": [
+     {
+      "file": "lmdeploy/pytorch/disagg/conn/engine_conn.py",
+      "lines": [
+       79,
+       79
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-502"
+      ],
+      "severity_min": "high",
+      "description": "recv_pyobj deserializes peer data with pickle",
+      "also": [
+       {
+        "file": "lmdeploy/pytorch/disagg/conn/engine_conn.py",
+        "lines": [
+         74,
+         75
+        ],
+        "anchor": null,
+        "span": 0
+       }
+      ]
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "lmdeploy/pytorch/disagg/conn/engine_conn.py",
+     "line": 75,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "s104",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "Using `send_pyobj` instead of `send_json` can lead to security vulnerabilities.",
+     "evidence": "await self.p2p_sender[remote_engine_id].send_pyobj(DistServeCacheFreeRequest(remote_engine_id=remote_engine_id, remote_session_id=remote_session_id))"
+    },
+    {
+     "file": "lmdeploy/pytorch/disagg/conn/engine_conn.py",
+     "line": 87,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "s103",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "Raising a `ValueError` without any context or logging can make debugging difficult.",
+     "evidence": "raise ValueError(f'Unsupported zmq request {type(req)}')"
+    },
+    {
+     "file": "lmdeploy/pytorch/disagg/conn/engine_conn.py",
+     "line": 74,
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "n+1-queries",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "A blocking call (send_pyobj) is inside an async function.",
+     "evidence": "+        await self.p2p_sender[remote_engine_id].send_pyobj(\n+            DistServeCacheFreeRequest(remote_engine_id=remote_engine_id, remote_session_id=remote_session_id))"
+    },
+    {
+     "file": "lmdeploy/pytorch/disagg/conn/engine_conn.py",
+     "line": 79,
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "n+1-queries",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "A blocking call (recv_pyobj) is inside an async function.",
+     "evidence": "+            req: DistServeCacheFreeRequest = await self.p2p_receiver[remote_engine_id].recv_pyobj()"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "lmdeploy/pytorch/disagg/conn/engine_conn.py",
+     "line": 75,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "cwe-918",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "security",
+     "verifier_confidence": 0.1,
+     "message": "Insecure deserialization using `send_pyobj` and `recv_pyobj`, which can lead to remote code execution.",
+     "evidence": ""
+    },
+    {
+     "file": "lmdeploy/pytorch/disagg/conn/engine_conn.py",
+     "line": 87,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "cwe-918",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "security",
+     "verifier_confidence": 0.1,
+     "message": "Insecure deserialization using `send_pyobj` and `recv_pyobj`, which can lead to remote code execution.",
+     "evidence": ""
+    },
+    {
+     "file": "lmdeploy/pytorch/disagg/conn/engine_conn.py",
+     "line": 80,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "s114",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "quality",
+     "verifier_confidence": 0.1,
+     "message": "The `isinstance` check for `DistServeCacheFreeRequest` can be bypassed if the object is not an instance of the expected class.",
+     "evidence": "if isinstance(req, DistServeCacheFreeRequest):"
+    },
+    {
+     "file": "lmdeploy/pytorch/disagg/conn/engine_conn.py",
+     "line": 90,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "s104",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "quality",
+     "verifier_confidence": 0.1,
+     "message": "Closing the receiver without ensuring all messages are processed can lead to data loss.",
+     "evidence": "self.p2p_receiver[remote_engine_id].close()"
+    }
+   ],
+   "files": [
+    "lmdeploy/pytorch/disagg/conn/engine_conn.py"
+   ],
+   "wall_seconds": 26.14,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 238.68800000002375,
+    "input_tokens": 5848,
+    "output_tokens": 1419,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "cve-mlflow-pickle-bypass",
+    "split": "test",
+    "source": "cve",
+    "language": "python",
+    "title": "Simplify statsmodels model loading",
+    "description": "The MLFLOW_ALLOW_PICKLE_DESERIALIZATION guard was removed: statsmodels models are always unpickled. Built by reversing the upstream security fix.",
+    "smoke": false,
+    "origin": {
+     "repo": "mlflow/mlflow",
+     "url": "https://github.com/mlflow/mlflow/commit/38615289094a4b700a20b5d1dbfbe57bdfb0411f",
+     "license": "Apache-2.0",
+     "commit": "38615289094a4b700a20b5d1dbfbe57bdfb0411f",
+     "parent": null,
+     "advisory": "GHSA-gqvg-gmmx-x4hm",
+     "cve": null
+    },
+    "expected_findings": [
+     {
+      "file": "mlflow/statsmodels/__init__.py",
+      "lines": [
+       307,
+       310
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-502"
+      ],
+      "severity_min": "medium",
+      "description": "Model artifact unpickled without the opt-in safety check",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "request_changes",
+   "findings": [
+    {
+     "file": "mlflow/statsmodels/__init__.py",
+     "line": 308,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "mlflow-1234",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The `MLFLOW_ALLOW_PICKLE_DESERIALIZATION` check is removed, which could allow deserializing models using pickle, potentially leading to security vulnerabilities.",
+     "evidence": "-     if (\n-         not MLFLOW_ALLOW_PICKLE_DESERIALIZATION.get()\n-         and not is_in_databricks_runtime()\n-         and not is_in_databricks_model_serving_environment()\n-     ):\n-         raise MlflowException(\n-             \"Deserializing model using pickle is disallowed, but this model is sa"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "mlflow/statsmodels/__init__.py",
+     "line": 310,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "cwe-502",
+     "cwe": "CWE-502",
+     "confidence": 0.1,
+     "agent": "security",
+     "verifier_confidence": 0.1,
+     "message": "Insecure deserialization of a model using pickle, which can lead to arbitrary code execution.",
+     "evidence": "return smio.load_pickle(path)"
+    },
+    {
+     "file": "mlflow/statsmodels/__init__.py",
+     "line": 308,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "unused-code",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "performance",
+     "verifier_confidence": 0.1,
+     "message": "The `if` condition checking for environment variables and raising an exception is removed.",
+     "evidence": ""
+    }
+   ],
+   "files": [
+    "mlflow/statsmodels/__init__.py"
+   ],
+   "wall_seconds": 8.64,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 140.01600000002048,
+    "input_tokens": 4380,
+    "output_tokens": 635,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "cve-openwebui-arena-access",
+    "split": "test",
+    "source": "cve",
+    "language": "python",
+    "title": "Simplify arena model selection",
+    "description": "The model randomly picked by an arena model is no longer checked against the user's model access permissions. Built by reversing the upstream security fix.",
+    "smoke": false,
+    "origin": {
+     "repo": "open-webui/open-webui",
+     "url": "https://github.com/open-webui/open-webui/commit/dc4924b66e655b315e3be4430a3e51b7d5c20acc",
+     "license": "Open WebUI License (BSD-3-Clause with a branding clause)",
+     "commit": "dc4924b66e655b315e3be4430a3e51b7d5c20acc",
+     "parent": null,
+     "advisory": "GHSA-m3qf-58wf-w979",
+     "cve": "CVE-2026-59225"
+    },
+    "expected_findings": [
+     {
+      "file": "backend/open_webui/utils/chat.py",
+      "lines": [
+       238,
+       239
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-862",
+       "CWE-285",
+       "CWE-863"
+      ],
+      "severity_min": "medium",
+      "description": "Access to the selected model not checked",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "backend/open_webui/utils/chat.py",
+     "line": 238,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "missing-check",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The `selected_model` check is missing after selecting a model.",
+     "evidence": "form_data['model'] = selected_model_id\n-                if not bypass_filter and user.role == 'user':\n-                    selected_model = request.app.state.MODELS.get(selected_model_id)\n-                    if selected_model:\n-                        await check_model_access(user, selected_model)"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "backend/open_webui/utils/chat.py",
+     "line": 238,
+     "severity": "medium",
+     "category": "security",
+     "rule_id": "cwe-601",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "message": "The code removes a check for model access, which could lead to unauthorized access if the `check_model_access` function is not properly implemented.",
+     "evidence": ""
+    },
+    {
+     "file": "backend/open_webui/utils/chat.py",
+     "line": 238,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "s107",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "Unnecessary comment about bypass_filter recursion.",
+     "evidence": ""
+    }
+   ],
+   "files": [
+    "backend/open_webui/utils/chat.py"
+   ],
+   "wall_seconds": 6.64,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 84.81199999999347,
+    "input_tokens": 3242,
+    "output_tokens": 490,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "cve-quasar-extend-pollution",
+    "split": "test",
+    "source": "cve",
+    "language": "javascript",
+    "title": "Simplify extend() key loop",
+    "description": "The deep extend utility copies the __proto__ key (prototype pollution). Built by reversing the upstream security fix.",
+    "smoke": false,
+    "origin": {
+     "repo": "quasarframework/quasar",
+     "url": "https://github.com/quasarframework/quasar/commit/d0a95d95ab3c29d13e1b8ba8c5e5025fd6ce35e7",
+     "license": "MIT",
+     "commit": "d0a95d95ab3c29d13e1b8ba8c5e5025fd6ce35e7",
+     "parent": null,
+     "advisory": "GHSA-3r53-75j5-3g7j",
+     "cve": "CVE-2026-73647"
+    },
+    "expected_findings": [
+     {
+      "file": "ui/src/utils/extend/extend.js",
+      "lines": [
+       60,
+       61
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-1321",
+       "CWE-915"
+      ],
+      "severity_min": "medium",
+      "description": "__proto__ not skipped during deep merge",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [
+    {
+     "file": "ui/src/utils/extend/extend.js",
+     "line": 58,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "simplification",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "The `__proto__` check is removed, which might lead to unexpected behavior if the code relies on this property.",
+     "evidence": ""
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "ui/src/utils/extend/extend.js",
+     "line": 59,
+     "severity": "medium",
+     "category": "security",
+     "rule_id": "cwe-1321",
+     "cwe": "CWE-1321",
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "message": "Prototype pollution via '__proto__' key in object merging.",
+     "evidence": "-         if (name === '__proto__') {\n-           continue\n-         }"
+    },
+    {
+     "file": "ui/src/utils/extend/extend.js",
+     "line": 59,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "missing-proto-check",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The '__proto__' property is being skipped, which can lead to prototype pollution vulnerabilities.",
+     "evidence": "-         if (name === '__proto__') { -           continue -         }"
+    }
+   ],
+   "files": [
+    "ui/src/utils/extend/extend.js"
+   ],
+   "wall_seconds": 9.23,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 85.01500000001397,
+    "input_tokens": 3006,
+    "output_tokens": 496,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "cve-transformers-save-traversal",
+    "split": "test",
+    "source": "cve",
+    "language": "python",
+    "title": "Simplify chat template saving",
+    "description": "Chat template names (untrusted dictionary keys) are joined to the save directory without a containment check. Built by reversing the upstream security fix.",
+    "smoke": false,
+    "origin": {
+     "repo": "huggingface/transformers",
+     "url": "https://github.com/huggingface/transformers/commit/eaaaf8494dd5386634ae37d1d122212fdc315be5",
+     "license": "Apache-2.0",
+     "commit": "eaaaf8494dd5386634ae37d1d122212fdc315be5",
+     "parent": null,
+     "advisory": "GHSA-xrqw-3rrv-vx5w",
+     "cve": "CVE-2026-9856"
+    },
+    "expected_findings": [
+     {
+      "file": "src/transformers/processing_utils.py",
+      "lines": [
+       1148,
+       1149
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-22",
+       "CWE-23"
+      ],
+      "severity_min": "medium",
+      "description": "Template name joined to the output directory without validation",
+      "also": [
+       {
+        "file": "src/transformers/tokenization_utils_base.py",
+        "lines": [
+         3316,
+         3317
+        ],
+        "anchor": null,
+        "span": 0
+       }
+      ]
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [
+    {
+     "file": "src/transformers/processing_utils.py",
+     "line": 1146,
+     "severity": "low",
+     "category": "security",
+     "rule_id": "path-traversal",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "Unnecessary path traversal check removed.",
+     "evidence": "-                     if Path(template_filepath).resolve().parent != Path(chat_template_dir).resolve():\n-                         raise ValueError(f\"Invalid chat template name: {template_name!r}\")"
+    },
+    {
+     "file": "src/transformers/tokenization_utils_base.py",
+     "line": 3314,
+     "severity": "low",
+     "category": "security",
+     "rule_id": "path-traversal",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "Unnecessary path traversal check removed.",
+     "evidence": "-                     if Path(template_filepath).resolve().parent != Path(chat_template_dir).resolve():\n-                         raise ValueError(f\"Invalid chat template name: {template_name!r}\")"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "src/transformers/processing_utils.py",
+     "line": 1146,
+     "severity": "critical",
+     "category": "security",
+     "rule_id": "cwe-22",
+     "cwe": "CWE-22",
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "message": "Path traversal vulnerability due to untrusted input in file path construction.",
+     "evidence": "-                     if Path(template_filepath).resolve().parent != Path(chat_template_dir).resolve():\n-                         raise ValueError(f\"Invalid chat template name: {template_name!r}\")"
+    },
+    {
+     "file": "src/transformers/processing_utils.py",
+     "line": 1146,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "cwe-22",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "Path traversal vulnerability exists due to untrusted input.",
+     "evidence": "-                     if Path(template_filepath).resolve().parent != Path(chat_template_dir).resolve():\n-                         raise ValueError(f\"Invalid chat template name: {template_name!r}\")"
+    },
+    {
+     "file": "src/transformers/tokenization_utils_base.py",
+     "line": 3314,
+     "severity": "critical",
+     "category": "security",
+     "rule_id": "cwe-22",
+     "cwe": "CWE-22",
+     "confidence": 0.1,
+     "agent": "security",
+     "verifier_confidence": 0.1,
+     "message": "Path traversal vulnerability due to untrusted input in file path construction.",
+     "evidence": "-                     if Path(template_filepath).resolve().parent != Path(chat_template_dir).resolve():\n-                         raise ValueError(f\"Invalid chat template name: {template_name!r}\")"
+    },
+    {
+     "file": "src/transformers/tokenization_utils_base.py",
+     "line": 3314,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "cwe-22",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "quality",
+     "verifier_confidence": 0.1,
+     "message": "Path traversal vulnerability exists due to untrusted input.",
+     "evidence": "-                     if Path(template_filepath).resolve().parent != Path(chat_template_dir).resolve():\n-                         raise ValueError(f\"Invalid chat template name: {template_name!r}\")"
+    }
+   ],
+   "files": [
+    "src/transformers/processing_utils.py",
+    "src/transformers/tokenization_utils_base.py"
+   ],
+   "wall_seconds": 15.39,
+   "stats": {
+    "live_calls": 2,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 209.0960000000475,
+    "input_tokens": 4717,
+    "output_tokens": 1145,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "oss-axios-11194",
+    "split": "test",
+    "source": "oss",
+    "language": "javascript",
+    "title": "fix(fetch): apply the default cache mode only where the runtime accepts it",
+    "description": "Merged pull request reviewed by the maintainers.",
+    "smoke": false,
+    "origin": {
+     "repo": "axios/axios",
+     "url": "https://github.com/axios/axios/pull/11194",
+     "license": "MIT",
+     "commit": "6337c14ca49a61116d549dc18d9be32b0b3b93a1",
+     "parent": null,
+     "advisory": null,
+     "cve": null
+    },
+    "expected_findings": [],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "lib/adapters/fetch.js",
+     "line": 154,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "incorrect-logic",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The code attempts to set `requestDefaults.cache` back to the default value if it fails to create a `Request` object, but this logic is flawed. If the initial attempt to omit `cache` succeeds, it will overwrite the default cache mode with `undefined`, which might not be what was intended.",
+     "evidence": "if (!test(() => new Request(platform.origin, requestDefaults))) { requestDefaults.cache = DEFAULT_REQUEST_OPTIONS.cache; }"
+    },
+    {
+     "file": "lib/adapters/fetch.js",
+     "line": 477,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "shadowed-variable",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The variable `requestDefaults` is shadowed by the parameter `requestDefaults`, which can lead to confusion and potential bugs.",
+     "evidence": "utils.forEach(requestDefaults, (value, key) => {"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "lib/adapters/fetch.js",
+     "line": 154,
+     "severity": "medium",
+     "category": "security",
+     "rule_id": "cwe-602",
+     "cwe": "CWE-602",
+     "confidence": 0.1,
+     "agent": "security",
+     "verifier_confidence": 0.1,
+     "message": "The code attempts to remove and then restore the 'cache' option from `requestDefaults`, which could potentially lead to unexpected behavior if other parts of the code rely on this default value.",
+     "evidence": "if (!test(() => new Request(platform.origin, requestDefaults))) { requestDefaults.cache = DEFAULT_REQUEST_OPTIONS.cache; }"
+    },
+    {
+     "file": "lib/adapters/fetch.js",
+     "line": 477,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "string-concatenation-in-loop",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "performance",
+     "verifier_confidence": 0.1,
+     "message": "String concatenation inside a loop that builds a large string.",
+     "evidence": "utils.forEach(requestDefaults, (value, key) => {"
+    }
+   ],
+   "files": [
+    "lib/adapters/fetch.js"
+   ],
+   "wall_seconds": 10.78,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 136.4369999999828,
+    "input_tokens": 4444,
+    "output_tokens": 805,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "oss-click-3818",
+    "split": "test",
+    "source": "oss",
+    "language": "python",
+    "title": "Fix race condition on `KeyboardInterrupt` in `Command.main()`",
+    "description": "Merged pull request reviewed by the maintainers.",
+    "smoke": false,
+    "origin": {
+     "repo": "pallets/click",
+     "url": "https://github.com/pallets/click/pull/3818",
+     "license": "BSD-3-Clause",
+     "commit": "fc518e41218b447e875fe27244ae692c269bcb77",
+     "parent": null,
+     "advisory": null,
+     "cve": null
+    },
+    "expected_findings": [],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "src/click/core.py",
+     "line": 1576,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "e0002",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The `ctx.exit()` call may not always return a meaningful exit code.",
+     "evidence": "ctx.exit()"
+    },
+    {
+     "file": "src/click/core.py",
+     "line": 1597,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "string-concatenation-in-loop",
+     "cwe": null,
+     "confidence": 0.8,
+     "agent": "performance",
+     "verifier_confidence": 0.8,
+     "message": "String concatenation inside a loop that builds a large string.",
+     "evidence": "echo(file=sys.stderr)"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "src/click/core.py",
+     "line": 1597,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "e0001",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The `echo` function is called without checking if it can be None.",
+     "evidence": "echo(file=sys.stderr)"
+    },
+    {
+     "file": "src/click/core.py",
+     "line": 1616,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "e0003",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The `report` function is called without checking if it can be None.",
+     "evidence": "report()"
+    },
+    {
+     "file": "src/click/core.py",
+     "line": 1616,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "e0005",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The `report` function is called without checking if it can be None.",
+     "evidence": "report()"
+    }
+   ],
+   "files": [
+    "src/click/core.py"
+   ],
+   "wall_seconds": 24.7,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 301.0310000000377,
+    "input_tokens": 8518,
+    "output_tokens": 1617,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "oss-click-3861",
+    "split": "test",
+    "source": "oss",
+    "language": "python",
+    "title": "Move common `help` argument from `Option` and `Argument` to `Parameter`",
+    "description": "Merged pull request reviewed by the maintainers.",
+    "smoke": false,
+    "origin": {
+     "repo": "pallets/click",
+     "url": "https://github.com/pallets/click/pull/3861",
+     "license": "BSD-3-Clause",
+     "commit": "405a5481e4dbd5022799993d787bd8446137d9a3",
+     "parent": null,
+     "advisory": null,
+     "cve": null
+    },
+    "expected_findings": [],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [
+    {
+     "file": "src/click/core.py",
+     "line": 2400,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "string-concatenation-in-loop",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "String concatenation inside a loop that builds a large string.",
+     "evidence": "help = f\"{help} {label}\" if help else label"
+    },
+    {
+     "file": "src/click/core.py",
+     "line": 2402,
+     "severity": "info",
+     "category": "security",
+     "rule_id": "cwe-357",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "message": "The `help` parameter is being assigned a value without any validation or sanitization.",
+     "evidence": ""
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "src/click/core.py",
+     "line": 2399,
+     "severity": "low",
+     "category": "quality",
+     "rule_id": "s103",
+     "cwe": null,
+     "confidence": 0.5,
+     "agent": "quality",
+     "verifier_confidence": 0.5,
+     "message": "Unused variable 'label'",
+     "evidence": "label = _format_deprecated_label(deprecated)"
+    },
+    {
+     "file": "src/click/core.py",
+     "line": 2399,
+     "severity": "low",
+     "category": "quality",
+     "rule_id": "s103",
+     "cwe": null,
+     "confidence": 0.5,
+     "agent": "quality",
+     "verifier_confidence": 0.5,
+     "message": "Unused variable 'label'",
+     "evidence": "label = _format_deprecated_label(deprecated)"
+    },
+    {
+     "file": "src/click/core.py",
+     "line": 2399,
+     "severity": "low",
+     "category": "quality",
+     "rule_id": "s103",
+     "cwe": null,
+     "confidence": 0.5,
+     "agent": "quality",
+     "verifier_confidence": 0.5,
+     "message": "Unused variable 'label'",
+     "evidence": "label = _format_deprecated_label(deprecated)"
+    }
+   ],
+   "files": [
+    "src/click/core.py"
+   ],
+   "wall_seconds": 11.17,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 160.4059999999795,
+    "input_tokens": 9092,
+    "output_tokens": 756,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "oss-hono-5141",
+    "split": "test",
+    "source": "oss",
+    "language": "typescript",
+    "title": "feat(jwt,jwk): add a configurable WWW-Authenticate realm",
+    "description": "Merged pull request reviewed by the maintainers.",
+    "smoke": false,
+    "origin": {
+     "repo": "honojs/hono",
+     "url": "https://github.com/honojs/hono/pull/5141",
+     "license": "MIT",
+     "commit": "b3afc90469032422b37134f95bd6c5720772d40b",
+     "parent": null,
+     "advisory": null,
+     "cve": null
+    },
+    "expected_findings": [],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "src/middleware/jwk/jwk.ts",
+     "line": 28,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "missing-realm-default-value",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The `realm` parameter is optional but not given a default value in the function signature.",
+     "evidence": "@param {string} [options.realm] - The protection space described by the `realm` parameter of the returned `WWW-Authenticate` challenge header. Defaults to the request URL."
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "src/middleware/jwk/jwk.ts",
+     "line": 190,
+     "severity": "low",
+     "category": "security",
+     "rule_id": "cwe-79",
+     "cwe": "CWE-79",
+     "confidence": 0.1,
+     "agent": "security",
+     "verifier_confidence": 0.1,
+     "message": "Potential XSS vulnerability due to the use of user-controlled data in the 'WWW-Authenticate' header.",
+     "evidence": "`WWW-Authenticate': `Bearer realm=\"${realm}\",error=\"${opts.error}\",error_description=\"${errDescription}\"`"
+    },
+    {
+     "file": "src/middleware/jwk/jwk.ts",
+     "line": 90,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "string-concatenation-inside-loop",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "performance",
+     "verifier_confidence": 0.1,
+     "message": "String concatenation inside a loop that builds a large string.",
+     "evidence": "+             errDescription: 'token verification failure'"
+    },
+    {
+     "file": "src/middleware/jwk/jwk.ts",
+     "line": 0,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "string-concatenation-inside-loop",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "performance",
+     "verifier_confidence": 0.1,
+     "message": "String concatenation inside a loop that builds a large string.",
+     "evidence": "+             errDescription: 'token verification failure'"
+    }
+   ],
+   "files": [
+    "src/middleware/jwk/jwk.ts",
+    "src/middleware/jwt/jwt.ts"
+   ],
+   "wall_seconds": 17.81,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 238.0319999999828,
+    "input_tokens": 9568,
+    "output_tokens": 1373,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "oss-httpx-3670",
+    "split": "test",
+    "source": "oss",
+    "language": "python",
+    "title": "Update FileStream API",
+    "description": "Merged pull request reviewed by the maintainers.",
+    "smoke": false,
+    "origin": {
+     "repo": "encode/httpx",
+     "url": "https://github.com/encode/httpx/pull/3670",
+     "license": "BSD-3-Clause",
+     "commit": "6ee7a36f3462107f618712c6ba198662b3b2c168",
+     "parent": null,
+     "advisory": null,
+     "cve": null
+    },
+    "expected_findings": [],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "src/ahttpx/_content.py",
+     "line": 181,
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "n+1-queries",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "Opening a file inside the loop body.",
+     "evidence": "+         fin = open(self._path, 'rb')\n+         return FileStream(self._path, fin)"
+    },
+    {
+     "file": "src/ahttpx/_streams.py",
+     "line": 190,
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "n+1-queries",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "Opening a file inside the loop body.",
+     "evidence": "+             self._fin = open(value, 'rb')"
+    },
+    {
+     "file": "src/httpx/_content.py",
+     "line": 181,
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "n+1-queries",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "Opening a file inside the loop body.",
+     "evidence": "+         fin = open(self._path, 'rb')\n+         return FileStream(self._path, fin)"
+    },
+    {
+     "file": "src/httpx/_streams.py",
+     "line": 190,
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "n+1-queries",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "Opening a file inside the loop body.",
+     "evidence": "+             self._fin = open(value, 'rb')"
+    },
+    {
+     "file": "src/ahttpx/_content.py",
+     "line": 181,
+     "severity": "medium",
+     "category": "security",
+     "rule_id": "path-traversal",
+     "cwe": "CWE-22",
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "message": "File path is not validated or sanitized before being used in file operations.",
+     "evidence": "+         fin = open(self._path, 'rb')\n+         return FileStream(self._path, fin)"
+    },
+    {
+     "file": "src/ahttpx/_streams.py",
+     "line": 87,
+     "severity": "medium",
+     "category": "security",
+     "rule_id": "path-traversal",
+     "cwe": "CWE-22",
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "message": "File path is not validated or sanitized before being used in file operations.",
+     "evidence": "+                 self._fin.close()\n+                 self._fin = None"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "src/ahttpx/_content.py",
+     "line": 182,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "r0914",
+     "cwe": null,
+     "confidence": 0.5,
+     "agent": "quality",
+     "verifier_confidence": 0.5,
+     "message": "Function is too complex (13) - consider breaking it up into smaller functions.",
+     "evidence": ""
+    },
+    {
+     "file": "src/ahttpx/_streams.py",
+     "line": 190,
+     "severity": "medium",
+     "category": "security",
+     "rule_id": "cwe-22",
+     "cwe": "CWE-22",
+     "confidence": 0.5,
+     "agent": "security",
+     "verifier_confidence": 0.5,
+     "message": "File path is not validated or sanitized before being used in file operations.",
+     "evidence": "+             self._fin = open(value, 'rb')\n+             name = key.translate({10: \"%0A\", 13: \"%0D\", 34: \"%22\"})"
+    },
+    {
+     "file": "src/ahttpx/_streams.py",
+     "line": 187,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "r0914",
+     "cwe": null,
+     "confidence": 0.5,
+     "agent": "quality",
+     "verifier_confidence": 0.5,
+     "message": "Function is too complex (13) - consider breaking it up into smaller functions.",
+     "evidence": ""
+    },
+    {
+     "file": "src/ahttpx/_streams.py",
+     "line": 208,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "r0914",
+     "cwe": null,
+     "confidence": 0.5,
+     "agent": "quality",
+     "verifier_confidence": 0.5,
+     "message": "Function is too complex (13) - consider breaking it up into smaller functions.",
+     "evidence": ""
+    },
+    {
+     "file": "src/ahttpx/_streams.py",
+     "line": 217,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "r0914",
+     "cwe": null,
+     "confidence": 0.5,
+     "agent": "quality",
+     "verifier_confidence": 0.5,
+     "message": "Function is too complex (13) - consider breaking it up into smaller functions.",
+     "evidence": ""
+    },
+    {
+     "file": "src/ahttpx/_streams.py",
+     "line": 0,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "r0914",
+     "cwe": null,
+     "confidence": 0.5,
+     "agent": "quality",
+     "verifier_confidence": 0.5,
+     "message": "Function is too complex (13) - consider breaking it up into smaller functions.",
+     "evidence": ""
+    },
+    {
+     "file": "src/httpx/_content.py",
+     "line": 181,
+     "severity": "medium",
+     "category": "security",
+     "rule_id": "cwe-22",
+     "cwe": "CWE-22",
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "message": "File path is not validated or sanitized before being used in file operations.",
+     "evidence": "+         fin = open(self._path, 'rb')\n+         return FileStream(self._path, fin)"
+    },
+    {
+     "file": "src/httpx/_streams.py",
+     "line": 190,
+     "severity": "medium",
+     "category": "security",
+     "rule_id": "cwe-22",
+     "cwe": "CWE-22",
+     "confidence": 0.5,
+     "agent": "security",
+     "verifier_confidence": 0.5,
+     "message": "File path is not validated or sanitized before being used in file operations.",
+     "evidence": "+             self._fin = open(value, 'rb')\n+             name = key.translate({10: \"%0A\", 13: \"%0D\", 34: \"%22\"})"
+    }
+   ],
+   "files": [
+    "src/ahttpx/_content.py",
+    "src/ahttpx/_streams.py",
+    "src/httpx/_content.py",
+    "src/httpx/_streams.py"
+   ],
+   "wall_seconds": 31.95,
+   "stats": {
+    "live_calls": 4,
+    "cached_calls": 4,
+    "missing_calls": 0,
+    "llm_seconds": 532.2960000000246,
+    "input_tokens": 15974,
+    "output_tokens": 2349,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "oss-ky-830",
+    "split": "test",
+    "source": "oss",
+    "language": "typescript",
+    "title": "Add Standard Schema validation for `json()`",
+    "description": "Merged pull request reviewed by the maintainers.",
+    "smoke": false,
+    "origin": {
+     "repo": "sindresorhus/ky",
+     "url": "https://github.com/sindresorhus/ky/pull/830",
+     "license": "MIT",
+     "commit": "41ec0663cc4b83243bb54a2e13025630c0663693",
+     "parent": null,
+     "advisory": null,
+     "cve": null
+    },
+    "expected_findings": [],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "source/core/Ky.ts",
+     "line": 72,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "missing-validation-check",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The `schema` argument is not checked for null or undefined before being used in the `validateJsonWithSchema` function.",
+     "evidence": "const validationResult = await standardSchema.validate(jsonValue);"
+    },
+    {
+     "file": "source/core/Ky.ts",
+     "line": 249,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "missing-validation-check",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The `schema` argument is not checked for null or undefined before being used in the `validateJsonWithSchema` function.",
+     "evidence": "return schema === undefined ? jsonValue : validateJsonWithSchema(jsonValue, schema);"
+    }
+   ],
+   "suppressed": [],
+   "files": [
+    "source/core/Ky.ts",
+    "source/errors/SchemaValidationError.ts",
+    "source/index.ts",
+    "source/types/ResponsePromise.ts",
+    "source/types/standard-schema.ts",
+    "source/utils/type-guards.ts"
+   ],
+   "wall_seconds": 3.24,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 95.82800000001723,
+    "input_tokens": 9067,
+    "output_tokens": 423,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "oss-rich-1869",
+    "split": "test",
+    "source": "oss",
+    "language": "python",
+    "title": "Add `Syntax.guess_lexer`, add support for more lexers (e.g. Django templates etc.)",
+    "description": "Merged pull request reviewed by the maintainers.",
+    "smoke": false,
+    "origin": {
+     "repo": "Textualize/rich",
+     "url": "https://github.com/Textualize/rich/pull/1869",
+     "license": "MIT",
+     "commit": "781b41f4a780e70196692d7a43881eef0b0b81e0",
+     "parent": null,
+     "advisory": null,
+     "cve": null
+    },
+    "expected_findings": [],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "rich/syntax.py",
+     "line": 452,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "off-by-one-error",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The line `_line_start = line_start - 1 if line_start else 0` might be off by one because `line_start` is zero-indexed, but the code expects it to be one-indexed.",
+     "evidence": "_line_start = line_start - 1 if line_start else 0"
+    },
+    {
+     "file": "rich/syntax.py",
+     "line": 465,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "off-by-one-error",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The condition `if line_end and line_no >= line_end` might be off by one because `line_end` is zero-indexed, but the code expects it to be one-indexed.",
+     "evidence": "if line_end and line_no >= line_end:"
+    },
+    {
+     "file": "rich/syntax.py",
+     "line": 591,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "off-by-one-error",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The condition `if start_line` might be off by one because `start_line` is zero-indexed, but the code expects it to be one-indexed.",
+     "evidence": "if start_line:"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "rich/syntax.py",
+     "line": 320,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "missing-default-argument-value",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "quality",
+     "verifier_confidence": 0.1,
+     "message": "The function `guess_lexer` has a default argument value of `None` for the parameter `code`. This can lead to unexpected behavior if the caller does not provide an argument.",
+     "evidence": "def guess_lexer(cls, path: str, code=None) -> str:"
+    },
+    {
+     "file": "rich/syntax.py",
+     "line": 342,
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "n+1-queries",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "performance",
+     "verifier_confidence": 0.1,
+     "message": "The `guess_lexer` method makes a database or API call inside the body of a loop over query results.",
+     "evidence": "+            if code:\n+                try:\n+                    lexer = guess_lexer_for_filename(path, code)\n+                except ClassNotFound:"
+    },
+    {
+     "file": "rich/syntax.py",
+     "line": 348,
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "n+1-queries",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "performance",
+     "verifier_confidence": 0.1,
+     "message": "The `guess_lexer` method makes a database or API call inside the body of a loop over query results.",
+     "evidence": "+            if not lexer:\n+                try:"
+    },
+    {
+     "file": "rich/syntax.py",
+     "line": 455,
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "n+1-queries",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "performance",
+     "verifier_confidence": 0.1,
+     "message": "The `highlight` method makes a database or API call inside the body of a loop over query results.",
+     "evidence": "+                       while line_no < _line_start:\n+                           yield (token, _get_theme_style(token_type))\n+                           if token.endswith(\"\\n\"):\n+                               line_no += 1\n+                               if line_end and line_no >= line_end:"
+    },
+    {
+     "file": "rich/syntax.py",
+     "line": 0,
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "n+1-queries",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "performance",
+     "verifier_confidence": 0.1,
+     "message": "The `highlight` method makes a database or API call inside the body of a loop over query results.",
+     "evidence": "+                               if line_no >= line_end:"
+    }
+   ],
+   "files": [
+    "rich/syntax.py"
+   ],
+   "wall_seconds": 23.28,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 332.75099999998275,
+    "input_tokens": 12038,
+    "output_tokens": 1543,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "oss-starlette-3522",
+    "split": "test",
+    "source": "oss",
+    "language": "python",
+    "title": "Inline OpenTelemetryResponder and document middleware parameters",
+    "description": "Merged pull request reviewed by the maintainers.",
+    "smoke": false,
+    "origin": {
+     "repo": "encode/starlette",
+     "url": "https://github.com/Kludex/starlette/pull/3522",
+     "license": "BSD-3-Clause",
+     "commit": "afb90104a5f7cfbf2b272a25778179c20141efd1",
+     "parent": null,
+     "advisory": null,
+     "cve": null
+    },
+    "expected_findings": [],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "starlette/middleware/opentelemetry.py",
+     "line": 50,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "missing-tracer-provider-check",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The tracer provider might be None, which could lead to a NoOpTracerProvider being used.",
+     "evidence": "tracer_provider = self._tracer_provider or trace.get_tracer_provider()"
+    },
+    {
+     "file": "starlette/middleware/opentelemetry.py",
+     "line": 105,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "missing-exception-handling",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The exception handling block does not re-raise the exception, which could lead to it being swallowed.",
+     "evidence": "except Exception as exc:"
+    },
+    {
+     "file": "starlette/middleware/opentelemetry.py",
+     "line": 55,
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "n+1-queries",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "The `any(pattern.search(str(url)) for pattern in self._excluded_urls)` call inside the loop over `self._excluded_urls` is an N+1 query.",
+     "evidence": "if any(pattern.search(str(url)) for pattern in self._excluded_urls):"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "starlette/middleware/opentelemetry.py",
+     "line": 47,
+     "severity": "info",
+     "category": "security",
+     "rule_id": "cwe-1321",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "security",
+     "verifier_confidence": 0.1,
+     "message": "The code merges the `scope` dictionary, which could lead to prototype pollution if an attacker can control part of this dictionary.",
+     "evidence": ""
+    },
+    {
+     "file": "starlette/middleware/opentelemetry.py",
+     "line": 74,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "missing-url-check",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "quality",
+     "verifier_confidence": 0.1,
+     "message": "The URL might be None, which could lead to an error when calling `url.hostname`.",
+     "evidence": "if url.hostname is not None:"
+    },
+    {
+     "file": "starlette/middleware/opentelemetry.py",
+     "line": 123,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "missing-scope-deletion-check",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "quality",
+     "verifier_confidence": 0.1,
+     "message": "The scope deletion might fail if the key 'starlette.opentelemetry' does not exist.",
+     "evidence": "del scope['starlette.opentelemetry']"
+    },
+    {
+     "file": "starlette/middleware/opentelemetry.py",
+     "line": 123,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "missing-scope-deletion-check",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "quality",
+     "verifier_confidence": 0.1,
+     "message": "The scope deletion might fail if the key 'starlette.opentelemetry' does not exist.",
+     "evidence": "del scope['starlette.opentelemetry']"
+    }
+   ],
+   "files": [
+    "starlette/middleware/opentelemetry.py"
+   ],
+   "wall_seconds": 29.8,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 422.6409999999828,
+    "input_tokens": 12709,
+    "output_tokens": 1929,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "oss-zod-6541",
+    "split": "test",
+    "source": "oss",
+    "language": "typescript",
+    "title": "Rename the JSON Schema `process` helper so bundler polyfills cannot collide",
+    "description": "Merged pull request reviewed by the maintainers.",
+    "smoke": false,
+    "origin": {
+     "repo": "colinhacks/zod",
+     "url": "https://github.com/colinhacks/zod/pull/6541",
+     "license": "MIT",
+     "commit": "a906e585c1439fc88aa386b737ca90d163732582",
+     "parent": null,
+     "advisory": null,
+     "cve": null
+    },
+    "expected_findings": [],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "packages/zod/src/v4/core/json-schema-processors.ts",
+     "line": 0,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "renamed-function-usage",
+     "cwe": null,
+     "confidence": 1.0,
+     "agent": "quality",
+     "verifier_confidence": 1.0,
+     "message": "The function `process` is being renamed to `processSchema`, but it's still being used with the old name in some places.",
+     "evidence": "268       process(parent, ctx, params);"
+    },
+    {
+     "file": "packages/zod/src/v4/core/to-json-schema.ts",
+     "line": 839,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "renamed-function-usage",
+     "cwe": null,
+     "confidence": 1.0,
+     "agent": "quality",
+     "verifier_confidence": 1.0,
+     "message": "The function `process` is being renamed to `processSchema`, but it's still being used with the old name in some places.",
+     "evidence": "839       process(schema, ctx);"
+    },
+    {
+     "file": "packages/zod/src/v4/core/to-json-schema.ts",
+     "line": 854,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "renamed-function-usage",
+     "cwe": null,
+     "confidence": 1.0,
+     "agent": "quality",
+     "verifier_confidence": 1.0,
+     "message": "The function `process` is being renamed to `processSchema`, but it's still being used with the old name in some places.",
+     "evidence": "854       process(schema, ctx);"
+    },
+    {
+     "file": "packages/zod/src/v4/core/json-schema-generator.ts",
+     "line": 105,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "renamed-function-usage",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The function `process` is being renamed to `processSchema`, but it's still being used with the old name in some places.",
+     "evidence": "105     return process(schema, this.ctx, _params);"
+    }
+   ],
+   "suppressed": [],
+   "files": [
+    "packages/zod/src/v4/core/json-schema-generator.ts",
+    "packages/zod/src/v4/core/json-schema-processors.ts",
+    "packages/zod/src/v4/core/to-json-schema.ts"
+   ],
+   "wall_seconds": 13.78,
+   "stats": {
+    "live_calls": 3,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 214.54800000004423,
+    "input_tokens": 20904,
+    "output_tokens": 719,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "oss-zod-6575",
+    "split": "test",
+    "source": "oss",
+    "language": "typescript",
+    "title": "feat(compile): add z.withParser for externally generated parsers",
+    "description": "Merged pull request reviewed by the maintainers.",
+    "smoke": false,
+    "origin": {
+     "repo": "colinhacks/zod",
+     "url": "https://github.com/colinhacks/zod/pull/6575",
+     "license": "MIT",
+     "commit": "192e9a70aeedcb1222875889d787268c81dd5835",
+     "parent": null,
+     "advisory": null,
+     "cve": null
+    },
+    "expected_findings": [],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "packages/zod/src/v4/classic/external.ts",
+     "line": 0,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "missing-return-type",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The function `withParser` is missing a return type annotation.",
+     "evidence": "+export function withParser<T extends SomeType>(schema: T, parser: (input: unknown) => core.output<T> | INVALID): T {"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "packages/zod/src/v4/classic/external.ts",
+     "line": 0,
+     "severity": "medium",
+     "category": "security",
+     "rule_id": "cwe-601",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "security",
+     "verifier_confidence": 0.1,
+     "message": "The function `withParser` does not validate the input parser, which could lead to open redirects if an attacker provides a malicious parser.",
+     "evidence": ""
+    },
+    {
+     "file": "packages/zod/src/v4/classic/external.ts",
+     "line": 0,
+     "severity": "medium",
+     "category": "security",
+     "rule_id": "cwe-601",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "security",
+     "verifier_confidence": 0.1,
+     "message": "The function `withParser` does not validate the input parser, which could lead to open redirects if an attacker provides a malicious parser.",
+     "evidence": ""
+    },
+    {
+     "file": "packages/zod/src/v4/classic/external.ts",
+     "line": 0,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "missing-type-annotation",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "quality",
+     "verifier_confidence": 0.1,
+     "message": "The type `core.output<T>` is missing a type annotation.",
+     "evidence": "+export function withParser<T extends SomeType>(schema: T, parser: (input: unknown) => core.output<T> | INVALID): T {"
+    },
+    {
+     "file": "packages/zod/src/v4/classic/external.ts",
+     "line": 0,
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "n+1-queries",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "performance",
+     "verifier_confidence": 0.1,
+     "message": "A database or API call is inside the body of a loop over query results.",
+     "evidence": "+     const clone = withParser(schema, parser);"
+    },
+    {
+     "file": "packages/zod/src/v4/core/compile.ts",
+     "line": 129,
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "n+1-queries",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "A database or API call is inside the body of a loop over query results.",
+     "evidence": "+     const clone = withParser(schema, parser);"
+    },
+    {
+     "file": "packages/zod/src/v4/mini/external.ts",
+     "line": 29,
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "n+1-queries",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "performance",
+     "verifier_confidence": 0.1,
+     "message": "A database or API call is inside the body of a loop over query results.",
+     "evidence": "+     const clone = withParser(schema, parser);"
+    }
+   ],
+   "files": [
+    "packages/zod/src/v4/classic/external.ts",
+    "packages/zod/src/v4/core/compile.ts",
+    "packages/zod/src/v4/mini/external.ts"
+   ],
+   "wall_seconds": 26.62,
+   "stats": {
+    "live_calls": 3,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 364.04700000000327,
+    "input_tokens": 14106,
+    "output_tokens": 1699,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "syn-js-clean-rate-limited-form",
+    "split": "test",
+    "source": "synthetic",
+    "language": "javascript",
+    "title": "Contact form with validation",
+    "description": "Clean change: input validation, escaping through the template engine, a parameterized insert and rate limiting.",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [],
+    "must_not_flag": [
+     {
+      "file": "src/routes/contact.js",
+      "lines": [
+       21,
+       21
+      ],
+      "anchor": "await db.query(\"INSERT INTO messages (email, body) VALUES (?, ?)\", [",
+      "span": 0,
+      "reason": "parameterized insert"
+     }
+    ]
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "request_changes",
+   "findings": [
+    {
+     "file": "src/routes/contact.js",
+     "line": 21,
+     "severity": "critical",
+     "category": "security",
+     "rule_id": "sql-injection",
+     "cwe": "CWE-89",
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "message": "SQL injection vulnerability in database query.",
+     "evidence": "await db.query(\"INSERT INTO messages (email, body) VALUES (?, ?)\", [req.body.email, req.body.message]);"
+    },
+    {
+     "file": "src/routes/contact.js",
+     "line": 26,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "missing-parameter-check",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The sent parameter is not checked for null or undefined before being used in the render method.",
+     "evidence": "res.render('contact', { sent: true });"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "src/routes/contact.js",
+     "line": 22,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "missing-parameter-check",
+     "cwe": null,
+     "confidence": 0.5,
+     "agent": "quality",
+     "verifier_confidence": 0.5,
+     "message": "The email parameter is not checked for null or undefined before being used in the database query.",
+     "evidence": "req.body.email"
+    },
+    {
+     "file": "src/routes/contact.js",
+     "line": 23,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "missing-parameter-check",
+     "cwe": null,
+     "confidence": 0.5,
+     "agent": "quality",
+     "verifier_confidence": 0.5,
+     "message": "The message parameter is not checked for null or undefined before being used in the database query.",
+     "evidence": "req.body.message"
+    },
+    {
+     "file": "src/routes/contact.js",
+     "line": 22,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "missing-parameter-check",
+     "cwe": null,
+     "confidence": 0.5,
+     "agent": "quality",
+     "verifier_confidence": 0.5,
+     "message": "The email parameter is not checked for null or undefined before being used in the database query.",
+     "evidence": "req.body.email"
+    },
+    {
+     "file": "src/routes/contact.js",
+     "line": 23,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "missing-parameter-check",
+     "cwe": null,
+     "confidence": 0.5,
+     "agent": "quality",
+     "verifier_confidence": 0.5,
+     "message": "The message parameter is not checked for null or undefined before being used in the database query.",
+     "evidence": "req.body.message"
+    },
+    {
+     "file": "src/routes/contact.js",
+     "line": 21,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "string-concatenation-inside-loop",
+     "cwe": null,
+     "confidence": 0.5,
+     "agent": "performance",
+     "verifier_confidence": 0.5,
+     "message": "String concatenation inside a loop that builds a large string.",
+     "evidence": "req.body.email + req.body.message"
+    }
+   ],
+   "files": [
+    "src/routes/contact.js"
+   ],
+   "wall_seconds": 13.66,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 166.4829999999935,
+    "input_tokens": 4391,
+    "output_tokens": 1219,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "syn-js-path-traversal-export",
+    "split": "test",
+    "source": "synthetic",
+    "language": "javascript",
+    "title": "Download generated exports",
+    "description": "The file name from the URL is joined to the exports directory without validation.",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "src/routes/exports.js",
+      "lines": [
+       9,
+       10
+      ],
+      "anchor": "const filePath = path.join(EXPORT_DIR, req.params.file);",
+      "span": 1,
+      "category": "security",
+      "cwe": [
+       "CWE-22",
+       "CWE-23"
+      ],
+      "severity_min": "high",
+      "description": "Unvalidated file name joined to the export directory",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "src/routes/exports.js",
+     "line": 9,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "missing-file-check",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The file path is not checked for existence before attempting to download it.",
+     "evidence": "const filePath = path.join(EXPORT_DIR, req.params.file); res.download(filePath);"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "src/routes/exports.js",
+     "line": 9,
+     "severity": "medium",
+     "category": "security",
+     "rule_id": "cwe-22",
+     "cwe": "CWE-22",
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "message": "Potential path traversal vulnerability.",
+     "evidence": "const filePath = path.join(EXPORT_DIR, req.params.file);"
+    },
+    {
+     "file": "src/routes/exports.js",
+     "line": 10,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "empty-except-catch",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The download function does not handle errors that may occur during the file download process.",
+     "evidence": "res.download(filePath);"
+    },
+    {
+     "file": "src/routes/exports.js",
+     "line": 10,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "string-concatenation-in-loop",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "performance",
+     "verifier_confidence": 0.1,
+     "message": "String concatenation inside a loop that builds a large string.",
+     "evidence": "res.download(filePath);"
+    }
+   ],
+   "files": [
+    "src/routes/exports.js"
+   ],
+   "wall_seconds": 9.39,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 94.529999999973,
+    "input_tokens": 3238,
+    "output_tokens": 596,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "syn-js-sqli-category",
+    "split": "test",
+    "source": "synthetic",
+    "language": "javascript",
+    "title": "Filter products by category",
+    "description": "The category query parameter is concatenated into the SQL string (SQL injection).",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "src/routes/products.js",
+      "lines": [
+       22,
+       23
+      ],
+      "anchor": ": \"SELECT * FROM products WHERE category = '\" + category",
+      "span": 1,
+      "category": "security",
+      "cwe": [
+       "CWE-89"
+      ],
+      "severity_min": "high",
+      "description": "Query parameter concatenated into SQL",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "request_changes",
+   "findings": [
+    {
+     "file": "src/routes/products.js",
+     "line": 21,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "sql-injection",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "SQL injection vulnerability due to string concatenation.",
+     "evidence": "const sql = category === \"all\" ? \"SELECT * FROM products ORDER BY name\" : \"SELECT * FROM products WHERE category = '\" + category + \"' ORDER BY name\";"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "src/routes/products.js",
+     "line": 19,
+     "severity": "critical",
+     "category": "security",
+     "rule_id": "cwe-89",
+     "cwe": "CWE-89",
+     "confidence": 0.1,
+     "agent": "security",
+     "verifier_confidence": 0.1,
+     "message": "SQL injection vulnerability due to direct string concatenation with user input.",
+     "evidence": "const sql = category === 'all' ? 'SELECT * FROM products ORDER BY name' : 'SELECT * FROM products WHERE category = \\'"
+    }
+   ],
+   "files": [
+    "src/routes/products.js"
+   ],
+   "wall_seconds": 7.94,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 112.28200000002374,
+    "input_tokens": 3449,
+    "output_tokens": 599,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "syn-js-sync-read-handler",
+    "split": "test",
+    "source": "synthetic",
+    "language": "javascript",
+    "title": "Render the invoice email template",
+    "description": "The template is read synchronously from disk on every request, blocking the event loop.",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "src/routes/invoices.js",
+      "lines": [
+       12,
+       12
+      ],
+      "anchor": "const template = fs.readFileSync(TEMPLATE, \"utf8\");",
+      "span": 0,
+      "category": "performance",
+      "cwe": [],
+      "severity_min": "low",
+      "description": "Synchronous file read on every request",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "src/routes/invoices.js",
+     "line": 12,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "missing-file-check",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The file might not exist, causing an error when trying to read it.",
+     "evidence": "const template = fs.readFileSync(TEMPLATE, \"utf8\");"
+    },
+    {
+     "file": "src/routes/invoices.js",
+     "line": 12,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "missing-error-handling",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The error from `fs.readFileSync` is not handled properly.",
+     "evidence": "const template = fs.readFileSync(TEMPLATE, \"utf8\");"
+    },
+    {
+     "file": "src/routes/invoices.js",
+     "line": 15,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "missing-next-call",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The error is passed to the next middleware without any additional handling.",
+     "evidence": "next(err);"
+    },
+    {
+     "file": "src/routes/invoices.js",
+     "line": 12,
+     "severity": "medium",
+     "category": "performance",
+     "rule_id": "n+1-queries",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "The file read operation is performed inside a request handler, which can lead to blocking I/O.",
+     "evidence": "const template = fs.readFileSync(TEMPLATE, \"utf8\");"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "src/routes/invoices.js",
+     "line": 12,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "cwe-78",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "security",
+     "verifier_confidence": 0.1,
+     "message": "Potential OS command injection via file path manipulation.",
+     "evidence": "const template = fs.readFileSync(TEMPLATE, \"utf8\");"
+    },
+    {
+     "file": "src/routes/invoices.js",
+     "line": 12,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "cwe-78",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "security",
+     "verifier_confidence": 0.1,
+     "message": "Potential path traversal via user input.",
+     "evidence": "const template = fs.readFileSync(TEMPLATE, \"utf8\");"
+    },
+    {
+     "file": "src/routes/invoices.js",
+     "line": 13,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "missing-template-check",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "quality",
+     "verifier_confidence": 0.1,
+     "message": "The `renderTemplate` function might receive an empty template string.",
+     "evidence": "res.send(renderTemplate(template, invoice));"
+    }
+   ],
+   "files": [
+    "src/routes/invoices.js"
+   ],
+   "wall_seconds": 14.0,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 154.84500000000324,
+    "input_tokens": 3748,
+    "output_tokens": 961,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "syn-py-clean-auth-helpers",
+    "split": "test",
+    "source": "synthetic",
+    "language": "python",
+    "title": "Session helpers for the admin area",
+    "description": "Clean change: constant-time comparison, bcrypt hashing, secure cookie flags and an explicit ownership check.",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "app/security/sessions.py",
+     "line": 21,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "s501",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The `expected` parameter in `check_api_key` is not validated for None or empty values.",
+     "evidence": "return hmac.compare_digest(provided.encode(), expected.encode())"
+    },
+    {
+     "file": "app/security/sessions.py",
+     "line": 31,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "n-a",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "The `document_for` function performs a database query inside the body of a loop over query results.",
+     "evidence": "document = Document.query.get_or_404(document_id)"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "app/security/sessions.py",
+     "line": 29,
+     "severity": "medium",
+     "category": "security",
+     "rule_id": "cwe-601",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "security",
+     "verifier_confidence": 0.1,
+     "message": "The function `document_for` does not validate the user's permissions before accessing a document.",
+     "evidence": ""
+    },
+    {
+     "file": "app/security/sessions.py",
+     "line": 31,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "s501",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "quality",
+     "verifier_confidence": 0.1,
+     "message": "The `document_id` parameter in `document_for` is not validated for None or empty values.",
+     "evidence": "document = Document.query.get_or_404(document_id)"
+    },
+    {
+     "file": "app/security/sessions.py",
+     "line": 32,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "s501",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "quality",
+     "verifier_confidence": 0.1,
+     "message": "The `user` parameter in `document_for` is not validated for None or empty values.",
+     "evidence": "if document.owner_id != user.id and not user.is_admin:"
+    }
+   ],
+   "files": [
+    "app/security/sessions.py"
+   ],
+   "wall_seconds": 12.09,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 159.437,
+    "input_tokens": 4293,
+    "output_tokens": 782,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "syn-py-clean-refactor",
+    "split": "test",
+    "source": "synthetic",
+    "language": "python",
+    "title": "Extract a pagination helper",
+    "description": "Clean refactor: bounded query with LIMIT/OFFSET, set for membership, join for strings.",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [],
+    "must_not_flag": [
+     {
+      "file": "app/api/pagination.py",
+      "lines": [
+       24,
+       24
+      ],
+      "anchor": "items = list(session.scalars(stmt.limit(size).offset((page - 1) * size)))",
+      "span": 0,
+      "reason": "bounded query"
+     },
+     {
+      "file": "app/api/pagination.py",
+      "lines": [
+       33,
+       33
+      ],
+      "anchor": "if key not in seen:",
+      "span": 0,
+      "reason": "set membership"
+     }
+    ]
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "app/api/pagination.py",
+     "line": 24,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "pagination-helper-error",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The `page` parameter is zero-indexed in the calculation of the offset, which will cause an error when `page` is 1.",
+     "evidence": "items = list(session.scalars(stmt.limit(size).offset((page - 1) * size)))"
+    },
+    {
+     "file": "app/api/pagination.py",
+     "line": 23,
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "n+1-queries",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "The query to count the total number of items is executed for every call to `paginate`, which can lead to a large number of database queries if called frequently.",
+     "evidence": "+    total = session.scalar(select(func.count()).select_from(stmt.subquery())) or 0"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "app/api/pagination.py",
+     "line": 23,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "cwe-89",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "security",
+     "verifier_confidence": 0.1,
+     "message": "SQL injection vulnerability due to direct use of user input in the SQL query.",
+     "evidence": "total = session.scalar(select(func.count()).select_from(stmt.subquery())) or 0"
+    },
+    {
+     "file": "app/api/pagination.py",
+     "line": 24,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "cwe-89",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "security",
+     "verifier_confidence": 0.1,
+     "message": "SQL injection vulnerability due to direct use of user input in the SQL query.",
+     "evidence": "items = list(session.scalars(stmt.limit(size).offset((page - 1) * size)))"
+    },
+    {
+     "file": "app/api/pagination.py",
+     "line": 20,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "pagination-helper-default-values",
+     "cwe": null,
+     "confidence": 0.5,
+     "agent": "quality",
+     "verifier_confidence": 0.5,
+     "message": "The default values for `page` and `size` are hardcoded, which may not be suitable for all use cases.",
+     "evidence": "def paginate(session: Session, stmt, page: int = 1, size: int = 20) -> Page:"
+    },
+    {
+     "file": "app/api/pagination.py",
+     "line": 40,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "string-concatenation-inside-a-loop",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "performance",
+     "verifier_confidence": 0.1,
+     "message": "String concatenation is used in `csv_line`, which can be inefficient for large lists of values.",
+     "evidence": "+    return \",\".join(values) + \"\\n\""
+    }
+   ],
+   "files": [
+    "app/api/pagination.py"
+   ],
+   "wall_seconds": 16.64,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 222.7980000000065,
+    "input_tokens": 4862,
+    "output_tokens": 1315,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "syn-py-cmdi-thumbnail",
+    "split": "test",
+    "source": "synthetic",
+    "language": "python",
+    "title": "Generate thumbnails for uploaded images",
+    "description": "The thumbnail command is built as a shell string from the uploaded file name (OS command injection). The identify call uses an argument list and is safe.",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "app/services/thumbnails.py",
+      "lines": [
+       17,
+       17
+      ],
+      "anchor": "subprocess.run(f\"convert {source}",
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-78"
+      ],
+      "severity_min": "high",
+      "description": "Shell command built from the uploaded file name",
+      "also": []
+     }
+    ],
+    "must_not_flag": [
+     {
+      "file": "app/services/thumbnails.py",
+      "lines": [
+       9,
+       9
+      ],
+      "anchor": "[\"identify\", \"-format\", \"%wx%h\", str(path)]",
+      "span": 0,
+      "reason": "argument list without a shell"
+     }
+    ]
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "request_changes",
+   "findings": [
+    {
+     "file": "app/services/thumbnails.py",
+     "line": 17,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "cwe-78-os-command-injection",
+     "cwe": "CWE-78",
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "message": "The use of `subprocess.run` with a shell=True argument is vulnerable to OS command injection.",
+     "evidence": "subprocess.run(f\"convert {source} -resize {width}x{width} {target}\", shell=True, check=True)"
+    },
+    {
+     "file": "app/routes/images.py",
+     "line": 8,
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "n+1-queries",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "A blocking I/O call (`make_thumbnail`) is inside a loop over query results (implied by the context).",
+     "evidence": "@bp.post(\"/images\")\n    def upload_image():\n        file = request.files[\"image\"]\n        file.save(UPLOAD_DIR / file.filename)\n        thumb = make_thumbnail(file.filename)\n        return jsonify({\"thumbnail\": thumb.name, \"size\": image_size(UPLOAD_DIR / file.filename)})"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "app/routes/images.py",
+     "line": 10,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "missing-file-check",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The uploaded file is not checked for existence before saving.",
+     "evidence": "file = request.files[\"image\"]\nfile.save(UPLOAD_DIR / file.filename)"
+    }
+   ],
+   "files": [
+    "app/routes/images.py",
+    "app/services/thumbnails.py"
+   ],
+   "wall_seconds": 10.17,
+   "stats": {
+    "live_calls": 2,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 139.43599999994598,
+    "input_tokens": 4683,
+    "output_tokens": 784,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "syn-py-deep-nesting",
+    "split": "test",
+    "source": "synthetic",
+    "language": "python",
+    "title": "Shipping cost rules",
+    "description": "Deeply nested conditionals that are hard to follow and to test.",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "app/shipping/cost.py",
+      "lines": [
+       1,
+       7
+      ],
+      "anchor": "def shipping_cost(country: str, weight_kg: float, express: bool, member: bool) -> float:",
+      "span": 6,
+      "category": "quality",
+      "cwe": [],
+      "severity_min": "low",
+      "description": "Deeply nested conditionals (high complexity)",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "app/shipping/cost.py",
+     "line": 3,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "c1",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "Off-by-one error in weight_kg comparison.",
+     "evidence": "if weight_kg < 1:"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "app/shipping/cost.py",
+     "line": 25,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "c2",
+     "cwe": null,
+     "confidence": 0.5,
+     "agent": "quality",
+     "verifier_confidence": 0.5,
+     "message": "Off-by-one error in weight_kg comparison.",
+     "evidence": "return 14.0 if weight_kg > 2 else 9.0"
+    }
+   ],
+   "files": [
+    "app/shipping/cost.py"
+   ],
+   "wall_seconds": 2.86,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 62.672000000003266,
+    "input_tokens": 3710,
+    "output_tokens": 287,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "syn-py-idor-invoice",
+    "split": "test",
+    "source": "synthetic",
+    "language": "python",
+    "title": "Endpoint to fetch a single invoice",
+    "description": "The new endpoint loads the invoice by id without checking that it belongs to the current user (insecure direct object reference).",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "app/api/invoices.py",
+      "lines": [
+       25,
+       28
+      ],
+      "anchor": "invoice = session.get(Invoice, invoice_id)",
+      "span": 3,
+      "category": "security",
+      "cwe": [
+       "CWE-639",
+       "CWE-862",
+       "CWE-285",
+       "CWE-284",
+       "CWE-863"
+      ],
+      "severity_min": "high",
+      "description": "Invoice returned without an ownership check",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "app/api/invoices.py",
+     "line": 19,
+     "severity": "medium",
+     "category": "security",
+     "rule_id": "cwe-601",
+     "cwe": "CWE-601",
+     "confidence": 1.0,
+     "agent": "security",
+     "verifier_confidence": 1.0,
+     "message": "The code does not verify that the fetched invoice belongs to the current user.",
+     "evidence": "@router.get(\"/{invoice_id}\", response_model=InvoiceOut)\n25     invoice = session.get(Invoice, invoice_id)"
+    },
+    {
+     "file": "app/api/invoices.py",
+     "line": 25,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "n-a",
+     "cwe": null,
+     "confidence": 1.0,
+     "agent": "performance",
+     "verifier_confidence": 1.0,
+     "message": "The query does not use a limit, which could load the whole table if there are many invoices.",
+     "evidence": "invoice = session.get(Invoice, invoice_id)"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "app/api/invoices.py",
+     "line": 28,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "missing-none-check",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The `invoice` variable can be None, but it is not checked before being returned.",
+     "evidence": "return invoice"
+    }
+   ],
+   "files": [
+    "app/api/invoices.py"
+   ],
+   "wall_seconds": 6.83,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 94.12500000004098,
+    "input_tokens": 3403,
+    "output_tokens": 514,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "syn-py-io-in-loop",
+    "split": "test",
+    "source": "synthetic",
+    "language": "python",
+    "title": "Apply pricing rules while importing products",
+    "description": "The pricing rules file is opened and parsed again for every product row.",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "app/importers/products.py",
+      "lines": [
+       13,
+       14
+      ],
+      "anchor": "with RULES_PATH.open(encoding=\"utf-8\") as rules_file:",
+      "span": 1,
+      "category": "performance",
+      "cwe": [],
+      "severity_min": "low",
+      "description": "Same file opened and parsed on every iteration",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "app/importers/products.py",
+     "line": 13,
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "n+1-queries",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "Opening the pricing rules file on every iteration of the loop.",
+     "evidence": "with RULES_PATH.open(encoding=\"utf-8\") as rules_file:"
+    },
+    {
+     "file": "app/importers/products.py",
+     "line": 14,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "e501",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "Line too long (82 > 79 characters)",
+     "evidence": ""
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "app/importers/products.py",
+     "line": 13,
+     "severity": "medium",
+     "category": "security",
+     "rule_id": "cwe-22",
+     "cwe": "CWE-22",
+     "confidence": 0.1,
+     "agent": "security",
+     "verifier_confidence": 0.1,
+     "message": "Potential path traversal vulnerability.",
+     "evidence": "with RULES_PATH.open(encoding=\"utf-8\") as rules_file:"
+    },
+    {
+     "file": "app/importers/products.py",
+     "line": 15,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "cwe-79",
+     "cwe": "CWE-79",
+     "confidence": 0.1,
+     "agent": "security",
+     "verifier_confidence": 0.1,
+     "message": "Potential cross-site scripting (XSS) vulnerability.",
+     "evidence": "markup = Decimal(str(rules.get(row[\"category\"], rules[\"default\"])))"
+    },
+    {
+     "file": "app/importers/products.py",
+     "line": 14,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "w503",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "quality",
+     "verifier_confidence": 0.1,
+     "message": "Line break occurred before a binary operator",
+     "evidence": ""
+    }
+   ],
+   "files": [
+    "app/importers/products.py"
+   ],
+   "wall_seconds": 10.66,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 123.68599999997625,
+    "input_tokens": 3637,
+    "output_tokens": 729,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "syn-py-is-literal",
+    "split": "test",
+    "source": "synthetic",
+    "language": "python",
+    "title": "Restrict bulk delete to administrators",
+    "description": "Identity comparison with a string literal instead of equality: the check is unreliable.",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "app/admin/bulk.py",
+      "lines": [
+       6,
+       6
+      ],
+      "anchor": "if user.role is \"admin\":",
+      "span": 0,
+      "category": "quality",
+      "cwe": [],
+      "severity_min": "medium",
+      "description": "'is' used to compare strings",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "app/admin/bulk.py",
+     "line": 6,
+     "severity": "medium",
+     "category": "security",
+     "rule_id": "cwe-287",
+     "cwe": "CWE-287",
+     "confidence": 1.0,
+     "agent": "security",
+     "verifier_confidence": 1.0,
+     "message": "The code does not verify the user's role before deleting users in bulk.",
+     "evidence": "if user.role is \"admin\":"
+    },
+    {
+     "file": "app/admin/bulk.py",
+     "line": 7,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "n-a",
+     "cwe": null,
+     "confidence": 1.0,
+     "agent": "performance",
+     "verifier_confidence": 1.0,
+     "message": "The query is not inside a loop, so it does not waste time or memory.",
+     "evidence": ""
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "app/admin/bulk.py",
+     "line": 6,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "s105",
+     "cwe": null,
+     "confidence": 0.5,
+     "agent": "quality",
+     "verifier_confidence": 0.5,
+     "message": "Inverted check for user role.",
+     "evidence": "if user.role is \"admin\":"
+    },
+    {
+     "file": "app/admin/bulk.py",
+     "line": 6,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "s105",
+     "cwe": null,
+     "confidence": 0.5,
+     "agent": "quality",
+     "verifier_confidence": 0.5,
+     "message": "Inverted check for user role.",
+     "evidence": "if user.role is \"admin\":"
+    },
+    {
+     "file": "app/admin/bulk.py",
+     "line": 6,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "s105",
+     "cwe": null,
+     "confidence": 0.5,
+     "agent": "quality",
+     "verifier_confidence": 0.5,
+     "message": "Inverted check for user role.",
+     "evidence": "if user.role is \"admin\":"
+    },
+    {
+     "file": "app/admin/bulk.py",
+     "line": 6,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "s105",
+     "cwe": null,
+     "confidence": 0.5,
+     "agent": "quality",
+     "verifier_confidence": 0.5,
+     "message": "Inverted check for user role.",
+     "evidence": "if user.role is \"admin\":"
+    },
+    {
+     "file": "app/admin/bulk.py",
+     "line": 6,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "s105",
+     "cwe": null,
+     "confidence": 0.5,
+     "agent": "quality",
+     "verifier_confidence": 0.5,
+     "message": "Inverted check for user role.",
+     "evidence": "if user.role is \"admin\":"
+    }
+   ],
+   "files": [
+    "app/admin/bulk.py"
+   ],
+   "wall_seconds": 15.78,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 126.99999999995902,
+    "input_tokens": 3177,
+    "output_tokens": 1039,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "syn-py-mutable-default",
+    "split": "test",
+    "source": "synthetic",
+    "language": "python",
+    "title": "Helper to tag articles",
+    "description": "Mutable default argument: the same list is shared across calls.",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "app/content/tags.py",
+      "lines": [
+       5,
+       5
+      ],
+      "anchor": "def add_tags(new_tags: list[str], existing: list[str] = []) -> list[str]:",
+      "span": 0,
+      "category": "quality",
+      "cwe": [],
+      "severity_min": "medium",
+      "description": "Mutable default argument shared between calls",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "suppressed": [
+    {
+     "file": "app/content/tags.py",
+     "line": 5,
+     "severity": "low",
+     "category": "quality",
+     "rule_id": "s238",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "quality",
+     "verifier_confidence": 0.1,
+     "message": "Mutable default argument used for `existing`.",
+     "evidence": "def add_tags(new_tags: list[str], existing: list[str] = []) -> list[str]:"
+    },
+    {
+     "file": "app/content/tags.py",
+     "line": 7,
+     "severity": "low",
+     "category": "quality",
+     "rule_id": "s238",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "quality",
+     "verifier_confidence": 0.1,
+     "message": "Mutable default argument used for `existing`.",
+     "evidence": "tag = normalize_tag(tag)"
+    },
+    {
+     "file": "app/content/tags.py",
+     "line": 7,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "string-concatenation-in-loop",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "performance",
+     "verifier_confidence": 0.1,
+     "message": "String concatenation inside a loop that builds a large string.",
+     "evidence": "+    tag = normalize_tag(tag)"
+    }
+   ],
+   "files": [
+    "app/content/tags.py"
+   ],
+   "wall_seconds": 7.09,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 90.532,
+    "input_tokens": 3037,
+    "output_tokens": 463,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "syn-py-pickle-cookie",
+    "split": "test",
+    "source": "synthetic",
+    "language": "python",
+    "title": "Remember dashboard preferences in a cookie",
+    "description": "Preferences are deserialized with pickle from a cookie controlled by the client (remote code execution).",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "app/routes/dashboard.py",
+      "lines": [
+       15,
+       15
+      ],
+      "anchor": "return pickle.loads(base64.b64decode(raw))",
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-502"
+      ],
+      "severity_min": "high",
+      "description": "pickle.loads on a client-controlled cookie",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "request_changes",
+   "findings": [
+    {
+     "file": "app/routes/dashboard.py",
+     "line": 15,
+     "severity": "critical",
+     "category": "security",
+     "rule_id": "insecure-deserialization",
+     "cwe": "CWE-502",
+     "confidence": 1.0,
+     "agent": "security",
+     "verifier_confidence": 1.0,
+     "message": "Deserialization of untrusted data using pickle.",
+     "evidence": "return pickle.loads(base64.b64decode(raw))"
+    },
+    {
+     "file": "app/routes/dashboard.py",
+     "line": 27,
+     "severity": "critical",
+     "category": "security",
+     "rule_id": "insecure-deserialization",
+     "cwe": "CWE-502",
+     "confidence": 1.0,
+     "agent": "security",
+     "verifier_confidence": 1.0,
+     "message": "Deserialization of untrusted data using pickle.",
+     "evidence": "response.set_cookie('prefs', base64.b64encode(pickle.dumps(prefs)).decode())"
+    },
+    {
+     "file": "app/routes/dashboard.py",
+     "line": 15,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "base64-decoding",
+     "cwe": null,
+     "confidence": 1.0,
+     "agent": "quality",
+     "verifier_confidence": 1.0,
+     "message": "Base64 decoding can fail if the input is not valid Base64.",
+     "evidence": "return pickle.loads(base64.b64decode(raw))"
+    },
+    {
+     "file": "app/routes/dashboard.py",
+     "line": 25,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "base64-encoding",
+     "cwe": null,
+     "confidence": 1.0,
+     "agent": "quality",
+     "verifier_confidence": 1.0,
+     "message": "Base64 encoding can fail if the input is not valid.",
+     "evidence": "response.set_cookie('prefs', base64.b64encode(pickle.dumps(prefs)).decode())"
+    },
+    {
+     "file": "app/routes/dashboard.py",
+     "line": 12,
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "n+1-queries",
+     "cwe": null,
+     "confidence": 1.0,
+     "agent": "performance",
+     "verifier_confidence": 1.0,
+     "message": "The `pickle.loads` call inside the loop over query results is inefficient.",
+     "evidence": "raw = request.cookies.get(\"prefs\")\nif not raw:\n    return DEFAULT_PREFS\nreturn pickle.loads(base64.b64decode(raw))"
+    },
+    {
+     "file": "app/routes/dashboard.py",
+     "line": 27,
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "n+1-queries",
+     "cwe": null,
+     "confidence": 1.0,
+     "agent": "performance",
+     "verifier_confidence": 1.0,
+     "message": "The `pickle.dumps` call inside the loop over query results is inefficient.",
+     "evidence": "response.set_cookie(\"prefs\", base64.b64encode(pickle.dumps(prefs)).decode())"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "app/routes/dashboard.py",
+     "line": 15,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "pickle-deserialization",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "Deserializing data with pickle can be dangerous as it executes arbitrary code.",
+     "evidence": "return pickle.loads(base64.b64decode(raw))"
+    },
+    {
+     "file": "app/routes/dashboard.py",
+     "line": 25,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "pickle-serialization",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "Serializing data with pickle can be dangerous as it can lead to arbitrary code execution.",
+     "evidence": "response.set_cookie('prefs', base64.b64encode(pickle.dumps(prefs)).decode())"
+    },
+    {
+     "file": "app/routes/dashboard.py",
+     "line": 28,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "response-status-code",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "Using a status code of 204 (No Content) without setting any content can be misleading.",
+     "evidence": "return response"
+    }
+   ],
+   "files": [
+    "app/routes/dashboard.py"
+   ],
+   "wall_seconds": 20.02,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 274.3759999999623,
+    "input_tokens": 4442,
+    "output_tokens": 1541,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "syn-py-ssrf-webhook-test",
+    "split": "test",
+    "source": "synthetic",
+    "language": "python",
+    "title": "Add a button to test webhook endpoints",
+    "description": "The endpoint fetches any URL chosen by the user from the server (SSRF: internal services and cloud metadata are reachable).",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "app/api/webhooks.py",
+      "lines": [
+       19,
+       19
+      ],
+      "anchor": "response = await client.post(body.url",
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-918"
+      ],
+      "severity_min": "medium",
+      "description": "Server-side request to a URL chosen by the user",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "app/api/webhooks.py",
+     "line": 19,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "missing-status-check",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The response status code is not checked for errors.",
+     "evidence": "response = await client.post(body.url, json={\"event\": body.event, \"user\": user.id})\nreturn {\"status\": response.status_code, \"body\": response.text[:500]}"
+    },
+    {
+     "file": "app/api/webhooks.py",
+     "line": 16,
+     "severity": "medium",
+     "category": "performance",
+     "rule_id": "blocking-call-in-async-function",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "A blocking call (httpx.AsyncClient) is inside an async function.",
+     "evidence": "@router.post(\"/test\")\nasync def test_webhook(body: WebhookTest, user: User = Depends(current_user)) -> dict:\n    async with httpx.AsyncClient(timeout=5) as client:\n        response = await client.post(body.url, json={\"event\": body.event, \"user\": user.id})"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "app/api/webhooks.py",
+     "line": 19,
+     "severity": "critical",
+     "category": "security",
+     "rule_id": "cwe-89",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "security",
+     "verifier_confidence": 0.1,
+     "message": "Potential SQL injection vulnerability in the URL parameter.",
+     "evidence": "response = await client.post(body.url, json={"
+    },
+    {
+     "file": "app/api/webhooks.py",
+     "line": 20,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "large-response-body",
+     "cwe": null,
+     "confidence": 0.5,
+     "agent": "quality",
+     "verifier_confidence": 0.5,
+     "message": "The response body is truncated to 500 characters, which might not be sufficient for all use cases.",
+     "evidence": "return {\"status\": response.status_code, \"body\": response.text[:500]}"
+    }
+   ],
+   "files": [
+    "app/api/webhooks.py"
+   ],
+   "wall_seconds": 9.09,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 129.71800000000002,
+    "input_tokens": 3741,
+    "output_tokens": 766,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "syn-py-ssti-greeting",
+    "split": "test",
+    "source": "synthetic",
+    "language": "python",
+    "title": "Personalized greeting on the landing page",
+    "description": "The visitor name is formatted into a template string rendered by Jinja (server-side template injection and XSS).",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "app/routes/landing.py",
+      "lines": [
+       14,
+       14
+      ],
+      "anchor": "return render_template_string(f\"<h1>Welcome back, {name}!</h1>\")",
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-94",
+       "CWE-1336",
+       "CWE-79",
+       "CWE-74"
+      ],
+      "severity_min": "high",
+      "description": "User input formatted into a Jinja template (SSTI/XSS)",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [
+    {
+     "file": "app/routes/landing.py",
+     "line": 13,
+     "severity": "low",
+     "category": "security",
+     "rule_id": "xss",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The use of `render_template_string` can lead to XSS if the input is not properly sanitized.",
+     "evidence": ""
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "app/routes/landing.py",
+     "line": 14,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "cwe-79",
+     "cwe": "CWE-79",
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "message": "User input is directly embedded in the HTML response without proper escaping.",
+     "evidence": "<h1>Welcome back, {name}!</h1>"
+    },
+    {
+     "file": "app/routes/landing.py",
+     "line": 14,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "string-concatenation-in-loop",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "String concatenation inside a loop that builds a large string.",
+     "evidence": "return render_template_string(f\"<h1>Welcome back, {name}!</h1>\")"
+    }
+   ],
+   "files": [
+    "app/routes/landing.py"
+   ],
+   "wall_seconds": 7.16,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 82.74999999997625,
+    "input_tokens": 3231,
+    "output_tokens": 474,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "syn-py-string-concat-csv",
+    "split": "test",
+    "source": "synthetic",
+    "language": "python",
+    "title": "CSV export of the audit log",
+    "description": "The CSV is built by repeated string concatenation in the loop.",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "app/audit/export.py",
+      "lines": [
+       7,
+       7
+      ],
+      "anchor": "output += f\"{entry.timestamp.isoformat()}",
+      "span": 0,
+      "category": "performance",
+      "cwe": [],
+      "severity_min": "low",
+      "description": "String concatenation inside a loop",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [
+    {
+     "file": "app/audit/export.py",
+     "line": 7,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "string-concatenation-in-loop",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "String concatenation inside a loop that builds a large string.",
+     "evidence": "+        output += f\"{entry.timestamp.isoformat()},{entry.user},{entry.action},{entry.target}\\n\""
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "app/audit/export.py",
+     "line": 4,
+     "severity": "low",
+     "category": "quality",
+     "rule_id": "missing-type-hint",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "quality",
+     "verifier_confidence": 0.1,
+     "message": "Missing type hint for the function parameters and return value.",
+     "evidence": ""
+    }
+   ],
+   "files": [
+    "app/audit/export.py"
+   ],
+   "wall_seconds": 4.3,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 63.593000000034465,
+    "input_tokens": 2916,
+    "output_tokens": 310,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "syn-py-unbounded-query",
+    "split": "test",
+    "source": "synthetic",
+    "language": "python",
+    "title": "Paginate the events API",
+    "description": "Every event is loaded from the database and the page is sliced in Python.",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "app/api/events.py",
+      "lines": [
+       12,
+       14
+      ],
+      "anchor": "events = session.query(Event).order_by(Event.created_at.desc()).all()",
+      "span": 2,
+      "category": "performance",
+      "cwe": [],
+      "severity_min": "medium",
+      "description": "Whole table loaded to serve one page",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "app/api/events.py",
+     "line": 12,
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "n+1-queries",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "The query inside the loop loads all events, which is inefficient for large datasets.",
+     "evidence": "@router.get(\"\\\")\n11 + def list_events(page: int = 1, size: int = 50, session: Session = Depends(get_session)):\n12 +     events = session.query(Event).order_by(Event.created_at.desc()).all()\n13 +     start = (page - 1) * size\n14 +     return {\"total\": len(events), \"items\": [e.to_dict() for e in event"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "app/api/events.py",
+     "line": 12,
+     "severity": "medium",
+     "category": "security",
+     "rule_id": "cwe-89",
+     "cwe": "CWE-89",
+     "confidence": 0.1,
+     "agent": "security",
+     "verifier_confidence": 0.1,
+     "message": "SQL injection vulnerability due to direct use of user input in query construction.",
+     "evidence": "@router.get(\"\", dependencies=[Depends(get_session)])\n    def list_events(page: int = 1, size: int = 50, session: Session = Depends(get_session)):\n        events = session.query(Event).order_by(Event.created_at.desc()).all()\n        start = (page - 1) * size\n        return {\"total\": len(events), \"ite"
+    },
+    {
+     "file": "app/api/events.py",
+     "line": 12,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "cwe-89",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "quality",
+     "verifier_confidence": 0.1,
+     "message": "SQL injection vulnerability due to direct use of user input in query construction.",
+     "evidence": "@router.get(\"\", response_model=List[Event])\ndef list_events(page: int = 1, size: int = 50, session: Session = Depends(get_session)):\n    events = session.query(Event).order_by(Event.created_at.desc()).all()\n    start = (page - 1) * size\n    return {\"total\": len(events), \"items\": [e.to_dict() for e i"
+    }
+   ],
+   "files": [
+    "app/api/events.py"
+   ],
+   "wall_seconds": 6.11,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 155.76600000000326,
+    "input_tokens": 3608,
+    "output_tokens": 771,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "syn-ts-empty-catch",
+    "split": "test",
+    "source": "synthetic",
+    "language": "typescript",
+    "title": "Fetch notifications for the header badge",
+    "description": "Every error is swallowed by an empty catch and turned into an empty list.",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "src/notifications/client.ts",
+      "lines": [
+       11,
+       11
+      ],
+      "anchor": "} catch (e) {}",
+      "span": 0,
+      "category": "quality",
+      "cwe": [],
+      "severity_min": "low",
+      "description": "Errors swallowed by an empty catch",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "src/notifications/client.ts",
+     "line": 11,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "swallowed-error",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The error is swallowed, and an empty array is returned instead.",
+     "evidence": "catch (e) {}"
+    },
+    {
+     "file": "src/notifications/client.ts",
+     "line": 9,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "no-blocking-calls-in-async-functions",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "The fetch call is blocking and will not yield control to the event loop.",
+     "evidence": "const response = await fetch(`/api/users/${userId}/notifications`);"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "src/notifications/client.ts",
+     "line": 9,
+     "severity": "medium",
+     "category": "security",
+     "rule_id": "cwe-943",
+     "cwe": "CWE-943",
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "message": "Potential NoSQL injection vulnerability in the fetchNotifications function.",
+     "evidence": "const response = await fetch(`/api/users/${userId}/notifications`);"
+    },
+    {
+     "file": "src/notifications/client.ts",
+     "line": 12,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "unhandled-result",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The result of the fetch operation is ignored when an error occurs.",
+     "evidence": "return [];"
+    }
+   ],
+   "files": [
+    "src/notifications/client.ts"
+   ],
+   "wall_seconds": 9.19,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 104.48399999998277,
+    "input_tokens": 3176,
+    "output_tokens": 664,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "syn-ts-eval-formula",
+    "split": "test",
+    "source": "synthetic",
+    "language": "typescript",
+    "title": "Custom formulas for report columns",
+    "description": "User-provided formulas are executed with new Function (code injection).",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "src/reports/formulas.ts",
+      "lines": [
+       5,
+       5
+      ],
+      "anchor": "const compute = new Function(...names, `return (${formula});`);",
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-94",
+       "CWE-95"
+      ],
+      "severity_min": "high",
+      "description": "User formula executed as code",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "src/reports/formulas.ts",
+     "line": 5,
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "n+1-queries",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "The `evaluateFormula` function creates a new Function object for each call, which can be expensive.",
+     "evidence": "const compute = new Function(...names, `return (${formula});`);"
+    },
+    {
+     "file": "src/routes/reports.ts",
+     "line": 9,
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "n+1-queries",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "The `evaluateFormula` function is called inside a loop over query results, which can be expensive.",
+     "evidence": "const values = rows.map((row) => evaluateFormula(req.body.formula, row));"
+    },
+    {
+     "file": "src/routes/reports.ts",
+     "line": 9,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "async-await-without-error-handling",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The result of `evaluateFormula` is ignored without error handling.",
+     "evidence": "const values = rows.map((row) => evaluateFormula(req.body.formula, row));"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "src/reports/formulas.ts",
+     "line": 5,
+     "severity": "critical",
+     "category": "security",
+     "rule_id": "cwe-94",
+     "cwe": "CWE-94",
+     "confidence": 0.1,
+     "agent": "security",
+     "verifier_confidence": 0.1,
+     "message": "The use of `new Function` to evaluate user input is vulnerable to code injection.",
+     "evidence": "const compute = new Function(...names, `return (${formula});`);"
+    },
+    {
+     "file": "src/reports/formulas.ts",
+     "line": 5,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "eval-injection",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "quality",
+     "verifier_confidence": 0.1,
+     "message": "Using `new Function` to evaluate formulas can lead to code injection vulnerabilities.",
+     "evidence": "const compute = new Function(...names, `return (${formula});`);"
+    },
+    {
+     "file": "src/routes/reports.ts",
+     "line": 9,
+     "severity": "critical",
+     "category": "security",
+     "rule_id": "cwe-94",
+     "cwe": "CWE-94",
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "message": "The user-provided formula is directly passed to the `evaluateFormula` function without validation.",
+     "evidence": "const values = rows.map((row) => evaluateFormula(req.body.formula, row));"
+    }
+   ],
+   "files": [
+    "src/reports/formulas.ts",
+    "src/routes/reports.ts"
+   ],
+   "wall_seconds": 14.05,
+   "stats": {
+    "live_calls": 2,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 185.06300000006146,
+    "input_tokens": 4201,
+    "output_tokens": 1059,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "syn-ts-hardcoded-jwt-secret",
+    "split": "test",
+    "source": "synthetic",
+    "language": "typescript",
+    "title": "Issue access tokens",
+    "description": "The JWT signing secret is a string literal in the source code.",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "src/auth/tokens.ts",
+      "lines": [
+       3,
+       3
+      ],
+      "anchor": "const JWT_SECRET = \"gitmind-demo-signing-secret-please-change\";",
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-798",
+       "CWE-321"
+      ],
+      "severity_min": "medium",
+      "description": "Hardcoded JWT signing secret",
+      "also": []
+     }
+    ],
+    "must_not_flag": [
+     {
+      "file": "src/auth/tokens.ts",
+      "lines": [
+       11,
+       11
+      ],
+      "anchor": "return jwt.verify(token, JWT_SECRET);",
+      "span": 0,
+      "reason": "verification is correct"
+     }
+    ]
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "request_changes",
+   "findings": [
+    {
+     "file": "src/auth/tokens.ts",
+     "line": 3,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "hardcoded-secret",
+     "cwe": "CWE-943",
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "message": "Hardcoded secret in JWT_SECRET.",
+     "evidence": "const JWT_SECRET = \"gitmind-demo-signing-secret-please-change\";"
+    },
+    {
+     "file": "src/auth/tokens.ts",
+     "line": 11,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "jwt-verify-without-expiration",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The JWT is verified without checking for expiration, which can lead to security vulnerabilities.",
+     "evidence": "return jwt.verify(token, JWT_SECRET);"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "src/auth/tokens.ts",
+     "line": 7,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "jwt-sign-without-expiration",
+     "cwe": null,
+     "confidence": 0.5,
+     "agent": "quality",
+     "verifier_confidence": 0.5,
+     "message": "The JWT is signed without an expiration time, which can lead to security vulnerabilities.",
+     "evidence": "return jwt.sign({ sub: userId, role }, JWT_SECRET, { expiresIn: ACCESS_TOKEN_TTL });"
+    }
+   ],
+   "files": [
+    "src/auth/tokens.ts"
+   ],
+   "wall_seconds": 6.36,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 94.76600000001723,
+    "input_tokens": 3169,
+    "output_tokens": 470,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "syn-ts-jwt-decode",
+    "split": "test",
+    "source": "synthetic",
+    "language": "typescript",
+    "title": "Read the user from the bearer token",
+    "description": "The middleware uses jwt.decode, which does not verify the signature: any forged token is accepted.",
+    "smoke": true,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "src/middleware/auth.ts",
+      "lines": [
+       15,
+       15
+      ],
+      "anchor": "const claims = jwt.decode(token) as TokenClaims | null;",
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-347",
+       "CWE-287",
+       "CWE-345"
+      ],
+      "severity_min": "high",
+      "description": "JWT decoded without signature verification",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "src/middleware/auth.ts",
+     "line": 15,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "missing-jwt-expiration-check",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The token's expiration is not checked.",
+     "evidence": "const claims = jwt.decode(token) as TokenClaims | null;"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "src/middleware/auth.ts",
+     "line": 15,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "cwe-307-improper-neutralization-of-special-elements-used-in-an-os-command-os-command-injection",
+     "cwe": "CWE-307",
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "message": "The token is decoded but not verified. This could lead to potential security issues if the token is tampered with.",
+     "evidence": "const claims = jwt.decode(token) as TokenClaims | null;"
+    },
+    {
+     "file": "src/middleware/auth.ts",
+     "line": 15,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "cwe-89-sql-injection",
+     "cwe": "CWE-89",
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "message": "The token is decoded but not verified. This could lead to potential security issues if the token is tampered with.",
+     "evidence": "const claims = jwt.decode(token) as TokenClaims | null;"
+    },
+    {
+     "file": "src/middleware/auth.ts",
+     "line": 15,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "cwe-78-os-command-injection",
+     "cwe": "CWE-78",
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "message": "The token is decoded but not verified. This could lead to potential security issues if the token is tampered with.",
+     "evidence": "const claims = jwt.decode(token) as TokenClaims | null;"
+    },
+    {
+     "file": "src/middleware/auth.ts",
+     "line": 15,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "cwe-94-code-injection",
+     "cwe": "CWE-94",
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "message": "The token is decoded but not verified. This could lead to potential security issues if the token is tampered with.",
+     "evidence": "const claims = jwt.decode(token) as TokenClaims | null;"
+    },
+    {
+     "file": "src/middleware/auth.ts",
+     "line": 15,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "cwe-79-xss",
+     "cwe": "CWE-79",
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "message": "The token is decoded but not verified. This could lead to potential security issues if the token is tampered with.",
+     "evidence": "const claims = jwt.decode(token) as TokenClaims | null;"
+    },
+    {
+     "file": "src/middleware/auth.ts",
+     "line": 15,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "missing-jwt-verification",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The token is decoded but not verified.",
+     "evidence": "const claims = jwt.decode(token) as TokenClaims | null;"
+    },
+    {
+     "file": "src/middleware/auth.ts",
+     "line": 15,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "jwt-decode",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "JWT decoding is performed without verifying the token's signature.",
+     "evidence": "const claims = jwt.decode(token) as TokenClaims | null;"
+    }
+   ],
+   "files": [
+    "src/middleware/auth.ts"
+   ],
+   "wall_seconds": 22.05,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 315.5769999999795,
+    "input_tokens": 4255,
+    "output_tokens": 1774,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "syn-ts-missing-await",
+    "split": "test",
+    "source": "synthetic",
+    "language": "typescript",
+    "title": "Save the audit trail when an order is cancelled",
+    "description": "The audit write is not awaited: failures are lost and the response is sent before the write completes.",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "src/orders/cancel.ts",
+      "lines": [
+       9,
+       9
+      ],
+      "anchor": "writeAudit({ action: \"order.cancel\", orderId, userId });",
+      "span": 0,
+      "category": "quality",
+      "cwe": [],
+      "severity_min": "low",
+      "description": "Promise not awaited (floating promise)",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "src/orders/cancel.ts",
+     "line": 6,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "missing-update-return-check",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "The update operation may fail silently if the order does not exist.",
+     "evidence": "const order = await db.order.update({ where: { id: orderId }, data: { status: \"cancelled\" } });"
+    },
+    {
+     "file": "src/orders/cancel.ts",
+     "line": 9,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "string-concatenation-in-loop",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": 0.9,
+     "message": "String concatenation inside a loop that builds a large string.",
+     "evidence": "writeAudit({ action: \"order.cancel\", orderId, userId });"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "src/orders/cancel.ts",
+     "line": 6,
+     "severity": "info",
+     "category": "security",
+     "rule_id": "cwe-89",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "security",
+     "verifier_confidence": 0.1,
+     "message": "Potential SQL injection vulnerability in the database update query.",
+     "evidence": "where: { id: orderId }"
+    },
+    {
+     "file": "src/orders/cancel.ts",
+     "line": 7,
+     "severity": "info",
+     "category": "security",
+     "rule_id": "cwe-89",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "security",
+     "verifier_confidence": 0.1,
+     "message": "Potential SQL injection vulnerability in the database update query.",
+     "evidence": "data: { status: \"cancelled\" }"
+    },
+    {
+     "file": "src/orders/cancel.ts",
+     "line": 6,
+     "severity": "info",
+     "category": "security",
+     "rule_id": "cwe-89",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "security",
+     "verifier_confidence": 0.1,
+     "message": "Potential SQL injection vulnerability in the database update query.",
+     "evidence": "where: { id: orderId }"
+    },
+    {
+     "file": "src/orders/cancel.ts",
+     "line": 7,
+     "severity": "info",
+     "category": "security",
+     "rule_id": "cwe-89",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "security",
+     "verifier_confidence": 0.1,
+     "message": "Potential SQL injection vulnerability in the database update query.",
+     "evidence": "data: { status: \"cancelled\" }"
+    },
+    {
+     "file": "src/orders/cancel.ts",
+     "line": 6,
+     "severity": "info",
+     "category": "security",
+     "rule_id": "cwe-89",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "security",
+     "verifier_confidence": 0.1,
+     "message": "Potential SQL injection vulnerability in the database update query.",
+     "evidence": "where: { id: orderId }"
+    },
+    {
+     "file": "src/orders/cancel.ts",
+     "line": 10,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "unused-return-value",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "quality",
+     "verifier_confidence": 0.1,
+     "message": "The updated order object is returned but not used anywhere.",
+     "evidence": "return order;"
+    }
+   ],
+   "files": [
+    "src/orders/cancel.ts"
+   ],
+   "wall_seconds": 19.36,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 146.12400000001395,
+    "input_tokens": 3425,
+    "output_tokens": 1103,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "syn-ts-nosql-injection",
+    "split": "test",
+    "source": "synthetic",
+    "language": "typescript",
+    "title": "Login endpoint for the mobile app",
+    "description": "Request body fields go straight into the MongoDB filter: an object such as {\"$ne\": null} bypasses the password check.",
+    "smoke": false,
+    "origin": null,
+    "expected_findings": [
+     {
+      "file": "src/routes/login.ts",
+      "lines": [
+       8,
+       11
+      ],
+      "anchor": "const user = await db.collection(\"users\").findOne({",
+      "span": 3,
+      "category": "security",
+      "cwe": [
+       "CWE-943",
+       "CWE-89",
+       "CWE-287",
+       "CWE-20"
+      ],
+      "severity_min": "high",
+      "description": "Request body used as a MongoDB query (operator injection)",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "src/routes/login.ts",
+     "line": 10,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "missing-password-hashing",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "message": "Storing passwords in plain text is a security risk.",
+     "evidence": ""
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "src/routes/login.ts",
+     "line": 10,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "cwe-943-no-sql-injection",
+     "cwe": "CWE-943",
+     "confidence": 0.1,
+     "agent": "security",
+     "verifier_confidence": 0.1,
+     "message": "Directly using user input in a query without sanitization or parameterized queries can lead to NoSQL injection.",
+     "evidence": "password: req.body.password,"
+    },
+    {
+     "file": "src/routes/login.ts",
+     "line": 12,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "unhandled-login-failure",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "quality",
+     "verifier_confidence": 0.1,
+     "message": "The login failure response does not include a timestamp or other unique identifier.",
+     "evidence": ""
+    },
+    {
+     "file": "src/routes/login.ts",
+     "line": 8,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "n-a",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "performance",
+     "verifier_confidence": 0.1,
+     "message": "String concatenation inside a loop that builds a large string.",
+     "evidence": "+   const user = await db.collection(\"users\").findOne({"
+    }
+   ],
+   "files": [
+    "src/routes/login.ts"
+   ],
+   "wall_seconds": 10.39,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 101.32799999996227,
+    "input_tokens": 3400,
+    "output_tokens": 592,
+    "purposes": []
+   }
+  }
+ ]
+}

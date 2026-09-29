@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T14:59:25+00:00",
+ "elapsed_seconds": 14.235,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"verdicts\": [\n    {\n      \"id\": 0,\n      \"real\": false,\n      \"confidence\": 0.9,\n      \"reason\": \"The `default_factory` parameter is no longer used in the code, so input validation for it is not relevant.\"\n    },\n    {\n      \"id\": 1,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The removal of `ALLOWED_DEFAULT_FACTORIES` and `_validate_default_factory` logic means that the code will crash if an invalid value is passed for `default_factory`.\"\n    },\n    {\n      \"id\": 2,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The removal of `ALLOWED_DEFAULT_FACTORIES` and `_validate_default_factory` logic means that the code will raise an exception if an invalid value is passed for `default_factory`.\"\n    },\n    {\n      \"id\": 3,\n      \"real\": false,\n      \"confidence\": 0.9,\n      \"reason\": \"The `ALLOWED_DEFAULT_FACTORIES` and `_validate_default_factory` functions are no longer used, so they are not relevant to the current change.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T14:59:25.6414254Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 14241214000,
+     "load_duration": 76654900,
+     "prompt_eval_count": 1218,
+     "prompt_eval_duration": 477381700,
+     "eval_count": 261,
+     "eval_duration": 4900282000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edad-47a6-7f91-9fb7-82c848d1d92f-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1218,
+     "output_tokens": 261,
+     "total_tokens": 1479
+    }
+   }
+  }
+ ]
+}

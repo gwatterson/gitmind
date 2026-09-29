@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:12:05+00:00",
+ "elapsed_seconds": 9.078,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"verdicts\": [\n    {\n      \"id\": 0,\n      \"real\": true,\n      \"confidence\": 1.0,\n      \"reason\": \"The code is rendering user input without proper escaping, which can lead to Cross-Site Scripting (XSS).\"\n    },\n    {\n      \"id\": 1,\n      \"real\": false,\n      \"confidence\": 0.5,\n      \"reason\": \"Using an f-string to generate HTML can lead to XSS if the `message` variable is not properly sanitized.\"\n    },\n    {\n      \"id\": 2,\n      \"real\": false,\n      \"confidence\": 0.1,\n      \"reason\": \"String concatenation inside a loop that builds a large string.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:12:05.9785417Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 9072790500,
+     "load_duration": 79506300,
+     "prompt_eval_count": 843,
+     "prompt_eval_duration": 296152000,
+     "eval_count": 163,
+     "eval_duration": 2887872100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edb8-f5e6-7dd1-8217-a8c0bfff4029-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 843,
+     "output_tokens": 163,
+     "total_tokens": 1006
+    }
+   }
+  }
+ ]
+}

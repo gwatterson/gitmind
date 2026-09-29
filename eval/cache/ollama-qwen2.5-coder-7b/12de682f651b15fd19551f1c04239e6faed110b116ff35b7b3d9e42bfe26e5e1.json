@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:18:35+00:00",
+ "elapsed_seconds": 12.0,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n \"verdicts\": [\n  {\n   \"id\": 0,\n   \"real\": false,\n   \"confidence\": 0.1,\n   \"reason\": \"The function `document_for` does not validate the user's permissions before accessing a document.\"\n  },\n  {\n   \"id\": 1,\n   \"real\": true,\n   \"confidence\": 0.9,\n   \"reason\": \"The `expected` parameter in `check_api_key` is not validated for None or empty values.\"\n  },\n  {\n   \"id\": 2,\n   \"real\": false,\n   \"confidence\": 0.1,\n   \"reason\": \"The `document_id` parameter in `document_for` is not validated for None or empty values.\"\n  },\n  {\n   \"id\": 3,\n   \"real\": false,\n   \"confidence\": 0.1,\n   \"reason\": \"The `user` parameter in `document_for` is not validated for None or empty values.\"\n  },\n  {\n   \"id\": 4,\n   \"real\": true,\n   \"confidence\": 0.9,\n   \"reason\": \"The `document_for` function performs a database query inside the body of a loop over query results.\"\n  }\n ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:18:35.2345536Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 11986968100,
+     "load_duration": 87255800,
+     "prompt_eval_count": 1091,
+     "prompt_eval_duration": 391551400,
+     "eval_count": 262,
+     "eval_duration": 4561001000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edbe-db0e-7c21-8d2b-01c1706688a7-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1091,
+     "output_tokens": 262,
+     "total_tokens": 1353
+    }
+   }
+  }
+ ]
+}

@@ -140,8 +140,10 @@ What the numbers showed, and what changed because of them:
   threshold. The verdict therefore no longer relies on it: only critical or high security
   findings request changes, which raised the share of unsafe pull requests that get blocked
   from 36% to 82%.
-- Remaining false positives are the next target: a verifier agent that checks each finding
-  against the code, and a comparison with larger models, will be measured on the same set.
+- Remaining false positives are the next target. A verifier node that re-checks each finding
+  on the code is implemented and measured, but with the same 7B model it removed more real
+  problems than false alarms (recall 0.92 to 0.43 on the test split), so it ships disabled
+  ([ADR 0001](docs/adr/0001-verifier-node.md)); a larger model for it is the next experiment.
   A first probe with `gemini-2.5-flash` on five cases found the same problems with 3 false
   positives instead of 18, in about 7 seconds per review: too few cases to report as a result
   ([details](eval/README.md#first-look-at-a-larger-model)).
@@ -269,6 +271,7 @@ All settings come from environment variables (`backend/.env`, see [`.env.example
 | `RATE_LIMIT_RPM_MAX`, `RATE_LIMIT_RPD_MAX`, `RATE_LIMIT_TPM_MAX` | Gemini quota limits |
 | `LLM_INPUT_TOKEN_BUDGET`, `LLM_MAX_CONCURRENCY`, `LLM_MAX_ATTEMPTS` | Batch size, parallel calls and retries |
 | `MAX_REVIEW_FILES`, `MAX_REVIEW_PATCH_CHARS`, `REVIEW_EXCLUDE_PATTERNS` | Review scope |
+| `VERIFIER_ENABLED` | Second LLM pass that suppresses findings the code does not support (default off, see ADR 0001) |
 | `VERDICT_BLOCKING_CATEGORIES` | Categories whose critical or high findings request changes (default `security`) |
 | `VERDICT_MIN_CONFIDENCE` | Self-reported confidence needed to block a PR (default `0`: it was not predictive in the evaluation) |
 | `GITHUB_APP_ID`, `GITHUB_PRIVATE_KEY_PATH` or `GITHUB_TOKEN` | GitHub access |

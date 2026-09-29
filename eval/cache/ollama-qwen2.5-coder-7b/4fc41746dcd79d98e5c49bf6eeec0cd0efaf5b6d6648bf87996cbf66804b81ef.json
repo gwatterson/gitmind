@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:20:14+00:00",
+ "elapsed_seconds": 9.0,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"verdicts\": [\n    {\n      \"id\": 0,\n      \"real\": false,\n      \"confidence\": 0.1,\n      \"reason\": \"The evidence does not show any SQL query or parameter that could be vulnerable to injection.\"\n    },\n    {\n      \"id\": 1,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The response status code is checked for errors by returning it in the response dictionary.\"\n    },\n    {\n      \"id\": 2,\n      \"real\": false,\n      \"confidence\": 0.5,\n      \"reason\": \"The evidence does not show any indication that the response body might be truncated to a fixed length.\"\n    },\n    {\n      \"id\": 3,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"A blocking call (httpx.AsyncClient) is inside an async function, which could lead to performance issues.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:20:14.4276538Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 8993094100,
+     "load_duration": 93692100,
+     "prompt_eval_count": 959,
+     "prompt_eval_duration": 336598800,
+     "eval_count": 210,
+     "eval_duration": 3694583500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edc0-6a39-7893-aa68-3d1b1ad1df80-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 959,
+     "output_tokens": 210,
+     "total_tokens": 1169
+    }
+   }
+  }
+ ]
+}

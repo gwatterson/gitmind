@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T14:59:11+00:00",
+ "elapsed_seconds": 10.89,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"verdicts\": [\n    {\n      \"id\": 0,\n      \"real\": false,\n      \"confidence\": 0.9,\n      \"reason\": \"The code uses `exec` with user-provided input (`sha` and `path`), which can lead to OS command injection.\"\n    },\n    {\n      \"id\": 1,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"Using `exec` with a string can lead to command injection vulnerabilities.\"\n    },\n    {\n      \"id\": 2,\n      \"real\": false,\n      \"confidence\": 0.9,\n      \"reason\": \"Logging the command string can leak sensitive information.\"\n    },\n    {\n      \"id\": 3,\n      \"real\": false,\n      \"confidence\": 0.1,\n      \"reason\": \"String concatenation inside a loop that builds a large string is not relevant to this change.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T14:59:11.3024422Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 10881787100,
+     "load_duration": 80228100,
+     "prompt_eval_count": 911,
+     "prompt_eval_duration": 319421200,
+     "eval_count": 204,
+     "eval_duration": 3617410500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edad-1cc3-7812-b7d2-109db51d2f33-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 911,
+     "output_tokens": 204,
+     "total_tokens": 1115
+    }
+   }
+  }
+ ]
+}

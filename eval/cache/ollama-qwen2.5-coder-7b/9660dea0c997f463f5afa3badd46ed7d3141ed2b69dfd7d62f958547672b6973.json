@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:11:42+00:00",
+ "elapsed_seconds": 11.454,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"verdicts\": [\n    {\n      \"id\": 0,\n      \"real\": false,\n      \"confidence\": 0.9,\n      \"reason\": \"The code now uses single quotes for the shell command, which mitigates the risk of malicious input.\"\n    },\n    {\n      \"id\": 1,\n      \"real\": false,\n      \"confidence\": 0.9,\n      \"reason\": \"The code now uses double quotes for the shell command, which mitigates the risk of malicious input.\"\n    },\n    {\n      \"id\": 2,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"Using single quotes for shell commands can lead to issues if the data contains special characters.\"\n    },\n    {\n      \"id\": 3,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"Using single quotes for shell commands can lead to issues if the data contains special characters.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:11:42.5038566Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 11436558300,
+     "load_duration": 114324100,
+     "prompt_eval_count": 882,
+     "prompt_eval_duration": 310518100,
+     "eval_count": 210,
+     "eval_duration": 3813169500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edb8-90f9-7211-8661-f573201144d2-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 882,
+     "output_tokens": 210,
+     "total_tokens": 1092
+    }
+   }
+  }
+ ]
+}

@@ -88,7 +88,9 @@ class Settings(BaseSettings):
 
     # Verifier node: a second LLM pass that suppresses findings the code does not support.
     # Findings below the threshold are stored as suppressed and never published.
-    VERIFIER_ENABLED: bool = True
+    # Off by default: with qwen2.5-coder:7b it removed more real problems than false
+    # alarms (docs/adr/0001-verifier-node.md).
+    VERIFIER_ENABLED: bool = False
     VERIFIER_MIN_CONFIDENCE: float = 0.5
 
     # Which findings can make the verdict "request_changes": critical or high findings of

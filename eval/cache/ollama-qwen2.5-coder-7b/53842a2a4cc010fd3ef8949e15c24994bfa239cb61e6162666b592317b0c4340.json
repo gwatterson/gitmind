@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:15:00+00:00",
+ "elapsed_seconds": 24.578,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"verdicts\": [\n    {\n      \"id\": 0,\n      \"real\": false,\n      \"confidence\": 0.9,\n      \"reason\": \"The `echo` function is always called with a non-None value.\"\n    },\n    {\n      \"id\": 1,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The `ctx.exit()` call may not always return a meaningful exit code if it is bypassed by an exception.\"\n    },\n    {\n      \"id\": 2,\n      \"real\": false,\n      \"confidence\": 0.9,\n      \"reason\": \"The `report` function is always called with a non-None value.\"\n    },\n    {\n      \"id\": 3,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The `ctx.exit()` call may not always return a meaningful exit code if it is bypassed by an exception.\"\n    },\n    {\n      \"id\": 4,\n      \"real\": false,\n      \"confidence\": 0.9,\n      \"reason\": \"The `report` function is always called with a non-None value.\"\n    },\n    {\n      \"id\": 5,\n      \"real\": true,\n      \"confidence\": 0.8,\n      \"reason\": \"String concatenation inside a loop that builds a large string could be optimized, but it's not necessarily a problem in this context.\"\n    },\n    {\n      \"id\": 6,\n      \"real\": true,\n      \"confidence\": 0.8,\n      \"reason\": \"String concatenation inside a loop that builds a large string could be optimized, but it's not necessarily a problem in this context.\"\n    },\n    {\n      \"id\": 7,\n      \"real\": true,\n      \"confidence\": 0.8,\n      \"reason\": \"String concatenation inside a loop that builds a large string could be optimized, but it's not necessarily a problem in this context.\"\n    },\n    {\n      \"id\": 8,\n      \"real\": true,\n      \"confidence\": 0.8,\n      \"reason\": \"String concatenation inside a loop that builds a large string could be optimized, but it's not necessarily a problem in this context.\"\n    },\n    {\n      \"id\": 9,\n      \"real\": true,\n      \"confidence\": 0.8,\n      \"reason\": \"String concatenation inside a loop that builds a large string could be optimized, but it's not necessarily a problem in this context.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:15:00.4151403Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 24572800900,
+     "load_duration": 50572700,
+     "prompt_eval_count": 2340,
+     "prompt_eval_duration": 1102225000,
+     "eval_count": 543,
+     "eval_duration": 9326741100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edbb-62c1-7723-afd7-54d20a86ac51-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 2340,
+     "output_tokens": 543,
+     "total_tokens": 2883
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:01:03+00:00",
+ "elapsed_seconds": 8.063,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"verdicts\": [\n    {\n      \"id\": 0,\n      \"real\": false,\n      \"confidence\": 0.1,\n      \"reason\": \"The code does not use the `fileName` variable in a way that could lead to path traversal.\"\n    },\n    {\n      \"id\": 1,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The `fileName` variable can indeed be undefined if the `options` object does not contain a `fileName` property.\"\n    },\n    {\n      \"id\": 2,\n      \"real\": false,\n      \"confidence\": 0.1,\n      \"reason\": \"String concatenation inside a loop is not present in the provided diff.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:01:03.4968972Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 8056730500,
+     "load_duration": 72972800,
+     "prompt_eval_count": 725,
+     "prompt_eval_duration": 217695100,
+     "eval_count": 163,
+     "eval_duration": 2884967500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edae-de0e-7422-ae00-ec97328a68b4-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 725,
+     "output_tokens": 163,
+     "total_tokens": 888
+    }
+   }
+  }
+ ]
+}

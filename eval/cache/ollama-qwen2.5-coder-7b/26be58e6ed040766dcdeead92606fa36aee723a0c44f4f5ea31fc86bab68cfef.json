@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:04:03+00:00",
+ "elapsed_seconds": 17.063,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n \"verdicts\": [\n  {\n   \"id\": 0,\n   \"real\": false,\n   \"confidence\": 0.5,\n   \"reason\": \"The finding is about formatting a Sphinx directive, which is not related to the code changes.\"\n  },\n  {\n   \"id\": 1,\n   \"real\": true,\n   \"confidence\": 0.9,\n   \"reason\": \"The method `coerce_path_result` now has more local variables and could be refactored for better readability.\"\n  },\n  {\n   \"id\": 2,\n   \"real\": false,\n   \"confidence\": 0.5,\n   \"reason\": \"The variable `rv` is assigned to multiple times, but this is a refactoring suggestion rather than an issue.\"\n  },\n  {\n   \"id\": 3,\n   \"real\": false,\n   \"confidence\": 0.5,\n   \"reason\": \"The variable `path_type` is assigned to multiple times, but this is a refactoring suggestion rather than an issue.\"\n  }\n ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:04:03.9667674Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 17054588500,
+     "load_duration": 109382400,
+     "prompt_eval_count": 1850,
+     "prompt_eval_duration": 6546532300,
+     "eval_count": 222,
+     "eval_duration": 4212562100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edb1-7bde-7b21-bb00-ad3c56a25807-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1850,
+     "output_tokens": 222,
+     "total_tokens": 2072
+    }
+   }
+  }
+ ]
+}

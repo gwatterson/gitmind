@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:18:57+00:00",
+ "elapsed_seconds": 5.171,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"verdicts\": [\n    {\n      \"id\": 0,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The code uses `subprocess.run` with a shell=True argument, which is vulnerable to OS command injection.\"\n    },\n    {\n      \"id\": 1,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The code uses `subprocess.run` with a shell=True argument, which can lead to command injection.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:18:57.1831854Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 5165497400,
+     "load_duration": 102164400,
+     "prompt_eval_count": 748,
+     "prompt_eval_duration": 242740400,
+     "eval_count": 117,
+     "eval_duration": 1845968200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edbf-4b6e-7df3-b7fd-12488f62372e-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 748,
+     "output_tokens": 117,
+     "total_tokens": 865
+    }
+   }
+  }
+ ]
+}

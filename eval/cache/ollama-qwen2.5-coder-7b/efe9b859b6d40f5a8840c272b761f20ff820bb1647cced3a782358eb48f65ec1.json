@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:05:00+00:00",
+ "elapsed_seconds": 16.328,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"verdicts\": [\n    {\n      \"id\": 0,\n      \"real\": true,\n      \"confidence\": 1.0,\n      \"reason\": \"The method `wait_ready` is defined twice, once as an asynchronous method and once as a synchronous method.\"\n    },\n    {\n      \"id\": 1,\n      \"real\": false,\n      \"confidence\": 0.5,\n      \"reason\": \"There is no evidence of a blocking call (`time.sleep`) inside an `async def` function in the provided diff.\"\n    },\n    {\n      \"id\": 2,\n      \"real\": false,\n      \"confidence\": 0.5,\n      \"reason\": \"There is no evidence of a blocking call (`time.sleep`) inside an `async def` function in the provided diff.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:05:00.5391641Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 16051741200,
+     "load_duration": 172961900,
+     "prompt_eval_count": 990,
+     "prompt_eval_duration": 355670600,
+     "eval_count": 175,
+     "eval_duration": 3358101200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edb2-5bb5-7e82-952b-abec007f5542-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 990,
+     "output_tokens": 175,
+     "total_tokens": 1165
+    }
+   }
+  }
+ ]
+}

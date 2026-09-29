@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:21:01+00:00",
+ "elapsed_seconds": 6.281,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"verdicts\": [\n    {\n      \"id\": 0,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The JWT_SECRET is hardcoded in the code.\"\n    },\n    {\n      \"id\": 1,\n      \"real\": false,\n      \"confidence\": 0.5,\n      \"reason\": \"ACCESS_TOKEN_TTL is set to '15m', which is not a constant and could be changed elsewhere.\"\n    },\n    {\n      \"id\": 2,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The JWT is verified without checking for expiration, which can lead to security vulnerabilities.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:21:01.6582149Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 6286467200,
+     "load_duration": 51379500,
+     "prompt_eval_count": 699,
+     "prompt_eval_duration": 216629600,
+     "eval_count": 153,
+     "eval_duration": 2612226400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edc1-2d4a-7811-88ba-b81d4054a2a2-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 699,
+     "output_tokens": 153,
+     "total_tokens": 852
+    }
+   }
+  }
+ ]
+}

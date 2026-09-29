@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:12:09+00:00",
+ "elapsed_seconds": 12.313,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"verdicts\": [\n    {\n      \"id\": 0,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The removal of the `HttpResponseNotAllowed` check removes CSRF protection for a state-changing operation.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:12:09.2204607Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 12055322000,
+     "load_duration": 85411800,
+     "prompt_eval_count": 683,
+     "prompt_eval_duration": 229298800,
+     "eval_count": 61,
+     "eval_duration": 1063013000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edb8-f5e7-7411-a7ee-f00199726166-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 683,
+     "output_tokens": 61,
+     "total_tokens": 744
+    }
+   }
+  }
+ ]
+}

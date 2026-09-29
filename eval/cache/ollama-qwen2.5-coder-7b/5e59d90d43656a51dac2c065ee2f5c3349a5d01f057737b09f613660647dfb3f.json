@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:04:51+00:00",
+ "elapsed_seconds": 7.031,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"verdicts\": [\n    {\n      \"id\": 0,\n      \"real\": false,\n      \"confidence\": 0.1,\n      \"reason\": \"The methods are defined in different lines and do not conflict.\"\n    },\n    {\n      \"id\": 1,\n      \"real\": false,\n      \"confidence\": 0.1,\n      \"reason\": \"The methods are defined in different lines and do not conflict.\"\n    },\n    {\n      \"id\": 2,\n      \"real\": false,\n      \"confidence\": 0.1,\n      \"reason\": \"The methods are defined in different lines and do not conflict.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:04:51.2378667Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 7016789700,
+     "load_duration": 182016100,
+     "prompt_eval_count": 1126,
+     "prompt_eval_duration": 437427800,
+     "eval_count": 141,
+     "eval_duration": 2935444300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edb2-5bb4-7483-b30d-70e647571d7d-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1126,
+     "output_tokens": 141,
+     "total_tokens": 1267
+    }
+   }
+  }
+ ]
+}

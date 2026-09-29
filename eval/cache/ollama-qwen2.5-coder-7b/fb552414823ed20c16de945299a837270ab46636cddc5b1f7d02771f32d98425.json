@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:12:40+00:00",
+ "elapsed_seconds": 20.125,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"verdicts\": [\n    {\n      \"id\": 0,\n      \"real\": false,\n      \"confidence\": 0.9,\n      \"reason\": \"The code no longer contains the regex check for path traversal, so this finding is not real.\"\n    },\n    {\n      \"id\": 1,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The comment about the theme name check being removed is supported by the diff.\"\n    },\n    {\n      \"id\": 2,\n      \"real\": false,\n      \"confidence\": 0.5,\n      \"reason\": \"The change does not affect any string concatenation inside a loop, so this finding is not real.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:12:40.5387151Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 19871311400,
+     "load_duration": 127466400,
+     "prompt_eval_count": 842,
+     "prompt_eval_duration": 285729900,
+     "eval_count": 159,
+     "eval_duration": 2849870900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edb9-51c7-7b32-a0ff-fc983ad75f35-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 842,
+     "output_tokens": 159,
+     "total_tokens": 1001
+    }
+   }
+  }
+ ]
+}

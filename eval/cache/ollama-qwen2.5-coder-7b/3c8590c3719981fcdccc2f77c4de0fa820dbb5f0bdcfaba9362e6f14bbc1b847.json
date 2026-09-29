@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:00:55+00:00",
+ "elapsed_seconds": 39.391,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"verdicts\": [\n    {\n      \"id\": 0,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The 'admin_permission.require' decorator is removed, which allows unauthorized access to the endpoint.\"\n    },\n    {\n      \"id\": 1,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The 'admin_permission.require' decorator is removed, which allows unauthorized access to the endpoint.\"\n    },\n    {\n      \"id\": 2,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The 'admin_permission.require' decorator is removed, which allows unauthorized access to the endpoint.\"\n    },\n    {\n      \"id\": 3,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The 'admin_permission.require' decorator is removed, which allows unauthorized access to the endpoints.\"\n    },\n    {\n      \"id\": 4,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The 'admin_permission.require' decorator is removed, which allows unauthorized access to the endpoint.\"\n    },\n    {\n      \"id\": 5,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The 'admin_permission.require' decorator is removed, which allows unauthorized access to the endpoint.\"\n    },\n    {\n      \"id\": 6,\n      \"real\": false,\n      \"confidence\": 0.1,\n      \"reason\": \"The change does not affect the admin permission check.\"\n    },\n    {\n      \"id\": 7,\n      \"real\": false,\n      \"confidence\": 0.1,\n      \"reason\": \"The change does not affect the admin permission check.\"\n    },\n    {\n      \"id\": 8,\n      \"real\": false,\n      \"confidence\": 0.1,\n      \"reason\": \"The change does not affect the admin permission check.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:00:55.3218509Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 39118251200,
+     "load_duration": 90245400,
+     "prompt_eval_count": 1278,
+     "prompt_eval_duration": 506634800,
+     "eval_count": 429,
+     "eval_duration": 7759824100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edae-43c8-73b1-a725-6f23671ba1c0-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1278,
+     "output_tokens": 429,
+     "total_tokens": 1707
+    }
+   }
+  }
+ ]
+}

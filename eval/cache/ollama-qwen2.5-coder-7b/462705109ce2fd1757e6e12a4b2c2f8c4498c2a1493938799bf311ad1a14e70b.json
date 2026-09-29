@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:11:56+00:00",
+ "elapsed_seconds": 14.109,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"verdicts\": [\n    {\n      \"id\": 0,\n      \"real\": false,\n      \"confidence\": 0.1,\n      \"reason\": \"The regular expression does not allow characters that could be used for path traversal (e.g., '.', '..').\"\n    },\n    {\n      \"id\": 1,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The regular expression allows periods and hyphens, which could be used to bypass the intended sanitization.\"\n    },\n    {\n      \"id\": 2,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The regular expression allows periods and hyphens, which could be used to bypass the intended sanitization.\"\n    },\n    {\n      \"id\": 3,\n      \"real\": false,\n      \"confidence\": 0.1,\n      \"reason\": \"The regular expression might not be necessary for the use case.\"\n    },\n    {\n      \"id\": 4,\n      \"real\": false,\n      \"confidence\": 0.1,\n      \"reason\": \"The regular expression might not be necessary for the use case.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:11:56.750575Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 14106827100,
+     "load_duration": 121303700,
+     "prompt_eval_count": 1014,
+     "prompt_eval_duration": 383665600,
+     "eval_count": 255,
+     "eval_duration": 4602077300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edb8-be31-7dc2-9053-e499e45383f4-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1014,
+     "output_tokens": 255,
+     "total_tokens": 1269
+    }
+   }
+  }
+ ]
+}

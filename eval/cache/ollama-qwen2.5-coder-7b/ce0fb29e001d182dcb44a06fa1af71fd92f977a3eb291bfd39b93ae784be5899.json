@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:05:10+00:00",
+ "elapsed_seconds": 19.328,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"verdicts\": [\n    {\n      \"id\": 0,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The diff shows that the `wait_ready` method is defined twice, once as an asynchronous method and once as a synchronous method.\"\n    },\n    {\n      \"id\": 1,\n      \"real\": false,\n      \"confidence\": 0.5,\n      \"reason\": \"The code does not show any evidence of the `wait` method being defined twice; it only shows a single implementation of the `wait` method as a context manager.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:05:10.5717048Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 19319872800,
+     "load_duration": 126634200,
+     "prompt_eval_count": 1034,
+     "prompt_eval_duration": 375073400,
+     "eval_count": 134,
+     "eval_duration": 2789776200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edb2-7732-7c23-a5db-9698690f857e-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1034,
+     "output_tokens": 134,
+     "total_tokens": 1168
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:06:26+00:00",
+ "elapsed_seconds": 24.219,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"verdicts\": [\n    {\n      \"id\": 0,\n      \"real\": false,\n      \"confidence\": 0.9,\n      \"reason\": \"The error property is not a getter and is initialized in the function.\"\n    },\n    {\n      \"id\": 1,\n      \"real\": false,\n      \"confidence\": 0.9,\n      \"reason\": \"The error property is not a getter and is initialized in the function.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:06:26.2578367Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 23946153400,
+     "load_duration": 141854200,
+     "prompt_eval_count": 1331,
+     "prompt_eval_duration": 571198000,
+     "eval_count": 102,
+     "eval_duration": 2004163100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edb3-8bc5-7df3-9a89-ea88df35c1ae-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1331,
+     "output_tokens": 102,
+     "total_tokens": 1433
+    }
+   }
+  }
+ ]
+}

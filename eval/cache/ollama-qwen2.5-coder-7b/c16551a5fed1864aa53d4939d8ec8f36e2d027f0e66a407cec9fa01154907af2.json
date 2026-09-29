@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:03:46+00:00",
+ "elapsed_seconds": 10.328,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n \"verdicts\": [\n  {\n   \"id\": 0,\n   \"real\": false,\n   \"confidence\": 0.1,\n   \"reason\": \"The code does not use string formatting to include user input in the help message.\"\n  },\n  {\n   \"id\": 1,\n   \"real\": true,\n   \"confidence\": 0.9,\n   \"reason\": \"The `get_help_record` method returns a tuple, but it should return a tuple with two elements.\"\n  },\n  {\n   \"id\": 2,\n   \"real\": false,\n   \"confidence\": 0.1,\n   \"reason\": \"The second element of the tuple returned by `get_help_record` is not used anywhere.\"\n  },\n  {\n   \"id\": 3,\n   \"real\": true,\n   \"confidence\": 0.9,\n   \"reason\": \"String concatenation inside a loop that builds a large string, which could be optimized for performance.\"\n  }\n ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:03:46.7891274Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 10326699300,
+     "load_duration": 109148200,
+     "prompt_eval_count": 1494,
+     "prompt_eval_duration": 624995900,
+     "eval_count": 208,
+     "eval_duration": 3845683400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edb1-530c-7910-b95d-f6a14162ca09-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1494,
+     "output_tokens": 208,
+     "total_tokens": 1702
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:07:26+00:00",
+ "elapsed_seconds": 13.734,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"verdicts\": [\n    {\n      \"id\": 0,\n      \"real\": true,\n      \"confidence\": 1.0\n    },\n    {\n      \"id\": 1,\n      \"real\": false,\n      \"confidence\": 0.9\n    },\n    {\n      \"id\": 2,\n      \"real\": false,\n      \"confidence\": 0.9\n    },\n    {\n      \"id\": 3,\n      \"real\": false,\n      \"confidence\": 0.9\n    },\n    {\n      \"id\": 4,\n      \"real\": false,\n      \"confidence\": 0.9\n    },\n    {\n      \"id\": 5,\n      \"real\": true,\n      \"confidence\": 1.0\n    },\n    {\n      \"id\": 6,\n      \"real\": true,\n      \"confidence\": 1.0\n    },\n    {\n      \"id\": 7,\n      \"real\": true,\n      \"confidence\": 1.0\n    },\n    {\n      \"id\": 8,\n      \"real\": false,\n      \"confidence\": 0.9\n    },\n    {\n      \"id\": 9,\n      \"real\": false,\n      \"confidence\": 0.9\n    },\n    {\n      \"id\": 10,\n      \"real\": true,\n      \"confidence\": 1.0\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:07:26.5009952Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 13737672200,
+     "load_duration": 78129300,
+     "prompt_eval_count": 1604,
+     "prompt_eval_duration": 685757900,
+     "eval_count": 299,
+     "eval_duration": 5850135500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edb4-9ffa-7873-ae67-09ec8676daff-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1604,
+     "output_tokens": 299,
+     "total_tokens": 1903
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:04:32+00:00",
+ "elapsed_seconds": 10.062,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"verdicts\": [\n    {\n      \"id\": 0,\n      \"real\": true,\n      \"confidence\": 1.0\n    },\n    {\n      \"id\": 1,\n      \"real\": true,\n      \"confidence\": 1.0\n    },\n    {\n      \"id\": 2,\n      \"real\": false,\n      \"confidence\": 0.1\n    },\n    {\n      \"id\": 3,\n      \"real\": false,\n      \"confidence\": 0.1\n    },\n    {\n      \"id\": 4,\n      \"real\": false,\n      \"confidence\": 0.1\n    },\n    {\n      \"id\": 5,\n      \"real\": true,\n      \"confidence\": 1.0\n    },\n    {\n      \"id\": 6,\n      \"real\": true,\n      \"confidence\": 1.0\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:04:32.9318669Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 10049171900,
+     "load_duration": 191218400,
+     "prompt_eval_count": 3113,
+     "prompt_eval_duration": 1582401500,
+     "eval_count": 194,
+     "eval_duration": 3941122800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edb2-085f-7b53-bfee-3296e32c8a8b-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 3113,
+     "output_tokens": 194,
+     "total_tokens": 3307
+    }
+   }
+  }
+ ]
+}

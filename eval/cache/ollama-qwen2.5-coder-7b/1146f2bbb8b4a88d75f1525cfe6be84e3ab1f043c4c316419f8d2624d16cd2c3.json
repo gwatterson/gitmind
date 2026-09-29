@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:10:37+00:00",
+ "elapsed_seconds": 9.203,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"verdicts\": [\n    {\n      \"id\": 0,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The code uses `dangerouslySetInnerHTML` to render HTML content directly, which can lead to XSS vulnerabilities if the input is not properly sanitized.\"\n    },\n    {\n      \"id\": 1,\n      \"real\": true,\n      \"confidence\": 0.9,\n      \"reason\": \"The code uses `dangerouslySetInnerHTML` to render HTML content directly, which can lead to XSS vulnerabilities if the input is not properly sanitized.\"\n    },\n    {\n      \"id\": 2,\n      \"real\": false,\n      \"confidence\": 0.1,\n      \"reason\": \"The finding mentions performance but does not provide evidence related to performance issues in this change.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:10:37.7064394Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 9204836500,
+     "load_duration": 78771400,
+     "prompt_eval_count": 652,
+     "prompt_eval_duration": 189566300,
+     "eval_count": 180,
+     "eval_duration": 3260017100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edb7-9c94-7791-9010-01e3e8b9c98b-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 652,
+     "output_tokens": 180,
+     "total_tokens": 832
+    }
+   }
+  }
+ ]
+}

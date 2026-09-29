@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T15:02:28+00:00",
+ "elapsed_seconds": 16.109,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n \"verdicts\": [\n  {\n   \"id\": 0,\n   \"real\": false,\n   \"confidence\": 0.9,\n   \"reason\": \"The code no longer includes the check for cross-channel binding, so this finding is not real.\"\n  },\n  {\n   \"id\": 1,\n   \"real\": true,\n   \"confidence\": 0.9,\n   \"reason\": \"The function now lacks a check to ensure the message's channel matches the requested channel, which could lead to security issues.\"\n  },\n  {\n   \"id\": 2,\n   \"real\": false,\n   \"confidence\": 0.9,\n   \"reason\": \"The database query is no longer inside a loop, so this finding is not real.\"\n  }\n ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T15:02:28.9537462Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 15860603400,
+     "load_duration": 186635000,
+     "prompt_eval_count": 800,
+     "prompt_eval_duration": 254417600,
+     "eval_count": 163,
+     "eval_duration": 3249750100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0edb0-0c60-7532-810f-efdc0c6d3732-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 800,
+     "output_tokens": 163,
+     "total_tokens": 963
+    }
+   }
+  }
+ ]
+}
