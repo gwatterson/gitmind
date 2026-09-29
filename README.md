@@ -142,6 +142,9 @@ What the numbers showed, and what changed because of them:
   from 36% to 82%.
 - Remaining false positives are the next target: a verifier agent that checks each finding
   against the code, and a comparison with larger models, will be measured on the same set.
+  A first probe with `gemini-2.5-flash` on five cases found the same problems with 3 false
+  positives instead of 18, in about 7 seconds per review: too few cases to report as a result
+  ([details](eval/README.md#first-look-at-a-larger-model)).
 
 ---
 
