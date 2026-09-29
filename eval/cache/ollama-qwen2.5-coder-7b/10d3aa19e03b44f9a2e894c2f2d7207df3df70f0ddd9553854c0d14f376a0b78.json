@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:00:02+00:00",
+ "elapsed_seconds": 74.938,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"lemur/destinations/schemas.py\",\n            \"line\": 30,\n            \"severity\": \"low\",\n            \"rule_id\": \"string_concatenation_in_loop\",\n            \"message\": \"String concatenation inside a loop.\",\n            \"evidence\": \"+                    option['value'] = None\"\n        },\n        {\n            \"file\": \"lemur/destinations/views.py\",\n            \"line\": 37,\n            \"severity\": \"low\",\n            \"rule_id\": \"permission_check_removed\",\n            \"message\": \"Permission check removed from a public endpoint.\",\n            \"evidence\": \"-     @admin_permission.require(http_exception=403)\"\n        },\n        {\n            \"file\": \"lemur/destinations/views.py\",\n            \"line\": 197,\n            \"severity\": \"low\",\n            \"rule_id\": \"permission_check_removed\",\n            \"message\": \"Permission check removed from a public endpoint.\",\n            \"evidence\": \"-     @admin_permission.require(http_exception=403)\"\n        },\n        {\n            \"file\": \"lemur/destinations/views.py\",\n            \"line\": 361,\n            \"severity\": \"low\",\n            \"rule_id\": \"permission_check_removed\",\n            \"message\": \"Permission check removed from a public endpoint.\",\n            \"evidence\": \"-     @admin_permission.require(http_exception=403)\"\n        },\n        {\n            \"file\": \"lemur/plugins/lemur_sftp/plugin.py\",\n            \"line\": 67,\n            \"severity\": \"low\",\n            \"rule_id\": \"sensitive_data_not_encrypted\",\n            \"message\": \"Sensitive data (password) is not encrypted.\",\n            \"evidence\": \"-             \\\"sensitive\\\": True\"\n        },\n        {\n            \"file\": \"lemur/plugins/lemur_sftp/plugin.py\",\n            \"line\": 79,\n            \"severity\": \"low\",\n            \"rule_id\": \"sensitive_data_not_encrypted\",\n            \"message\": \"Sensitive data (private key password) is not encrypted.\",\n            \"evidence\": \"-             \\\"sensitive\\\": True\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:00:02.4319308Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 74928932200,
+     "load_duration": 58780100,
+     "prompt_eval_count": 1152,
+     "prompt_eval_duration": 8771818000,
+     "eval_count": 456,
+     "eval_duration": 54664157300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9d0-254e-72a2-8a07-6c4da9e672f5-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1152,
+     "output_tokens": 456,
+     "total_tokens": 1608
+    }
+   }
+  }
+ ]
+}

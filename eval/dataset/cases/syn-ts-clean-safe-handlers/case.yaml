@@ -1,0 +1,21 @@
+id: syn-ts-clean-safe-handlers
+split: dev
+source: synthetic
+language: typescript
+title: Attachment download and search endpoints
+description: 'Clean change with safe versions of common patterns: parameterized query, execFile with an
+  argument array, path containment check, textContent, verified JWT.'
+smoke: true
+expected_findings: []
+must_not_flag:
+- file: src/routes/attachments.ts
+  anchor: const { stdout } = await run("file", ["--brief", "--mime-type", target]);
+  reason: execFile with an argument array
+- file: src/routes/attachments.ts
+  anchor: const target = path.resolve(ATTACHMENTS, req.params.name);
+  span: 1
+  reason: containment checked on the next line
+- file: src/routes/attachments.ts
+  anchor: '"SELECT name, size FROM attachments WHERE owner_id = $1 AND name ILIKE $2 LIMIT 50",'
+  span: 1
+  reason: parameterized query

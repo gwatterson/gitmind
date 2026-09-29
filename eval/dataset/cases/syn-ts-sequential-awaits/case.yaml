@@ -1,0 +1,13 @@
+id: syn-ts-sequential-awaits
+split: dev
+source: synthetic
+language: typescript
+title: Load dashboard widgets
+description: Independent requests are awaited one after the other inside a loop instead of in parallel.
+expected_findings:
+- file: src/dashboard/widgets.ts
+  anchor: const data = await api.get(`/widgets/${id}`);
+  category: performance
+  severity_min: low
+  description: Independent requests awaited sequentially in a loop
+must_not_flag: []

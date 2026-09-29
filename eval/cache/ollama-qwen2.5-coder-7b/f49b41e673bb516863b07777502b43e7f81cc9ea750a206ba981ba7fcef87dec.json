@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T20:51:37+00:00",
+ "elapsed_seconds": 61.016,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"source/platforms/git/localGetFileAtSHA.ts\",\n      \"line\": 8,\n      \"severity\": \"medium\",\n      \"rule_id\": \"string_concatenation_in_loop\",\n      \"message\": \"String concatenation inside a loop can be inefficient.\",\n      \"evidence\": \"const call = `git show ${sha}:\\\"${path}\\\"`;\",\n      \"confidence\": 1\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T20:51:37.2329162Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 60770751000,
+     "load_duration": 69884200,
+     "prompt_eval_count": 736,
+     "prompt_eval_duration": 4316113500,
+     "eval_count": 101,
+     "eval_duration": 9813581400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9c8-a636-7a63-ad1e-98cf6582e470-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 736,
+     "output_tokens": 101,
+     "total_tokens": 837
+    }
+   }
+  }
+ ]
+}

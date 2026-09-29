@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T22:14:52+00:00",
+ "elapsed_seconds": 96.453,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"src/ahttpx/_server.py\",\n            \"line\": 38,\n            \"severity\": \"medium\",\n            \"rule_id\": \"N+1_queries\",\n            \"message\": \"Potential N+1 queries inside a loop.\",\n            \"evidence\": \"+                if not await self._parser.wait_ready():\"\n        },\n        {\n            \"file\": \"src/ahttpx/_server.py\",\n            \"line\": 60,\n            \"severity\": \"medium\",\n            \"rule_id\": \"N+1_queries\",\n            \"message\": \"Potential N+1 queries inside a loop.\",\n            \"evidence\": \"+                     await stream.read()\"\n        },\n        {\n            \"file\": \"src/ahttpx/_server.py\",\n            \"line\": 38,\n            \"severity\": \"medium\",\n            \"rule_id\": \"blocking_I/O_in_async_code\",\n            \"message\": \"Blocking I/O in async code.\",\n            \"evidence\": \"+                if not await self._parser.wait_ready():\"\n        },\n        {\n            \"file\": \"src/ahttpx/_server.py\",\n            \"line\": 60,\n            \"severity\": \"medium\",\n            \"rule_id\": \"blocking_I/O_in_async_code\",\n            \"message\": \"Blocking I/O in async code.\",\n            \"evidence\": \"+                     await stream.read()\"\n        },\n        {\n            \"file\": \"src/ahttpx/_server.py\",\n            \"line\": 102,\n            \"severity\": \"medium\",\n            \"rule_id\": \"unbounded_queries_or_reads\",\n            \"message\": \"Unbounded queries or reads.\",\n            \"evidence\": \"-             try:\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T22:14:52.361241Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 96179610100,
+     "load_duration": 70914800,
+     "prompt_eval_count": 1266,
+     "prompt_eval_duration": 3428247800,
+     "eval_count": 360,
+     "eval_duration": 34600983300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea14-5408-7612-af2f-ee15a18c161c-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1266,
+     "output_tokens": 360,
+     "total_tokens": 1626
+    }
+   }
+  }
+ ]
+}

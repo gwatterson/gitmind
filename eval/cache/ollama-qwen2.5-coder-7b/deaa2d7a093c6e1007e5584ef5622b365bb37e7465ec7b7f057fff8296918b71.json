@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:23:16+00:00",
+ "elapsed_seconds": 119.812,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"lmdeploy/pytorch/disagg/conn/engine_conn.py\",\n            \"line\": 75,\n            \"severity\": \"high\",\n            \"rule_id\": \"S104\",\n            \"message\": \"Using `send_pyobj` instead of `send_json` can lead to security vulnerabilities.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"await self.p2p_sender[remote_engine_id].send_pyobj(DistServeCacheFreeRequest(remote_engine_id=remote_engine_id, remote_session_id=remote_session_id))\",\n            \"cwe\": \"CWE-312: Cleartext Transmission of Sensitive Information\"\n        },\n        {\n            \"file\": \"lmdeploy/pytorch/disagg/conn/engine_conn.py\",\n            \"line\": 80,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S114\",\n            \"message\": \"The `isinstance` check for `DistServeCacheFreeRequest` can be bypassed if the object is not an instance of the expected class.\",\n            \"confidence\": 0.6,\n            \"evidence\": \"if isinstance(req, DistServeCacheFreeRequest):\",\n            \"cwe\": \"CWE-488: Unchecked Return Value\"\n        },\n        {\n            \"file\": \"lmdeploy/pytorch/disagg/conn/engine_conn.py\",\n            \"line\": 87,\n            \"severity\": \"high\",\n            \"rule_id\": \"S103\",\n            \"message\": \"Raising a `ValueError` without any context or logging can make debugging difficult.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"raise ValueError(f'Unsupported zmq request {type(req)}')\",\n            \"cwe\": \"CWE-256: inadequate protection against exceptions\"\n        },\n        {\n            \"file\": \"lmdeploy/pytorch/disagg/conn/engine_conn.py\",\n            \"line\": 89,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S104\",\n            \"message\": \"Closing the receiver without ensuring all messages are processed can lead to data loss.\",\n            \"confidence\": 0.6,\n            \"evidence\": \"self.p2p_receiver[remote_engine_id].close()\",\n            \"cwe\": \"CWE-487: Use of Potentially Dangerous Function\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:23:16.8145594Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 119560111100,
+     "load_duration": 117021000,
+     "prompt_eval_count": 1341,
+     "prompt_eval_duration": 2497361100,
+     "eval_count": 511,
+     "eval_duration": 48317363900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb2e-53ce-7042-b7e2-801e19d36b67-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1341,
+     "output_tokens": 511,
+     "total_tokens": 1852
+    }
+   }
+  }
+ ]
+}

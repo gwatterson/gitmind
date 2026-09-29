@@ -1,0 +1,16 @@
+id: syn-js-open-redirect
+split: dev
+source: synthetic
+language: javascript
+title: Return to the previous page after login
+description: The redirect target comes from the query string without validation (open redirect).
+expected_findings:
+- file: src/routes/session.js
+  anchor: const next = req.query.next || "/";
+  span: 1
+  category: security
+  cwe:
+  - CWE-601
+  severity_min: medium
+  description: Unvalidated redirect target
+must_not_flag: []

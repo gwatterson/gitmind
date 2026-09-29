@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:51:01+00:00",
+ "elapsed_seconds": 46.578,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/exports.js\",\n      \"line\": 9,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_file_check\",\n      \"message\": \"The file path is not checked for existence before attempting to download it.\",\n      \"confidence\": 0.8,\n      \"evidence\": \"const filePath = path.join(EXPORT_DIR, req.params.file); res.download(filePath);\"\n    },\n    {\n      \"file\": \"src/routes/exports.js\",\n      \"line\": 10,\n      \"severity\": \"medium\",\n      \"rule_id\": \"empty_except_catch\",\n      \"message\": \"The download function does not handle errors that may occur during the file download process.\",\n      \"confidence\": 0.8,\n      \"evidence\": \"res.download(filePath);\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:51:01.76133Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 46321907900,
+     "load_duration": 59696400,
+     "prompt_eval_count": 783,
+     "prompt_eval_duration": 1686676800,
+     "eval_count": 184,
+     "eval_duration": 16429123200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb48-d986-7533-a41a-fad7f3123614-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 783,
+     "output_tokens": 184,
+     "total_tokens": 967
+    }
+   }
+  }
+ ]
+}

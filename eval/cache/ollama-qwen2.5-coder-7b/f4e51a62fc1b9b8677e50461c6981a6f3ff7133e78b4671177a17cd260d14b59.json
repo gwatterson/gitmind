@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T04:09:08+00:00",
+ "elapsed_seconds": 84.828,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/reports/formulas.ts\",\n      \"line\": 3,\n      \"severity\": \"critical\",\n      \"rule_id\": \"CWE-94\",\n      \"message\": \"The use of `new Function` to evaluate user input is vulnerable to code injection.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"const compute = new Function(...names, `return (${formula});`);\",\n      \"cwe\": \"CWE-94 Code Injection\"\n    },\n    {\n      \"file\": \"src/routes/reports.ts\",\n      \"line\": 9,\n      \"severity\": \"critical\",\n      \"rule_id\": \"CWE-94\",\n      \"message\": \"The user-provided formula is directly passed to the `evaluateFormula` function without validation.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"const values = rows.map((row) => evaluateFormula(req.body.formula, row));\",\n      \"cwe\": \"CWE-94 Code Injection\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T04:09:08.4858162Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 84560512500,
+     "load_duration": 63047800,
+     "prompt_eval_count": 1033,
+     "prompt_eval_duration": 2018137500,
+     "eval_count": 232,
+     "eval_duration": 21471758300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb58-d91d-7ec3-8972-724402bcb4b8-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1033,
+     "output_tokens": 232,
+     "total_tokens": 1265
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:20:29+00:00",
+ "elapsed_seconds": 83.953,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"tornado/web.py\",\n            \"line\": 370,\n            \"severity\": \"medium\",\n            \"rule_id\": \"CWE-190\",\n            \"message\": \"Potential integer overflow or wraparound in the calculation of `status_code`.\",\n            \"evidence\": \"-             if reason is not None:\\n      -                 if \\\"<\\\" in reason or not httputil._ABNF.reason_phrase.fullmatch(reason):\\n      -                     # Logically this would be better as an exception, but this method\\n      -                     # is called on error-handling paths that would need some refactoring\\n      -                     # to tolerate internal errors cleanly.\\n      -                     #\\n      -                     # The check for \\\"<\\\" is a defense-in-depth against XSS attacks (we also\\n      -                     # escape the reason when rendering error pages).\\n      -                     reason = \\\"Unknown\\\"\",\n            \"cwe\": \"CWE-190\"\n        },\n        {\n            \"file\": \"tornado/web.py\",\n            \"line\": 1375,\n            \"severity\": \"medium\",\n            \"rule_id\": \"CWE-829\",\n            \"message\": \"Potential cross-site scripting (XSS) vulnerability in the rendering of error messages.\",\n            \"evidence\": \"-                 % {\",\n            \"cwe\": \"CWE-829\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:20:29.2279321Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 83682062700,
+     "load_duration": 61277600,
+     "prompt_eval_count": 1344,
+     "prompt_eval_duration": 10959811900,
+     "eval_count": 309,
+     "eval_duration": 32355654900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9e2-ba42-74b3-ada7-aefb484669e6-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1344,
+     "output_tokens": 309,
+     "total_tokens": 1653
+    }
+   }
+  }
+ ]
+}

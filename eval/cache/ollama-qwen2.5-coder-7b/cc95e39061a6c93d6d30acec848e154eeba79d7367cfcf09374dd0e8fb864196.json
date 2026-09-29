@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:10:39+00:00",
+ "elapsed_seconds": 35.625,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"backend/open_webui/models/messages.py\",\n            \"line\": 332,\n            \"severity\": \"medium\",\n            \"rule_id\": \"N+1_queries\",\n            \"message\": \"The code checks if the message exists without verifying its channel ID, which could lead to N+1 queries.\",\n            \"evidence\": \"-             if not message or message.channel_id != channel_id:\",\n            \"confidence\": 0.8,\n            \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\"\n        },\n        {\n            \"file\": \"backend/open_webui/routers/channels.py\",\n            \"line\": 1132,\n            \"severity\": \"medium\",\n            \"rule_id\": \"N+1_queries\",\n            \"message\": \"The code checks if the message exists without verifying its channel ID, which could lead to N+1 queries.\",\n            \"evidence\": \"-             ref = await Messages.get_message_by_id(ref_id, include_thread_replies=False, db=db)\",\n            \"confidence\": 0.8,\n            \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:10:39.5527999Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 35615908500,
+     "load_duration": 57996800,
+     "prompt_eval_count": 790,
+     "prompt_eval_duration": 909707500,
+     "eval_count": 275,
+     "eval_duration": 28116938000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9da-779f-72d3-ab41-e8fe636b8820-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 790,
+     "output_tokens": 275,
+     "total_tokens": 1065
+    }
+   }
+  }
+ ]
+}

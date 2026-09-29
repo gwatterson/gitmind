@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:59:49+00:00",
+ "elapsed_seconds": 23.875,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"app/admin/bulk.py\",\n      \"line\": 7,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-287\",\n      \"message\": \"The code does not verify the user's role before deleting users in bulk.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"if user.role is \\\"admin\\\":\",\n      \"cwe\": \"CWE-287 broken authentication\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:59:49.8299506Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 23615123500,
+     "load_duration": 60655100,
+     "prompt_eval_count": 872,
+     "prompt_eval_duration": 1796698900,
+     "eval_count": 111,
+     "eval_duration": 9733940300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb51-4110-7272-9400-4fe0a6f1c4af-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 872,
+     "output_tokens": 111,
+     "total_tokens": 983
+    }
+   }
+  }
+ ]
+}

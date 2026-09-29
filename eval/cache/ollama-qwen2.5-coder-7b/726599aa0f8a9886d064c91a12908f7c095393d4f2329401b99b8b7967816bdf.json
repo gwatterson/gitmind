@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:11:55+00:00",
+ "elapsed_seconds": 19.375,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"backend/open_webui/main.py\",\n            \"line\": 1294,\n            \"severity\": \"medium\",\n            \"rule_id\": \"Simplification_Missing_Logic\",\n            \"message\": \"The condition for raising an HTTPException is simplified, but the original logic was more complex and included a check for user role.\",\n            \"evidence\": \"if target_message and target_message.channel_id != channel.id:\",\n            \"confidence\": 1,\n            \"cwe\": null\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:11:55.0167709Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 19366069500,
+     "load_duration": 56674300,
+     "prompt_eval_count": 794,
+     "prompt_eval_duration": 4749616500,
+     "eval_count": 120,
+     "eval_duration": 11761536100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9db-dde1-7783-b8e7-15379aef19ff-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 794,
+     "output_tokens": 120,
+     "total_tokens": 914
+    }
+   }
+  }
+ ]
+}

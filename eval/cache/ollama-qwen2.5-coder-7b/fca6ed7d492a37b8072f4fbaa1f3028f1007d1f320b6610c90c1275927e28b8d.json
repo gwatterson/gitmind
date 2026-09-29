@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T23:00:04+00:00",
+ "elapsed_seconds": 98.11,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"changedetectionio/flask_app.py\",\n            \"line\": 715,\n            \"severity\": \"low\",\n            \"rule_id\": \"S108\",\n            \"message\": \"String replacement with regex can be inefficient for large strings.\",\n            \"evidence\": \"-         group = re.sub(r'[^a-z0-9_]+', '', group.lower())\\n+         group = re.sub(r'[^\\\\\\u002d\\\\u002e\\\\w]+', '', group.lower())\",\n            \"confidence\": 1,\n            \"cwe\": \"CWE-478: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') - Not Applicable\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T23:00:04.1530546Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 97846936300,
+     "load_duration": 126481400,
+     "prompt_eval_count": 679,
+     "prompt_eval_duration": 2142830700,
+     "eval_count": 171,
+     "eval_duration": 16291924300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea3d-ae79-7302-9c27-8e9fe5e018d3-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 679,
+     "output_tokens": 171,
+     "total_tokens": 850
+    }
+   }
+  }
+ ]
+}

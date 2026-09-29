@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:04:01+00:00",
+ "elapsed_seconds": 93.953,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"src/mistune/directives/admonition.py\",\n            \"line\": 67,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S502\",\n            \"message\": \"Using `escape_text` is unnecessary when `_cls` is already a string.\",\n            \"confidence\": 1.0,\n            \"evidence\": \"-         html += \\\" \\\" + escape_text(_cls)\\n+         html += \\\" \\\" + _cls\"\n        },\n        {\n            \"file\": \"src/mistune/directives/image.py\",\n            \"line\": 163,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S502\",\n            \"message\": \"Using `escape_text` is unnecessary when `_cls` is already a string.\",\n            \"confidence\": 1.0,\n            \"evidence\": \"-         _cls += \\\" \\\" + escape_text(figclass)\\n+         _cls += \\\" \\\" + figclass\"\n        },\n        {\n            \"file\": \"src/mistune/renderers/html.py\",\n            \"line\": 141,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S502\",\n            \"message\": \"Using `escape_text` is unnecessary when `text` is already a string.\",\n            \"confidence\": 1.0,\n            \"evidence\": \"-         return '<div class=\\\"error\\\"><pre>' + escape_text(text) + \\\"</pre></div>\\\\n\\\"\\n+         return '<div class=\\\"error\\\"><pre>' + text + \\\"</pre></div>\\\\n\\\"\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:04:01.0959106Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 93693473000,
+     "load_duration": 88439100,
+     "prompt_eval_count": 1158,
+     "prompt_eval_duration": 4706969300,
+     "eval_count": 353,
+     "eval_duration": 33033270000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eae6-27cf-7e92-825a-6dd28bbf451c-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1158,
+     "output_tokens": 353,
+     "total_tokens": 1511
+    }
+   }
+  }
+ ]
+}

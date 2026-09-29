@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T22:59:41+00:00",
+ "elapsed_seconds": 75.328,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"changedetectionio/flask_app.py\",\n            \"line\": 715,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S324\",\n            \"message\": \"The regular expression allows periods and hyphens, which might not be intended for file names.\",\n            \"evidence\": \"+         group = re.sub(r'[^\\u0000-\\u007F]+', '', group.lower())\"\n        },\n        {\n            \"file\": \"changedetectionio/flask_app.py\",\n            \"line\": 716,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S324\",\n            \"message\": \"The regular expression allows periods and hyphens, which might not be intended for file names.\",\n            \"evidence\": \"+         filename = re.sub(r'[^\\u0000-\\u007F]+', '', filename.lower())\"\n        },\n        {\n            \"file\": \"changedetectionio/flask_app.py\",\n            \"line\": 715,\n            \"severity\": \"low\",\n            \"rule_id\": \"S621\",\n            \"message\": \"The regular expression might allow non-ASCII characters, which could be a security risk.\",\n            \"evidence\": \"+         group = re.sub(r'[^\\u0000-\\u007F]+', '', group.lower())\"\n        },\n        {\n            \"file\": \"changedetectionio/flask_app.py\",\n            \"line\": 716,\n            \"severity\": \"low\",\n            \"rule_id\": \"S621\",\n            \"message\": \"The regular expression might allow non-ASCII characters, which could be a security risk.\",\n            \"evidence\": \"+         filename = re.sub(r'[^\\u0000-\\u007F]+', '', filename.lower())\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T22:59:41.3784032Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 75072284900,
+     "load_duration": 126481400,
+     "prompt_eval_count": 675,
+     "prompt_eval_duration": 2127749600,
+     "eval_count": 407,
+     "eval_duration": 36787862800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea3d-ae83-7431-80dd-995fb44a1711-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 675,
+     "output_tokens": 407,
+     "total_tokens": 1082
+    }
+   }
+  }
+ ]
+}

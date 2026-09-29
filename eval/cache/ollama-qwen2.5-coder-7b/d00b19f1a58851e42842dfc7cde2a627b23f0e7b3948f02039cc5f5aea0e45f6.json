@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:57:40+00:00",
+ "elapsed_seconds": 13.265,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"index.js\",\n      \"line\": 14,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_default_value_check\",\n      \"message\": \"The `fileName` variable can be undefined if the `options` object does not contain a `fileName` property.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const fileName = (options || {}).fileName || 'source';\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:57:40.8151741Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 13250880500,
+     "load_duration": 118065100,
+     "prompt_eval_count": 805,
+     "prompt_eval_duration": 854748500,
+     "eval_count": 105,
+     "eval_duration": 9663486700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eae1-958a-7381-b5f8-01e531862080-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 805,
+     "output_tokens": 105,
+     "total_tokens": 910
+    }
+   }
+  }
+ ]
+}

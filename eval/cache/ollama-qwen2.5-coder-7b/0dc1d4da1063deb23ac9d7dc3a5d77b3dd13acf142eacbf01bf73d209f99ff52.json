@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:03:38+00:00",
+ "elapsed_seconds": 24.984,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/components/Comment.tsx\",\n      \"line\": 7,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-79\",\n      \"message\": \"Unsafe HTML rendering using `dangerouslySetInnerHTML` can lead to Cross-Site Scripting (XSS) vulnerabilities.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"<div className=\\\"comment-body\\\" dangerouslySetInnerHTML={{ __html: comment.body }} />\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:03:38.8235206Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 24727922800,
+     "load_duration": 94864500,
+     "prompt_eval_count": 857,
+     "prompt_eval_duration": 1757574300,
+     "eval_count": 115,
+     "eval_duration": 9984295200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb1d-cca9-7363-b1d2-9f2dad74a2fa-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 857,
+     "output_tokens": 115,
+     "total_tokens": 972
+    }
+   }
+  }
+ ]
+}

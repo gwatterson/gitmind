@@ -1,0 +1,12 @@
+id: oss-starlette-3523
+split: dev
+source: oss
+language: python
+title: Stop file transfers when HTTP clients disconnect
+description: Merged pull request reviewed by the maintainers.
+origin:
+  repo: encode/starlette
+  url: https://github.com/Kludex/starlette/pull/3523
+  license: BSD-3-Clause
+  commit: 7c917f8883b982b9687f6e6645ec4453afd9a676
+must_not_flag: []

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:06:28+00:00",
+ "elapsed_seconds": 77.344,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"litellm/llms/litellm_proxy/skills/prompt_injection.py\",\n            \"line\": 107,\n            \"severity\": \"medium\",\n            \"rule_id\": \"CWE-23\",\n            \"message\": \"Potential path traversal vulnerability due to the lack of validation for `clean_path`.\",\n            \"evidence\": \"+                        files[clean_path] = zf.read(name)\",\n            \"cwe\": \"CWE-23: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n        },\n        {\n            \"file\": \"litellm/llms/litellm_proxy/skills/sandbox_executor.py\",\n            \"line\": 100,\n            \"severity\": \"medium\",\n            \"rule_id\": \"CWE-23\",\n            \"message\": \"Potential path traversal vulnerability due to the lack of validation for `path`.\",\n            \"evidence\": \"+                        local_path = os.path.join(tmpdir, path)\",\n            \"cwe\": \"CWE-23: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:06:28.0087457Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 77089578700,
+     "load_duration": 63098300,
+     "prompt_eval_count": 1026,
+     "prompt_eval_duration": 5305352600,
+     "eval_count": 256,
+     "eval_duration": 29914897000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9d5-fe08-73f1-af97-a2eccecd6e41-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1026,
+     "output_tokens": 256,
+     "total_tokens": 1282
+    }
+   }
+  }
+ ]
+}

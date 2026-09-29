@@ -1,0 +1,12 @@
+id: oss-zod-6575
+split: test
+source: oss
+language: typescript
+title: 'feat(compile): add z.withParser for externally generated parsers'
+description: Merged pull request reviewed by the maintainers.
+origin:
+  repo: colinhacks/zod
+  url: https://github.com/colinhacks/zod/pull/6575
+  license: MIT
+  commit: 192e9a70aeedcb1222875889d787268c81dd5835
+must_not_flag: []

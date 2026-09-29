@@ -86,8 +86,15 @@ class Settings(BaseSettings):
     MAX_REVIEW_PATCH_CHARS: int = 400_000
     REVIEW_EXCLUDE_PATTERNS: str = ""  # extra comma-separated globs, e.g. "docs/*,*.md"
 
-    # Findings below this confidence cannot block a PR on their own
-    VERDICT_MIN_CONFIDENCE: float = 0.6
+    # Which findings can make the verdict "request_changes": critical or high findings of
+    # these categories, with at least this self-reported confidence. The evaluation showed
+    # that quality and performance findings are mostly noise and that the confidence the
+    # model reports does not separate real problems from false alarms (see eval/README.md).
+    VERDICT_BLOCKING_CATEGORIES: str = "security"
+    VERDICT_MIN_CONFIDENCE: float = 0.0
+
+    # Directory of the prompt files; empty means the versioned prompts in app/graph/prompts
+    PROMPTS_DIR: str = ""
 
     # App
     CORS_ORIGINS: str = "http://localhost:3000"
@@ -98,6 +105,10 @@ class Settings(BaseSettings):
     @property
     def is_production(self) -> bool:
         return self.ENVIRONMENT == "production"
+
+    @property
+    def verdict_blocking_categories(self) -> set[str]:
+        return set(_split_csv(self.VERDICT_BLOCKING_CATEGORIES))
 
     @property
     def review_exclude_patterns(self) -> list[str]:

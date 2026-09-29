@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T23:02:51+00:00",
+ "elapsed_seconds": 31.312,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"ghost/core/core/server/adapters/storage/LocalStorageBase.ts\",\n            \"line\": 143,\n            \"severity\": \"medium\",\n            \"rule_id\": \"N+1_queries\",\n            \"message\": \"The code does not show evidence of N+1 queries, but it's worth checking if the `getUniqueFileName` method is called multiple times in a loop or similar context.\",\n            \"suggestion\": \"Review the usage of `getUniqueFileName` to ensure it's not being called excessively.\"\n        },\n        {\n            \"file\": \"ghost/core/core/server/services/themes/storage.js\",\n            \"line\": 59,\n            \"severity\": \"medium\",\n            \"rule_id\": \"N+1_queries\",\n            \"message\": \"The code does not show evidence of N+1 queries, but it's worth checking if the `validateThemeName` method is called multiple times in a loop or similar context.\",\n            \"suggestion\": \"Review the usage of `validateThemeName` to ensure it's not being called excessively.\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T23:02:51.0714167Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 31303574500,
+     "load_duration": 101519400,
+     "prompt_eval_count": 836,
+     "prompt_eval_duration": 1224109400,
+     "eval_count": 233,
+     "eval_duration": 23932226300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea41-3f76-7e01-84c0-fe1f6549f7f7-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 836,
+     "output_tokens": 233,
+     "total_tokens": 1069
+    }
+   }
+  }
+ ]
+}

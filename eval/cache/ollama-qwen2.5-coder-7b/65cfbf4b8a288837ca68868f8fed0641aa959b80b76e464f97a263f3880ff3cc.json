@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:20:33+00:00",
+ "elapsed_seconds": 36.125,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"lightrag/api/utils_api.py\",\n      \"line\": 215,\n      \"severity\": \"high\",\n      \"rule_id\": \"S374\",\n      \"message\": \"The code incorrectly accepts guest tokens when no authentication is configured.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"if not auth_configured and token_info.get(\\\"role\\\") == \\\"guest\\\":\\n    return\",\n      \"cwe\": \"CWE-284: Improper Access Control\"\n    },\n    {\n      \"file\": \"lightrag/api/utils_api.py\",\n      \"line\": 217,\n      \"severity\": \"high\",\n      \"rule_id\": \"S374\",\n      \"message\": \"The code incorrectly raises a 401 error for non-guest tokens when authentication is configured.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"if auth_configured and token_info.get(\\\"role\\\") != \\\"guest\\\":\\n    return\\n\\n# Token validation failed, immediately return 401 error\\nraise HTTPException(\\n    status_code=status.HTTP_401_UNAUTHORIZED,\\n    detail=\\\"Invalid token. Please login again.\\\",\\n)\",\n      \"cwe\": \"CWE-284: Improper Access Control\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:20:33.9449355Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 36114445700,
+     "load_duration": 104524600,
+     "prompt_eval_count": 1257,
+     "prompt_eval_duration": 2435463900,
+     "eval_count": 294,
+     "eval_duration": 27502958400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb2d-1e85-7a93-bdd9-238ddd46308a-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1257,
+     "output_tokens": 294,
+     "total_tokens": 1551
+    }
+   }
+  }
+ ]
+}

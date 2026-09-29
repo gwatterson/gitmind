@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:50:54+00:00",
+ "elapsed_seconds": 54.547,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"packages/@dicebear/core/src/utils/svg.ts\",\n      \"line\": 78,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-943\",\n      \"message\": \"Potential NoSQL injection vulnerability due to direct string interpolation.\",\n      \"confidence\": 0.6,\n      \"suggestion\": \"Use parameterized queries or escape user input properly.\"\n    },\n    {\n      \"file\": \"packages/@dicebear/initials/src/index.ts\",\n      \"line\": 38,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-943\",\n      \"message\": \"Potential NoSQL injection vulnerability due to direct string interpolation.\",\n      \"confidence\": 0.6,\n      \"suggestion\": \"Use parameterized queries or escape user input properly.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:50:54.6269022Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 54274193000,
+     "load_duration": 111991200,
+     "prompt_eval_count": 1132,
+     "prompt_eval_duration": 5282432300,
+     "eval_count": 192,
+     "eval_duration": 17504489800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eada-c199-7971-9405-58530a902954-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1132,
+     "output_tokens": 192,
+     "total_tokens": 1324
+    }
+   }
+  }
+ ]
+}

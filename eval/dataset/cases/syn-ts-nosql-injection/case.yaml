@@ -1,0 +1,20 @@
+id: syn-ts-nosql-injection
+split: test
+source: synthetic
+language: typescript
+title: Login endpoint for the mobile app
+description: 'Request body fields go straight into the MongoDB filter: an object such as {"$ne": null}
+  bypasses the password check.'
+expected_findings:
+- file: src/routes/login.ts
+  anchor: const user = await db.collection("users").findOne({
+  span: 3
+  category: security
+  cwe:
+  - CWE-943
+  - CWE-89
+  - CWE-287
+  - CWE-20
+  severity_min: high
+  description: Request body used as a MongoDB query (operator injection)
+must_not_flag: []

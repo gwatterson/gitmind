@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T20:51:02+00:00",
+ "elapsed_seconds": 26.016,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"source/platforms/git/localGetFileAtSHA.ts\",\n      \"line\": 8,\n      \"severity\": \"high\",\n      \"rule_id\": \"exec_injection\",\n      \"message\": \"Using `exec` with user-provided input can lead to command injection vulnerabilities.\",\n      \"evidence\": \"const call = `git show ${sha}:\\\"${path}\\\"`\"\n    },\n    {\n      \"file\": \"source/platforms/git/localGetFileAtSHA.ts\",\n      \"line\": 10,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"Error handling is missing for the `exec` call.\",\n      \"evidence\": \"exec(call, (err, stdout, _stderr) => {\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T20:51:02.2141652Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 26015960500,
+     "load_duration": 62491500,
+     "prompt_eval_count": 732,
+     "prompt_eval_duration": 3314281100,
+     "eval_count": 178,
+     "eval_duration": 17472448900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9c8-a624-7a70-8f66-dd9c50669926-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 732,
+     "output_tokens": 178,
+     "total_tokens": 910
+    }
+   }
+  }
+ ]
+}

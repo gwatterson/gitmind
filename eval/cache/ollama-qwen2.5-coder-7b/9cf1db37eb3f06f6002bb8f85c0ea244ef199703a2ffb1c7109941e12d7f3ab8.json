@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:12:45+00:00",
+ "elapsed_seconds": 21.156,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"tornado/web.py\",\n      \"line\": 371,\n      \"severity\": \"low\",\n      \"rule_id\": \"string_concatenation_in_loop\",\n      \"message\": \"String concatenation inside a loop that builds a large string.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+             self._reason = escape.native_str(reason)\",\n      \"cwe\": \"CWE-134: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\\nCWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:12:45.6222616Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 21149625500,
+     "load_duration": 111840000,
+     "prompt_eval_count": 1498,
+     "prompt_eval_duration": 2808626700,
+     "eval_count": 151,
+     "eval_duration": 14490018500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eaef-4517-7ef3-a856-92cf3f853f71-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1498,
+     "output_tokens": 151,
+     "total_tokens": 1649
+    }
+   }
+  }
+ ]
+}

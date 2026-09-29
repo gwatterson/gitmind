@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:34:08+00:00",
+ "elapsed_seconds": 134.985,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/middleware/jwk/jwk.ts\",\n      \"line\": 90,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing-realm-default-value\",\n      \"message\": \"The `realm` parameter is optional but not given a default value in the function signature.\",\n      \"confidence\": 0.8,\n      \"evidence\": \"@param {string} [options.realm] - The protection space described by the `realm` parameter of the returned `WWW-Authenticate` challenge header. Defaults to the request URL.\"\n    },\n    {\n      \"file\": \"src/middleware/jwk/jwk.ts\",\n      \"line\": 178,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing-realm-default-value\",\n      \"message\": \"The `realm` parameter is optional but not given a default value in the function signature.\",\n      \"confidence\": 0.8,\n      \"evidence\": \"@param {string} [options.realm] - The protection space described by the `realm` parameter of the returned `WWW-Authenticate` challenge header. Defaults to the request URL.\"\n    },\n    {\n      \"file\": \"src/middleware/jwk/jwk.ts\",\n      \"line\": 178,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing-realm-default-value\",\n      \"message\": \"The `realm` parameter is optional but not given a default value in the function signature.\",\n      \"confidence\": 0.8,\n      \"evidence\": \"@param {string} [options.realm] - The protection space described by the `realm` parameter of the returned `WWW-Authenticate` challenge header. Defaults to the request URL.\"\n    },\n    {\n      \"file\": \"src/middleware/jwk/jwk.ts\",\n      \"line\": 178,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing-realm-default-value\",\n      \"message\": \"The `realm` parameter is optional but not given a default value in the function signature.\",\n      \"confidence\": 0.8,\n      \"evidence\": \"@param {string} [options.realm] - The protection space described by the `realm` parameter of the returned `WWW-Authenticate` challenge header. Defaults to the request URL.\"\n    },\n    {\n      \"file\": \"src/middleware/jwk/jwk.ts\",\n      \"line\": 178,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing-realm-default-value\",\n      \"message\": \"The `realm` parameter is optional but not given a default value in the function signature.\",\n      \"confidence\": 0.8,\n      \"evidence\": \"@param {string} [options.realm] - The protection space described by the `realm` parameter of the returned `WWW-Authenticate` challenge header. Defaults to the request URL.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:34:08.9796943Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 134700512700,
+     "load_duration": 109157700,
+     "prompt_eval_count": 2496,
+     "prompt_eval_duration": 4246401100,
+     "eval_count": 610,
+     "eval_duration": 64546391500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb38-0c11-71d2-bb3d-9a452c999057-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 2496,
+     "output_tokens": 610,
+     "total_tokens": 3106
+    }
+   }
+  }
+ ]
+}

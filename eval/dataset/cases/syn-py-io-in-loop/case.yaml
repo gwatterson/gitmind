@@ -1,0 +1,14 @@
+id: syn-py-io-in-loop
+split: test
+source: synthetic
+language: python
+title: Apply pricing rules while importing products
+description: The pricing rules file is opened and parsed again for every product row.
+expected_findings:
+- file: app/importers/products.py
+  anchor: 'with RULES_PATH.open(encoding="utf-8") as rules_file:'
+  span: 1
+  category: performance
+  severity_min: low
+  description: Same file opened and parsed on every iteration
+must_not_flag: []

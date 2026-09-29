@@ -1,0 +1,14 @@
+id: syn-py-deep-nesting
+split: test
+source: synthetic
+language: python
+title: Shipping cost rules
+description: Deeply nested conditionals that are hard to follow and to test.
+expected_findings:
+- file: app/shipping/cost.py
+  anchor: 'def shipping_cost(country: str, weight_kg: float, express: bool, member: bool) -> float:'
+  span: 6
+  category: quality
+  severity_min: low
+  description: Deeply nested conditionals (high complexity)
+must_not_flag: []

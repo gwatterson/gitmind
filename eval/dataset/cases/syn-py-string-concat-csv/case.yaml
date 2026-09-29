@@ -1,0 +1,13 @@
+id: syn-py-string-concat-csv
+split: test
+source: synthetic
+language: python
+title: CSV export of the audit log
+description: The CSV is built by repeated string concatenation in the loop.
+expected_findings:
+- file: app/audit/export.py
+  anchor: output += f"{entry.timestamp.isoformat()}
+  category: performance
+  severity_min: low
+  description: String concatenation inside a loop
+must_not_flag: []

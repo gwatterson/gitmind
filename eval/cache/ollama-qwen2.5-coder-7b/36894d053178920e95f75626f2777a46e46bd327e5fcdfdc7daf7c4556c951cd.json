@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:27:21+00:00",
+ "elapsed_seconds": 60.781,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"source/core/Ky.ts\",\n      \"line\": 273,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_validation\",\n      \"message\": \"The code attempts to parse an empty string as JSON, which will throw a SyntaxError.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"return JSON.parse(text);\"\n    },\n    {\n      \"file\": \"source/core/Ky.ts\",\n      \"line\": 547,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_validation\",\n      \"message\": \"The code attempts to parse an empty string as JSON, which will throw a SyntaxError.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"return JSON.parse(text);\"\n    },\n    {\n      \"file\": \"source/types/ResponsePromise.ts\",\n      \"line\": 47,\n      \"severity\": \"medium\",\n      \"rule_id\": \"inaccurate_type_annotation\",\n      \"message\": \"The type annotation for `.json()` should include `undefined` to reflect the possibility of an empty response.\",\n      \"confidence\": 0.8,\n      \"evidence\": \"<JsonType = T>(): Promise<JsonType>;\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:27:21.6585539Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 60504016900,
+     "load_duration": 85079100,
+     "prompt_eval_count": 1471,
+     "prompt_eval_duration": 2498965200,
+     "eval_count": 275,
+     "eval_duration": 26391316200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eafc-0852-7af1-b8a9-3406eb6c22f7-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1471,
+     "output_tokens": 275,
+     "total_tokens": 1746
+    }
+   }
+  }
+ ]
+}

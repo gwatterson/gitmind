@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:19:02+00:00",
+ "elapsed_seconds": 18.89,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/content/tags.py\",\n            \"line\": 7,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S324\",\n            \"message\": \"The variable 'tag' is reassigned within the loop, which can lead to confusion.\",\n            \"evidence\": \"    tag = normalize_tag(tag)\"\n        },\n        {\n            \"file\": \"app/content/tags.py\",\n            \"line\": 10,\n            \"severity\": \"low\",\n            \"rule_id\": \"S125\",\n            \"message\": \"The function does not have a docstring.\",\n            \"evidence\": \"\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:19:02.6984003Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 18891636300,
+     "load_duration": 111020700,
+     "prompt_eval_count": 560,
+     "prompt_eval_duration": 2542105300,
+     "eval_count": 146,
+     "eval_duration": 12870406100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eabe-205b-7390-9e0d-1e57772dd04d-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 560,
+     "output_tokens": 146,
+     "total_tokens": 706
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:48:27+00:00",
+ "elapsed_seconds": 168.75,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"packages/zod/src/v4/classic/external.ts\",\n      \"line\": 129,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_return_type\",\n      \"message\": \"The function `withParser` is missing a return type annotation.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+export function withParser<T extends SomeType>(schema: T, parser: (input: unknown) => core.output<T> | INVALID): T {\"\n    },\n    {\n      \"file\": \"packages/zod/src/v4/classic/external.ts\",\n      \"line\": 129,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_type_annotation\",\n      \"message\": \"The parameter `schema` is missing a type annotation.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+export function withParser<T extends SomeType>(schema: T, parser: (input: unknown) => core.output<T> | INVALID): T {\"\n    },\n    {\n      \"file\": \"packages/zod/src/v4/classic/external.ts\",\n      \"line\": 129,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_type_annotation\",\n      \"message\": \"The parameter `parser` is missing a type annotation.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+export function withParser<T extends SomeType>(schema: T, parser: (input: unknown) => core.output<T> | INVALID): T {\"\n    },\n    {\n      \"file\": \"packages/zod/src/v4/classic/external.ts\",\n      \"line\": 129,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_type_annotation\",\n      \"message\": \"The return type `T` is missing a type annotation.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+export function withParser<T extends SomeType>(schema: T, parser: (input: unknown) => core.output<T> | INVALID): T {\"\n    },\n    {\n      \"file\": \"packages/zod/src/v4/classic/external.ts\",\n      \"line\": 129,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_type_annotation\",\n      \"message\": \"The type `core.output<T>` is missing a type annotation.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+export function withParser<T extends SomeType>(schema: T, parser: (input: unknown) => core.output<T> | INVALID): T {\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:48:27.0096555Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 168476837700,
+     "load_duration": 54438400,
+     "prompt_eval_count": 3202,
+     "prompt_eval_duration": 5620610100,
+     "eval_count": 561,
+     "eval_duration": 63387340000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb44-9fdb-7050-890b-f0579c6c88ca-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 3202,
+     "output_tokens": 561,
+     "total_tokens": 3763
+    }
+   }
+  }
+ ]
+}

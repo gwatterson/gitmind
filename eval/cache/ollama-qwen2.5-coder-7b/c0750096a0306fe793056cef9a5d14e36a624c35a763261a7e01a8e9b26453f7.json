@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:54:46+00:00",
+ "elapsed_seconds": 71.063,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"lemur/destinations/schemas.py\",\n      \"line\": 30,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-287\",\n      \"message\": \"The code removes the 'sensitive' field from options, which might be a security hardening measure. However, it's not clear if this is intentional or if it was mistakenly removed.\",\n      \"confidence\": 0.6,\n      \"evidence\": \"-             option['value'] = None\"\n    },\n    {\n      \"file\": \"lemur/destinations/views.py\",\n      \"line\": 34,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-287\",\n      \"message\": \"The 'admin_permission.require' decorator is removed from the 'get' method in 'DestinationsView'. This might allow unauthorized access to destination data.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-     @admin_permission.require(http_exception=403)\"\n    },\n    {\n      \"file\": \"lemur/destinations/views.py\",\n      \"line\": 197,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-287\",\n      \"message\": \"The 'admin_permission.require' decorator is removed from the 'get' method in 'DestinationView'. This might allow unauthorized access to destination data.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-     @admin_permission.require(http_exception=403)\"\n    },\n    {\n      \"file\": \"lemur/destinations/views.py\",\n      \"line\": 360,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-287\",\n      \"message\": \"The 'admin_permission.require' decorator is removed from the 'get' method in 'CertificateDestinationView'. This might allow unauthorized access to destination data.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-     @admin_permission.require(http_exception=403)\"\n    },\n    {\n      \"file\": \"lemur/plugins/lemur_sftp/plugin.py\",\n      \"line\": 13,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-287\",\n      \"message\": \"The comment mentions that passwords are not encrypted and stored as plain text, which might be a security concern.\",\n      \"confidence\": 0.6,\n      \"evidence\": \"+     Passwords are not encrypted and stored as a plain text.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:54:46.3090319Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 71069405700,
+     "load_duration": 104463100,
+     "prompt_eval_count": 1479,
+     "prompt_eval_duration": 2688967000,
+     "eval_count": 547,
+     "eval_duration": 54312346400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eade-0a06-77f2-b7ff-21e15039caa6-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1479,
+     "output_tokens": 547,
+     "total_tokens": 2026
+    }
+   }
+  }
+ ]
+}

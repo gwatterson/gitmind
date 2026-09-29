@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T23:28:51+00:00",
+ "elapsed_seconds": 95.921,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"src/click/core.py\",\n            \"line\": 1578,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"The `except Exit as e` block does not handle the case where `standalone_mode` is True.\",\n            \"evidence\": \"if not standalone_mode:\\n    # in non-standalone mode, return the exit code\\n    # note that this is only reached if `self.invoke` above raises\\n    # an Exit explicitly -- thus bypassing the check there which\\n    # would return its result\\n    # the results of non-standalone execution may therefore be\\n    # somewhat ambiguous: if there are codepaths which lead to\\n    # `ctx.exit(1)` and to `return 1`, the caller won't be able to\\ntell the difference between the two\",\n            \"confidence\": 0.9\n        },\n        {\n            \"file\": \"src/click/core.py\",\n            \"line\": 1587,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"The `except Abort` block does not handle the case where `standalone_mode` is True.\",\n            \"evidence\": \"if not standalone_mode:\\n    raise\\n\\nreport = _echo_aborted\",\n            \"confidence\": 0.9\n        },\n        {\n            \"file\": \"src/click/core.py\",\n            \"line\": 1623,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"The `except (EOFError, KeyboardInterrupt)` block does not handle the case where `standalone_mode` is True.\",\n            \"evidence\": \"if not standalone_mode:\\n    raise\\n\\necho(_('Aborted!'), file=sys.stderr)\\nsys.exit(1)\",\n            \"confidence\": 0.9\n        },\n        {\n            \"file\": \"src/click/core.py\",\n            \"line\": 1623,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"The `except (EOFError, KeyboardInterrupt)` block does not handle the case where `standalone_mode` is True.\",\n            \"evidence\": \"if not standalone_mode:\\n    raise\\n\\necho(_('Aborted!'), file=sys.stderr)\\nsys.exit(1)\",\n            \"confidence\": 0.9\n        },\n        {\n            \"file\": \"src/click/core.py\",\n            \"line\": 1623,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"The `except (EOFError, KeyboardInterrupt)` block does not handle the case where `standalone_mode` is True.\",\n            \"evidence\": \"if not standalone_mode:\\n    raise\\n\\necho(_('Aborted!'), file=sys.stderr)\\nsys.exit(1)\",\n            \"confidence\": 0.9\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T23:28:51.0641113Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 95653890500,
+     "load_duration": 117166600,
+     "prompt_eval_count": 1823,
+     "prompt_eval_duration": 4677740800,
+     "eval_count": 649,
+     "eval_duration": 69232545800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea58-10d4-7382-877f-34ada5174845-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1823,
+     "output_tokens": 649,
+     "total_tokens": 2472
+    }
+   }
+  }
+ ]
+}

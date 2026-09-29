@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:45:12+00:00",
+ "elapsed_seconds": 77.625,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/services/project_import.py\",\n            \"line\": 17,\n            \"severity\": \"high\",\n            \"rule_id\": \"CWE-89\",\n            \"message\": \"Use of potentially unsafe deserialization with `yaml.load`.\",\n            \"evidence\": \"settings.update(yaml.load(uploaded, Loader=yaml.Loader))\",\n            \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') or Expression Language ('Expression Language Injection')\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:45:12.5864393Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 77378107200,
+     "load_duration": 88508200,
+     "prompt_eval_count": 681,
+     "prompt_eval_duration": 3128753500,
+     "eval_count": 127,
+     "eval_duration": 11170886900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9f9-7554-7593-ace3-39101b68b29b-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 681,
+     "output_tokens": 127,
+     "total_tokens": 808
+    }
+   }
+  }
+ ]
+}

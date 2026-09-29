@@ -1,0 +1,19 @@
+id: syn-ts-hardcoded-jwt-secret
+split: test
+source: synthetic
+language: typescript
+title: Issue access tokens
+description: The JWT signing secret is a string literal in the source code.
+expected_findings:
+- file: src/auth/tokens.ts
+  anchor: const JWT_SECRET = "gitmind-demo-signing-secret-please-change";
+  category: security
+  cwe:
+  - CWE-798
+  - CWE-321
+  severity_min: medium
+  description: Hardcoded JWT signing secret
+must_not_flag:
+- file: src/auth/tokens.ts
+  anchor: return jwt.verify(token, JWT_SECRET);
+  reason: verification is correct

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:22:05+00:00",
+ "elapsed_seconds": 76.328,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/api/webhooks.py\",\n            \"line\": 18,\n            \"severity\": \"medium\",\n            \"rule_id\": \"N+1_queries\",\n            \"message\": \"The response body is truncated to 500 characters, which might not be sufficient for all use cases.\",\n            \"evidence\": \"response.text[:500]\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:22:05.1678033Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 76082319700,
+     "load_duration": 105989900,
+     "prompt_eval_count": 695,
+     "prompt_eval_duration": 2669067200,
+     "eval_count": 92,
+     "eval_duration": 8621885500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eac0-08c4-7733-9973-32eddf65c9bf-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 695,
+     "output_tokens": 92,
+     "total_tokens": 787
+    }
+   }
+  }
+ ]
+}

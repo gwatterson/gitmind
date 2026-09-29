@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:55:32+00:00",
+ "elapsed_seconds": 36.094,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"app/repositories/users.py\",\n      \"line\": 23,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1 queries\",\n      \"message\": \"The search method performs a database query inside a loop over the results of another query.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"query = f\\\"SELECT id, email, name FROM users WHERE name LIKE '%{term}%' LIMIT {limit}\\\"\",\n      \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\\nCWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n    },\n    {\n      \"file\": \"app/repositories/users.py\",\n      \"line\": 23,\n      \"severity\": \"high\",\n      \"rule_id\": \"string concatenation inside a loop\",\n      \"message\": \"String concatenation is used inside the search method, which can lead to SQL injection.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"query = f\\\"SELECT id, email, name FROM users WHERE name LIKE '%{term}%' LIMIT {limit}\\\"\",\n      \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:55:32.0546969Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 36080896100,
+     "load_duration": 109406500,
+     "prompt_eval_count": 1048,
+     "prompt_eval_duration": 2277192600,
+     "eval_count": 300,
+     "eval_duration": 26946690900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb16-33e4-7ee1-9652-e155e7842fdf-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1048,
+     "output_tokens": 300,
+     "total_tokens": 1348
+    }
+   }
+  }
+ ]
+}

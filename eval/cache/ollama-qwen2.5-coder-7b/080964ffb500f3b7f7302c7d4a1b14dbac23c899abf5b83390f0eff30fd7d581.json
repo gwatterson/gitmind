@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T23:14:14+00:00",
+ "elapsed_seconds": 18.094,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"ui/src/utils/extend/extend.js\",\n      \"line\": 59,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-88\",\n      \"message\": \"The code removes the check for '__proto__' to avoid prototype pollution, which is a common security issue.\",\n      \"suggestion\": \"Consider re-evaluating if this change is necessary and whether there are alternative ways to handle prototype pollution.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T23:14:14.3296397Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 17826127100,
+     "load_duration": 93198700,
+     "prompt_eval_count": 578,
+     "prompt_eval_duration": 1943917100,
+     "eval_count": 110,
+     "eval_duration": 9802141000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea4b-e018-7d13-914b-05861d2d150b-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 578,
+     "output_tokens": 110,
+     "total_tokens": 688
+    }
+   }
+  }
+ ]
+}

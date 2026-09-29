@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T23:58:43+00:00",
+ "elapsed_seconds": 289.532,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"src/ahttpx/_content.py\",\n            \"line\": 182,\n            \"severity\": \"high\",\n            \"rule_id\": \"N+1_queries\",\n            \"message\": \"Opening a file inside the `encode` method of `FileStream` can lead to N+1 queries if this method is called multiple times.\",\n            \"evidence\": \"+         fin = open(self._path, 'rb')\"\n        },\n        {\n            \"file\": \"src/ahttpx/_streams.py\",\n            \"line\": 182,\n            \"severity\": \"high\",\n            \"rule_id\": \"N+1_queries\",\n            \"message\": \"Opening a file inside the `encode` method of `FileStream` can lead to N+1 queries if this method is called multiple times.\",\n            \"evidence\": \"+         fin = open(self._path, 'rb')\"\n        },\n        {\n            \"file\": \"src/ahttpx/_content.py\",\n            \"line\": 205,\n            \"severity\": \"high\",\n            \"rule_id\": \"N+1_queries\",\n            \"message\": \"Opening a file inside the `encode` method of `FileStream` can lead to N+1 queries if this method is called multiple times.\",\n            \"evidence\": \"+             self._fin = open(value, 'rb')\"\n        },\n        {\n            \"file\": \"src/ahttpx/_streams.py\",\n            \"line\": 205,\n            \"severity\": \"high\",\n            \"rule_id\": \"N+1_queries\",\n            \"message\": \"Opening a file inside the `encode` method of `FileStream` can lead to N+1 queries if this method is called multiple times.\",\n            \"evidence\": \"+             self._fin = open(value, 'rb')\"\n        },\n        {\n            \"file\": \"src/ahttpx/_content.py\",\n            \"line\": 207,\n            \"severity\": \"high\",\n            \"rule_id\": \"N+1_queries\",\n            \"message\": \"Opening a file inside the `encode` method of `FileStream` can lead to N+1 queries if this method is called multiple times.\",\n            \"evidence\": \"+                 self._fin.close()\"\n        },\n        {\n            \"file\": \"src/ahttpx/_streams.py\",\n            \"line\": 207,\n            \"severity\": \"high\",\n            \"rule_id\": \"N+1_queries\",\n            \"message\": \"Opening a file inside the `encode` method of `FileStream` can lead to N+1 queries if this method is called multiple times.\",\n            \"evidence\": \"+                 self._fin.close()\"\n        },\n        {\n            \"file\": \"src/ahttpx/_content.py\",\n            \"line\": 208,\n            \"severity\": \"high\",\n            \"rule_id\": \"N+1_queries\",\n            \"message\": \"Opening a file inside the `encode` method of `FileStream` can lead to N+1 queries if this method is called multiple times.\",\n            \"evidence\": \"+                 self._fin = None\"\n        },\n        {\n            \"file\": \"src/ahttpx/_streams.py\",\n            \"line\": 208,\n            \"severity\": \"high\",\n            \"rule_id\": \"N+1_queries\",\n            \"message\": \"Opening a file inside the `encode` method of `FileStream` can lead to N+1 queries if this method is called multiple times.\",\n            \"evidence\": \"+                 self._fin = None\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T23:58:43.7320329Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 289273377100,
+     "load_duration": 91912800,
+     "prompt_eval_count": 3161,
+     "prompt_eval_duration": 16003251100,
+     "eval_count": 745,
+     "eval_duration": 86784588400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea70-7711-72d3-a956-7165622d87e1-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 3161,
+     "output_tokens": 745,
+     "total_tokens": 3906
+    }
+   }
+  }
+ ]
+}

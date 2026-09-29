@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:13:24+00:00",
+ "elapsed_seconds": 60.359,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"tornado/web.py\",\n            \"line\": 371,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S602\",\n            \"message\": \"The `reason` parameter is not validated against `<`, which could lead to potential security issues.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"-             if \\\"<\\\" in reason or not httputil._ABNF.reason_phrase.fullmatch(reason):\"\n        },\n        {\n            \"file\": \"tornado/web.py\",\n            \"line\": 1348,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S602\",\n            \"message\": \"The `reason` parameter is not validated against `<`, which could lead to potential security issues.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"-             if status_code != 304:\"\n        },\n        {\n            \"file\": \"tornado/web.py\",\n            \"line\": 1376,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S602\",\n            \"message\": \"The `reason` parameter is not validated against `<`, which could lead to potential security issues.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"-                 % {\"}\n        ]\n    }\n   ",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:13:24.8368125Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 60088320400,
+     "load_duration": 97632500,
+     "prompt_eval_count": 1500,
+     "prompt_eval_duration": 4754423100,
+     "eval_count": 289,
+     "eval_duration": 27370279800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eaef-4526-7841-ba3b-274322d01038-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1500,
+     "output_tokens": 289,
+     "total_tokens": 1789
+    }
+   }
+  }
+ ]
+}

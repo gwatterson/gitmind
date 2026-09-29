@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:11:01+00:00",
+ "elapsed_seconds": 90.109,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"packages/core/src/ci-environment/git.ts\",\n      \"line\": 89,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1_queries\",\n      \"message\": \"The `git fetch` command is called inside a loop, which can lead to N+1 queries.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"execSync(`git fetch --force --update-head-ok --depth ${input.depth} origin ${input.ref}:${input.target}`,);\",\n      \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') is not applicable here as it's a git command, not an SQL query.\"\n    },\n    {\n      \"file\": \"packages/core/src/ci-environment/git.ts\",\n      \"line\": 154,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1_queries\",\n      \"message\": \"The `git log` command is called inside a loop, which can lead to N+1 queries.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"execSync(`git log --format=\\\"%H\\\" ${maxCountArg} ${path}`.trim(),);\",\n      \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') is not applicable here as it's a git command, not an SQL query.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:11:01.7381114Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 89832428700,
+     "load_duration": 117821000,
+     "prompt_eval_count": 1340,
+     "prompt_eval_duration": 2490302200,
+     "eval_count": 322,
+     "eval_duration": 30271672300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb23-906f-7fd1-8c47-4ad5bcfb9f6b-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1340,
+     "output_tokens": 322,
+     "total_tokens": 1662
+    }
+   }
+  }
+ ]
+}

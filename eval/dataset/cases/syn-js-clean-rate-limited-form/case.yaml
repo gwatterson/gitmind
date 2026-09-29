@@ -1,0 +1,12 @@
+id: syn-js-clean-rate-limited-form
+split: test
+source: synthetic
+language: javascript
+title: Contact form with validation
+description: 'Clean change: input validation, escaping through the template engine, a parameterized insert
+  and rate limiting.'
+expected_findings: []
+must_not_flag:
+- file: src/routes/contact.js
+  anchor: await db.query("INSERT INTO messages (email, body) VALUES (?, ?)", [
+  reason: parameterized insert

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:09:24+00:00",
+ "elapsed_seconds": 115.797,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"prowler/lib/outputs/html/html.py\",\n      \"line\": 55,\n      \"severity\": \"low\",\n      \"rule_id\": \"S108\",\n      \"message\": \"The `_strip_unsafe_links` function is removed, which could potentially remove unsafe links from the HTML content.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-         return _strip_unsafe_links(html_content)\\n+         return html_content\"\n    },\n    {\n      \"file\": \"prowler/lib/outputs/html/html.py\",\n      \"line\": 81,\n      \"severity\": \"low\",\n      \"rule_id\": \"S108\",\n      \"message\": \"The `escape` function is removed from the severity, service name, and region fields, which could potentially introduce XSS vulnerabilities.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-                             <td>{str(escape(finding.metadata.Severity.value))}</td>\\n+                             <td>{finding.metadata.Severity.value}</td>\"\n    },\n    {\n      \"file\": \"prowler/lib/outputs/html/html.py\",\n      \"line\": 85,\n      \"severity\": \"low\",\n      \"rule_id\": \"S108\",\n      \"message\": \"The `escape` function is removed from the resource UID field, which could potentially introduce XSS vulnerabilities.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-                             <td>{str(escape(finding.resource_uid)).replace(\\\"_\\\", \\\"<wbr />_\\\")}</td>\\n+                             <td>{finding.resource_uid.replace(\\\"<\\\", \\\"&lt;\\\").replace(\\\">\\\", \\\"&gt;\\\").replace(\\\"_\\\", \\\"<wbr />_\\\")}</td>\"\n    },\n    {\n      \"file\": \"prowler/lib/outputs/html/html.py\",\n      \"line\": 89,\n      \"severity\": \"low\",\n      \"rule_id\": \"S108\",\n      \"message\": \"The `escape` function is removed from the status extended field, which could potentially introduce XSS vulnerabilities.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-                             <td>{str(escape(finding.status_extended)).replace(\\\"_\\\", \\\"<wbr />_\\\")}</td>\\n+                             <td>{finding.status_extended.replace(\\\"<\\\", \\\"&lt;\\\").replace(\\\">\\\", \\\"&gt;\\\").replace(\\\"_\\\", \\\"<wbr />_\\\")}</td>\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:09:24.6067952Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 115547834400,
+     "load_duration": 94458100,
+     "prompt_eval_count": 1832,
+     "prompt_eval_duration": 6698802500,
+     "eval_count": 542,
+     "eval_duration": 54665791700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eaea-c224-78f1-a577-3d10dd6798f2-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1832,
+     "output_tokens": 542,
+     "total_tokens": 2374
+    }
+   }
+  }
+ ]
+}

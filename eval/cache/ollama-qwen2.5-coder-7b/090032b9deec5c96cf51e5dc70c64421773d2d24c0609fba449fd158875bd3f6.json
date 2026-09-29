@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T04:08:40+00:00",
+ "elapsed_seconds": 57.062,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/reports/formulas.ts\",\n      \"line\": 3,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1 queries\",\n      \"message\": \"The `evaluateFormula` function creates a new Function object for each call, which can be expensive.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const compute = new Function(...names, `return (${formula});`);\",\n      \"cwe\": \"CWE-88: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') - https://cwe.mitre.org/data/definitions/88.html\"\n    },\n    {\n      \"file\": \"src/routes/reports.ts\",\n      \"line\": 9,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1 queries\",\n      \"message\": \"The `evaluateFormula` function is called inside a loop over query results, which can be expensive.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const values = rows.map((row) => evaluateFormula(req.body.formula, row));\",\n      \"cwe\": \"CWE-88: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') - https://cwe.mitre.org/data/definitions/88.html\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T04:08:40.7040502Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 56810968500,
+     "load_duration": 58976900,
+     "prompt_eval_count": 890,
+     "prompt_eval_duration": 1812334400,
+     "eval_count": 297,
+     "eval_duration": 27099974900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb58-d90c-7e31-a3a7-0f3c4ed7789d-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 890,
+     "output_tokens": 297,
+     "total_tokens": 1187
+    }
+   }
+  }
+ ]
+}

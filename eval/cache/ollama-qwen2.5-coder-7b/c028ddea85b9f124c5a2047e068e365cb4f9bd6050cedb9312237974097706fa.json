@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:14:23+00:00",
+ "elapsed_seconds": 75.532,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"changedetectionio/flask_app.py\",\n      \"line\": 715,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-22\",\n      \"message\": \"The regular expression allows characters that could be used for path traversal (e.g., '.', '..').\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-         group = re.sub(r'[^\\u4e00-\\u9fa5a-zA-Z0-9_]+', '', group.lower())\\n+         group = re.sub(r'[^\\u4e00-\\u9fa5a-zA-Z0-9_]+', '', group.lower())\",\n      \"cwe\": \"CWE-22 Path Traversal\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:14:23.2330508Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 75290424400,
+     "load_duration": 96939200,
+     "prompt_eval_count": 1006,
+     "prompt_eval_duration": 1860495600,
+     "eval_count": 177,
+     "eval_duration": 15907218100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb26-dc6e-7681-b5d6-abf3ff4fa269-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1006,
+     "output_tokens": 177,
+     "total_tokens": 1183
+    }
+   }
+  }
+ ]
+}

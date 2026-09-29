@@ -22,6 +22,7 @@ from app.core.logging import configure_logging
 from app.core.ratelimit import limiter
 from app.core.security import CSRF_HEADER
 from app.db.models import init_db
+from app.graph.prompts import prompt_versions
 from app.llm import factory
 
 configure_logging(settings.LOG_LEVEL, json_logs=settings.is_production)
@@ -51,6 +52,8 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
         "database_initialized",
         llm_provider=factory.provider_name(),
         llm_model=factory.model_name(),
+        # Loading the prompts here also fails fast on a malformed prompt file
+        prompt_versions=prompt_versions(),
     )
     yield
     log.info("app_shutting_down")

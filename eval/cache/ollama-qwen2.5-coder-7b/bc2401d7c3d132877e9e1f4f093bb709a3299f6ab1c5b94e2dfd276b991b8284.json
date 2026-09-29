@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:30:39+00:00",
+ "elapsed_seconds": 140.047,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/click/core.py\",\n      \"line\": 1597,\n      \"severity\": \"high\",\n      \"rule_id\": \"E0001\",\n      \"message\": \"The `echo` function is called without checking if it can be None.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"echo(file=sys.stderr)\",\n      \"cwe\": \"CWE-682: Incorrect Null Checks or Assertions\"\n    },\n    {\n      \"file\": \"src/click/core.py\",\n      \"line\": 1574,\n      \"severity\": \"high\",\n      \"rule_id\": \"E0002\",\n      \"message\": \"The `ctx.exit()` call may not always return a meaningful exit code.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"ctx.exit()\",\n      \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n    },\n    {\n      \"file\": \"src/click/core.py\",\n      \"line\": 1602,\n      \"severity\": \"high\",\n      \"rule_id\": \"E0003\",\n      \"message\": \"The `report` function is called without checking if it can be None.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"report()\",\n      \"cwe\": \"CWE-682: Incorrect Null Checks or Assertions\"\n    },\n    {\n      \"file\": \"src/click/core.py\",\n      \"line\": 1574,\n      \"severity\": \"high\",\n      \"rule_id\": \"E0004\",\n      \"message\": \"The `ctx.exit()` call may not always return a meaningful exit code.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"ctx.exit()\",\n      \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n    },\n    {\n      \"file\": \"src/click/core.py\",\n      \"line\": 1602,\n      \"severity\": \"high\",\n      \"rule_id\": \"E0005\",\n      \"message\": \"The `report` function is called without checking if it can be None.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"report()\",\n      \"cwe\": \"CWE-682: Incorrect Null Checks or Assertions\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:30:39.9874239Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 139794591900,
+     "load_duration": 118262400,
+     "prompt_eval_count": 2013,
+     "prompt_eval_duration": 3163518000,
+     "eval_count": 550,
+     "eval_duration": 55451789300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb34-c7e5-7042-bc86-e4dfca34a5ba-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 2013,
+     "output_tokens": 550,
+     "total_tokens": 2563
+    }
+   }
+  }
+ ]
+}

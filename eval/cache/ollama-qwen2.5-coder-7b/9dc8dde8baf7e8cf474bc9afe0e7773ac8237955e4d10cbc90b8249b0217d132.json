@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:58:28+00:00",
+ "elapsed_seconds": 43.906,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"app/api/invoices.py\",\n      \"line\": 25,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-601\",\n      \"message\": \"The code does not verify that the fetched invoice belongs to the current user.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"@router.get(\\\"/{invoice_id}\\\", response_model=InvoiceOut)\\n25     invoice = session.get(Invoice, invoice_id)\",\n      \"cwe\": \"CWE-601 open redirect\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:58:28.2374741Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 43640741400,
+     "load_duration": 50627600,
+     "prompt_eval_count": 974,
+     "prompt_eval_duration": 1802610800,
+     "eval_count": 132,
+     "eval_duration": 12118718900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb4f-b40c-76d2-8f58-d55cd17086af-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 974,
+     "output_tokens": 132,
+     "total_tokens": 1106
+    }
+   }
+  }
+ ]
+}

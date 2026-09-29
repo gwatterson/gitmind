@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T04:12:11+00:00",
+ "elapsed_seconds": 143.953,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/middleware/auth.ts\",\n      \"line\": 15,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing-jwt-verification\",\n      \"message\": \"The token is decoded but not verified.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const claims = jwt.decode(token) as TokenClaims | null;\",\n      \"cwe\": \"CWE-327: Use of a Broken or Risky Algorithm\"\n    },\n    {\n      \"file\": \"src/middleware/auth.ts\",\n      \"line\": 15,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing-jwt-expiration-check\",\n      \"message\": \"The token's expiration is not checked.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const claims = jwt.decode(token) as TokenClaims | null;\",\n      \"cwe\": \"CWE-327: Use of a Broken or Risky Algorithm\"\n    },\n    {\n      \"file\": \"src/middleware/auth.ts\",\n      \"line\": 15,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing-jwt-audience-check\",\n      \"message\": \"The token's audience is not checked.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const claims = jwt.decode(token) as TokenClaims | null;\",\n      \"cwe\": \"CWE-327: Use of a Broken or Risky Algorithm\"\n    },\n    {\n      \"file\": \"src/middleware/auth.ts\",\n      \"line\": 15,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing-jwt-issuer-check\",\n      \"message\": \"The token's issuer is not checked.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const claims = jwt.decode(token) as TokenClaims | null;\",\n      \"cwe\": \"CWE-327: Use of a Broken or Risky Algorithm\"\n    },\n    {\n      \"file\": \"src/middleware/auth.ts\",\n      \"line\": 15,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing-jwt-nonce-check\",\n      \"message\": \"The token's nonce is not checked.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const claims = jwt.decode(token) as TokenClaims | null;\",\n      \"cwe\": \"CWE-327: Use of a Broken or Risky Algorithm\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T04:12:11.7417573Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 143681872700,
+     "load_duration": 65733300,
+     "prompt_eval_count": 908,
+     "prompt_eval_duration": 1824064400,
+     "eval_count": 541,
+     "eval_duration": 50373841200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb5a-be15-7000-8d92-15ee7ec320da-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 908,
+     "output_tokens": 541,
+     "total_tokens": 1449
+    }
+   }
+  }
+ ]
+}

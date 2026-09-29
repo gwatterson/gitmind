@@ -1,0 +1,17 @@
+id: syn-js-path-traversal-export
+split: test
+source: synthetic
+language: javascript
+title: Download generated exports
+description: The file name from the URL is joined to the exports directory without validation.
+expected_findings:
+- file: src/routes/exports.js
+  anchor: const filePath = path.join(EXPORT_DIR, req.params.file);
+  span: 1
+  category: security
+  cwe:
+  - CWE-22
+  - CWE-23
+  severity_min: high
+  description: Unvalidated file name joined to the export directory
+must_not_flag: []

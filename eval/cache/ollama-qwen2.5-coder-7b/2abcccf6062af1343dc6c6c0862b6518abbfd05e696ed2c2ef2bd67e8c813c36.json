@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:03:21+00:00",
+ "elapsed_seconds": 15.079,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"index.js\",\n      \"line\": 14,\n      \"severity\": \"low\",\n      \"rule_id\": \"CWE-78\",\n      \"message\": \"Potential path traversal vulnerability due to direct use of user-supplied input for file name.\",\n      \"evidence\": \"(options || {}).fileName || 'source'\",\n      \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:03:21.2682686Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 15072666400,
+     "load_duration": 61171200,
+     "prompt_eval_count": 649,
+     "prompt_eval_duration": 855631900,
+     "eval_count": 115,
+     "eval_duration": 11249502600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9d4-17d2-7b81-bad0-3d1b2822a125-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 649,
+     "output_tokens": 115,
+     "total_tokens": 764
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,19 @@
+id: syn-py-hardcoded-credentials
+split: dev
+source: synthetic
+language: python
+title: Configure the transactional mail provider
+description: The SMTP password of the production mail account is committed in the settings module.
+expected_findings:
+- file: app/settings.py
+  anchor: SMTP_PASSWORD = "Qx7!mvRt2024-shopfront"
+  category: security
+  cwe:
+  - CWE-798
+  - CWE-259
+  severity_min: medium
+  description: Hardcoded SMTP password
+must_not_flag:
+- file: app/settings.py
+  anchor: SMTP_PORT = int(os.environ.get("SMTP_PORT", "587"))
+  reason: configuration read from the environment

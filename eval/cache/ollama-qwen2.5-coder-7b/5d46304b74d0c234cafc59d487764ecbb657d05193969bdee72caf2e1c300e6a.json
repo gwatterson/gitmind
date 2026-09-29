@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:53:35+00:00",
+ "elapsed_seconds": 81.312,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"ghost/core/core/server/api/endpoints/db.js\",\n      \"line\": 32,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-78\",\n      \"message\": \"Potential path traversal vulnerability due to direct use of user-supplied filename.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-             Object.assign(frame.options, {include: frame.options.withRelated});\\n+             Object.assign(frame.options, {filename: frame.options.filename, include: frame.options.withRelated});\",\n      \"cwe\": \"CWE-78 Path traversal\"\n    },\n    {\n      \"file\": \"ghost/core/core/server/data/exporter/export-filename.js\",\n      \"line\": 17,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-78\",\n      \"message\": \"Potential path traversal vulnerability due to direct use of user-supplied filename.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-         return path.basename(options.filename) + '.json';\\n+         return options.filename + '.json';\",\n      \"cwe\": \"CWE-78 Path traversal\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:53:35.1677914Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 81068316500,
+     "load_duration": 104462600,
+     "prompt_eval_count": 1154,
+     "prompt_eval_duration": 4674914300,
+     "eval_count": 262,
+     "eval_duration": 24113383300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eadc-cc16-7270-b487-5a8edd987303-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1154,
+     "output_tokens": 262,
+     "total_tokens": 1416
+    }
+   }
+  }
+ ]
+}

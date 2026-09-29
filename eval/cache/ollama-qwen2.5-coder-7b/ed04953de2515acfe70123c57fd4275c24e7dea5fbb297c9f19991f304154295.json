@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:52:46+00:00",
+ "elapsed_seconds": 52.891,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/invoices.js\",\n      \"line\": 12,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_file_check\",\n      \"message\": \"The file might not exist, causing an error when trying to read it.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const template = fs.readFileSync(TEMPLATE, \\\"utf8\\\");\"\n    },\n    {\n      \"file\": \"src/routes/invoices.js\",\n      \"line\": 13,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"The error from `fs.readFileSync` is not handled properly.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const template = fs.readFileSync(TEMPLATE, \\\"utf8\\\");\"\n    },\n    {\n      \"file\": \"src/routes/invoices.js\",\n      \"line\": 14,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_template_check\",\n      \"message\": \"The `renderTemplate` function might receive an empty template string.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"res.send(renderTemplate(template, invoice));\"\n    },\n    {\n      \"file\": \"src/routes/invoices.js\",\n      \"line\": 15,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_next_call\",\n      \"message\": \"The error is passed to the next middleware without any additional handling.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"next(err);\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:52:46.2694178Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 52613224100,
+     "load_duration": 58885600,
+     "prompt_eval_count": 858,
+     "prompt_eval_duration": 1814332000,
+     "eval_count": 345,
+     "eval_duration": 31283090600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb4a-5930-71a3-bbd0-694fbe08e30e-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 858,
+     "output_tokens": 345,
+     "total_tokens": 1203
+    }
+   }
+  }
+ ]
+}

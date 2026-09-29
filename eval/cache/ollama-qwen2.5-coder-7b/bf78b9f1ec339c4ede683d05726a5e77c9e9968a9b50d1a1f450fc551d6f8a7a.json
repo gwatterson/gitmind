@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:49:31+00:00",
+ "elapsed_seconds": 43.125,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"app/settings.py\",\n      \"line\": 8,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_env_var_check\",\n      \"message\": \"SMTP_USER is set to a hardcoded value instead of using an environment variable.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"SMTP_USER = \\\"postmaster@mg.shopfront.io\\\"\",\n      \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') or External Control of File Name or Path ('Path Traversal')\"\n    },\n    {\n      \"file\": \"app/settings.py\",\n      \"line\": 9,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_env_var_check\",\n      \"message\": \"SMTP_PASSWORD is set to a hardcoded value instead of using an environment variable.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"SMTP_PASSWORD = \\\"Qx7!mvRt2024-shopfront\\\"\",\n      \"cwe\": \"CWE-312: Cleartext Transmission of Sensitive Information\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:49:31.1852216Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 42862029400,
+     "load_duration": 121753500,
+     "prompt_eval_count": 801,
+     "prompt_eval_duration": 1735702600,
+     "eval_count": 251,
+     "eval_duration": 22057861300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb10-96ba-7881-afdf-6d9fc47aba3d-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 801,
+     "output_tokens": 251,
+     "total_tokens": 1052
+    }
+   }
+  }
+ ]
+}

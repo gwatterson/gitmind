@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:27:09+00:00",
+ "elapsed_seconds": 94.688,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/transformers/processing_utils.py\",\n      \"line\": 1146,\n      \"severity\": \"critical\",\n      \"rule_id\": \"CWE-22\",\n      \"message\": \"Path traversal vulnerability due to untrusted input in file path construction.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-                     if Path(template_filepath).resolve().parent != Path(chat_template_dir).resolve():\\n-                         raise ValueError(f\\\"Invalid chat template name: {template_name!r}\\\")\",\n      \"cwe\": \"CWE-22\"\n    },\n    {\n      \"file\": \"src/transformers/tokenization_utils_base.py\",\n      \"line\": 3314,\n      \"severity\": \"critical\",\n      \"rule_id\": \"CWE-22\",\n      \"message\": \"Path traversal vulnerability due to untrusted input in file path construction.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-                     if Path(template_filepath).resolve().parent != Path(chat_template_dir).resolve():\\n-                         raise ValueError(f\\\"Invalid chat template name: {template_name!r}\\\")\",\n      \"cwe\": \"CWE-22\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:27:09.0606161Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 94404378600,
+     "load_duration": 105101000,
+     "prompt_eval_count": 1136,
+     "prompt_eval_duration": 2486205400,
+     "eval_count": 272,
+     "eval_duration": 25209575700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb32-4128-7ff2-9422-e6cf29065c07-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1136,
+     "output_tokens": 272,
+     "total_tokens": 1408
+    }
+   }
+  }
+ ]
+}

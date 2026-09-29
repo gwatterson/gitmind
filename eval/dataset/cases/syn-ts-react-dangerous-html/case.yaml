@@ -1,0 +1,18 @@
+id: syn-ts-react-dangerous-html
+split: dev
+source: synthetic
+language: typescript
+title: Render comments with formatting
+description: User comments are rendered with dangerouslySetInnerHTML without sanitization (stored XSS).
+expected_findings:
+- file: src/components/Comment.tsx
+  anchor: 'dangerouslySetInnerHTML={{ __html: comment.body }}'
+  category: security
+  cwe:
+  - CWE-79
+  severity_min: medium
+  description: Unsanitized user HTML rendered
+must_not_flag:
+- file: src/components/Comment.tsx
+  anchor: <header>{comment.author}</header>
+  reason: React escapes text content

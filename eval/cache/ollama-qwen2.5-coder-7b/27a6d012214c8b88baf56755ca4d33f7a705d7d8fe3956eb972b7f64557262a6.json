@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:35:27+00:00",
+ "elapsed_seconds": 37.656,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/session.js\",\n      \"line\": 7,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-89\",\n      \"message\": \"User input is used in a redirect URL without validation.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const next = req.query.next || \\\"/\\\";\",\n      \"cwe\": \"CWE-89 SQL injection\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:35:27.4678807Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 37393626400,
+     "load_duration": 109009500,
+     "prompt_eval_count": 873,
+     "prompt_eval_duration": 1789728300,
+     "eval_count": 107,
+     "eval_duration": 9367399300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb03-cc48-7463-b252-cdfa1e5e2ad4-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 873,
+     "output_tokens": 107,
+     "total_tokens": 980
+    }
+   }
+  }
+ ]
+}

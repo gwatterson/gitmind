@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:21:51+00:00",
+ "elapsed_seconds": 62.766,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/api/webhooks.py\",\n            \"line\": 19,\n            \"severity\": \"critical\",\n            \"rule_id\": \"CWE-89\",\n            \"message\": \"Potential SQL injection vulnerability in the URL parameter.\",\n            \"evidence\": \"response = await client.post(body.url, json={\"}]} ",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:21:51.5928807Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 62507397100,
+     "load_duration": 92568100,
+     "prompt_eval_count": 725,
+     "prompt_eval_duration": 3092215300,
+     "eval_count": 81,
+     "eval_duration": 7349708700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eac0-08b6-7722-a907-39df1f159dcc-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 725,
+     "output_tokens": 81,
+     "total_tokens": 806
+    }
+   }
+  }
+ ]
+}

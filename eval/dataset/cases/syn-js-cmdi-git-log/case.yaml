@@ -1,0 +1,16 @@
+id: syn-js-cmdi-git-log
+split: dev
+source: synthetic
+language: javascript
+title: Expose recent commits of a branch in the admin panel
+description: The branch name from the query string is interpolated into a shell command.
+expected_findings:
+- file: src/routes/admin/git.js
+  anchor: exec(`git -C ${REPO_DIR} log --oneline -n 20 ${branch}`
+  category: security
+  cwe:
+  - CWE-78
+  - CWE-88
+  severity_min: high
+  description: Query parameter interpolated into a shell command
+must_not_flag: []

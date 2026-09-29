@@ -39,6 +39,8 @@ dev = [
     "mypy>=1.11",
     "pre-commit>=3.8",
     "respx>=0.21",
+    "pyyaml>=6.0",
+    "types-pyyaml>=6.0",
 ]
 
 [tool.setuptools.packages.find]
@@ -84,6 +86,7 @@ extend-immutable-calls = ["fastapi.Depends", "fastapi.Query", "fastapi.Header"]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = ["S101", "S105", "S106"]  # asserts and fake secrets are fine in tests
+"evals/**" = ["S603", "S607"]  # runs git and semgrep with fixed arguments
 
 [tool.mypy]
 python_version = "3.11"
@@ -92,4 +95,4 @@ warn_unused_ignores = true
 warn_redundant_casts = true
 ignore_missing_imports = true
 # Strictness is enabled progressively (see PLAN.md F1.5)
-files = ["app"]
+files = ["app", "evals"]

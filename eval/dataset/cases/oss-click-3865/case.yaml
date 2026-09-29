@@ -1,0 +1,12 @@
+id: oss-click-3865
+split: dev
+source: oss
+language: python
+title: Fix short help abbreviation
+description: Merged pull request reviewed by the maintainers.
+origin:
+  repo: pallets/click
+  url: https://github.com/pallets/click/pull/3865
+  license: BSD-3-Clause
+  commit: f67c2bb6c2f055c1c7a57cd46c3697fc26a7742e
+must_not_flag: []

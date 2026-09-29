@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:52:07+00:00",
+ "elapsed_seconds": 88.625,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/settings.ts\",\n      \"line\": 7,\n      \"severity\": \"medium\",\n      \"rule_id\": \"N+1_queries\",\n      \"message\": \"The `loadSettings` function is called once per request, which could lead to N+1 queries if this route is accessed frequently.\",\n      \"evidence\": \"+   const settings = await loadSettings(req.params.id);\"\n    },\n    {\n      \"file\": \"src/routes/settings.ts\",\n      \"line\": 9,\n      \"severity\": \"medium\",\n      \"rule_id\": \"N+1_queries\",\n      \"message\": \"The `deepMerge` function is called once per request, which could lead to N+1 operations if this route is accessed frequently.\",\n      \"evidence\": \"+   const updated = deepMerge(settings, req.body);\"\n    },\n    {\n      \"file\": \"src/routes/settings.ts\",\n      \"line\": 10,\n      \"severity\": \"medium\",\n      \"rule_id\": \"N+1_queries\",\n      \"message\": \"The `saveSettings` function is called once per request, which could lead to N+1 queries if this route is accessed frequently.\",\n      \"evidence\": \"+   await saveSettings(req.params.id, updated);\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:52:07.0226728Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 88377368800,
+     "load_duration": 97913700,
+     "prompt_eval_count": 808,
+     "prompt_eval_duration": 5460058400,
+     "eval_count": 278,
+     "eval_duration": 25046692100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9ff-9d3e-7df1-8c90-6322ad6c298e-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 808,
+     "output_tokens": 278,
+     "total_tokens": 1086
+    }
+   }
+  }
+ ]
+}

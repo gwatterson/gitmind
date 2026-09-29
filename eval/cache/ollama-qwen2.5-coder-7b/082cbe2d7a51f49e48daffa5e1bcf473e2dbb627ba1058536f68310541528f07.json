@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:42:37+00:00",
+ "elapsed_seconds": 96.281,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"starlette/middleware/opentelemetry.py\",\n      \"line\": 47,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1 queries\",\n      \"message\": \"The `any(pattern.search(str(url)) for pattern in self._excluded_urls)` call inside the loop over `self._excluded_urls` is an N+1 query.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"if any(pattern.search(str(url)) for pattern in self._excluded_urls):\",\n      \"cwe\": \"CWE-823: Synchronous Call in Async Code\"\n    },\n    {\n      \"file\": \"starlette/middleware/opentelemetry.py\",\n      \"line\": 47,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1 queries\",\n      \"message\": \"The `any(pattern.search(str(url)) for pattern in self._excluded_urls)` call inside the loop over `self._excluded_urls` is an N+1 query.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"if any(pattern.search(str(url)) for pattern in self._excluded_urls):\",\n      \"cwe\": \"CWE-823: Synchronous Call in Async Code\"\n    },\n    {\n      \"file\": \"starlette/middleware/opentelemetry.py\",\n      \"line\": 47,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1 queries\",\n      \"message\": \"The `any(pattern.search(str(url)) for pattern in self._excluded_urls)` call inside the loop over `self._excluded_urls` is an N+1 query.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"if any(pattern.search(str(url)) for pattern in self._excluded_urls):\",\n      \"cwe\": \"CWE-823: Synchronous Call in Async Code\"\n    },\n    {\n      \"file\": \"starlette/middleware/opentelemetry.py\",\n      \"line\": 47,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1 queries\",\n      \"message\": \"The `any(pattern.search(str(url)) for pattern in self._excluded_urls)` call inside the loop over `self._excluded_urls` is an N+1 query.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"if any(pattern.search(str(url)) for pattern in self._excluded_urls):\",\n      \"cwe\": \"CWE-823: Synchronous Call in Async Code\"\n    },\n    {\n      \"file\": \"starlette/middleware/opentelemetry.py\",\n      \"line\": 47,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1 queries\",\n      \"message\": \"The `any(pattern.search(str(url)) for pattern in self._excluded_urls)` call inside the loop over `self._excluded_urls` is an N+1 query.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"if any(pattern.search(str(url)) for pattern in self._excluded_urls):\",\n      \"cwe\": \"CWE-823: Synchronous Call in Async Code\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:42:37.176096Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 96279825800,
+     "load_duration": 64100500,
+     "prompt_eval_count": 2987,
+     "prompt_eval_duration": 4942016800,
+     "eval_count": 696,
+     "eval_duration": 77258921600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb40-6460-7470-9353-1e547d9f2e66-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 2987,
+     "output_tokens": 696,
+     "total_tokens": 3683
+    }
+   }
+  }
+ ]
+}

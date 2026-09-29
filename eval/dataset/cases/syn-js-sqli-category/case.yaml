@@ -1,0 +1,16 @@
+id: syn-js-sqli-category
+split: test
+source: synthetic
+language: javascript
+title: Filter products by category
+description: The category query parameter is concatenated into the SQL string (SQL injection).
+expected_findings:
+- file: src/routes/products.js
+  anchor: ': "SELECT * FROM products WHERE category = ''" + category'
+  span: 1
+  category: security
+  cwe:
+  - CWE-89
+  severity_min: high
+  description: Query parameter concatenated into SQL
+must_not_flag: []

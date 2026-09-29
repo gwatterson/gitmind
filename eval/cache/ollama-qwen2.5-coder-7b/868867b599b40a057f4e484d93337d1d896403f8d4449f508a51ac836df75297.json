@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:21:51+00:00",
+ "elapsed_seconds": 34.313,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"lmdeploy/pytorch/disagg/conn/engine_conn.py\",\n      \"line\": 75,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1 queries\",\n      \"message\": \"A blocking call (send_pyobj) is inside an async function.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+        await self.p2p_sender[remote_engine_id].send_pyobj(\\n+            DistServeCacheFreeRequest(remote_engine_id=remote_engine_id, remote_session_id=remote_session_id))\",\n      \"cwe\": \"CWE-357: Out-of-Bounds Read\"\n    },\n    {\n      \"file\": \"lmdeploy/pytorch/disagg/conn/engine_conn.py\",\n      \"line\": 80,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1 queries\",\n      \"message\": \"A blocking call (recv_pyobj) is inside an async function.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+            req: DistServeCacheFreeRequest = await self.p2p_receiver[remote_engine_id].recv_pyobj()\",\n      \"cwe\": \"CWE-357: Out-of-Bounds Read\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:21:51.3061189Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 34318537400,
+     "load_duration": 87528400,
+     "prompt_eval_count": 1339,
+     "prompt_eval_duration": 2500131300,
+     "eval_count": 277,
+     "eval_duration": 25666719700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb2e-53bb-71b3-addb-914a5c206629-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1339,
+     "output_tokens": 277,
+     "total_tokens": 1616
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T22:57:03+00:00",
+ "elapsed_seconds": 155.531,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"packages/core/src/ci-environment/git.ts\",\n      \"line\": 87,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"Error handling for `gitFetch` is missing.\",\n      \"evidence\": \"execSync(`git fetch --force --update-head-ok --depth ${input.depth} origin ${input.ref}:${input.target}`,);\",\n      \"confidence\": 1,\n      \"cwe\": null\n    },\n    {\n      \"file\": \"packages/core/src/ci-environment/git.ts\",\n      \"line\": 154,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"Error handling for `listShas` is missing.\",\n      \"evidence\": \"execSync(`git log --format=\\\"%H\\\" ${maxCountArg} ${path}`.trim());\",\n      \"confidence\": 1,\n      \"cwe\": null\n    },\n    {\n      \"file\": \"packages/core/src/ci-environment/git.ts\",\n      \"line\": 162,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"Error handling for `listParentCommits` is missing.\",\n      \"evidence\": \"execSync(`git fetch --depth=${limit} origin ${input.sha}`);\",\n      \"confidence\": 1,\n      \"cwe\": null\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T22:57:03.5805523Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 155263645300,
+     "load_duration": 119758600,
+     "prompt_eval_count": 1152,
+     "prompt_eval_duration": 3315091500,
+     "eval_count": 319,
+     "eval_duration": 33661282200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea3a-0cdb-7542-98cc-8899d01465ce-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1152,
+     "output_tokens": 319,
+     "total_tokens": 1471
+    }
+   }
+  }
+ ]
+}

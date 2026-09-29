@@ -1,0 +1,13 @@
+id: oss-click-3860
+split: dev
+source: oss
+language: python
+title: Always list all positional arguments
+description: Merged pull request reviewed by the maintainers.
+smoke: true
+origin:
+  repo: pallets/click
+  url: https://github.com/pallets/click/pull/3860
+  license: BSD-3-Clause
+  commit: 05f6fd0df4ecbd104eb7a229f9f185c2484dee69
+must_not_flag: []

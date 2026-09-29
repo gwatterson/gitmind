@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T04:04:31+00:00",
+ "elapsed_seconds": 66.25,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/api/webhooks.py\",\n            \"line\": 19,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing_status_check\",\n            \"message\": \"The response status code is not checked for errors.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"response = await client.post(body.url, json={\\\"event\\\": body.event, \\\"user\\\": user.id})\\nreturn {\\\"status\\\": response.status_code, \\\"body\\\": response.text[:500]}\",\n            \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') or External Control of File Name or Path ('Path Traversal')\"\n        },\n        {\n            \"file\": \"app/api/webhooks.py\",\n            \"line\": 19,\n            \"severity\": \"medium\",\n            \"rule_id\": \"large_response_body\",\n            \"message\": \"The response body is truncated to 500 characters, which might not be sufficient for all use cases.\",\n            \"confidence\": 0.8,\n            \"evidence\": \"return {\\\"status\\\": response.status_code, \\\"body\\\": response.text[:500]}\",\n            \"cwe\": \"CWE-190: Numeric Errors\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T04:04:31.5428322Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 66002086000,
+     "load_duration": 62920600,
+     "prompt_eval_count": 881,
+     "prompt_eval_duration": 1807119500,
+     "eval_count": 285,
+     "eval_duration": 25446001500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb54-e7e8-7e93-8245-b141bf36a7d4-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 881,
+     "output_tokens": 285,
+     "total_tokens": 1166
+    }
+   }
+  }
+ ]
+}

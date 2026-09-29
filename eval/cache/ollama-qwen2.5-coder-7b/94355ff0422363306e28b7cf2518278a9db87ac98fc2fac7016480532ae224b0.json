@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:42:53+00:00",
+ "elapsed_seconds": 73.437,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/payments/refunds.py\",\n            \"line\": 12,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"Uncaught exception in refund function.\",\n            \"evidence\": \"except Exception:\\n    pass\"\n        },\n        {\n            \"file\": \"app/payments/refunds.py\",\n            \"line\": 13,\n            \"severity\": \"medium\",\n            \"rule_id\": \"misleading_logging\",\n            \"message\": \"Logging success even if refund fails.\",\n            \"evidence\": \"log.info(\\\"refund issued\\\", extra={\\\"payment_id\\\": payment_id})\"\n        },\n        {\n            \"file\": \"app/payments/refunds.py\",\n            \"line\": 8,\n            \"severity\": \"low\",\n            \"rule_id\": \"missing_type_hints\",\n            \"message\": \"Missing type hints for function parameters and return value.\",\n            \"evidence\": \"def refund(payment_id: str, amount_cents: int) -> bool:\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:42:53.4499673Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 73174896700,
+     "load_duration": 83827500,
+     "prompt_eval_count": 585,
+     "prompt_eval_duration": 2780732200,
+     "eval_count": 229,
+     "eval_duration": 20225191600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9f7-662b-7b12-9ae9-df2e9d24fcae-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 585,
+     "output_tokens": 229,
+     "total_tokens": 814
+    }
+   }
+  }
+ ]
+}

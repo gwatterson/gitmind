@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:50:38+00:00",
+ "elapsed_seconds": 83.078,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/feed/posts.ts\",\n      \"line\": 8,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"Error handling is missing for database queries.\",\n      \"evidence\": \"const posts = await latestPosts(limit);\",\n      \"confidence\": 100\n    },\n    {\n      \"file\": \"src/feed/posts.ts\",\n      \"line\": 12,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"Error handling is missing for database queries.\",\n      \"evidence\": \"const author = await prisma.user.findUnique({ where: { id: post.authorId } });\",\n      \"confidence\": 100\n    },\n    {\n      \"file\": \"src/feed/posts.ts\",\n      \"line\": 12,\n      \"severity\": \"low\",\n      \"rule_id\": \"unnecessary_coalescing\",\n      \"message\": \"The use of '??' for defaulting to 'unknown' is unnecessary if the database guarantees non-null values.\",\n      \"evidence\": \"author: author?.name ?? \\\"unknown\\\"\",\n      \"confidence\": 100\n    },\n    {\n      \"file\": \"src/feed/posts.ts\",\n      \"line\": 7,\n      \"severity\": \"low\",\n      \"rule_id\": \"missing_type_hints\",\n      \"message\": \"Missing type hints for function parameters and return types.\",\n      \"evidence\": \"export async function feed(limit = 20) {\",\n      \"confidence\": 100\n    },\n    {\n      \"file\": \"src/feed/posts.ts\",\n      \"line\": 9,\n      \"severity\": \"low\",\n      \"rule_id\": \"missing_type_hints\",\n      \"message\": \"Missing type hints for function parameters and return types.\",\n      \"evidence\": \"const items = [];\",\n      \"confidence\": 100\n    },\n    {\n      \"file\": \"src/feed/posts.ts\",\n      \"line\": 12,\n      \"severity\": \"low\",\n      \"rule_id\": \"missing_type_hints\",\n      \"message\": \"Missing type hints for function parameters and return types.\",\n      \"evidence\": \"const author = await prisma.user.findUnique({ where: { id: post.authorId } });\",\n      \"confidence\": 100\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:50:38.3022502Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 82801831100,
+     "load_duration": 87330100,
+     "prompt_eval_count": 626,
+     "prompt_eval_duration": 2795564400,
+     "eval_count": 513,
+     "eval_duration": 46299644000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9fe-5857-7bd0-976b-061cd35128ae-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 626,
+     "output_tokens": 513,
+     "total_tokens": 1139
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:50:00+00:00",
+ "elapsed_seconds": 47.0,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/utils/merge-with.ts\",\n      \"line\": 158,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-1321\",\n      \"message\": \"Prototype pollution via object merging.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-     if (typeof key === 'string' && UNSAFE_KEYS.has(key)) {\",\n      \"cwe\": \"CWE-1321\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:50:00.0107059Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 46726489100,
+     "load_duration": 108198400,
+     "prompt_eval_count": 986,
+     "prompt_eval_duration": 2818342800,
+     "eval_count": 115,
+     "eval_duration": 10213173600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eada-09ae-73c1-8b28-722b84419c10-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 986,
+     "output_tokens": 115,
+     "total_tokens": 1101
+    }
+   }
+  }
+ ]
+}

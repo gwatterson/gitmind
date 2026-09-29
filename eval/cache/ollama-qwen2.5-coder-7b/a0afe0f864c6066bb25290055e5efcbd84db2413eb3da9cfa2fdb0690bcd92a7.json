@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:57:03+00:00",
+ "elapsed_seconds": 51.687,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/payments/refunds.py\",\n            \"line\": 12,\n            \"severity\": \"high\",\n            \"rule_id\": \"E501\",\n            \"message\": \"Error is swallowed without logging details.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"except Exception:\\n    pass\",\n            \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\\nCWE-256: Inadequate Encryption Use\\nCWE-310: Cryptographic Storage of Sensitive Information\"\n        },\n        {\n            \"file\": \"app/payments/refunds.py\",\n            \"line\": 14,\n            \"severity\": \"low\",\n            \"rule_id\": \"E731\",\n            \"message\": \"Function returns True regardless of the outcome.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"return True\",\n            \"cwe\": \"CWE-682: Incorrect Return Value\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:57:03.4196379Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 51420820500,
+     "load_duration": 100918100,
+     "prompt_eval_count": 775,
+     "prompt_eval_duration": 1738397300,
+     "eval_count": 236,
+     "eval_duration": 20448873400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb17-5bd1-7493-9e08-5d0f12848a58-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 775,
+     "output_tokens": 236,
+     "total_tokens": 1011
+    }
+   }
+  }
+ ]
+}

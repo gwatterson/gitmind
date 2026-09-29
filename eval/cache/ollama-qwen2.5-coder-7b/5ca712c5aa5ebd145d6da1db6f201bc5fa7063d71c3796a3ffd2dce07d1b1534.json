@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T00:48:06+00:00",
+ "elapsed_seconds": 49.25,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/products.js\",\n      \"line\": 21,\n      \"severity\": \"high\",\n      \"rule_id\": \"sql_injection\",\n      \"message\": \"SQL injection vulnerability due to string concatenation.\",\n      \"evidence\": \"const sql = category === \\\"all\\\" ? \\\"SELECT * FROM products ORDER BY name\\\" : \\\"SELECT * FROM products WHERE category = '\\\" + category + \\\"' ORDER BY name\\\";\",\n      \"confidence\": 1,\n      \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\"\n    },\n    {\n      \"file\": \"src/routes/products.js\",\n      \"line\": 23,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_type_hints\",\n      \"message\": \"Missing type hints for function parameters and return values.\",\n      \"evidence\": \"router.get(\\\"/products\\\", async (req, res, next) => { ... })\",\n      \"confidence\": 1,\n      \"cwe\": \"CWE-680: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T00:48:06.4483551Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 48993380300,
+     "load_duration": 83551300,
+     "prompt_eval_count": 644,
+     "prompt_eval_duration": 2660692500,
+     "eval_count": 259,
+     "eval_duration": 23264109100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eaa1-56cd-7693-a765-da8b8402004c-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 644,
+     "output_tokens": 259,
+     "total_tokens": 903
+    }
+   }
+  }
+ ]
+}

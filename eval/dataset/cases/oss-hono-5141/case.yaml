@@ -1,0 +1,12 @@
+id: oss-hono-5141
+split: test
+source: oss
+language: typescript
+title: 'feat(jwt,jwk): add a configurable WWW-Authenticate realm'
+description: Merged pull request reviewed by the maintainers.
+origin:
+  repo: honojs/hono
+  url: https://github.com/honojs/hono/pull/5141
+  license: MIT
+  commit: b3afc90469032422b37134f95bd6c5720772d40b
+must_not_flag: []

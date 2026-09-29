@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:39:50+00:00",
+ "elapsed_seconds": 77.781,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"rich/syntax.py\",\n      \"line\": 320,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1 queries\",\n      \"message\": \"The `guess_lexer` method makes a database or API call inside the body of a loop over query results.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+            if code:\\n+                try:\\n+                    lexer = guess_lexer_for_filename(path, code)\\n+                except ClassNotFound:\",\n      \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\"\n    },\n    {\n      \"file\": \"rich/syntax.py\",\n      \"line\": 340,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1 queries\",\n      \"message\": \"The `guess_lexer` method makes a database or API call inside the body of a loop over query results.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+            if not lexer:\\n+                try:\",\n      \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\"\n    },\n    {\n      \"file\": \"rich/syntax.py\",\n      \"line\": 417,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1 queries\",\n      \"message\": \"The `highlight` method makes a database or API call inside the body of a loop over query results.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+                       while line_no < _line_start:\\n+                           yield (token, _get_theme_style(token_type))\\n+                           if token.endswith(\\\"\\\\n\\\"):\\n+                               line_no += 1\\n+                               if line_end and line_no >= line_end:\",\n      \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\"\n    },\n    {\n      \"file\": \"rich/syntax.py\",\n      \"line\": 430,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1 queries\",\n      \"message\": \"The `highlight` method makes a database or API call inside the body of a loop over query results.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+                               if line_no >= line_end:\",\n      \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:39:50.5824912Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 77762021500,
+     "load_duration": 81211000,
+     "prompt_eval_count": 2862,
+     "prompt_eval_duration": 4725975500,
+     "eval_count": 559,
+     "eval_duration": 61459071600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb3e-21f3-7dd0-938f-514d641e33bc-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 2862,
+     "output_tokens": 559,
+     "total_tokens": 3421
+    }
+   }
+  }
+ ]
+}

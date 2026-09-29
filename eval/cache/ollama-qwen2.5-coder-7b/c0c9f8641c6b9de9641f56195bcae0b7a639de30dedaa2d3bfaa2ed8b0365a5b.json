@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:49:12+00:00",
+ "elapsed_seconds": 96.078,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"src/datamodel_code_generator/parser/jsonschema.py\",\n            \"line\": 609,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing_validation\",\n            \"message\": \"The `ALLOWED_DEFAULT_FACTORIES` and `_validate_default_factory` logic has been removed, but the code still attempts to validate `default_factory`. This will lead to crashes if an invalid value is passed.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"- ALLOWED_DEFAULT_FACTORIES: frozenset[str] = frozenset({\\\"dict\\\", \\\"list\\\", \\\"set\\\"})\\n- \\n- def _validate_default_factory(default_factory: Any) -> str:\\n-     if isinstance(default_factory, str) and default_factory in ALLOWED_DEFAULT_FACTORIES:\\n-         return default_factory\\n-     allowed_values = \\\", \\\".join(sorted(ALLOWED_DEFAULT_FACTORIES))\\n-     msg = f\\\"default_factory must be one of: {allowed_values}\\\"\\n-     raise Error(msg)\\n-\",\n            \"cwe\": \"CWE-190: Integer Overflow or Wraparound\"\n        },\n        {\n            \"file\": \"src/datamodel_code_generator/parser/jsonschema.py\",\n            \"line\": 809,\n            \"severity\": \"medium\",\n            \"rule_id\": \"unhandled_exception\",\n            \"message\": \"The `default_factory` validation logic has been removed, but the code still attempts to use it. If an invalid value is passed, this will raise an exception.\",\n            \"confidence\": 0.8,\n            \"evidence\": \"-         if (default_factory := extras.get(\\\"default_factory\\\", UNDEFINED)) is not UNDEFINED:\\n-             extras[\\\"default_factory\\\"] = _validate_default_factory(default_factory)\\n-\",\n            \"cwe\": \"CWE-248: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:49:12.9146541Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 95797468900,
+     "load_duration": 97118100,
+     "prompt_eval_count": 937,
+     "prompt_eval_duration": 2777775000,
+     "eval_count": 424,
+     "eval_duration": 38196236000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ead8-920d-7012-b8c4-a394342e6e0d-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 937,
+     "output_tokens": 424,
+     "total_tokens": 1361
+    }
+   }
+  }
+ ]
+}

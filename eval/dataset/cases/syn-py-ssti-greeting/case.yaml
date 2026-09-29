@@ -1,0 +1,19 @@
+id: syn-py-ssti-greeting
+split: test
+source: synthetic
+language: python
+title: Personalized greeting on the landing page
+description: The visitor name is formatted into a template string rendered by Jinja (server-side template
+  injection and XSS).
+expected_findings:
+- file: app/routes/landing.py
+  anchor: return render_template_string(f"<h1>Welcome back, {name}!</h1>")
+  category: security
+  cwe:
+  - CWE-94
+  - CWE-1336
+  - CWE-79
+  - CWE-74
+  severity_min: high
+  description: User input formatted into a Jinja template (SSTI/XSS)
+must_not_flag: []

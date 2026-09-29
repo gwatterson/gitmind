@@ -1,0 +1,12 @@
+id: oss-rich-1869
+split: test
+source: oss
+language: python
+title: Add `Syntax.guess_lexer`, add support for more lexers (e.g. Django templates etc.)
+description: Merged pull request reviewed by the maintainers.
+origin:
+  repo: Textualize/rich
+  url: https://github.com/Textualize/rich/pull/1869
+  license: MIT
+  commit: 781b41f4a780e70196692d7a43881eef0b0b81e0
+must_not_flag: []

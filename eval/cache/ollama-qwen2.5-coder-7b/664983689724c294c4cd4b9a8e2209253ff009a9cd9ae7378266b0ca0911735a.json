@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T22:10:13+00:00",
+ "elapsed_seconds": 24.64,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"src/click/utils.py\",\n            \"line\": 84,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S176\",\n            \"message\": \"The condition `i == last_index or not words[i + 1][0].islower()` is always true when `i == last_index`.\",\n            \"evidence\": \"if word.endswith('.') and (i == last_index or not words[i + 1][0].islower()):\"\n        },\n        {\n            \"file\": \"src/click/utils.py\",\n            \"line\": 97,\n            \"severity\": \"info\",\n            \"rule_id\": \"R0804\",\n            \"message\": \"The import statement for `textwrap` is placed inside a function, which can lead to performance issues.\",\n            \"evidence\": \"import textwrap\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T22:10:13.8724756Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 24639640000,
+     "load_duration": 49206000,
+     "prompt_eval_count": 1301,
+     "prompt_eval_duration": 2264801500,
+     "eval_count": 196,
+     "eval_duration": 18271250300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea11-2caf-7a41-acc9-a6e99b704831-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1301,
+     "output_tokens": 196,
+     "total_tokens": 1497
+    }
+   }
+  }
+ ]
+}

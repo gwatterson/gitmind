@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:48:47+00:00",
+ "elapsed_seconds": 160.766,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/jobs/export_orders.py\",\n            \"line\": 30,\n            \"severity\": \"medium\",\n            \"rule_id\": \"CWE-89\",\n            \"message\": \"SQL query is vulnerable to SQL injection.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"conn.execute(\\\"SELECT id, total, created_at FROM orders WHERE customer_id = ? ORDER BY id\\\", (customer_id,)).fetchall()\"\n        },\n        {\n            \"file\": \"app/jobs/export_orders.py\",\n            \"line\": 32,\n            \"severity\": \"medium\",\n            \"rule_id\": \"CWE-78\",\n            \"message\": \"File path is vulnerable to path traversal.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"target = (EXPORT_DIR / name).resolve()\"\n        },\n        {\n            \"file\": \"app/jobs/export_orders.py\",\n            \"line\": 34,\n            \"severity\": \"medium\",\n            \"rule_id\": \"CWE-78\",\n            \"message\": \"File path is vulnerable to path traversal.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"subprocess.run([\\\"gzip\\\", \\\"--force\\\", str(target)], check=True)\"\n        },\n        {\n            \"file\": \"app/jobs/export_orders.py\",\n            \"line\": 32,\n            \"severity\": \"medium\",\n            \"rule_id\": \"CWE-78\",\n            \"message\": \"File path is vulnerable to path traversal.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"with target.open(\\\"w\\\", encoding=\\\"utf-8\\\") as f:\"\n        },\n        {\n            \"file\": \"app/jobs/export_orders.py\",\n            \"line\": 32,\n            \"severity\": \"medium\",\n            \"rule_id\": \"CWE-78\",\n            \"message\": \"File path is vulnerable to path traversal.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"f.writelines(f\\\"{row[0]},{row[1]},{row[2]}\\\\n\\\" for row in rows)\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:48:47.9808636Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 160504940100,
+     "load_duration": 126486700,
+     "prompt_eval_count": 1233,
+     "prompt_eval_duration": 2469863400,
+     "eval_count": 475,
+     "eval_duration": 44376615700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb0e-226c-7062-83f9-16025af7afcd-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1233,
+     "output_tokens": 475,
+     "total_tokens": 1708
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:17:12+00:00",
+ "elapsed_seconds": 273.172,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"prowler/lib/outputs/html/html.py\",\n            \"line\": 55,\n            \"severity\": \"medium\",\n            \"rule_id\": \"Simplification\",\n            \"message\": \"The function `_strip_unsafe_links` has been removed, which might introduce security vulnerabilities if the HTML content contains unsafe links.\",\n            \"evidence\": \"-         return _strip_unsafe_links(html_content)\"\n        },\n        {\n            \"file\": \"prowler/lib/outputs/html/html.py\",\n            \"line\": 80,\n            \"severity\": \"low\",\n            \"rule_id\": \"Style\",\n            \"message\": \"The `escape` function is called multiple times unnecessarily.\",\n            \"evidence\": \"-                             <td>{str(escape(finding.metadata.Severity.value))}</td>\"\n        },\n        {\n            \"file\": \"prowler/lib/outputs/html/html.py\",\n            \"line\": 80,\n            \"severity\": \"low\",\n            \"rule_id\": \"Style\",\n            \"message\": \"The `escape` function is called multiple times unnecessarily.\",\n            \"evidence\": \"-                             <td>{str(escape(finding.metadata.ServiceName))}</td>\"\n        },\n        {\n            \"file\": \"prowler/lib/outputs/html/html.py\",\n            \"line\": 80,\n            \"severity\": \"low\",\n            \"rule_id\": \"Style\",\n            \"message\": \"The `escape` function is called multiple times unnecessarily.\",\n            \"evidence\": \"-                             <td>{str(escape(finding.region.lower()))}</td>\"\n        },\n        {\n            \"file\": \"prowler/lib/outputs/html/html.py\",\n            \"line\": 80,\n            \"severity\": \"low\",\n            \"rule_id\": \"Style\",\n            \"message\": \"The `escape` function is called multiple times unnecessarily.\",\n            \"evidence\": \"-                             <td>{str(escape(finding.metadata.CheckID)).replace(\\\"_\\\", \\\"<wbr />_\\\")}</td>\"\n        },\n        {\n            \"file\": \"prowler/lib/outputs/html/html.py\",\n            \"line\": 80,\n            \"severity\": \"low\",\n            \"rule_id\": \"Style\",\n            \"message\": \"The `escape` function is called multiple times unnecessarily.\",\n            \"evidence\": \"-                             <td>{str(escape(finding.metadata.CheckTitle))}</td>\"\n        },\n        {\n            \"file\": \"prowler/lib/outputs/html/html.py\",\n            \"line\": 80,\n            \"severity\": \"low\",\n            \"rule_id\": \"Style\",\n            \"message\": \"The `escape` function is called multiple times unnecessarily.\",\n            \"evidence\": \"-                             <td>{str(escape(finding.resource_uid)).replace(\\\"_\\\", \\\"<wbr />_\\\")}</td>\"\n        },\n        {\n            \"file\": \"prowler/lib/outputs/html/html.py\",\n            \"line\": 80,\n            \"severity\": \"low\",\n            \"rule_id\": \"Style\",\n            \"message\": \"The `escape` function is called multiple times unnecessarily.\",\n            \"evidence\": \"-                             <td>{parse_html_string(str(escape(unroll_dict(finding.resource_tags))))}</td>\"\n        },\n        {\n            \"file\": \"prowler/lib/outputs/html/html.py\",\n            \"line\": 80,\n            \"severity\": \"low\",\n            \"rule_id\": \"Style\",\n            \"message\": \"The `escape` function is called multiple times unnecessarily.\",\n            \"evidence\": \"-                             <td>{str(escape(finding.status_extended)).replace(\\\"_\\\", \\\"<wbr />_\\\")}</td>\"\n        },\n        {\n            \"file\": \"prowler/lib/outputs/html/html.py\",\n            \"line\": 80,\n            \"severity\": \"low\",\n            \"rule_id\": \"Style\",\n            \"message\": \"The `escape` function is called multiple times unnecessarily.\",\n            \"evidence\": \"-                             <td><p class=\\\"show-read-more\\\">{HTML.process_markdown(str(escape(finding.metadata.Risk)))}</p></td>\"\n        },\n        {\n            \"file\": \"prowler/lib/outputs/html/html.py\",\n            \"line\": 80,\n            \"severity\": \"low\",\n            \"rule_id\": \"Style\",\n            \"message\": \"The `escape` function is called multiple times unnecessarily.\",\n            \"evidence\": \"-                             <td><p class=\\\"show-read-more\\\">{HTML.process_markdown(str(escape(finding.metadata.Remediation.Recommendation.Text)))}</p> <a class=\\\"read-more\\\" href=\\\"{str(escape(_safe_url(finding.metadata.Remediation.Recommendation.Url)))}\\\"><i class=\\\"fas fa-external-link-alt\\\"></i></a></td>\"\n        },\n        {\n            \"file\": \"prowler/lib/outputs/html/html.py\",\n            \"line\": 80,\n            \"severity\": \"low\",\n            \"rule_id\": \"Style\",\n            \"message\": \"The `escape` function is called multiple times unnecessarily.\",\n            \"evidence\": \"-                             <td><p class=\\\"show-read-more\\\">{parse_html_string(unroll_dict(finding.compliance, separator=\\\": \\\"))}</p></td>\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:17:12.348992Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 272894557400,
+     "load_duration": 57302300,
+     "prompt_eval_count": 1644,
+     "prompt_eval_duration": 12083702100,
+     "eval_count": 1111,
+     "eval_duration": 119399793900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9dc-d610-77a1-9fbb-2d91e3662c30-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1644,
+     "output_tokens": 1111,
+     "total_tokens": 2755
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:31:42+00:00",
+ "elapsed_seconds": 61.25,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/routes/reports.py\",\n            \"line\": 23,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"The function does not handle the case where `name` is an empty string.\",\n            \"evidence\": \"return send_file(path, as_attachment=True)\"\n        },\n        {\n            \"file\": \"app/routes/reports.py\",\n            \"line\": 23,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"The function does not handle the case where `name` is None.\",\n            \"evidence\": \"return send_file(path, as_attachment=True)\"\n        },\n        {\n            \"file\": \"app/routes/reports.py\",\n            \"line\": 23,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"The function does not handle the case where `path` is not a file.\",\n            \"evidence\": \"return send_file(path, as_attachment=True)\"\n        },\n        {\n            \"file\": \"app/routes/reports.py\",\n            \"line\": 23,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_type_hints\",\n            \"message\": \"The function does not have type hints for its parameters and return value.\",\n            \"evidence\": \"@bp.get(\\\"/reports/archive/<path:name>\\\")\"\n        },\n        {\n            \"file\": \"app/routes/reports.py\",\n            \"line\": 23,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_docstring\",\n            \"message\": \"The function does not have a docstring.\",\n            \"evidence\": \"@bp.get(\\\"/reports/archive/<path:name>\\\")\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:31:42.5982005Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 60996831400,
+     "load_duration": 88024100,
+     "prompt_eval_count": 680,
+     "prompt_eval_duration": 3143002200,
+     "eval_count": 387,
+     "eval_duration": 36001989800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9ed-594a-7dd3-a69c-6e3005047ad3-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 680,
+     "output_tokens": 387,
+     "total_tokens": 1067
+    }
+   }
+  }
+ ]
+}

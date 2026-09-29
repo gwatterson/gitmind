@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T23:58:57+00:00",
+ "elapsed_seconds": 13.438,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"quality_files\": [\n    \"source/core/Ky.ts\"\n  ],\n  \"performance_files\": [],\n  \"reasoning\": \"The file 'Ky.ts' contains non-trivial logic related to error handling and structure. It introduces a new error type, SchemaValidationError, which requires careful review for correctness and consistency with existing error handling mechanisms.\"\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T23:58:57.2335942Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 13169879300,
+     "load_duration": 107101200,
+     "prompt_eval_count": 1134,
+     "prompt_eval_duration": 3246279200,
+     "eval_count": 74,
+     "eval_duration": 7822747400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea74-e255-7b10-863e-e6c3a1bd07ef-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1134,
+     "output_tokens": 74,
+     "total_tokens": 1208
+    }
+   }
+  }
+ ]
+}

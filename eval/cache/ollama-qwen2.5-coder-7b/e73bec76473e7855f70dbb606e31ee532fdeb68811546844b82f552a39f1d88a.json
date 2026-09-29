@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:19:38+00:00",
+ "elapsed_seconds": 35.093,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/click/utils.py\",\n      \"line\": 84,\n      \"severity\": \"medium\",\n      \"rule_id\": \"S572\",\n      \"message\": \"The condition `i == last_index or not words[i + 1][0].islower()` can raise an IndexError if `words` is empty.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"if word.endswith('.') and (i == last_index or not words[i + 1][0].islower()):\",\n      \"cwe\": \"CWE-125: Improper Handling of Data\"\n    },\n    {\n      \"file\": \"src/click/utils.py\",\n      \"line\": 97,\n      \"severity\": \"low\",\n      \"rule_id\": \"S486\",\n      \"message\": \"The import statement is placed inside a function, which can lead to performance issues.\",\n      \"confidence\": 0.6,\n      \"evidence\": \"import textwrap\",\n      \"cwe\": \"CWE-502: Deserialization of Untrusted Data\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:19:38.3713649Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 35085597800,
+     "load_duration": 89052500,
+     "prompt_eval_count": 1491,
+     "prompt_eval_duration": 5639087100,
+     "eval_count": 247,
+     "eval_duration": 23388885300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eaf5-5af4-7473-89b5-a966ef7a2d03-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1491,
+     "output_tokens": 247,
+     "total_tokens": 1738
+    }
+   }
+  }
+ ]
+}

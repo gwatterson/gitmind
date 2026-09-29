@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:07:25+00:00",
+ "elapsed_seconds": 12.484,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"lmdeploy/pytorch/engine/mp_engine/zmq_rpc.py\",\n            \"line\": 35,\n            \"severity\": \"high\",\n            \"rule_id\": \"security_vulnerability\",\n            \"message\": \"Allowing RPC server access from any network interface can lead to security vulnerabilities.\",\n            \"evidence\": \"+        address = 'tcp://*'\",\n            \"confidence\": 1\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:07:25.8620655Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 12471235700,
+     "load_duration": 58761000,
+     "prompt_eval_count": 577,
+     "prompt_eval_duration": 700432400,
+     "eval_count": 99,
+     "eval_duration": 9345142900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9d7-dd6e-78e1-b711-7cf8bb6ef913-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 577,
+     "output_tokens": 99,
+     "total_tokens": 676
+    }
+   }
+  }
+ ]
+}

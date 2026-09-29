@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T00:03:28+00:00",
+ "elapsed_seconds": 103.562,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"rich/syntax.py\",\n            \"line\": 320,\n            \"severity\": \"medium\",\n            \"rule_id\": \"unused_variable\",\n            \"message\": \"The variable `lexer` is assigned but never used.\",\n            \"evidence\": \"lexer: Optional[Lexer] = None\"\n        },\n        {\n            \"file\": \"rich/syntax.py\",\n            \"line\": 452,\n            \"severity\": \"medium\",\n            \"rule_id\": \"unnecessary_condition\",\n            \"message\": \"The condition `if line_end and line_no >= line_end` is unnecessary because `line_end` is already checked in the previous condition.\",\n            \"evidence\": \"if line_end and line_no >= line_end:\"\n        },\n        {\n            \"file\": \"rich/syntax.py\",\n            \"line\": 590,\n            \"severity\": \"medium\",\n            \"rule_id\": \"unnecessary_condition\",\n            \"message\": \"The condition `if start_line:` is unnecessary because it's already checked in the previous line.\",\n            \"evidence\": \"if start_line:\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T00:03:28.7844461Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 103300303500,
+     "load_duration": 98423900,
+     "prompt_eval_count": 2674,
+     "prompt_eval_duration": 7132224200,
+     "eval_count": 244,
+     "eval_duration": 27974010000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea77-a70d-7da2-93f3-f62cb89fbaaa-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 2674,
+     "output_tokens": 244,
+     "total_tokens": 2918
+    }
+   }
+  }
+ ]
+}

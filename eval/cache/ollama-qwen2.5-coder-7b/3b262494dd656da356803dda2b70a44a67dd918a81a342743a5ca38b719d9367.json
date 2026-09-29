@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:26:31+00:00",
+ "elapsed_seconds": 21.672,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/notifications/client.ts\",\n      \"line\": 9,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-89\",\n      \"message\": \"Potential SQL injection vulnerability due to direct use of user input in the URL.\",\n      \"evidence\": \"/api/users/${userId}/notifications\"\n    },\n    {\n      \"file\": \"src/notifications/client.ts\",\n      \"line\": 11,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-78\",\n      \"message\": \"Potential cross-site scripting (XSS) vulnerability due to direct rendering of user input.\",\n      \"evidence\": \"return (await response.json()) as Notification[];\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:26:31.8674058Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 21661774700,
+     "load_duration": 122508200,
+     "prompt_eval_count": 611,
+     "prompt_eval_duration": 2724119000,
+     "eval_count": 165,
+     "eval_duration": 14998178500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eac4-f01c-7972-a717-09e71a713369-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 611,
+     "output_tokens": 165,
+     "total_tokens": 776
+    }
+   }
+  }
+ ]
+}

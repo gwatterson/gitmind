@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:53:24+00:00",
+ "elapsed_seconds": 38.265,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/dashboard/widgets.ts\",\n      \"line\": 11,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1_queries\",\n      \"message\": \"The function makes an API call inside a loop, leading to N+1 queries.\",\n      \"evidence\": \"const data = await api.get(`/widgets/${id}`);\",\n      \"confidence\": 1,\n      \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') - not applicable here, but still a performance issue.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:53:24.0335201Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 37987132000,
+     "load_duration": 91906800,
+     "prompt_eval_count": 597,
+     "prompt_eval_duration": 2884524300,
+     "eval_count": 138,
+     "eval_duration": 12235523800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea01-8ed6-72c2-b4f2-511cc1ad00d7-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 597,
+     "output_tokens": 138,
+     "total_tokens": 735
+    }
+   }
+  }
+ ]
+}

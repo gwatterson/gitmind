@@ -1,0 +1,19 @@
+id: syn-ts-jwt-decode
+split: test
+source: synthetic
+language: typescript
+title: Read the user from the bearer token
+description: 'The middleware uses jwt.decode, which does not verify the signature: any forged token is
+  accepted.'
+smoke: true
+expected_findings:
+- file: src/middleware/auth.ts
+  anchor: const claims = jwt.decode(token) as TokenClaims | null;
+  category: security
+  cwe:
+  - CWE-347
+  - CWE-287
+  - CWE-345
+  severity_min: high
+  description: JWT decoded without signature verification
+must_not_flag: []

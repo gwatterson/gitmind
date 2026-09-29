@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T22:08:50+00:00",
+ "elapsed_seconds": 126.172,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"src/click/types.py\",\n            \"line\": 1079,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_type_hint\",\n            \"message\": \"The `Path` class is missing a type hint for the return value of the `coerce_path_result` method.\",\n            \"evidence\": \"+     def coerce_path_result(self, value: str | os.PathLike[str]) -> _PathT_co:\",\n            \"confidence\": 1,\n            \"cwe\": null\n        },\n        {\n            \"file\": \"src/click/types.py\",\n            \"line\": 1079,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_type_hint\",\n            \"message\": \"The `Path` class is missing a type hint for the return value of the `convert` method.\",\n            \"evidence\": \"+     def convert(self, value: str | os.PathLike[str], param: Parameter | None, ctx: Context | None) -> _PathT_co:\",\n            \"confidence\": 1,\n            \"cwe\": null\n        },\n        {\n            \"file\": \"src/click/types.py\",\n            \"line\": 1079,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_type_hint\",\n            \"message\": \"The `Path` class is missing a type hint for the return value of the `to_info_dict` method.\",\n            \"evidence\": \"+     def to_info_dict(self) -> dict[str, t.Any]:\",\n            \"confidence\": 1,\n            \"cwe\": null\n        },\n        {\n            \"file\": \"src/click/types.py\",\n            \"line\": 1079,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_type_hint\",\n            \"message\": \"The `Path` class is missing a type hint for the return value of the `__call__` method.\",\n            \"evidence\": \"+     def __call__(self, value: str | os.PathLike[str], param: Parameter | None, ctx: Context | None) -> _PathT_co:\",\n            \"confidence\": 1,\n            \"cwe\": null\n        },\n        {\n            \"file\": \"src/click/types.py\",\n            \"line\": 1079,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_type_hint\",\n            \"message\": \"The `Path` class is missing a type hint for the return value of the `__init__` method.\",\n            \"evidence\": \"+     def __init__(self, exists: bool = True, file_okay: bool = True, dir_okay: bool = False, readable: bool = True, resolve_path: bool = False, allow_dash: bool = False, path_type: type[_PathT_co] | None = None, executable: bool = False) -> None:\",\n            \"confidence\": 1,\n            \"cwe\": null\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T22:08:50.8562499Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 125906834400,
+     "load_duration": 55735900,
+     "prompt_eval_count": 1693,
+     "prompt_eval_duration": 14879752000,
+     "eval_count": 635,
+     "eval_duration": 67607810200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea0e-5bc8-70d3-8323-3e3888f285c3-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1693,
+     "output_tokens": 635,
+     "total_tokens": 2328
+    }
+   }
+  }
+ ]
+}

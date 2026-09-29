@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:58:31+00:00",
+ "elapsed_seconds": 31.109,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/services/project_import.py\",\n            \"line\": 17,\n            \"severity\": \"high\",\n            \"rule_id\": \"S506\",\n            \"message\": \"Using `yaml.load` with an untrusted source can lead to arbitrary code execution.\",\n            \"confidence\": 1.0,\n            \"evidence\": \"settings.update(yaml.load(uploaded, Loader=yaml.Loader))\",\n            \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') or Expression Language ('Expression Language Injection')\"\n        },\n        {\n            \"file\": \"app/services/project_import.py\",\n            \"line\": 16,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S507\",\n            \"message\": \"The `uploaded` parameter is not validated before being used in `yaml.load`, which could lead to a YAML parsing error.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"settings.update(yaml.load(uploaded, Loader=yaml.Loader))\",\n            \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:58:31.1131828Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 31086827900,
+     "load_duration": 80294600,
+     "prompt_eval_count": 837,
+     "prompt_eval_duration": 1706385500,
+     "eval_count": 269,
+     "eval_duration": 23537274800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb19-02d8-7133-bcda-d6e3c124e806-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 837,
+     "output_tokens": 269,
+     "total_tokens": 1106
+    }
+   }
+  }
+ ]
+}

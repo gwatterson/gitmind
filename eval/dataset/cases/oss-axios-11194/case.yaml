@@ -1,0 +1,12 @@
+id: oss-axios-11194
+split: test
+source: oss
+language: javascript
+title: 'fix(fetch): apply the default cache mode only where the runtime accepts it'
+description: Merged pull request reviewed by the maintainers.
+origin:
+  repo: axios/axios
+  url: https://github.com/axios/axios/pull/11194
+  license: MIT
+  commit: 6337c14ca49a61116d549dc18d9be32b0b3b93a1
+must_not_flag: []

@@ -191,7 +191,10 @@ export default function ReviewDetailPage() {
               <span>#{review.pr_number}</span>
               {review.pr_author && <span>by {review.pr_author}</span>}
               {review.llm_model ? (
-                <span className="rounded-sm bg-slate-800/50 px-1.5 py-0.5 mono text-[10px] text-slate-400">
+                <span
+                  className="rounded-sm bg-slate-800/50 px-1.5 py-0.5 mono text-[10px] text-slate-400"
+                  title={review.prompt_versions ? `Prompts: ${review.prompt_versions}` : undefined}
+                >
                   {review.llm_model}
                   {review.llm_provider ? ` (${review.llm_provider})` : ""}
                 </span>

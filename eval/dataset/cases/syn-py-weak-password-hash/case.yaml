@@ -1,0 +1,23 @@
+id: syn-py-weak-password-hash
+split: dev
+source: synthetic
+language: python
+title: Store password hashes for new accounts
+description: Passwords are hashed with unsalted MD5. The SHA-256 of uploaded files is only a checksum
+  and is fine.
+expected_findings:
+- file: app/services/accounts.py
+  anchor: return hashlib.md5(password.encode()).hexdigest()
+  category: security
+  cwe:
+  - CWE-327
+  - CWE-328
+  - CWE-916
+  - CWE-759
+  - CWE-256
+  severity_min: medium
+  description: Passwords hashed with unsalted MD5
+must_not_flag:
+- file: app/services/accounts.py
+  anchor: return hashlib.sha256(data).hexdigest()
+  reason: integrity checksum, not a password

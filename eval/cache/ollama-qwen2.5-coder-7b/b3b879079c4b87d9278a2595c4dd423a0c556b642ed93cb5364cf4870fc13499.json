@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T22:18:35+00:00",
+ "elapsed_seconds": 67.875,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"source/core/Ky.ts\",\n      \"line\": 273,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-400\",\n      \"message\": \"Insecure deserialization: The code attempts to parse an empty string as JSON, which could lead to unexpected behavior or vulnerabilities.\",\n      \"evidence\": \"return JSON.parse(text);\"\n    },\n    {\n      \"file\": \"source/core/Ky.ts\",\n      \"line\": 548,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-400\",\n      \"message\": \"Insecure deserialization: The code attempts to parse an empty string as JSON, which could lead to unexpected behavior or vulnerabilities.\",\n      \"evidence\": \"return this.#options.parseJson!(text, {request, response});\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T22:18:35.4269469Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 67606936200,
+     "load_duration": 84186300,
+     "prompt_eval_count": 1315,
+     "prompt_eval_duration": 3403359100,
+     "eval_count": 192,
+     "eval_duration": 21273689900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea18-2b0b-7240-bd72-d119a46d9007-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1315,
+     "output_tokens": 192,
+     "total_tokens": 1507
+    }
+   }
+  }
+ ]
+}

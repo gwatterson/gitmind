@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T04:06:51+00:00",
+ "elapsed_seconds": 74.375,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/api/events.py\",\n            \"line\": 12,\n            \"severity\": \"high\",\n            \"rule_id\": \"CWE-89\",\n            \"message\": \"SQL injection vulnerability due to direct use of user input in query construction.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"@router.get(\\\"\\\", response_model=List[Event])\\ndef list_events(page: int = 1, size: int = 50, session: Session = Depends(get_session)):\\n    events = session.query(Event).order_by(Event.created_at.desc()).all()\\n    start = (page - 1) * size\\n    return {\\\"total\\\": len(events), \\\"items\\\": [e.to_dict() for e in events[start : start + size]]}\",\n            \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T04:06:51.0672218Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 74102696900,
+     "load_duration": 59682500,
+     "prompt_eval_count": 822,
+     "prompt_eval_duration": 1691480300,
+     "eval_count": 211,
+     "eval_duration": 18676711600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb56-e934-77b3-b2f4-912434654cb6-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 822,
+     "output_tokens": 211,
+     "total_tokens": 1033
+    }
+   }
+  }
+ ]
+}

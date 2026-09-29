@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T20:38:41+00:00",
+ "elapsed_seconds": 44.125,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/repositories/users.py\",\n            \"line\": 23,\n            \"severity\": \"high\",\n            \"rule_id\": \"SQL_INJECTION\",\n            \"message\": \"SQL injection vulnerability due to string formatting in the query.\",\n            \"evidence\": \"query = f\\\"SELECT id, email, name FROM users WHERE name LIKE '%{term}%' LIMIT {limit}\\\"\"\n        },\n        {\n            \"file\": \"app/repositories/users.py\",\n            \"line\": 23,\n            \"severity\": \"medium\",\n            \"rule_id\": \"QUERY_LIMIT\",\n            \"message\": \"Potential performance issue due to the use of a fixed limit without validation.\",\n            \"evidence\": \"query = f\\\"SELECT id, email, name FROM users WHERE name LIKE '%{term}%' LIMIT {limit}\\\"\"\n        },\n        {\n            \"file\": \"app/routes/users.py\",\n            \"line\": 16,\n            \"severity\": \"medium\",\n            \"rule_id\": \"MISSING_INPUT_VALIDATION\",\n            \"message\": \"Missing input validation for the search term.\",\n            \"evidence\": \"term = request.args.get(\\\"q\\\", \\\"\\\")\"\n        },\n        {\n            \"file\": \"app/routes/users.py\",\n            \"line\": 18,\n            \"severity\": \"medium\",\n            \"rule_id\": \"MISSING_ERROR_HANDLING\",\n            \"message\": \"Missing error handling for database operations.\",\n            \"evidence\": \"users = UserRepository(get_connection()).search(term)\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T20:38:41.0255275Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 44120335700,
+     "load_duration": 63282200,
+     "prompt_eval_count": 860,
+     "prompt_eval_duration": 2701892900,
+     "eval_count": 326,
+     "eval_duration": 32430691700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9bd-1028-7830-b7b6-2527260ee7f5-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 860,
+     "output_tokens": 326,
+     "total_tokens": 1186
+    }
+   }
+  }
+ ]
+}

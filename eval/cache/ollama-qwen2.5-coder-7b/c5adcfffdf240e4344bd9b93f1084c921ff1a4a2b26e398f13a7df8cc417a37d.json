@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:57:27+00:00",
+ "elapsed_seconds": 232.25,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"lemur/destinations/schemas.py\",\n      \"line\": 30,\n      \"severity\": \"low\",\n      \"rule_id\": \"S108\",\n      \"message\": \"The code removes the 'sensitive' check for options, which might lead to sensitive data being exposed.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-             if option.get(\\\"sensitive\\\"):\",\n      \"cwe\": \"CWE-200: Exposure of Sensitive Information Through an Error Message\"\n    },\n    {\n      \"file\": \"lemur/destinations/views.py\",\n      \"line\": 34,\n      \"severity\": \"low\",\n      \"rule_id\": \"S108\",\n      \"message\": \"The 'admin_permission.require' decorator is removed, which might allow unauthorized access to the endpoints.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-     @admin_permission.require(http_exception=403)\",\n      \"cwe\": \"CWE-284: Improper Access Control\"\n    },\n    {\n      \"file\": \"lemur/destinations/views.py\",\n      \"line\": 197,\n      \"severity\": \"low\",\n      \"rule_id\": \"S108\",\n      \"message\": \"The 'admin_permission.require' decorator is removed, which might allow unauthorized access to the endpoint.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-     @admin_permission.require(http_exception=403)\",\n      \"cwe\": \"CWE-284: Improper Access Control\"\n    },\n    {\n      \"file\": \"lemur/destinations/views.py\",\n      \"line\": 360,\n      \"severity\": \"low\",\n      \"rule_id\": \"S108\",\n      \"message\": \"The 'admin_permission.require' decorator is removed, which might allow unauthorized access to the endpoint.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-     @admin_permission.require(http_exception=403)\",\n      \"cwe\": \"CWE-284: Improper Access Control\"\n    },\n    {\n      \"file\": \"lemur/plugins/lemur_sftp/plugin.py\",\n      \"line\": 65,\n      \"severity\": \"low\",\n      \"rule_id\": \"S108\",\n      \"message\": \"The 'sensitive' flag is removed for the password option, which might lead to sensitive data being exposed.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-             \\\"sensitive\\\": True,\",\n      \"cwe\": \"CWE-200: Exposure of Sensitive Information Through an Error Message\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:57:27.4857863Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 231980791900,
+     "load_duration": 101554600,
+     "prompt_eval_count": 1338,
+     "prompt_eval_duration": 4845688100,
+     "eval_count": 586,
+     "eval_duration": 63739131600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eade-0a0c-7bb3-af66-f2a05151fe8a-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1338,
+     "output_tokens": 586,
+     "total_tokens": 1924
+    }
+   }
+  }
+ ]
+}

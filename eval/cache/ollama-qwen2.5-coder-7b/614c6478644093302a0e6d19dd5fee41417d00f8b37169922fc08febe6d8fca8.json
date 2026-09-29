@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:04:27+00:00",
+ "elapsed_seconds": 54.343,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/shipping/cost.py\",\n            \"line\": 3,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"The function does not handle the case when `weight_kg` is less than 0.\",\n            \"evidence\": \"-        if weight_kg < 1:\"\n        },\n        {\n            \"file\": \"app/shipping/cost.py\",\n            \"line\": 25,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"The function does not handle the case when `weight_kg` is less than 0.\",\n            \"evidence\": \"-        return 14.0 if weight_kg > 2 else 9.0\"\n        },\n        {\n            \"file\": \"app/shipping/cost.py\",\n            \"line\": 3,\n            \"severity\": \"medium\",\n            \"rule_id\": \"complex_logic\",\n            \"message\": \"The function has deeply nested conditional logic, making it hard to understand and maintain.\",\n            \"evidence\": \"-    if country == \\\"IT\\\":\"\n        },\n        {\n            \"file\": \"app/shipping/cost.py\",\n            \"line\": 3,\n            \"severity\": \"medium\",\n            \"rule_id\": \"duplicated_logic\",\n            \"message\": \"The logic for calculating shipping cost is duplicated between the 'IT' and other country cases.\",\n            \"evidence\": \"-    if weight_kg < 1:\"\n        },\n        {\n            \"file\": \"app/shipping/cost.py\",\n            \"line\": 3,\n            \"severity\": \"low\",\n            \"rule_id\": \"missing_type_hints\",\n            \"message\": \"The function does not have type hints for the return value.\",\n            \"evidence\": \"-    def shipping_cost(country: str, weight_kg: float, express: bool, member: bool) -> float:\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:04:27.3722581Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 54075598300,
+     "load_duration": 101670100,
+     "prompt_eval_count": 742,
+     "prompt_eval_duration": 3798614900,
+     "eval_count": 422,
+     "eval_duration": 39127515600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eab0-3aa7-79b1-8228-06aa54e95e03-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 742,
+     "output_tokens": 422,
+     "total_tokens": 1164
+    }
+   }
+  }
+ ]
+}

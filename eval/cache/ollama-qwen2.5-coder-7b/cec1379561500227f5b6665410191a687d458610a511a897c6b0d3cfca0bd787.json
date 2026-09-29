@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:18:57+00:00",
+ "elapsed_seconds": 51.015,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"src/click/core.py\",\n            \"line\": 1320,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S596\",\n            \"message\": \"The list comprehension does not filter out arguments without help records.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"[param for param in self.get_params(ctx) if isinstance(param, Argument)]\",\n            \"cwe\": \"CWE-125: Improper Handling of Null or Empty Values\"\n        },\n        {\n            \"file\": \"src/click/core.py\",\n            \"line\": 3804,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S596\",\n            \"message\": \"The method does not handle the case where `help` is None.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"return self.make_metavar(ctx), self.help or \\\"\\\"\",\n            \"cwe\": \"CWE-125: Improper Handling of Null or Empty Values\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:18:57.6600674Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 50755416900,
+     "load_duration": 86223200,
+     "prompt_eval_count": 1346,
+     "prompt_eval_duration": 4679979900,
+     "eval_count": 235,
+     "eval_duration": 22179624400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eaf4-7dbc-7fb2-839b-a277cffa036f-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1346,
+     "output_tokens": 235,
+     "total_tokens": 1581
+    }
+   }
+  }
+ ]
+}

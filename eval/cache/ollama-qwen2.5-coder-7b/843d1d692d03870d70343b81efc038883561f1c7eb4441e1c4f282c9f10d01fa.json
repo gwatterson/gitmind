@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:25:39+00:00",
+ "elapsed_seconds": 132.64,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/ahttpx/_parsers.py\",\n      \"line\": 232,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-568\",\n      \"message\": \"The method `wait_ready` in `_parsers.py` is defined twice, once as an asynchronous method and once as a synchronous method. This can lead to confusion and potential bugs.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+     async def wait_ready(self) -> bool:\\n+         return await self.parser.wait_ready()\\n\\n+     def wait_ready(self) -> bool:\\n+         return self.parser.wait_ready()\"\n    },\n    {\n      \"file\": \"src/ahttpx/_server.py\",\n      \"line\": 35,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-568\",\n      \"message\": \"The method `wait_ready` in `_server.py` is defined twice, once as an asynchronous method and once as a synchronous method. This can lead to confusion and potential bugs.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+                 if not await self._parser.wait_ready():\\n+                     return\\n\\n+                 # Read the initial part of the request,\\n+                 # and setup a stream for reading the body.\\n+                 method, url, headers = await self._recv_head()\"\n    },\n    {\n      \"file\": \"src/httpx/_parsers.py\",\n      \"line\": 232,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-568\",\n      \"message\": \"The method `wait_ready` in `_parsers.py` is defined twice, once as an asynchronous method and once as a synchronous method. This can lead to confusion and potential bugs.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+     async def wait_ready(self) -> bool:\\n+         return await self.parser.wait_ready()\\n\\n+     def wait_ready(self) -> bool:\\n+         return self.parser.wait_ready()\"\n    },\n    {\n      \"file\": \"src/httpx/_server.py\",\n      \"line\": 35,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-568\",\n      \"message\": \"The method `wait_ready` in `_server.py` is defined twice, once as an asynchronous method and once as a synchronous method. This can lead to confusion and potential bugs.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+                 if not await self._parser.wait_ready():\\n+                     return\\n\\n+                 # Read the initial part of the request,\\n+                 # and setup a stream for reading the body.\\n+                 method, url, headers = await self._recv_head()\"\n    },\n    {\n      \"file\": \"src/httpx/_server.py\",\n      \"line\": 102,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-568\",\n      \"message\": \"The `wait` method in `_server.py` is defined twice, once as a synchronous method and once as a context manager. This can lead to confusion and potential bugs.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+     def wait(self):\\n+         while(True):\\n+             sleep(1)\\n\\n+     @contextlib.contextmanager\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:25:39.9433325Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 132627769600,
+     "load_duration": 88602000,
+     "prompt_eval_count": 2396,
+     "prompt_eval_duration": 6548601000,
+     "eval_count": 737,
+     "eval_duration": 77623878400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eaf9-6252-7020-90b0-8f0789f64700-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 2396,
+     "output_tokens": 737,
+     "total_tokens": 3133
+    }
+   }
+  }
+ ]
+}

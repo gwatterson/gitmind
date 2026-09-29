@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T00:47:34+00:00",
+ "elapsed_seconds": 17.282,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/products.js\",\n      \"line\": 21,\n      \"severity\": \"high\",\n      \"rule_id\": \"sql_injection\",\n      \"message\": \"SQL injection vulnerability due to string concatenation.\",\n      \"evidence\": \"const sql = category === 'all' ? 'SELECT * FROM products ORDER BY name' : 'SELECT * FROM products WHERE category = \\\\'\" ,\n      \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T00:47:34.4718434Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 17279419000,
+     "load_duration": 81714900,
+     "prompt_eval_count": 648,
+     "prompt_eval_duration": 2666112300,
+     "eval_count": 130,
+     "eval_duration": 11500225300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eaa1-56c6-7ba2-b81c-59796591d05a-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 648,
+     "output_tokens": 130,
+     "total_tokens": 778
+    }
+   }
+  }
+ ]
+}

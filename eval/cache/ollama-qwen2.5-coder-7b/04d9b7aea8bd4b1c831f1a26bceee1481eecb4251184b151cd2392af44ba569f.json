@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:27:28+00:00",
+ "elapsed_seconds": 23.453,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/reports/formulas.ts\",\n      \"line\": 3,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1_queries\",\n      \"message\": \"The `evaluateFormula` function creates a new Function object for each call, which can be expensive.\",\n      \"evidence\": \"const compute = new Function(...names, `return (${formula});`);\"\n    },\n    {\n      \"file\": \"src/routes/reports.ts\",\n      \"line\": 9,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1_queries\",\n      \"message\": \"The `reportsRouter.post` handler calls `evaluateFormula` for each row, which can lead to N+1 queries if there are many rows.\",\n      \"evidence\": \"const values = rows.map((row) => evaluateFormula(req.body.formula, row));\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:27:28.4758539Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 23447448300,
+     "load_duration": 112483100,
+     "prompt_eval_count": 706,
+     "prompt_eval_duration": 805708300,
+     "eval_count": 199,
+     "eval_duration": 17496426400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eac5-c642-7e72-a149-104877b2bc7f-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 706,
+     "output_tokens": 199,
+     "total_tokens": 905
+    }
+   }
+  }
+ ]
+}

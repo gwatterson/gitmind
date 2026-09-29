@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:46:27+00:00",
+ "elapsed_seconds": 61.406,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"asyncssh/scp.py\",\n      \"line\": 138,\n      \"severity\": \"low\",\n      \"rule_id\": \"S502\",\n      \"message\": \"String concatenation inside a loop that builds a large string.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"permissions, size, name = args.split(None, 2)\",\n      \"cwe\": \"CWE-184: Integer Overflow or Wraparound\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:46:27.1858852Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 61136442900,
+     "load_duration": 122077700,
+     "prompt_eval_count": 760,
+     "prompt_eval_duration": 2674018800,
+     "eval_count": 117,
+     "eval_duration": 10058422500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ead6-920a-7c42-9686-6a39f1c489f8-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 760,
+     "output_tokens": 117,
+     "total_tokens": 877
+    }
+   }
+  }
+ ]
+}

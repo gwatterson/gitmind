@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T23:17:12+00:00",
+ "elapsed_seconds": 55.797,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"lib/adapters/fetch.js\",\n      \"line\": 153,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-79\",\n      \"message\": \"The code uses `utils.forEach` to iterate over user-controlled data (`requestDefaults`). This can lead to cross-site scripting (XSS) if the keys or values contain malicious script.\",\n      \"evidence\": \"utils.forEach(requestDefaults, (value, key) => {\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T23:17:12.2078325Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 55545718300,
+     "load_duration": 110938100,
+     "prompt_eval_count": 896,
+     "prompt_eval_duration": 2326952300,
+     "eval_count": 116,
+     "eval_duration": 11819183500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea4e-03a0-7e01-b90c-ef81ce14a768-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 896,
+     "output_tokens": 116,
+     "total_tokens": 1012
+    }
+   }
+  }
+ ]
+}

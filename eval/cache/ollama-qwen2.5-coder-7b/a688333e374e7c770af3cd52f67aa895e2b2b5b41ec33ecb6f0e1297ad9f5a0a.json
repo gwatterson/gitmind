@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T22:20:28+00:00",
+ "elapsed_seconds": 52.703,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"starlette/middleware/opentelemetry.py\",\n            \"line\": 31,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_type_hints\",\n            \"message\": \"Missing type hints for parameters in the `__init__` method of `OpenTelemetryMiddleware`.\",\n            \"evidence\": \"+        tracer_provider: trace.TracerProvider | None = None,\",\n            \"confidence\": 1,\n            \"cwe\": null\n        },\n        {\n            \"file\": \"starlette/middleware/opentelemetry.py\",\n            \"line\": 57,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_type_hints\",\n            \"message\": \"Missing type hints for parameters in the `__init__` method of `OpenTelemetryResponder`.\",\n            \"evidence\": \"+        tracer_provider: trace.TracerProvider | None,\",\n            \"confidence\": 1,\n            \"cwe\": null\n        },\n        {\n            \"file\": \"starlette/middleware/opentelemetry.py\",\n            \"line\": 65,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_type_hints\",\n            \"message\": \"Missing type hints for parameters in the `__call__` method of `OpenTelemetryResponder`.\",\n            \"evidence\": \"+         tracer_provider = self._tracer_provider\",\n            \"confidence\": 1,\n            \"cwe\": null\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T22:20:28.6830707Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 52442729300,
+     "load_duration": 137768700,
+     "prompt_eval_count": 1315,
+     "prompt_eval_duration": 3471772400,
+     "eval_count": 316,
+     "eval_duration": 32357236600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea1a-20aa-7d41-9df6-0306c6cd959f-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1315,
+     "output_tokens": 316,
+     "total_tokens": 1631
+    }
+   }
+  }
+ ]
+}

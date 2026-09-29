@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:05:46+00:00",
+ "elapsed_seconds": 35.39,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"litellm/llms/litellm_proxy/skills/prompt_injection.py\",\n            \"line\": 107,\n            \"severity\": \"low\",\n            \"rule_id\": \"Simplification\",\n            \"message\": \"The condition `if clean_path:` is redundant because it's checked again in the loop.\",\n            \"evidence\": \"+                        if clean_path:\",\n            \"confidence\": 1\n        },\n        {\n            \"file\": \"litellm/llms/litellm_proxy/skills/sandbox_executor.py\",\n            \"line\": 99,\n            \"severity\": \"low\",\n            \"rule_id\": \"Simplification\",\n            \"message\": \"The condition `if not local_path.startswith(tmpdir_abs + os.sep):` is redundant because it's checked again in the loop.\",\n            \"evidence\": \"+                         if not local_path.startswith(tmpdir_abs + os.sep):\",\n            \"confidence\": 1\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:05:46.0482995Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 35388750600,
+     "load_duration": 59166700,
+     "prompt_eval_count": 996,
+     "prompt_eval_duration": 5335240900,
+     "eval_count": 217,
+     "eval_duration": 24354532400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9d5-fe02-72c1-9dfe-d88ff20c5438-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 996,
+     "output_tokens": 217,
+     "total_tokens": 1213
+    }
+   }
+  }
+ ]
+}

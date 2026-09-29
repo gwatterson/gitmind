@@ -1,0 +1,14 @@
+id: syn-py-blocking-async
+split: dev
+source: synthetic
+language: python
+title: Fetch the exchange rate when creating a quote
+description: A synchronous HTTP call (requests) inside an async FastAPI endpoint blocks the event loop.
+smoke: true
+expected_findings:
+- file: app/api/quotes.py
+  anchor: response = requests.get(RATES_URL
+  category: performance
+  severity_min: medium
+  description: Blocking HTTP call inside an async endpoint
+must_not_flag: []

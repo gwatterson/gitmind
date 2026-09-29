@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:24:15+00:00",
+ "elapsed_seconds": 54.781,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"public/js/search.js\",\n      \"line\": 8,\n      \"severity\": \"low\",\n      \"rule_id\": \"string-concatenation-in-loop\",\n      \"message\": \"String concatenation inside a loop.\",\n      \"evidence\": \"resultsEl.innerHTML = `<p class=\\\"empty\\\">No results for <strong>${query}</strong></p>`;\",\n      \"confidence\": 1,\n      \"cwe\": null\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:24:15.614058Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 54522583300,
+     "load_duration": 77080300,
+     "prompt_eval_count": 584,
+     "prompt_eval_duration": 2936545100,
+     "eval_count": 108,
+     "eval_duration": 9672549200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9e6-a089-7431-b0d6-7bf61f8e4e17-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 584,
+     "output_tokens": 108,
+     "total_tokens": 692
+    }
+   }
+  }
+ ]
+}

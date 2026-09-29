@@ -30,6 +30,7 @@ Gemini API or entirely on your machine with a local model served by Ollama.
 - **Structured, validated LLM output.** Every agent answers through a Pydantic schema: findings arrive as typed objects with severity, confidence, CWE and the exact code they refer to, and findings on files outside the pull request are discarded.
 - **Comments on the right line.** Diffs are shown to the model with real line numbers, and every finding is anchored on the code it quotes, so inline comments land where the problem is even when the model miscounts.
 - **Gemini or a local model.** Switch between the Gemini API and a local model served by Ollama from the dashboard; the quota limiter only applies when the API is in use.
+- **Measured on 101 labeled pull requests.** An evaluation harness scores every prompt and model change on real CVEs, synthetic bugs and clean open source pull requests against a semgrep baseline, and a CI gate blocks quality regressions.
 - **Built to fail gracefully.** If one agent crashes the review still completes, clearly marked as incomplete; if all of them fail, or the daily LLM quota runs out, the review stops with an explicit status instead of a misleading "all clear".
 - **Human in the loop.** Findings can wait in the dashboard, where a reviewer edits them and approves before anything is posted to GitHub.
 - **Safe by default.** The bot never approves a pull request on its own, webhooks are verified and idempotent, and the dashboard is protected by GitHub sign-in with an allowlist.
@@ -91,6 +92,56 @@ flowchart LR
 5. **Approval and publishing.** With human-in-the-loop enabled the review waits in the dashboard; otherwise it is posted right away as inline comments plus a summary review.
 
 A new commit on the same pull request supersedes the review still in progress, and the outdated review is never published.
+
+---
+
+## Evaluation
+
+Review quality is measured, not assumed. The [evaluation](eval/README.md) runs the real
+LangGraph pipeline on 101 pull requests with known answers, and every prompt or model
+change is judged on the same numbers.
+
+- **Dataset**: 46 synthetic cases (a planted vulnerability, bug or performance problem each,
+  plus safe code that only looks risky), 33 real vulnerabilities from the GitHub Advisory
+  Database rebuilt by reversing their fix commits, and 22 merged pull requests of mature open
+  source projects that should raise nothing. Python, JavaScript and TypeScript, split into a
+  `dev` set for iterating and a frozen `test` set for reporting.
+- **Scoring**: a finding counts when it is on the right file, within 3 lines of the expected
+  range and in the right category; precision, recall and F1 by category, source and
+  language, CWE accuracy, false alarms on clean pull requests, verdicts, latency and tokens.
+- **Baseline**: semgrep with its default rule set, scored with the same rules.
+- **Reproducible and free to rerun**: model answers are recorded in a disk cache keyed by
+  the exact prompt, so reruns and reports cost nothing, and the CI replays them as a
+  regression gate on every change to prompts or pipeline.
+
+Results on the frozen test split (48 pull requests), local model `qwen2.5-coder:7b` on CPU:
+
+| | semgrep | GitMind, prompts v1 | GitMind, prompts v2 |
+|---|---|---|---|
+| Recall | 0.11 | 0.95 | 0.92 |
+| Precision | 0.44 | 0.15 | 0.18 |
+| F1 | 0.17 | 0.26 | **0.30** |
+| CWE accuracy on matched vulnerabilities | 0.75 | 0.33 | **0.64** |
+| Unsafe pull requests blocked | 0.09 | 0.82 | 0.82 |
+| Findings per clean pull request | 0.0 | 6.8 | 5.2 |
+| Review time p50 | | 93 s | 70 s |
+
+What the numbers showed, and what changed because of them:
+
+- The LLM pipeline finds what rules cannot: semgrep detects 1 of the 40 real vulnerabilities
+  of the CVE cases (dev and test), GitMind 36 with prompts v1 and 31 with v2. Its weakness
+  is noise.
+- The security agent is the precise one; the quality and performance agents produced most
+  of the false positives (linter-style remarks, N+1 queries outside loops). Prompts v2 narrow
+  them to concrete defects and map common CWEs, which doubled CWE accuracy and cut false
+  alarms by a quarter, confirmed on the test split after being tuned on `dev`.
+- Most findings carried the schema's default confidence, and even once required, the
+  confidence reported by the model did not separate real problems from false alarms at any
+  threshold. The verdict therefore no longer relies on it: only critical or high security
+  findings request changes, which raised the share of unsafe pull requests that get blocked
+  from 36% to 82%.
+- Remaining false positives are the next target: a verifier agent that checks each finding
+  against the code, and a comparison with larger models, will be measured on the same set.
 
 ---
 
@@ -215,7 +266,8 @@ All settings come from environment variables (`backend/.env`, see [`.env.example
 | `RATE_LIMIT_RPM_MAX`, `RATE_LIMIT_RPD_MAX`, `RATE_LIMIT_TPM_MAX` | Gemini quota limits |
 | `LLM_INPUT_TOKEN_BUDGET`, `LLM_MAX_CONCURRENCY`, `LLM_MAX_ATTEMPTS` | Batch size, parallel calls and retries |
 | `MAX_REVIEW_FILES`, `MAX_REVIEW_PATCH_CHARS`, `REVIEW_EXCLUDE_PATTERNS` | Review scope |
-| `VERDICT_MIN_CONFIDENCE` | Confidence needed for a critical or high finding to block a PR |
+| `VERDICT_BLOCKING_CATEGORIES` | Categories whose critical or high findings request changes (default `security`) |
+| `VERDICT_MIN_CONFIDENCE` | Self-reported confidence needed to block a PR (default `0`: it was not predictive in the evaluation) |
 | `GITHUB_APP_ID`, `GITHUB_PRIVATE_KEY_PATH` or `GITHUB_TOKEN` | GitHub access |
 | `GITHUB_WEBHOOK_SECRET` | Webhook signature secret (required for webhooks) |
 | `GITHUB_OAUTH_CLIENT_ID`, `GITHUB_OAUTH_CLIENT_SECRET` | Dashboard sign-in |
@@ -266,6 +318,7 @@ uv run ruff check . && uv run mypy
 ```
 
 - The test suite covers authentication and OAuth (with GitHub mocked), webhook signature and idempotency, diff parsing and line anchoring, chunking of large diffs, LLM retries and token accounting, the full LangGraph pipeline with fake LLMs (including parallel agent failures and quota exhaustion), duplicate merging, provider switching, GitHub publishing, the rate limiter and log masking.
+- A separate workflow replays the evaluation smoke subset and fails when F1 drops more than 3 points (see [Evaluation](#evaluation)).
 - CI runs lint, formatting, type checking and tests with an 80% coverage gate on the backend, lint, type checking and a production build on the frontend, plus secret scanning and dependency audits.
 - pre-commit hooks run the same checks locally; Dependabot keeps dependencies up to date.
 
@@ -289,12 +342,14 @@ gitmind/
 │   │   ├── graph/               # LangGraph pipeline
 │   │   │   ├── supervisor.py    # Review scope and file triage
 │   │   │   ├── agents/          # Shared agent machinery + security, quality, performance
+│   │   │   ├── prompts/         # Versioned prompt files
 │   │   │   ├── schemas.py       # Structured output schemas
 │   │   │   ├── taxonomy.py      # Known problem concepts for merging duplicates
 │   │   │   ├── synthesis.py     # Aggregation, verdict, summary
 │   │   │   └── graph.py         # Graph construction and review runs
 │   │   ├── db/                  # SQLite schema and queries
 │   │   └── mcp_server/          # MCP server with 8 tools
+│   ├── evals/                   # Evaluation runner, matching, metrics, reports
 │   ├── tests/                   # pytest suite
 │   ├── pyproject.toml
 │   └── uv.lock
@@ -303,6 +358,7 @@ gitmind/
 │       ├── app/                 # Pages: dashboard, review detail, sign-in
 │       ├── components/          # Auth, stream, diff viewer, metrics, findings
 │       └── lib/                 # Typed API client
+├── eval/                        # Evaluation dataset, recorded answers, results
 ├── docs/screenshots/            # Images used in this README
 ├── .github/                     # CI and Dependabot
 ├── GUIDE.md                     # Setup and testing guide

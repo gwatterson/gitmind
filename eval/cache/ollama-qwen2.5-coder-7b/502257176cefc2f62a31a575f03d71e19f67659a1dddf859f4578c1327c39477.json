@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:54:07+00:00",
+ "elapsed_seconds": 44.265,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/routes/reports.py\",\n            \"line\": 23,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_check_for_empty_path\",\n            \"message\": \"The `name` parameter can be an empty string, which would lead to a path like '/archive/', causing an error.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"path = os.path.join(REPORTS_DIR, \\\"archive\\\", name)\",\n            \"cwe\": \"CWE-23: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n        },\n        {\n            \"file\": \"app/routes/reports.py\",\n            \"line\": 24,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_check_for_nonexistent_file\",\n            \"message\": \"The code does not check if the file exists before attempting to send it, which could lead to a 404 error.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"if not os.path.isfile(path):\",\n            \"cwe\": \"CWE-362: Missing Function Level Access Control\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:54:07.8256948Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 44023675400,
+     "load_duration": 113013300,
+     "prompt_eval_count": 870,
+     "prompt_eval_duration": 1785698600,
+     "eval_count": 258,
+     "eval_duration": 22693599700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb14-cadf-7783-abfd-b08d30570fc8-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 870,
+     "output_tokens": 258,
+     "total_tokens": 1128
+    }
+   }
+  }
+ ]
+}

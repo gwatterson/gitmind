@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T04:13:32+00:00",
+ "elapsed_seconds": 80.734,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/orders/cancel.ts\",\n      \"line\": 7,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-89\",\n      \"message\": \"Potential SQL injection vulnerability in the database update query.\",\n      \"confidence\": 0.6,\n      \"evidence\": \"where: { id: orderId }\"\n    },\n    {\n      \"file\": \"src/orders/cancel.ts\",\n      \"line\": 7,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-89\",\n      \"message\": \"Potential SQL injection vulnerability in the database update query.\",\n      \"confidence\": 0.6,\n      \"evidence\": \"data: { status: \\\"cancelled\\\" }\"\n    },\n    {\n      \"file\": \"src/orders/cancel.ts\",\n      \"line\": 7,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-89\",\n      \"message\": \"Potential SQL injection vulnerability in the database update query.\",\n      \"confidence\": 0.6,\n      \"evidence\": \"where: { id: orderId }\"\n    },\n    {\n      \"file\": \"src/orders/cancel.ts\",\n      \"line\": 7,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-89\",\n      \"message\": \"Potential SQL injection vulnerability in the database update query.\",\n      \"confidence\": 0.6,\n      \"evidence\": \"data: { status: \\\"cancelled\\\" }\"\n    },\n    {\n      \"file\": \"src/orders/cancel.ts\",\n      \"line\": 7,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-89\",\n      \"message\": \"Potential SQL injection vulnerability in the database update query.\",\n      \"confidence\": 0.6,\n      \"evidence\": \"where: { id: orderId }\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T04:13:32.54005Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 80458606400,
+     "load_duration": 60091100,
+     "prompt_eval_count": 909,
+     "prompt_eval_duration": 1754799500,
+     "eval_count": 410,
+     "eval_duration": 37750281700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb5c-f099-7981-a3a4-ed9eeb8771fd-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 909,
+     "output_tokens": 410,
+     "total_tokens": 1319
+    }
+   }
+  }
+ ]
+}

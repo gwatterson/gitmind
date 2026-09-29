@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T23:07:31+00:00",
+ "elapsed_seconds": 61.531,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"lightrag/api/utils_api.py\",\n            \"line\": 217,\n            \"severity\": \"low\",\n            \"rule_id\": \"Simplification\",\n            \"message\": \"The code has been simplified, but the logic for handling token validation remains complex.\",\n            \"evidence\": \"+                 # Token validation failed, immediately return 401 error\\n+                 raise HTTPException(\\n+                     status_code=status.HTTP_401_UNAUTHORIZED,\\n+                     detail=\\\"Invalid token. Please login again.\\\",\\n+                 )\",\n            \"confidence\": 95,\n            \"cwe\": null\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T23:07:31.6132363Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 61265195800,
+     "load_duration": 93472300,
+     "prompt_eval_count": 1071,
+     "prompt_eval_duration": 3194753900,
+     "eval_count": 149,
+     "eval_duration": 15190099700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea45-1144-7ee1-ae0f-d869d448af05-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1071,
+     "output_tokens": 149,
+     "total_tokens": 1220
+    }
+   }
+  }
+ ]
+}

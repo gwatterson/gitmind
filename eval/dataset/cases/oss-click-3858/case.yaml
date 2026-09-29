@@ -1,0 +1,12 @@
+id: oss-click-3858
+split: dev
+source: oss
+language: python
+title: Make `click.Path` generic on `path_type`
+description: Merged pull request reviewed by the maintainers.
+origin:
+  repo: pallets/click
+  url: https://github.com/pallets/click/pull/3858
+  license: BSD-3-Clause
+  commit: 22177f857a34e3c35ba957553853a37f23feb37e
+must_not_flag: []

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T04:04:55+00:00",
+ "elapsed_seconds": 24.219,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/routes/landing.py\",\n            \"line\": 13,\n            \"severity\": \"low\",\n            \"rule_id\": \"S506\",\n            \"message\": \"The use of `render_template_string` can lead to XSS if the input is not properly sanitized.\",\n            \"confidence\": 0.9\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T04:04:55.7985476Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 23943999500,
+     "load_duration": 62452600,
+     "prompt_eval_count": 794,
+     "prompt_eval_duration": 1745610100,
+     "eval_count": 86,
+     "eval_duration": 7659551600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb55-eae7-7b00-a2b0-125810071040-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 794,
+     "output_tokens": 86,
+     "total_tokens": 880
+    }
+   }
+  }
+ ]
+}

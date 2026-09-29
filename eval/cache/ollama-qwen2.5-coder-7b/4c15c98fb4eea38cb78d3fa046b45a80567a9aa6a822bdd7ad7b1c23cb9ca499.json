@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:18:46+00:00",
+ "elapsed_seconds": 42.953,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"git/objects/submodule/base.py\",\n            \"line\": 365,\n            \"severity\": \"low\",\n            \"rule_id\": \"unused-import\",\n            \"message\": \"Unused import 'shlex'\",\n            \"confidence\": 0.9\n        },\n        {\n            \"file\": \"git/repo/base.py\",\n            \"line\": 161,\n            \"severity\": \"low\",\n            \"rule_id\": \"unused-import\",\n            \"message\": \"Unused import '--separate-git-dir'\",\n            \"confidence\": 0.9\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:18:46.690763Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 42675242000,
+     "load_duration": 87943400,
+     "prompt_eval_count": 1029,
+     "prompt_eval_duration": 1766636900,
+     "eval_count": 135,
+     "eval_duration": 12065824500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb2b-60e7-7f63-bdfd-23d8e90fa212-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1029,
+     "output_tokens": 135,
+     "total_tokens": 1164
+    }
+   }
+  }
+ ]
+}

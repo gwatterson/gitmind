@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T22:09:20+00:00",
+ "elapsed_seconds": 30.062,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"src/click/core.py\",\n            \"line\": 1324,\n            \"severity\": \"low\",\n            \"rule_id\": \"S001\",\n            \"message\": \"Unnecessary list comprehension inside loop.\",\n            \"evidence\": \"[arg.get_help_record(ctx) for arg in args]\",\n            \"confidence\": 95\n        },\n        {\n            \"file\": \"src/click/core.py\",\n            \"line\": 3814,\n            \"severity\": \"low\",\n            \"rule_id\": \"S002\",\n            \"message\": \"Unnecessary use of `or` to provide a default value.\",\n            \"evidence\": \"self.help or \\\"\\\"\",\n            \"confidence\": 95\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T22:09:20.9456447Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 30045587100,
+     "load_duration": 55415200,
+     "prompt_eval_count": 1160,
+     "prompt_eval_duration": 7846251200,
+     "eval_count": 171,
+     "eval_duration": 17997816800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea10-48d2-7f12-b738-b359269cc483-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1160,
+     "output_tokens": 171,
+     "total_tokens": 1331
+    }
+   }
+  }
+ ]
+}

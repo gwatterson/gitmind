@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T00:02:47+00:00",
+ "elapsed_seconds": 62.375,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"rich/syntax.py\",\n            \"line\": 320,\n            \"severity\": \"medium\",\n            \"rule_id\": \"N+1 queries\",\n            \"message\": \"The `guess_lexer` method makes multiple database or API calls inside a loop.\",\n            \"evidence\": \"+         if code:\\n+             try:\\n+                 lexer = guess_lexer_for_filename(path, code)\\n+             except ClassNotFound:\\n+                 pass\\n+\\n+         if not lexer:\"\n        },\n        {\n            \"file\": \"rich/syntax.py\",\n            \"line\": 350,\n            \"severity\": \"medium\",\n            \"rule_id\": \"N+1 queries\",\n            \"message\": \"The `guess_lexer` method makes multiple database or API calls inside a loop.\",\n            \"evidence\": \"+             try:\\n+                 _, ext = os.path.splitext(path)\\n+                 if ext:\\n+                     extension = ext.lstrip(\\\".\\\").lower()\\n+                     lexer = get_lexer_by_name(extension)\"\n        },\n        {\n            \"file\": \"rich/syntax.py\",\n            \"line\": 402,\n            \"severity\": \"medium\",\n            \"rule_id\": \"N+1 queries\",\n            \"message\": \"The `highlight` method makes multiple database or API calls inside a loop.\",\n            \"evidence\": \"+         if line_end and line_no >= line_end:\"\n        },\n        {\n            \"file\": \"rich/syntax.py\",\n            \"line\": 590,\n            \"severity\": \"medium\",\n            \"rule_id\": \"N+1 queries\",\n            \"message\": \"The `highlight` method makes multiple database or API calls inside a loop.\",\n            \"evidence\": \"+         if start_line:\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T00:02:47.5906079Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 62367088500,
+     "load_duration": 110244300,
+     "prompt_eval_count": 2678,
+     "prompt_eval_duration": 7071074200,
+     "eval_count": 387,
+     "eval_duration": 45209283000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea77-a705-7451-8c76-d7614732b686-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 2678,
+     "output_tokens": 387,
+     "total_tokens": 3065
+    }
+   }
+  }
+ ]
+}

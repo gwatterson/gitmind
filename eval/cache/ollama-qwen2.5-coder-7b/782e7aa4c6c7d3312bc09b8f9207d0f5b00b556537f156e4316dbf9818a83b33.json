@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:29:27+00:00",
+ "elapsed_seconds": 44.266,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/auth/tokens.ts\",\n      \"line\": 7,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_type_hints\",\n      \"message\": \"Missing type hints for function parameters and return value.\",\n      \"evidence\": \"export function issueAccessToken(userId: string, role: string): string {\"\n    },\n    {\n      \"file\": \"src/auth/tokens.ts\",\n      \"line\": 10,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_type_hints\",\n      \"message\": \"Missing type hints for function parameters and return value.\",\n      \"evidence\": \"export function verifyAccessToken(token: string) {\"\n    },\n    {\n      \"file\": \"src/auth/tokens.ts\",\n      \"line\": 10,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"Missing error handling for token verification.\",\n      \"evidence\": \"export function verifyAccessToken(token: string) {\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:29:27.9050371Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 43995459900,
+     "load_duration": 107287100,
+     "prompt_eval_count": 587,
+     "prompt_eval_duration": 2632141000,
+     "eval_count": 227,
+     "eval_duration": 19724663400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eac7-4771-73d3-a8e9-2ecbbe762cd8-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 587,
+     "output_tokens": 227,
+     "total_tokens": 814
+    }
+   }
+  }
+ ]
+}

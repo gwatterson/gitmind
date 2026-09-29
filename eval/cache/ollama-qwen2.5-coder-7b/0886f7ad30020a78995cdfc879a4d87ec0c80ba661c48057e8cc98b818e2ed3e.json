@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:50:30+00:00",
+ "elapsed_seconds": 59.078,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/services/password_reset.py\",\n            \"line\": 12,\n            \"severity\": \"low\",\n            \"rule_id\": \"CWE-330\",\n            \"message\": \"Insecure randomness is used to generate the reset token.\",\n            \"confidence\": 0.9,\n            \"suggestion\": \"Consider using a more secure random number generator, such as `os.urandom`.\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:50:30.3535562Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 58826385900,
+     "load_duration": 123109600,
+     "prompt_eval_count": 968,
+     "prompt_eval_duration": 1813289600,
+     "eval_count": 104,
+     "eval_duration": 9403397100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb11-3f93-7e90-999b-974cb52eca23-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 968,
+     "output_tokens": 104,
+     "total_tokens": 1072
+    }
+   }
+  }
+ ]
+}

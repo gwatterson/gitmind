@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:08:09+00:00",
+ "elapsed_seconds": 40.563,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"prowler/lib/outputs/html/html.py\",\n      \"line\": 85,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-79\",\n      \"message\": \"Potential XSS vulnerability due to direct insertion of user-controlled data into HTML output.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"<td>{finding.resource_uid.replace(\\\"<\\\", \\\"&lt;\\\").replace(\\\">\\\", \\\"&gt;\\\").replace(\\\"_\\\", \\\"<wbr />_\\\")}</td>\",\n      \"cwe\": \"CWE-79\"\n    },\n    {\n      \"file\": \"prowler/lib/outputs/html/html.py\",\n      \"line\": 89,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-79\",\n      \"message\": \"Potential XSS vulnerability due to direct insertion of user-controlled data into HTML output.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"<td>{finding.status_extended.replace(\\\"<\\\", \\\"&lt;\\\").replace(\\\">\\\", \\\"&gt;\\\").replace(\\\"_\\\", \\\"<wbr />_\\\")}</td>\",\n      \"cwe\": \"CWE-79\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:08:09.3538632Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 40553562900,
+     "load_duration": 104384100,
+     "prompt_eval_count": 1975,
+     "prompt_eval_duration": 6690706100,
+     "eval_count": 273,
+     "eval_duration": 26978993200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eaea-c21e-7c83-bba8-b293eaf8b472-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1975,
+     "output_tokens": 273,
+     "total_tokens": 2248
+    }
+   }
+  }
+ ]
+}

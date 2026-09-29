@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:28:43+00:00",
+ "elapsed_seconds": 98.485,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/reports/formulas.ts\",\n      \"line\": 6,\n      \"severity\": \"high\",\n      \"rule_id\": \"eval-injection\",\n      \"message\": \"Using `new Function` to evaluate formulas can lead to code injection vulnerabilities.\",\n      \"evidence\": \"const compute = new Function(...names, `return (${formula});`);\"\n    },\n    {\n      \"file\": \"src/reports/formulas.ts\",\n      \"line\": 6,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing-error-handling\",\n      \"message\": \"Error handling is missing for the function call.\",\n      \"evidence\": \"const compute = new Function(...names, `return (${formula});`);\"\n    },\n    {\n      \"file\": \"src/reports/formulas.ts\",\n      \"line\": 6,\n      \"severity\": \"medium\",\n      \"rule_id\": \"unused-variables\",\n      \"message\": \"The variable `names` is assigned but never used.\",\n      \"evidence\": \"const names = Object.keys(row);\"\n    },\n    {\n      \"file\": \"src/routes/reports.ts\",\n      \"line\": 9,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing-type-hints\",\n      \"message\": \"Missing type hints for function parameters and return values.\",\n      \"evidence\": \"const rows = await loadRows(req.params.id);\"\n    },\n    {\n      \"file\": \"src/routes/reports.ts\",\n      \"line\": 9,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing-type-hints\",\n      \"message\": \"Missing type hints for function parameters and return values.\",\n      \"evidence\": \"const values = rows.map((row) => evaluateFormula(req.body.formula, row));\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:28:43.5284164Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 98220424200,
+     "load_duration": 108089500,
+     "prompt_eval_count": 702,
+     "prompt_eval_duration": 2663135000,
+     "eval_count": 392,
+     "eval_duration": 35845720200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eac5-c657-7233-aa48-ff4ecc2a0b65-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 702,
+     "output_tokens": 392,
+     "total_tokens": 1094
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:40:48+00:00",
+ "elapsed_seconds": 41.375,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/orders/cancel.ts\",\n      \"line\": 7,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_type_hints\",\n      \"message\": \"Missing type hints for function parameters and return value.\",\n      \"evidence\": \"export async function cancelOrder(orderId: string, userId: string) {\"\n    },\n    {\n      \"file\": \"src/orders/cancel.ts\",\n      \"line\": 10,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_docstrings\",\n      \"message\": \"Missing docstring for the public function.\",\n      \"evidence\": \"export async function cancelOrder(orderId: string, userId: string) {\"\n    },\n    {\n      \"file\": \"src/orders/cancel.ts\",\n      \"line\": 10,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"Missing error handling for database update and audit write.\",\n      \"evidence\": \"export async function cancelOrder(orderId: string, userId: string) {\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:40:48.1486534Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 41106506800,
+     "load_duration": 93039900,
+     "prompt_eval_count": 578,
+     "prompt_eval_duration": 2728920000,
+     "eval_count": 240,
+     "eval_duration": 21987186400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ead1-b3f9-7ef1-80d2-40f71b91080a-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 578,
+     "output_tokens": 240,
+     "total_tokens": 818
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:53:42+00:00",
+ "elapsed_seconds": 34.25,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/security/sessions.py\",\n            \"line\": 21,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S501\",\n            \"message\": \"The `expected` parameter in `check_api_key` is not validated for None or empty values.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"return hmac.compare_digest(provided.encode(), expected.encode())\"\n        },\n        {\n            \"file\": \"app/security/sessions.py\",\n            \"line\": 31,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S501\",\n            \"message\": \"The `document_id` parameter in `document_for` is not validated for None or empty values.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"document = Document.query.get_or_404(document_id)\"\n        },\n        {\n            \"file\": \"app/security/sessions.py\",\n            \"line\": 32,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S501\",\n            \"message\": \"The `user` parameter in `document_for` is not validated for None or empty values.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"if document.owner_id != user.id and not user.is_admin:\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:53:42.5470364Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 34242480100,
+     "load_duration": 68488600,
+     "prompt_eval_count": 1021,
+     "prompt_eval_duration": 1720841400,
+     "eval_count": 291,
+     "eval_duration": 26731975800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb4b-7dcf-73d3-8e57-6e1f438c69fe-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1021,
+     "output_tokens": 291,
+     "total_tokens": 1312
+    }
+   }
+  }
+ ]
+}

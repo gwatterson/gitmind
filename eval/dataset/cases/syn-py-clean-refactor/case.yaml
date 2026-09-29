@@ -1,0 +1,14 @@
+id: syn-py-clean-refactor
+split: test
+source: synthetic
+language: python
+title: Extract a pagination helper
+description: 'Clean refactor: bounded query with LIMIT/OFFSET, set for membership, join for strings.'
+expected_findings: []
+must_not_flag:
+- file: app/api/pagination.py
+  anchor: items = list(session.scalars(stmt.limit(size).offset((page - 1) * size)))
+  reason: bounded query
+- file: app/api/pagination.py
+  anchor: 'if key not in seen:'
+  reason: set membership

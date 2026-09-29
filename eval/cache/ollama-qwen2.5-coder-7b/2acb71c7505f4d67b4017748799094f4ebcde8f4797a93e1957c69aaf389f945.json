@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:59:24+00:00",
+ "elapsed_seconds": 21.766,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/attachments.ts\",\n      \"line\": 29,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1_queries\",\n      \"message\": \"The 'file' command is executed inside a loop over query results, which can lead to N+1 queries.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+   const { stdout } = await run(\\\"file\\\", [\\\"--brief\\\", \\\"--mime-type\\\", target]);\",\n      \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\\nCWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:59:24.9605029Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 21766102700,
+     "load_duration": 89211500,
+     "prompt_eval_count": 1136,
+     "prompt_eval_duration": 2384510200,
+     "eval_count": 173,
+     "eval_duration": 15755934100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb19-f999-7432-ab92-cdf8e8ada01c-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1136,
+     "output_tokens": 173,
+     "total_tokens": 1309
+    }
+   }
+  }
+ ]
+}

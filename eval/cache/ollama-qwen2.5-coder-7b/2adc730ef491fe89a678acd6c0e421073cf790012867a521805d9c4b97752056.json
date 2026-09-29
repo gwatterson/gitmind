@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T23:06:17+00:00",
+ "elapsed_seconds": 35.609,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"lemur/authorities/views.py\",\n            \"line\": 235,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"The return value of `validators.is_valid_owner` is not checked.\",\n            \"evidence\": \"if not validators.is_valid_owner(data[\\\"owner\\\"]):\"\n        },\n        {\n            \"file\": \"lemur/authorities/views.py\",\n            \"line\": 235,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_error_handling\",\n            \"message\": \"The return value of `validators.is_valid_owner` is not checked.\",\n            \"evidence\": \"if not validators.is_valid_owner(data[\\\"owner\\\"]):\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T23:06:17.0456792Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 35365255300,
+     "load_duration": 87992000,
+     "prompt_eval_count": 639,
+     "prompt_eval_duration": 2066145300,
+     "eval_count": 173,
+     "eval_duration": 14817236100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea44-533b-7ca0-b7ba-285f4699d431-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 639,
+     "output_tokens": 173,
+     "total_tokens": 812
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:50:58+00:00",
+ "elapsed_seconds": 28.25,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/reports/orders.py\",\n            \"line\": 17,\n            \"severity\": \"high\",\n            \"rule_id\": \"NPE\",\n            \"message\": \"The `customer` variable can be None if the order does not have a valid customer ID.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"customer = session.scalars(select(Customer).where(Customer.id == order.customer_id)).one()\",\n            \"cwe\": \"CWE-476: Null Pointer Dereference\"\n        },\n        {\n            \"file\": \"app/reports/orders.py\",\n            \"line\": 18,\n            \"severity\": \"high\",\n            \"rule_id\": \"NPE\",\n            \"message\": \"The `customer.name` attribute will raise an AttributeError if `customer` is None.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"report.append({\\\"id\\\": order.id, \\\"total\\\": order.total, \\\"customer\\\": customer.name})\",\n            \"cwe\": \"CWE-476: Null Pointer Dereference\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:50:58.6656613Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 28246139600,
+     "load_duration": 74246100,
+     "prompt_eval_count": 829,
+     "prompt_eval_duration": 1690005700,
+     "eval_count": 242,
+     "eval_duration": 21714176100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb12-2692-7f31-8f96-202325532d68-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 829,
+     "output_tokens": 242,
+     "total_tokens": 1071
+    }
+   }
+  }
+ ]
+}

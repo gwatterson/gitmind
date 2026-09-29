@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:01:55+00:00",
+ "elapsed_seconds": 14.344,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"lmdeploy/pytorch/engine/mp_engine/zmq_rpc.py\",\n      \"line\": 35,\n      \"severity\": \"critical\",\n      \"rule_id\": \"CWE-287\",\n      \"message\": \"The RPC server is now accessible from any network interface, which can lead to unauthorized access.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+        address = 'tcp://*'\",\n      \"cwe\": \"CWE-287 broken authentication\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:01:55.0274265Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 14347949900,
+     "load_duration": 108073000,
+     "prompt_eval_count": 908,
+     "prompt_eval_duration": 732857400,
+     "eval_count": 121,
+     "eval_duration": 10437325700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eae5-7246-7bf0-b2e6-3bd2c3bd65a7-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 908,
+     "output_tokens": 121,
+     "total_tokens": 1029
+    }
+   }
+  }
+ ]
+}

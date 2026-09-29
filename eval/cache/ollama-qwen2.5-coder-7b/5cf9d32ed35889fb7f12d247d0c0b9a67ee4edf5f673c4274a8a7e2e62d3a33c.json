@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T00:24:42+00:00",
+ "elapsed_seconds": 93.141,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"packages/zod/src/v4/core/json-schema-generator.ts\",\n      \"line\": 103,\n      \"severity\": \"medium\",\n      \"rule_id\": \"function_name_change\",\n      \"message\": \"Function name changed from 'process' to 'processSchema'. This may cause confusion and potential bugs if the old name is still used elsewhere.\",\n      \"evidence\": \"+    return processSchema(schema, this.ctx, _params);\"\n    },\n    {\n      \"file\": \"packages/zod/src/v4/core/json-schema-processors.ts\",\n      \"line\": 213,\n      \"severity\": \"medium\",\n      \"rule_id\": \"function_name_change\",\n      \"message\": \"Function name changed from 'process' to 'processSchema'. This may cause confusion and potential bugs if the old name is still used elsewhere.\",\n      \"evidence\": \"+export function processSchema<T extends schemas.$ZodType>(\"\n    },\n    {\n      \"file\": \"packages/zod/src/v4/core/to-json-schema.ts\",\n      \"line\": 293,\n      \"severity\": \"medium\",\n      \"rule_id\": \"function_name_change\",\n      \"message\": \"Function name changed from 'process' to 'processSchema'. This may cause confusion and potential bugs if the old name is still used elsewhere.\",\n      \"evidence\": \"+export { processSchema as process };\"\n    },\n    {\n      \"file\": \"packages/zod/src/v4/core/to-json-schema.ts\",\n      \"line\": 839,\n      \"severity\": \"medium\",\n      \"rule_id\": \"function_name_change\",\n      \"message\": \"Function name changed from 'process' to 'processSchema'. This may cause confusion and potential bugs if the old name is still used elsewhere.\",\n      \"evidence\": \"+     processSchema(schema, ctx);\"\n    },\n    {\n      \"file\": \"packages/zod/src/v4/core/to-json-schema.ts\",\n      \"line\": 854,\n      \"severity\": \"medium\",\n      \"rule_id\": \"function_name_change\",\n      \"message\": \"Function name changed from 'process' to 'processSchema'. This may cause confusion and potential bugs if the old name is still used elsewhere.\",\n      \"evidence\": \"+     processSchema(schema, ctx);\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T00:24:42.0854356Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 93129481500,
+     "load_duration": 131294600,
+     "prompt_eval_count": 4819,
+     "prompt_eval_duration": 15692948600,
+     "eval_count": 492,
+     "eval_duration": 65091713800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea8b-3d99-7060-a502-265de019a521-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 4819,
+     "output_tokens": 492,
+     "total_tokens": 5311
+    }
+   }
+  }
+ ]
+}

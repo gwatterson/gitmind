@@ -1,0 +1,13 @@
+id: syn-py-off-by-one-total
+split: dev
+source: synthetic
+language: python
+title: Compute cart totals with discounts
+description: The loop stops one item early, so the last cart line is never counted.
+expected_findings:
+- file: app/cart/totals.py
+  anchor: 'for i in range(len(lines) - 1):'
+  category: quality
+  severity_min: medium
+  description: 'Off-by-one: the last line is skipped'
+must_not_flag: []

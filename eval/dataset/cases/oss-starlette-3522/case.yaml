@@ -1,0 +1,12 @@
+id: oss-starlette-3522
+split: test
+source: oss
+language: python
+title: Inline OpenTelemetryResponder and document middleware parameters
+description: Merged pull request reviewed by the maintainers.
+origin:
+  repo: encode/starlette
+  url: https://github.com/Kludex/starlette/pull/3522
+  license: BSD-3-Clause
+  commit: afb90104a5f7cfbf2b272a25778179c20141efd1
+must_not_flag: []

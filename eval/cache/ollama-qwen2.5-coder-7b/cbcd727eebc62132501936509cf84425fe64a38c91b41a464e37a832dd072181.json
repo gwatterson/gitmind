@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T01:26:10+00:00",
+ "elapsed_seconds": 137.953,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/api/events.py\",\n            \"line\": 12,\n            \"severity\": \"high\",\n            \"rule_id\": \"N+1_queries\",\n            \"message\": \"The query fetches all events before paginating, which can be inefficient for large datasets.\",\n            \"evidence\": \"@router.get(\\\"\\\\\\\")\\n    def list_events(page: int = 1, size: int = 50, session: Session = Depends(get_session)):\\n        events = session.query(Event).order_by(Event.created_at.desc()).all()\\n        start = (page - 1) * size\\n        return {\\\"total\\\": len(events), \\\"items\\\": [e.to_dict() for e in events[start : start + size]]}\",\n            \"confidence\": 1,\n            \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') - indirectly\"\n        },\n        {\n            \"file\": \"app/api/events.py\",\n            \"line\": 12,\n            \"severity\": \"high\",\n            \"rule_id\": \"unbounded_queries\",\n            \"message\": \"The query does not limit the number of results, which can lead to loading entire tables into memory.\",\n            \"evidence\": \"@router.get(\\\"\\\\\\\")\\n    def list_events(page: int = 1, size: int = 50, session: Session = Depends(get_session)):\\n        events = session.query(Event).order_by(Event.created_at.desc()).all()\\n        start = (page - 1) * size\\n        return {\\\"total\\\": len(events), \\\"items\\\": [e.to_dict() for e in events[start : start + size]]}\",\n            \"confidence\": 1,\n            \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') - indirectly\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T01:26:10.1193475Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 137683417200,
+     "load_duration": 100878200,
+     "prompt_eval_count": 636,
+     "prompt_eval_duration": 2641947300,
+     "eval_count": 412,
+     "eval_duration": 38605738200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eac2-d4e0-76e2-86d6-4c97abe4563e-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 636,
+     "output_tokens": 412,
+     "total_tokens": 1048
+    }
+   }
+  }
+ ]
+}

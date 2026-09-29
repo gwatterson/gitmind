@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T00:04:31+00:00",
+ "elapsed_seconds": 54.422,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"starlette/middleware/opentelemetry.py\",\n      \"line\": 47,\n      \"severity\": \"medium\",\n      \"rule_id\": \"N+1 queries or reads\",\n      \"message\": \"The code constructs a new `URL` object for each request, which can be expensive if done frequently.\",\n      \"evidence\": \"url = URL(scope=scope)\"\n    },\n    {\n      \"file\": \"starlette/middleware/opentelemetry.py\",\n      \"line\": 62,\n      \"severity\": \"medium\",\n      \"rule_id\": \"N+1 queries or reads\",\n      \"message\": \"The code iterates over `scope.get('headers', [])` in each request, which can be expensive if done frequently.\",\n      \"evidence\": \"for name, value in scope.get('headers', []):\"\n    },\n    {\n      \"file\": \"starlette/middleware/opentelemetry.py\",\n      \"line\": 94,\n      \"severity\": \"medium\",\n      \"rule_id\": \"N+1 queries or reads\",\n      \"message\": \"The code constructs a new `Message` object for each response, which can be expensive if done frequently.\",\n      \"evidence\": \"async def send_with_telemetry(message: Message) -> None:\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T00:04:31.3855018Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 54413710700,
+     "load_duration": 109664200,
+     "prompt_eval_count": 2803,
+     "prompt_eval_duration": 14896165000,
+     "eval_count": 283,
+     "eval_duration": 32599304700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea79-5b89-7222-9942-8fd22dee69cd-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 2803,
+     "output_tokens": 283,
+     "total_tokens": 3086
+    }
+   }
+  }
+ ]
+}

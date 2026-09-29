@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:00:02+00:00",
+ "elapsed_seconds": 58.844,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/attachments.ts\",\n      \"line\": 29,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-78 OS command injection\",\n      \"message\": \"The `run` function is used to execute an external command with user input (`target`). This can lead to OS command injection if the input is not properly sanitized.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const { stdout } = await run(\\\"file\\\", [\\\"--brief\\\", \\\"--mime-type\\\", target]);\",\n      \"cwe\": \"CWE-78\"\n    },\n    {\n      \"file\": \"src/routes/attachments.ts\",\n      \"line\": 34,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-89 SQL injection\",\n      \"message\": \"The `pool.query` function is used with user input (`req.query.q`). This can lead to SQL injection if the input is not properly sanitized.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const { rows } = await pool.query(\\\"SELECT name, size FROM attachments WHERE owner_id = $1 AND name ILIKE $2 LIMIT 50\\\", [res.locals.user.sub, `%${String(req.query.q ?? \\\"\\\")}%`]);\",\n      \"cwe\": \"CWE-89\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:00:02.0375389Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 58580030900,
+     "load_duration": 113916800,
+     "prompt_eval_count": 1279,
+     "prompt_eval_duration": 2519213300,
+     "eval_count": 303,
+     "eval_duration": 27928701100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb19-f9a0-7150-b25d-1e95d0a8af2f-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1279,
+     "output_tokens": 303,
+     "total_tokens": 1582
+    }
+   }
+  }
+ ]
+}

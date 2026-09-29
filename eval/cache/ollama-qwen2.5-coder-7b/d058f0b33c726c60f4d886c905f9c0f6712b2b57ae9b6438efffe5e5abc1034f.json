@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:44:03+00:00",
+ "elapsed_seconds": 182.11,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"starlette/middleware/opentelemetry.py\",\n      \"line\": 42,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing-tracer-provider-check\",\n      \"message\": \"The tracer provider might be None, which could lead to a NoOpTracerProvider being used.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"tracer_provider = self._tracer_provider or trace.get_tracer_provider()\"\n    },\n    {\n      \"file\": \"starlette/middleware/opentelemetry.py\",\n      \"line\": 47,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing-url-check\",\n      \"message\": \"The URL might be None, which could lead to an error when calling `url.hostname`.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"if url.hostname is not None:\"\n    },\n    {\n      \"file\": \"starlette/middleware/opentelemetry.py\",\n      \"line\": 104,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing-exception-handling\",\n      \"message\": \"The exception handling block does not re-raise the exception, which could lead to it being swallowed.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"except Exception as exc:\"\n    },\n    {\n      \"file\": \"starlette/middleware/opentelemetry.py\",\n      \"line\": 123,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing-scope-deletion-check\",\n      \"message\": \"The scope deletion might fail if the key 'starlette.opentelemetry' does not exist.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"del scope['starlette.opentelemetry']\"\n    },\n    {\n      \"file\": \"starlette/middleware/opentelemetry.py\",\n      \"line\": 123,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing-scope-deletion-check\",\n      \"message\": \"The scope deletion might fail if the key 'starlette.opentelemetry' does not exist.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"del scope['starlette.opentelemetry']\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:44:03.0338012Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 181872895700,
+     "load_duration": 60691100,
+     "prompt_eval_count": 2989,
+     "prompt_eval_duration": 4997198400,
+     "eval_count": 482,
+     "eval_duration": 53334395300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb40-6479-7af2-b569-cf6c9c251979-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 2989,
+     "output_tokens": 482,
+     "total_tokens": 3471
+    }
+   }
+  }
+ ]
+}

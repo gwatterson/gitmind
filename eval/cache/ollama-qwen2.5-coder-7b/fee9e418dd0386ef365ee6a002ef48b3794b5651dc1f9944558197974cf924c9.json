@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:58:48+00:00",
+ "elapsed_seconds": 48.86,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/services/project_import.py\",\n            \"line\": 17,\n            \"severity\": \"high\",\n            \"rule_id\": \"N+1 queries\",\n            \"message\": \"The `yaml.load(uploaded, Loader=yaml.Loader)` call inside the loop over query results.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"settings.update(yaml.load(uploaded, Loader=yaml.Loader))\",\n            \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') due to the use of `yaml.load` with untrusted input.\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:58:48.9060244Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 48602843000,
+     "load_duration": 118305900,
+     "prompt_eval_count": 835,
+     "prompt_eval_duration": 1690725000,
+     "eval_count": 149,
+     "eval_duration": 13055013900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb19-02e6-7991-a630-eed285f8646b-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 835,
+     "output_tokens": 149,
+     "total_tokens": 984
+    }
+   }
+  }
+ ]
+}

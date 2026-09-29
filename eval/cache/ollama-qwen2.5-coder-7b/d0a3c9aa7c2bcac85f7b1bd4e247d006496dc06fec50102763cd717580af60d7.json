@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T04:09:31+00:00",
+ "elapsed_seconds": 23.437,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/auth/tokens.ts\",\n      \"line\": 7,\n      \"severity\": \"high\",\n      \"rule_id\": \"jwt-sign-without-expiration\",\n      \"message\": \"The JWT is signed without an expiration time, which can lead to security vulnerabilities.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"return jwt.sign({ sub: userId, role }, JWT_SECRET, { expiresIn: ACCESS_TOKEN_TTL });\"\n    },\n    {\n      \"file\": \"src/auth/tokens.ts\",\n      \"line\": 11,\n      \"severity\": \"high\",\n      \"rule_id\": \"jwt-verify-without-expiration\",\n      \"message\": \"The JWT is verified without checking for expiration, which can lead to security vulnerabilities.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"return jwt.verify(token, JWT_SECRET);\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T04:09:31.9671365Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 23440110500,
+     "load_duration": 61013500,
+     "prompt_eval_count": 777,
+     "prompt_eval_duration": 1681941500,
+     "eval_count": 200,
+     "eval_duration": 17883290200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb5a-24b2-7af0-b59d-1abde3401b39-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 777,
+     "output_tokens": 200,
+     "total_tokens": 977
+    }
+   }
+  }
+ ]
+}

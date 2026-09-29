@@ -1,0 +1,16 @@
+id: syn-ts-eval-formula
+split: test
+source: synthetic
+language: typescript
+title: Custom formulas for report columns
+description: User-provided formulas are executed with new Function (code injection).
+expected_findings:
+- file: src/reports/formulas.ts
+  anchor: const compute = new Function(...names, `return (${formula});`);
+  category: security
+  cwe:
+  - CWE-94
+  - CWE-95
+  severity_min: high
+  description: User formula executed as code
+must_not_flag: []

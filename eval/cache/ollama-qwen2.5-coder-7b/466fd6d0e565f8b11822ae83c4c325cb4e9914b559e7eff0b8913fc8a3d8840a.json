@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:29:18+00:00",
+ "elapsed_seconds": 33.922,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/auth/login.py\",\n            \"line\": 12,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing_user_check\",\n            \"message\": \"The function does not handle the case where `user` is None.\",\n            \"evidence\": \"if bcrypt.checkpw(password.encode(), user.password_hash):\",\n            \"confidence\": 1.0\n        },\n        {\n            \"file\": \"app/auth/login.py\",\n            \"line\": 12,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_type_hints\",\n            \"message\": \"The function does not have type hints for its parameters and return value.\",\n            \"evidence\": \"def authenticate(email: str, password: str) -> User | None:\",\n            \"confidence\": 1.0\n        },\n        {\n            \"file\": \"app/auth/login.py\",\n            \"line\": 12,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_docstring\",\n            \"message\": \"The function does not have a docstring describing its purpose and parameters.\",\n            \"evidence\": \"def authenticate(email: str, password: str) -> User | None:\",\n            \"confidence\": 1.0\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:29:18.1007344Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 33914721700,
+     "load_duration": 84111000,
+     "prompt_eval_count": 587,
+     "prompt_eval_duration": 2931653400,
+     "eval_count": 273,
+     "eval_duration": 24697795500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9eb-8f98-71a1-839c-986d70965c97-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 587,
+     "output_tokens": 273,
+     "total_tokens": 860
+    }
+   }
+  }
+ ]
+}

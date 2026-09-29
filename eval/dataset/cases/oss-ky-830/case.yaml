@@ -1,0 +1,12 @@
+id: oss-ky-830
+split: test
+source: oss
+language: typescript
+title: Add Standard Schema validation for `json()`
+description: Merged pull request reviewed by the maintainers.
+origin:
+  repo: sindresorhus/ky
+  url: https://github.com/sindresorhus/ky/pull/830
+  license: MIT
+  commit: 41ec0663cc4b83243bb54a2e13025630c0663693
+must_not_flag: []

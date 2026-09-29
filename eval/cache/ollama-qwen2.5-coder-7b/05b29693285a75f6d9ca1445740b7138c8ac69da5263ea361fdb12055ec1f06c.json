@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T23:30:33+00:00",
+ "elapsed_seconds": 102.406,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"src/click/core.py\",\n            \"line\": 2362,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_type_hint\",\n            \"message\": \"Missing type hint for 'help' parameter in `__init__` method.\",\n            \"evidence\": \"+         help: str | None = None,\",\n            \"confidence\": 1\n        },\n        {\n            \"file\": \"src/click/core.py\",\n            \"line\": 2398,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_type_hint\",\n            \"message\": \"Missing type hint for 'help' parameter in `__init__` method.\",\n            \"evidence\": \"+         help = inspect.cleandoc(help)\",\n            \"confidence\": 1\n        },\n        {\n            \"file\": \"src/click/core.py\",\n            \"line\": 2403,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_type_hint\",\n            \"message\": \"Missing type hint for 'help' parameter in `__init__` method.\",\n            \"evidence\": \"+         self.help = help\",\n            \"confidence\": 1\n        },\n        {\n            \"file\": \"src/click/core.py\",\n            \"line\": 3024,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_type_hint\",\n            \"message\": \"Missing type hint for 'help' parameter in `__init__` method.\",\n            \"evidence\": \"+             help=help,\",\n            \"confidence\": 1\n        },\n        {\n            \"file\": \"src/click/core.py\",\n            \"line\": 3064,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_type_hint\",\n            \"message\": \"Missing type hint for 'help' parameter in `__init__` method.\",\n            \"evidence\": \"+             help=self.help,\",\n            \"confidence\": 1\n        },\n        {\n            \"file\": \"src/click/core.py\",\n            \"line\": 3750,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_type_hint\",\n            \"message\": \"Missing type hint for 'help' parameter in `__init__` method.\",\n            \"evidence\": \"+         super().__init__(param_decls, required=required, help=help, **attrs)\",\n            \"confidence\": 1\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T23:30:33.5608145Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 102135141100,
+     "load_duration": 118027600,
+     "prompt_eval_count": 2043,
+     "prompt_eval_duration": 4999310800,
+     "eval_count": 525,
+     "eval_duration": 60744905800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea59-87d5-7092-aa62-c339fb692801-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 2043,
+     "output_tokens": 525,
+     "total_tokens": 2568
+    }
+   }
+  }
+ ]
+}

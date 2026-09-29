@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:12:01+00:00",
+ "elapsed_seconds": 150.25,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"packages/core/src/ci-environment/git.ts\",\n      \"line\": 67,\n      \"severity\": \"critical\",\n      \"rule_id\": \"CWE-88 OS command injection\",\n      \"message\": \"User input is directly used in an OS command, which can lead to command injection.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"`return execSync(`git merge-base ${input.head} ${input.base}`)`\",\n      \"cwe\": \"CWE-88\"\n    },\n    {\n      \"file\": \"packages/core/src/ci-environment/git.ts\",\n      \"line\": 89,\n      \"severity\": \"critical\",\n      \"rule_id\": \"CWE-88 OS command injection\",\n      \"message\": \"User input is directly used in an OS command, which can lead to command injection.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"`execSync(`git fetch --force --update-head-ok --depth ${input.depth} origin ${input.ref}:${input.target}`,`)\",\n      \"cwe\": \"CWE-88\"\n    },\n    {\n      \"file\": \"packages/core/src/ci-environment/git.ts\",\n      \"line\": 154,\n      \"severity\": \"critical\",\n      \"rule_id\": \"CWE-88 OS command injection\",\n      \"message\": \"User input is directly used in an OS command, which can lead to command injection.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"`const raw = execSync(`git log --format=\\\"%H\\\" ${maxCountArg} ${path}`.trim())`\",\n      \"cwe\": \"CWE-88\"\n    },\n    {\n      \"file\": \"packages/core/src/ci-environment/git.ts\",\n      \"line\": 162,\n      \"severity\": \"critical\",\n      \"rule_id\": \"CWE-88 OS command injection\",\n      \"message\": \"User input is directly used in an OS command, which can lead to command injection.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"`execSync(`git fetch --depth=${limit} origin ${input.sha}`,`)\",\n      \"cwe\": \"CWE-88\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:12:01.8838575Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 149978174800,
+     "load_duration": 118335300,
+     "prompt_eval_count": 1483,
+     "prompt_eval_duration": 2513765700,
+     "eval_count": 492,
+     "eval_duration": 47569784100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb23-9076-7050-8c3e-4c17cad47c9e-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1483,
+     "output_tokens": 492,
+     "total_tokens": 1975
+    }
+   }
+  }
+ ]
+}

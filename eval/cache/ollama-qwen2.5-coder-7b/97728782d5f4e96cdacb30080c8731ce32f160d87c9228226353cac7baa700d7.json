@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:53:23+00:00",
+ "elapsed_seconds": 45.125,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"app/cart/totals.py\",\n      \"line\": 9,\n      \"severity\": \"low\",\n      \"rule_id\": \"CWE-682\",\n      \"message\": \"The loop iterates over the list without checking if the index is within bounds.\",\n      \"confidence\": 0.9\n    },\n    {\n      \"file\": \"app/cart/totals.py\",\n      \"line\": 10,\n      \"severity\": \"low\",\n      \"rule_id\": \"CWE-682\",\n      \"message\": \"The loop iterates over the list without checking if the index is within bounds.\",\n      \"confidence\": 0.9\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:53:23.4607681Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 44868901400,
+     "load_duration": 109451700,
+     "prompt_eval_count": 909,
+     "prompt_eval_duration": 1744312100,
+     "eval_count": 162,
+     "eval_duration": 14417696500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb14-1a42-7510-8d11-eab564a2cce1-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 909,
+     "output_tokens": 162,
+     "total_tokens": 1071
+    }
+   }
+  }
+ ]
+}

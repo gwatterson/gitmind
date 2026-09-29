@@ -1,0 +1,18 @@
+id: syn-ts-prototype-pollution
+split: dev
+source: synthetic
+language: typescript
+title: Partial updates of workspace settings
+description: A recursive merge copies every key of the request body, including __proto__, into the settings
+  object (prototype pollution).
+expected_findings:
+- file: src/settings/merge.ts
+  anchor: for (const key in source) {
+  span: 6
+  category: security
+  cwe:
+  - CWE-1321
+  - CWE-915
+  severity_min: medium
+  description: Recursive merge of untrusted keys (prototype pollution)
+must_not_flag: []

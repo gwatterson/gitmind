@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:53:04+00:00",
+ "elapsed_seconds": 25.75,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"app/cart/totals.py\",\n      \"line\": 8,\n      \"severity\": \"medium\",\n      \"rule_id\": \"off-by-one\",\n      \"message\": \"The loop iterates up to `len(lines) - 1`, missing the last item.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"for i in range(len(lines) - 1):\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:53:04.0715979Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 25479731200,
+     "load_duration": 101281100,
+     "prompt_eval_count": 768,
+     "prompt_eval_duration": 1611921200,
+     "eval_count": 102,
+     "eval_duration": 8878674700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb14-1a32-7ae0-8621-121cfb884d40-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 768,
+     "output_tokens": 102,
+     "total_tokens": 870
+    }
+   }
+  }
+ ]
+}

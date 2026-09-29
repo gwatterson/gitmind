@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T21:51:24+00:00",
+ "elapsed_seconds": 45.703,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/settings.ts\",\n      \"line\": 7,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"Error handling for `loadSettings` and `saveSettings` is missing.\",\n      \"evidence\": \"settingsRouter.patch(\\\"/workspaces/:id/settings\\\", async (req, res) => { ... })\",\n      \"confidence\": 1,\n      \"cwe\": null\n    },\n    {\n      \"file\": \"src/routes/settings.ts\",\n      \"line\": 7,\n      \"severity\": \"medium\",\n      \"rule_id\": \"unused_variable\",\n      \"message\": \"The `updated` variable is assigned but never used.\",\n      \"evidence\": \"const updated = deepMerge(settings, req.body); ... res.json(updated);\",\n      \"confidence\": 1,\n      \"cwe\": null\n    },\n    {\n      \"file\": \"src/routes/settings.ts\",\n      \"line\": 7,\n      \"severity\": \"low\",\n      \"rule_id\": \"missing_type_hints\",\n      \"message\": \"Type hints are missing for function parameters and return type.\",\n      \"evidence\": \"settingsRouter.patch(\\\"/workspaces/:id/settings\\\", async (req, res) => { ... })\",\n      \"confidence\": 1,\n      \"cwe\": null\n    },\n    {\n      \"file\": \"src/routes/settings.ts\",\n      \"line\": 7,\n      \"severity\": \"low\",\n      \"rule_id\": \"missing_docstring\",\n      \"message\": \"A docstring is missing for the route handler function.\",\n      \"evidence\": \"settingsRouter.patch(\\\"/workspaces/:id/settings\\\", async (req, res) => { ... })\",\n      \"confidence\": 1,\n      \"cwe\": null\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T21:51:24.0573209Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 45685535700,
+     "load_duration": 91183900,
+     "prompt_eval_count": 804,
+     "prompt_eval_duration": 935091100,
+     "eval_count": 393,
+     "eval_duration": 35869588700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0e9ff-9d22-7a10-a471-b13f2d6ac409-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 804,
+     "output_tokens": 393,
+     "total_tokens": 1197
+    }
+   }
+  }
+ ]
+}

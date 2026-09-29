@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:54:21+00:00",
+ "elapsed_seconds": 58.188,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/routes/reports.py\",\n            \"line\": 23,\n            \"severity\": \"medium\",\n            \"rule_id\": \"CWE-22\",\n            \"message\": \"Potential path traversal vulnerability.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"path = os.path.join(REPORTS_DIR, \\\"archive\\\", name)\",\n            \"cwe\": \"CWE-22 Path Traversal\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:54:21.7354716Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 57934040900,
+     "load_duration": 114105600,
+     "prompt_eval_count": 1011,
+     "prompt_eval_duration": 1781952700,
+     "eval_count": 110,
+     "eval_duration": 9875065300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb14-cacf-73d3-a4d3-2c30941ecf34-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1011,
+     "output_tokens": 110,
+     "total_tokens": 1121
+    }
+   }
+  }
+ ]
+}

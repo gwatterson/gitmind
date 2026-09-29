@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:26:35+00:00",
+ "elapsed_seconds": 61.61,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"src/transformers/processing_utils.py\",\n            \"line\": 1146,\n            \"severity\": \"high\",\n            \"rule_id\": \"CWE-22\",\n            \"message\": \"Path traversal vulnerability exists due to untrusted input.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"-                     if Path(template_filepath).resolve().parent != Path(chat_template_dir).resolve():\\n-                         raise ValueError(f\\\"Invalid chat template name: {template_name!r}\\\")\",\n            \"cwe\": \"CWE-22\"\n        },\n        {\n            \"file\": \"src/transformers/tokenization_utils_base.py\",\n            \"line\": 3314,\n            \"severity\": \"high\",\n            \"rule_id\": \"CWE-22\",\n            \"message\": \"Path traversal vulnerability exists due to untrusted input.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"-                     if Path(template_filepath).resolve().parent != Path(chat_template_dir).resolve():\\n-                         raise ValueError(f\\\"Invalid chat template name: {template_name!r}\\\")\",\n            \"cwe\": \"CWE-22\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:26:35.9841736Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 61360443600,
+     "load_duration": 103583300,
+     "prompt_eval_count": 995,
+     "prompt_eval_duration": 1744112900,
+     "eval_count": 266,
+     "eval_duration": 24303444500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb32-411c-7312-85e7-d292f1836e30-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 995,
+     "output_tokens": 266,
+     "total_tokens": 1261
+    }
+   }
+  }
+ ]
+}

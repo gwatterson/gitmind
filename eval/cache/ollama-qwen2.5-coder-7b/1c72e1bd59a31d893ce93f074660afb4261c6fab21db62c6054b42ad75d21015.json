@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:14:13+00:00",
+ "elapsed_seconds": 17.844,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"lib/adapters/http.js\",\n      \"line\": 147,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-680\",\n      \"message\": \"The code normalizes the proxy protocol but does not validate or sanitize user input. This could lead to unexpected behavior if an attacker provides invalid input.\",\n      \"confidence\": 0.9,\n      \"suggestion\": \"Consider adding validation and sanitization for the `proxy.protocol` input.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:14:13.5083533Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 17830752400,
+     "load_duration": 85243600,
+     "prompt_eval_count": 1709,
+     "prompt_eval_duration": 2822015700,
+     "eval_count": 120,
+     "eval_duration": 12035789500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eaf0-a95c-7df2-97c8-926eabdd890c-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1709,
+     "output_tokens": 120,
+     "total_tokens": 1829
+    }
+   }
+  }
+ ]
+}

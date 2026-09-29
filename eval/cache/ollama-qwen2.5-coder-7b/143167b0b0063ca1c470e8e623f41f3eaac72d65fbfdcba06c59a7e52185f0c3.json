@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:56:36+00:00",
+ "elapsed_seconds": 24.469,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/payments/refunds.py\",\n            \"line\": 10,\n            \"severity\": \"critical\",\n            \"rule_id\": \"CWE-78 OS command injection\",\n            \"message\": \"The code attempts to call an external service without proper validation or sanitization of the input.\",\n            \"confidence\": 0.9\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:56:36.1758515Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 24206456300,
+     "load_duration": 102830800,
+     "prompt_eval_count": 916,
+     "prompt_eval_duration": 1825462600,
+     "eval_count": 91,
+     "eval_duration": 7943049000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb17-5bbf-7681-b538-706f7ea578dd-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 916,
+     "output_tokens": 91,
+     "total_tokens": 1007
+    }
+   }
+  }
+ ]
+}

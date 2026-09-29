@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T22:22:55+00:00",
+ "elapsed_seconds": 146.906,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"starlette/responses.py\",\n            \"line\": 395,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S102\",\n            \"message\": \"The variable `send_file` is assigned but never used.\",\n            \"evidence\": \"send_file = partial(self._handle_simple, send, send_header_only, send_pathsend)\"\n        },\n        {\n            \"file\": \"starlette/responses.py\",\n            \"line\": 396,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S102\",\n            \"message\": \"The variable `send_file` is assigned but never used.\",\n            \"evidence\": \"send_file = partial(self._handle_single_range, send, start, end, stat_result.st_size, send_header_only)\"\n        },\n        {\n            \"file\": \"starlette/responses.py\",\n            \"line\": 397,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S102\",\n            \"message\": \"The variable `send_file` is assigned but never used.\",\n            \"evidence\": \"send_file = partial(self._handle_multiple_ranges, send, ranges, stat_result.st_size, send_header_only)\"\n        },\n        {\n            \"file\": \"starlette/responses.py\",\n            \"line\": 412,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S102\",\n            \"message\": \"The variable `send_file` is assigned but never used.\",\n            \"evidence\": \"async with self._open_file() as file:\"\n        },\n        {\n            \"file\": \"starlette/responses.py\",\n            \"line\": 437,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S102\",\n            \"message\": \"The variable `send_file` is assigned but never used.\",\n            \"evidence\": \"async with self._open_file() as file:\"\n        },\n        {\n            \"file\": \"starlette/responses.py\",\n            \"line\": 476,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S102\",\n            \"message\": \"The variable `send_file` is assigned but never used.\",\n            \"evidence\": \"async with self._open_file() as file:\"\n        },\n        {\n            \"file\": \"starlette/responses.py\",\n            \"line\": 495,\n            \"severity\": \"info\",\n            \"rule_id\": \"R1702\",\n            \"message\": \"The function `_open_file` is a wrapper that could be simplified.\",\n            \"evidence\": \"@asynccontextmanager\\n    async def _open_file(self) -> AsyncIterator[anyio.AsyncFile[bytes]]:\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T22:22:55.6729029Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 146630577700,
+     "load_duration": 111552500,
+     "prompt_eval_count": 1886,
+     "prompt_eval_duration": 4800482500,
+     "eval_count": 590,
+     "eval_duration": 66287522400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea1a-eedd-7f51-8cff-0a39ffe594c5-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1886,
+     "output_tokens": 590,
+     "total_tokens": 2476
+    }
+   }
+  }
+ ]
+}

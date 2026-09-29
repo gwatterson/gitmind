@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-28T23:56:42+00:00",
+ "elapsed_seconds": 168.719,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"src/ahttpx/_content.py\",\n            \"line\": 182,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_type_hints\",\n            \"message\": \"Missing type hints for parameters and return values in the `encode` method.\",\n            \"evidence\": \"+         fin = open(self._path, 'rb')\\n+         return FileStream(self._path, fin)\",\n            \"confidence\": 1,\n            \"cwe\": null\n        },\n        {\n            \"file\": \"src/ahttpx/_content.py\",\n            \"line\": 182,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_type_hints\",\n            \"message\": \"Missing type hints for parameters and return values in the `encode` method.\",\n            \"evidence\": \"+         fin = open(self._path, 'rb')\\n+         return FileStream(self._path, fin)\",\n            \"confidence\": 1,\n            \"cwe\": null\n        },\n        {\n            \"file\": \"src/ahttpx/_streams.py\",\n            \"line\": 79,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_type_hints\",\n            \"message\": \"Missing type hints for parameters and return values in the `__init__` method.\",\n            \"evidence\": \"+     def __init__(self, path: str, fin: typing.Any) -> None:\",\n            \"confidence\": 1,\n            \"cwe\": null\n        },\n        {\n            \"file\": \"src/ahttpx/_streams.py\",\n            \"line\": 84,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_type_hints\",\n            \"message\": \"Missing type hints for parameters and return values in the `read` method.\",\n            \"evidence\": \"+     def read(self, size: int=-1) -> bytes:\",\n            \"confidence\": 1,\n            \"cwe\": null\n        },\n        {\n            \"file\": \"src/ahttpx/_streams.py\",\n            \"line\": 86,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_type_hints\",\n            \"message\": \"Missing type hints for parameters and return values in the `close` method.\",\n            \"evidence\": \"+     def close(self) -> None:\",\n            \"confidence\": 1,\n            \"cwe\": null\n        },\n        {\n            \"file\": \"src/ahttpx/_streams.py\",\n            \"line\": 90,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_type_hints\",\n            \"message\": \"Missing type hints for parameters and return values in the `size` property.\",\n            \"evidence\": \"+     @property\\n+     def size(self) -> int | None:\",\n            \"confidence\": 1,\n            \"cwe\": null\n        },\n        {\n            \"file\": \"src/ahttpx/_streams.py\",\n            \"line\": 143,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_type_hints\",\n            \"message\": \"Missing type hints for parameters and return values in the `__init__` method.\",\n            \"evidence\": \"+     def __init__(self, path: str, fin: typing.Any) -> None:\",\n            \"confidence\": 1,\n            \"cwe\": null\n        },\n        {\n            \"file\": \"src/ahttpx/_streams.py\",\n            \"line\": 148,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_type_hints\",\n            \"message\": \"Missing type hints for parameters and return values in the `read` method.\",\n            \"evidence\": \"+     def read(self, size: int=-1) -> bytes:\",\n            \"confidence\": 1,\n            \"cwe\": null\n        },\n        {\n            \"file\": \"src/ahttpx/_streams.py\",\n            \"line\": 150,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_type_hints\",\n            \"message\": \"Missing type hints for parameters and return values in the `close` method.\",\n            \"evidence\": \"+     def close(self) -> None:\",\n            \"confidence\": 1,\n            \"cwe\": null\n        },\n        {\n            \"file\": \"src/ahttpx/_streams.py\",\n            \"line\": 154,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_type_hints\",\n            \"message\": \"Missing type hints for parameters and return values in the `size` property.\",\n            \"evidence\": \"+     @property\\n+     def size(self) -> int | None:\",\n            \"confidence\": 1,\n            \"cwe\": null\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-28T23:56:42.062476Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 168453086100,
+     "load_duration": 110470800,
+     "prompt_eval_count": 3157,
+     "prompt_eval_duration": 8400828700,
+     "eval_count": 1009,
+     "eval_duration": 131199204200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ea70-73be-7002-9684-cca7419ee5a3-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 3157,
+     "output_tokens": 1009,
+     "total_tokens": 4166
+    }
+   }
+  }
+ ]
+}

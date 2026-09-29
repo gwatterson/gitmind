@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T03:52:06+00:00",
+ "elapsed_seconds": 13.219,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/invoices.js\",\n      \"line\": 12,\n      \"severity\": \"medium\",\n      \"rule_id\": \"N+1_queries\",\n      \"message\": \"The file read operation is performed inside a request handler, which can lead to blocking I/O.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const template = fs.readFileSync(TEMPLATE, \\\"utf8\\\");\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T03:52:06.6058241Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 13215733900,
+     "load_duration": 58158300,
+     "prompt_eval_count": 856,
+     "prompt_eval_duration": 1771429600,
+     "eval_count": 105,
+     "eval_duration": 9416783800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb4a-592c-7b93-ba9a-137d62b0afba-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 856,
+     "output_tokens": 105,
+     "total_tokens": 961
+    }
+   }
+  }
+ ]
+}

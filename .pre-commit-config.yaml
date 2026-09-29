@@ -1,5 +1,9 @@
 # Git hooks run before every commit.
 # Install once from the repository root: uv run --project backend pre-commit install
+# Evaluation cases are third-party or deliberately flawed code, and cached model
+# answers are keyed by the exact prompt text: both are kept byte for byte.
+exclude: ^eval/(dataset/cases|cache)/
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0

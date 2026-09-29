@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-09-29T02:57:48+00:00",
+ "elapsed_seconds": 44.703,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/services/accounts.py\",\n            \"line\": 7,\n            \"severity\": \"high\",\n            \"rule_id\": \"MD5_PASSWORD_HASH\",\n            \"message\": \"Using MD5 for password hashing is insecure. It's vulnerable to collision attacks.\",\n            \"confidence\": 1.0,\n            \"evidence\": \"return hashlib.md5(password.encode()).hexdigest()\"\n        },\n        {\n            \"file\": \"app/services/accounts.py\",\n            \"line\": 12,\n            \"severity\": \"medium\",\n            \"rule_id\": \"PASSWORD_HASH_STORAGE\",\n            \"message\": \"Storing password hashes without salting is less secure. Consider using a stronger hashing algorithm with a salt.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"account = Account(email=email.lower(), password_hash=hash_password(password))\"\n        },\n        {\n            \"file\": \"app/services/accounts.py\",\n            \"line\": 14,\n            \"severity\": \"low\",\n            \"rule_id\": \"DB_COMMIT_CHECK\",\n            \"message\": \"The commit operation does not check for exceptions. Consider adding error handling to ensure the database transaction is successful.\",\n            \"confidence\": 0.6,\n            \"evidence\": \"db.session.commit()\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-09-29T02:57:48.1975001Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 44441518600,
+     "load_duration": 118120000,
+     "prompt_eval_count": 874,
+     "prompt_eval_duration": 1703677400,
+     "eval_count": 273,
+     "eval_duration": 24025203400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0eb18-2604-7b92-9c14-7cfc5073c9fb-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 874,
+     "output_tokens": 273,
+     "total_tokens": 1147
+    }
+   }
+  }
+ ]
+}
