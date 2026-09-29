@@ -1,0 +1,37 @@
+{
+ "provider": "gemini",
+ "model": "gemini-2.5-flash",
+ "created_at": "2026-09-29T16:48:46+00:00",
+ "elapsed_seconds": 10.094,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"verdicts\": [\n    {\n      \"id\": 0,\n      \"real\": false,\n      \"confidence\": 0.1,\n      \"reason\": \"The `customer_id` is passed as a parameter to the SQL query, which correctly prevents SQL injection.\"\n    },\n    ",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "finish_reason": "MAX_TOKENS",
+     "model_name": "gemini-2.5-flash",
+     "safety_ratings": [],
+     "model_provider": "google_genai"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a0ee11-73cf-72f0-abf8-2265969679d2-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1738,
+     "output_tokens": 2029,
+     "total_tokens": 3767,
+     "input_token_details": {
+      "cache_read": 0
+     },
+     "output_token_details": {
+      "reasoning": 1962
+     }
+    }
+   }
+  }
+ ]
+}

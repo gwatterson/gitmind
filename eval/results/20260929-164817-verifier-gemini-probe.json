@@ -1,0 +1,848 @@
+{
+ "run": {
+  "id": "20260929-164817-verifier-gemini-probe",
+  "label": "verifier-gemini-probe",
+  "created_at": "2026-09-29T16:48:17+00:00",
+  "pipeline": "gitmind",
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b",
+  "prompt_versions": "security@2,quality@2,performance@2,agent_rules@2,verifier@1,supervisor@1,synthesis@1",
+  "prompts": {
+   "security": {
+    "version": "2",
+    "sha": "be2997b4"
+   },
+   "quality": {
+    "version": "2",
+    "sha": "c9f56529"
+   },
+   "performance": {
+    "version": "2",
+    "sha": "57967ddc"
+   },
+   "agent_rules": {
+    "version": "2",
+    "sha": "f641d4e8"
+   },
+   "verifier": {
+    "version": "1",
+    "sha": "eb832dad"
+   },
+   "supervisor": {
+    "version": "1",
+    "sha": "818fd4e7"
+   },
+   "synthesis": {
+    "version": "1",
+    "sha": "36a14149"
+   }
+  },
+  "prompts_dir": null,
+  "split": "all",
+  "filters": {
+   "case": [
+    "cve-asyncssh-scp-traversal",
+    "cve-danger-path-injection",
+    "oss-hono-5376",
+    "syn-py-clean-safe-patterns"
+   ]
+  },
+  "cases": 4,
+  "dataset_fingerprint": "5f5ac554a08b",
+  "code_revision": "e1565f7+dirty",
+  "cache_mode": "use",
+  "line_tolerance": 3,
+  "verifier": {
+   "enabled": true,
+   "min_confidence": 0.5,
+   "provider": "gemini"
+  }
+ },
+ "metrics": {
+  "all": {
+   "min_severity": "info",
+   "cases": 4,
+   "cases_failed": 0,
+   "cases_with_agent_errors": 0,
+   "overall": {
+    "tp": 2,
+    "fp": 6,
+    "expected": 2,
+    "found": 2,
+    "precision": 0.25,
+    "recall": 1.0,
+    "f1": 0.4
+   },
+   "by_category": {
+    "performance": {
+     "tp": 0,
+     "fp": 1,
+     "expected": 0,
+     "found": 0,
+     "precision": 0.0,
+     "recall": null,
+     "f1": null
+    },
+    "quality": {
+     "tp": 0,
+     "fp": 3,
+     "expected": 0,
+     "found": 0,
+     "precision": 0.0,
+     "recall": null,
+     "f1": null
+    },
+    "security": {
+     "tp": 2,
+     "fp": 2,
+     "expected": 2,
+     "found": 2,
+     "precision": 0.5,
+     "recall": 1.0,
+     "f1": 0.667
+    }
+   },
+   "by_language": {
+    "python": {
+     "tp": 1,
+     "fp": 6,
+     "expected": 1,
+     "found": 1,
+     "precision": 0.143,
+     "recall": 1.0,
+     "f1": 0.25
+    },
+    "typescript": {
+     "tp": 1,
+     "fp": 0,
+     "expected": 1,
+     "found": 1,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0
+    }
+   },
+   "by_source": {
+    "cve": {
+     "tp": 2,
+     "fp": 0,
+     "expected": 2,
+     "found": 2,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0
+    },
+    "oss": {
+     "tp": 0,
+     "fp": 0,
+     "expected": 0,
+     "found": 0,
+     "precision": null,
+     "recall": null,
+     "f1": null
+    },
+    "synthetic": {
+     "tp": 0,
+     "fp": 6,
+     "expected": 0,
+     "found": 0,
+     "precision": 0.0,
+     "recall": null,
+     "f1": null
+    }
+   },
+   "localization_recall": 1.0,
+   "line_exact_rate": 1.0,
+   "mean_line_distance": 0.0,
+   "cwe_accuracy": 1.0,
+   "severity_adequate_rate": 1.0,
+   "duplicates": 0,
+   "unplaced_findings": 0,
+   "must_not_flag": 4,
+   "must_not_flag_hits": 3,
+   "clean_cases": 2,
+   "clean_flagged_rate": 0.5,
+   "findings_per_clean_case": 3.0,
+   "blocking_recall": null,
+   "clean_blocked_rate": 0.0,
+   "latency": {
+    "live_cases": 0,
+    "wall_p50": null,
+    "wall_p95": null,
+    "llm_seconds_p50": 143.72,
+    "llm_seconds_p95": 270.73
+   },
+   "usage": {
+    "calls_per_case": 4.0,
+    "input_tokens_per_case": 4124,
+    "output_tokens_per_case": 1961,
+    "live_calls": 4,
+    "cached_calls": 12
+   }
+  },
+  "medium_plus": {
+   "min_severity": "medium",
+   "cases": 4,
+   "cases_failed": 0,
+   "cases_with_agent_errors": 0,
+   "overall": {
+    "tp": 2,
+    "fp": 5,
+    "expected": 2,
+    "found": 2,
+    "precision": 0.286,
+    "recall": 1.0,
+    "f1": 0.444
+   },
+   "by_category": {
+    "quality": {
+     "tp": 0,
+     "fp": 3,
+     "expected": 0,
+     "found": 0,
+     "precision": 0.0,
+     "recall": null,
+     "f1": null
+    },
+    "security": {
+     "tp": 2,
+     "fp": 2,
+     "expected": 2,
+     "found": 2,
+     "precision": 0.5,
+     "recall": 1.0,
+     "f1": 0.667
+    }
+   },
+   "by_language": {
+    "python": {
+     "tp": 1,
+     "fp": 5,
+     "expected": 1,
+     "found": 1,
+     "precision": 0.167,
+     "recall": 1.0,
+     "f1": 0.286
+    },
+    "typescript": {
+     "tp": 1,
+     "fp": 0,
+     "expected": 1,
+     "found": 1,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0
+    }
+   },
+   "by_source": {
+    "cve": {
+     "tp": 2,
+     "fp": 0,
+     "expected": 2,
+     "found": 2,
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0
+    },
+    "oss": {
+     "tp": 0,
+     "fp": 0,
+     "expected": 0,
+     "found": 0,
+     "precision": null,
+     "recall": null,
+     "f1": null
+    },
+    "synthetic": {
+     "tp": 0,
+     "fp": 5,
+     "expected": 0,
+     "found": 0,
+     "precision": 0.0,
+     "recall": null,
+     "f1": null
+    }
+   },
+   "localization_recall": 1.0,
+   "line_exact_rate": 1.0,
+   "mean_line_distance": 0.0,
+   "cwe_accuracy": 1.0,
+   "severity_adequate_rate": 1.0,
+   "duplicates": 0,
+   "unplaced_findings": 0,
+   "must_not_flag": 4,
+   "must_not_flag_hits": 3,
+   "clean_cases": 2,
+   "clean_flagged_rate": 0.5,
+   "findings_per_clean_case": 2.5,
+   "blocking_recall": null,
+   "clean_blocked_rate": 0.0,
+   "latency": {
+    "live_cases": 0,
+    "wall_p50": null,
+    "wall_p95": null,
+    "llm_seconds_p50": 143.72,
+    "llm_seconds_p95": 270.73
+   },
+   "usage": {
+    "calls_per_case": 4.0,
+    "input_tokens_per_case": 4124,
+    "output_tokens_per_case": 1961,
+    "live_calls": 4,
+    "cached_calls": 12
+   }
+  },
+  "verifier_curve": [
+   {
+    "threshold": 0.0,
+    "precision": 0.25,
+    "recall": 1.0,
+    "f1": 0.4,
+    "findings_per_clean_case": 3.0
+   },
+   {
+    "threshold": 0.3,
+    "precision": 0.25,
+    "recall": 1.0,
+    "f1": 0.4,
+    "findings_per_clean_case": 3.0
+   },
+   {
+    "threshold": 0.4,
+    "precision": 0.25,
+    "recall": 1.0,
+    "f1": 0.4,
+    "findings_per_clean_case": 3.0
+   },
+   {
+    "threshold": 0.5,
+    "precision": 0.25,
+    "recall": 1.0,
+    "f1": 0.4,
+    "findings_per_clean_case": 3.0
+   },
+   {
+    "threshold": 0.6,
+    "precision": 0.25,
+    "recall": 1.0,
+    "f1": 0.4,
+    "findings_per_clean_case": 3.0
+   },
+   {
+    "threshold": 0.7,
+    "precision": 0.25,
+    "recall": 1.0,
+    "f1": 0.4,
+    "findings_per_clean_case": 3.0
+   },
+   {
+    "threshold": 0.8,
+    "precision": 0.25,
+    "recall": 1.0,
+    "f1": 0.4,
+    "findings_per_clean_case": 3.0
+   },
+   {
+    "threshold": 0.9,
+    "precision": 0.25,
+    "recall": 1.0,
+    "f1": 0.4,
+    "findings_per_clean_case": 3.0
+   }
+  ]
+ },
+ "cases": [
+  {
+   "case": {
+    "id": "cve-asyncssh-scp-traversal",
+    "split": "dev",
+    "source": "cve",
+    "language": "python",
+    "title": "Simplify SCP header parsing",
+    "description": "File names received from the SCP peer are no longer checked for path separators or '..' (arbitrary file write). Built by reversing the upstream security fix.",
+    "smoke": true,
+    "origin": {
+     "repo": "ronf/asyncssh",
+     "url": "https://github.com/ronf/asyncssh/commit/d730803b8e4e94c20c7580d90f94d1e05f9f58de",
+     "license": "EPL-2.0",
+     "commit": "d730803b8e4e94c20c7580d90f94d1e05f9f58de",
+     "parent": null,
+     "advisory": "GHSA-2wxc-x7rj-hg8f",
+     "cve": "CVE-2026-54591"
+    },
+    "expected_findings": [
+     {
+      "file": "asyncssh/scp.py",
+      "lines": [
+       138,
+       139
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-22",
+       "CWE-23"
+      ],
+      "severity_min": "medium",
+      "description": "Remote file name used without rejecting '/' or '..'",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "request_changes",
+   "findings": [
+    {
+     "file": "asyncssh/scp.py",
+     "line": 138,
+     "severity": "critical",
+     "category": "security",
+     "rule_id": "path-traversal",
+     "cwe": "CWE-22",
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "verifier_real": true,
+     "message": "Path traversal vulnerability due to lack of validation on the filename.",
+     "evidence": "-         if b'/' in name or b'\\' in name or name == b'..':\n-             raise _scp_error(SFTPBadMessage, 'Invalid filename')"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "asyncssh/scp.py",
+     "line": 138,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "s502",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "quality",
+     "verifier_confidence": 0.1,
+     "verifier_real": false,
+     "message": "The code does not check if `name` is None before splitting it.",
+     "evidence": "permissions, size, name = args.split(None, 2)"
+    },
+    {
+     "file": "asyncssh/scp.py",
+     "line": 137,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "s501",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": 0.9,
+     "verifier_real": false,
+     "message": "The code does not handle the case where `args` is empty.",
+     "evidence": "try:"
+    },
+    {
+     "file": "asyncssh/scp.py",
+     "line": 138,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "s502",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "performance",
+     "verifier_confidence": 0.1,
+     "verifier_real": false,
+     "message": "String concatenation inside a loop that builds a large string.",
+     "evidence": "permissions, size, name = args.split(None, 2)"
+    }
+   ],
+   "files": [
+    "asyncssh/scp.py"
+   ],
+   "wall_seconds": 6.49,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 139.10899999998276,
+    "input_tokens": 3231,
+    "output_tokens": 1324,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "cve-danger-path-injection",
+    "split": "dev",
+    "source": "cve",
+    "language": "typescript",
+    "title": "Use exec for git show",
+    "description": "The file path is interpolated into a shell command run with exec (command injection). Built by reversing the upstream security fix.",
+    "smoke": true,
+    "origin": {
+     "repo": "danger/danger-js",
+     "url": "https://github.com/danger/danger-js/commit/087a7290264cc6fb7154ea8c2552a7b2cb8b33a3",
+     "license": "MIT",
+     "commit": "087a7290264cc6fb7154ea8c2552a7b2cb8b33a3",
+     "parent": null,
+     "advisory": "GHSA-3x93-p86w-5jvh",
+     "cve": "CVE-2026-16629"
+    },
+    "expected_findings": [
+     {
+      "file": "source/platforms/git/localGetFileAtSHA.ts",
+      "lines": [
+       8,
+       11
+      ],
+      "anchor": null,
+      "span": 0,
+      "category": "security",
+      "cwe": [
+       "CWE-78",
+       "CWE-77"
+      ],
+      "severity_min": "medium",
+      "description": "File path interpolated into a shell command",
+      "also": []
+     }
+    ],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "request_changes",
+   "findings": [
+    {
+     "file": "source/platforms/git/localGetFileAtSHA.ts",
+     "line": 8,
+     "severity": "high",
+     "category": "security",
+     "rule_id": "cwe-78-os-command-injection",
+     "cwe": "CWE-78",
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": 0.9,
+     "verifier_real": true,
+     "message": "The use of `exec` with user-provided input (`sha` and `path`) can lead to OS command injection.",
+     "evidence": "const call = `git show ${sha}:\"${path}\"`"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "source/platforms/git/localGetFileAtSHA.ts",
+     "line": 9,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "debug-logging",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "quality",
+     "verifier_confidence": 0.1,
+     "verifier_real": false,
+     "message": "Logging the command string can leak sensitive information.",
+     "evidence": "d(call)"
+    },
+    {
+     "file": "source/platforms/git/localGetFileAtSHA.ts",
+     "line": 8,
+     "severity": "medium",
+     "category": "performance",
+     "rule_id": "string-concatenation-in-loop",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "performance",
+     "verifier_confidence": 0.1,
+     "verifier_real": false,
+     "message": "String concatenation inside a loop that builds a large string.",
+     "evidence": "const call = `git show ${sha}:\"${path}\"`;"
+    }
+   ],
+   "files": [
+    "source/platforms/git/localGetFileAtSHA.ts"
+   ],
+   "wall_seconds": 4.89,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 132.001,
+    "input_tokens": 3863,
+    "output_tokens": 1363,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "oss-hono-5376",
+    "split": "dev",
+    "source": "oss",
+    "language": "typescript",
+    "title": "fix(accepts): match media types and language tags case-insensitively",
+    "description": "Merged pull request reviewed by the maintainers.",
+    "smoke": true,
+    "origin": {
+     "repo": "honojs/hono",
+     "url": "https://github.com/honojs/hono/pull/5376",
+     "license": "MIT",
+     "commit": "79e50aa8a38bbe27f7617cf59c9aebbf57864d9a",
+     "parent": null,
+     "advisory": null,
+     "cve": null
+    },
+    "expected_findings": [],
+    "must_not_flag": []
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "approve",
+   "findings": [],
+   "suppressed": [
+    {
+     "file": "src/helper/accepts/accepts.ts",
+     "line": 25,
+     "severity": "info",
+     "category": "security",
+     "rule_id": "cwe-78",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "security",
+     "verifier_confidence": 0.1,
+     "verifier_real": false,
+     "message": "The code converts `acceptType` and `supportedType` to lowercase, which could potentially lead to issues if the original casing is important for other parts of the application.",
+     "evidence": "+   const accept = acceptType.toLowerCase()\n+   const supported = supportedType.toLowerCase()"
+    },
+    {
+     "file": "src/helper/accepts/accepts.ts",
+     "line": 25,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "incorrect-case-comparison",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "quality",
+     "verifier_confidence": 0.1,
+     "verifier_real": false,
+     "message": "The comparison of `acceptType` and `supportedType` should be case-insensitive, but the code does not handle this correctly.",
+     "evidence": "+   const accept = acceptType.toLowerCase()\n+   const supported = supportedType.toLowerCase()"
+    },
+    {
+     "file": "src/helper/accepts/accepts.ts",
+     "line": 31,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "incorrect-case-comparison",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "quality",
+     "verifier_confidence": 0.1,
+     "verifier_real": false,
+     "message": "The comparison of `acceptType` and `supportedType` should be case-insensitive, but the code does not handle this correctly.",
+     "evidence": "+   if (accept === '*/*' || accept === '*') {"
+    },
+    {
+     "file": "src/helper/accepts/accepts.ts",
+     "line": 34,
+     "severity": "high",
+     "category": "quality",
+     "rule_id": "incorrect-case-comparison",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "quality",
+     "verifier_confidence": 0.1,
+     "verifier_real": false,
+     "message": "The comparison of `acceptType` and `supportedType` should be case-insensitive, but the code does not handle this correctly.",
+     "evidence": "+   if (accept.endsWith('/*')) {"
+    }
+   ],
+   "files": [
+    "src/helper/accepts/accepts.ts"
+   ],
+   "wall_seconds": 7.56,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 148.32799999997627,
+    "input_tokens": 4248,
+    "output_tokens": 1788,
+    "purposes": []
+   }
+  },
+  {
+   "case": {
+    "id": "syn-py-clean-safe-patterns",
+    "split": "dev",
+    "source": "synthetic",
+    "language": "python",
+    "title": "Order export job",
+    "description": "Clean change with patterns that resemble vulnerabilities: parameterized SQL, subprocess with an argument list, safe_load, secrets for tokens, a validated path.",
+    "smoke": true,
+    "origin": null,
+    "expected_findings": [],
+    "must_not_flag": [
+     {
+      "file": "app/jobs/export_orders.py",
+      "lines": [
+       27,
+       27
+      ],
+      "anchor": "\"SELECT id, total, created_at FROM orders WHERE customer_id = ?",
+      "span": 0,
+      "reason": "parameterized query"
+     },
+     {
+      "file": "app/jobs/export_orders.py",
+      "lines": [
+       33,
+       33
+      ],
+      "anchor": "subprocess.run([\"gzip\", \"--force\", str(target)], check=True)",
+      "span": 0,
+      "reason": "argument list, no shell"
+     },
+     {
+      "file": "app/jobs/export_orders.py",
+      "lines": [
+       14,
+       14
+      ],
+      "anchor": "return yaml.safe_load(f) or {}",
+      "span": 0,
+      "reason": "safe loader"
+     },
+     {
+      "file": "app/jobs/export_orders.py",
+      "lines": [
+       18,
+       20
+      ],
+      "anchor": "target = (EXPORT_DIR / name).resolve()",
+      "span": 2,
+      "reason": "path is validated on the next lines"
+     }
+    ]
+   },
+   "status": "ok",
+   "error": null,
+   "agent_errors": [],
+   "verdict": "comment",
+   "findings": [
+    {
+     "file": "app/jobs/export_orders.py",
+     "line": 18,
+     "severity": "medium",
+     "category": "security",
+     "rule_id": "command-injection",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": null,
+     "verifier_real": null,
+     "message": "File path is vulnerable to path traversal.",
+     "evidence": "target = (EXPORT_DIR / name).resolve()"
+    },
+    {
+     "file": "app/jobs/export_orders.py",
+     "line": 33,
+     "severity": "medium",
+     "category": "security",
+     "rule_id": "command-injection",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "security",
+     "verifier_confidence": null,
+     "verifier_real": null,
+     "message": "File path is vulnerable to path traversal.",
+     "evidence": "subprocess.run([\"gzip\", \"--force\", str(target)], check=True)"
+    },
+    {
+     "file": "app/jobs/export_orders.py",
+     "line": 14,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "missing-default-value-check",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": null,
+     "verifier_real": null,
+     "message": "The function `load_job_config` does not check if the input path is None.",
+     "evidence": "return yaml.safe_load(f) or {}"
+    },
+    {
+     "file": "app/jobs/export_orders.py",
+     "line": 25,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "missing-default-value-check",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": null,
+     "verifier_real": null,
+     "message": "The function `export_orders` does not check if the input customer_id is None.",
+     "evidence": "conn = get_connection()"
+    },
+    {
+     "file": "app/jobs/export_orders.py",
+     "line": 32,
+     "severity": "medium",
+     "category": "quality",
+     "rule_id": "missing-default-value-check",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "quality",
+     "verifier_confidence": null,
+     "verifier_real": null,
+     "message": "The function `export_orders` does not check if the input rows is None.",
+     "evidence": "f.writelines(f\"{row[0]},{row[1]},{row[2]}\\n\" for row in rows)"
+    },
+    {
+     "file": "app/jobs/export_orders.py",
+     "line": 32,
+     "severity": "low",
+     "category": "performance",
+     "rule_id": "string-concatenation-in-loop",
+     "cwe": null,
+     "confidence": 0.9,
+     "agent": "performance",
+     "verifier_confidence": null,
+     "verifier_real": null,
+     "message": "String concatenation inside a loop that builds a large string.",
+     "evidence": "f.writelines(f\"{row[0]},{row[1]},{row[2]}\\n\" for row in rows)"
+    }
+   ],
+   "suppressed": [
+    {
+     "file": "app/jobs/export_orders.py",
+     "line": 29,
+     "severity": "medium",
+     "category": "security",
+     "rule_id": "cwe-89",
+     "cwe": null,
+     "confidence": 0.1,
+     "agent": "security",
+     "verifier_confidence": 0.1,
+     "verifier_real": false,
+     "message": "SQL query is vulnerable to SQL injection.",
+     "evidence": "conn.execute(\"SELECT id, total, created_at FROM orders WHERE customer_id = ? ORDER BY id\", (customer_id,)).fetchall()"
+    }
+   ],
+   "files": [
+    "app/jobs/export_orders.py"
+   ],
+   "wall_seconds": 10.33,
+   "stats": {
+    "live_calls": 1,
+    "cached_calls": 3,
+    "missing_calls": 0,
+    "llm_seconds": 292.33000000004097,
+    "input_tokens": 5153,
+    "output_tokens": 3369,
+    "purposes": []
+   }
+  }
+ ]
+}

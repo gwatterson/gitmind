@@ -30,6 +30,24 @@ so no threshold is adopted. The model also answers "not real" with high confiden
 findings that are real: like the agents, a 7B model does not calibrate its judgments,
 and checking its own findings adds little information.
 
+## Update: a different model for the verifier
+
+`VERIFIER_PROVIDER` routes the verifier calls to another provider while the agents keep
+theirs (the evaluation cache and the rate limiter follow the provider of each call). A
+first probe, limited by the free Gemini quota to four cases (two reversed CVEs, a clean
+synthetic change that looks risky, a clean open source pull request), with the agents on
+`qwen2.5-coder:7b`:
+
+| Verifier | Real problems found | False positives |
+|---|---|---|
+| none | 2/2 | 16 |
+| `qwen2.5-coder:7b` | 1/2 | 7 |
+| `gemini-2.5-flash` | 2/2 | 6 |
+
+This supports the hypothesis that the verifier needs a model different from, and more
+capable than, the agents. Four cases are not enough to change the default: the decision
+waits for the dev and test splits with `--verifier-provider gemini`.
+
 ## Consequences
 
 - The node, its prompt (`verifier.md`), the suppressed findings in the database and the

@@ -30,6 +30,7 @@ class Finding(TypedDict):
     evidence: NotRequired[str]  # code fragment quoted from the diff
     verifier_confidence: NotRequired[float]  # set by the verifier node
     verifier_note: NotRequired[str]
+    verifier_real: NotRequired[bool]
 
 
 class SkippedFile(TypedDict):

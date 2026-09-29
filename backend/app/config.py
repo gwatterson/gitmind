@@ -92,6 +92,9 @@ class Settings(BaseSettings):
     # alarms (docs/adr/0001-verifier-node.md).
     VERIFIER_ENABLED: bool = False
     VERIFIER_MIN_CONFIDENCE: float = 0.5
+    # Provider of the verifier calls; empty means the same as the agents. A different
+    # model avoids the agents confirming their own mistakes.
+    VERIFIER_PROVIDER: Literal["", "gemini", "ollama"] = ""
 
     # Which findings can make the verdict "request_changes": critical or high findings of
     # these categories, with at least this self-reported confidence. The evaluation showed

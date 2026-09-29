@@ -244,7 +244,8 @@ def verifier_curve(
             passing = [
                 c
                 for c in candidates
-                if c.get("verifier_confidence") is None or c["verifier_confidence"] >= threshold
+                if c.get("verifier_confidence") is None
+                or (c.get("verifier_real") is not False and c["verifier_confidence"] >= threshold)
             ]
             merged = deduplicate_findings([assign_owner_category(f) for f in _as_findings(passing)])
             replayed.append({**result, "findings": [dict(f) for f in merged]})

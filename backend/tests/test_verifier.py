@@ -102,3 +102,16 @@ async def test_disabled_verifier_is_not_called(reviewed, monkeypatch):
     review_id = await _run()
     check.assert_not_awaited()
     assert len(await crud.get_findings(review_id)) == 2
+
+
+def test_use_provider_routes_calls_and_restores(monkeypatch):
+    from app.llm import factory
+
+    monkeypatch.setattr(settings, "LLM_PROVIDER", "ollama")
+    with factory.use_provider("gemini"):
+        assert factory.provider_name() == "gemini"
+        assert factory.model_name() == settings.GEMINI_MODEL
+        assert factory.uses_rate_limiter()
+    assert factory.provider_name() == "ollama"
+    with factory.use_provider(None):
+        assert factory.provider_name() == "ollama"

@@ -80,6 +80,7 @@ def cmd_run(args: argparse.Namespace) -> None:
         label=args.label,
         filters=filters,
         verifier=args.verifier == "on",
+        verifier_provider=args.verifier_provider or "",
     )
     # The pipeline logs every step: keep only warnings and errors on the console
     logging.getLogger().setLevel(logging.WARNING)
@@ -285,6 +286,11 @@ def main() -> None:
     run.add_argument("--timeout", type=float, default=600.0, help="seconds per LLM call")
     run.add_argument("--prompts-dir", help="evaluate an alternative prompt directory")
     run.add_argument("--verifier", choices=("on", "off"), default="off", help="verifier node")
+    run.add_argument(
+        "--verifier-provider",
+        choices=("gemini", "ollama"),
+        help="provider of the verifier calls (default: the same as the agents)",
+    )
     run.add_argument("--label", default="", help="name of the run in the results file")
     run.add_argument("--compare", help="results file to compare with in the report")
     run.add_argument("--prune-cache", action="store_true", help="delete unused cached answers")

@@ -41,6 +41,7 @@ FINDING_FIELDS = (
     "confidence",
     "agent",
     "verifier_confidence",
+    "verifier_real",
 )
 
 
@@ -54,6 +55,7 @@ class RunConfig:
     timeout_seconds: float = 600.0
     prompts_dir: str = ""
     verifier: bool = True
+    verifier_provider: str = ""
     label: str = ""
     filters: dict[str, Any] = field(default_factory=dict)
 
@@ -87,6 +89,7 @@ def configure(config: RunConfig, database_path: Path) -> DiskCache:
     settings.LLM_TIMEOUT_SECONDS = config.timeout_seconds
     settings.PROMPTS_DIR = config.prompts_dir
     settings.VERIFIER_ENABLED = config.verifier
+    settings.VERIFIER_PROVIDER = config.verifier_provider  # type: ignore[assignment]
     factory.reset_runtime_provider()
     models.DATABASE_PATH = str(database_path)
 
@@ -172,6 +175,7 @@ def run_metadata(config: RunConfig, cases: list[Case], pipeline: str) -> dict[st
         "verifier": {
             "enabled": settings.VERIFIER_ENABLED,
             "min_confidence": settings.VERIFIER_MIN_CONFIDENCE,
+            "provider": settings.VERIFIER_PROVIDER or config.provider,
         }
         if pipeline == "gitmind"
         else None,

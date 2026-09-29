@@ -13,6 +13,7 @@ finding gets no answer, the finding is kept as the agent reported it.
 
 import asyncio
 import json
+from contextlib import AbstractContextManager
 from typing import Any
 
 import structlog
@@ -34,8 +35,13 @@ AGENT_KEYS = ("security_findings", "quality_findings", "performance_findings")
 MAX_OUTPUT_TOKENS = 2048
 
 
+def _provider() -> AbstractContextManager[None]:
+    return factory.use_provider(settings.VERIFIER_PROVIDER or None)
+
+
 def _render_request(file: PRFile, findings: list[Finding], pr_title: str) -> str:
-    budget_chars = factory.input_token_budget(MAX_OUTPUT_TOKENS) * 3
+    with _provider():
+        budget_chars = factory.input_token_budget(MAX_OUTPUT_TOKENS) * 3
     diff = render_numbered(parse_patch(file.get("patch", "")))
     if len(diff) > budget_chars:
         diff = diff[:budget_chars] + "\n[... diff truncated ...]"
@@ -91,13 +97,14 @@ async def verify_node(state: PRState) -> dict[str, Any]:
             filename=filename, language="unknown", patch="", additions=0, deletions=0
         )
         async with semaphore:
-            return await invoke_structured(
-                [system, HumanMessage(content=_render_request(file, findings, pr_title))],
-                VerifierReview,
-                temperature=0.0,
-                max_output_tokens=MAX_OUTPUT_TOKENS,
-                purpose="verifier",
-            )
+            with _provider():
+                return await invoke_structured(
+                    [system, HumanMessage(content=_render_request(file, findings, pr_title))],
+                    VerifierReview,
+                    temperature=0.0,
+                    max_output_tokens=MAX_OUTPUT_TOKENS,
+                    purpose="verifier",
+                )
 
     names = list(by_file)
     results = await asyncio.gather(*(check(n, by_file[n]) for n in names), return_exceptions=True)
@@ -127,6 +134,7 @@ async def verify_node(state: PRState) -> dict[str, Any]:
                     **finding,
                     "confidence": round(answer.confidence, 2),
                     "verifier_confidence": round(answer.confidence, 2),
+                    "verifier_real": answer.real,
                     "verifier_note": answer.reason.strip()[:500],
                 }
             )

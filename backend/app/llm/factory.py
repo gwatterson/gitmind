@@ -5,6 +5,9 @@ chose another one from the dashboard: that choice is stored in the database and
 applies to reviews started afterwards.
 """
 
+from collections.abc import Iterator
+from contextlib import contextmanager
+from contextvars import ContextVar
 from functools import lru_cache
 from typing import Literal
 
@@ -19,9 +22,27 @@ PROVIDER_SETTING_KEY = "llm_provider"
 
 _runtime_provider: Provider | None = None
 
+# Provider override for the calls made inside `use_provider` (per-node model routing)
+_call_provider: ContextVar[Provider | None] = ContextVar("llm_call_provider", default=None)
+
 
 def provider_name() -> Provider:
-    return _runtime_provider or settings.LLM_PROVIDER
+    return _call_provider.get() or _runtime_provider or settings.LLM_PROVIDER
+
+
+@contextmanager
+def use_provider(provider: Provider | None) -> Iterator[None]:
+    """Route the LLM calls made in this block (and its tasks) to another provider.
+
+    Everything that depends on the provider follows: model, rate limiter, and the
+    evaluation cache. None keeps the configured provider.
+    """
+    token = _call_provider.set(provider) if provider else None
+    try:
+        yield
+    finally:
+        if token is not None:
+            _call_provider.reset(token)
 
 
 def model_name(provider: Provider | None = None) -> str:
