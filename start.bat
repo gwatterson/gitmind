@@ -38,7 +38,7 @@ if not exist .env (
 REM ── 2. Start Backend ──
 echo [2/4] Starting FastAPI backend on port 8000...
 cd /d "%~dp0backend"
-start "GitMind Backend" cmd /k "uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000"
+start "GitMind Backend" cmd /k "uv run python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000"
 
 REM Wait a moment for backend to start
 timeout /t 3 /nobreak >nul
