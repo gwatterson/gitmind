@@ -59,6 +59,10 @@ class PRState(TypedDict):
     # Files left out of the review (generated, binary, over the size limits)
     skipped_files: NotRequired[list[SkippedFile]]
 
+    # Prompt injection attempts found deterministically by the supervisor
+    injection_findings: NotRequired[list[Finding]]
+    injection_in_title: NotRequired[bool]
+
     # Agent assignment (decided by the Supervisor)
     security_files: list[str]
     quality_files: list[str]

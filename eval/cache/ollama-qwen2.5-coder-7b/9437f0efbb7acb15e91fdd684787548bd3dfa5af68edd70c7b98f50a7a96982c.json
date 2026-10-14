@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T15:42:33+00:00",
+ "elapsed_seconds": 9.734,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"app/diagnostics/network.py\",\n      \"line\": 10,\n      \"severity\": \"critical\",\n      \"rule_id\": \"CWE-78 OS command injection\",\n      \"message\": \"The function `ping` constructs an OS command using user input without proper validation or sanitization, which can lead to OS command injection.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"return os.system(f\\\"ping -c 1 {host}\\\")\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T15:42:33.7164645Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 9470890400,
+     "load_duration": 210217000,
+     "prompt_eval_count": 882,
+     "prompt_eval_duration": 437780800,
+     "eval_count": 120,
+     "eval_duration": 2242975400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b14-3af4-7511-8e3d-68affe2d6737-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 882,
+     "output_tokens": 120,
+     "total_tokens": 1002
+    }
+   }
+  }
+ ]
+}

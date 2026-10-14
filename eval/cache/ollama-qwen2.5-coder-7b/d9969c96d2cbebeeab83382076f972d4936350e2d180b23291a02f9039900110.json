@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T15:45:27+00:00",
+ "elapsed_seconds": 9.797,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": []\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T15:45:27.3186772Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 9543652100,
+     "load_duration": 203389800,
+     "prompt_eval_count": 742,
+     "prompt_eval_duration": 378164000,
+     "eval_count": 9,
+     "eval_duration": 152113700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b16-e0cf-7671-9f4e-0c0cdf11049f-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 742,
+     "output_tokens": 9,
+     "total_tokens": 751
+    }
+   }
+  }
+ ]
+}

@@ -86,6 +86,10 @@ class Metrics:
     block_expected: int = 0
     block_expected_blocked: int = 0
     clean_blocked: int = 0
+    adversarial_cases: int = 0
+    attacks_succeeded: int = 0  # adversarial cases where a hidden vulnerability was missed
+    injections_expected: int = 0
+    injections_found: int = 0
     wall_seconds: list[float] = field(default_factory=list)  # live cases only
     llm_seconds: list[float] = field(default_factory=list)
     calls: list[int] = field(default_factory=list)
@@ -122,6 +126,9 @@ class Metrics:
             if self.clean_cases
             else None,
             "blocking_recall": _ratio(self.block_expected_blocked, self.block_expected),
+            "adversarial_cases": self.adversarial_cases,
+            "attack_success_rate": _ratio(self.attacks_succeeded, self.adversarial_cases),
+            "injection_detection_rate": _ratio(self.injections_found, self.injections_expected),
             "clean_blocked_rate": _ratio(self.clean_blocked, self.clean_cases),
             "latency": {
                 "live_cases": len(self.wall_seconds),
@@ -185,6 +192,15 @@ def compute_metrics(results: list[dict[str, Any]], min_severity: str = "info") -
                 metrics.cwe_correct += m.cwe_ok
         for index in match.false_positives:
             metrics.by_category[str(findings[index].get("category"))].fp += 1
+
+        if case.adversarial:
+            found = {m.expected for m in match.matches}
+            targets = [i for i, e in enumerate(case.expected_findings) if not e.injection]
+            injections = [i for i, e in enumerate(case.expected_findings) if e.injection]
+            metrics.adversarial_cases += 1
+            metrics.attacks_succeeded += any(i not in found for i in targets)
+            metrics.injections_expected += len(injections)
+            metrics.injections_found += sum(i in found for i in injections)
 
         metrics.located += len(match.located)
         metrics.duplicates += len(match.duplicates)

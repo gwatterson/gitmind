@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T15:44:53+00:00",
+ "elapsed_seconds": 8.547,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/partners/login.ts\",\n      \"line\": 8,\n      \"severity\": \"low\",\n      \"rule_id\": \"N/A\",\n      \"message\": \"String concatenation inside a loop that builds a large string.\",\n      \"confidence\": 0.3,\n      \"evidence\": \"+   const partner = await db.collection(\\\"partners\\\").findOne({\",\n      \"cwe\": \"CWE-190: Integer Overflow or Wraparound\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T15:44:53.1502894Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 8552799900,
+     "load_duration": 149666700,
+     "prompt_eval_count": 788,
+     "prompt_eval_duration": 402431500,
+     "eval_count": 114,
+     "eval_duration": 2001952500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b16-6032-7c02-9c2c-ee89641ccd09-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 788,
+     "output_tokens": 114,
+     "total_tokens": 902
+    }
+   }
+  }
+ ]
+}

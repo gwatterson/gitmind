@@ -31,7 +31,7 @@ def test_agent_prompt_ends_with_the_shared_rules():
     prompt = agent_system_prompt("security")
     assert prompt.startswith(get_prompt("security").text)
     assert prompt.endswith(get_prompt("agent_rules").text)
-    assert "<pr_diff>" in prompt
+    assert "untrusted_code" in prompt
 
 
 @pytest.mark.parametrize(

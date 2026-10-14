@@ -14,7 +14,7 @@ projects and keep their original license; the repository license does not apply 
 Only projects with permissive licenses are included. CVE cases reverse the upstream
 security fix: `after/` holds the vulnerable code.
 
-Synthetic cases: 46.
+Synthetic cases: 56.
 
 ### Reversed security fixes (33)
 

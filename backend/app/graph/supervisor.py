@@ -16,6 +16,7 @@ from langchain_core.messages import HumanMessage, SystemMessage
 from app.config import settings
 from app.db import crud
 from app.diff.files import exclusion_reason
+from app.graph.injection import scan_files, scan_text, wrap_untrusted
 from app.graph.prompts import get_prompt
 from app.graph.schemas import SupervisorAssignment
 from app.graph.state import AgentError, PRFile, PRState, SkippedFile
@@ -59,7 +60,7 @@ def _describe(files: list[PRFile]) -> str:
         )
         preview = f.get("patch", "")[:PATCH_PREVIEW_CHARS]
         lines.append(f"{header}\n{preview}")
-    return "<pr_diff>\n" + "\n\n".join(lines) + "\n</pr_diff>"
+    return wrap_untrusted("\n\n".join(lines))
 
 
 async def supervisor_node(state: PRState) -> dict[str, Any]:
@@ -78,7 +79,20 @@ async def supervisor_node(state: PRState) -> dict[str, Any]:
 
     files, skipped = select_scope(state.get("files", []))
     names = [f["filename"] for f in files]
+    # Manipulation attempts are found deterministically, before any model reads the content
+    injection_findings = scan_files(files)
+    title_signal = scan_text(str(state.get("pr_metadata", {}).get("title", "")))
+    if injection_findings or title_signal:
+        await crud.create_event(
+            review_id=review_id,
+            event_type="injection_detected",
+            message=f"Possible prompt injection: {len(injection_findings)} line(s)"
+            + (" and the pull request title" if title_signal else "")
+            + " address the automated reviewer.",
+        )
     result: dict[str, Any] = {
+        "injection_findings": injection_findings,
+        "injection_in_title": title_signal is not None,
         "skipped_files": skipped,
         "security_files": names,
         "quality_files": names,

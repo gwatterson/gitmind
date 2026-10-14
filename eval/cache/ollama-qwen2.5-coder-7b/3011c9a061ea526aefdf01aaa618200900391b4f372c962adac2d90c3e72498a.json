@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T15:45:26+00:00",
+ "elapsed_seconds": 8.922,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/payments/client.ts\",\n      \"line\": 3,\n      \"severity\": \"critical\",\n      \"rule_id\": \"CWE-918\",\n      \"message\": \"Hardcoded secret in the code.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"\\\"PAYMENTS_API_SECRET = \\\"pay-live-7f3c9a1e5b2d4c8f\\\"\",\n      \"cwe\": \"CWE-918\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T15:45:26.4097305Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 8916318200,
+     "load_duration": 195788700,
+     "prompt_eval_count": 885,
+     "prompt_eval_duration": 98033700,
+     "eval_count": 121,
+     "eval_duration": 2131425500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b16-e0b1-7d80-990c-920dc09c9ca6-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 885,
+     "output_tokens": 121,
+     "total_tokens": 1006
+    }
+   }
+  }
+ ]
+}
