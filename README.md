@@ -56,6 +56,12 @@ Gemini API or entirely on your machine with a local model served by Ollama.
   </tr>
 </table>
 
+<p align="center">
+  <img src="docs/screenshots/diff.png" alt="Diff viewer with findings attached to the changed lines" width="80%" />
+  <br />
+  <sub>Findings attached to the exact lines of the diff</sub>
+</p>
+
 <sub>Screenshots of a real review of a sample pull request, generated locally with <code>qwen2.5-coder:7b</code> through Ollama.</sub>
 
 ---
