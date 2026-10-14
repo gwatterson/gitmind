@@ -43,18 +43,18 @@ function parsePatch(patch: string): Array<{
 }
 
 const LINE_COLORS = {
-  add: "bg-emerald-500/10 border-l-2 border-emerald-500/40",
-  del: "bg-danger/10 border-l-2 border-red-500/40",
+  add: "bg-success/[0.05] border-l-2 border-success/50",
+  del: "bg-danger/[0.07] border-l-2 border-danger/50",
   ctx: "border-l-2 border-transparent",
   header: "bg-accent-soft border-l-2 border-accent/30",
 };
 
 const SEVERITY_DOT: Record<string, string> = {
-  critical: "bg-red-500",
-  high: "bg-orange-500",
-  medium: "bg-yellow-500",
-  low: "bg-green-500",
-  info: "bg-blue-500",
+  critical: "bg-critical",
+  high: "bg-high",
+  medium: "bg-medium",
+  low: "bg-low",
+  info: "bg-info",
 };
 
 export function DiffViewer({
