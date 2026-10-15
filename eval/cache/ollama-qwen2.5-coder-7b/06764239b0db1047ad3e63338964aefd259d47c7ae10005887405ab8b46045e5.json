@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:37:14+00:00",
+ "elapsed_seconds": 14.828,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/payments/refunds.py\",\n            \"line\": 12,\n            \"severity\": \"high\",\n            \"rule_id\": \"E1134\",\n            \"message\": \"Error is swallowed without logging the exception.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"except Exception:\\n    pass\",\n            \"cwe\": \"CWE-256: Ineffective Error Handling\"\n        },\n        {\n            \"file\": \"app/payments/refunds.py\",\n            \"line\": 13,\n            \"severity\": \"low\",\n            \"rule_id\": \"S001\",\n            \"message\": \"Logging message does not include the amount refunded.\",\n            \"confidence\": 0.6,\n            \"evidence\": \"log.info(\\\"refund issued\\\", extra={\\\"payment_id\\\": payment_id})\",\n            \"cwe\": \"CWE-547: Inconsistent Behavior\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:37:14.310305Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 14576817600,
+     "load_duration": 56802400,
+     "prompt_eval_count": 885,
+     "prompt_eval_duration": 462768200,
+     "eval_count": 211,
+     "eval_duration": 3582317200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14035-a35b-7852-b4fa-676178ad151c-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 885,
+     "output_tokens": 211,
+     "total_tokens": 1096
+    }
+   }
+  }
+ ]
+}

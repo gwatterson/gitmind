@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:59:53+00:00",
+ "elapsed_seconds": 14.375,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/notifications/client.ts\",\n      \"line\": 9,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-78\",\n      \"message\": \"Potential OS command injection via URL parameter.\",\n      \"confidence\": 0.6,\n      \"evidence\": \"/api/users/${userId}/notifications\"\n    },\n    {\n      \"file\": \"src/notifications/client.ts\",\n      \"line\": 12,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-451\",\n      \"message\": \"Unnecessary empty catch block.\",\n      \"confidence\": 0.9\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:59:53.6837252Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 14104858400,
+     "load_duration": 54107400,
+     "prompt_eval_count": 1020,
+     "prompt_eval_duration": 483566800,
+     "eval_count": 150,
+     "eval_duration": 2792664700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1404a-6333-78c0-8daa-f71f2ae176bf-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1020,
+     "output_tokens": 150,
+     "total_tokens": 1170
+    }
+   }
+  }
+ ]
+}

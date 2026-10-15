@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:59:47+00:00",
+ "elapsed_seconds": 8.25,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/notifications/client.ts\",\n      \"line\": 11,\n      \"severity\": \"high\",\n      \"rule_id\": \"swallowed_error\",\n      \"message\": \"The error is swallowed, and an empty array is returned instead of propagating the error.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"catch (e) {}\",\n      \"cwe\": \"CWE-251: Improper Error Handling\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:59:47.5466368Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 7991478000,
+     "load_duration": 53262400,
+     "prompt_eval_count": 879,
+     "prompt_eval_duration": 421470900,
+     "eval_count": 113,
+     "eval_duration": 1964257500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1404a-6324-7da2-9b4d-7375b0260e78-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 879,
+     "output_tokens": 113,
+     "total_tokens": 992
+    }
+   }
+  }
+ ]
+}

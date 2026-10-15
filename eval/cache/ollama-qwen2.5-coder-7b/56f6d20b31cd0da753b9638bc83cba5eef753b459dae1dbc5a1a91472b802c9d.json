@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T16:09:41+00:00",
+ "elapsed_seconds": 34.938,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/click/types.py\",\n      \"line\": 1157,\n      \"severity\": \"high\",\n      \"rule_id\": \"type_error\",\n      \"message\": \"The return type of `coerce_path_result` is not correctly constrained by `_PathT_co`, which can lead to incorrect type handling.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"1157 +                 rv = path_type(value)\",\n      \"cwe\": \"CWE-682: Incorrect Type Checking\"\n    },\n    {\n      \"file\": \"src/click/types.py\",\n      \"line\": 1148,\n      \"severity\": \"medium\",\n      \"rule_id\": \"type_error\",\n      \"message\": \"The variable `path_type` is not explicitly typed, which can lead to type-related errors.\",\n      \"confidence\": 0.6,\n      \"evidence\": \"1148 +         path_type: type[t.Any] | None = self.type\",\n      \"cwe\": \"CWE-682: Incorrect Type Checking\"\n    },\n    {\n      \"file\": \"src/click/types.py\",\n      \"line\": 1079,\n      \"severity\": \"medium\",\n      \"rule_id\": \"type_error\",\n      \"message\": \"The `path_type` parameter is not explicitly typed, which can lead to type-related errors.\",\n      \"confidence\": 0.6,\n      \"evidence\": \"1079 +         path_type: type[_PathT_co] | None = None\",\n      \"cwe\": \"CWE-682: Incorrect Type Checking\"\n    },\n    {\n      \"file\": \"src/click/types.py\",\n      \"line\": 1156,\n      \"severity\": \"medium\",\n      \"rule_id\": \"type_error\",\n      \"message\": \"The `rv` variable is not explicitly typed, which can lead to type-related errors.\",\n      \"confidence\": 0.6,\n      \"evidence\": \"1156 +         rv: t.Any = value\",\n      \"cwe\": \"CWE-682: Incorrect Type Checking\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T16:09:41.6511274Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 34677577100,
+     "load_duration": 241225100,
+     "prompt_eval_count": 1991,
+     "prompt_eval_duration": 1158945900,
+     "eval_count": 471,
+     "eval_duration": 8752670100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b2c-afa4-7810-a5ab-77366fada414-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1991,
+     "output_tokens": 471,
+     "total_tokens": 2462
+    }
+   }
+  }
+ ]
+}

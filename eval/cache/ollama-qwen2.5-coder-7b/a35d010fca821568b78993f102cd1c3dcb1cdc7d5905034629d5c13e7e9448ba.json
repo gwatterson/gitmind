@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T16:00:45+00:00",
+ "elapsed_seconds": 56.297,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"litellm/llms/litellm_proxy/skills/prompt_injection.py\",\n      \"line\": 107,\n      \"severity\": \"low\",\n      \"rule_id\": \"S238\",\n      \"message\": \"String concatenation inside a loop that builds a large string.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+                        files[clean_path] = zf.read(name)\",\n      \"cwe\": \"CWE-190: Integer Overflow or Wraparound\"\n    },\n    {\n      \"file\": \"litellm/llms/litellm_proxy/skills/sandbox_executor.py\",\n      \"line\": 100,\n      \"severity\": \"low\",\n      \"rule_id\": \"S238\",\n      \"message\": \"String concatenation inside a loop that builds a large string.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+                        with open(local_path, \\\"wb\\\") as f:\",\n      \"cwe\": \"CWE-190: Integer Overflow or Wraparound\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T16:00:45.8098211Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 56028143200,
+     "load_duration": 174661100,
+     "prompt_eval_count": 1292,
+     "prompt_eval_duration": 651040500,
+     "eval_count": 245,
+     "eval_duration": 4172321600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b24-2f08-72f3-bcea-6bc5b16e08d3-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1292,
+     "output_tokens": 245,
+     "total_tokens": 1537
+    }
+   }
+  }
+ ]
+}

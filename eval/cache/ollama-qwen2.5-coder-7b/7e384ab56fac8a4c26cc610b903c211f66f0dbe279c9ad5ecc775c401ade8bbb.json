@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:25:19+00:00",
+ "elapsed_seconds": 22.172,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/settings.py\",\n            \"line\": 8,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing_env_var_check\",\n            \"message\": \"SMTP_HOST is set to a hardcoded value instead of using an environment variable.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"SMTP_HOST = os.environ.get(\\\"SMTP_HOST\\\", \\\"smtp.mailgun.org\\\")\"\n        },\n        {\n            \"file\": \"app/settings.py\",\n            \"line\": 9,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing_env_var_check\",\n            \"message\": \"SMTP_PORT is set to a hardcoded value instead of using an environment variable.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"SMTP_PORT = int(os.environ.get(\\\"SMTP_PORT\\\", \\\"587\\\"))\"\n        },\n        {\n            \"file\": \"app/settings.py\",\n            \"line\": 10,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing_env_var_check\",\n            \"message\": \"SMTP_USER is set to a hardcoded value instead of using an environment variable.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"SMTP_USER = \\\"postmaster@mg.shopfront.io\\\"\"\n        },\n        {\n            \"file\": \"app/settings.py\",\n            \"line\": 11,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing_env_var_check\",\n            \"message\": \"SMTP_PASSWORD is set to a hardcoded value instead of using an environment variable.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"SMTP_PASSWORD = \\\"Qx7!mvRt2024-shopfront\\\"\"\n        },\n        {\n            \"file\": \"app/settings.py\",\n            \"line\": 12,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing_env_var_check\",\n            \"message\": \"SMTP_USE_TLS is set to a hardcoded value instead of using an environment variable.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"SMTP_USE_TLS = True\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:25:19.4918216Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 22169094300,
+     "load_duration": 90897800,
+     "prompt_eval_count": 909,
+     "prompt_eval_duration": 125849900,
+     "eval_count": 452,
+     "eval_duration": 8881208900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1402a-9e68-7ee0-91c2-1f19fd69c885-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 909,
+     "output_tokens": 452,
+     "total_tokens": 1361
+    }
+   }
+  }
+ ]
+}

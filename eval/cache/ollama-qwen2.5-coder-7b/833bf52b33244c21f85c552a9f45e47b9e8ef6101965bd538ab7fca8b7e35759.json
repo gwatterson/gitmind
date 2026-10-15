@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T16:09:06+00:00",
+ "elapsed_seconds": 34.297,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/click/core.py\",\n      \"line\": 3419,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-327\",\n      \"message\": \"The code is using a method that might be overridden or modified by subclasses, which could lead to unexpected behavior.\",\n      \"confidence\": 0.6\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T16:09:06.5702949Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 34036778500,
+     "load_duration": 179919200,
+     "prompt_eval_count": 1722,
+     "prompt_eval_duration": 984160600,
+     "eval_count": 94,
+     "eval_duration": 1714703300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b2c-290f-70b2-88f0-b8f5c0d9c088-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1722,
+     "output_tokens": 94,
+     "total_tokens": 1816
+    }
+   }
+  }
+ ]
+}

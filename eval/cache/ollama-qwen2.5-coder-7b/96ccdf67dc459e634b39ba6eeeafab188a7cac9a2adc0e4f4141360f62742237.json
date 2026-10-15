@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T16:00:41+00:00",
+ "elapsed_seconds": 17.563,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/middleware/auth.ts\",\n      \"line\": 15,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-89\",\n      \"message\": \"JWT decoding without verification can lead to injection vulnerabilities.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const claims = jwt.decode(token) as TokenClaims | null;\",\n      \"cwe\": \"CWE-89\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T16:00:41.7789634Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 17551503900,
+     "load_duration": 60941700,
+     "prompt_eval_count": 1161,
+     "prompt_eval_duration": 583325100,
+     "eval_count": 108,
+     "eval_duration": 1896494900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1404b-12a2-7f53-8d2d-25c2f4549f9f-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1161,
+     "output_tokens": 108,
+     "total_tokens": 1269
+    }
+   }
+  }
+ ]
+}

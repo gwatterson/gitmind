@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:50:36+00:00",
+ "elapsed_seconds": 10.641,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/ahttpx/_content.py\",\n      \"line\": 180,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1 queries\",\n      \"message\": \"Opening a file inside the loop over query results.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+         fin = open(self._path, 'rb')\\n+         return FileStream(self._path, fin)\",\n      \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n    },\n    {\n      \"file\": \"src/ahttpx/_streams.py\",\n      \"line\": 190,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1 queries\",\n      \"message\": \"Opening a file inside the loop over query results.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+             self._fin = open(value, 'rb')\",\n      \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:50:36.1360029Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 10652503100,
+     "load_duration": 51501300,
+     "prompt_eval_count": 2099,
+     "prompt_eval_duration": 1111121400,
+     "eval_count": 252,
+     "eval_duration": 4859613400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14041-efca-7603-b999-0d528ab08ff9-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 2099,
+     "output_tokens": 252,
+     "total_tokens": 2351
+    }
+   }
+  }
+ ]
+}

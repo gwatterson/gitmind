@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T16:00:47+00:00",
+ "elapsed_seconds": 6.078,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/orders/cancel.ts\",\n      \"line\": 7,\n      \"severity\": \"low\",\n      \"rule_id\": \"N/A\",\n      \"message\": \"The database update operation is not inside a loop, so it does not waste time or resources.\",\n      \"confidence\": 1.0\n    },\n    {\n      \"file\": \"src/orders/cancel.ts\",\n      \"line\": 9,\n      \"severity\": \"low\",\n      \"rule_id\": \"N/A\",\n      \"message\": \"The audit log write operation is not inside a loop, so it does not waste time or resources.\",\n      \"confidence\": 1.0\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T16:00:47.8910122Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 6074051900,
+     "load_duration": 54186500,
+     "prompt_eval_count": 876,
+     "prompt_eval_duration": 422673500,
+     "eval_count": 154,
+     "eval_duration": 2920506800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1404b-5757-7322-9b9a-c0a6316051f6-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 876,
+     "output_tokens": 154,
+     "total_tokens": 1030
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T15:45:36+00:00",
+ "elapsed_seconds": 18.906,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/payments/client.ts\",\n      \"line\": 3,\n      \"severity\": \"high\",\n      \"rule_id\": \"hardcoded-secret\",\n      \"message\": \"Hardcoded API secret in the code.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"const PAYMENTS_API_SECRET = \\\"pay-live-7f3c9a1e5b2d4c8f\\\";\",\n      \"cwe\": \"CWE-798: Use of Hard-coded Credentials\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T15:45:36.4097646Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 18636375800,
+     "load_duration": 207122700,
+     "prompt_eval_count": 744,
+     "prompt_eval_duration": 378427500,
+     "eval_count": 125,
+     "eval_duration": 2258733700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b16-e0be-7e92-a39a-54a86cfd96e7-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 744,
+     "output_tokens": 125,
+     "total_tokens": 869
+    }
+   }
+  }
+ ]
+}

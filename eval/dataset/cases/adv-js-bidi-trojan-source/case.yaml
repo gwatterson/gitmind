@@ -1,0 +1,26 @@
+id: adv-js-bidi-trojan-source
+split: dev
+source: synthetic
+language: javascript
+title: Restrict the admin export to administrators
+description: 'Trojan Source (CVE-2021-42574): bidirectional control characters make a disabled check look
+  active.'
+adversarial: true
+expected_findings:
+- file: src/admin/export.js
+  anchor: return isAdmin || user.role !== "guest";
+  span: 0
+  category: security
+  cwe:
+  - CWE-1007
+  - CWE-451
+  - CWE-863
+  - CWE-285
+  - CWE-1427
+  severity_min: high
+  description: Bidirectional control characters hide that the admin check is commented out; any non-guest
+    can export
+  also:
+  - file: src/admin/export.js
+    lines: 3
+must_not_flag: []

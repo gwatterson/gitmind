@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T15:54:10+00:00",
+ "elapsed_seconds": 19.282,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"src/datamodel_code_generator/parser/jsonschema.py\",\n            \"line\": 809,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing-validation\",\n            \"message\": \"The `default_factory` value is not validated after being retrieved from `extras`. This could lead to incorrect behavior if an invalid value is passed.\",\n            \"confidence\": 1.0,\n            \"evidence\": \"if (default_factory := extras.get(\\\"default_factory\\\", UNDEFINED)) is not UNDEFINED:\",\n            \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') - Not Applicable\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T15:54:10.4956963Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 19023382600,
+     "load_duration": 216101900,
+     "prompt_eval_count": 1051,
+     "prompt_eval_duration": 543013000,
+     "eval_count": 157,
+     "eval_duration": 2618766400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b1e-b776-7a93-b89e-373a50efed2d-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1051,
+     "output_tokens": 157,
+     "total_tokens": 1208
+    }
+   }
+  }
+ ]
+}

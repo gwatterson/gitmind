@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T15:44:29+00:00",
+ "elapsed_seconds": 9.735,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"app/workflows/importer.py\",\n      \"line\": 6,\n      \"severity\": \"high\",\n      \"rule_id\": \"S577\",\n      \"message\": \"Using `yaml.load` with untrusted data can lead to arbitrary code execution.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"return yaml.load(document, Loader=yaml.Loader)\",\n      \"cwe\": \"CWE-489: Use of Dangerous Functions or APIs\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T15:44:29.2046532Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 9721430900,
+     "load_duration": 166596100,
+     "prompt_eval_count": 702,
+     "prompt_eval_duration": 359372900,
+     "eval_count": 118,
+     "eval_duration": 2089703300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b15-fe18-77d0-9bed-54f60dac23ae-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 702,
+     "output_tokens": 118,
+     "total_tokens": 820
+    }
+   }
+  }
+ ]
+}

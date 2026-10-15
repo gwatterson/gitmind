@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T15:59:06+00:00",
+ "elapsed_seconds": 113.75,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"lemur/destinations/schemas.py\",\n      \"line\": 32,\n      \"severity\": \"high\",\n      \"rule_id\": \"sensitive_data_exposure\",\n      \"message\": \"Sensitive data is being redacted from API read responses, but the code has been removed.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-             for option in data.get(\\\"options\\\", []):\\n-                 if option.get(\\\"sensitive\\\"):\\n-                     option[\\\"value\\\"] = None\",\n      \"cwe\": \"CWE-523: Sensitive Data Exposure Through API\"\n    },\n    {\n      \"file\": \"lemur/destinations/views.py\",\n      \"line\": 197,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_permission_check\",\n      \"message\": \"The `admin_permission.require` decorator has been removed, which may allow unauthorized access to the endpoint.\",\n      \"confidence\": 0.8,\n      \"evidence\": \"-     @admin_permission.require(http_exception=403)\",\n      \"cwe\": \"CWE-264: Permissions, Access Control\"\n    },\n    {\n      \"file\": \"lemur/destinations/views.py\",\n      \"line\": 358,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_permission_check\",\n      \"message\": \"The `admin_permission.require` decorator has been removed, which may allow unauthorized access to the endpoint.\",\n      \"confidence\": 0.8,\n      \"evidence\": \"-     @admin_permission.require(http_exception=403)\",\n      \"cwe\": \"CWE-264: Permissions, Access Control\"\n    },\n    {\n      \"file\": \"lemur/plugins/lemur_sftp/plugin.py\",\n      \"line\": 79,\n      \"severity\": \"low\",\n      \"rule_id\": \"misleading_comment\",\n      \"message\": \"The comment about passwords being redacted is misleading since the code has been removed.\",\n      \"confidence\": 0.6,\n      \"evidence\": \"-             \\\"sensitive\\\": True,\",\n      \"cwe\": \"CWE-184: Inconsistent Behavior\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T15:59:06.8830416Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 113466214500,
+     "load_duration": 169714200,
+     "prompt_eval_count": 1448,
+     "prompt_eval_duration": 754155200,
+     "eval_count": 479,
+     "eval_duration": 9056868200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b21-cc30-7532-9ccd-4f6a4d97ea1b-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1448,
+     "output_tokens": 479,
+     "total_tokens": 1927
+    }
+   }
+  }
+ ]
+}

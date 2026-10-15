@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T15:50:18+00:00",
+ "elapsed_seconds": 8.61,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"app/profile/avatar.py\",\n      \"line\": 7,\n      \"severity\": \"high\",\n      \"rule_id\": \"blocking_call_in_async_function\",\n      \"message\": \"A blocking call (requests.get) is inside an async function.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"response = requests.get(url, timeout=5)\",\n      \"cwe\": \"CWE-362: Inefficient Cryptographic Algorithms\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T15:50:18.5350358Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 8611631800,
+     "load_duration": 140433200,
+     "prompt_eval_count": 834,
+     "prompt_eval_duration": 418310200,
+     "eval_count": 113,
+     "eval_duration": 2043209900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b1b-5700-7731-8240-b67fd297a54b-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 834,
+     "output_tokens": 113,
+     "total_tokens": 947
+    }
+   }
+  }
+ ]
+}

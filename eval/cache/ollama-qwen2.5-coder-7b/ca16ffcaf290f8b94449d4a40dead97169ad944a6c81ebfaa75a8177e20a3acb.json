@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:43:51+00:00",
+ "elapsed_seconds": 5.093,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"ghost/core/core/server/lib/mobiledoc.js\",\n      \"line\": 143,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1_queries\",\n      \"message\": \"The code makes a database or API call inside the body of a loop over query results.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-                 } else if (storageUtils.isInternalImage(payload.src)) {\",\n      \"cwe\": \"CWE-835: Inefficient Data Processing\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:43:51.0522265Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 5085677100,
+     "load_duration": 60996200,
+     "prompt_eval_count": 872,
+     "prompt_eval_duration": 417751200,
+     "eval_count": 129,
+     "eval_duration": 2343422000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1403b-d72d-7f70-ace0-ab2fe15521d3-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 872,
+     "output_tokens": 129,
+     "total_tokens": 1001
+    }
+   }
+  }
+ ]
+}

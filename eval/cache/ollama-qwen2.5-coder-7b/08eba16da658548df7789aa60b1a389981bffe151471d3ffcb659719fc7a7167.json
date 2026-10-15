@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:42:49+00:00",
+ "elapsed_seconds": 23.719,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"packages/aws-cdk-lib/aws-lambda-nodejs/lib/bundling.ts\",\n      \"line\": 628,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-78 OS command injection\",\n      \"message\": \"The code uses shell commands with user input without proper sanitization, which can lead to OS command injection.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"return `echo '${data}' > \\\"${filePath}\\\"`;\",\n      \"cwe\": \"CWE-78\"\n    },\n    {\n      \"file\": \"packages/aws-cdk-lib/aws-lambda-nodejs/lib/bundling.ts\",\n      \"line\": 641,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-78 OS command injection\",\n      \"message\": \"The code uses shell commands with user input without proper sanitization, which can lead to OS command injection.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"return `cp \\\"${src}\\\" \\\"${dest}\\\"`;\",\n      \"cwe\": \"CWE-78\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:42:49.8167136Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 23447551500,
+     "load_duration": 49393400,
+     "prompt_eval_count": 1109,
+     "prompt_eval_duration": 541666100,
+     "eval_count": 255,
+     "eval_duration": 4512657500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1403a-9f39-7ef0-b150-68df6e51e103-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1109,
+     "output_tokens": 255,
+     "total_tokens": 1364
+    }
+   }
+  }
+ ]
+}

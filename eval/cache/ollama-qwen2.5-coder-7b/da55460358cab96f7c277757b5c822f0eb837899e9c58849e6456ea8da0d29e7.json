@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:46:00+00:00",
+ "elapsed_seconds": 43.875,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"lightrag/api/utils_api.py\",\n      \"line\": 218,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-78\",\n      \"message\": \"The code does not properly validate the token before accepting it, which could lead to unauthorized access.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+                 if auth_configured and token_info.get(\\\"role\\\") != \\\"guest\\\":\\n+                     return\"\n    },\n    {\n      \"file\": \"lightrag/api/utils_api.py\",\n      \"line\": 218,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-78\",\n      \"message\": \"The code does not properly validate the token before accepting it, which could lead to unauthorized access.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+                 # Token validation failed, immediately return 401 error\\n+                 raise HTTPException(\\n+                     status_code=status.HTTP_401_UNAUTHORIZED,\\n+                     detail=\\\"Invalid token. Please login again.\\\",\\n+                 )\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:46:00.9473106Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 43634748200,
+     "load_duration": 54021100,
+     "prompt_eval_count": 1504,
+     "prompt_eval_duration": 757363600,
+     "eval_count": 254,
+     "eval_duration": 4447077200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1403d-3b0f-7050-8212-ebb679107538-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1504,
+     "output_tokens": 254,
+     "total_tokens": 1758
+    }
+   }
+  }
+ ]
+}

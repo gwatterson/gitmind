@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:57:14+00:00",
+ "elapsed_seconds": 18.844,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/importers/products.py\",\n            \"line\": 13,\n            \"severity\": \"high\",\n            \"rule_id\": \"N+1 queries\",\n            \"message\": \"Opening the pricing rules file inside the loop over CSV rows leads to N+1 file I/O operations.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"with RULES_PATH.open(encoding=\\\"utf-8\\\") as rules_file:\",\n            \"cwe\": \"CWE-352: Cross-Site Scripting (XSS)\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:57:14.1519176Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 18583899400,
+     "load_duration": 50486900,
+     "prompt_eval_count": 974,
+     "prompt_eval_duration": 482941600,
+     "eval_count": 130,
+     "eval_duration": 2425271700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14047-e283-7502-b9ff-5732cdbe0350-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 974,
+     "output_tokens": 130,
+     "total_tokens": 1104
+    }
+   }
+  }
+ ]
+}

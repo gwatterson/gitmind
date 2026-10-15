@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T16:00:14+00:00",
+ "elapsed_seconds": 25.156,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"litellm/llms/litellm_proxy/skills/prompt_injection.py\",\n            \"line\": 107,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing_path_check\",\n            \"message\": \"The condition `if clean_path:` is redundant because it will always be true if the previous line `files[clean_path] = zf.read(name)` has executed without errors.\",\n            \"confidence\": 1.0,\n            \"evidence\": \"+                        if clean_path:\",\n            \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\"\n        },\n        {\n            \"file\": \"litellm/llms/litellm_proxy/skills/sandbox_executor.py\",\n            \"line\": 100,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing_path_check\",\n            \"message\": \"The condition `if not local_path.startswith(tmpdir_abs + os.sep):` is redundant because it will always be true if the previous line `local_path = os.path.join(tmpdir, path)` has executed without errors.\",\n            \"confidence\": 1.0,\n            \"evidence\": \"+                        local_path = os.path.join(tmpdir, path)\",\n            \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T16:00:14.6586104Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 25155730800,
+     "load_duration": 167628400,
+     "prompt_eval_count": 1294,
+     "prompt_eval_duration": 661150000,
+     "eval_count": 311,
+     "eval_duration": 5805663200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b24-2efc-7180-a3f2-d0b73aced5e9-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1294,
+     "output_tokens": 311,
+     "total_tokens": 1605
+    }
+   }
+  }
+ ]
+}

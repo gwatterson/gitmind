@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T15:56:39+00:00",
+ "elapsed_seconds": 7.438,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"ghost/core/core/server/api/endpoints/db.js\",\n            \"line\": 17,\n            \"severity\": \"low\",\n            \"rule_id\": \"string-concatenation-inside-loop\",\n            \"message\": \"String concatenation inside a loop that builds a large string.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"return options.filename + '.json';\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T15:56:39.778339Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 7420077100,
+     "load_duration": 129691800,
+     "prompt_eval_count": 1121,
+     "prompt_eval_duration": 256256400,
+     "eval_count": 100,
+     "eval_duration": 1768836200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b21-2ce2-76e2-a321-f69cf6a7e65d-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1121,
+     "output_tokens": 100,
+     "total_tokens": 1221
+    }
+   }
+  }
+ ]
+}

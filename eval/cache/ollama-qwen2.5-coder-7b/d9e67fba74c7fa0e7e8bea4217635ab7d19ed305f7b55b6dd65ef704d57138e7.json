@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:36:53+00:00",
+ "elapsed_seconds": 24.563,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/repositories/users.py\",\n            \"line\": 24,\n            \"severity\": \"high\",\n            \"rule_id\": \"SQL_INJECTION\",\n            \"message\": \"SQL injection vulnerability due to string formatting in the query.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"query = f\\\"SELECT id, email, name FROM users WHERE name LIKE '%{term}%' LIMIT {limit}\\\"\"\n        },\n        {\n            \"file\": \"app/repositories/users.py\",\n            \"line\": 24,\n            \"severity\": \"medium\",\n            \"rule_id\": \"SQL_INJECTION_PREVENTION\",\n            \"message\": \"Consider using parameterized queries to prevent SQL injection.\",\n            \"confidence\": 0.6,\n            \"evidence\": \"query = f\\\"SELECT id, email, name FROM users WHERE name LIKE '%{term}%' LIMIT {limit}\\\"\"\n        },\n        {\n            \"file\": \"app/routes/users.py\",\n            \"line\": 17,\n            \"severity\": \"low\",\n            \"rule_id\": \"DEFAULT_LIMIT\",\n            \"message\": \"Default limit of 20 users may be too high for some use cases.\",\n            \"confidence\": 0.3,\n            \"evidence\": \"users = UserRepository(get_connection()).search(term)\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:36:53.8351263Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 24301427600,
+     "load_duration": 59177600,
+     "prompt_eval_count": 1158,
+     "prompt_eval_duration": 612128500,
+     "eval_count": 294,
+     "eval_duration": 4817668000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14035-2d55-7733-8e96-a2ef6f569c30-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1158,
+     "output_tokens": 294,
+     "total_tokens": 1452
+    }
+   }
+  }
+ ]
+}

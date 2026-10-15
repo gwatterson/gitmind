@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T16:06:49+00:00",
+ "elapsed_seconds": 36.297,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"sqlparse/filters/output.py\",\n      \"line\": 67,\n      \"severity\": \"low\",\n      \"rule_id\": \"string_concatenation_in_loop\",\n      \"message\": \"String concatenation inside a loop that builds a large string.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+                 token.value = token.value.replace(\\\"'\\\", \\\"\\\\'\\\")\",\n      \"cwe\": \"CWE-184: Inefficient String Concatenation\"\n    },\n    {\n      \"file\": \"sqlparse/filters/output.py\",\n      \"line\": 116,\n      \"severity\": \"low\",\n      \"rule_id\": \"string_concatenation_in_loop\",\n      \"message\": \"String concatenation inside a loop that builds a large string.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+                 token.value = token.value.replace(\\\"\\\\\\\", \\\"\\\\\\\\\\\")\",\n      \"cwe\": \"CWE-184: Inefficient String Concatenation\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T16:06:49.2559824Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 36032315700,
+     "load_duration": 184101700,
+     "prompt_eval_count": 1123,
+     "prompt_eval_duration": 564248800,
+     "eval_count": 233,
+     "eval_duration": 4000708700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b2a-08dd-7841-86b8-cf60f5af5a1f-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1123,
+     "output_tokens": 233,
+     "total_tokens": 1356
+    }
+   }
+  }
+ ]
+}

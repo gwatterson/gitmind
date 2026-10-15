@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:58:39+00:00",
+ "elapsed_seconds": 15.563,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/api/webhooks.py\",\n            \"line\": 19,\n            \"severity\": \"low\",\n            \"rule_id\": \"S523\",\n            \"message\": \"String concatenation inside a loop that builds a large string.\",\n            \"confidence\": 0.8,\n            \"evidence\": \"response.text[:500]\",\n            \"cwe\": \"CWE-190: Integer Overflow or Wraparound\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:58:39.700292Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 15293169300,
+     "load_duration": 54117400,
+     "prompt_eval_count": 981,
+     "prompt_eval_duration": 477814900,
+     "eval_count": 110,
+     "eval_duration": 1887659900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14049-3d90-7020-bebd-3131894ccefb-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 981,
+     "output_tokens": 110,
+     "total_tokens": 1091
+    }
+   }
+  }
+ ]
+}

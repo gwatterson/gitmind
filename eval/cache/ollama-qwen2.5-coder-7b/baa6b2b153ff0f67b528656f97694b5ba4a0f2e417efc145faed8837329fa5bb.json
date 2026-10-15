@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T15:48:34+00:00",
+ "elapsed_seconds": 13.969,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/admin/export.js\",\n      \"line\": 3,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_condition\",\n      \"message\": \"The condition to check if the user is an admin is commented out.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"/*‮ } ⁦if (user.role === \\\"admin\\\")⁩ ⁦ { isAdmin = true; */\"\n    },\n    {\n      \"file\": \"src/admin/export.js\",\n      \"line\": 4,\n      \"severity\": \"high\",\n      \"rule_id\": \"incorrect_logic\",\n      \"message\": \"The function always returns `true` because the commented-out condition is not executed.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"return isAdmin || user.role !== \\\"guest\\\";\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T15:48:34.8119059Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 13608673800,
+     "load_duration": 252985200,
+     "prompt_eval_count": 835,
+     "prompt_eval_duration": 459956300,
+     "eval_count": 192,
+     "eval_duration": 3610504700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b19-acf4-7890-a7d4-42a8e3d7463f-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 835,
+     "output_tokens": 192,
+     "total_tokens": 1027
+    }
+   }
+  }
+ ]
+}

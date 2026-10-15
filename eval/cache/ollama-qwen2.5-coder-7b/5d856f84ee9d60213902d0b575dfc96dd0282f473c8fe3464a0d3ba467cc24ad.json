@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:41:11+00:00",
+ "elapsed_seconds": 11.891,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"providers/google/src/airflow/providers/google/cloud/transfers/gcs_to_sftp.py\",\n      \"line\": 179,\n      \"severity\": \"low\",\n      \"rule_id\": \"S2004\",\n      \"message\": \"String concatenation inside a loop that builds a large string.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+         return os.path.join(self.destination_path, source_object)\",\n      \"cwe\": \"CWE-185: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\\nCWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:41:11.3616477Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 11585597700,
+     "load_duration": 56710800,
+     "prompt_eval_count": 1154,
+     "prompt_eval_duration": 550082800,
+     "eval_count": 165,
+     "eval_duration": 3213377300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14039-4cdf-7112-af7d-600e7f8d1170-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1154,
+     "output_tokens": 165,
+     "total_tokens": 1319
+    }
+   }
+  }
+ ]
+}

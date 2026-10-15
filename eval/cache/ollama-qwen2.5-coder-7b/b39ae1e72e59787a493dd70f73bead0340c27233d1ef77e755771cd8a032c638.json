@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T15:41:54+00:00",
+ "elapsed_seconds": 24.828,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/admin/export.js\",\n      \"line\": 3,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_condition\",\n      \"message\": \"The condition to check if the user is an admin is missing.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"/*‮ } ⁦if (user.role === \\\"admin\\\")⁩ ⁦ { isAdmin = true; */\"\n    },\n    {\n      \"file\": \"src/admin/export.js\",\n      \"line\": 4,\n      \"severity\": \"high\",\n      \"rule_id\": \"inverted_logic\",\n      \"message\": \"The logic for allowing export is inverted. It should check if the user is not a guest and not an admin.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"return isAdmin || user.role !== \\\"guest\\\";\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T15:41:54.76436Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 24483000200,
+     "load_duration": 9361505500,
+     "prompt_eval_count": 721,
+     "prompt_eval_duration": 366883600,
+     "eval_count": 197,
+     "eval_duration": 3552236500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b13-67e4-7713-b290-5ee6c2018700-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 721,
+     "output_tokens": 197,
+     "total_tokens": 918
+    }
+   }
+  }
+ ]
+}

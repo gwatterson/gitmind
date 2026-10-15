@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T16:19:29+00:00",
+ "elapsed_seconds": 5.078,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"public/js/search.js\",\n      \"line\": 8,\n      \"severity\": \"low\",\n      \"rule_id\": \"string_concatenation_in_loop\",\n      \"message\": \"String concatenation inside a loop that builds a large string.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"resultsEl.innerHTML = `<p class=\\\"empty\\\">No results for <strong>${query}</strong></p>`;\",\n      \"cwe\": \"CWE-184: Improper Limitation of Array Size\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T16:19:29.2280361Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 5081881600,
+     "load_duration": 50207000,
+     "prompt_eval_count": 876,
+     "prompt_eval_duration": 410636600,
+     "eval_count": 128,
+     "eval_duration": 2282926200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b36-1b71-7c00-82cc-182bf6ae1457-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 876,
+     "output_tokens": 128,
+     "total_tokens": 1004
+    }
+   }
+  }
+ ]
+}

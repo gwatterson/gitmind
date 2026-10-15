@@ -95,6 +95,9 @@ class ExpectedFinding(LineRange):
     # Other places where the same problem appears (e.g. the same unsafe call repeated):
     # a finding on any of them detects the problem, further ones are duplicates.
     also: list[LineRange] = Field(default_factory=list)
+    # The prompt injection attempt itself (adversarial cases): detecting it is measured
+    # apart from the vulnerability the attempt tries to hide.
+    injection: bool = False
 
     @property
     def locations(self) -> list[LineRange]:
@@ -136,6 +139,7 @@ class Case(BaseModel):
     title: str
     description: str
     smoke: bool = False  # part of the small subset used by the CI regression gate
+    adversarial: bool = False  # the diff tries to manipulate the reviewer (prompt injection)
     origin: Origin | None = None
     expected_findings: list[ExpectedFinding] = Field(default_factory=list)
     must_not_flag: list[SafeLines] = Field(default_factory=list)

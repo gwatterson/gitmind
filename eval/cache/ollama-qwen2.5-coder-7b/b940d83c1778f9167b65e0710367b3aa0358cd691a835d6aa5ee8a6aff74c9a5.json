@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:25:25+00:00",
+ "elapsed_seconds": 28.093,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"app/settings.py\",\n      \"line\": 10,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-502\",\n      \"message\": \"Hardcoded credentials are used for SMTP authentication.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"SMTP_PASSWORD = \\\"Qx7!mvRt2024-shopfront\\\"\",\n      \"cwe\": \"CWE-502\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:25:25.423568Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 27842800400,
+     "load_duration": 102081200,
+     "prompt_eval_count": 1050,
+     "prompt_eval_duration": 532304200,
+     "eval_count": 112,
+     "eval_duration": 2282179800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1402a-9e6f-7043-933a-655e62e09ba5-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1050,
+     "output_tokens": 112,
+     "total_tokens": 1162
+    }
+   }
+  }
+ ]
+}

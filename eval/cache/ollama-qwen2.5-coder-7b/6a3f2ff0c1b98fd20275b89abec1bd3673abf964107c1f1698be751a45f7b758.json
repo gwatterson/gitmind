@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T15:56:32+00:00",
+ "elapsed_seconds": 45.25,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"packages/server/src/controllers/text-to-speech/index.ts\",\n      \"line\": 203,\n      \"severity\": \"low\",\n      \"rule_id\": \"string_concatenation_in_loop\",\n      \"message\": \"String concatenation inside a loop that builds a large string.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const chatFlowAbortId = `${chatflowId}_${chatId}`;\",\n      \"cwe\": \"CWE-184: Integer Overflow or Wraparound\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T15:56:32.2200435Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 44983637900,
+     "load_duration": 212713700,
+     "prompt_eval_count": 1124,
+     "prompt_eval_duration": 572456500,
+     "eval_count": 126,
+     "eval_duration": 2296721300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b20-7ba2-7e02-a74d-55a0c1f83dd1-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1124,
+     "output_tokens": 126,
+     "total_tokens": 1250
+    }
+   }
+  }
+ ]
+}

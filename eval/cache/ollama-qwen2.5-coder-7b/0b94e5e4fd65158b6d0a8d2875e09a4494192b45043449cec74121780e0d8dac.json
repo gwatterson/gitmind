@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:33:51+00:00",
+ "elapsed_seconds": 96.594,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/routes/reports.py\",\n            \"line\": 22,\n            \"severity\": \"low\",\n            \"rule_id\": \"S307\",\n            \"message\": \"The `send_file` function is used without a limit, which could potentially load the whole file into memory if the file is large.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"@bp.get(\\\"/reports/archive/<path:name>\\\")\\n@login_required\\ndef archived_report(name: str):\\n    path = os.path.join(REPORTS_DIR, \\\"archive\\\", name)\\n    if not os.path.isfile(path):\\n        abort(404)\\n    return send_file(path, as_attachment=True)\",\n            \"cwe\": \"CWE-78\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:33:51.9074804Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 96575216900,
+     "load_duration": 148784400,
+     "prompt_eval_count": 974,
+     "prompt_eval_duration": 7527315800,
+     "eval_count": 180,
+     "eval_duration": 78006703300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14031-4d61-7533-b47a-5481c32caf43-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 974,
+     "output_tokens": 180,
+     "total_tokens": 1154
+    }
+   }
+  }
+ ]
+}

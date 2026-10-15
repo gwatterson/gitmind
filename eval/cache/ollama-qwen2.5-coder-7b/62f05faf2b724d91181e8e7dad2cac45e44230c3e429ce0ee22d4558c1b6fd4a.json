@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:45:35+00:00",
+ "elapsed_seconds": 18.532,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"lightrag/api/utils_api.py\",\n      \"line\": 216,\n      \"severity\": \"high\",\n      \"rule_id\": \"SimplificationError\",\n      \"message\": \"The logic for accepting non-guest tokens when authentication is configured has been duplicated.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+                 # Accept non-guest token if auth is configured\\n+                 if auth_configured and token_info.get(\\\"role\\\") != \\\"guest\\\":\\n+                     return\",\n      \"cwe\": \"CWE-284: Improper Access Control\"\n    },\n    {\n      \"file\": \"lightrag/api/utils_api.py\",\n      \"line\": 219,\n      \"severity\": \"high\",\n      \"rule_id\": \"SimplificationError\",\n      \"message\": \"The logic for raising a 401 error when token validation fails has been duplicated.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+                 # Token validation failed, immediately return 401 error\\n+                 raise HTTPException(\\n+                     status_code=status.HTTP_401_UNAUTHORIZED,\\n+                     detail=\\\"Invalid token. Please login again.\\\",\\n+                 )\",\n      \"cwe\": \"CWE-284: Improper Access Control\"\n    },\n    {\n      \"file\": \"lightrag/api/utils_api.py\",\n      \"line\": 226,\n      \"severity\": \"medium\",\n      \"rule_id\": \"RedundantExceptionHandling\",\n      \"message\": \"The exception handling for HTTP exceptions is redundant as it re-raises the same exception.\",\n      \"confidence\": 0.8,\n      \"evidence\": \"+               except HTTPException as e:\\n+                   # If already a 401 error, re-raise it\\n+                   if e.status_code == status.HTTP_401_UNAUTHORIZED:\",\n      \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:45:35.5810329Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 18532677700,
+     "load_duration": 50996500,
+     "prompt_eval_count": 1363,
+     "prompt_eval_duration": 665207300,
+     "eval_count": 449,
+     "eval_duration": 8225949100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1403d-3af7-7431-b6a4-f03c4c1d3d70-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1363,
+     "output_tokens": 449,
+     "total_tokens": 1812
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:27:06+00:00",
+ "elapsed_seconds": 15.016,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/auth/login.py\",\n            \"line\": 12,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing_user_check\",\n            \"message\": \"The function does not check if the user is None before accessing `user.password_hash`.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"if bcrypt.checkpw(password.encode(), user.password_hash):\",\n            \"cwe\": \"CWE-20: Improper Input Validation\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:27:06.5751676Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 15004515300,
+     "load_duration": 161145800,
+     "prompt_eval_count": 883,
+     "prompt_eval_duration": 463468200,
+     "eval_count": 119,
+     "eval_duration": 8553583900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1402c-5caf-7e42-857d-fbb38cfe973d-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 883,
+     "output_tokens": 119,
+     "total_tokens": 1002
+    }
+   }
+  }
+ ]
+}

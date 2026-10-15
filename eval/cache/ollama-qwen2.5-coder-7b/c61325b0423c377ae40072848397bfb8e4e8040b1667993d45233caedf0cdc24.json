@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:56:31+00:00",
+ "elapsed_seconds": 27.563,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/routes/images.py\",\n            \"line\": 12,\n            \"severity\": \"high\",\n            \"rule_id\": \"N+1_queries\",\n            \"message\": \"A blocking I/O call (`make_thumbnail`) is made inside a synchronous request handler.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"+    thumb = make_thumbnail(file.filename)\",\n            \"cwe\": \"CWE-357: Out-of-Band Data Exfiltration\"\n        },\n        {\n            \"file\": \"app/services/thumbnails.py\",\n            \"line\": 16,\n            \"severity\": \"high\",\n            \"rule_id\": \"N+1_queries\",\n            \"message\": \"A blocking I/O call (`subprocess.run`) is made inside a synchronous function.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"+    subprocess.run(f\\\"convert {source} -resize {width}x{width} {target}\\\", shell=True, check=True)\",\n            \"cwe\": \"CWE-357: Out-of-Band Data Exfiltration\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:56:31.155887Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 27291979000,
+     "load_duration": 56445500,
+     "prompt_eval_count": 1141,
+     "prompt_eval_duration": 549870100,
+     "eval_count": 246,
+     "eval_duration": 4503371600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14047-188f-7380-816f-91baef42802f-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1141,
+     "output_tokens": 246,
+     "total_tokens": 1387
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T15:59:49+00:00",
+ "elapsed_seconds": 26.203,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"db_sqlite.py\",\n      \"line\": 748,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-22\",\n      \"message\": \"The code no longer checks for path traversal, allowing potentially unsafe file names.\",\n      \"confidence\": 0.9\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T15:59:49.3918061Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 25930907600,
+     "load_duration": 209093000,
+     "prompt_eval_count": 1084,
+     "prompt_eval_duration": 550432100,
+     "eval_count": 82,
+     "eval_duration": 1375399400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b23-c838-7610-ab90-f56d3b20596d-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1084,
+     "output_tokens": 82,
+     "total_tokens": 1166
+    }
+   }
+  }
+ ]
+}

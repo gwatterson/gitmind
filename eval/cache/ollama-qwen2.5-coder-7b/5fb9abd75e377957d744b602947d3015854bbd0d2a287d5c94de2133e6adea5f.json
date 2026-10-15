@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:41:40+00:00",
+ "elapsed_seconds": 23.078,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"packages/core/src/ci-environment/git.ts\",\n      \"line\": 67,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_quotes_in_template_string\",\n      \"message\": \"The command string is missing quotes around the input parameters, which could lead to issues if any of the inputs contain spaces or special characters.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"return execSync(`git merge-base ${input.head} ${input.base}`)\",\n      \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n    },\n    {\n      \"file\": \"packages/core/src/ci-environment/git.ts\",\n      \"line\": 89,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_quotes_in_template_string\",\n      \"message\": \"The command string is missing quotes around the input parameters, which could lead to issues if any of the inputs contain spaces or special characters.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"execSync(`git fetch --force --update-head-ok --depth ${input.depth} origin ${input.ref}:${input.target}`)\",\n      \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n    },\n    {\n      \"file\": \"packages/core/src/ci-environment/git.ts\",\n      \"line\": 154,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_quotes_in_template_string\",\n      \"message\": \"The command string is missing quotes around the input parameters, which could lead to issues if any of the inputs contain spaces or special characters.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const raw = execSync(`git log --format=\\\"%H\\\" ${maxCountArg} ${path}`.trim())\",\n      \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n    },\n    {\n      \"file\": \"packages/core/src/ci-environment/git.ts\",\n      \"line\": 162,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_quotes_in_template_string\",\n      \"message\": \"The command string is missing quotes around the input parameters, which could lead to issues if any of the inputs contain spaces or special characters.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"execSync(`git fetch --depth=${limit} origin ${input.sha}`)\",\n      \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:41:40.6825067Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 23075675400,
+     "load_duration": 51345500,
+     "prompt_eval_count": 1452,
+     "prompt_eval_duration": 393687900,
+     "eval_count": 584,
+     "eval_duration": 10427615700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14039-93a5-7243-a1c6-7d7091b2dccc-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1452,
+     "output_tokens": 584,
+     "total_tokens": 2036
+    }
+   }
+  }
+ ]
+}

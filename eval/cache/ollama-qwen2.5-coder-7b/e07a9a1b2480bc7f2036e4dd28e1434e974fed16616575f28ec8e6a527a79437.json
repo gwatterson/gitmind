@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:39:29+00:00",
+ "elapsed_seconds": 17.594,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/feed/posts.ts\",\n      \"line\": 11,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-642\",\n      \"message\": \"The code fetches user data without proper authorization checks.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const author = await prisma.user.findUnique({ where: { id: post.authorId } });\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:39:29.7418652Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 17328692200,
+     "load_duration": 52908900,
+     "prompt_eval_count": 1065,
+     "prompt_eval_duration": 569801800,
+     "eval_count": 105,
+     "eval_duration": 1899586400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14037-a995-7103-94fc-5bc594293abf-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1065,
+     "output_tokens": 105,
+     "total_tokens": 1170
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:36:14+00:00",
+ "elapsed_seconds": 239.25,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/routes/reports.py\",\n            \"line\": 23,\n            \"severity\": \"medium\",\n            \"rule_id\": \"CWE-22\",\n            \"message\": \"The code constructs a file path using user input without proper validation, which could lead to path traversal.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"path = os.path.join(REPORTS_DIR, \\\"archive\\\", name)\",\n            \"cwe\": \"CWE-22\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:36:14.5999735Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 238988156900,
+     "load_duration": 204585000,
+     "prompt_eval_count": 1117,
+     "prompt_eval_duration": 8474657800,
+     "eval_count": 122,
+     "eval_duration": 52757483400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14031-4d6d-7b33-8fb9-a71c573926c0-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1117,
+     "output_tokens": 122,
+     "total_tokens": 1239
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T15:45:17+00:00",
+ "elapsed_seconds": 32.734,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/partners/login.ts\",\n      \"line\": 10,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-943\",\n      \"message\": \"No password hashing or verification is performed.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"password: req.body.password,\",\n      \"cwe\": \"CWE-943 NoSQL injection\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T15:45:17.3689947Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 32471792000,
+     "load_duration": 189938200,
+     "prompt_eval_count": 931,
+     "prompt_eval_duration": 471255100,
+     "eval_count": 105,
+     "eval_duration": 1833529800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b16-604d-7801-b4ff-09409ea41434-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 931,
+     "output_tokens": 105,
+     "total_tokens": 1036
+    }
+   }
+  }
+ ]
+}

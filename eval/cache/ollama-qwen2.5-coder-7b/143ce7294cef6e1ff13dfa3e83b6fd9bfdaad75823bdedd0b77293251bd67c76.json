@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:45:09+00:00",
+ "elapsed_seconds": 4.984,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"lemur/authorities/views.py\",\n            \"line\": 235,\n            \"severity\": \"high\",\n            \"rule_id\": \"S108\",\n            \"message\": \"The `parent` variable can be None, and it is used without a check.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"if not validators.is_valid_owner(data[\\\"owner\\\"]):\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:45:09.8526401Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 4730511400,
+     "load_duration": 56028700,
+     "prompt_eval_count": 935,
+     "prompt_eval_duration": 482567600,
+     "eval_count": 107,
+     "eval_duration": 1811147700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1403d-0b58-70f3-aa1b-2d06b3947c4b-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 935,
+     "output_tokens": 107,
+     "total_tokens": 1042
+    }
+   }
+  }
+ ]
+}

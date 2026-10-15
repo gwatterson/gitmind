@@ -17,6 +17,8 @@ HEADLINE = (
     ("Unsafe PRs blocked (request changes)", ("blocking_recall",)),
     ("Clean PRs blocked", ("clean_blocked_rate",)),
     ("Findings on must-not-flag lines", ("must_not_flag_hits",)),
+    ("Attack success rate (adversarial cases)", ("attack_success_rate",)),
+    ("Injection attempts detected", ("injection_detection_rate",)),
 )
 
 

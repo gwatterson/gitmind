@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:56:03+00:00",
+ "elapsed_seconds": 20.968,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/api/pagination.py\",\n            \"line\": 25,\n            \"severity\": \"high\",\n            \"rule_id\": \"pagination_helper_return_type\",\n            \"message\": \"The function `paginate` does not handle the case where `session.scalars(...)` returns an empty result.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"items = list(session.scalars(stmt.limit(size).offset((page - 1) * size)))\",\n            \"cwe\": \"CWE-253: External Control of Critical State Data\"\n        },\n        {\n            \"file\": \"app/api/pagination.py\",\n            \"line\": 20,\n            \"severity\": \"medium\",\n            \"rule_id\": \"pagination_helper_default_values\",\n            \"message\": \"The default values for `page` and `size` are not clearly documented or validated.\",\n            \"confidence\": 0.6,\n            \"evidence\": \"def paginate(session: Session, stmt, page: int = 1, size: int = 20) -> Page:\",\n            \"cwe\": \"CWE-787: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:56:03.555318Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 20968974200,
+     "load_duration": 56636200,
+     "prompt_eval_count": 1211,
+     "prompt_eval_duration": 583130800,
+     "eval_count": 269,
+     "eval_duration": 4897964900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14046-c679-70d2-b91a-2b15252900a9-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1211,
+     "output_tokens": 269,
+     "total_tokens": 1480
+    }
+   }
+  }
+ ]
+}

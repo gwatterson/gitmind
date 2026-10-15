@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T15:57:57+00:00",
+ "elapsed_seconds": 44.562,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"lemur/destinations/schemas.py\",\n      \"line\": 32,\n      \"severity\": \"low\",\n      \"rule_id\": \"S107\",\n      \"message\": \"Redundant code: The same operation is performed on every iteration of the loop.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-             for option in data.get(\\\"options\\\", []):\\n-                 if option.get(\\\"sensitive\\\"):\\n-                     option[\\\"value\\\"] = None\",\n      \"cwe\": \"CWE-562: Excessive Memory Usage\"\n    },\n    {\n      \"file\": \"lemur/destinations/views.py\",\n      \"line\": 37,\n      \"severity\": \"low\",\n      \"rule_id\": \"S107\",\n      \"message\": \"Redundant code: The same operation is performed on every iteration of the loop.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-     @admin_permission.require(http_exception=403)\",\n      \"cwe\": \"CWE-562: Excessive Memory Usage\"\n    },\n    {\n      \"file\": \"lemur/destinations/views.py\",\n      \"line\": 199,\n      \"severity\": \"low\",\n      \"rule_id\": \"S107\",\n      \"message\": \"Redundant code: The same operation is performed on every iteration of the loop.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-     @admin_permission.require(http_exception=403)\",\n      \"cwe\": \"CWE-562: Excessive Memory Usage\"\n    },\n    {\n      \"file\": \"lemur/destinations/views.py\",\n      \"line\": 361,\n      \"severity\": \"low\",\n      \"rule_id\": \"S107\",\n      \"message\": \"Redundant code: The same operation is performed on every iteration of the loop.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-     @admin_permission.require(http_exception=403)\",\n      \"cwe\": \"CWE-562: Excessive Memory Usage\"\n    },\n    {\n      \"file\": \"lemur/plugins/lemur_sftp/plugin.py\",\n      \"line\": 67,\n      \"severity\": \"low\",\n      \"rule_id\": \"S107\",\n      \"message\": \"Redundant code: The same operation is performed on every iteration of the loop.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-             \\\"sensitive\\\": True,\",\n      \"cwe\": \"CWE-562: Excessive Memory Usage\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T15:57:57.668153Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 44553154900,
+     "load_duration": 130657100,
+     "prompt_eval_count": 1446,
+     "prompt_eval_duration": 745619300,
+     "eval_count": 584,
+     "eval_duration": 11052937200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b21-cc19-7633-be06-7b98ad3b3be6-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1446,
+     "output_tokens": 584,
+     "total_tokens": 2030
+    }
+   }
+  }
+ ]
+}

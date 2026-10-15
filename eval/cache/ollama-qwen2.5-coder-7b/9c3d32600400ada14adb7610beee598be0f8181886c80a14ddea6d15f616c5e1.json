@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:42:58+00:00",
+ "elapsed_seconds": 32.234,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"packages/aws-cdk-lib/aws-lambda-nodejs/lib/bundling.ts\",\n      \"line\": 628,\n      \"severity\": \"high\",\n      \"rule_id\": \"shell_quoting_incorrect\",\n      \"message\": \"Using single quotes for shell commands can lead to incorrect behavior if the data contains special characters.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"`echo '${data}' > \\\"${filePath}\\\"`\"\n    },\n    {\n      \"file\": \"packages/aws-cdk-lib/aws-lambda-nodejs/lib/bundling.ts\",\n      \"line\": 641,\n      \"severity\": \"high\",\n      \"rule_id\": \"shell_quoting_incorrect\",\n      \"message\": \"Using single quotes for shell commands can lead to incorrect behavior if the data contains special characters.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"`cp \\\"${src}\\\" \\\"${dest}\\\"`\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:42:58.3438231Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 31974661000,
+     "load_duration": 49393400,
+     "prompt_eval_count": 968,
+     "prompt_eval_duration": 476621500,
+     "eval_count": 215,
+     "eval_duration": 3855318500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1403a-9f3f-7200-be4f-40715a6dccd0-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 968,
+     "output_tokens": 215,
+     "total_tokens": 1183
+    }
+   }
+  }
+ ]
+}

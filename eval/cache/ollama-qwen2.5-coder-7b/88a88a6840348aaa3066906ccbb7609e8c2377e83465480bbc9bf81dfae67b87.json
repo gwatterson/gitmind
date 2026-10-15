@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T15:43:27+00:00",
+ "elapsed_seconds": 23.687,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"app/orders/lookup.py\",\n      \"line\": 8,\n      \"severity\": \"high\",\n      \"rule_id\": \"SQL_INJECTION\",\n      \"message\": \"SQL injection vulnerability due to string formatting.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"row = conn.execute(f\\\"SELECT * FROM orders WHERE reference = '{reference}'\\\").fetchone()\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T15:43:27.9209273Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 23415064600,
+     "load_duration": 213091200,
+     "prompt_eval_count": 767,
+     "prompt_eval_duration": 386134400,
+     "eval_count": 101,
+     "eval_duration": 1860246200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b14-d827-7412-bf0c-5502b3ec6a7b-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 767,
+     "output_tokens": 101,
+     "total_tokens": 868
+    }
+   }
+  }
+ ]
+}

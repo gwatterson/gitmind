@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:46:38+00:00",
+ "elapsed_seconds": 37.094,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"lmdeploy/pytorch/disagg/conn/engine_conn.py\",\n            \"line\": 75,\n            \"severity\": \"high\",\n            \"rule_id\": \"S208\",\n            \"message\": \"Using `send_pyobj` instead of `send_json` can lead to security vulnerabilities, as it uses pickle for serialization, which is vulnerable to remote code execution (RCE).\",\n            \"confidence\": 1.0,\n            \"evidence\": \"await self.p2p_sender[remote_engine_id].send_pyobj(DistServeCacheFreeRequest(remote_engine_id=remote_engine_id, remote_session_id=remote_session_id))\",\n            \"cwe\": \"CWE-352: Cross-Site Scripting (XSS)\"\n        },\n        {\n            \"file\": \"lmdeploy/pytorch/disagg/conn/engine_conn.py\",\n            \"line\": 80,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S176\",\n            \"message\": \"The code does not handle the case where `recv_pyobj` returns a value that is not an instance of `DistServeCacheFreeRequest`. This could lead to unexpected behavior or crashes.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"req: DistServeCacheFreeRequest = await self.p2p_receiver[remote_engine_id].recv_pyobj()\",\n            \"cwe\": \"CWE-476: Null Pointer Dereference\"\n        },\n        {\n            \"file\": \"lmdeploy/pytorch/disagg/conn/engine_conn.py\",\n            \"line\": 83,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S176\",\n            \"message\": \"The code does not handle the case where `session_id` is not found in `self.engine.scheduler.sessions`. This could lead to unexpected behavior or crashes.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"if session_id in self.engine.scheduler.sessions:\",\n            \"cwe\": \"CWE-476: Null Pointer Dereference\"\n        },\n        {\n            \"file\": \"lmdeploy/pytorch/disagg/conn/engine_conn.py\",\n            \"line\": 87,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S176\",\n            \"message\": \"The code does not handle the case where `req` is not an instance of `DistServeCacheFreeRequest`. This could lead to unexpected behavior or crashes.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"raise ValueError(f'Unsupported zmq request {type(req)}')\",\n            \"cwe\": \"CWE-476: Null Pointer Dereference\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:46:38.0856537Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 36828193400,
+     "load_duration": 54894000,
+     "prompt_eval_count": 1453,
+     "prompt_eval_duration": 735802500,
+     "eval_count": 584,
+     "eval_duration": 10921254100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1403d-e6a1-7023-9d24-f07aea5929aa-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1453,
+     "output_tokens": 584,
+     "total_tokens": 2037
+    }
+   }
+  }
+ ]
+}

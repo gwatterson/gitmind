@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:56:45+00:00",
+ "elapsed_seconds": 4.672,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"app/api/invoices.py\",\n      \"line\": 25,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_none_check\",\n      \"message\": \"The `invoice` variable can be None, but it is used without a check.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"invoice = session.get(Invoice, invoice_id)\",\n      \"cwe\": \"CWE-476: Null Pointer Dereference\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:56:45.7587951Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 4669104900,
+     "load_duration": 52443700,
+     "prompt_eval_count": 945,
+     "prompt_eval_duration": 471034400,
+     "eval_count": 116,
+     "eval_duration": 2147599800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14047-ab00-7321-a520-8bd4af687532-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 945,
+     "output_tokens": 116,
+     "total_tokens": 1061
+    }
+   }
+  }
+ ]
+}

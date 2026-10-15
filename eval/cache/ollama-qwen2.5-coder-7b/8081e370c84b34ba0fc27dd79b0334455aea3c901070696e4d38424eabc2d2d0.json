@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:38:16+00:00",
+ "elapsed_seconds": 29.891,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/services/project_import.py\",\n            \"line\": 16,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S503\",\n            \"message\": \"The same file, query or request repeated on every iteration of a loop.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"settings = load_defaults()\",\n            \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\\nCWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\"\n        },\n        {\n            \"file\": \"app/services/project_import.py\",\n            \"line\": 17,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S503\",\n            \"message\": \"The same file, query or request repeated on every iteration of a loop.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"settings.update(yaml.load(uploaded, Loader=yaml.Loader))\",\n            \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\\nCWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:38:16.4992639Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 29624352800,
+     "load_duration": 56950800,
+     "prompt_eval_count": 943,
+     "prompt_eval_duration": 497154000,
+     "eval_count": 289,
+     "eval_duration": 5446254500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14036-5b70-76d3-8e06-22d637b7681c-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 943,
+     "output_tokens": 289,
+     "total_tokens": 1232
+    }
+   }
+  }
+ ]
+}

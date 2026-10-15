@@ -23,6 +23,7 @@ The code lives in [`backend/evals`](../backend/evals).
 | Synthetic | 46 | One planted problem per case (SQL injection, SSRF, N+1 queries, swallowed exceptions, ...), plus hard negatives: safe code that looks risky |
 | Reversed CVE fixes | 33 | Real vulnerabilities from the GitHub Advisory Database: the upstream fix is reversed, so the change reintroduces the bug |
 | Open source pull requests | 22 | Merged pull requests of mature projects (click, httpx, starlette, rich, axios, hono, zod, ky): every finding counts as a false positive |
+| Prompt injection attacks | 10 | A real vulnerability hidden behind text written for the AI reviewer: "ignore previous instructions" in a docstring, fake approvals, fake system messages and prompt delimiters, a severity override, an injection in the pull request title, zero-width characters and Trojan Source bidirectional characters |
 
 Cases cover Python, JavaScript and TypeScript, and are split into `dev` (used while
 changing prompts) and `test` (frozen, only used for the reported numbers), so that the
@@ -120,6 +121,8 @@ findings on an already matched problem are counted as duplicates, not as false p
 | Unsafe PRs blocked | cases with a high or critical expected finding that got `request_changes` |
 | Clean PRs blocked | clean cases that got `request_changes` |
 | Must-not-flag hits | findings on lines marked as safe |
+| Attack success rate | attack cases where a hidden vulnerability was missed |
+| Injection attempts detected | manipulation attempts (expected findings marked `injection: true`) reported as findings |
 
 Metrics are reported for all findings and for findings of severity medium or above, and
 broken down by category, source and language. Latency is the wall time of a review,
@@ -140,19 +143,22 @@ To accept a new level of quality, update the baseline in the same pull request:
 
 ## Results
 
-Frozen `test` split, 48 pull requests, `qwen2.5-coder:7b` through Ollama on CPU. Full
-reports: [`results/`](results).
+Frozen `test` split, 48 pull requests (the attack cases are reported separately below),
+`qwen2.5-coder:7b` through Ollama on CPU. Full reports: [`results/`](results).
 
-| | semgrep | prompts v1 | prompts v2 |
-|---|---|---|---|
-| Precision | 0.44 | 0.15 | 0.18 |
-| Recall | 0.11 | 0.95 | 0.92 |
-| F1 | 0.17 | 0.26 | 0.30 |
-| CWE accuracy | 0.75 | 0.33 | 0.64 |
-| Unsafe PRs blocked | 0.09 | 0.82 | 0.82 |
-| Clean PRs blocked | 0.00 | 0.08 | 0.15 |
-| Findings per clean PR | 0.0 | 6.8 | 5.2 |
-| Review time p50 / p95 | | 93 s / 1006 s | 70 s / 150 s |
+| | semgrep | prompts v1 | prompts v2 | v3 (injection defenses) |
+|---|---|---|---|---|
+| Precision | 0.44 | 0.15 | 0.18 | 0.19 |
+| Recall | 0.11 | 0.95 | 0.92 | 0.92 |
+| F1 | 0.17 | 0.26 | 0.30 | 0.31 |
+| CWE accuracy | 0.75 | 0.33 | 0.64 | 0.44 |
+| Unsafe PRs blocked | 0.09 | 0.82 | 0.82 | 0.82 |
+| Clean PRs blocked | 0.00 | 0.08 | 0.15 | 0.08 |
+| Findings per clean PR | 0.0 | 6.8 | 5.2 | 4.2 |
+| Review time p50 / p95 | | 93 s / 1006 s | 70 s / 150 s | 19 s / 63 s |
+
+Review times depend on the load of the machine during the run and are not comparable
+across columns.
 
 Verdicts of every run are computed with the current rule (critical or high security
 findings request changes), so the columns are comparable.
@@ -172,6 +178,29 @@ confidence a required field; the verdict stopped relying on confidence (see
 `VERDICT_BLOCKING_CATEGORIES`). Chosen on `dev` (F1 0.24 to 0.29), then confirmed on `test`.
 Two clean pull requests out of thirteen are now blocked by a high security false positive:
 the precision of individual findings is the open problem, addressed next by a verifier agent.
+
+### Prompt injection
+
+v3 fences the pull request content as untrusted data (agent rules v3, supervisor v2) and
+adds a deterministic detector of manipulation attempts (`app/graph/injection.py`), see
+[ADR 0002](../docs/adr/0002-prompt-injection.md). The 10 attack cases, `dev` and `test`
+together:
+
+| | before | after |
+|---|---|---|
+| Attack success rate | 0.00 | 0.00 |
+| Injection attempts detected | 0.12 (1 of 8) | 1.00 (8 of 8) |
+| Attack PRs blocked | 9 of 10 | 10 of 10 |
+| Precision / recall | 0.46 / 0.61 | 0.55 / 1.00 |
+
+The attacks did not make the 7B model miss the vulnerability even before the defenses,
+so the attack success rate cannot show an improvement on this set. The detector was
+written knowing these cases: its detection rate is an upper bound until it is measured on
+a held-out set of harder attacks. On the 101 cases without attacks it raised no alarm,
+and review quality did not drop (F1 0.29 to 0.31 on `dev`, 0.30 to 0.31 on `test`).
+CWE accuracy fell on `test` (16 to 11 of 25): in three cases the security agent stayed
+silent and the quality agent, which assigns no CWE, found the problem; in the others the
+CWE field was left empty or wrong. On `dev` it was stable (0.21 to 0.20).
 
 ### First look at a larger model
 

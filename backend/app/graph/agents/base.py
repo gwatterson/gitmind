@@ -26,6 +26,7 @@ from app.diff.parser import (
     render_hunk,
     resolve_line,
 )
+from app.graph.injection import wrap_untrusted
 from app.graph.prompts import get_prompt
 from app.graph.schemas import AgentReview, ReviewFinding
 from app.graph.state import AgentError, Finding, PRFile, PRState
@@ -125,10 +126,8 @@ def render_batch(batch: Sequence[DiffChunk], spec: AgentSpec, pr_title: str) -> 
         part = f", part {chunk.part} of {chunk.parts}" if chunk.parts > 1 else ""
         sections.append(f"### File: {chunk.filename} ({chunk.language}{part})\n{chunk.text}")
     body = "\n\n".join(sections)
-    return (
-        f"Review these pull request changes for {spec.focus}.\n\n"
-        f"<pr_diff>\nPull request title: {pr_title}\n\n{body}\n</pr_diff>"
-    )
+    content = wrap_untrusted(f"Pull request title: {pr_title}\n\n{body}")
+    return f"Review these pull request changes for {spec.focus}.\n\n{content}"
 
 
 def _normalize_path(path: str) -> str:

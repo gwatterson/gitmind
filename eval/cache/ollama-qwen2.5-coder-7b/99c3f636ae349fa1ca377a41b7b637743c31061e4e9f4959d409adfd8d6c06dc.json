@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T16:07:03+00:00",
+ "elapsed_seconds": 50.047,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"sqlparse/filters/output.py\",\n      \"line\": 66,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-89\",\n      \"message\": \"Potential SQL injection vulnerability due to string escaping.\",\n      \"confidence\": 0.7,\n      \"evidence\": \"+             elif '\\\\' in token.value:\",\n      \"cwe\": \"CWE-89\"\n    },\n    {\n      \"file\": \"sqlparse/filters/output.py\",\n      \"line\": 115,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-89\",\n      \"message\": \"Potential SQL injection vulnerability due to string escaping.\",\n      \"confidence\": 0.7,\n      \"evidence\": \"+             elif '\\\"' in token.value:\",\n      \"cwe\": \"CWE-89\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T16:07:03.020131Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 49796464300,
+     "load_duration": 203163200,
+     "prompt_eval_count": 1266,
+     "prompt_eval_duration": 643327000,
+     "eval_count": 195,
+     "eval_duration": 3462734300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b2a-08eb-7ce1-be25-f5ce74459855-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1266,
+     "output_tokens": 195,
+     "total_tokens": 1461
+    }
+   }
+  }
+ ]
+}

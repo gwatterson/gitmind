@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T15:57:04+00:00",
+ "elapsed_seconds": 31.687,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"ghost/core/core/server/api/endpoints/db.js\",\n            \"line\": 31,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing_path_validation\",\n            \"message\": \"The code does not validate the filename for path separators, which could lead to security issues.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"-             const filename = frame.options.filename;\\n-             if (filename && path.basename(filename) !== filename) {\\n-                 throw new errors.ValidationError({message: 'Export filename must not contain path separators'});\\n-             }\",\n            \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n        },\n        {\n            \"file\": \"ghost/core/core/server/data/exporter/export-filename.js\",\n            \"line\": 17,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing_path_validation\",\n            \"message\": \"The code does not validate the filename for path separators, which could lead to security issues.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"-         return path.basename(options.filename) + '.json';\\n+         return options.filename + '.json';\",\n            \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T15:57:04.0452Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 31387000400,
+     "load_duration": 283372300,
+     "prompt_eval_count": 1123,
+     "prompt_eval_duration": 566537400,
+     "eval_count": 306,
+     "eval_duration": 5578875900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b21-2ced-7773-8d96-e35bf6665bb0-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1123,
+     "output_tokens": 306,
+     "total_tokens": 1429
+    }
+   }
+  }
+ ]
+}

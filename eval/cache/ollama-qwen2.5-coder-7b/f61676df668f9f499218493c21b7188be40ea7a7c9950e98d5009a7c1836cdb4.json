@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T16:03:07+00:00",
+ "elapsed_seconds": 46.656,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"backend/open_webui/models/messages.py\",\n            \"line\": 332,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing_channel_check\",\n            \"message\": \"The function does not check if the message's channel matches the requested channel.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"-             if not message:\\n+             return []\\n\\n               result = await db.execute(\",\n            \"cwe\": \"CWE-20: Improper Input Validation\"\n        },\n        {\n            \"file\": \"backend/open_webui/routers/channels.py\",\n            \"line\": 1134,\n            \"severity\": \"high\",\n            \"rule_id\": \"missing_channel_check\",\n            \"message\": \"The function does not check if the message's channel matches the requested channel.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"-             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=ERROR_MESSAGES.DEFAULT())\\n\\n       try:\\n           message = await Messages.insert_new_message(form_data, channel.id, user.id, db=db)\\n           if message:\",\n            \"cwe\": \"CWE-20: Improper Input Validation\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T16:03:07.1935143Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 46387348200,
+     "load_duration": 206781400,
+     "prompt_eval_count": 1088,
+     "prompt_eval_duration": 558721300,
+     "eval_count": 278,
+     "eval_duration": 5160452200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b26-7cf9-7ef0-b169-924fd452b68a-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1088,
+     "output_tokens": 278,
+     "total_tokens": 1366
+    }
+   }
+  }
+ ]
+}

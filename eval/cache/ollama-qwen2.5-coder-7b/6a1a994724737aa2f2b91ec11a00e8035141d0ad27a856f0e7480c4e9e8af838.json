@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:59:43+00:00",
+ "elapsed_seconds": 3.719,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/notifications/client.ts\",\n      \"line\": 9,\n      \"severity\": \"low\",\n      \"rule_id\": \"fetch_in_loop\",\n      \"message\": \"The fetch call is blocking and could be improved for performance.\",\n      \"confidence\": 0.6,\n      \"evidence\": \"const response = await fetch(`/api/users/${userId}/notifications`);\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:59:43.0113712Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 3722804100,
+     "load_duration": 50857300,
+     "prompt_eval_count": 877,
+     "prompt_eval_duration": 105672500,
+     "eval_count": 97,
+     "eval_duration": 1727158000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1404a-6317-7bc1-96f2-b9953234b737-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 877,
+     "output_tokens": 97,
+     "total_tokens": 974
+    }
+   }
+  }
+ ]
+}

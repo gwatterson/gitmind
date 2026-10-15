@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T16:16:09+00:00",
+ "elapsed_seconds": 65.688,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/ahttpx/_parsers.py\",\n      \"line\": 227,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-568\",\n      \"message\": \"The method `wait_ready` is defined twice in the same file. This might lead to confusion and potential bugs.\",\n      \"confidence\": 0.9\n    },\n    {\n      \"file\": \"src/ahttpx/_server.py\",\n      \"line\": 35,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-568\",\n      \"message\": \"The method `wait_ready` is defined twice in the same file. This might lead to confusion and potential bugs.\",\n      \"confidence\": 0.9\n    },\n    {\n      \"file\": \"src/httpx/_parsers.py\",\n      \"line\": 227,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-568\",\n      \"message\": \"The method `wait_ready` is defined twice in the same file. This might lead to confusion and potential bugs.\",\n      \"confidence\": 0.9\n    },\n    {\n      \"file\": \"src/httpx/_server.py\",\n      \"line\": 32,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-568\",\n      \"message\": \"The method `wait_ready` is defined twice in the same file. This might lead to confusion and potential bugs.\",\n      \"confidence\": 0.9\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T16:16:09.6342755Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 65420551400,
+     "load_duration": 89882000,
+     "prompt_eval_count": 2506,
+     "prompt_eval_duration": 1461865900,
+     "eval_count": 347,
+     "eval_duration": 6916554400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b32-2309-7fd3-9172-4eca3bd63343-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 2506,
+     "output_tokens": 347,
+     "total_tokens": 2853
+    }
+   }
+  }
+ ]
+}

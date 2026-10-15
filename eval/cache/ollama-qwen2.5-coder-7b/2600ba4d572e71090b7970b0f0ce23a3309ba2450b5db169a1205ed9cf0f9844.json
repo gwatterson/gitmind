@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:57:17+00:00",
+ "elapsed_seconds": 2.859,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"app/admin/bulk.py\",\n      \"line\": 7,\n      \"severity\": \"low\",\n      \"rule_id\": \"N/A\",\n      \"message\": \"The query inside the function is not a problem since it's only executed once.\",\n      \"confidence\": 0.9\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:57:17.0507573Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 2856866600,
+     "load_duration": 51438900,
+     "prompt_eval_count": 841,
+     "prompt_eval_duration": 93808000,
+     "eval_count": 79,
+     "eval_duration": 1440007600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14048-2c50-7ff0-be30-57543761a59c-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 841,
+     "output_tokens": 79,
+     "total_tokens": 920
+    }
+   }
+  }
+ ]
+}

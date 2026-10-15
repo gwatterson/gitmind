@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T16:18:12+00:00",
+ "elapsed_seconds": 28.359,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"packages/zod/src/v4/core/parse.ts\",\n      \"line\": 79,\n      \"severity\": \"low\",\n      \"rule_id\": \"string-concatenation-inside-loop\",\n      \"message\": \"String concatenation inside a loop that builds a large string.\",\n      \"confidence\": 0.6,\n      \"evidence\": \"+    let error: errors.$ZodError | undefined;\",\n      \"cwe\": \"CWE-190\"\n    },\n    {\n      \"file\": \"packages/zod/src/v4/core/parse.ts\",\n      \"line\": 87,\n      \"severity\": \"low\",\n      \"rule_id\": \"string-concatenation-inside-loop\",\n      \"message\": \"String concatenation inside a loop that builds a large string.\",\n      \"confidence\": 0.6,\n      \"evidence\": \"+    if (!error) error = new Err(issues.map((iss) => util.finalizeIssue(iss, ctx, core.config())));\",\n      \"cwe\": \"CWE-190\"\n    },\n    {\n      \"file\": \"packages/zod/src/v4/core/parse.ts\",\n      \"line\": 87,\n      \"severity\": \"low\",\n      \"rule_id\": \"string-concatenation-inside-loop\",\n      \"message\": \"String concatenation inside a loop that builds a large string.\",\n      \"confidence\": 0.6,\n      \"evidence\": \"+    return new Err(issues.map((iss) => util.finalizeIssue(iss, ctx, core.config())));\",\n      \"cwe\": \"CWE-190\"\n    },\n    {\n      \"file\": \"packages/zod/src/v4/core/parse.ts\",\n      \"line\": 87,\n      \"severity\": \"low\",\n      \"rule_id\": \"string-concatenation-inside-loop\",\n      \"message\": \"String concatenation inside a loop that builds a large string.\",\n      \"confidence\": 0.6,\n      \"evidence\": \"+    return new Err(issues.map((iss) => util.finalizeIssue(iss, ctx, core.config())));\",\n      \"cwe\": \"CWE-190\"\n    },\n    {\n      \"file\": \"packages/zod/src/v4/core/parse.ts\",\n      \"line\": 87,\n      \"severity\": \"low\",\n      \"rule_id\": \"string-concatenation-inside-loop\",\n      \"message\": \"String concatenation inside a loop that builds a large string.\",\n      \"confidence\": 0.6,\n      \"evidence\": \"+    return new Err(issues.map((iss) => util.finalizeIssue(iss, ctx, core.config())));\",\n      \"cwe\": \"CWE-190\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T16:18:12.9906761Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 28364307700,
+     "load_duration": 58454900,
+     "prompt_eval_count": 2271,
+     "prompt_eval_duration": 823505400,
+     "eval_count": 603,
+     "eval_duration": 11316435500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b34-96b1-7753-b55f-d6f6611b9885-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 2271,
+     "output_tokens": 603,
+     "total_tokens": 2874
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:24:57+00:00",
+ "elapsed_seconds": 33.516,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/jobs/export_orders.py\",\n            \"line\": 17,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S502\",\n            \"message\": \"The `target` variable is not used after the check, which might be a mistake.\",\n            \"confidence\": 0.9\n        },\n        {\n            \"file\": \"app/jobs/export_orders.py\",\n            \"line\": 34,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S502\",\n            \"message\": \"The `target.with_suffix(target.suffix + \\\".gz\\\")` line is not used, which might be a mistake.\",\n            \"confidence\": 0.9\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:24:57.2421686Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 33264455500,
+     "load_duration": 363880700,
+     "prompt_eval_count": 1200,
+     "prompt_eval_duration": 600457900,
+     "eval_count": 170,
+     "eval_duration": 3137831900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1402a-1b2e-7163-8d5f-eb3acb20afa4-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1200,
+     "output_tokens": 170,
+     "total_tokens": 1370
+    }
+   }
+  }
+ ]
+}

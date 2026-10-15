@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:45:17+00:00",
+ "elapsed_seconds": 12.125,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"lemur/authorities/views.py\",\n      \"line\": 235,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-601\",\n      \"message\": \"The code removes a validation check for the owner of an authority, which could lead to open redirects if the `data['owner']` is not properly validated.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-         if not validators.is_valid_owner(data[\\\"owner\\\"]):\\n-             return dict(message=f\\\"Invalid owner: check if {data[\\\\'owner\\\\\\\"]} is a valid group email. Individuals cannot be authority owners.\\\"), 412\",\n      \"cwe\": \"CWE-601 open redirect\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:45:17.0079113Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 11885231700,
+     "load_duration": 56990500,
+     "prompt_eval_count": 1076,
+     "prompt_eval_duration": 516291200,
+     "eval_count": 176,
+     "eval_duration": 3232934600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1403d-0b68-7573-9fa5-7542ce956a0c-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1076,
+     "output_tokens": 176,
+     "total_tokens": 1252
+    }
+   }
+  }
+ ]
+}

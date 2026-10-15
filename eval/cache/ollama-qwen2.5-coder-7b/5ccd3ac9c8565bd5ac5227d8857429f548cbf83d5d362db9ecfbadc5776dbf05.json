@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T16:18:31+00:00",
+ "elapsed_seconds": 46.406,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"packages/zod/src/v4/core/parse.ts\",\n      \"line\": 79,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-252\",\n      \"message\": \"The code uses a getter to lazily initialize the error object, which can be useful for performance optimization. However, this pattern should be used with caution as it may lead to unexpected behavior if not handled properly.\",\n      \"confidence\": 0.9\n    },\n    {\n      \"file\": \"packages/zod/src/v4/core/parse.ts\",\n      \"line\": 87,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-252\",\n      \"message\": \"The code uses a getter to lazily initialize the error object, which can be useful for performance optimization. However, this pattern should be used with caution as it may lead to unexpected behavior if not handled properly.\",\n      \"confidence\": 0.9\n    },\n    {\n      \"file\": \"packages/zod/src/v4/core/schemas.ts\",\n      \"line\": 337,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-252\",\n      \"message\": \"The code uses a getter to lazily initialize the error object, which can be useful for performance optimization. However, this pattern should be used with caution as it may lead to unexpected behavior if not handled properly.\",\n      \"confidence\": 0.9\n    },\n    {\n      \"file\": \"packages/zod/src/v4/core/schemas.ts\",\n      \"line\": 351,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-252\",\n      \"message\": \"The code uses a getter to lazily initialize the error object, which can be useful for performance optimization. However, this pattern should be used with caution as it may lead to unexpected behavior if not handled properly.\",\n      \"confidence\": 0.9\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T16:18:31.0580993Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 46149224600,
+     "load_duration": 78188600,
+     "prompt_eval_count": 2414,
+     "prompt_eval_duration": 1295511900,
+     "eval_count": 431,
+     "eval_duration": 7817108400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b34-96c2-7212-bd97-bacd94bf8ee3-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 2414,
+     "output_tokens": 431,
+     "total_tokens": 2845
+    }
+   }
+  }
+ ]
+}

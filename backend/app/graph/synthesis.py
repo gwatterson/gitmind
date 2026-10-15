@@ -115,6 +115,11 @@ def determine_verdict(
 def scope_notes(state: PRState, failed_agents: list[str]) -> str:
     """Deterministic notes about what the review did not cover."""
     notes = []
+    if state.get("injection_in_title"):
+        notes.append(
+            "**Possible prompt injection:** the pull request title contains text addressed "
+            "to automated reviewers. Review this change manually."
+        )
     if failed_agents:
         notes.append(
             "**Incomplete review:** the following agents failed, so their findings are "
@@ -184,7 +189,8 @@ async def synthesize(state: PRState, *, write_summary: bool) -> dict[str, Any]:
         return {"all_findings": [], "review_summary": "", "verdict": "", "status": "failed"}
 
     collected = (
-        state.get("security_findings", [])
+        state.get("injection_findings", [])
+        + state.get("security_findings", [])
         + state.get("quality_findings", [])
         + state.get("performance_findings", [])
     )

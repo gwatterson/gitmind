@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:39:59+00:00",
+ "elapsed_seconds": 30.0,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/settings.ts\",\n      \"line\": 7,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"Error handling is missing for database operations.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"settingsRouter.patch(\\\"/workspaces/:id/settings\\\", async (req, res) => { ... })\",\n      \"cwe\": \"CWE-78\"\n    },\n    {\n      \"file\": \"src/routes/settings.ts\",\n      \"line\": 11,\n      \"severity\": \"medium\",\n      \"rule_id\": \"ignored_result\",\n      \"message\": \"The result of `saveSettings` is ignored, which might lead to unnoticed errors.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"await saveSettings(req.params.id, updated); res.json(updated);\",\n      \"cwe\": \"CWE-251\"\n    },\n    {\n      \"file\": \"src/routes/settings.ts\",\n      \"line\": 8,\n      \"severity\": \"medium\",\n      \"rule_id\": \"undefined_value\",\n      \"message\": \"The value of `req.params.id` might be undefined if the route is accessed without a workspace ID.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const settings = await loadSettings(req.params.id);\",\n      \"cwe\": \"CWE-476\"\n    },\n    {\n      \"file\": \"src/routes/settings.ts\",\n      \"line\": 12,\n      \"severity\": \"medium\",\n      \"rule_id\": \"ignored_result\",\n      \"message\": \"The result of `deepMerge` is ignored, which might lead to unnoticed errors.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const updated = deepMerge(settings, req.body); res.json(updated);\",\n      \"cwe\": \"CWE-251\"\n    },\n    {\n      \"file\": \"src/routes/settings.ts\",\n      \"line\": 7,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"Error handling is missing for database operations.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"settingsRouter.patch(\\\"/workspaces/:id/settings\\\", async (req, res) => { ... })\",\n      \"cwe\": \"CWE-78\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:39:59.7997772Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 29733262900,
+     "load_duration": 51355700,
+     "prompt_eval_count": 1104,
+     "prompt_eval_duration": 579524200,
+     "eval_count": 520,
+     "eval_duration": 9436390600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14037-ee89-7a81-900f-f428b8a9a5ea-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1104,
+     "output_tokens": 520,
+     "total_tokens": 1624
+    }
+   }
+  }
+ ]
+}

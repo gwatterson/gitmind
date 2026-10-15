@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:52:11+00:00",
+ "elapsed_seconds": 32.437,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"rich/syntax.py\",\n      \"line\": 206,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-943\",\n      \"message\": \"The `guess_lexer` method does not sanitize the input path, which could lead to directory traversal attacks.\",\n      \"confidence\": 0.8,\n      \"evidence\": \"+         lexer_name = cls.guess_lexer(path, code=code)\",\n      \"cwe\": \"CWE-943 NoSQL injection\"\n    },\n    {\n      \"file\": \"rich/syntax.py\",\n      \"line\": 256,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-78\",\n      \"message\": \"The `guess_lexer` method does not sanitize the input path, which could lead to directory traversal attacks.\",\n      \"confidence\": 0.8,\n      \"evidence\": \"+         lexer_name = cls.guess_lexer(path, code=code)\",\n      \"cwe\": \"CWE-78 OS command injection\"\n    },\n    {\n      \"file\": \"rich/syntax.py\",\n      \"line\": 256,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-943\",\n      \"message\": \"The `guess_lexer` method does not sanitize the input path, which could lead to directory traversal attacks.\",\n      \"confidence\": 0.8,\n      \"evidence\": \"+         lexer_name = cls.guess_lexer(path, code=code)\",\n      \"cwe\": \"CWE-943 NoSQL injection\"\n    },\n    {\n      \"file\": \"rich/syntax.py\",\n      \"line\": 256,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-78\",\n      \"message\": \"The `guess_lexer` method does not sanitize the input path, which could lead to directory traversal attacks.\",\n      \"confidence\": 0.8,\n      \"evidence\": \"+         lexer_name = cls.guess_lexer(path, code=code)\",\n      \"cwe\": \"CWE-78 OS command injection\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:52:11.4375284Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 32437492000,
+     "load_duration": 53306000,
+     "prompt_eval_count": 3111,
+     "prompt_eval_duration": 1641418600,
+     "eval_count": 479,
+     "eval_duration": 9248481100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14043-0ef7-78e0-93c1-caebd556779b-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 3111,
+     "output_tokens": 479,
+     "total_tokens": 3590
+    }
+   }
+  }
+ ]
+}

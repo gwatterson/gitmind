@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T15:53:59+00:00",
+ "elapsed_seconds": 8.0,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/datamodel_code_generator/parser/jsonschema.py\",\n      \"line\": 809,\n      \"severity\": \"low\",\n      \"rule_id\": \"S125\",\n      \"message\": \"String concatenation inside a loop that builds a large string.\",\n      \"confidence\": 0.6,\n      \"evidence\": \"msg = f'default_factory must be one of: {allowed_values}'\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T15:53:59.1734083Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 7992394400,
+     "load_duration": 205300600,
+     "prompt_eval_count": 1049,
+     "prompt_eval_duration": 575125600,
+     "eval_count": 105,
+     "eval_duration": 1866455500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b1e-b749-74e0-ab1c-4a9678cc98b0-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1049,
+     "output_tokens": 105,
+     "total_tokens": 1154
+    }
+   }
+  }
+ ]
+}

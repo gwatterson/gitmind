@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:47:39+00:00",
+ "elapsed_seconds": 13.875,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"backend/open_webui/utils/chat.py\",\n      \"line\": 239,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-639\",\n      \"message\": \"Missing access or ownership checks for selected model.\",\n      \"confidence\": 0.8,\n      \"evidence\": \"-             if not bypass_filter and user.role == 'user':\\n-                 selected_model = request.app.state.MODELS.get(selected_model_id)\\n-                 if selected_model:\\n-                     await check_model_access(user, selected_model)\",\n      \"cwe\": \"CWE-639 access to another user's object\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:47:39.6947136Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 13618678900,
+     "load_duration": 56530000,
+     "prompt_eval_count": 1043,
+     "prompt_eval_duration": 508169000,
+     "eval_count": 153,
+     "eval_duration": 2603070800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1403f-31f4-7840-9d5a-7e9a24098ec4-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1043,
+     "output_tokens": 153,
+     "total_tokens": 1196
+    }
+   }
+  }
+ ]
+}
