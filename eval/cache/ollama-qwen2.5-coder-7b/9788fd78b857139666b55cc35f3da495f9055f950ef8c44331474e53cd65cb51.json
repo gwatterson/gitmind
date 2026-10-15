@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:43:55+00:00",
+ "elapsed_seconds": 9.953,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"ghost/core/core/server/lib/mobiledoc.js\",\n      \"line\": 143,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-798\",\n      \"message\": \"Hardcoded credentials are used to access an external service.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-                 } else if (storageUtils.isInternalImage(payload.src)) {\",\n      \"cwe\": \"CWE-798\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:43:55.9466442Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 9684004600,
+     "load_duration": 55385800,
+     "prompt_eval_count": 1015,
+     "prompt_eval_duration": 480506300,
+     "eval_count": 119,
+     "eval_duration": 2183017000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1403b-d74d-7043-9616-76d7ec386a46-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1015,
+     "output_tokens": 119,
+     "total_tokens": 1134
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:47:15+00:00",
+ "elapsed_seconds": 20.937,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"mlflow/statsmodels/__init__.py\",\n      \"line\": 307,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-502\",\n      \"message\": \"Insecure deserialization of models using pickle.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"-     if (\\n-         not MLFLOW_ALLOW_PICKLE_DESERIALIZATION.get()\\n-         and not is_in_databricks_runtime()\\n-         and not is_in_databricks_model_serving_environment()\\n-     ):\\n-         raise MlflowException(\\n-             \\\"Deserializing model using pickle is disallowed, but this model is saved\\\"\\n-             \\\" in pickle format. The workaround is to set environment variable\\\"\\n-             \\\" 'MLFLOW_ALLOW_PICKLE_DESERIALIZATION' to 'true'.\\\"\\n-         )\",\n      \"cwe\": \"CWE-502\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:47:15.1504343Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 20673654100,
+     "load_duration": 53704600,
+     "prompt_eval_count": 1302,
+     "prompt_eval_duration": 654498700,
+     "eval_count": 222,
+     "eval_duration": 3736199800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1403e-b681-72d3-9a63-fb3255d9224b-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1302,
+     "output_tokens": 222,
+     "total_tokens": 1524
+    }
+   }
+  }
+ ]
+}

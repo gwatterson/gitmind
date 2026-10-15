@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T15:52:05+00:00",
+ "elapsed_seconds": 30.734,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/partners/login.ts\",\n      \"line\": 10,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_password_hashing\",\n      \"message\": \"Password is being stored or compared as plain text, which is insecure.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"password: req.body.password,\",\n      \"cwe\": \"CWE-312: Cleartext Storage of Sensitive Information\"\n    },\n    {\n      \"file\": \"src/partners/login.ts\",\n      \"line\": 12,\n      \"severity\": \"medium\",\n      \"rule_id\": \"insecure_response\",\n      \"message\": \"The response does not provide any information about the login attempt, which can be used for brute force attacks.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"res.json({ ok: Boolean(partner) });\",\n      \"cwe\": \"CWE-200: Exposure of Sensitive Information Through an Error Message\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T15:52:05.717144Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 30475553700,
+     "load_duration": 204748600,
+     "prompt_eval_count": 900,
+     "prompt_eval_duration": 445316400,
+     "eval_count": 230,
+     "eval_duration": 4352567000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b1c-a34a-7ae0-8a1d-1e84611f8cb9-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 900,
+     "output_tokens": 230,
+     "total_tokens": 1130
+    }
+   }
+  }
+ ]
+}

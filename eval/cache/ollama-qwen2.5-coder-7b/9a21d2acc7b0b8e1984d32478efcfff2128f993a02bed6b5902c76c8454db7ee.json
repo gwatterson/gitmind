@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T15:55:46+00:00",
+ "elapsed_seconds": 63.438,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"packages/@dicebear/core/src/utils/svg.ts\",\n      \"line\": 79,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-1263\",\n      \"message\": \"The code removes the call to `escape.xml` for the `rotate` parameter, which could potentially lead to an injection vulnerability if `rotate` is derived from user input.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-   return `<g transform=\\\"rotate(${escape.xml(`${rotate}`)}, ${width / 2 + x}, ${\\n+   height / 2 + y\\n})\\\">${result.body}</g>`;\",\n      \"cwe\": \"CWE-1263\"\n    },\n    {\n      \"file\": \"packages/@dicebear/initials/src/index.ts\",\n      \"line\": 38,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-1263\",\n      \"message\": \"The code removes the call to `escapeXml` for the `fontSize` parameter, which could potentially lead to an injection vulnerability if `fontSize` is derived from user input.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-     `<text x=\\\"50%\\\" y=\\\"50%\\\" font-family=\\\"${escapeXml(fontFamily)}\\\" font-size=\\\"${escapeXml(`${fontSize}`)}\\\" font-weight=\\\"${escapeXml(`${fontWeight}`)}\\\" fill=\\\"${escapeXml(textColor)}\\\" text-anchor=\\\"middle\\\" dy=\\\"${(fontSize * .356).toFixed(3)}\\\">${escapeXml(initials)}</text>`,\\n+     `<text x=\\\"50%\\\" y=\\\"50%\\\" font-family=\\\"${escapeXml(fontFamily)}\\\" font-size=\\\"${fontSize}\\\" font-weight=\\\"${fontWeight}\\\" fill=\\\"${escapeXml(textColor)}\\\" text-anchor=\\\"middle\\\" dy=\\\"${(fontSize * .356).toFixed(3)}\\\">${escapeXml(initials)}</text>`,\\n\",\n      \"cwe\": \"CWE-1263\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T15:55:46.8236298Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 63173421700,
+     "load_duration": 201133400,
+     "prompt_eval_count": 1244,
+     "prompt_eval_duration": 614126500,
+     "eval_count": 461,
+     "eval_duration": 8546646500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b1f-833d-7280-9ceb-334278f29df5-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1244,
+     "output_tokens": 461,
+     "total_tokens": 1705
+    }
+   }
+  }
+ ]
+}

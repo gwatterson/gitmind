@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:43:45+00:00",
+ "elapsed_seconds": 20.968,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"cms/admin/placeholderadmin.py\",\n      \"line\": 1180,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_csrf_protection\",\n      \"message\": \"The code no longer checks for CSRF protection, which could lead to security vulnerabilities.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-             if request.method != \\\"POST\\\":\\n-                 return HttpResponseNotAllowed([\\\"POST\\\"])\"\n    },\n    {\n      \"file\": \"cms/plugin_rendering.py\",\n      \"line\": 601,\n      \"severity\": \"low\",\n      \"rule_id\": \"f_string_in_place_of_format_html\",\n      \"message\": \"Using an f-string instead of `format_html` might not be necessary if the message is already safe.\",\n      \"confidence\": 0.8,\n      \"evidence\": \"-             heading = format_html('<h2 class=\\\"cms-rendering-exception-title\\\">{}</h2>', message)\\n+             heading = f'<h2 class=\\\"cms-rendering-exception-title\\\">{message}</h2>'\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:43:45.9271159Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 20724037900,
+     "load_duration": 54010200,
+     "prompt_eval_count": 1262,
+     "prompt_eval_duration": 628306200,
+     "eval_count": 247,
+     "eval_duration": 4660222700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1403b-851b-7091-bb39-7891d13d12c8-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1262,
+     "output_tokens": 247,
+     "total_tokens": 1509
+    }
+   }
+  }
+ ]
+}

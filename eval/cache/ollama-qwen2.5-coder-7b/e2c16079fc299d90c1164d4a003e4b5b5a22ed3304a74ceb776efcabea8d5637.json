@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:40:42+00:00",
+ "elapsed_seconds": 11.906,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/preview.ts\",\n      \"line\": 8,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing-input-validation\",\n      \"message\": \"The URL from the query parameter is not validated before being used in a fetch request.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const url = String(req.query.url ?? \\\"\\\");\"\n    },\n    {\n      \"file\": \"src/routes/preview.ts\",\n      \"line\": 12,\n      \"severity\": \"medium\",\n      \"rule_id\": \"error-handling\",\n      \"message\": \"The response from the fetch request is not checked for errors before extracting the title.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const title = TITLE.exec(html)?.[1] ?? url;\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:40:42.289503Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 11645895800,
+     "load_duration": 57102200,
+     "prompt_eval_count": 910,
+     "prompt_eval_duration": 492269200,
+     "eval_count": 188,
+     "eval_duration": 3501357000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14038-db2a-7440-a1b6-faadecc1c584-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 910,
+     "output_tokens": 188,
+     "total_tokens": 1098
+    }
+   }
+  }
+ ]
+}

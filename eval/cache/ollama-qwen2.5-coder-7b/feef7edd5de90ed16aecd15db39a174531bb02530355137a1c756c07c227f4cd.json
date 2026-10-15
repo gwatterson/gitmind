@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T16:14:41+00:00",
+ "elapsed_seconds": 26.922,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/click/core.py\",\n      \"line\": 3400,\n      \"severity\": \"low\",\n      \"rule_id\": \"string_concatenation_in_loop\",\n      \"message\": \"String concatenation inside a loop that builds a large string.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"result += f\\\" (env var: '{self.envvar}')\\\"\",\n      \"cwe\": \"CWE-184: Inefficient String Concatenation\"\n    },\n    {\n      \"file\": \"src/click/core.py\",\n      \"line\": 3780,\n      \"severity\": \"low\",\n      \"rule_id\": \"string_concatenation_in_loop\",\n      \"message\": \"String concatenation inside a loop that builds a large string.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"return \\\"\\\", [], []\",\n      \"cwe\": \"CWE-184: Inefficient String Concatenation\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T16:14:41.8523606Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 26929161600,
+     "load_duration": 105013400,
+     "prompt_eval_count": 2984,
+     "prompt_eval_duration": 1760337800,
+     "eval_count": 225,
+     "eval_duration": 4153826800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b31-638a-7751-99fa-9bce92faa6c9-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 2984,
+     "output_tokens": 225,
+     "total_tokens": 3209
+    }
+   }
+  }
+ ]
+}

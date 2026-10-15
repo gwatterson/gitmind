@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T16:15:34+00:00",
+ "elapsed_seconds": 30.5,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/ahttpx/_parsers.py\",\n      \"line\": 228,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_async_decorator\",\n      \"message\": \"The method `wait_ready` is defined as an async function but does not use the `async` keyword in its definition.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"+     def wait_ready(self) -> bool:\",\n      \"cwe\": \"CWE-684: Incorrect Type for Function Parameter or Return Value\"\n    },\n    {\n      \"file\": \"src/ahttpx/_parsers.py\",\n      \"line\": 232,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_async_decorator\",\n      \"message\": \"The method `wait_ready` is defined as an async function but does not use the `async` keyword in its definition.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"+     def wait_ready(self) -> bool:\",\n      \"cwe\": \"CWE-684: Incorrect Type for Function Parameter or Return Value\"\n    },\n    {\n      \"file\": \"src/ahttpx/_parsers.py\",\n      \"line\": 236,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_async_decorator\",\n      \"message\": \"The method `wait_ready` is defined as an async function but does not use the `async` keyword in its definition.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"+     def wait_ready(self) -> bool:\",\n      \"cwe\": \"CWE-684: Incorrect Type for Function Parameter or Return Value\"\n    },\n    {\n      \"file\": \"src/ahttpx/_parsers.py\",\n      \"line\": 240,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_async_decorator\",\n      \"message\": \"The method `wait_ready` is defined as an async function but does not use the `async` keyword in its definition.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"+     def wait_ready(self) -> bool:\",\n      \"cwe\": \"CWE-684: Incorrect Type for Function Parameter or Return Value\"\n    },\n    {\n      \"file\": \"src/ahttpx/_parsers.py\",\n      \"line\": 244,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_async_decorator\",\n      \"message\": \"The method `wait_ready` is defined as an async function but does not use the `async` keyword in its definition.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"+     def wait_ready(self) -> bool:\",\n      \"cwe\": \"CWE-684: Incorrect Type for Function Parameter or Return Value\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T16:15:34.4300051Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 30497900700,
+     "load_duration": 93464600,
+     "prompt_eval_count": 1537,
+     "prompt_eval_duration": 820559800,
+     "eval_count": 606,
+     "eval_duration": 10447446100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b32-22fa-7313-a16c-5fdc894ee40a-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1537,
+     "output_tokens": 606,
+     "total_tokens": 2143
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T15:51:49+00:00",
+ "elapsed_seconds": 14.297,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/partners/login.ts\",\n      \"line\": 10,\n      \"severity\": \"critical\",\n      \"rule_id\": \"CWE-89\",\n      \"message\": \"SQL injection vulnerability due to direct use of user input in the query.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"password: req.body.password,\",\n      \"cwe\": \"CWE-89\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T15:51:49.2621001Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 14020509800,
+     "load_duration": 195740500,
+     "prompt_eval_count": 1041,
+     "prompt_eval_duration": 578138000,
+     "eval_count": 106,
+     "eval_duration": 1974388500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b1c-a337-7bf2-bc34-e6c75baa0ffc-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1041,
+     "output_tokens": 106,
+     "total_tokens": 1147
+    }
+   }
+  }
+ ]
+}

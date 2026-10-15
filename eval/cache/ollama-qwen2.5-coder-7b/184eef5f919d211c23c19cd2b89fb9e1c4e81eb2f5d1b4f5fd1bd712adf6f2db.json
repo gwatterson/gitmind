@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T16:02:20+00:00",
+ "elapsed_seconds": 69.094,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"src/mistune/directives/admonition.py\",\n            \"line\": 67,\n            \"severity\": \"medium\",\n            \"rule_id\": \"CWE-89\",\n            \"message\": \"Potential SQL injection vulnerability due to direct string concatenation.\",\n            \"confidence\": 0.3\n        },\n        {\n            \"file\": \"src/mistune/directives/image.py\",\n            \"line\": 163,\n            \"severity\": \"medium\",\n            \"rule_id\": \"CWE-89\",\n            \"message\": \"Potential SQL injection vulnerability due to direct string concatenation.\",\n            \"confidence\": 0.3\n        },\n        {\n            \"file\": \"src/mistune/renderers/html.py\",\n            \"line\": 141,\n            \"severity\": \"medium\",\n            \"rule_id\": \"CWE-89\",\n            \"message\": \"Potential SQL injection vulnerability due to direct string concatenation.\",\n            \"confidence\": 0.3\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T16:02:20.4032344Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 68785143900,
+     "load_duration": 204175300,
+     "prompt_eval_count": 1411,
+     "prompt_eval_duration": 702459100,
+     "eval_count": 233,
+     "eval_duration": 4131166600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b25-6e9a-7272-8a9a-e480c5aa2f81-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1411,
+     "output_tokens": 233,
+     "total_tokens": 1644
+    }
+   }
+  }
+ ]
+}

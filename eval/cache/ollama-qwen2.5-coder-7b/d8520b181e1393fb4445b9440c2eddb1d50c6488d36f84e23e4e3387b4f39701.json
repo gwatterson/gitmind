@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:59:30+00:00",
+ "elapsed_seconds": 25.328,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/api/events.py\",\n            \"line\": 12,\n            \"severity\": \"high\",\n            \"rule_id\": \"CWE-190\",\n            \"message\": \"Off-by-one error in pagination calculation.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"@router.get(\\\"\\\")\\n    def list_events(page: int = 1, size: int = 50, session: Session = Depends(get_session)):\\n        events = session.query(Event).order_by(Event.created_at.desc()).all()\\n        start = (page - 1) * size\\n        return {\\\"total\\\": len(events), \\\"items\\\": [e.to_dict() for e in events[start : start + size]]}\",\n            \"cwe\": \"CWE-190: Numeric Errors\"\n        },\n        {\n            \"file\": \"app/api/events.py\",\n            \"line\": 12,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S576\",\n            \"message\": \"Potential division by zero if size is zero.\",\n            \"confidence\": 0.8,\n            \"evidence\": \"@router.get(\\\"\\\")\\n    def list_events(page: int = 1, size: int = 50, session: Session = Depends(get_session)):\\n        events = session.query(Event).order_by(Event.created_at.desc()).all()\\n        start = (page - 1) * size\\n        return {\\\"total\\\": len(events), \\\"items\\\": [e.to_dict() for e in events[start : start + size]]}\",\n            \"cwe\": \"CWE-562: Division by Zero\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:59:30.2041252Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 25322097700,
+     "load_duration": 54765600,
+     "prompt_eval_count": 932,
+     "prompt_eval_duration": 459083300,
+     "eval_count": 367,
+     "eval_duration": 6971949300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14049-dcb1-7100-9e33-e3c654ddb2e8-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 932,
+     "output_tokens": 367,
+     "total_tokens": 1299
+    }
+   }
+  }
+ ]
+}

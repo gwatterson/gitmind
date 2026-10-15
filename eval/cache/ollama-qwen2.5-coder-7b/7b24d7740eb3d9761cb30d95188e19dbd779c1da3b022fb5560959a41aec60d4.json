@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:41:17+00:00",
+ "elapsed_seconds": 18.047,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"providers/google/src/airflow/providers/google/cloud/transfers/gcs_to_sftp.py\",\n            \"line\": 179,\n            \"severity\": \"high\",\n            \"rule_id\": \"S602\",\n            \"message\": \"The code does not check if the resolved path escapes the configured destination_path.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"return os.path.join(self.destination_path, source_object)\",\n            \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') or Path Manipulation\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:41:17.5665706Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 17790520600,
+     "load_duration": 57763700,
+     "prompt_eval_count": 1156,
+     "prompt_eval_duration": 559814800,
+     "eval_count": 145,
+     "eval_duration": 2741680000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14039-4cfd-7c82-b1f6-98ab99254c3c-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1156,
+     "output_tokens": 145,
+     "total_tokens": 1301
+    }
+   }
+  }
+ ]
+}

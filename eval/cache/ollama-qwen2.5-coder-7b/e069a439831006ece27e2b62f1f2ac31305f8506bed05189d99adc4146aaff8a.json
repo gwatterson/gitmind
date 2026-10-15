@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:25:32+00:00",
+ "elapsed_seconds": 5.969,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/services/password_reset.py\",\n            \"line\": 13,\n            \"severity\": \"low\",\n            \"rule_id\": \"N/A\",\n            \"message\": \"String concatenation inside a loop that builds a large string.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"+        token = \\\".join(random.choice(string.ascii_letters + string.digits) for _ in range(32))\\\"\",\n            \"cwe\": \"N/A\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:25:32.0257824Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 5968680300,
+     "load_duration": 111287700,
+     "prompt_eval_count": 935,
+     "prompt_eval_duration": 143707400,
+     "eval_count": 116,
+     "eval_duration": 2229784600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1402b-0ea6-7ef2-a991-130b15cb9f00-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 935,
+     "output_tokens": 116,
+     "total_tokens": 1051
+    }
+   }
+  }
+ ]
+}

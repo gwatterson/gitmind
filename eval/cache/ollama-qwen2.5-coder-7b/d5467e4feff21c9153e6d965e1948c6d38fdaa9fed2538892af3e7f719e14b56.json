@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:50:25+00:00",
+ "elapsed_seconds": 2.859,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"quality_files\": [\n    \"src/ahttpx/_content.py\",\n    \"src/ahttpx/_streams.py\"\n  ],\n  \"performance_files\": [\n    \"src/ahttpx/_content.py\",\n    \"src/ahttpx/_streams.py\"\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:50:25.4690271Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 2585816700,
+     "load_duration": 52804400,
+     "prompt_eval_count": 791,
+     "prompt_eval_duration": 386257600,
+     "eval_count": 59,
+     "eval_duration": 1041578400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14041-e49b-7173-a868-3ffa732c550d-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 791,
+     "output_tokens": 59,
+     "total_tokens": 850
+    }
+   }
+  }
+ ]
+}

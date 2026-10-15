@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:25:38+00:00",
+ "elapsed_seconds": 12.516,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/services/password_reset.py\",\n            \"line\": 12,\n            \"severity\": \"low\",\n            \"rule_id\": \"CWE-330\",\n            \"message\": \"The random token generation does not use a secure source of randomness.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"\\\"\\\".join(random.choice(string.ascii_letters + string.digits) for _ in range(32))\\\"\",\n            \"cwe\": \"CWE-330 insecure randomness\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:25:38.5736993Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 12509656500,
+     "load_duration": 112736900,
+     "prompt_eval_count": 1078,
+     "prompt_eval_duration": 555412900,
+     "eval_count": 124,
+     "eval_duration": 2428042600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1402b-0eae-7833-883d-f44e06c9f891-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1078,
+     "output_tokens": 124,
+     "total_tokens": 1202
+    }
+   }
+  }
+ ]
+}

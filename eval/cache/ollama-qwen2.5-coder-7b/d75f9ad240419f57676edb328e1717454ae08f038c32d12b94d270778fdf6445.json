@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T16:15:54+00:00",
+ "elapsed_seconds": 50.234,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/ahttpx/_server.py\",\n      \"line\": 35,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1 queries\",\n      \"message\": \"A blocking call (`await self._parser.wait_ready()`) is inside an `async def` function, which can block the event loop.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+                 if not await self._parser.wait_ready():\"\n    },\n    {\n      \"file\": \"src/ahttpx/_server.py\",\n      \"line\": 60,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1 queries\",\n      \"message\": \"A blocking call (`stream.read()`) is inside an `async def` function, which can block the event loop.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+                     await stream.read()\"\n    },\n    {\n      \"file\": \"src/httpx/_server.py\",\n      \"line\": 35,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1 queries\",\n      \"message\": \"A blocking call (`await self._parser.wait_ready()`) is inside an `async def` function, which can block the event loop.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+                 if not await self._parser.wait_ready():\"\n    },\n    {\n      \"file\": \"src/httpx/_server.py\",\n      \"line\": 60,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1 queries\",\n      \"message\": \"A blocking call (`stream.read()`) is inside an `async def` function, which can block the event loop.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+                     await stream.read()\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T16:15:54.177332Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 50238315300,
+     "load_duration": 110618000,
+     "prompt_eval_count": 1564,
+     "prompt_eval_duration": 885973000,
+     "eval_count": 397,
+     "eval_duration": 7098162700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b32-2301-75e2-85c5-70bcb975e092-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1564,
+     "output_tokens": 397,
+     "total_tokens": 1961
+    }
+   }
+  }
+ ]
+}

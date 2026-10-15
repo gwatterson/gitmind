@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:53:58+00:00",
+ "elapsed_seconds": 25.266,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"packages/zod/src/v4/classic/external.ts\",\n      \"line\": 130,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_return_type\",\n      \"message\": \"The function `withParser` does not have a return type specified.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+export function withParser<T extends SomeType>(schema: T, parser: (input: unknown) => core.output<T> | INVALID): T {\",\n      \"cwe\": \"CWE-682\"\n    },\n    {\n      \"file\": \"packages/zod/src/v4/classic/external.ts\",\n      \"line\": 130,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_type_annotation\",\n      \"message\": \"The type `core.output<T>` is not defined.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+export function withParser<T extends SomeType>(schema: T, parser: (input: unknown) => core.output<T> | INVALID): T {\",\n      \"cwe\": \"CWE-682\"\n    },\n    {\n      \"file\": \"packages/zod/src/v4/classic/external.ts\",\n      \"line\": 130,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_type_annotation\",\n      \"message\": \"The type `INVALID` is not defined.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+export function withParser<T extends SomeType>(schema: T, parser: (input: unknown) => core.output<T> | INVALID): T {\",\n      \"cwe\": \"CWE-682\"\n    },\n    {\n      \"file\": \"packages/zod/src/v4/classic/external.ts\",\n      \"line\": 130,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_type_annotation\",\n      \"message\": \"The type `SomeType` is not defined.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+export function withParser<T extends SomeType>(schema: T, parser: (input: unknown) => core.output<T> | INVALID): T {\",\n      \"cwe\": \"CWE-682\"\n    },\n    {\n      \"file\": \"packages/zod/src/v4/classic/external.ts\",\n      \"line\": 130,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_type_annotation\",\n      \"message\": \"The type `ParsePayload` is not defined.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+export function withParser<T extends SomeType>(schema: T, parser: (input: unknown) => core.output<T> | INVALID): T {\",\n      \"cwe\": \"CWE-682\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:53:58.2445425Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 25255471900,
+     "load_duration": 52010000,
+     "prompt_eval_count": 3310,
+     "prompt_eval_duration": 1422481400,
+     "eval_count": 620,
+     "eval_duration": 12153216100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14044-cc3c-7881-90bf-3aa0f60bf484-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 3310,
+     "output_tokens": 620,
+     "total_tokens": 3930
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T15:52:57+00:00",
+ "elapsed_seconds": 18.266,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"asyncssh/scp.py\",\n            \"line\": 138,\n            \"severity\": \"high\",\n            \"rule_id\": \"S107\",\n            \"message\": \"The `name` variable can be None, empty or undefined and is used without a check.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"permissions, size, name = args.split(None, 2)\",\n            \"cwe\": \"CWE-184: Integer Overflow or Wraparound\"\n        },\n        {\n            \"file\": \"asyncssh/scp.py\",\n            \"line\": 138,\n            \"severity\": \"high\",\n            \"rule_id\": \"S107\",\n            \"message\": \"The `name` variable can be None, empty or undefined and is used without a check.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"if b'/' in name or b'\\\\' in name or name == b'..':\",\n            \"cwe\": \"CWE-184: Integer Overflow or Wraparound\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T15:52:57.9927117Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 18013982800,
+     "load_duration": 273514700,
+     "prompt_eval_count": 870,
+     "prompt_eval_duration": 585664300,
+     "eval_count": 249,
+     "eval_duration": 4337117700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b1d-a02b-7d31-981a-b30761eb9007-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 870,
+     "output_tokens": 249,
+     "total_tokens": 1119
+    }
+   }
+  }
+ ]
+}

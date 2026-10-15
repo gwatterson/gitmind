@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T16:17:06+00:00",
+ "elapsed_seconds": 23.953,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"starlette/middleware/opentelemetry.py\",\n      \"line\": 30,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_default_value_check\",\n      \"message\": \"The `tracer_provider` parameter is optional but not checked for None before use.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+        tracer_provider: trace.TracerProvider | None = None,\",\n      \"cwe\": \"CWE-476: Null Pointer Dereference\"\n    },\n    {\n      \"file\": \"starlette/middleware/opentelemetry.py\",\n      \"line\": 31,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_default_value_check\",\n      \"message\": \"The `meter_provider` parameter is optional but not checked for None before use.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+        meter_provider: metrics.MeterProvider | None = None,\",\n      \"cwe\": \"CWE-476: Null Pointer Dereference\"\n    },\n    {\n      \"file\": \"starlette/middleware/opentelemetry.py\",\n      \"line\": 51,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_default_value_check\",\n      \"message\": \"The `tracer_provider` parameter is optional but not checked for None before use.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+        tracer_provider: trace.TracerProvider | None = None,\",\n      \"cwe\": \"CWE-476: Null Pointer Dereference\"\n    },\n    {\n      \"file\": \"starlette/middleware/opentelemetry.py\",\n      \"line\": 52,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_default_value_check\",\n      \"message\": \"The `meter_provider` parameter is optional but not checked for None before use.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+        meter_provider: metrics.MeterProvider | None = None,\",\n      \"cwe\": \"CWE-476: Null Pointer Dereference\"\n    },\n    {\n      \"file\": \"starlette/middleware/opentelemetry.py\",\n      \"line\": 58,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_default_value_check\",\n      \"message\": \"The `tracer_provider` parameter is optional but not checked for None before use.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+        tracer_provider: trace.TracerProvider | None = None,\",\n      \"cwe\": \"CWE-476: Null Pointer Dereference\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T16:17:06.1084225Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 23950330300,
+     "load_duration": 86328200,
+     "prompt_eval_count": 1619,
+     "prompt_eval_duration": 896874700,
+     "eval_count": 571,
+     "eval_duration": 11399205700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b33-a2ac-7cf3-93a0-958152443100-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1619,
+     "output_tokens": 571,
+     "total_tokens": 2190
+    }
+   }
+  }
+ ]
+}

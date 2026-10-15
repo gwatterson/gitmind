@@ -30,7 +30,8 @@ Gemini API or entirely on your machine with a local model served by Ollama.
 - **Structured, validated LLM output.** Every agent answers through a Pydantic schema: findings arrive as typed objects with severity, confidence, CWE and the exact code they refer to, and findings on files outside the pull request are discarded.
 - **Comments on the right line.** Diffs are shown to the model with real line numbers, and every finding is anchored on the code it quotes, so inline comments land where the problem is even when the model miscounts.
 - **Gemini or a local model.** Switch between the Gemini API and a local model served by Ollama from the dashboard; the quota limiter only applies when the API is in use.
-- **Measured on 101 labeled pull requests.** An evaluation harness scores every prompt and model change on real CVEs, synthetic bugs and clean open source pull requests against a semgrep baseline, and a CI gate blocks quality regressions.
+- **Measured on 111 labeled pull requests.** An evaluation harness scores every prompt and model change on real CVEs, synthetic bugs, clean open source pull requests and prompt injection attacks against a semgrep baseline, and a CI gate blocks quality regressions.
+- **Hardened against prompt injection.** Pull request content is fenced as untrusted data, and a deterministic detector reports text addressed to the AI reviewer and hidden Unicode (Trojan Source) as security findings.
 - **Built to fail gracefully.** If one agent crashes the review still completes, clearly marked as incomplete; if all of them fail, or the daily LLM quota runs out, the review stops with an explicit status instead of a misleading "all clear".
 - **Human in the loop.** Findings can wait in the dashboard, where a reviewer edits them and approves before anything is posted to GitHub.
 - **Safe by default.** The bot never approves a pull request on its own, webhooks are verified and idempotent, and the dashboard is protected by GitHub sign-in with an allowlist.
@@ -92,13 +93,14 @@ A new commit on the same pull request supersedes the review still in progress, a
 ## Evaluation
 
 Review quality is measured, not assumed. The [evaluation](eval/README.md) runs the real
-LangGraph pipeline on 101 pull requests with known answers, and every prompt or model
+LangGraph pipeline on 111 pull requests with known answers, and every prompt or model
 change is judged on the same numbers.
 
 - **Dataset**: 46 synthetic cases (a planted vulnerability, bug or performance problem each,
   plus safe code that only looks risky), 33 real vulnerabilities from the GitHub Advisory
-  Database rebuilt by reversing their fix commits, and 22 merged pull requests of mature open
-  source projects that should raise nothing. Python, JavaScript and TypeScript, split into a
+  Database rebuilt by reversing their fix commits, 22 merged pull requests of mature open
+  source projects that should raise nothing, and 10 prompt injection attacks that hide a
+  real vulnerability behind text written for the reviewer. Python, JavaScript and TypeScript, split into a
   `dev` set for iterating and a frozen `test` set for reporting.
 - **Scoring**: a finding counts when it is on the right file, within 3 lines of the expected
   range and in the right category; precision, recall and F1 by category, source and
@@ -108,17 +110,18 @@ change is judged on the same numbers.
   the exact prompt, so reruns and reports cost nothing, and the CI replays them as a
   regression gate on every change to prompts or pipeline.
 
-Results on the frozen test split (48 pull requests), local model `qwen2.5-coder:7b` on CPU:
+Results on the frozen test split (48 pull requests, attacks excluded), local model
+`qwen2.5-coder:7b` on CPU:
 
-| | semgrep | GitMind, prompts v1 | GitMind, prompts v2 |
-|---|---|---|---|
-| Recall | 0.11 | 0.95 | 0.92 |
-| Precision | 0.44 | 0.15 | 0.18 |
-| F1 | 0.17 | 0.26 | **0.30** |
-| CWE accuracy on matched vulnerabilities | 0.75 | 0.33 | **0.64** |
-| Unsafe pull requests blocked | 0.09 | 0.82 | 0.82 |
-| Findings per clean pull request | 0.0 | 6.8 | 5.2 |
-| Review time p50 | | 93 s | 70 s |
+| | semgrep | GitMind, prompts v1 | GitMind, prompts v2 | GitMind, v3 (injection defenses) |
+|---|---|---|---|---|
+| Recall | 0.11 | 0.95 | 0.92 | 0.92 |
+| Precision | 0.44 | 0.15 | 0.18 | 0.19 |
+| F1 | 0.17 | 0.26 | 0.30 | **0.31** |
+| CWE accuracy on matched vulnerabilities | 0.75 | 0.33 | **0.64** | 0.44 |
+| Unsafe pull requests blocked | 0.09 | 0.82 | 0.82 | 0.82 |
+| Clean pull requests blocked | 0.00 | 0.08 | 0.15 | **0.08** |
+| Findings per clean pull request | 0.0 | 6.8 | 5.2 | **4.2** |
 
 What the numbers showed, and what changed because of them:
 
@@ -139,6 +142,18 @@ What the numbers showed, and what changed because of them:
   A first probe with `gemini-2.5-flash` on five cases found the same problems with 3 false
   positives instead of 18, in about 7 seconds per review: too few cases to report as a result
   ([details](eval/README.md#first-look-at-a-larger-model)).
+- Prompt injection defenses did not cost review quality: on the cases without attacks F1
+  stayed level (0.30 to 0.31 on test, 0.29 to 0.31 on dev) with fewer false alarms, and
+  the detector raised no alarm on any of them. CWE accuracy dropped on test (16 to 11 of 25
+  matched vulnerabilities), case by case rather than systematically: in three cases the
+  quality agent, which does not assign CWEs, found the problem instead of the security
+  agent ([ADR 0002](docs/adr/0002-prompt-injection.md)).
+- On the 10 attacks the 7B model was already hard to talk out of a real vulnerability
+  (0 attacks succeeded before and after), but it reported the manipulation itself only
+  once in 8 attempts. With the defenses all 8 are reported, all 10 pull requests are
+  blocked (9 before: a Trojan Source change got through) and recall on the attack set
+  rose from 0.61 to 1.00. The detector was written knowing these attacks, so its
+  detection rate here is an upper bound; a held-out set of harder attacks is next.
 
 ---
 
@@ -188,6 +203,7 @@ What the numbers showed, and what changed because of them:
 - Security headers on every response, and HSTS in production
 - Internal errors reach clients only as an opaque reference id; details go to the logs
 - Structured logs with automatic masking of tokens, keys and credentials
+- Prompt injection defenses: pull request content is fenced in `<untrusted_code>` tags keyed by a hash of the content, so it cannot close the fence, and a deterministic detector turns text addressed to the AI reviewer (CWE-1427) and bidirectional control characters (Trojan Source, CWE-1007) into security findings
 - Startup validation: with `ENVIRONMENT=production` the backend refuses to run with insecure settings, and the interactive API docs are disabled
 
 ---
@@ -199,6 +215,7 @@ What the numbers showed, and what changed because of them:
 | Parallel specialist agents instead of one large prompt | Each agent gets a focused prompt and schema, and the three run concurrently instead of one after another |
 | Verdict computed in code from the findings | The model describes problems; whether a PR is blocked is a deterministic rule that can be tested and cannot be talked out of |
 | The bot never posts `APPROVE` by itself | A pull request can contain text written to manipulate the model. Approving requires both a configuration flag and a human approval |
+| Prompt injection is detected with rules, not with the model | The model is the target of the attack, so it cannot be the only judge of it; a deterministic detector cannot be talked out of a finding, and its hits are explainable and testable |
 | Partial results are labeled, total failures are errors | An empty list of findings must mean "nothing found", not "the agents crashed" |
 | Webhooks fail closed and are idempotent | GitHub retries deliveries and anyone can reach a public endpoint: without a valid signature nothing runs, and each delivery runs once |
 | Rate limiting before the call, not after the 429 | Free and entry tiers have tight quotas; waiting proactively is cheaper than retrying rejected calls |

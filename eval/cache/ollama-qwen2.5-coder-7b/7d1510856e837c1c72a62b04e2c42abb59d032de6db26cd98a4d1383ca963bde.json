@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T15:56:22+00:00",
+ "elapsed_seconds": 35.672,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"packages/server/src/controllers/text-to-speech/index.ts\",\n      \"line\": 39,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-284 Improper Access Control\",\n      \"message\": \"The check for `chatflow.isPublic` is removed, which could lead to unauthorized access to non-public chatflows.\",\n      \"confidence\": 0.9\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T15:56:22.6207748Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 35386098900,
+     "load_duration": 205101600,
+     "prompt_eval_count": 1267,
+     "prompt_eval_duration": 638614700,
+     "eval_count": 101,
+     "eval_duration": 1898059000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b20-7b92-7413-95d6-231a989f5ca4-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1267,
+     "output_tokens": 101,
+     "total_tokens": 1368
+    }
+   }
+  }
+ ]
+}

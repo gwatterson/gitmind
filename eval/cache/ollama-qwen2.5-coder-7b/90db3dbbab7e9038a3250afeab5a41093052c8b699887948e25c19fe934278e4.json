@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T15:48:46+00:00",
+ "elapsed_seconds": 25.25,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/admin/export.js\",\n      \"line\": 3,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-604 Improper restriction of a web service to local network access\",\n      \"message\": \"The code checks if the user role is 'admin' but does not properly restrict the export functionality to only administrators.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"/*‮ } ⁦if (user.role === \\\"admin\\\")⁩ ⁦ { isAdmin = true; */\",\n      \"cwe\": \"CWE-604\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T15:48:46.1787402Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 24975508100,
+     "load_duration": 275565600,
+     "prompt_eval_count": 976,
+     "prompt_eval_duration": 489863700,
+     "eval_count": 144,
+     "eval_duration": 2781618400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b19-ad43-7df0-b26a-38df7d19e18b-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 976,
+     "output_tokens": 144,
+     "total_tokens": 1120
+    }
+   }
+  }
+ ]
+}

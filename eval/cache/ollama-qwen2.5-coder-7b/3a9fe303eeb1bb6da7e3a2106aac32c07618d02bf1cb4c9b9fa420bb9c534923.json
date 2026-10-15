@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T16:19:39+00:00",
+ "elapsed_seconds": 15.532,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"public/js/search.js\",\n      \"line\": 8,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-943\",\n      \"message\": \"Potential XSS vulnerability due to direct insertion of user input into HTML.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"<p class=\\\"empty\\\">No results for <strong>${query}</strong></p>\",\n      \"cwe\": \"CWE-943\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T16:19:39.7147792Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 15290541700,
+     "load_duration": 56245900,
+     "prompt_eval_count": 1019,
+     "prompt_eval_duration": 485082000,
+     "eval_count": 117,
+     "eval_duration": 2162978000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b36-1b90-74e0-9d4a-f7f85519598b-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1019,
+     "output_tokens": 117,
+     "total_tokens": 1136
+    }
+   }
+  }
+ ]
+}

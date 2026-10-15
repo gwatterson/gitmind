@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T16:14:13+00:00",
+ "elapsed_seconds": 30.562,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/click/utils.py\",\n      \"line\": 97,\n      \"severity\": \"high\",\n      \"rule_id\": \"E305\",\n      \"message\": \"Importing modules at runtime can lead to performance issues and unexpected behavior.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"import textwrap\"\n    },\n    {\n      \"file\": \"src/click/utils.py\",\n      \"line\": 84,\n      \"severity\": \"medium\",\n      \"rule_id\": \"E722\",\n      \"message\": \"The `else` clause after a loop is not necessary if the loop has a break statement.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"break\"\n    },\n    {\n      \"file\": \"src/click/utils.py\",\n      \"line\": 84,\n      \"severity\": \"medium\",\n      \"rule_id\": \"E722\",\n      \"message\": \"The `else` clause after a loop is not necessary if the loop has a break statement.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"break\"\n    },\n    {\n      \"file\": \"src/click/utils.py\",\n      \"line\": 84,\n      \"severity\": \"medium\",\n      \"rule_id\": \"E722\",\n      \"message\": \"The `else` clause after a loop is not necessary if the loop has a break statement.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"break\"\n    },\n    {\n      \"file\": \"src/click/utils.py\",\n      \"line\": 84,\n      \"severity\": \"medium\",\n      \"rule_id\": \"E722\",\n      \"message\": \"The `else` clause after a loop is not necessary if the loop has a break statement.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"break\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T16:14:13.7732974Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 30564857900,
+     "load_duration": 122258200,
+     "prompt_eval_count": 1603,
+     "prompt_eval_duration": 903459200,
+     "eval_count": 428,
+     "eval_duration": 7840090600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b30-e7a6-7e01-9a4c-c582f4beaee0-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1603,
+     "output_tokens": 428,
+     "total_tokens": 2031
+    }
+   }
+  }
+ ]
+}

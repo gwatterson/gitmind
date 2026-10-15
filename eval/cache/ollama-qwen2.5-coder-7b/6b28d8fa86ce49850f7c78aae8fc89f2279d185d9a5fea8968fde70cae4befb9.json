@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T16:04:22+00:00",
+ "elapsed_seconds": 48.063,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"prowler/lib/outputs/html/html.py\",\n      \"line\": 55,\n      \"severity\": \"low\",\n      \"rule_id\": \"S125\",\n      \"message\": \"String concatenation inside a loop that builds a large string.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+                             <td>{finding.metadata.Severity.value}</td>\",\n      \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') is not applicable here as there is no SQL involved.\"\n    },\n    {\n      \"file\": \"prowler/lib/outputs/html/html.py\",\n      \"line\": 56,\n      \"severity\": \"low\",\n      \"rule_id\": \"S125\",\n      \"message\": \"String concatenation inside a loop that builds a large string.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+                             <td>{finding.metadata.ServiceName}</td>\",\n      \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') is not applicable here as there is no SQL involved.\"\n    },\n    {\n      \"file\": \"prowler/lib/outputs/html/html.py\",\n      \"line\": 57,\n      \"severity\": \"low\",\n      \"rule_id\": \"S125\",\n      \"message\": \"String concatenation inside a loop that builds a large string.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+                             <td>{finding.region.lower()}</td>\",\n      \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') is not applicable here as there is no SQL involved.\"\n    },\n    {\n      \"file\": \"prowler/lib/outputs/html/html.py\",\n      \"line\": 58,\n      \"severity\": \"low\",\n      \"rule_id\": \"S125\",\n      \"message\": \"String concatenation inside a loop that builds a large string.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+                             <td>{finding.metadata.CheckID.replace(\\\"_\\\", \\\"<wbr />_\\\")}</td>\",\n      \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') is not applicable here as there is no SQL involved.\"\n    },\n    {\n      \"file\": \"prowler/lib/outputs/html/html.py\",\n      \"line\": 59,\n      \"severity\": \"low\",\n      \"rule_id\": \"S125\",\n      \"message\": \"String concatenation inside a loop that builds a large string.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+                             <td>{finding.metadata.CheckTitle}</td>\",\n      \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') is not applicable here as there is no SQL involved.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T16:04:22.2576108Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 48055932200,
+     "load_duration": 179747000,
+     "prompt_eval_count": 1942,
+     "prompt_eval_duration": 1077116700,
+     "eval_count": 658,
+     "eval_duration": 12241706400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b27-9cb6-7d53-b5ce-5d9e91d0a68d-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1942,
+     "output_tokens": 658,
+     "total_tokens": 2600
+    }
+   }
+  }
+ ]
+}

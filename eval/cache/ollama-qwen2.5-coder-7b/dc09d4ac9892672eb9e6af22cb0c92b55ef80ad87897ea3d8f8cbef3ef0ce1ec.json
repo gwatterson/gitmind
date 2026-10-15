@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:42:00+00:00",
+ "elapsed_seconds": 43.031,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"packages/core/src/ci-environment/git.ts\",\n      \"line\": 67,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-78 OS command injection\",\n      \"message\": \"User input is directly used in an OS command without proper validation or sanitization.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"`return execSync(`git merge-base ${input.head} ${input.base}`)`\",\n      \"cwe\": \"CWE-78 OS command injection\"\n    },\n    {\n      \"file\": \"packages/core/src/ci-environment/git.ts\",\n      \"line\": 89,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-78 OS command injection\",\n      \"message\": \"User input is directly used in an OS command without proper validation or sanitization.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"`execSync(`git fetch --force --update-head-ok --depth ${input.depth} origin ${input.ref}:${input.target}`,`)\",\n      \"cwe\": \"CWE-78 OS command injection\"\n    },\n    {\n      \"file\": \"packages/core/src/ci-environment/git.ts\",\n      \"line\": 154,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-78 OS command injection\",\n      \"message\": \"User input is directly used in an OS command without proper validation or sanitization.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"`const raw = execSync(`git log --format=\\\"%H\\\" ${maxCountArg} ${path}`.trim())`\",\n      \"cwe\": \"CWE-78 OS command injection\"\n    },\n    {\n      \"file\": \"packages/core/src/ci-environment/git.ts\",\n      \"line\": 162,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-78 OS command injection\",\n      \"message\": \"User input is directly used in an OS command without proper validation or sanitization.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"`execSync(`git fetch --depth=${limit} origin ${input.sha}`,`)\",\n      \"cwe\": \"CWE-78 OS command injection\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:42:00.6481226Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 42771644200,
+     "load_duration": 62592700,
+     "prompt_eval_count": 1593,
+     "prompt_eval_duration": 833986400,
+     "eval_count": 508,
+     "eval_duration": 9071516900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14039-93aa-7652-8c30-dec34b764aa8-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1593,
+     "output_tokens": 508,
+     "total_tokens": 2101
+    }
+   }
+  }
+ ]
+}

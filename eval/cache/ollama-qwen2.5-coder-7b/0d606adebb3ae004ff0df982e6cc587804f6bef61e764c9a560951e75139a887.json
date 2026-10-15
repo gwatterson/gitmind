@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:46:14+00:00",
+ "elapsed_seconds": 13.719,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"lmdeploy/pytorch/disagg/conn/engine_conn.py\",\n      \"line\": 75,\n      \"severity\": \"medium\",\n      \"rule_id\": \"N+1 queries\",\n      \"message\": \"A database or API call is inside the body of a loop over query results.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+            await self.p2p_sender[remote_engine_id].send_pyobj(\\n+                DistServeCacheFreeRequest(remote_engine_id=remote_engine_id, remote_session_id=remote_session_id))\",\n      \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') or OS Command ('OS Command Injection')\"\n    },\n    {\n      \"file\": \"lmdeploy/pytorch/disagg/conn/engine_conn.py\",\n      \"line\": 79,\n      \"severity\": \"medium\",\n      \"rule_id\": \"N+1 queries\",\n      \"message\": \"A database or API call is inside the body of a loop over query results.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+            req: DistServeCacheFreeRequest = await self.p2p_receiver[remote_engine_id].recv_pyobj()\",\n      \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') or OS Command ('OS Command Injection')\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:46:14.7086072Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 13718191700,
+     "load_duration": 51574000,
+     "prompt_eval_count": 1451,
+     "prompt_eval_duration": 708861400,
+     "eval_count": 315,
+     "eval_duration": 5797758000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1403d-e69d-7a93-b741-c8921fe7e96b-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1451,
+     "output_tokens": 315,
+     "total_tokens": 1766
+    }
+   }
+  }
+ ]
+}

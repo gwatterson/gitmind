@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:57:26+00:00",
+ "elapsed_seconds": 12.328,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"app/admin/bulk.py\",\n      \"line\": 6,\n      \"severity\": \"medium\",\n      \"rule_id\": \"S103\",\n      \"message\": \"The comparison 'user.role is \\\"admin\\\"' will always be False because the string literal should use double quotes.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"if user.role is \\\"admin\\\":\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:57:26.5576768Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 12082721400,
+     "load_duration": 55209800,
+     "prompt_eval_count": 843,
+     "prompt_eval_duration": 406247100,
+     "eval_count": 104,
+     "eval_duration": 1878993600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14048-2c6e-79f1-b05c-d8f706d08951-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 843,
+     "output_tokens": 104,
+     "total_tokens": 947
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T16:14:58+00:00",
+ "elapsed_seconds": 14.859,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/helper/accepts/accepts.ts\",\n      \"line\": 26,\n      \"severity\": \"high\",\n      \"rule_id\": \"case-insensitive-comparison\",\n      \"message\": \"The comparison of `accept` and `supported` is case-folded, but the original casing should be preserved for accurate matching.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const accept = acceptType.toLowerCase()\\nconst supported = supportedType.toLowerCase()\",\n      \"cwe\": \"CWE-125: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') - not applicable here, but the principle is similar\"\n    },\n    {\n      \"file\": \"src/helper/accepts/accepts.ts\",\n      \"line\": 34,\n      \"severity\": \"high\",\n      \"rule_id\": \"case-insensitive-comparison\",\n      \"message\": \"The comparison of `accept` and `supported` is case-folded, but the original casing should be preserved for accurate matching.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"if (accept.endsWith('/*')) {\\nconst [acceptMain] = accept.split('/')\\nconst [supportedMain] = supported.split('/')\",\n      \"cwe\": \"CWE-125: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') - not applicable here, but the principle is similar\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T16:14:58.9184029Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 14844075600,
+     "load_duration": 96766300,
+     "prompt_eval_count": 1115,
+     "prompt_eval_duration": 617710000,
+     "eval_count": 321,
+     "eval_duration": 5566435400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b31-d569-7d32-b594-cb839a9dc7aa-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1115,
+     "output_tokens": 321,
+     "total_tokens": 1436
+    }
+   }
+  }
+ ]
+}

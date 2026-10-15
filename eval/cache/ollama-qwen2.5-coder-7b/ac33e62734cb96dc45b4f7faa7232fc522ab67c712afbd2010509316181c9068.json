@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T16:03:34+00:00",
+ "elapsed_seconds": 26.75,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"backend/open_webui/main.py\",\n      \"line\": 1294,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-78\",\n      \"message\": \"Potential OS command injection vulnerability due to the use of `removeprefix` on a user-controlled input.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"channel_id = chat_id.removeprefix('channel:')\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T16:03:34.0827762Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 26496338000,
+     "load_duration": 188385900,
+     "prompt_eval_count": 1235,
+     "prompt_eval_duration": 630653000,
+     "eval_count": 107,
+     "eval_duration": 1909761100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b27-33c3-7441-9b1e-afe8b0a17c8a-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1235,
+     "output_tokens": 107,
+     "total_tokens": 1342
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:39:25+00:00",
+ "elapsed_seconds": 12.937,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/feed/posts.ts\",\n      \"line\": 11,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_author_name_check\",\n      \"message\": \"The author's name might be undefined if the user is not found.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const author = await prisma.user.findUnique({ where: { id: post.authorId } });\\nitems.push({ id: post.id, title: post.title, author: author?.name ?? \\\"unknown\\\" });\",\n      \"cwe\": \"CWE-209 - Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') is not applicable here as it's a Prisma query.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:39:25.0720021Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 12940585200,
+     "load_duration": 57884400,
+     "prompt_eval_count": 924,
+     "prompt_eval_duration": 504913800,
+     "eval_count": 172,
+     "eval_duration": 3056644100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14037-a982-7600-8c90-1f7e1329b8ed-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 924,
+     "output_tokens": 172,
+     "total_tokens": 1096
+    }
+   }
+  }
+ ]
+}

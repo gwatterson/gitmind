@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T16:16:42+00:00",
+ "elapsed_seconds": 32.36,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"source/core/Ky.ts\",\n      \"line\": 274,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-862\",\n      \"message\": \"Insecure deserialization: The code attempts to parse an empty string as JSON, which can lead to unexpected behavior or security vulnerabilities.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+ return JSON.parse(text);\"\n    },\n    {\n      \"file\": \"source/core/Ky.ts\",\n      \"line\": 548,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-862\",\n      \"message\": \"Insecure deserialization: The code attempts to parse an empty string as JSON, which can lead to unexpected behavior or security vulnerabilities.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+ return this.#options.parseJson!(text, {request, response});\"\n    },\n    {\n      \"file\": \"source/types/ResponsePromise.ts\",\n      \"line\": 47,\n      \"severity\": \"info\",\n      \"rule_id\": \"CWE-326\",\n      \"message\": \"API documentation should specify that the `.json()` method throws an error if the body is empty or the response status is 204.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"- <JsonType = T>(): Promise<JsonType | undefined>;\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T16:16:42.0830166Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 32102846900,
+     "load_duration": 105058600,
+     "prompt_eval_count": 1718,
+     "prompt_eval_duration": 1001328500,
+     "eval_count": 319,
+     "eval_duration": 6544735500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b33-2403-70e2-84d0-db0dd53ccd56-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1718,
+     "output_tokens": 319,
+     "total_tokens": 2037
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:39:37+00:00",
+ "elapsed_seconds": 7.64,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/settings.ts\",\n      \"line\": 7,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-639\",\n      \"message\": \"The code does not validate or sanitize the user input before merging it into settings.\",\n      \"confidence\": 0.8,\n      \"evidence\": \"+   const updated = deepMerge(settings, req.body);\"\n    },\n    {\n      \"file\": \"src/routes/settings.ts\",\n      \"line\": 7,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-639\",\n      \"message\": \"The code does not validate or sanitize the user input before merging it into settings.\",\n      \"confidence\": 0.8,\n      \"evidence\": \"+   const updated = deepMerge(settings, req.body);\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:39:37.4295531Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 7647437000,
+     "load_duration": 56769200,
+     "prompt_eval_count": 1245,
+     "prompt_eval_duration": 238115200,
+     "eval_count": 193,
+     "eval_duration": 3545137800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14037-ee75-7021-8725-1a92d1558c06-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1245,
+     "output_tokens": 193,
+     "total_tokens": 1438
+    }
+   }
+  }
+ ]
+}

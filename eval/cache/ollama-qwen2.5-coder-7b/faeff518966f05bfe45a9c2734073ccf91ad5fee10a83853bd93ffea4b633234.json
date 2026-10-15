@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T15:59:22+00:00",
+ "elapsed_seconds": 14.969,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"index.js\",\n      \"line\": 14,\n      \"severity\": \"low\",\n      \"rule_id\": \"CWE-327\",\n      \"message\": \"The code removes a validation check for the `fileName` parameter, which could lead to insecure file operations.\",\n      \"confidence\": 0.6\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T15:59:22.0325689Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 14698546500,
+     "load_duration": 224019900,
+     "prompt_eval_count": 1056,
+     "prompt_eval_duration": 546288800,
+     "eval_count": 88,
+     "eval_duration": 1658205700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b23-8939-7862-8259-5fde820882a7-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1056,
+     "output_tokens": 88,
+     "total_tokens": 1144
+    }
+   }
+  }
+ ]
+}

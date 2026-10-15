@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T15:50:35+00:00",
+ "elapsed_seconds": 26.016,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"app/profile/avatar.py\",\n      \"line\": 7,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"The response status code is not checked, which could lead to incorrect behavior if the request fails.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"response = requests.get(url, timeout=5)\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T15:50:35.9439535Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 25744611900,
+     "load_duration": 211947900,
+     "prompt_eval_count": 836,
+     "prompt_eval_duration": 424334800,
+     "eval_count": 98,
+     "eval_duration": 1740606200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b1b-570b-7860-a2de-70037434bb47-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 836,
+     "output_tokens": 98,
+     "total_tokens": 934
+    }
+   }
+  }
+ ]
+}

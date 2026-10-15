@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:44:51+00:00",
+ "elapsed_seconds": 12.484,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"git/objects/submodule/base.py (python)\",\n      \"line\": 365,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-78 OS command injection\",\n      \"message\": \"The code attempts to split and check unsafe options using `shlex.split`, but this is not sufficient to prevent OS command injection if the input is not properly sanitized.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"-             Git.check_unsafe_options(\\n-                 shlex.split(\\\" \\\".join(cast(\\\"Sequence[str]\\\", multi_options))),\\n-                 repo.unsafe_git_clone_options,\\n-             )\",\n      \"cwe\": \"CWE-78 OS command injection\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:44:51.867379Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 12227938400,
+     "load_duration": 55565700,
+     "prompt_eval_count": 1284,
+     "prompt_eval_duration": 615482600,
+     "eval_count": 174,
+     "eval_duration": 3081505500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1403c-a7ce-73a1-989f-feadb1e8880f-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1284,
+     "output_tokens": 174,
+     "total_tokens": 1458
+    }
+   }
+  }
+ ]
+}

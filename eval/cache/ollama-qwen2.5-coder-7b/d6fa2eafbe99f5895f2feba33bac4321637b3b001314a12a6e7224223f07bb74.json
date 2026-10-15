@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T15:50:28+00:00",
+ "elapsed_seconds": 18.359,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"app/profile/avatar.py\",\n      \"line\": 7,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-918\",\n      \"message\": \"The function fetch_avatar does not validate the URL before making a request, which could lead to SSRF (Server-Side Request Forgery).\",\n      \"confidence\": 0.9,\n      \"evidence\": \"response = requests.get(url, timeout=5)\",\n      \"cwe\": \"CWE-918\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T15:50:28.2929429Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 18093601300,
+     "load_duration": 198674500,
+     "prompt_eval_count": 977,
+     "prompt_eval_duration": 505125900,
+     "eval_count": 126,
+     "eval_duration": 2324256100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b1b-571a-73e1-90e2-9623bb16a6ab-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 977,
+     "output_tokens": 126,
+     "total_tokens": 1103
+    }
+   }
+  }
+ ]
+}

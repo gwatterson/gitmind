@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T16:08:50+00:00",
+ "elapsed_seconds": 18.297,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"src/click/core.py\",\n            \"line\": 3419,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S582\",\n            \"message\": \"The `help` variable is not used after the conditional block.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"help = f\\\"{help}  [{extra_str}]\\\") if help else f\\\"[{extra_str}]\\\"\",\n            \"cwe\": \"CWE-582: Unused Variable\"\n        },\n        {\n            \"file\": \"src/click/core.py\",\n            \"line\": 3419,\n            \"severity\": \"medium\",\n            \"rule_id\": \"S582\",\n            \"message\": \"The `help` variable is not used after the conditional block.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"help = f\\\"{help}  [{extra_str}]\\\") if help else f\\\"[{extra_str}]\\\"\",\n            \"cwe\": \"CWE-582: Unused Variable\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T16:08:50.538022Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 18292654800,
+     "load_duration": 195310800,
+     "prompt_eval_count": 1581,
+     "prompt_eval_duration": 825352600,
+     "eval_count": 247,
+     "eval_duration": 4485123000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b2c-28f2-7860-bcfe-8287756877ca-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1581,
+     "output_tokens": 247,
+     "total_tokens": 1828
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:38:52+00:00",
+ "elapsed_seconds": 36.11,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/attachments.ts\",\n      \"line\": 29,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"The result of `run` is not checked for errors, which could lead to crashes if the command fails.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const { stdout } = await run(\\\"file\\\", [\\\"--brief\\\", \\\"--mime-type\\\", target]);\",\n      \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') if `target` is not properly sanitized.\"\n    },\n    {\n      \"file\": \"src/routes/attachments.ts\",\n      \"line\": 29,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"The result of `run` is not checked for errors, which could lead to crashes if the command fails.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const { stdout } = await run(\\\"file\\\", [\\\"--brief\\\", \\\"--mime-type\\\", target]);\",\n      \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') if `target` is not properly sanitized.\"\n    },\n    {\n      \"file\": \"src/routes/attachments.ts\",\n      \"line\": 29,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"The result of `run` is not checked for errors, which could lead to crashes if the command fails.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const { stdout } = await run(\\\"file\\\", [\\\"--brief\\\", \\\"--mime-type\\\", target]);\",\n      \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') if `target` is not properly sanitized.\"\n    },\n    {\n      \"file\": \"src/routes/attachments.ts\",\n      \"line\": 29,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"The result of `run` is not checked for errors, which could lead to crashes if the command fails.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const { stdout } = await run(\\\"file\\\", [\\\"--brief\\\", \\\"--mime-type\\\", target]);\",\n      \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') if `target` is not properly sanitized.\"\n    },\n    {\n      \"file\": \"src/routes/attachments.ts\",\n      \"line\": 29,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"The result of `run` is not checked for errors, which could lead to crashes if the command fails.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const { stdout } = await run(\\\"file\\\", [\\\"--brief\\\", \\\"--mime-type\\\", target]);\",\n      \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') if `target` is not properly sanitized.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:38:52.6576393Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 35847968600,
+     "load_duration": 55830200,
+     "prompt_eval_count": 1250,
+     "prompt_eval_duration": 679694700,
+     "eval_count": 726,
+     "eval_duration": 13595109000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14036-d069-71d0-bbca-c086ea8fb416-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1250,
+     "output_tokens": 726,
+     "total_tokens": 1976
+    }
+   }
+  }
+ ]
+}

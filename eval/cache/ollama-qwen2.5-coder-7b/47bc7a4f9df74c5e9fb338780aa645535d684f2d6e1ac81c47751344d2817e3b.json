@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T16:01:01+00:00",
+ "elapsed_seconds": 15.5,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"lmdeploy/pytorch/engine/mp_engine/zmq_rpc.py\",\n      \"line\": 36,\n      \"severity\": \"low\",\n      \"rule_id\": \"rpc_server_address_change\",\n      \"message\": \"The RPC server address is now set to 'tcp://*', which allows external network access.\",\n      \"confidence\": 0.9\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T16:01:01.4167863Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 15213119400,
+     "load_duration": 197085100,
+     "prompt_eval_count": 871,
+     "prompt_eval_duration": 444957300,
+     "eval_count": 90,
+     "eval_duration": 1675989600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b25-0b6d-7ba3-9966-cfd127cfadfc-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 871,
+     "output_tokens": 90,
+     "total_tokens": 961
+    }
+   }
+  }
+ ]
+}

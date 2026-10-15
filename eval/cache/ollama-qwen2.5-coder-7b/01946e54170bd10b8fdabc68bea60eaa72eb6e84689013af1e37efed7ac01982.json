@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:36:41+00:00",
+ "elapsed_seconds": 12.109,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"app/repositories/users.py\",\n      \"line\": 24,\n      \"severity\": \"high\",\n      \"rule_id\": \"N+1 queries\",\n      \"message\": \"The search method performs a database query inside a loop over the results of another query.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"query = f\\\"SELECT id, email, name FROM users WHERE name LIKE '%{term}%' LIMIT {limit}\\\"\",\n      \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') - This is mitigated by using parameterized queries.\"\n    },\n    {\n      \"file\": \"app/routes/users.py\",\n      \"line\": 16,\n      \"severity\": \"medium\",\n      \"rule_id\": \"blocking calls inside async def functions\",\n      \"message\": \"The search_users route handler performs a blocking database query, which can block the event loop.\",\n      \"confidence\": 0.8,\n      \"evidence\": \"users = UserRepository(get_connection()).search(term)\",\n      \"cwe\": \"CWE-362: Insecure Synchronization - Blocking calls in async functions can lead to unresponsive applications.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:36:41.3614287Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 12097624100,
+     "load_duration": 58792700,
+     "prompt_eval_count": 1156,
+     "prompt_eval_duration": 267414100,
+     "eval_count": 272,
+     "eval_duration": 4457213700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14035-2d4e-7652-8c8b-2afaa45e89f0-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1156,
+     "output_tokens": 272,
+     "total_tokens": 1428
+    }
+   }
+  }
+ ]
+}

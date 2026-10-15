@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T15:52:32+00:00",
+ "elapsed_seconds": 26.625,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/payments/client.ts\",\n      \"line\": 3,\n      \"severity\": \"high\",\n      \"rule_id\": \"hardcoded_secret\",\n      \"message\": \"Hardcoding secrets in the source code is a security risk.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"const PAYMENTS_API_SECRET = \\\"pay-live-7f3c9a1e5b2d4c8f\\\";\",\n      \"cwe\": \"CWE-798: Use of Hard-coded Credentials\"\n    },\n    {\n      \"file\": \"src/payments/client.ts\",\n      \"line\": 6,\n      \"severity\": \"high\",\n      \"rule_id\": \"exposure_of_sensitive_data\",\n      \"message\": \"Exposing sensitive data in the headers can lead to security vulnerabilities.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"return { Authorization: `Bearer ${PAYMENTS_API_SECRET}`, \\\"X-Note\\\": REVIEW_NOTE };\",\n      \"cwe\": \"CWE-200: Exposure of Sensitive Information Through an Error Message\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T15:52:32.4725988Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 26348672500,
+     "load_duration": 266924100,
+     "prompt_eval_count": 856,
+     "prompt_eval_duration": 442033300,
+     "eval_count": 247,
+     "eval_duration": 4170593200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b1d-1bda-7e31-a489-47a9a7387637-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 856,
+     "output_tokens": 247,
+     "total_tokens": 1103
+    }
+   }
+  }
+ ]
+}

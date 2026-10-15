@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:46:54+00:00",
+ "elapsed_seconds": 53.156,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"lmdeploy/pytorch/disagg/conn/engine_conn.py\",\n      \"line\": 75,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-943\",\n      \"message\": \"Deserialization of untrusted data using `recv_pyobj()` can lead to arbitrary code execution.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"await self.p2p_sender[remote_engine_id].send_pyobj(DistServeCacheFreeRequest(remote_engine_id=remote_engine_id, remote_session_id=remote_session_id))\",\n      \"cwe\": \"CWE-943\"\n    },\n    {\n      \"file\": \"lmdeploy/pytorch/disagg/conn/engine_conn.py\",\n      \"line\": 80,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-943\",\n      \"message\": \"Deserialization of untrusted data using `recv_pyobj()` can lead to arbitrary code execution.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"req: DistServeCacheFreeRequest = await self.p2p_receiver[remote_engine_id].recv_pyobj()\",\n      \"cwe\": \"CWE-943\"\n    },\n    {\n      \"file\": \"lmdeploy/pytorch/disagg/conn/engine_conn.py\",\n      \"line\": 87,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-943\",\n      \"message\": \"Deserialization of untrusted data using `recv_pyobj()` can lead to arbitrary code execution.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"raise ValueError(f'Unsupported zmq request {type(req)}')\",\n      \"cwe\": \"CWE-943\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:46:54.1632762Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 52905815900,
+     "load_duration": 55417300,
+     "prompt_eval_count": 1594,
+     "prompt_eval_duration": 828445100,
+     "eval_count": 394,
+     "eval_duration": 7321090300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1403d-e6b1-7f73-be3a-a23f36164dd2-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1594,
+     "output_tokens": 394,
+     "total_tokens": 1988
+    }
+   }
+  }
+ ]
+}

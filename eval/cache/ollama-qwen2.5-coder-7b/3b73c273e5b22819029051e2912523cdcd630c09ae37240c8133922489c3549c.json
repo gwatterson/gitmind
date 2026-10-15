@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:53:32+00:00",
+ "elapsed_seconds": 30.672,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"packages/zod/src/v4/core/json-schema-generator.ts\",\n      \"line\": 105,\n      \"severity\": \"high\",\n      \"rule_id\": \"incorrect-function-name\",\n      \"message\": \"The function name 'process' is being used, which collides with a top-level `const process` that bundler polyfills inject.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"return processSchema(schema, this.ctx, _params);\"\n    },\n    {\n      \"file\": \"packages/zod/src/v4/core/json-schema-processors.ts\",\n      \"line\": 213,\n      \"severity\": \"high\",\n      \"rule_id\": \"incorrect-function-name\",\n      \"message\": \"The function name 'process' is being used, which collides with a top-level `const process` that bundler polyfills inject.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"export function processSchema<T extends schemas.$ZodType>(\"\n    },\n    {\n      \"file\": \"packages/zod/src/v4/core/to-json-schema.ts\",\n      \"line\": 268,\n      \"severity\": \"high\",\n      \"rule_id\": \"incorrect-function-name\",\n      \"message\": \"The function name 'process' is being used, which collides with a top-level `const process` that bundler polyfills inject.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"if (!result.ref) result.ref = parent; process(parent, ctx, params);\"\n    },\n    {\n      \"file\": \"packages/zod/src/v4/core/to-json-schema.ts\",\n      \"line\": 836,\n      \"severity\": \"high\",\n      \"rule_id\": \"incorrect-function-name\",\n      \"message\": \"The function name 'process' is being used, which collides with a top-level `const process` that bundler polyfills inject.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"process(schema, ctx);\"\n    },\n    {\n      \"file\": \"packages/zod/src/v4/core/to-json-schema.ts\",\n      \"line\": 851,\n      \"severity\": \"high\",\n      \"rule_id\": \"incorrect-function-name\",\n      \"message\": \"The function name 'process' is being used, which collides with a top-level `const process` that bundler polyfills inject.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"process(schema, ctx);\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:53:32.9476741Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 30411078400,
+     "load_duration": 56238700,
+     "prompt_eval_count": 5119,
+     "prompt_eval_duration": 2836050500,
+     "eval_count": 544,
+     "eval_duration": 11198296100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14044-5439-7ec1-8a05-dc2082502730-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 5119,
+     "output_tokens": 544,
+     "total_tokens": 5663
+    }
+   }
+  }
+ ]
+}

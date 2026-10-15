@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T16:08:30+00:00",
+ "elapsed_seconds": 53.485,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"lib/adapters/http.js\",\n      \"line\": 147,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing-undefined-check\",\n      \"message\": \"The `proxy` object might be undefined, leading to a TypeError when accessing `proxy.protocol`.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"if (utils.hasOwnProperty(proxy, 'protocol') ? proxy.protocol : undefined)\",\n      \"cwe\": \"CWE-476: Null Pointer Dereference\"\n    },\n    {\n      \"file\": \"lib/adapters/http.js\",\n      \"line\": 185,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing-undefined-check\",\n      \"message\": \"The `proxy` object might be undefined, leading to a TypeError when accessing `proxy.auth`.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"var proxyAuth = utils.hasOwnProperty(proxy, 'auth') ? proxy.auth : undefined\",\n      \"cwe\": \"CWE-476: Null Pointer Dereference\"\n    },\n    {\n      \"file\": \"lib/adapters/http.js\",\n      \"line\": 220,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing-undefined-check\",\n      \"message\": \"The `proxy` object might be undefined, leading to a TypeError when accessing `proxy.host`.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"options.host = proxy.host;\",\n      \"cwe\": \"CWE-476: Null Pointer Dereference\"\n    },\n    {\n      \"file\": \"lib/adapters/http.js\",\n      \"line\": 221,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing-undefined-check\",\n      \"message\": \"The `proxy` object might be undefined, leading to a TypeError when accessing `proxy.port`.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"options.port = proxy.port;\",\n      \"cwe\": \"CWE-476: Null Pointer Dereference\"\n    },\n    {\n      \"file\": \"lib/adapters/http.js\",\n      \"line\": 222,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing-undefined-check\",\n      \"message\": \"The `proxy` object might be undefined, leading to a TypeError when accessing `proxy.path`.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"options.path = location;\",\n      \"cwe\": \"CWE-476: Null Pointer Dereference\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T16:08:30.6322896Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 53237834200,
+     "load_duration": 242236800,
+     "prompt_eval_count": 1682,
+     "prompt_eval_duration": 910140300,
+     "eval_count": 560,
+     "eval_duration": 10659684000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b2b-51bb-7ad2-b43c-2e60d8cba6d2-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1682,
+     "output_tokens": 560,
+     "total_tokens": 2242
+    }
+   }
+  }
+ ]
+}

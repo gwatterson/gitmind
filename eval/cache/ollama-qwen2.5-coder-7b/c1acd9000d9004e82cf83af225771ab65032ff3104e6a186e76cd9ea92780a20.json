@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T16:22:46+00:00",
+ "elapsed_seconds": 186.672,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"app/api/quotes.py\",\n      \"line\": 18,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-918\",\n      \"message\": \"The code makes an HTTP request to a potentially untrusted URL without validating the input.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"response = requests.get(RATES_URL, params={\"} ,\n      {\n        \"file\": \"app/api/quotes.py\",\n        \"line\": 18,\n        \"severity\": \"high\",\n        \"rule_id\": \"CWE-78\",\n        \"message\": \"The code constructs a URL using user input without proper encoding or validation.\",\n        \"confidence\": 0.9,\n        \"evidence\": \"response = requests.get(RATES_URL, params={\"} ,\n      {\n        \"file\": \"app/api/quotes.py\",\n        \"line\": 18,\n        \"severity\": \"high\",\n        \"rule_id\": \"CWE-327\",\n        \"message\": \"The code uses a hardcoded URL that could be changed or replaced by an attacker.\",\n        \"confidence\": 0.9,\n        \"evidence\": \"RATES_URL = \\\"https://api.exchangerate.host/latest\\\"\"\n      }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T16:22:46.4510394Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 186404737300,
+     "load_duration": 54081800,
+     "prompt_eval_count": 1116,
+     "prompt_eval_duration": 545921500,
+     "eval_count": 283,
+     "eval_duration": 5226595000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b36-5883-7770-8c5f-09396eb231ed-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1116,
+     "output_tokens": 283,
+     "total_tokens": 1399
+    }
+   }
+  }
+ ]
+}

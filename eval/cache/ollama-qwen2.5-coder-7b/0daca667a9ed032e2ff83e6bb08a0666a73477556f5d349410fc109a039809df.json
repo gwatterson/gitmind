@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T15:51:25+00:00",
+ "elapsed_seconds": 19.625,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"app/workflows/importer.py\",\n      \"line\": 6,\n      \"severity\": \"high\",\n      \"rule_id\": \"yaml_load_without_limit\",\n      \"message\": \"The function `import_workflow` loads a YAML document without any limit, which could potentially load an entire file into memory.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"return yaml.load(document, Loader=yaml.Loader)\",\n      \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') - YAML parsing can be exploited if not properly sanitized.\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T15:51:25.123033Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 19370510200,
+     "load_duration": 173497700,
+     "prompt_eval_count": 812,
+     "prompt_eval_duration": 412051200,
+     "eval_count": 146,
+     "eval_duration": 2627340000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b1c-3019-7d70-85ac-d326e6707f7e-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 812,
+     "output_tokens": 146,
+     "total_tokens": 958
+    }
+   }
+  }
+ ]
+}

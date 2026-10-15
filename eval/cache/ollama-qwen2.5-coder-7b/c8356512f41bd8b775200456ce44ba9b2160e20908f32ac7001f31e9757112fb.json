@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:40:30+00:00",
+ "elapsed_seconds": 17.453,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/dashboard/widgets.ts\",\n      \"line\": 11,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"The response data from the API call might be undefined or null.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const data = await api.get(`/widgets/${id}`);\",\n      \"cwe\": \"CWE-251: Improper Error Handling\"\n    },\n    {\n      \"file\": \"src/dashboard/widgets.ts\",\n      \"line\": 12,\n      \"severity\": \"medium\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"The response data might not be in the expected format.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"widgets.push({ id, data });\",\n      \"cwe\": \"CWE-251: Improper Error Handling\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:40:30.3232507Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 17193619000,
+     "load_duration": 55115400,
+     "prompt_eval_count": 889,
+     "prompt_eval_duration": 451204500,
+     "eval_count": 210,
+     "eval_duration": 4016154500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14038-96c0-7fa2-988f-379ab2b98762-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 889,
+     "output_tokens": 210,
+     "total_tokens": 1099
+    }
+   }
+  }
+ ]
+}

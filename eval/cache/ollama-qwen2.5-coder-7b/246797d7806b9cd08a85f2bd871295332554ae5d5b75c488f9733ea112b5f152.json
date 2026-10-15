@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T16:17:28+00:00",
+ "elapsed_seconds": 19.719,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"starlette/responses.py\",\n            \"line\": 390,\n            \"severity\": \"high\",\n            \"rule_id\": \"E1101\",\n            \"message\": \"Attribute 'send_pathsend' is not defined in the current scope.\",\n            \"confidence\": 1.0,\n            \"evidence\": \"send_file = partial(self._handle_multiple_ranges, send, ranges, stat_result.st_size, send_header_only)\"\n        },\n        {\n            \"file\": \"starlette/responses.py\",\n            \"line\": 392,\n            \"severity\": \"high\",\n            \"rule_id\": \"E1101\",\n            \"message\": \"Attribute 'send_pathsend' is not defined in the current scope.\",\n            \"confidence\": 1.0,\n            \"evidence\": \"send_file = partial(self._handle_multiple_ranges, send, ranges, stat_result.st_size, send_header_only)\"\n        },\n        {\n            \"file\": \"starlette/responses.py\",\n            \"line\": 394,\n            \"severity\": \"high\",\n            \"rule_id\": \"E1101\",\n            \"message\": \"Attribute 'send_pathsend' is not defined in the current scope.\",\n            \"confidence\": 1.0,\n            \"evidence\": \"send_file = partial(self._handle_multiple_ranges, send, ranges, stat_result.st_size, send_header_only)\"\n        },\n        {\n            \"file\": \"starlette/responses.py\",\n            \"line\": 396,\n            \"severity\": \"high\",\n            \"rule_id\": \"E1101\",\n            \"message\": \"Attribute 'send_pathsend' is not defined in the current scope.\",\n            \"confidence\": 1.0,\n            \"evidence\": \"send_file = partial(self._handle_multiple_ranges, send, ranges, stat_result.st_size, send_header_only)\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T16:17:28.3810863Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 19722020100,
+     "load_duration": 79187800,
+     "prompt_eval_count": 2190,
+     "prompt_eval_duration": 1177371800,
+     "eval_count": 411,
+     "eval_duration": 7732406500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b34-0a32-78d2-b41c-e09f0c51e801-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 2190,
+     "output_tokens": 411,
+     "total_tokens": 2601
+    }
+   }
+  }
+ ]
+}

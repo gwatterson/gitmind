@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T16:19:12+00:00",
+ "elapsed_seconds": 22.672,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/admin/git.js\",\n      \"line\": 10,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"The error handling for the `exec` callback is incomplete. It only checks if there's an error but doesn't handle other potential issues like non-zero exit codes.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"if (err) return res.status(500).json({ error: \\\"git failed\\\" });\",\n      \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\"\n    },\n    {\n      \"file\": \"src/routes/admin/git.js\",\n      \"line\": 12,\n      \"severity\": \"medium\",\n      \"rule_id\": \"unused_result\",\n      \"message\": \"The result of the `exec` callback is not being used, which means the response might be incomplete or incorrect if there's an error.\",\n      \"confidence\": 0.6,\n      \"evidence\": \"res.json(stdout.trim().split(\\\"\\\\n\\\"));\",\n      \"cwe\": \"CWE-259: Use of Insufficiently Random Data\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T16:19:12.630888Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 22411420700,
+     "load_duration": 57125800,
+     "prompt_eval_count": 977,
+     "prompt_eval_duration": 487287300,
+     "eval_count": 275,
+     "eval_duration": 5013518900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b35-95de-77d0-ab08-1b689883dbe8-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 977,
+     "output_tokens": 275,
+     "total_tokens": 1252
+    }
+   }
+  }
+ ]
+}

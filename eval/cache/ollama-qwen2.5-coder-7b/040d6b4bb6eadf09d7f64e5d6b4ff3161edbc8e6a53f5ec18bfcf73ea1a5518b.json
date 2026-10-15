@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:51:24+00:00",
+ "elapsed_seconds": 3.781,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"quality_files\": [\n    \"source/core/Ky.ts\"\n  ],\n  \"performance_files\": [],\n  \"reasoning\": \"The Ky.ts file contains non-trivial logic, including error handling and structure related to schema validation. It also introduces new types that could benefit from a quality review to ensure they are well-designed and maintainable.\"\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:51:24.6762593Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 3521376700,
+     "load_duration": 51498000,
+     "prompt_eval_count": 1170,
+     "prompt_eval_duration": 560501400,
+     "eval_count": 74,
+     "eval_duration": 1390591300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14042-c839-7402-a7a7-3f45ed5a9b8f-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1170,
+     "output_tokens": 74,
+     "total_tokens": 1244
+    }
+   }
+  }
+ ]
+}

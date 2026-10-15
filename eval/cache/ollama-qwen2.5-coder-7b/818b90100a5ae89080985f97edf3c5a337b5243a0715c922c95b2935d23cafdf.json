@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:37:52+00:00",
+ "elapsed_seconds": 5.765,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/services/project_import.py\",\n            \"line\": 17,\n            \"severity\": \"high\",\n            \"rule_id\": \"CWE-943\",\n            \"message\": \"Unsafe deserialization of user-uploaded data using `yaml.load`.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"settings.update(yaml.load(uploaded, Loader=yaml.Loader))\",\n            \"cwe\": \"CWE-943\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:37:52.3479402Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 5746503700,
+     "load_duration": 51283900,
+     "prompt_eval_count": 1086,
+     "prompt_eval_duration": 562759300,
+     "eval_count": 117,
+     "eval_duration": 1961016300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14036-5b68-7ec1-9687-13380d4256ba-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1086,
+     "output_tokens": 117,
+     "total_tokens": 1203
+    }
+   }
+  }
+ ]
+}

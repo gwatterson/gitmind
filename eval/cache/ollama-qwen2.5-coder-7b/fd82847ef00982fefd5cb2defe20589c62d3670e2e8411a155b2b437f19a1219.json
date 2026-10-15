@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:56:55+00:00",
+ "elapsed_seconds": 14.125,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"app/api/invoices.py\",\n      \"line\": 25,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-918\",\n      \"message\": \"The code does not verify that the `invoice_id` is owned by the current user, which could lead to an IDOR vulnerability.\",\n      \"confidence\": 0.9\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:56:55.237746Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 14115474000,
+     "load_duration": 56716000,
+     "prompt_eval_count": 1086,
+     "prompt_eval_duration": 523294500,
+     "eval_count": 97,
+     "eval_duration": 1672519500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14047-ab21-78b3-b17d-a94b41245e03-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1086,
+     "output_tokens": 97,
+     "total_tokens": 1183
+    }
+   }
+  }
+ ]
+}

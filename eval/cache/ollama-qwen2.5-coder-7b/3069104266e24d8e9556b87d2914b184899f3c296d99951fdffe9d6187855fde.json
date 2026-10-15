@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:57:35+00:00",
+ "elapsed_seconds": 8.547,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"app/content/tags.py\",\n      \"line\": 8,\n      \"severity\": \"medium\",\n      \"rule_id\": \"quadratic_work\",\n      \"message\": \"The 'in' operator for membership tests on lists is quadratic, which can be inefficient for large lists.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"if tag not in existing:\",\n      \"cwe\": \"CWE-835: Insufficient Logging or Monitoring\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:57:35.1485036Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 8542623700,
+     "load_duration": 56490500,
+     "prompt_eval_count": 860,
+     "prompt_eval_duration": 419235900,
+     "eval_count": 115,
+     "eval_duration": 1968232100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14048-5ccd-7501-8a77-0075a5854141-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 860,
+     "output_tokens": 115,
+     "total_tokens": 975
+    }
+   }
+  }
+ ]
+}

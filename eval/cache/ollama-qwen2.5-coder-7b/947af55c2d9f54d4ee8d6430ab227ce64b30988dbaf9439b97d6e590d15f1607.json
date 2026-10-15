@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:25:48+00:00",
+ "elapsed_seconds": 22.547,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/services/password_reset.py\",\n            \"line\": 14,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_commit_check\",\n            \"message\": \"The commit operation might fail, but the function does not check for this.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"db.session.commit()\",\n            \"cwe\": \"CWE-78\"\n        },\n        {\n            \"file\": \"app/services/password_reset.py\",\n            \"line\": 14,\n            \"severity\": \"medium\",\n            \"rule_id\": \"missing_rollback_on_failure\",\n            \"message\": \"If the commit fails, no rollback is performed, which could lead to inconsistent data.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"db.session.commit()\",\n            \"cwe\": \"CWE-487\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:25:48.6330027Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 22290828700,
+     "load_duration": 85808300,
+     "prompt_eval_count": 937,
+     "prompt_eval_duration": 479030800,
+     "eval_count": 200,
+     "eval_duration": 3974363100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1402b-0ec0-75d0-8f0d-4846bae8335a-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 937,
+     "output_tokens": 200,
+     "total_tokens": 1137
+    }
+   }
+  }
+ ]
+}

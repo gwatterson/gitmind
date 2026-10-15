@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T16:01:11+00:00",
+ "elapsed_seconds": 25.234,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"lmdeploy/pytorch/engine/mp_engine/zmq_rpc.py\",\n      \"line\": 35,\n      \"severity\": \"high\",\n      \"rule_id\": \"sensitive_config_change\",\n      \"message\": \"Changing the RPC server address to 'tcp://*' exposes it to external network access, which can lead to code execution vulnerabilities.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"+        address = 'tcp://*'\",\n      \"cwe\": \"CWE-259: Use of Insufficiently Protected Critical System Resource\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T16:01:11.1793555Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 24975688600,
+     "load_duration": 202695700,
+     "prompt_eval_count": 873,
+     "prompt_eval_duration": 443858300,
+     "eval_count": 134,
+     "eval_duration": 2397489400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b25-0b7a-7193-92de-17f91875b0ed-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 873,
+     "output_tokens": 134,
+     "total_tokens": 1007
+    }
+   }
+  }
+ ]
+}

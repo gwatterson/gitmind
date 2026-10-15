@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:40:03+00:00",
+ "elapsed_seconds": 3.672,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/components/Comment.tsx\",\n      \"line\": 7,\n      \"severity\": \"low\",\n      \"rule_id\": \"dangerouslySetInnerHTML\",\n      \"message\": \"Using `dangerouslySetInnerHTML` can lead to XSS vulnerabilities if the content is not properly sanitized.\",\n      \"confidence\": 0.9\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:40:03.5077412Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 3667393100,
+     "load_duration": 51348600,
+     "prompt_eval_count": 824,
+     "prompt_eval_duration": 434592500,
+     "eval_count": 86,
+     "eval_duration": 1577565600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14038-63df-7963-bc8e-dca84999fe20-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 824,
+     "output_tokens": 86,
+     "total_tokens": 910
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:49:59+00:00",
+ "elapsed_seconds": 42.156,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/middleware/jwt/jwk.ts\",\n      \"line\": 93,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-184 Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\",\n      \"message\": \"The `realm` parameter is directly included in the `WWW-Authenticate` header without proper neutralization. This could lead to OS command injection if the value contains special characters.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+            realm: options.realm,\",\n      \"cwe\": \"CWE-184\"\n    },\n    {\n      \"file\": \"src/middleware/jwt/jwk.ts\",\n      \"line\": 130,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-184 Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\",\n      \"message\": \"The `realm` parameter is directly included in the `WWW-Authenticate` header without proper neutralization. This could lead to OS command injection if the value contains special characters.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+            realm: options.realm,\",\n      \"cwe\": \"CWE-184\"\n    },\n    {\n      \"file\": \"src/middleware/jwt/jwk.ts\",\n      \"line\": 153,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-184 Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\",\n      \"message\": \"The `realm` parameter is directly included in the `WWW-Authenticate` header without proper neutralization. This could lead to OS command injection if the value contains special characters.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+            realm: options.realm,\",\n      \"cwe\": \"CWE-184\"\n    },\n    {\n      \"file\": \"src/middleware/jwt/jwk.ts\",\n      \"line\": 173,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-184 Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\",\n      \"message\": \"The `realm` parameter is directly included in the `WWW-Authenticate` header without proper neutralization. This could lead to OS command injection if the value contains special characters.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"+   const realm = (opts.realm ?? opts.ctx.req.url).replace(/\\\"/g, '\\\\\\\"')\",\n      \"cwe\": \"CWE-184\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:49:59.8060513Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 42153466300,
+     "load_duration": 55977300,
+     "prompt_eval_count": 2745,
+     "prompt_eval_duration": 1414226200,
+     "eval_count": 582,
+     "eval_duration": 11155599900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14040-e6d3-78f0-b65c-729511dea108-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 2745,
+     "output_tokens": 582,
+     "total_tokens": 3327
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:57:08+00:00",
+ "elapsed_seconds": 13.578,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/importers/products.py\",\n            \"line\": 14,\n            \"severity\": \"medium\",\n            \"rule_id\": \"CWE-22\",\n            \"message\": \"Potential path traversal vulnerability.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"with RULES_PATH.open(encoding=\\\"utf-8\\\") as rules_file:\",\n            \"cwe\": \"CWE-22\"\n        },\n        {\n            \"file\": \"app/importers/products.py\",\n            \"line\": 15,\n            \"severity\": \"medium\",\n            \"rule_id\": \"CWE-79\",\n            \"message\": \"Potential cross-site scripting vulnerability.\",\n            \"confidence\": 0.6,\n            \"evidence\": \"markup = Decimal(str(rules.get(row[\\\"category\\\"], rules[\\\"default\\\"])))\",\n            \"cwe\": \"CWE-79\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:57:08.8573624Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 13575748800,
+     "load_duration": 51753500,
+     "prompt_eval_count": 1117,
+     "prompt_eval_duration": 546581300,
+     "eval_count": 204,
+     "eval_duration": 3807079900,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14047-e271-7c83-a7f2-18b59bc1a521-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1117,
+     "output_tokens": 204,
+     "total_tokens": 1321
+    }
+   }
+  }
+ ]
+}

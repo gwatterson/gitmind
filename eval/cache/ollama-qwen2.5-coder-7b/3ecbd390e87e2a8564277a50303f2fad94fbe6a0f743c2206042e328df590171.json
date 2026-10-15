@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-15T15:54:52+00:00",
+ "elapsed_seconds": 5.672,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/exports.js\",\n      \"line\": 10,\n      \"severity\": \"medium\",\n      \"rule_id\": \"CWE-22\",\n      \"message\": \"Path traversal vulnerability exists as the file path is constructed using user input without proper validation.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const filePath = path.join(EXPORT_DIR, req.params.file);\",\n      \"cwe\": \"CWE-22\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-15T15:54:52.8293422Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 5649726500,
+     "load_duration": 57234700,
+     "prompt_eval_count": 1034,
+     "prompt_eval_duration": 517226100,
+     "eval_count": 118,
+     "eval_duration": 1747559200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a14045-ee0a-7593-b1c5-247abfc32b27-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1034,
+     "output_tokens": 118,
+     "total_tokens": 1152
+    }
+   }
+  }
+ ]
+}

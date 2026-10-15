@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-14T16:18:55+00:00",
+ "elapsed_seconds": 5.422,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/admin/git.js\",\n      \"line\": 10,\n      \"severity\": \"critical\",\n      \"rule_id\": \"CWE-78\",\n      \"message\": \"OS command injection vulnerability due to user-controlled input being used in a shell command.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"exec(`git -C ${REPO_DIR} log --oneline -n 20 ${branch}`, (err, stdout) => {\",\n      \"cwe\": \"CWE-78\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-14T16:18:55.3682569Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 5424119700,
+     "load_duration": 52859300,
+     "prompt_eval_count": 1118,
+     "prompt_eval_duration": 545963700,
+     "eval_count": 131,
+     "eval_duration": 2220006300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a13b35-95d7-7962-8a63-b0ebc24c7903-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1118,
+     "output_tokens": 131,
+     "total_tokens": 1249
+    }
+   }
+  }
+ ]
+}
