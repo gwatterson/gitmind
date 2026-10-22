@@ -87,3 +87,23 @@ signal for human reviewers, not the defense the verdict depends on. Next: normal
 text before matching (decode base64, fold homoglyphs, join consecutive comment lines),
 which addresses three of the techniques without writing patterns for these cases, and
 measure it on a new set of unseen attacks, since this one is no longer held out.
+
+## Update: normalization before matching (2026-10-22)
+
+Implemented as planned, without new patterns: NFKC plus a table of Cyrillic and Greek
+letters that look like Latin ones, base64 tokens of at least 24 characters decoded when
+they give printable text, and runs of consecutive added comment lines joined with their
+markers removed (reported once, at the first line, when no line of the run was already
+reported). A second set of 8 unseen attacks (`advh2-*`) was committed before the change:
+
+| | before | after |
+|---|---|---|
+| Second held-out set (8 unseen attacks) | 0 of 8 | 5 of 8 |
+| First held-out set (no longer unseen) | 0 of 8 | 3 of 8 |
+| Known attacks | 8 of 8 | 8 of 8 |
+| Alarms on the 101 cases without attacks | 0 | 0 |
+
+The 3 misses on the second set are the controls (ROT13, Spanish, base64 whose wording no
+rule targets), as designed. What remains is the limit of any rule set: wording it does
+not know. A learned classifier (for example Meta Prompt Guard, local and free, at the
+cost of a PyTorch dependency) is the next option, measured on a new unseen set.

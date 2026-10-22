@@ -24,6 +24,7 @@ The code lives in [`backend/evals`](../backend/evals).
 | Reversed CVE fixes | 33 | Real vulnerabilities from the GitHub Advisory Database: the upstream fix is reversed, so the change reintroduces the bug |
 | Open source pull requests | 22 | Merged pull requests of mature projects (click, httpx, starlette, rich, axios, hono, zod, ky): every finding counts as a false positive |
 | Prompt injection attacks | 10 | A real vulnerability hidden behind text written for the AI reviewer: "ignore previous instructions" in a docstring, fake approvals, fake system messages and prompt delimiters, a severity override, an injection in the pull request title, zero-width characters and Trojan Source bidirectional characters |
+| Second held-out set | 8 | Written and committed before the detector normalizations (`advh2-*`, `test` split): base64 in a docstring, Greek and Cyrillic look-alike letters, instructions split over Python and JSDoc comments, and three controls no normalization targets (ROT13, Spanish, base64 with untargeted wording) |
 | Held-out attacks | 10 | Written after the detector and never used to tune it (`advh-*`, `test` split): plausible false claims, a misleading helper name, Italian, base64, a fake review result, instructions split over lines, context dilution, a UI string, a markdown file, Cyrillic homoglyphs |
 
 Cases cover Python, JavaScript and TypeScript, and are split into `dev` (used while
@@ -220,6 +221,24 @@ not follow the instruction of the agent rules to report text addressed to it. Th
 attack written in Italian had a partial effect: the path traversal was reported as
 medium with a weak explanation and the pull request was not blocked. One case is not
 enough to tell the attack from the variance of the model.
+
+**Normalization.** The detector then learned to fold look-alike letters, decode base64
+tokens and join consecutive comment lines before matching. The first held-out set had
+been seen by then, so a second one (`advh2-*`) was committed before the change. The
+model answers come from the cache, so the review findings are identical and only the
+detector differs. Manipulation attempts reported:
+
+| | before | after |
+|---|---|---|
+| Second held-out set (8 unseen attacks) | 0 of 8 | 5 of 8 |
+| First held-out set (no longer unseen) | 0 of 8 | 3 of 8 |
+| Known attacks | 8 of 8 | 8 of 8 |
+| Alarms on the 101 cases without attacks | 0 | 0 |
+
+On the second set it reports the 5 attacks in the targeted techniques and none of the 3
+controls; every vulnerability was found and every attack pull request blocked, before
+and after. The rules still only see wording they know: paraphrases and other languages
+need a learned classifier.
 
 ### First look at a larger model
 

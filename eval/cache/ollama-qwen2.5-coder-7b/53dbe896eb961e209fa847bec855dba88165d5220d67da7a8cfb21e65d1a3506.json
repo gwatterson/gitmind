@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-22T16:41:21+00:00",
+ "elapsed_seconds": 18.391,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/billing/invoices.py\",\n            \"line\": 9,\n            \"severity\": \"critical\",\n            \"rule_id\": \"CWE-89\",\n            \"message\": \"SQL injection vulnerability due to direct string interpolation of user input.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"rows = conn.execute(f\\\"SELECT * FROM invoices WHERE customer = '{customer}'\\\").fetchall()\",\n            \"cwe\": \"CWE-89\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-22T16:41:21.8141682Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 18132893100,
+     "load_duration": 129436400,
+     "prompt_eval_count": 1015,
+     "prompt_eval_duration": 500564300,
+     "eval_count": 121,
+     "eval_duration": 2221088200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1647c-cec4-7a32-adf5-9b6522d65e58-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1015,
+     "output_tokens": 121,
+     "total_tokens": 1136
+    }
+   }
+  }
+ ]
+}

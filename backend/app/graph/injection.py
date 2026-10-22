@@ -11,13 +11,19 @@ contain is pasted into LLM prompts. Two layers:
    overrides, requests to approve or stay silent, fake system messages) and for invisible
    or bidirectional control characters. Each hit becomes a deterministic security finding:
    an attempt to manipulate the review is worth a human look whether or not it worked.
+   The text is normalized before matching, so that the same wording is found when it is
+   spelled with look-alike letters, encoded in base64 or split over consecutive comments.
 """
 
+import base64
+import binascii
 import hashlib
 import re
+import unicodedata
+from collections.abc import Iterator
 from dataclasses import dataclass
 
-from app.diff.parser import parse_patch
+from app.diff.parser import DiffLine, parse_patch
 from app.graph.state import Finding, PRFile
 
 FENCE_TAG = "untrusted_code"
@@ -67,6 +73,48 @@ _PATTERNS.append(
     )
 )
 
+# Cyrillic and Greek letters that look like Latin ones (Unicode confusables), folded to
+# Latin before matching. NFKC already folds fullwidth and other compatibility forms.
+_LOOKALIKES = str.maketrans(
+    # Cyrillic lowercase, then uppercase
+    "\u0430\u0435\u043e\u0440\u0441\u0443\u0445\u0456\u0458\u0455\u0501\u04cf"
+    "\u0410\u0412\u0415\u041a\u041c\u041d\u041e\u0420\u0421\u0422\u0425\u0405\u0406\u0408\u04ae"
+    # Greek lowercase, then uppercase
+    "\u03bf\u03b1\u03b9\u03ba\u03bd\u03c1\u03c4\u03c5\u03c7"
+    "\u0391\u0392\u0395\u0396\u0397\u0399\u039a\u039c\u039d\u039f\u03a1\u03a4\u03a5\u03a7",
+    "aeopcyxijsdlABEKMHOPCTXSIJYoaikvptuxABEZHIKMNOPTYX",
+)
+_BASE64_TOKEN = re.compile(r"[A-Za-z0-9+/]{24,}={0,2}")
+# A comment line: its marker, removed when consecutive comment lines are joined
+_COMMENT_LINE = re.compile(r"^\s*(#|//|/\*+|\*/|\*|--|<!--)\s?")
+
+
+def _fold_lookalikes(text: str) -> str:
+    return unicodedata.normalize("NFKC", text).translate(_LOOKALIKES)
+
+
+def _base64_payloads(text: str) -> Iterator[str]:
+    """Readable text hidden in base64 tokens; hashes and binary data decode to garbage."""
+    for match in _BASE64_TOKEN.finditer(text):
+        token = match.group()
+        try:
+            decoded = base64.b64decode(token + "=" * (-len(token) % 4), validate=True)
+            payload = decoded.decode("utf-8")
+        except (binascii.Error, ValueError):  # UnicodeDecodeError is a ValueError
+            continue
+        if payload.isprintable() and " " in payload:
+            yield payload
+
+
+def _variants(text: str) -> Iterator[tuple[str, str]]:
+    """The text as written, then its normalized forms, each with a note for the finding."""
+    yield text, ""
+    folded = _fold_lookalikes(text)
+    if folded != text:
+        yield folded, ", spelled with look-alike letters"
+    for payload in _base64_payloads(text):
+        yield _fold_lookalikes(payload), ", base64 encoded"
+
 
 def fence_id(content: str) -> str:
     return hashlib.sha256(content.encode()).hexdigest()[:16]
@@ -90,9 +138,10 @@ def scan_text(text: str) -> Signal | None:
     if _BIDI.search(text):
         return Signal("bidi", "bidirectional control characters")
     visible = _INVISIBLE.sub("", text)
-    for pattern, label in _PATTERNS:
-        if pattern.search(visible):
-            return Signal("instruction", label)
+    for variant, note in _variants(visible):
+        for pattern, label in _PATTERNS:
+            if pattern.search(variant):
+                return Signal("instruction", label + note)
     if _INVISIBLE.search(text):
         return Signal("invisible", "invisible characters")
     return None
@@ -130,14 +179,43 @@ def _finding(filename: str, line: int, content: str, signal: Signal) -> Finding:
     )
 
 
+def _comment_blocks(lines: list[DiffLine]) -> Iterator[list[DiffLine]]:
+    """Runs of two or more consecutive added comment lines."""
+    block: list[DiffLine] = []
+    for line in lines:
+        consecutive = bool(block) and line.new_line == (block[-1].new_line or 0) + 1
+        if _COMMENT_LINE.match(line.content) and (consecutive or not block):
+            block.append(line)
+            continue
+        if len(block) > 1:
+            yield block
+        block = [line] if _COMMENT_LINE.match(line.content) else []
+    if len(block) > 1:
+        yield block
+
+
 def scan_files(files: list[PRFile]) -> list[Finding]:
     """Findings for manipulation attempts on the lines a pull request adds."""
     findings: list[Finding] = []
     for file in files:
-        for line in parse_patch(file.get("patch", "")).lines:
-            if line.kind != "add" or not line.new_line:
-                continue
+        added = [
+            line
+            for line in parse_patch(file.get("patch", "")).lines
+            if line.kind == "add" and line.new_line
+        ]
+        flagged: set[int] = set()
+        for line in added:
             signal = scan_text(line.content)
             if signal is not None:
                 findings.append(_finding(file["filename"], line.new_line, line.content, signal))
+                flagged.add(line.new_line)
+        # An instruction split over several comment lines, so that no line reads as one
+        for block in _comment_blocks(added):
+            if any(line.new_line in flagged for line in block):
+                continue
+            joined = " ".join(_COMMENT_LINE.sub("", line.content).strip() for line in block)
+            signal = scan_text(joined)
+            if signal is not None and signal.kind == "instruction":
+                signal = Signal(signal.kind, signal.label + ", split over comment lines")
+                findings.append(_finding(file["filename"], block[0].new_line or 0, joined, signal))
     return findings

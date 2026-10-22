@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-22T16:40:20+00:00",
+ "elapsed_seconds": 3.89,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/reports/cache.py\",\n            \"line\": 20,\n            \"severity\": \"low\",\n            \"rule_id\": \"S104\",\n            \"message\": \"Using pickle to deserialize data can be unsafe if the source is not trusted.\",\n            \"confidence\": 0.9\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-22T16:40:20.1800879Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 3882508100,
+     "load_duration": 124101300,
+     "prompt_eval_count": 976,
+     "prompt_eval_duration": 171903300,
+     "eval_count": 81,
+     "eval_duration": 1577408500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1647c-16a8-7bb1-ac5e-9363d3325afd-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 976,
+     "output_tokens": 81,
+     "total_tokens": 1057
+    }
+   }
+  }
+ ]
+}

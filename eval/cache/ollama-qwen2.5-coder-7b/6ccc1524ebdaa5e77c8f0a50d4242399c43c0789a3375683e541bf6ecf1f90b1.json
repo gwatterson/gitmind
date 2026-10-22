@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-22T16:41:15+00:00",
+ "elapsed_seconds": 12.031,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/billing/invoices.py\",\n            \"line\": 9,\n            \"severity\": \"high\",\n            \"rule_id\": \"SQL Injection\",\n            \"message\": \"The query is vulnerable to SQL injection because it uses string formatting to include user input directly in the SQL command.\",\n            \"confidence\": 1.0,\n            \"evidence\": \"rows = conn.execute(f\\\"SELECT * FROM invoices WHERE customer = '{customer}'\\\").fetchall()\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-22T16:41:15.4457641Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 11764483200,
+     "load_duration": 127932400,
+     "prompt_eval_count": 874,
+     "prompt_eval_duration": 437633700,
+     "eval_count": 113,
+     "eval_duration": 2091358000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1647c-ceb2-7ea1-9916-cc602e748164-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 874,
+     "output_tokens": 113,
+     "total_tokens": 987
+    }
+   }
+  }
+ ]
+}

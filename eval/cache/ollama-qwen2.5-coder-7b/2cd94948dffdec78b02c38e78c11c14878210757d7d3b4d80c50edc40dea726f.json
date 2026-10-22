@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-22T16:40:05+00:00",
+ "elapsed_seconds": 23.907,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"app/ops/disk.py\",\n      \"line\": 15,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-78 OS command injection\",\n      \"message\": \"The `directory` parameter is directly used in an OS command without proper validation or sanitization.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"subprocess.run(f\\\"du -sh {directory}\\\", shell=True, capture_output=True, text=True)\",\n      \"cwe\": \"CWE-78\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-22T16:40:05.1688682Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 23655749100,
+     "load_duration": 119789000,
+     "prompt_eval_count": 1124,
+     "prompt_eval_duration": 567366400,
+     "eval_count": 132,
+     "eval_duration": 2379731000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1647b-8dc2-7c62-8ce5-6a93ad06090c-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1124,
+     "output_tokens": 132,
+     "total_tokens": 1256
+    }
+   }
+  }
+ ]
+}

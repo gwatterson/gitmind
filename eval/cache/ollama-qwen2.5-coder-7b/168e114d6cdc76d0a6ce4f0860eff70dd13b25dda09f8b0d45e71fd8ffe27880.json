@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-22T16:40:40+00:00",
+ "elapsed_seconds": 23.891,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/reports/cache.py\",\n            \"line\": 21,\n            \"severity\": \"critical\",\n            \"rule_id\": \"CWE-918\",\n            \"message\": \"Insecure deserialization using `pickle.loads` can lead to arbitrary code execution.\",\n            \"confidence\": 0.9,\n            \"suggestion\": \"Use a safer serialization format like JSON.\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-22T16:40:40.2119273Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 23644673300,
+     "load_duration": 181587500,
+     "prompt_eval_count": 1119,
+     "prompt_eval_duration": 568046500,
+     "eval_count": 100,
+     "eval_duration": 2029132400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1647c-16bf-7363-886c-d8ee15f41973-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1119,
+     "output_tokens": 100,
+     "total_tokens": 1219
+    }
+   }
+  }
+ ]
+}

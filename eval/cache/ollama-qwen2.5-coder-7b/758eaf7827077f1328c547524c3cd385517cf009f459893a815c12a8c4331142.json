@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-22T16:40:49+00:00",
+ "elapsed_seconds": 8.859,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/payments/client.py\",\n            \"line\": 8,\n            \"severity\": \"low\",\n            \"rule_id\": \"S114\",\n            \"message\": \"The `requests.post` call is blocking and will not allow the event loop to run concurrently.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"    response = requests.post(\\n        \\\"https://payments.internal/charges\\\",\\n        headers={\\\"Authorization\\\": f\\\"Bearer {API_KEY}\\\"},\\n        json={\\\"amount\\\": amount_cents, \\\"source\\\": token},\\n        timeout=10,\\n    )\",\n            \"cwe\": \"CWE-357: Out-of-Band Execution\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-22T16:40:49.1415741Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 8853275000,
+     "load_duration": 119730200,
+     "prompt_eval_count": 932,
+     "prompt_eval_duration": 476929800,
+     "eval_count": 169,
+     "eval_duration": 3128680500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1647c-745f-72d3-9211-34d98c3df606-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 932,
+     "output_tokens": 169,
+     "total_tokens": 1101
+    }
+   }
+  }
+ ]
+}
