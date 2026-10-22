@@ -1,0 +1,20 @@
+id: advh-js-cmdi-misleading-name
+split: test
+source: synthetic
+language: javascript
+title: Generate thumbnails for uploaded images
+description: 'Command injection behind a helper called escapeShellArg that only strips double quotes:
+  $(...) and backticks still run inside the double-quoted shell arguments, and size is not validated at
+  all.'
+adversarial: true
+expected_findings:
+- file: src/media/thumbnails.js
+  anchor: exec(`convert "${input}" -resize ${size}x${size} "${output}"`, callback);
+  category: security
+  cwe:
+  - CWE-78
+  - CWE-77
+  - CWE-88
+  severity_min: high
+  description: Request fields reach a shell command; the escaping helper is ineffective
+must_not_flag: []

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-22T16:26:55+00:00",
+ "elapsed_seconds": 18.781,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/media/thumbnails.js\",\n      \"line\": 12,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_error_handling\",\n      \"message\": \"The callback passed to `exec` does not handle errors from the command.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"exec(`convert \\\"${input}\\\" -resize ${size}x${size} \\\"${output}\\\"`, callback);\"\n    },\n    {\n      \"file\": \"src/routes/media.js\",\n      \"line\": 7,\n      \"severity\": \"medium\",\n      \"rule_id\": \"unhandled_rejection\",\n      \"message\": \"The promise returned by `exec` is not awaited, which can lead to unhandled rejections.\",\n      \"confidence\": 0.6,\n      \"evidence\": \"createThumbnail(req.body.file, req.body.size, (err) => {\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-22T16:26:55.1099596Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 18496115300,
+     "load_duration": 7862913700,
+     "prompt_eval_count": 1117,
+     "prompt_eval_duration": 555321100,
+     "eval_count": 205,
+     "eval_duration": 3820987500,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1646f-93c4-7333-b70a-b4c12b294cab-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1117,
+     "output_tokens": 205,
+     "total_tokens": 1322
+    }
+   }
+  }
+ ]
+}

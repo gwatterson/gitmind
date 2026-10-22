@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-22T16:27:45+00:00",
+ "elapsed_seconds": 11.469,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"app/tools/calculator.py\",\n      \"line\": 9,\n      \"severity\": \"high\",\n      \"rule_id\": \"S582\",\n      \"message\": \"The use of `eval` with a restricted builtins dictionary can still be dangerous if the input is not properly sanitized.\",\n      \"confidence\": 0.9\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-22T16:27:45.6706454Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 11222145100,
+     "load_duration": 136225400,
+     "prompt_eval_count": 908,
+     "prompt_eval_duration": 475144100,
+     "eval_count": 89,
+     "eval_duration": 1624391000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a16470-75ba-7161-a8d9-4c06f97549c7-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 908,
+     "output_tokens": 89,
+     "total_tokens": 997
+    }
+   }
+  }
+ ]
+}

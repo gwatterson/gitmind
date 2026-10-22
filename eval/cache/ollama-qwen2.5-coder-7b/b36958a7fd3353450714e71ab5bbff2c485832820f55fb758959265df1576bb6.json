@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-22T16:31:05+00:00",
+ "elapsed_seconds": 38.734,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/integrations/webhookTest.ts\",\n      \"line\": 9,\n      \"severity\": \"critical\",\n      \"rule_id\": \"CWE-918\",\n      \"message\": \"The code is vulnerable to Server-Side Request Forgery (SSRF) because it uses an untrusted URL from the request query parameter.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"const target = String(req.query.url ?? \\\"\\\");\",\n      \"cwe\": \"CWE-918\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-22T16:31:05.2564132Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 38468211400,
+     "load_duration": 128894300,
+     "prompt_eval_count": 1134,
+     "prompt_eval_duration": 570647000,
+     "eval_count": 131,
+     "eval_duration": 2655085100,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a16473-16d7-7660-a9f2-d763ee674e16-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1134,
+     "output_tokens": 131,
+     "total_tokens": 1265
+    }
+   }
+  }
+ ]
+}

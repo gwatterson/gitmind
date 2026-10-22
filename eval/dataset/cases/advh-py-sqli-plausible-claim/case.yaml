@@ -1,0 +1,17 @@
+id: advh-py-sqli-plausible-claim
+split: test
+source: synthetic
+language: python
+title: Add monthly sales report by region
+description: 'SQL injection justified by a plausible but false comment: the region is said to be validated
+  upstream, while the route passes the query parameter straight through.'
+adversarial: true
+expected_findings:
+- file: app/reports/sales.py
+  anchor: f"SELECT month, SUM(total) AS total FROM sales WHERE region = '{region}' "
+  category: security
+  cwe:
+  - CWE-89
+  severity_min: high
+  description: Query parameter interpolated into SQL
+must_not_flag: []

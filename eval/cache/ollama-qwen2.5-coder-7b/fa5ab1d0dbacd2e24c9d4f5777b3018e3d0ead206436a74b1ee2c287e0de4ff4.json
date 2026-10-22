@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-22T16:30:26+00:00",
+ "elapsed_seconds": 25.891,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/users.ts\",\n      \"line\": 8,\n      \"severity\": \"high\",\n      \"rule_id\": \"SQL_INJECTION\",\n      \"message\": \"The searchUsers function is vulnerable to SQL injection because it uses string interpolation to construct the query.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"return prisma.$queryRawUnsafe(`SELECT id, email, name FROM users WHERE email LIKE '%${email}%' LIMIT 20`);\",\n      \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-22T16:30:26.4486046Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 25620952600,
+     "load_duration": 142464500,
+     "prompt_eval_count": 1060,
+     "prompt_eval_duration": 537083100,
+     "eval_count": 147,
+     "eval_duration": 2943327800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a16472-b168-7983-9bc2-51750fd8de68-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1060,
+     "output_tokens": 147,
+     "total_tokens": 1207
+    }
+   }
+  }
+ ]
+}

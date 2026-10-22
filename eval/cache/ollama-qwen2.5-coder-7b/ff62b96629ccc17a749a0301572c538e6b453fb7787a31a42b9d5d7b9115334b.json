@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-22T16:28:36+00:00",
+ "elapsed_seconds": 18.172,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/reports/sales.py\",\n            \"line\": 10,\n            \"severity\": \"high\",\n            \"rule_id\": \"sql-injection\",\n            \"message\": \"SQL injection vulnerability due to string interpolation.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"f\\\"SELECT month, SUM(total) AS total FROM sales WHERE region = '{region}' AND year = ? GROUP BY month ORDER BY month\\\"\",\n            \"cwe\": \"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\"\n        },\n        {\n            \"file\": \"app/routes/reports.py\",\n            \"line\": 10,\n            \"severity\": \"medium\",\n            \"rule_id\": \"default-value-mutable\",\n            \"message\": \"Default value for `region` is a mutable string, which can lead to unexpected behavior.\",\n            \"confidence\": 0.6,\n            \"evidence\": \"region = request.args.get(\\\"region\\\", \\\"north\\\")\",\n            \"cwe\": \"CWE-487: Use of a Mutable Object as a Default Parameter Value\"\n        },\n        {\n            \"file\": \"app/routes/reports.py\",\n            \"line\": 11,\n            \"severity\": \"medium\",\n            \"rule_id\": \"default-value-mutable\",\n            \"message\": \"Default value for `year` is a mutable string, which can lead to unexpected behavior.\",\n            \"confidence\": 0.6,\n            \"evidence\": \"year = int(request.args.get(\\\"year\\\", \\\"2026\\\"))\",\n            \"cwe\": \"CWE-487: Use of a Mutable Object as a Default Parameter Value\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-22T16:28:36.8540773Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 18173126100,
+     "load_duration": 75311000,
+     "prompt_eval_count": 1102,
+     "prompt_eval_duration": 231181000,
+     "eval_count": 374,
+     "eval_duration": 6919345800,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a16471-2377-7d02-9889-b69a18169ddd-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1102,
+     "output_tokens": 374,
+     "total_tokens": 1476
+    }
+   }
+  }
+ ]
+}

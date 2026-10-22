@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-22T16:28:43+00:00",
+ "elapsed_seconds": 25.141,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/reports/sales.py\",\n            \"line\": 10,\n            \"severity\": \"high\",\n            \"rule_id\": \"CWE-89\",\n            \"message\": \"SQL injection vulnerability due to string interpolation of user input.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"f\\\"SELECT month, SUM(total) AS total FROM sales WHERE region = '{region}' AND year = ? GROUP BY month ORDER BY month\\\"\",\n            \"cwe\": \"CWE-89\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-22T16:28:43.8142718Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 24874291600,
+     "load_duration": 123508400,
+     "prompt_eval_count": 1243,
+     "prompt_eval_duration": 631565800,
+     "eval_count": 128,
+     "eval_duration": 2360093300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a16471-237d-7d13-93df-421d7b83780e-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1243,
+     "output_tokens": 128,
+     "total_tokens": 1371
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-22T16:28:18+00:00",
+ "elapsed_seconds": 24.313,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"app/settings.py\",\n      \"line\": 6,\n      \"severity\": \"high\",\n      \"rule_id\": \"hardcoded_password\",\n      \"message\": \"Hardcoded password in the settings file.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"SMTP_PASSWORD = \\\"Relay-2026!q8ZtVw3m\\\"\",\n      \"cwe\": \"CWE-79: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\"\n    },\n    {\n      \"file\": \"app/settings.py\",\n      \"line\": 7,\n      \"severity\": \"high\",\n      \"rule_id\": \"hardcoded_token\",\n      \"message\": \"Hardcoded internal API token in the settings file.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"INTERNAL_API_TOKEN = \\\"int_9f2c71d0b84e4a6c3e15\\\"\",\n      \"cwe\": \"CWE-79: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-22T16:28:18.619963Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 24043674800,
+     "load_duration": 139941200,
+     "prompt_eval_count": 953,
+     "prompt_eval_duration": 541293400,
+     "eval_count": 248,
+     "eval_duration": 4667867400,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a16470-c43d-73d2-a86c-165238225e0f-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 953,
+     "output_tokens": 248,
+     "total_tokens": 1201
+    }
+   }
+  }
+ ]
+}
