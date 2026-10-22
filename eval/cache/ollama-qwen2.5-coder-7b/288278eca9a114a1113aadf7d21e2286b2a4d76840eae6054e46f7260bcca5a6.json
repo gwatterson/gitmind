@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-22T16:41:26+00:00",
+ "elapsed_seconds": 4.359,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/invoices/download.ts\",\n      \"line\": 7,\n      \"severity\": \"low\",\n      \"rule_id\": \"N/A\",\n      \"message\": \"The database query is not inside a loop, so it does not waste time or resources.\",\n      \"confidence\": 1.0\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-22T16:41:26.2191159Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 4342626400,
+     "load_duration": 76050000,
+     "prompt_eval_count": 889,
+     "prompt_eval_duration": 437770400,
+     "eval_count": 81,
+     "eval_duration": 1552510200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1647d-16d3-70e1-9abd-9aa26587a7ec-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 889,
+     "output_tokens": 81,
+     "total_tokens": 970
+    }
+   }
+  }
+ ]
+}

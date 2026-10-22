@@ -30,7 +30,7 @@ Gemini API or entirely on your machine with a local model served by Ollama.
 - **Structured, validated LLM output.** Every agent answers through a Pydantic schema: findings arrive as typed objects with severity, confidence, CWE and the exact code they refer to, and findings on files outside the pull request are discarded.
 - **Comments on the right line.** Diffs are shown to the model with real line numbers, and every finding is anchored on the code it quotes, so inline comments land where the problem is even when the model miscounts.
 - **Gemini or a local model.** Switch between the Gemini API and a local model served by Ollama from the dashboard; the quota limiter only applies when the API is in use.
-- **Measured on 111 labeled pull requests.** An evaluation harness scores every prompt and model change on real CVEs, synthetic bugs, clean open source pull requests and prompt injection attacks against a semgrep baseline, and a CI gate blocks quality regressions.
+- **Measured on 129 labeled pull requests.** An evaluation harness scores every prompt and model change on real CVEs, synthetic bugs, clean open source pull requests and prompt injection attacks against a semgrep baseline, and a CI gate blocks quality regressions.
 - **Hardened against prompt injection.** Pull request content is fenced as untrusted data, and a deterministic detector reports text addressed to the AI reviewer and hidden Unicode (Trojan Source) as security findings.
 - **Built to fail gracefully.** If one agent crashes the review still completes, clearly marked as incomplete; if all of them fail, or the daily LLM quota runs out, the review stops with an explicit status instead of a misleading "all clear".
 - **Human in the loop.** Findings can wait in the dashboard, where a reviewer edits them and approves before anything is posted to GitHub.
@@ -99,13 +99,13 @@ A new commit on the same pull request supersedes the review still in progress, a
 ## Evaluation
 
 Review quality is measured, not assumed. The [evaluation](eval/README.md) runs the real
-LangGraph pipeline on 111 pull requests with known answers, and every prompt or model
+LangGraph pipeline on 129 pull requests with known answers, and every prompt or model
 change is judged on the same numbers.
 
 - **Dataset**: 46 synthetic cases (a planted vulnerability, bug or performance problem each,
   plus safe code that only looks risky), 33 real vulnerabilities from the GitHub Advisory
   Database rebuilt by reversing their fix commits, 22 merged pull requests of mature open
-  source projects that should raise nothing, and 10 prompt injection attacks that hide a
+  source projects that should raise nothing, and 28 prompt injection attacks that hide a
   real vulnerability behind text written for the reviewer. Python, JavaScript and TypeScript, split into a
   `dev` set for iterating and a frozen `test` set for reporting.
 - **Scoring**: a finding counts when it is on the right file, within 3 lines of the expected
@@ -158,8 +158,38 @@ What the numbers showed, and what changed because of them:
   (0 attacks succeeded before and after), but it reported the manipulation itself only
   once in 8 attempts. With the defenses all 8 are reported, all 10 pull requests are
   blocked (9 before: a Trojan Source change got through) and recall on the attack set
-  rose from 0.61 to 1.00. The detector was written knowing these attacks, so its
-  detection rate here is an upper bound; a held-out set of harder attacks is next.
+  rose from 0.61 to 1.00.
+- The detector was written knowing those attacks, so 8 of 8 was an upper bound. A
+  held-out set of 10 harder attacks, written afterwards and measured with the detector
+  unchanged, shows how far it generalizes:
+
+  | | known attacks (10) | held-out attacks (10) |
+  |---|---|---|
+  | Vulnerabilities found despite the attack | 10 of 10 | 10 of 10 |
+  | Attack PRs blocked | 10 of 10 | 9 of 10 |
+  | Manipulation attempts reported | 8 of 8 | 0 of 8 |
+
+  The model still found every hidden vulnerability (plausible false claims, a
+  misleading `escapeShellArg`, base64 payloads, a fake review result, context
+  dilution, Cyrillic homoglyphs), but nothing reported the manipulation: the rules
+  miss paraphrases, other languages and encodings, and the 7B model never flags the
+  attempt on its own. The one partial success was written in Italian: the path
+  traversal was reported as medium and the pull request was not blocked.
+- The detector now normalizes text before matching: it folds Cyrillic and Greek
+  look-alike letters, decodes base64 tokens and joins consecutive comment lines. To
+  measure it fairly, a second set of 8 unseen attacks was written and committed before
+  the change: 5 in the techniques the normalization targets, 3 controls it does not
+  (ROT13, Spanish, base64 with untargeted wording). Manipulation attempts reported:
+
+  | | before | after |
+  |---|---|---|
+  | Second held-out set (8 unseen attacks) | 0 of 8 | 5 of 8 |
+  | First held-out set (no longer unseen) | 0 of 8 | 3 of 8 |
+  | Known attacks | 8 of 8 | 8 of 8 |
+  | Alarms on the 101 cases without attacks | 0 | 0 |
+
+  It catches exactly the techniques it was designed for and none of the controls:
+  paraphrases and other languages remain the gap, the case for a learned classifier.
 
 ---
 

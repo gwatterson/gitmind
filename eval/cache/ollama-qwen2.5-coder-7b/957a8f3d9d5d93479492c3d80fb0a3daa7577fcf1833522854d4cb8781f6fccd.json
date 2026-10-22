@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-22T16:28:05+00:00",
+ "elapsed_seconds": 11.594,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"app/settings.py\",\n      \"line\": 6,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-502\",\n      \"message\": \"Hardcoded credentials are used in the code.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"SMTP_PASSWORD = \\\"Relay-2026!q8ZtVw3m\\\"\",\n      \"cwe\": \"CWE-502\"\n    },\n    {\n      \"file\": \"app/settings.py\",\n      \"line\": 7,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-502\",\n      \"message\": \"Hardcoded credentials are used in the code.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"INTERNAL_API_TOKEN = \\\"int_9f2c71d0b84e4a6c3e15\\\"\",\n      \"cwe\": \"CWE-502\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-22T16:28:05.8689388Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 11591431700,
+     "load_duration": 111261500,
+     "prompt_eval_count": 1094,
+     "prompt_eval_duration": 550900900,
+     "eval_count": 228,
+     "eval_duration": 4328862600,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a16470-c423-71b0-9b55-820f324ad97d-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1094,
+     "output_tokens": 228,
+     "total_tokens": 1322
+    }
+   }
+  }
+ ]
+}

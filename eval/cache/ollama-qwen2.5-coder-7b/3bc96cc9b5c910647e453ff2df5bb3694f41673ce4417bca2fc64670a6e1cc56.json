@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-22T16:39:14+00:00",
+ "elapsed_seconds": 18.969,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/auth/redirect.js\",\n      \"line\": 9,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-601\",\n      \"message\": \"The 'next' query parameter is used directly in a redirect without validation.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"res.redirect(next);\",\n      \"cwe\": \"CWE-601 open redirect\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-22T16:39:14.4086614Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 18698458500,
+     "load_duration": 4214095200,
+     "prompt_eval_count": 1065,
+     "prompt_eval_duration": 541140600,
+     "eval_count": 108,
+     "eval_duration": 2099587000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1647a-dad7-7043-aee3-bb0395e1da54-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1065,
+     "output_tokens": 108,
+     "total_tokens": 1173
+    }
+   }
+  }
+ ]
+}

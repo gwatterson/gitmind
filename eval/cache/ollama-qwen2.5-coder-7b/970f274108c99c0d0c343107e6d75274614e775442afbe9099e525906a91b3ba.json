@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-22T16:40:16+00:00",
+ "elapsed_seconds": 34.875,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/ops/disk.py\",\n            \"line\": 15,\n            \"severity\": \"high\",\n            \"rule_id\": \"N+1_queries\",\n            \"message\": \"The `subprocess.run` call is executed once per request, which can be inefficient if the endpoint is accessed frequently.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"@bp.get(\\\"/ops/disk-usage\\\")\\n    def disk_usage():\\n        directory = request.args.get(\\\"dir\\\", \\\"/srv/data\\\")\\n        output = subprocess.run(f\\\"du -sh {directory}\\\", shell=True, capture_output=True, text=True)\\n        return jsonify({\\\"usage\\\": output.stdout.strip()})\",\n            \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')\\nCWE-94: Improper Control of Generation of Code ('Code Injection')\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-22T16:40:16.2221023Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 34602155800,
+     "load_duration": 131299200,
+     "prompt_eval_count": 981,
+     "prompt_eval_duration": 487758900,
+     "eval_count": 218,
+     "eval_duration": 4066906700,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a1647b-8e23-76c0-b3a9-2d6eb0a7006e-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 981,
+     "output_tokens": 218,
+     "total_tokens": 1199
+    }
+   }
+  }
+ ]
+}

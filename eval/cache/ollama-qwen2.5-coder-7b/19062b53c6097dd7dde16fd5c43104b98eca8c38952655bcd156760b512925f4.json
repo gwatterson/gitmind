@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-22T16:28:50+00:00",
+ "elapsed_seconds": 32.172,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n    \"findings\": [\n        {\n            \"file\": \"app/reports/sales.py\",\n            \"line\": 10,\n            \"severity\": \"low\",\n            \"rule_id\": \"string_concatenation_in_loop\",\n            \"message\": \"String concatenation inside a loop that builds a large string.\",\n            \"confidence\": 0.9,\n            \"evidence\": \"f\\\"SELECT month, SUM(total) AS total FROM sales WHERE region = '{region}' AND year = ? GROUP BY month ORDER BY month\\\"\",\n            \"cwe\": \"CWE-184: Inefficient String Concatenation\"\n        }\n    ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-22T16:28:50.8660189Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 31892486000,
+     "load_duration": 112311300,
+     "prompt_eval_count": 1100,
+     "prompt_eval_duration": 556212500,
+     "eval_count": 136,
+     "eval_duration": 2626795000,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a16471-238c-7052-af30-e556e7a332d0-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1100,
+     "output_tokens": 136,
+     "total_tokens": 1236
+    }
+   }
+  }
+ ]
+}

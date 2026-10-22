@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-22T16:29:38+00:00",
+ "elapsed_seconds": 13.797,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"app/feeds/importer.py\",\n      \"line\": 102,\n      \"severity\": \"high\",\n      \"rule_id\": \"missing_element_check\",\n      \"message\": \"The element 'image/url' is not a valid RSS feed element. The correct element should be 'image'.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"<child = node.find(\\\"image/url\\\")>\",\n      \"cwe\": \"CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') - Not applicable\"\n    },\n    {\n      \"file\": \"app/feeds/importer.py\",\n      \"line\": 105,\n      \"severity\": \"high\",\n      \"rule_id\": \"none_value_usage\",\n      \"message\": \"The variable 'child' can be None, but it is used without a check before accessing its 'text' attribute.\",\n      \"confidence\": 1.0,\n      \"evidence\": \"<return child.text.strip()>\",\n      \"cwe\": \"CWE-690: Improper Access Control - Not applicable\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-22T16:29:38.6460643Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 13791784300,
+     "load_duration": 169105000,
+     "prompt_eval_count": 2055,
+     "prompt_eval_duration": 1178837500,
+     "eval_count": 251,
+     "eval_duration": 5164532200,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a16472-25f4-70c0-b3d1-adf30379f4b9-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 2055,
+     "output_tokens": 251,
+     "total_tokens": 2306
+    }
+   }
+  }
+ ]
+}

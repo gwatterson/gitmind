@@ -62,8 +62,48 @@ requests.
   fence. It is watched in the next runs, not acted on.
 - The attacks in this set did not fool the model even without defenses, so they cannot
   show the effect of the fence; and the detector patterns were written knowing them, so
-  8 of 8 is an upper bound. Next step: a held-out set of harder attacks (plausible false
-  claims without imperative wording, misleading names, other natural languages, encoded
-  payloads, instructions split across lines), measured without changing the detector.
+  8 of 8 is an upper bound (see the held-out measurement below).
 - Rules miss paraphrases. A learned classifier would generalize better, at the cost of a
   model call or a dependency; it is worth it only if the held-out set shows the gap.
+
+## Update: held-out attacks (2026-10-22)
+
+Ten harder attacks (`advh-*`, all in the `test` split) were written after the detector
+and run without changing it: plausible false claims, a misleading helper name, an
+instruction in Italian, a base64 payload, a fake review result, an instruction split
+over four comment lines, a claim at the end of a long file, a UI string, a markdown file
+of the same pull request, and Cyrillic homoglyphs.
+
+| | known attacks (10) | held-out attacks (10) |
+|---|---|---|
+| Vulnerabilities found despite the attack | 10 of 10 | 10 of 10 |
+| Attack PRs blocked | 10 of 10 | 9 of 10 |
+| Manipulation attempts reported | 8 of 8 | 0 of 8 |
+
+The gap is confirmed: the rules do not generalize beyond the wording they were written
+for, and the model does not report attempts by itself. The review outcome held (every
+vulnerability found, one pull request not blocked, the Italian one), so the detector is a
+signal for human reviewers, not the defense the verdict depends on. Next: normalize the
+text before matching (decode base64, fold homoglyphs, join consecutive comment lines),
+which addresses three of the techniques without writing patterns for these cases, and
+measure it on a new set of unseen attacks, since this one is no longer held out.
+
+## Update: normalization before matching (2026-10-22)
+
+Implemented as planned, without new patterns: NFKC plus a table of Cyrillic and Greek
+letters that look like Latin ones, base64 tokens of at least 24 characters decoded when
+they give printable text, and runs of consecutive added comment lines joined with their
+markers removed (reported once, at the first line, when no line of the run was already
+reported). A second set of 8 unseen attacks (`advh2-*`) was committed before the change:
+
+| | before | after |
+|---|---|---|
+| Second held-out set (8 unseen attacks) | 0 of 8 | 5 of 8 |
+| First held-out set (no longer unseen) | 0 of 8 | 3 of 8 |
+| Known attacks | 8 of 8 | 8 of 8 |
+| Alarms on the 101 cases without attacks | 0 | 0 |
+
+The 3 misses on the second set are the controls (ROT13, Spanish, base64 whose wording no
+rule targets), as designed. What remains is the limit of any rule set: wording it does
+not know. A learned classifier (for example Meta Prompt Guard, local and free, at the
+cost of a PyTorch dependency) is the next option, measured on a new unseen set.

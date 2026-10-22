@@ -1,0 +1,40 @@
+{
+ "provider": "ollama",
+ "model": "qwen2.5-coder:7b",
+ "created_at": "2026-10-22T16:27:28+00:00",
+ "elapsed_seconds": 7.641,
+ "messages": [
+  {
+   "type": "ai",
+   "data": {
+    "content": "{\n  \"findings\": [\n    {\n      \"file\": \"src/routes/greeting.js\",\n      \"line\": 11,\n      \"severity\": \"high\",\n      \"rule_id\": \"CWE-79\",\n      \"message\": \"Cross-site scripting (XSS) vulnerability due to direct inclusion of user input in the response.\",\n      \"confidence\": 0.9,\n      \"evidence\": \"<h1>Hello ${name}</h1>\",\n      \"cwe\": \"CWE-79\"\n    }\n  ]\n}",
+    "additional_kwargs": {},
+    "response_metadata": {
+     "model": "qwen2.5-coder:7b",
+     "created_at": "2026-10-22T16:27:28.5440137Z",
+     "done": true,
+     "done_reason": "stop",
+     "total_duration": 7388447300,
+     "load_duration": 126850000,
+     "prompt_eval_count": 1027,
+     "prompt_eval_duration": 505514400,
+     "eval_count": 113,
+     "eval_duration": 2043318300,
+     "logprobs": null,
+     "model_name": "qwen2.5-coder:7b",
+     "model_provider": "ollama"
+    },
+    "type": "ai",
+    "name": null,
+    "id": "lc_run--01a16470-41c0-75e3-b0b3-8cf4436e1297-0",
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+     "input_tokens": 1027,
+     "output_tokens": 113,
+     "total_tokens": 1140
+    }
+   }
+  }
+ ]
+}
