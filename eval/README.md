@@ -24,6 +24,7 @@ The code lives in [`backend/evals`](../backend/evals).
 | Reversed CVE fixes | 33 | Real vulnerabilities from the GitHub Advisory Database: the upstream fix is reversed, so the change reintroduces the bug |
 | Open source pull requests | 22 | Merged pull requests of mature projects (click, httpx, starlette, rich, axios, hono, zod, ky): every finding counts as a false positive |
 | Prompt injection attacks | 10 | A real vulnerability hidden behind text written for the AI reviewer: "ignore previous instructions" in a docstring, fake approvals, fake system messages and prompt delimiters, a severity override, an injection in the pull request title, zero-width characters and Trojan Source bidirectional characters |
+| Held-out attacks | 10 | Written after the detector and never used to tune it (`advh-*`, `test` split): plausible false claims, a misleading helper name, Italian, base64, a fake review result, instructions split over lines, context dilution, a UI string, a markdown file, Cyrillic homoglyphs |
 
 Cases cover Python, JavaScript and TypeScript, and are split into `dev` (used while
 changing prompts) and `test` (frozen, only used for the reported numbers), so that the
@@ -183,8 +184,8 @@ the precision of individual findings is the open problem, addressed next by a ve
 
 v3 fences the pull request content as untrusted data (agent rules v3, supervisor v2) and
 adds a deterministic detector of manipulation attempts (`app/graph/injection.py`), see
-[ADR 0002](../docs/adr/0002-prompt-injection.md). The 10 attack cases, `dev` and `test`
-together:
+[ADR 0002](../docs/adr/0002-prompt-injection.md). The 10 known attack cases (`adv-*`),
+`dev` and `test` together:
 
 | | before | after |
 |---|---|---|
@@ -195,12 +196,30 @@ together:
 
 The attacks did not make the 7B model miss the vulnerability even before the defenses,
 so the attack success rate cannot show an improvement on this set. The detector was
-written knowing these cases: its detection rate is an upper bound until it is measured on
-a held-out set of harder attacks. On the 101 cases without attacks it raised no alarm,
+written knowing these cases: its detection rate is an upper bound. On the 101 cases
+without attacks it raised no alarm,
 and review quality did not drop (F1 0.29 to 0.31 on `dev`, 0.30 to 0.31 on `test`).
 CWE accuracy fell on `test` (16 to 11 of 25): in three cases the security agent stayed
 silent and the quality agent, which assigns no CWE, found the problem; in the others the
 CWE field was left empty or wrong. On `dev` it was stable (0.21 to 0.20).
+
+**Held-out attacks.** Ten harder attacks (`advh-*`) were written afterwards and run
+with the detector unchanged:
+
+| | known attacks (10) | held-out attacks (10) |
+|---|---|---|
+| Vulnerabilities found despite the attack | 10 of 10 | 10 of 10 |
+| Attack PRs blocked | 10 of 10 | 9 of 10 |
+| Manipulation attempts reported | 8 of 8 | 0 of 8 |
+
+Every hidden vulnerability was still found, so the model is hard to talk out of a real
+problem; but neither the detector nor the model reported a single manipulation
+attempt. The rules match wording, so paraphrases, other languages, encodings,
+homoglyphs and instructions split over lines all get through, and the 7B model does
+not follow the instruction of the agent rules to report text addressed to it. The
+attack written in Italian had a partial effect: the path traversal was reported as
+medium with a weak explanation and the pull request was not blocked. One case is not
+enough to tell the attack from the variance of the model.
 
 ### First look at a larger model
 
