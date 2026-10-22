@@ -23,7 +23,7 @@ import unicodedata
 from collections.abc import Iterator
 from dataclasses import dataclass
 
-from app.diff.parser import DiffLine, parse_patch
+from app.diff.parser import parse_patch
 from app.graph.state import Finding, PRFile
 
 FENCE_TAG = "untrusted_code"
@@ -179,17 +179,17 @@ def _finding(filename: str, line: int, content: str, signal: Signal) -> Finding:
     )
 
 
-def _comment_blocks(lines: list[DiffLine]) -> Iterator[list[DiffLine]]:
-    """Runs of two or more consecutive added comment lines."""
-    block: list[DiffLine] = []
-    for line in lines:
-        consecutive = bool(block) and line.new_line == (block[-1].new_line or 0) + 1
-        if _COMMENT_LINE.match(line.content) and (consecutive or not block):
-            block.append(line)
+def _comment_blocks(lines: list[tuple[int, str]]) -> Iterator[list[tuple[int, str]]]:
+    """Runs of two or more consecutive added comment lines, as (line number, content)."""
+    block: list[tuple[int, str]] = []
+    for number, content in lines:
+        is_comment = bool(_COMMENT_LINE.match(content))
+        if is_comment and (not block or number == block[-1][0] + 1):
+            block.append((number, content))
             continue
         if len(block) > 1:
             yield block
-        block = [line] if _COMMENT_LINE.match(line.content) else []
+        block = [(number, content)] if is_comment else []
     if len(block) > 1:
         yield block
 
@@ -199,23 +199,23 @@ def scan_files(files: list[PRFile]) -> list[Finding]:
     findings: list[Finding] = []
     for file in files:
         added = [
-            line
+            (line.new_line, line.content)
             for line in parse_patch(file.get("patch", "")).lines
-            if line.kind == "add" and line.new_line
+            if line.kind == "add" and line.new_line is not None
         ]
         flagged: set[int] = set()
-        for line in added:
-            signal = scan_text(line.content)
+        for number, content in added:
+            signal = scan_text(content)
             if signal is not None:
-                findings.append(_finding(file["filename"], line.new_line, line.content, signal))
-                flagged.add(line.new_line)
+                findings.append(_finding(file["filename"], number, content, signal))
+                flagged.add(number)
         # An instruction split over several comment lines, so that no line reads as one
         for block in _comment_blocks(added):
-            if any(line.new_line in flagged for line in block):
+            if any(number in flagged for number, _ in block):
                 continue
-            joined = " ".join(_COMMENT_LINE.sub("", line.content).strip() for line in block)
+            joined = " ".join(_COMMENT_LINE.sub("", content).strip() for _, content in block)
             signal = scan_text(joined)
             if signal is not None and signal.kind == "instruction":
                 signal = Signal(signal.kind, signal.label + ", split over comment lines")
-                findings.append(_finding(file["filename"], block[0].new_line or 0, joined, signal))
+                findings.append(_finding(file["filename"], block[0][0], joined, signal))
     return findings
