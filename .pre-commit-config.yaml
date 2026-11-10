@@ -5,20 +5,30 @@
 exclude: ^eval/(dataset/cases|cache)/
 
 repos:
+  # Run as modules instead of through the generated console-script launchers, which
+  # Windows application control (Smart App Control) can block as unknown executables.
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
       - id: end-of-file-fixer
+        entry: python -m pre_commit_hooks.end_of_file_fixer
       - id: trailing-whitespace
+        entry: python -m pre_commit_hooks.trailing_whitespace_fixer
       - id: check-yaml
+        entry: python -m pre_commit_hooks.check_yaml
       - id: check-toml
+        entry: python -m pre_commit_hooks.check_toml
       - id: check-json
+        entry: python -m pre_commit_hooks.check_json
         exclude: ^frontend/tsconfig\.json$ # tsconfig allows comments
       - id: check-merge-conflict
+        entry: python -m pre_commit_hooks.check_merge_conflict
       - id: check-added-large-files
+        entry: python -m pre_commit_hooks.check_added_large_files
         args: ["--maxkb=1000"]
         exclude: (uv\.lock|package-lock\.json)$
       - id: detect-private-key
+        entry: python -m pre_commit_hooks.detect_private_key
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.15.6
